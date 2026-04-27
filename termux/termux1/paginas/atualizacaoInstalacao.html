@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes, viewport-fit=cover">
+    <title>Termux · Atualização e Instalação</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: radial-gradient(circle at 70% 20%, #0b1a2e, #01060f);
+            font-family: 'Segoe UI', 'Inter', system-ui, -apple-system, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            padding: 1.3rem 1rem 2.8rem;
+            color: #d4edff;
+            line-height: 1.55;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at 15% 85%, rgba(0, 255, 200, 0.08) 0%, transparent 55%),
+                        radial-gradient(circle at 90% 10%, rgba(255, 0, 255, 0.08) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 750px;
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            gap: 1.6rem;
+        }
+
+        h1 {
+            font-size: clamp(2.3rem, 8vw, 3.3rem);
+            font-weight: 800;
+            text-align: center;
+            background: linear-gradient(135deg, #7bf0ff, #f472b6, #bef264);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 24px #ff00d0);
+            margin-bottom: 0.3rem;
+            text-shadow: 0 0 20px #38bdf8, 0 0 45px #d946ef;
+        }
+
+        h2 {
+            font-size: 1.65rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #cbd5e1, #f0abfc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 0.8rem 0 0.9rem;
+            border-left: 6px solid #2dd4bf;
+            padding-left: 1.1rem;
+            text-shadow: 0 0 14px #06b6d4;
+        }
+
+        .card {
+            background: rgba(5, 12, 30, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 255, 200, 0.32);
+            border-radius: 2.2rem;
+            padding: 1.5rem 1.3rem;
+            box-shadow: 0 22px 45px rgba(255, 0, 200, 0.28), 0 0 45px #00ffff35;
+            transition: transform 0.2s ease, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            box-shadow: 0 32px 60px #ff66c065, 0 0 65px #22d3ee;
+        }
+
+        .nav-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin: 0.2rem 0 0.6rem;
+            justify-content: center;
+        }
+
+        .btn-link {
+            background: rgba(0, 0, 0, 0.55);
+            border: 2px solid #f472b6;
+            border-radius: 3rem;
+            padding: 0.9rem 1.8rem;
+            font-weight: 700;
+            font-size: 1.15rem;
+            text-decoration: none;
+            color: #fdf2ff;
+            backdrop-filter: blur(14px);
+            box-shadow: 0 0 30px #ec4899, 0 10px 22px #000000;
+            transition: all 0.25s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #2a1035, #0f1a2e);
+            text-shadow: 0 0 10px #f472b6;
+            letter-spacing: 0.3px;
+        }
+
+        .btn-link:hover, .btn-link:active {
+            border-color: #00f2fe;
+            box-shadow: 0 0 45px #00e5ff, 0 0 20px #d946ef;
+            color: white;
+        }
+
+        code {
+            background: #000e1f;
+            display: block;
+            padding: 1rem 1.3rem;
+            border-radius: 1.2rem;
+            margin: 0.9rem 0 0.3rem;
+            font-family: 'Fira Code', 'Courier New', monospace;
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #bbf7d0;
+            border: 1px solid #38bdf8;
+            box-shadow: inset 0 0 20px #2563eb40, 0 10px 20px #000;
+            white-space: pre-wrap;
+            word-break: break-word;
+            letter-spacing: 0.4px;
+        }
+
+        .copy-btn {
+            background: #082f49;
+            border: 1.5px solid #22d3ee;
+            color: #cffafe;
+            font-weight: 700;
+            padding: 0.7rem 1.7rem;
+            border-radius: 3rem;
+            font-size: 0.95rem;
+            backdrop-filter: blur(8px);
+            cursor: pointer;
+            margin: 0.5rem 0 0.8rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            box-shadow: 0 0 22px #06b6d4;
+            transition: 0.25s;
+            background: rgba(2, 15, 30, 0.8);
+        }
+
+        .copy-btn:hover {
+            background: #06b6d4;
+            color: #020617;
+            border-color: #facc15;
+            box-shadow: 0 0 38px #eab308;
+        }
+
+        p {
+            margin: 0.8rem 0 0.5rem;
+            font-size: 1.02rem;
+            color: #c8e9ff;
+        }
+
+        strong {
+            color: #fcd34d;
+            text-shadow: 0 0 8px #fbbf24;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0.3rem;
+            margin: 0.7rem 0 0.5rem;
+        }
+
+        ul li {
+            position: relative;
+            padding-left: 1.6rem;
+            margin-bottom: 0.55rem;
+            color: #d1eaff;
+            font-size: 1rem;
+        }
+
+        ul li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: #22d3ee;
+            font-weight: bold;
+            text-shadow: 0 0 10px #06b6d4;
+        }
+
+        footer {
+            margin-top: 2rem;
+            text-align: center;
+            font-weight: 300;
+            font-size: 1rem;
+            color: #a5d8ff;
+            border-top: 1px dashed #38bdf8;
+            padding-top: 1.4rem;
+            width: 100%;
+        }
+
+        footer small {
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            color: #e0f2fe;
+        }
+
+        footer em {
+            font-style: italic;
+            color: #c084fc;
+            text-shadow: 0 0 12px #c026d3;
+        }
+
+        @media (max-width: 480px) {
+            .card {
+                padding: 1.2rem 1rem;
+            }
+            code {
+                font-size: 1rem;
+                padding: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <!-- Botões de navegação (completamente clicáveis) -->
+        <div class="nav-buttons">
+            <a href="../../../index.html" class="btn-link">🏠 Voltar Home</a>
+            <a href="../termux.html" class="btn-link">📂 Voltar Termux</a>
+        </div>
+
+        <h1>⚡Atualização e Instalação</h1>
+
+        <div class="card">
+            <p>Para que o Termux saiba o que pode ser instalado e qual a versão mais recente disponível, ele precisa de uma lista. Essa lista é mantida nos servidores do Termux e é atualizada regularmente pelos desenvolvedores.</p>
+        </div>
+
+        <!-- COMANDO: pkg update -->
+        <div class="card">
+            <h2>🔄 COMANDO: atualizar a lista de pacotes</h2>
+            <code id="cmd1">pkg update</code>
+            <button class="copy-btn" data-target="cmd1">📋 Copiar comando</button>
+
+            <p><strong>SIGNIFICA:</strong> "package update" — em português, "atualizar pacote" (mas aqui, atualiza a lista de pacotes).</p>
+            <p><strong>FUNÇÃO:</strong> Sincroniza seu Termux com os servidores oficiais, baixando a lista mais recente de todos os softwares disponíveis.</p>
+            <p><strong>O QUE FAZ:</strong></p>
+            <ul>
+                <li>Conecta-se ao repositório principal do Termux (ou ao espelho que você configurou via termux-change-repo).</li>
+                <li>Baixa arquivos de índice que contêm nomes, versões e descrições de todos os pacotes.</li>
+            </ul>
+            <p><strong>Atualiza o banco de dados interno do gerenciador apt.</strong></p>
+            <p><strong>NÃO INSTALA NADA:</strong> Este comando é totalmente seguro e não modifica nenhum programa no seu dispositivo. Ele só atualiza o "catálogo".</p>
+            <p><strong>RELAÇÃO COM OUTROS:</strong> Este é o primeiro passo obrigatório. Sem executar pkg update antes, os comandos pkg upgrade (atualizar programas) e pkg install (instalar novos programas) podem falhar ou instalar versões antigas.</p>
+            <p><strong>Exemplo prático do que acontece se você não fizer isso:</strong></p>
+            <p>Imagine que foi lançada uma atualização de segurança para o Python. Se você não rodar pkg update primeiro, seu Termux ainda estará olhando para uma lista velha, onde essa atualização não existe. Ele não vai encontrá-la.</p>
+        </div>
+
+        <!-- COMANDO: pkg upgrade -->
+        <div class="card">
+            <h2>⬆️ COMANDO: atualizar os programas instalados</h2>
+            <code id="cmd2">pkg upgrade</code>
+            <button class="copy-btn" data-target="cmd2">📋 Copiar comando</button>
+
+            <p><strong>SIGNIFICA:</strong> "package upgrade" — em português, "atualizar pacote" (mas aqui, atualiza os programas instalados).</p>
+            <p><strong>FUNÇÃO:</strong> Verifica quais programas instalados têm versões mais recentes disponíveis e os atualiza para essas versões.</p>
+            <p><strong>O QUE FAZ:</strong></p>
+            <ul>
+                <li>Primeiro, verifica a lista de pacotes atualizada (que você obteve com pkg update) para ver se há versões mais recentes dos programas que você tem.</li>
+                <li>Se encontrar atualizações, baixa os arquivos necessários e instala as novas versões, substituindo as antigas.</li>
+            </ul>
+            <p><strong>IMPORTANTE:</strong> Este comando pode modificar ou substituir programas no seu dispositivo. Ele é seguro, mas é recomendado revisar as mudanças propostas antes de confirmar a atualização, especialmente se você tiver programas personalizados ou dependências específicas.</p>
+            <p><strong>RELAÇÃO COM OUTROS:</strong> Este comando depende de pkg update para funcionar corretamente. Sem uma lista atualizada, ele pode não encontrar as atualizações disponíveis.</p>
+            <p><strong>Exemplo prático do que acontece se você não fizer isso:</strong></p>
+            <p>Se uma vulnerabilidade de segurança for corrigida em um programa que você usa, e você não rodar pkg upgrade, seu programa continuará vulnerável. Mesmo que você tenha a lista atualizada, se não fizer a atualização, estará exposto a riscos.</p>
+        </div>
+
+        <!-- COMANDO: pkg list-all -->
+        <div class="card">
+            <h2>📋 Comando: Listando Pacotes Disponíveis</h2>
+            <code id="cmd3">pkg list-all</code>
+            <button class="copy-btn" data-target="cmd3">📋 Copiar comando</button>
+
+            <p><strong>SIGNIFICA:</strong> "package list-all" — em português, "listar todos os pacotes".</p>
+            <p><strong>FUNÇÃO:</strong> Exibe uma lista completa de todos os pacotes disponíveis no catálogo que o <code style="display:inline;padding:0.2rem 0.5rem;font-size:0.95rem;margin:0;">pkg update</code> baixou.</p>
+            <p><strong>O QUE FAZ:</strong></p>
+            <ul>
+                <li>Lê o banco de dados de pacotes disponíveis.</li>
+                <li>Mostra na tela uma lista imensa (mais de 5000 itens) nome-do-pacote/versão arquitetura</li>
+            </ul>
+            <p>Essa lista passará rapidamente pela tela (rolagem contínua).</p>
+            <p><strong>NÃO INSTALA NADA:</strong> É apenas uma consulta ao catálogo.</p>
+            <p><strong>RELAÇÃO COM OUTROS:</strong></p>
+            <ul>
+                <li><strong>Depende do</strong> <code style="display:inline;padding:0.2rem 0.5rem;font-size:0.95rem;margin:0;">pkg update</code>: Só mostra o que está no catálogo atualizado.</li>
+                <li><strong>Precede buscas mais específicas:</strong> É útil para ver tudo, mas pouco prático para achar algo específico.</li>
+            </ul>
+        </div>
+
+        <footer>
+            <p><small>Pensador Sem Fronteiras</small> <br>
+            <em>do zero ao infinito</em></p>
+        </footer>
+    </div>
+
+    <script>
+        (function() {
+            const copyButtons = document.querySelectorAll('.copy-btn');
+
+            copyButtons.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('data-target');
+                    const codeElement = document.getElementById(targetId);
+                    
+                    if (!codeElement) return;
+
+                    const textToCopy = codeElement.innerText.trim();
+                    
+                    navigator.clipboard.writeText(textToCopy).then(() => {
+                        const originalText = this.innerHTML;
+                        this.innerHTML = '✅ Copiado!';
+                        this.style.borderColor = '#facc15';
+                        this.style.boxShadow = '0 0 35px #fbbf24';
+                        this.style.color = '#000';
+                        this.style.background = '#facc15';
+                        
+                        setTimeout(() => {
+                            this.innerHTML = originalText;
+                            this.style.borderColor = '#22d3ee';
+                            this.style.boxShadow = '0 0 22px #06b6d4';
+                            this.style.color = '#cffafe';
+                            this.style.background = 'rgba(2, 15, 30, 0.8)';
+                        }, 1700);
+                    }).catch(err => {
+                        alert('Erro ao copiar. Tente novamente.');
+                    });
+                });
+            });
+        })();
+    </script>
+</body>
+</html>
