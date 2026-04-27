@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes, viewport-fit=cover">
+  <title>Termux · Lendário I</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: radial-gradient(circle at 20% 10%, #0a0f1e, #02040a);
+      font-family: 'Segoe UI', 'Inter', system-ui, -apple-system, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      padding: 1.2rem 1rem 2.5rem;
+      color: #e0f2fe;
+      line-height: 1.5;
+    }
+
+    /* luminous floating orbs background effect */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at 80% 30%, rgba(0, 255, 255, 0.06) 0%, transparent 50%),
+                  radial-gradient(circle at 10% 70%, rgba(236, 72, 153, 0.07) 0%, transparent 55%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 720px;
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+    }
+
+    /* main title with neon glow */
+    h1 {
+      font-size: clamp(2.4rem, 9vw, 3.6rem);
+      font-weight: 800;
+      text-align: center;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #39ffd0, #f472b6, #7dd3fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 0 18px #00e5ff80);
+      margin-bottom: 0.2rem;
+      text-shadow: 0 0 12px #00b8ff, 0 0 30px #d946ef;
+    }
+
+    h2 {
+      font-size: 1.7rem;
+      font-weight: 700;
+      background: linear-gradient(to right, #bae6fd, #c084fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin: 0.4rem 0 0.7rem;
+      border-left: 5px solid #06b6d4;
+      padding-left: 1rem;
+      text-shadow: 0 0 10px #22d3ee;
+    }
+
+    /* glassmorphism cards */
+    .card {
+      background: rgba(8, 14, 28, 0.7);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(0, 255, 255, 0.25);
+      border-radius: 2.2rem;
+      padding: 1.5rem 1.3rem;
+      box-shadow: 0 20px 40px rgba(0, 229, 255, 0.25), 0 0 30px #ff00b330;
+      transition: transform 0.2s ease, box-shadow 0.25s;
+    }
+
+    .card:hover {
+      box-shadow: 0 25px 50px #00ffff40, 0 0 50px #ff66c0;
+    }
+
+    .card p {
+      margin: 0.8rem 0 1.2rem;
+      font-size: 1.05rem;
+      color: #cfecff;
+      font-weight: 400;
+    }
+
+    ol {
+      padding-left: 1.4rem;
+      margin: 1rem 0 0.5rem;
+      list-style-type: none;
+      counter-reset: neon-counter;
+    }
+
+    ol li {
+      counter-increment: neon-counter;
+      position: relative;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+      font-weight: 500;
+      color: #e2f0ff;
+      padding-left: 2.4rem;
+      word-break: break-word;
+    }
+
+    ol li::before {
+      content: counter(neon-counter);
+      position: absolute;
+      left: 0;
+      top: 0.1rem;
+      background: #0f172a;
+      border: 2px solid #00f2fe;
+      color: #00f2fe;
+      font-weight: 700;
+      width: 1.8rem;
+      height: 1.8rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      box-shadow: 0 0 18px #00e0ff, 0 0 8px #f472b6;
+      background: rgba(0, 10, 20, 0.8);
+    }
+
+    /* link buttons – full clickable navigation */
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      margin: 1.2rem 0 0.4rem;
+    }
+
+    .btn-link {
+      background: rgba(0, 0, 0, 0.5);
+      border: 2px solid #2dd4bf;
+      border-radius: 3rem;
+      padding: 0.9rem 2rem;
+      font-weight: 700;
+      font-size: 1.2rem;
+      text-decoration: none;
+      color: #bafff7;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 0 25px #14b8a6, 0 8px 18px #00000060;
+      transition: all 0.3s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      letter-spacing: 0.3px;
+      background: linear-gradient(135deg, #0d3340, #08192b);
+      text-shadow: 0 0 8px #7fffd4;
+    }
+
+    .btn-link:hover, .btn-link:active {
+      border-color: #f472b6;
+      box-shadow: 0 0 40px #f43f9e, 0 0 25px #2dd4bf;
+      color: #ffffff;
+      background: #0b2838;
+    }
+
+    /* copy button inside code cards */
+    .copy-btn {
+      background: #00b8ff20;
+      border: 1.5px solid #06b6d4;
+      color: #b5f0ff;
+      font-weight: bold;
+      padding: 0.65rem 1.5rem;
+      border-radius: 2.5rem;
+      font-size: 0.95rem;
+      backdrop-filter: blur(10px);
+      cursor: pointer;
+      transition: 0.25s;
+      margin-top: 0.8rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      box-shadow: 0 0 18px #00ccff;
+      background: rgba(4, 20, 35, 0.7);
+    }
+
+    .copy-btn:hover {
+      background: #06b6d4;
+      color: #020617;
+      border-color: #facc15;
+      box-shadow: 0 0 35px #facc15;
+    }
+
+    .code-block {
+      background: #000b1a;
+      border: 1px solid #00f2fe;
+      border-radius: 1.2rem;
+      padding: 1.2rem;
+      margin: 1.4rem 0 0.3rem;
+      box-shadow: inset 0 0 25px #00b8ff33, 0 12px 28px #000000;
+      font-family: 'Fira Code', 'Courier New', monospace;
+      color: #bef7ff;
+      font-size: 1rem;
+      white-space: pre-wrap;
+      word-break: break-word;
+      position: relative;
+    }
+
+    footer {
+      margin-top: 2.2rem;
+      text-align: center;
+      font-weight: 300;
+      font-size: 1rem;
+      color: #8bb9ff;
+      border-top: 1px dashed #38bdf8;
+      padding-top: 1.4rem;
+      width: 100%;
+    }
+
+    footer small {
+      font-weight: 300;
+      letter-spacing: 0.5px;
+      color: #bae6fd;
+    }
+
+    footer em {
+      font-style: italic;
+      color: #c084fc;
+      text-shadow: 0 0 10px #d946ef;
+    }
+
+    /* responsive adjustments */
+    @media (max-width: 480px) {
+      .card {
+        padding: 1.2rem 1rem;
+      }
+      .btn-link {
+        padding: 0.8rem 1.3rem;
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <a href="../index.html">Voltar Home</a>
+    
+    <h1>⚡Termux Lendário I</h1>
+
+    <div class="card">
+      <h2>🛠️ Preparação do Ambiente e Primeiros Passos</h2>
+      <p>Termux é um aplicativo para celular Android (funciona também em Chromebooks com suporte a apps Android). Ele cria um ambiente de terminal Linux dentro do seu celular, sem precisar instalar outro sistema operacional. Termux é um terminal Android que oferece um ambiente Linux completo. Para começar, siga os passos abaixo:</p>
+    </div>
+
+    <!-- Card: Instalação via F-Droid -->
+    <div class="card">
+      <h2>📲 Baixar e instalar Termux no F-Droid (passo a passo)</h2>
+      <ol>
+        <li>No seu celular Android, abra o navegador (Chrome, Firefox, etc.)</li>
+        <li>Digite na barra de endereço: <strong>https://f-droid.org</strong></li>
+        <li>Na página do F-Droid, toque no botão <strong>"Download F-Droid"</strong> para baixar o arquivo APK do aplicativo. (isso é apenas uma loja alternativa, segura e confiável)</li>
+        <li>Abra o app F-Droid já instalado</li>
+        <li>Toque na lupa (buscar) e digite: <strong>Termux</strong></li>
+        <li>Aparecerá Termux (com ícone de terminal preto com /> branco)</li>
+        <li>Toque em Termux e depois em <strong>INSTALL</strong></li>
+        <li>Aguarde a instalação (normalmente 10–30 segundos)</li>
+        <li>Após instalar, toque em OPEN ou encontre o ícone do Termux na tela inicial do seu celular</li>
+      </ol>
+      <!-- Link transformado em botão clicável completo -->
+      <div class="nav-links">
+        <a href="https://f-droid.org" target="_blank" class="btn-link">🔗 Baixar F-Droid</a>
+      </div>
+    </div>
+
+    <!-- Card: Instalação direta pelo navegador -->
+    <div class="card">
+      <h2>🌐 Baixar e instalar Termux no navegador (passo a passo)</h2>
+      <ol>
+        <li>No seu celular Android, abra o navegador (Chrome, Firefox, etc.)</li>
+        <li>Digite na barra de endereço: <strong>https://f-droid.org/pt/packages/com.termux/</strong></li>
+        <li>Na página do Termux, toque no botão <strong>"Download APK"</strong> para baixar o arquivo APK do aplicativo, escolha versão estável e não beta.</li>
+        <li>Após o download, abra o arquivo APK para iniciar a instalação.</li>
+        <li>Siga as instruções na tela para concluir a instalação do Termux.</li>
+        <li>Após instalar, toque em OPEN ou encontre o ícone do Termux na tela inicial do seu celular</li>
+        <li>Agora você tem o Termux instalado e pode começar a usar o terminal Linux no seu celular Android!</li>
+      </ol>
+      <div class="nav-links">
+        <a href="https://f-droid.org/pt/packages/com.termux/" target="_blank" class="btn-link">📦 Repositório Termux (APK)</a>
+      </div>
+      
+      <!-- Bloco de código com botão copiar (exemplo prático do terminal) -->
+      <div class="code-block" id="codeSnippet1">
+# Assim que abrir o Termux, pode começar a digitar comandos Linux.
+# Exemplo: atualizar pacotes básicos
+pkg update && pkg upgrade -y
+      </div>
+      <button class="copy-btn" id="copyButton1">📋 Copiar comando</button>
+    </div>
+
+    <!-- Navegação entre níveis – botões grandes e clicáveis -->
+    <div class="card" style="text-align: center;">
+      <h2 style="border-left-color: #f472b6;">🔮 Navegação Lendária</h2>
+      <div class="nav-links" style="justify-content: center; flex-wrap: wrap;">
+        <a href="paginas/termux1.html" class="btn-link">📘 Comandos Básicos</a>
+        <a href="#" class="btn-link">📗 Nível II</a>
+        <a href="#" class="btn-link">📙 Nível III</a>
+        <a href="#" class="btn-link">📓 Nível IV</a>
+        <a href="#" class="btn-link">📕 Nível V</a>
+      </div>
+      <p style="margin-top:0.8rem; color:#bdf2ff;">Toque no nível para navegar diretamente.</p>
+    </div>
+
+    <footer>
+      <small>Pensador Sem Fronteiras</small> <br>
+      <em>do zero ao infinito</em>
+    </footer>
+  </div>
+
+  <script>
+    (function() {
+      // Functional copy button for the visible code snippet
+      const copyBtn = document.getElementById('copyButton1');
+      const codeBlock = document.getElementById('codeSnippet1');
+
+      if (copyBtn && codeBlock) {
+        copyBtn.addEventListener('click', function() {
+          // get text content without extra markup
+          const textToCopy = codeBlock.innerText.trim();
+          navigator.clipboard.writeText(textToCopy).then(() => {
+            // feedback visual
+            copyBtn.textContent = '✅ Copiado!';
+            copyBtn.style.borderColor = '#facc15';
+            copyBtn.style.boxShadow = '0 0 30px #fbbf24';
+            setTimeout(() => {
+              copyBtn.textContent = '📋 Copiar comando';
+              copyBtn.style.borderColor = '#06b6d4';
+              copyBtn.style.boxShadow = '0 0 18px #00ccff';
+            }, 1800);
+          }).catch(err => {
+            alert('Falha ao copiar. Tente novamente.');
+          });
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

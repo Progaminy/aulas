@@ -2,187 +2,468 @@
 <html lang="pt-pt">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Termux - Nivel I</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes, viewport-fit=cover">
+    <title>Termux · Nível I — Comandos Básicos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: radial-gradient(circle at 30% 15%, #0b1424, #010314);
+            font-family: 'Segoe UI', 'Inter', system-ui, -apple-system, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            padding: 1.3rem 1rem 2.8rem;
+            color: #d9f0ff;
+            line-height: 1.5;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at 85% 20%, rgba(255, 0, 255, 0.07) 0%, transparent 55%),
+                        radial-gradient(circle at 10% 80%, rgba(0, 229, 255, 0.08) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 750px;
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            gap: 1.6rem;
+        }
+
+        h1 {
+            font-size: clamp(2.3rem, 8vw, 3.4rem);
+            font-weight: 800;
+            text-align: center;
+            background: linear-gradient(135deg, #b2f0ff, #f472b6, #bef264);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 22px #ff00c8);
+            margin-bottom: 0.3rem;
+            text-shadow: 0 0 20px #38bdf8, 0 0 40px #d946ef;
+        }
+
+        h2 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #cbd5e1, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 0.6rem 0 0.9rem;
+            border-left: 6px solid #2dd4bf;
+            padding-left: 1.1rem;
+            text-shadow: 0 0 12px #06b6d4;
+        }
+
+        h3 {
+            font-size: 1.35rem;
+            margin: 1.2rem 0 0.5rem;
+            color: #c7e9ff;
+            font-weight: 600;
+            text-shadow: 0 0 8px #a78bfa;
+        }
+
+        .card {
+            background: rgba(7, 12, 28, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 255, 200, 0.3);
+            border-radius: 2.2rem;
+            padding: 1.5rem 1.3rem;
+            box-shadow: 0 22px 45px rgba(255, 0, 200, 0.25), 0 0 40px #00ffff30;
+            transition: transform 0.2s ease, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            box-shadow: 0 30px 55px #ff66c060, 0 0 60px #22d3ee;
+        }
+
+        .nav-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin: 0.2rem 0 0.6rem;
+        }
+
+        .btn-link {
+            background: rgba(0, 0, 0, 0.55);
+            border: 2px solid #f472b6;
+            border-radius: 3rem;
+            padding: 0.9rem 1.8rem;
+            font-weight: 700;
+            font-size: 1.15rem;
+            text-decoration: none;
+            color: #fdf2ff;
+            backdrop-filter: blur(14px);
+            box-shadow: 0 0 30px #ec4899, 0 10px 22px #000000;
+            transition: all 0.25s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #2a1035, #0f1a2e);
+            text-shadow: 0 0 10px #f472b6;
+            letter-spacing: 0.3px;
+        }
+
+        .btn-link:hover, .btn-link:active {
+            border-color: #00f2fe;
+            box-shadow: 0 0 45px #00e5ff, 0 0 20px #d946ef;
+            color: white;
+        }
+
+        ol {
+            list-style: none;
+            padding-left: 0;
+            counter-reset: command-counter;
+            margin: 0.9rem 0 0.4rem;
+        }
+
+        ol li {
+            counter-increment: command-counter;
+            position: relative;
+            margin-bottom: 1.7rem;
+            padding-left: 3rem;
+            font-weight: 500;
+            color: #d6ebff;
+        }
+
+        ol li::before {
+            content: counter(command-counter);
+            position: absolute;
+            left: 0;
+            top: 0.2rem;
+            background: #020617;
+            border: 2px solid #facc15;
+            color: #facc15;
+            font-weight: 800;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 22px #fbbf24, 0 0 12px #ec4899;
+            font-size: 0.95rem;
+        }
+
+        code {
+            background: #000e1f;
+            display: block;
+            padding: 1rem 1.2rem;
+            border-radius: 1.2rem;
+            margin: 0.8rem 0 0.3rem;
+            font-family: 'Fira Code', 'Courier New', monospace;
+            font-size: 1.1rem;
+            color: #bbf7d0;
+            border: 1px solid #38bdf8;
+            box-shadow: inset 0 0 20px #2563eb40, 0 10px 20px #000;
+            white-space: pre-wrap;
+            word-break: break-word;
+            letter-spacing: 0.3px;
+        }
+
+        .copy-btn {
+            background: #082f49;
+            border: 1.5px solid #22d3ee;
+            color: #cffafe;
+            font-weight: 700;
+            padding: 0.7rem 1.7rem;
+            border-radius: 3rem;
+            font-size: 0.95rem;
+            backdrop-filter: blur(8px);
+            cursor: pointer;
+            margin: 0.5rem 0 0.7rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            box-shadow: 0 0 22px #06b6d4;
+            transition: 0.25s;
+            background: rgba(2, 15, 30, 0.8);
+        }
+
+        .copy-btn:hover {
+            background: #06b6d4;
+            color: #020617;
+            border-color: #facc15;
+            box-shadow: 0 0 38px #eab308;
+        }
+
+        p {
+            margin: 0.8rem 0 0.4rem;
+            font-size: 1rem;
+            color: #cbeeff;
+        }
+
+        strong {
+            color: #fcd34d;
+            text-shadow: 0 0 7px #fbbf24;
+        }
+
+        footer {
+            margin-top: 2rem;
+            text-align: center;
+            font-weight: 300;
+            font-size: 1rem;
+            color: #a5d8ff;
+            border-top: 1px dashed #38bdf8;
+            padding-top: 1.4rem;
+            width: 100%;
+        }
+
+        footer small {
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            color: #e0f2fe;
+        }
+
+        footer em {
+            font-style: italic;
+            color: #c084fc;
+            text-shadow: 0 0 12px #c026d3;
+        }
+
+        @media (max-width: 480px) {
+            .card {
+                padding: 1.2rem 1rem;
+            }
+            code {
+                font-size: 0.95rem;
+                padding: 0.85rem;
+            }
+        }
+    </style>
 </head>
 <body>
-
-<!-- Transformar em botão completamente digitável -->
-
-    <a href="../termux1.html">Voltar Home</a>
-
-    <h1>Comandos Basicos das ferramentas básicas do sistema.</h1>
-
-    <ol>
-        <li>
-            <h2>Comando: Verificar Usuario do terminal</h2>
-        </li>
-
-        <code>whoami</code> <br>
-
-        <h3>Explicação do comando</h3>
-        <p>O comando <strong>whoami</strong> pergunta ao sistema: "Qual é o nome do usuário atual?" O Termux responde com um identificador interno do Android. <br>
-        Não é o nome do usuário do sistema Linux tradicional, mas sim um ID específico do ambiente Termux. <br>
-        📌 Para que serve whoami? <br>
-        Saber qual usuário está controlando o terminal <br>
-        📌 Útil quando você tiver vários usuários ou permissões diferentes</b></p>
-
-        <li>
-            <h2>Comando: Verificar diretório atual (mostrar caminho)</h2>
-        </li>
-
-        <code>pwd</code> <br>
-
-        <h3>Explicação do comando</h3>
-        <p>O comando <strong>pwd</strong> significa "print working directory", ou seja, "imprimir diretório de trabalho". Ele mostra o caminho completo do diretório atual em que você está no terminal. <br>
-        📌 Para que serve pwd? <br>
-        Saber em qual diretório você está trabalhando <br>
-        📌 Útil para navegar e organizar arquivos</b></p>
-
-        <li>
-            <h2>Comando: Listar arquivos e pastas</h2>
-        </li>
-
-        <code>ls</code> <br>
-
-        <h3>Explicação do comando</h3>
-        <p>O comando <strong>ls</strong> significa "list", ou seja, "listar". Ele mostra a lista de arquivos e pastas no diretório atual. <br>
-        📌 Para que serve ls? <br>
-        Visualizar o conteúdo de um diretório <br>
-        📌 Útil para navegar e encontrar arquivos</b></p>
-
-        <li>
-            <h2>Comando: Obter informações sobre um arquivo ou pasta (listar detalhadamente)</h2>
-        </li>
-
-        <code>ls -l</code> <br>
-
-
-        <h3>Explicação do comando</h3>
-        <p>O comando <strong>ls -l</strong> mostra uma lista detalhada dos arquivos e pastas no diretório atual, incluindo permissões, proprietário, tamanho e data de modificação. <br>
-        📌 Para que serve ls -l? <br>
-        Obter informações detalhadas sobre arquivos e pastas <br>
-        📌 Útil para entender as propriedades dos arquivos</b></p>
-
-        <li>
-            <h2>Comando: Limpar a tela do terminal</h2>
-        </li>
-
-        <code> </code>clear</code> <br>
-
-        <h3>Explicação do comando</h3>
-        <p>O comando <strong>clear</strong> serve para limpar a tela do terminal. Ele remove todo o texto visível, os comandos antigos e suas saídas, deixando a tela completamente em branco. Seu único objetivo é ajudar na organização visual. Ele não apaga arquivos, não desfaz ações, não fecha nada. Só limpa a poluição visual da tela. <br>
-        📌 Para que serve clear? <br>
-        Limpar a tela do terminal <br>
-        📌 Útil para organizar a visualização do terminal</b></p>
-
-        <li>
-            <h2>Comando: Mudar de diretório</h2>
-        </li>
-
-        <code>cd</code> <br>
-
-        <h3>Explicação do comando</h3>
-        <p>O comando <strong>cd</strong> significa "change directory", ou seja, "mudar de diretório". Ele permite que você navegue entre as pastas do sistema. <br>
-        📌 Para que serve cd? <br>
-        Navegar entre diretórios <br>
-        📌 Útil para acessar diferentes partes do sistema de arquivos</b></p>
-
-        <h3>cd (entrando em uma pasta específica)</h3>
-        <p>Para entrar em uma pasta específica, você pode usar o comando <strong>cd</strong> seguido do nome da pasta. Por exemplo, se você quiser entrar na pasta "Documentos", basta digitar:</p>
-
-        <code>cd Documentos</code> <br>
-
-        <p>Isso mudará o diretório atual para a pasta "Documentos", desde que ela exista no diretório atual. Se a pasta estiver em outro local, você pode fornecer o caminho completo ou relativo para ela.</p>
-
-
-        <p>Este comando tem duas partes: o comando em si e o destino. O destino pode ser um caminho ou um atalho especial. Para esta primeira aula de navegação, usaremos um atalho fundamental: .. (dois pontos finais).</p>
-
-        <code>cd ..</code> <br>
-
-        <h3>Explicação do comando cd ..</h3>
-        <p>O comando <strong>cd ..</strong> é usado para subir um nível na hierarquia de diretórios. O <strong>..</strong> significa "o diretório acima deste" ou "a pasta pai". É o que contém a pasta onde você está agora. <br>
-        📌 Para que serve cd ..? <br>
-        Subir um nível na hierarquia de diretórios <br>
-        📌 Útil para navegar para pastas superiores</b></p>
-
-        <li>
-            <h2>Comando: Voltar para o diretório inicial</h2>
-        </li>
-
-        <code>cd ~</code> <br>
-
-        <h3>Explicação do comando cd ~</h3>
-        <p>O comando <strong>cd ~</strong> é usado para voltar para o diretório inicial do usuário. O símbolo <strong>~</strong> representa o diretório home do usuário, que é onde você começa quando abre o terminal. <br>
-        📌 Para que serve cd ~? <br>
-        Voltar para o diretório inicial do usuário <br>
-        📌 Útil para acessar rapidamente o diretório home</b></p>
-
-        <li>
-            <h2>Comando: Criar uma nova pasta</h2>
-        </li>
-
-        <code>mkdir nome_da_pasta</code> <br>
-
-        <h3>Explicação do comando</h3>
-        <p>O comando <strong>mkdir</strong> significa "make directory", ou seja, "criar diretório". Ele permite que você crie uma nova pasta no diretório atual. <br>
-        📌 Para que serve mkdir? <br>
-        Criar novas pastas <br>
-        📌 Útil para organizar arquivos e diretórios</b></p>
-
-        <li>
-            <h2>Comando: Criar um novo arquivo de texto</h2>
-        </li>
-
-        <code>touch nome_do_arquivo.txt</code> <br>
-
-        <h3>Explicação do comando</h3>
-        <p>O comando <strong>touch</strong> é usado para criar um novo arquivo vazio ou atualizar a data de modificação de um arquivo existente. Para criar um novo arquivo, basta usar o comando seguido do nome do arquivo que deseja criar. Por exemplo:</p><br>
-
-        <p>Você criou um arquivo vazio. Ele não tem conteúdo algum, mas já existe e ocupa um nome. A extensão .txt é apenas um nome sugestivo para arquivos de texto, mas o comando funciona com qualquer nome: imagem.png, dados.csv, musica.mp3, tudo é criado vazio da mesma forma.</p>
-
-        <li>
-            <h2>Comando: Remover um arquivo ou pasta</h2>
-        </li>
-
-        <code>rm nome_do_arquivo.txt</code> <br>
-
-        <code>rm -r nome_da_pasta</code> <br>
-
-        <h3>Explicação do comando</h3>
-        <p>O comando <strong>rm</strong> significa "remove", ou seja, "remover". Ele é usado para deletar arquivos e pastas. Para remover um arquivo, basta usar o comando seguido do nome do arquivo. Por exemplo:</p><br>
-        <p>Para remover uma pasta e todo o seu conteúdo, você pode usar a opção -r (recursive). Por exemplo:</p><br>
-        <p>⚠️ Cuidado: O comando rm é poderoso e não tem uma lixeira. Ele apaga arquivos e pastas permanentemente, sem confirmação. Use com cautela!</p>
-
-        <li>
-            <h2>Comando: remover pasta</h2>
-        </li>
-
-        <code>rmdir nome_da_pasta</code> <br>
-        <h3>Explicação do comando</h3>
-        <p>O comando <strong>rmdir</strong> significa "remove directory", ou seja, "remover diretório". Ele é usado para deletar pastas vazias. Para remover uma pasta, basta usar o comando seguido do nome da pasta. Por exemplo:</p><br>
-        <p>⚠️ Cuidado: O comando rmdir só funciona para pastas vazias. Se a pasta contiver arquivos ou outras pastas, você precisará usar o comando rm -r para removê-la.</p>
-
-        <li>
-            <h2>Comando: Copiar um arquivo ou pasta</h2>
-        </li>
-
-        <code>cp nome_do_arquivo.txt destino</code> <br>
+    <div class="container">
         
-        <code>cp -r nome_da_pasta destino</code> <br>
+        <!-- Botões de navegação principais (completamente clicáveis, sem copiar) -->
+        <div class="nav-buttons" style="justify-content: center;">
+            <a href="../../index.html" class="btn-link">🏠 Voltar Home</a>
+            <a href="../termux.html" class="btn-link">📂 Voltar Termux Home</a>
+        </div>
 
-        <h3>Explicação do comando</h3>
-        <p>O comando <strong>cp</strong> significa "copy", ou seja, "copiar". Ele é usado para criar uma cópia de um arquivo ou pasta. Para copiar um arquivo, basta usar o comando seguido do nome do arquivo e do destino onde deseja criar a cópia. Por exemplo:</p><br>
-        <p>Para copiar uma pasta e todo o seu conteúdo, você pode usar a opção -r (recursive). Por exemplo:</p><br>
-        <p>📌 Para que serve cp? <br>
-        Criar cópias de arquivos e pastas</p>
+        <h1>⚡Comandos Básicos do Sistema</h1>
 
-    </ol>
+        <div class="card">
+            <ol>
+                <!-- Comando 1: whoami -->
+                <li>
+                    <h2>👤 Comando: Verificar Usuário do terminal</h2>
+                    <code id="cmd1">whoami</code>
+                    <button class="copy-btn" data-target="cmd1">📋 Copiar comando</button>
+                    <h3>Explicação do comando</h3>
+                    <p>O comando <strong>whoami</strong> pergunta ao sistema: "Qual é o nome do usuário atual?" O Termux responde com um identificador interno do Android. <br>
+                    Não é o nome do usuário do sistema Linux tradicional, mas sim um ID específico do ambiente Termux. <br>
+                    📌 Para que serve whoami? <br>
+                    Saber qual usuário está controlando o terminal <br>
+                    📌 Útil quando você tiver vários usuários ou permissões diferentes</p>
+                </li>
 
-    <footer>
-        <small>Pensadoe Sem Fronteiras</small> <br>
-        <em>Do zero ao Infinito</em>
-    </footer>
+                <!-- Comando 2: pwd -->
+                <li>
+                    <h2>📁 Comando: Verificar diretório atual (mostrar caminho)</h2>
+                    <code id="cmd2">pwd</code>
+                    <button class="copy-btn" data-target="cmd2">📋 Copiar comando</button>
+                    <h3>Explicação do comando</h3>
+                    <p>O comando <strong>pwd</strong> significa "print working directory", ou seja, "imprimir diretório de trabalho". Ele mostra o caminho completo do diretório atual em que você está no terminal. <br>
+                    📌 Para que serve pwd? <br>
+                    Saber em qual diretório você está trabalhando <br>
+                    📌 Útil para navegar e organizar arquivos</p>
+                </li>
 
+                <!-- Comando 3: ls -->
+                <li>
+                    <h2>📋 Comando: Listar arquivos e pastas</h2>
+                    <code id="cmd3">ls</code>
+                    <button class="copy-btn" data-target="cmd3">📋 Copiar comando</button>
+                    <h3>Explicação do comando</h3>
+                    <p>O comando <strong>ls</strong> significa "list", ou seja, "listar". Ele mostra a lista de arquivos e pastas no diretório atual. <br>
+                    📌 Para que serve ls? <br>
+                    Visualizar o conteúdo de um diretório <br>
+                    📌 Útil para navegar e encontrar arquivos</p>
+                </li>
+
+                <!-- Comando 4: ls -l -->
+                <li>
+                    <h2>📊 Comando: Obter informações sobre um arquivo ou pasta (listar detalhadamente)</h2>
+                    <code id="cmd4">ls -l</code>
+                    <button class="copy-btn" data-target="cmd4">📋 Copiar comando</button>
+                    <h3>Explicação do comando</h3>
+                    <p>O comando <strong>ls -l</strong> mostra uma lista detalhada dos arquivos e pastas no diretório atual, incluindo permissões, proprietário, tamanho e data de modificação. <br>
+                    📌 Para que serve ls -l? <br>
+                    Obter informações detalhadas sobre arquivos e pastas <br>
+                    📌 Útil para entender as propriedades dos arquivos</p>
+                </li>
+
+                <!-- Comando 5: clear -->
+                <li>
+                    <h2>🧹 Comando: Limpar a tela do terminal</h2>
+                    <code id="cmd5">clear</code>
+                    <button class="copy-btn" data-target="cmd5">📋 Copiar comando</button>
+                    <h3>Explicação do comando</h3>
+                    <p>O comando <strong>clear</strong> serve para limpar a tela do terminal. Ele remove todo o texto visível, os comandos antigos e suas saídas, deixando a tela completamente em branco. Seu único objetivo é ajudar na organização visual. Ele não apaga arquivos, não desfaz ações, não fecha nada. Só limpa a poluição visual da tela. <br>
+                    📌 Para que serve clear? <br>
+                    Limpar a tela do terminal <br>
+                    📌 Útil para organizar a visualização do terminal</p>
+                </li>
+
+                <!-- Comando 6: cd -->
+                <li>
+                    <h2>📂 Comando: Mudar de diretório</h2>
+                    <code id="cmd6">cd</code>
+                    <button class="copy-btn" data-target="cmd6">📋 Copiar comando</button>
+                    <h3>Explicação do comando</h3>
+                    <p>O comando <strong>cd</strong> significa "change directory", ou seja, "mudar de diretório". Ele permite que você navegue entre as pastas do sistema. <br>
+                    📌 Para que serve cd? <br>
+                    Navegar entre diretórios <br>
+                    📌 Útil para acessar diferentes partes do sistema de arquivos</p>
+
+                    <h3>📌 cd (entrando em uma pasta específica)</h3>
+                    <p>Para entrar em uma pasta específica, você pode usar o comando <strong>cd</strong> seguido do nome da pasta. Por exemplo, se você quiser entrar na pasta "Documentos", basta digitar:</p>
+                    <code id="cmd7">cd Documentos</code>
+                    <button class="copy-btn" data-target="cmd7">📋 Copiar comando</button>
+                    <p>Isso mudará o diretório atual para a pasta "Documentos", desde que ela exista no diretório atual. Se a pasta estiver em outro local, você pode fornecer o caminho completo ou relativo para ela.</p>
+
+                    <p>Este comando tem duas partes: o comando em si e o destino. O destino pode ser um caminho ou um atalho especial. Para esta primeira aula de navegação, usaremos um atalho fundamental: .. (dois pontos finais).</p>
+                    <code id="cmd8">cd ..</code>
+                    <button class="copy-btn" data-target="cmd8">📋 Copiar comando</button>
+                    <h3>Explicação do comando cd ..</h3>
+                    <p>O comando <strong>cd ..</strong> é usado para subir um nível na hierarquia de diretórios. O <strong>..</strong> significa "o diretório acima deste" ou "a pasta pai". É o que contém a pasta onde você está agora. <br>
+                    📌 Para que serve cd ..? <br>
+                    Subir um nível na hierarquia de diretórios <br>
+                    📌 Útil para navegar para pastas superiores</p>
+                </li>
+
+                <!-- Comando 7: cd ~ -->
+                <li>
+                    <h2>🏠 Comando: Voltar para o diretório inicial</h2>
+                    <code id="cmd9">cd ~</code>
+                    <button class="copy-btn" data-target="cmd9">📋 Copiar comando</button>
+                    <h3>Explicação do comando cd ~</h3>
+                    <p>O comando <strong>cd ~</strong> é usado para voltar para o diretório inicial do usuário. O símbolo <strong>~</strong> representa o diretório home do usuário, que é onde você começa quando abre o terminal. <br>
+                    📌 Para que serve cd ~? <br>
+                    Voltar para o diretório inicial do usuário <br>
+                    📌 Útil para acessar rapidamente o diretório home</p>
+                </li>
+
+                <!-- Comando 8: mkdir -->
+                <li>
+                    <h2>📁 Comando: Criar uma nova pasta</h2>
+                    <code id="cmd10">mkdir nome_da_pasta</code>
+                    <button class="copy-btn" data-target="cmd10">📋 Copiar comando</button>
+                    <h3>Explicação do comando</h3>
+                    <p>O comando <strong>mkdir</strong> significa "make directory", ou seja, "criar diretório". Ele permite que você crie uma nova pasta no diretório atual. <br>
+                    📌 Para que serve mkdir? <br>
+                    Criar novas pastas <br>
+                    📌 Útil para organizar arquivos e diretórios</p>
+                </li>
+
+                <!-- Comando 9: touch -->
+                <li>
+                    <h2>📄 Comando: Criar um novo arquivo de texto</h2>
+                    <code id="cmd11">touch nome_do_arquivo.txt</code>
+                    <button class="copy-btn" data-target="cmd11">📋 Copiar comando</button>
+                    <h3>Explicação do comando</h3>
+                    <p>O comando <strong>touch</strong> é usado para criar um novo arquivo vazio ou atualizar a data de modificação de um arquivo existente. Para criar um novo arquivo, basta usar o comando seguido do nome do arquivo que deseja criar. Por exemplo:</p>
+                    <p>Você criou um arquivo vazio. Ele não tem conteúdo algum, mas já existe e ocupa um nome. A extensão .txt é apenas um nome sugestivo para arquivos de texto, mas o comando funciona com qualquer nome: imagem.png, dados.csv, musica.mp3, tudo é criado vazio da mesma forma.</p>
+                </li>
+
+                <!-- Comando 10: rm e rm -r -->
+                <li>
+                    <h2>🗑️ Comando: Remover um arquivo ou pasta</h2>
+                    <code id="cmd12">rm nome_do_arquivo.txt</code>
+                    <button class="copy-btn" data-target="cmd12">📋 Copiar comando</button>
+                    <code id="cmd13">rm -r nome_da_pasta</code>
+                    <button class="copy-btn" data-target="cmd13">📋 Copiar comando</button>
+                    <h3>Explicação do comando</h3>
+                    <p>O comando <strong>rm</strong> significa "remove", ou seja, "remover". Ele é usado para deletar arquivos e pastas. Para remover um arquivo, basta usar o comando seguido do nome do arquivo. Por exemplo:</p>
+                    <p>Para remover uma pasta e todo o seu conteúdo, você pode usar a opção -r (recursive). Por exemplo:</p>
+                    <p>⚠️ Cuidado: O comando rm é poderoso e não tem uma lixeira. Ele apaga arquivos e pastas permanentemente, sem confirmação. Use com cautela!</p>
+                </li>
+
+                <!-- Comando 11: rmdir -->
+                <li>
+                    <h2>📭 Comando: remover pasta</h2>
+                    <code id="cmd14">rmdir nome_da_pasta</code>
+                    <button class="copy-btn" data-target="cmd14">📋 Copiar comando</button>
+                    <h3>Explicação do comando</h3>
+                    <p>O comando <strong>rmdir</strong> significa "remove directory", ou seja, "remover diretório". Ele é usado para deletar pastas vazias. Para remover uma pasta, basta usar o comando seguido do nome da pasta. Por exemplo:</p>
+                    <p>⚠️ Cuidado: O comando rmdir só funciona para pastas vazias. Se a pasta contiver arquivos ou outras pastas, você precisará usar o comando rm -r para removê-la.</p>
+                </li>
+
+                <!-- Comando 12: cp -->
+                <li>
+                    <h2>📋 Comando: Copiar um arquivo ou pasta</h2>
+                    <code id="cmd15">cp nome_do_arquivo.txt destino</code>
+                    <button class="copy-btn" data-target="cmd15">📋 Copiar comando</button>
+                    <code id="cmd16">cp -r nome_da_pasta destino</code>
+                    <button class="copy-btn" data-target="cmd16">📋 Copiar comando</button>
+                    <h3>Explicação do comando</h3>
+                    <p>O comando <strong>cp</strong> significa "copy", ou seja, "copiar". Ele é usado para criar uma cópia de um arquivo ou pasta. Para copiar um arquivo, basta usar o comando seguido do nome do arquivo e do destino onde deseja criar a cópia. Por exemplo:</p>
+                    <p>Para copiar uma pasta e todo o seu conteúdo, você pode usar a opção -r (recursive). Por exemplo:</p>
+                    <p>📌 Para que serve cp? <br>
+                    Criar cópias de arquivos e pastas</p>
+                </li>
+            </ol>
+        </div>
+
+        <footer>
+            <small>Pensador Sem Fronteiras</small> <br>
+            <em>do zero ao infinito</em>
+        </footer>
+    </div>
+
+    <script>
+        (function() {
+            // Seletor universal para todos os botões de copiar
+            const copyButtons = document.querySelectorAll('.copy-btn');
+
+            copyButtons.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('data-target');
+                    const codeElement = document.getElementById(targetId);
+                    
+                    if (!codeElement) return;
+
+                    const textToCopy = codeElement.innerText.trim();
+                    
+                    navigator.clipboard.writeText(textToCopy).then(() => {
+                        // Feedback visual temporário
+                        const originalText = this.innerHTML;
+                        this.innerHTML = '✅ Copiado!';
+                        this.style.borderColor = '#facc15';
+                        this.style.boxShadow = '0 0 35px #fbbf24';
+                        this.style.color = '#000';
+                        this.style.background = '#facc15';
+                        
+                        setTimeout(() => {
+                            this.innerHTML = originalText;
+                            this.style.borderColor = '#22d3ee';
+                            this.style.boxShadow = '0 0 22px #06b6d4';
+                            this.style.color = '#cffafe';
+                            this.style.background = 'rgba(2, 15, 30, 0.8)';
+                        }, 1700);
+                    }).catch(err => {
+                        alert('Erro ao copiar. Tente novamente.');
+                    });
+                });
+            });
+        })();
+    </script>
 </body>
 </html>
