@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+    <title>Vídeos | Pensador Sem Fronteiras</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background: radial-gradient(circle at 50% 20%, #0a0c0f 0%, #020304 100%);
+            font-family: 'Share Tech Mono', 'Courier New', monospace;
+            color: #e0f0ff;
+            min-height: 100vh;
+            padding: 1.5rem 1.2rem 2.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            line-height: 1.6;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 50, 100, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 200, 50, 0.03) 1px, transparent 1px);
+            background-size: 28px 28px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 850px;
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+        }
+
+        /* Botões de navegação superiores */
+        .nav-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.9rem;
+            justify-content: center;
+            margin-bottom: 0.3rem;
+        }
+
+        .nav-btn {
+            background: rgba(0, 0, 0, 0.72);
+            border: 2px solid #ff3264;
+            color: #ffaabb;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            padding: 0.85rem 1.8rem;
+            border-radius: 45px;
+            cursor: pointer;
+            backdrop-filter: blur(12px);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            box-shadow: 0 0 22px rgba(255, 50, 100, 0.55), 0 8px 20px rgba(0,0,0,0.7);
+            transition: all 0.25s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            touch-action: manipulation;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .nav-btn:hover {
+            background: #ff3264;
+            color: #000;
+            border-color: #ffc832;
+            box-shadow: 0 0 45px #ff3264, 0 0 75px #ffc832;
+            transform: translateY(-3px);
+        }
+
+        .nav-btn:active {
+            transform: scale(0.92);
+            background: #fff;
+            color: #000;
+            border-color: #fff;
+            box-shadow: 0 0 60px #fff, 0 0 100px #ff3264;
+            transition: 0.08s;
+        }
+
+        .nav-btn.secondary {
+            border-color: #ffc832;
+            color: #ffeeaa;
+            box-shadow: 0 0 22px rgba(255, 200, 50, 0.55), 0 8px 20px rgba(0,0,0,0.7);
+        }
+
+        .nav-btn.secondary:hover {
+            background: #ffc832;
+            color: #000;
+            border-color: #ff3264;
+            box-shadow: 0 0 45px #ffc832, 0 0 75px #ff3264;
+        }
+
+        .nav-btn.secondary:active {
+            background: #fff;
+            color: #000;
+            border-color: #fff;
+            box-shadow: 0 0 60px #fff, 0 0 100px #ffc832;
+        }
+
+        /* Título principal */
+        .main-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2.4rem, 8vw, 3.8rem);
+            font-weight: 800;
+            text-align: center;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #fff;
+            text-shadow: 
+                0 0 10px #ff3264,
+                0 0 32px #ff3264,
+                0 0 62px #ff6688,
+                0 0 95px #ff3264;
+            margin-bottom: 0.3rem;
+            filter: drop-shadow(0 0 18px #ffc832);
+            word-break: break-word;
+        }
+
+        .video-title-icon {
+            font-size: 3.2rem;
+            display: block;
+            filter: drop-shadow(0 0 25px #ff3264);
+            margin-bottom: 0.3rem;
+            animation: videoGlow 2.5s ease-in-out infinite;
+        }
+
+        @keyframes videoGlow {
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 25px #ff3264); }
+            50% { transform: scale(1.08); filter: drop-shadow(0 0 45px #ffc832); }
+        }
+
+        /* Cartão padrão */
+        .card {
+            background: rgba(8, 12, 22, 0.8);
+            backdrop-filter: blur(18px);
+            border: 1px solid rgba(255, 50, 100, 0.3);
+            border-radius: 28px;
+            padding: 1.4rem 1.3rem;
+            box-shadow: 0 0 30px rgba(255, 50, 100, 0.25), 0 10px 30px rgba(0, 0, 0, 0.8);
+            transition: all 0.25s ease;
+            position: relative;
+            overflow: visible;
+        }
+
+        .card:hover {
+            border-color: #ffc832;
+            box-shadow: 0 0 45px #ffc83280, 0 0 85px #ff32644d;
+        }
+
+        h2 {
+            font-family: 'Orbitron', sans-serif;
+            color: #ff3264;
+            text-shadow: 0 0 14px #ff3264, 0 0 30px #ff6688;
+            margin-bottom: 1rem;
+            letter-spacing: 0.1em;
+            font-size: 1.6rem;
+        }
+
+        p, li {
+            color: #ffd0d8;
+            text-shadow: 0 0 4px rgba(255,50,100,0.5);
+            margin-bottom: 0.5rem;
+        }
+
+        a {
+            color: #ffeeaa;
+            text-decoration: none;
+            font-weight: 600;
+            text-shadow: 0 0 8px #ffc832;
+            transition: 0.2s;
+        }
+
+        a:hover {
+            color: #fff;
+            text-shadow: 0 0 18px #ff3264, 0 0 30px #ffc832;
+        }
+
+        hr {
+            border: none;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #ff3264, #ffc832, transparent);
+            margin: 1.2rem 0;
+            box-shadow: 0 0 20px #ff3264;
+        }
+
+        code {
+            font-family: 'Share Tech Mono', monospace;
+            color: #ffaabb;
+            text-shadow: 0 0 6px #ff3264;
+        }
+
+        /* Caixa de código estética */
+        .code-box {
+            background: #0a0c14;
+            border: 2px solid #ff3264;
+            border-radius: 20px;
+            padding: 1.3rem 1.2rem 1.2rem;
+            margin: 1rem 0;
+            box-shadow: 0 0 30px rgba(255, 50, 100, 0.5), inset 0 0 15px rgba(255,50,100,0.2);
+            position: relative;
+            backdrop-filter: blur(5px);
+        }
+
+        .code-box code {
+            display: block;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.95rem;
+            color: #ffd0d8;
+            white-space: pre-wrap;
+            word-break: break-word;
+            text-shadow: 0 0 6px #ff3264;
+            line-height: 1.7;
+        }
+
+        .copy-code-btn {
+            position: absolute;
+            top: 10px;
+            right: 12px;
+            background: #000;
+            border: 2px solid #ffc832;
+            color: #ffeeaa;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 0.8rem;
+            padding: 0.5rem 1.1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 18px rgba(255, 200, 50, 0.7);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            transition: all 0.25s;
+            z-index: 5;
+            touch-action: manipulation;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .copy-code-btn:hover {
+            background: #ffc832;
+            color: #000;
+            border-color: #ff3264;
+            box-shadow: 0 0 35px #ff3264, 0 0 55px #ffc832;
+        }
+
+        .copy-code-btn:active {
+            transform: scale(0.9);
+            background: #fff;
+            color: #000;
+            border-color: #fff;
+            box-shadow: 0 0 45px #fff;
+            transition: 0.08s;
+        }
+
+        /* Botões de links externos */
+        .external-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .external-btn {
+            background: rgba(0, 0, 0, 0.6);
+            border: 2px solid #ffc832;
+            color: #ffeeaa;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 0.7rem 1.4rem;
+            border-radius: 35px;
+            cursor: pointer;
+            backdrop-filter: blur(8px);
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+            box-shadow: 0 0 16px rgba(255, 200, 50, 0.5);
+            transition: all 0.25s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            touch-action: manipulation;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+            flex: 1 1 auto;
+            justify-content: center;
+            min-width: 160px;
+        }
+
+        .external-btn:hover {
+            background: #ffc832;
+            color: #000;
+            border-color: #ff3264;
+            box-shadow: 0 0 35px #ffc832, 0 0 55px #ff3264;
+            transform: translateY(-2px);
+        }
+
+        .external-btn:active {
+            transform: scale(0.92);
+            background: #fff;
+            transition: 0.08s;
+        }
+
+        .external-btn.download {
+            border-color: #ff3264;
+            color: #ffaabb;
+            box-shadow: 0 0 16px rgba(255, 50, 100, 0.5);
+        }
+
+        .external-btn.download:hover {
+            background: #ff3264;
+            color: #000;
+            border-color: #ffc832;
+            box-shadow: 0 0 35px #ff3264, 0 0 55px #ffc832;
+        }
+
+        .browser-note {
+            display: inline-block;
+            background: rgba(255, 200, 50, 0.2);
+            color: #fff;
+            padding: 0.3rem 0.9rem;
+            border-radius: 20px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 0.06em;
+            margin-top: 0.5rem;
+            text-shadow: 0 0 8px #ffc832;
+            border: 1px solid rgba(255, 200, 50, 0.4);
+        }
+
+        /* Rodapé */
+        .footer-signature {
+            margin-top: 2.5rem;
+            text-align: center;
+            border-top: 1px dashed #ff3264;
+            padding-top: 2rem;
+            width: 100%;
+        }
+
+        .footer-signature p {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.25em;
+            color: #aaa;
+            text-shadow: 0 0 8px #ffc832;
+        }
+
+        .footer-signature small {
+            font-size: 0.85rem;
+            color: #ff3264;
+        }
+
+        .footer-signature em {
+            font-style: italic;
+            color: #ffaabb;
+            text-shadow: 0 0 10px #ff3264;
+            display: block;
+            margin-top: 0.3rem;
+        }
+
+        @media (max-width: 480px) {
+            body { padding: 1rem 0.8rem; }
+            .nav-btn { font-size: 0.85rem; padding: 0.7rem 1.3rem; }
+            .copy-code-btn { font-size: 0.7rem; padding: 0.4rem 0.9rem; }
+            .external-btn { font-size: 0.8rem; padding: 0.6rem 1rem; min-width: 130px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Botões de navegação superiores (COMPLETAMENTE CLICÁVEIS) -->
+        <div class="nav-buttons">
+            <button class="nav-btn" onclick="navegarPara('../../index.html')">🏠 Voltar Home</button>
+            <button class="nav-btn secondary" onclick="navegarPara('../html1.html')">📄 HTML Nível I</button>
+        </div>
+
+        <!-- Título principal -->
+        <h1 class="main-title">
+            <span class="video-title-icon">🎥</span>
+            Vídeos
+        </h1>
+
+        <!-- Instalações -->
+        <div class="card">
+            <h2>⚙️ Instalações</h2>
+            <div class="external-links">
+                <button class="external-btn" onclick="abrirLink('https://handbrake.fr/')">
+                    🔧 HandBrake (Converter)
+                </button>
+                <button class="external-btn" onclick="abrirLink('https://www.blackmagicdesign.com/products/davinciresolve/')">
+                    🎬 DaVinci Resolve (Editar)
+                </button>
+            </div>
+            <p style="margin-top: 0.8rem; font-size: 0.85rem; color: #888;">
+                Links originais: 
+                <a href="https://handbrake.fr/" target="_blank" rel="noopener">HandBrake</a> | 
+                <a href="https://www.blackmagicdesign.com/products/davinciresolve/" target="_blank" rel="noopener">DaVinci Resolve</a>
+            </p>
+        </div>
+
+        <hr>
+
+        <!-- Para Baixar Vídeos -->
+        <div class="card" style="text-align: center;">
+            <h2>⬇️ Para Baixar Vídeos</h2>
+            <button class="external-btn download" onclick="abrirLink('https://www.pexels.com/pt-br/')">
+                📥 Pexels
+            </button>
+            <p style="margin-top: 0.6rem; font-size: 0.85rem; color: #888;">
+                ou clique: <a href="https://www.pexels.com/pt-br/" target="_blank" rel="noopener">pexels.com</a>
+            </p>
+        </div>
+
+        <hr>
+
+        <!-- Tag de vídeo com múltiplas fontes -->
+        <div class="card">
+            <h2>📌 Como Inserir um Vídeo</h2>
+            <p>Para colocar um vídeo use a seguinte tag:</p>
+
+            <div class="code-box" id="codeVideoMulti">
+                <button class="copy-code-btn" id="copyVideoMulti">📋 Copiar</button>
+                <code>
+&lt;video controls preload="metadata"&gt;
+    &lt;source src="videos/video.mp4" type="video/mp4"&gt;
+    &lt;source src="videos/video.webm" type="video/webm"&gt;
+    &lt;source src="videos/video.ogv" type="video/ogg"&gt;
+&lt;/video&gt;
+
+&lt;p&gt;Navegador incompatível para vídeos&lt;/p&gt;
+                </code>
+            </div>
+
+            <p><span class="browser-note">⚠️ Navegador incompatível para vídeos</span></p>
+        </div>
+
+        <hr>
+
+        <!-- Tag de vídeo simplificada -->
+        <div class="card">
+            <h2>📌 Tag de Vídeo Simplificada</h2>
+            <p>Ou</p>
+
+            <div class="code-box" id="codeVideoSimples">
+                <button class="copy-code-btn" id="copyVideoSimples">📋 Copiar</button>
+                <code>
+&lt;video src="caminho/do/video" type="video/mp4" poster="images/caminho/da/imagem" controls preload="metadata" width="400"&gt;&lt;/video&gt;
+                </code>
+            </div>
+
+            <p><span class="browser-note">⚠️ Navegador incompatível para leitor de vídeos</span></p>
+        </div>
+
+        <!-- Rodapé -->
+        <footer class="footer-signature">
+            <p><small>&copy; Pensador Sem Fronteiras. Todos os direitos reservados.</small></p>
+            <p><em>Do Zero ao Infinito</em></p>
+        </footer>
+    </div>
+
+    <script>
+        (function() {
+            // 🌟 FUNÇÃO DE NAVEGAÇÃO REAL COM BOTÕES 🌟
+            window.navegarPara = function(url) {
+                if (!url || url === '#') return;
+                
+                const botoes = document.querySelectorAll('.nav-btn, .external-btn');
+                botoes.forEach(btn => {
+                    btn.style.pointerEvents = 'none';
+                    btn.style.opacity = '0.7';
+                });
+                
+                setTimeout(() => {
+                    window.location.href = url;
+                }, 120);
+                
+                setTimeout(() => {
+                    botoes.forEach(btn => {
+                        btn.style.pointerEvents = 'auto';
+                        btn.style.opacity = '1';
+                    });
+                }, 600);
+            };
+
+            // 🌟 FUNÇÃO PARA ABRIR LINKS EXTERNOS 🌟
+            window.abrirLink = function(url) {
+                if (!url) return;
+                window.open(url, '_blank', 'noopener,noreferrer');
+            };
+
+            // 🌟 FUNÇÃO GENÉRICA PARA COPIAR CÓDIGO 🌟
+            function setupCopyButton(buttonId, codeString) {
+                const btn = document.getElementById(buttonId);
+                if (!btn) return;
+
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    navigator.clipboard.writeText(codeString).then(() => {
+                        const originalHTML = btn.innerHTML;
+                        btn.innerHTML = '✅ Copiado!';
+                        btn.style.background = '#00ffaa';
+                        btn.style.color = '#000';
+                        btn.style.borderColor = '#fff';
+                        
+                        setTimeout(() => {
+                            btn.innerHTML = originalHTML;
+                            btn.style.background = '#000';
+                            btn.style.color = '#ffeeaa';
+                            btn.style.borderColor = '#ffc832';
+                        }, 1800);
+                    }).catch(() => {
+                        alert('Falha ao copiar. Tente novamente.');
+                    });
+                });
+            }
+
+            // Configurar botões de cópia
+            setupCopyButton('copyVideoMulti', 
+`<video controls preload="metadata">
+    <source src="videos/video.mp4" type="video/mp4">
+    <source src="videos/video.webm" type="video/webm">
+    <source src="videos/video.ogv" type="video/ogg">
+</video>
+
+<p>Navegador incompatível para vídeos</p>`);
+
+            setupCopyButton('copyVideoSimples', 
+`<video src="caminho/do/video" type="video/mp4" poster="images/caminho/da/imagem" controls preload="metadata" width="400"></video>`);
+
+            // Suporte para tecla Enter nos botões (acessibilidade)
+            document.querySelectorAll('.nav-btn, .external-btn, .copy-code-btn').forEach(btn => {
+                btn.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        this.click();
+                    }
+                });
+            });
+
+        })();
+    </script>
+</body>
+</html>

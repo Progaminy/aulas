@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+    <title>Tags HTML | Pensador Sem Fronteiras</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background: radial-gradient(circle at 30% 15%, #0a0c0f 0%, #020304 100%);
+            font-family: 'Share Tech Mono', 'Courier New', monospace;
+            color: #e0f0ff;
+            min-height: 100vh;
+            padding: 1.5rem 1.2rem 2.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            line-height: 1.6;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 0, 255, 0.03) 1px, transparent 1px);
+            background-size: 28px 28px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 850px;
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+        }
+
+        /* Botões de navegação superiores */
+        .nav-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.9rem;
+            justify-content: center;
+            margin-bottom: 0.3rem;
+        }
+
+        .nav-btn {
+            background: rgba(0, 0, 0, 0.72);
+            border: 2px solid #00ffff;
+            color: #aaffff;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            padding: 0.85rem 1.8rem;
+            border-radius: 45px;
+            cursor: pointer;
+            backdrop-filter: blur(12px);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            box-shadow: 0 0 22px rgba(0, 255, 255, 0.55), 0 8px 20px rgba(0,0,0,0.7);
+            transition: all 0.25s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            touch-action: manipulation;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .nav-btn:hover {
+            background: #00ffff;
+            color: #000;
+            border-color: #ff00ff;
+            box-shadow: 0 0 45px #00ffff, 0 0 75px #ff00ff;
+            transform: translateY(-3px);
+        }
+
+        .nav-btn:active {
+            transform: scale(0.92);
+            background: #fff;
+            color: #000;
+            border-color: #fff;
+            box-shadow: 0 0 60px #fff, 0 0 100px #00ffff;
+            transition: 0.08s;
+        }
+
+        .nav-btn.secondary {
+            border-color: #ff00ff;
+            color: #ffb3ff;
+            box-shadow: 0 0 22px rgba(255, 0, 255, 0.55), 0 8px 20px rgba(0,0,0,0.7);
+        }
+
+        .nav-btn.secondary:hover {
+            background: #ff00ff;
+            color: #000;
+            border-color: #00ffff;
+            box-shadow: 0 0 45px #ff00ff, 0 0 75px #00ffff;
+        }
+
+        .nav-btn.secondary:active {
+            background: #fff;
+            color: #000;
+            border-color: #fff;
+            box-shadow: 0 0 60px #fff, 0 0 100px #ff00ff;
+        }
+
+        /* Título principal */
+        .main-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2.4rem, 8vw, 3.8rem);
+            font-weight: 800;
+            text-align: center;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #fff;
+            text-shadow: 
+                0 0 10px #0ff,
+                0 0 32px #0ff,
+                0 0 62px #f0f,
+                0 0 95px #00ffff;
+            margin-bottom: 0.3rem;
+            filter: drop-shadow(0 0 18px magenta);
+            word-break: break-word;
+        }
+
+        .tags-title-icon {
+            font-size: 3.2rem;
+            display: block;
+            filter: drop-shadow(0 0 25px #00ffff);
+            margin-bottom: 0.3rem;
+            animation: tagPulse 2.5s ease-in-out infinite;
+        }
+
+        @keyframes tagPulse {
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 25px #00ffff); }
+            50% { transform: scale(1.08); filter: drop-shadow(0 0 45px #ff00ff); }
+        }
+
+        /* Cartão padrão */
+        .card {
+            background: rgba(8, 12, 22, 0.8);
+            backdrop-filter: blur(18px);
+            border: 1px solid rgba(0, 255, 255, 0.28);
+            border-radius: 28px;
+            padding: 1.4rem 1.3rem;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.25), 0 10px 30px rgba(0, 0, 0, 0.8);
+            transition: all 0.25s ease;
+            position: relative;
+            overflow: visible;
+        }
+
+        .card:hover {
+            border-color: #ff00ff;
+            box-shadow: 0 0 45px #ff00ff80, 0 0 85px #00ffff4d;
+        }
+
+        h2 {
+            font-family: 'Orbitron', sans-serif;
+            color: #00ffff;
+            text-shadow: 0 0 14px #0ff, 0 0 30px #f0f;
+            margin-bottom: 1rem;
+            letter-spacing: 0.1em;
+            font-size: 1.6rem;
+        }
+
+        p, li {
+            color: #d4f4ff;
+            text-shadow: 0 0 4px rgba(0,255,255,0.5);
+            margin-bottom: 0.5rem;
+        }
+
+        a {
+            color: #ffb3ff;
+            text-decoration: none;
+            font-weight: 600;
+            text-shadow: 0 0 8px magenta;
+            transition: 0.2s;
+        }
+
+        a:hover {
+            color: #fff;
+            text-shadow: 0 0 18px #f0f, 0 0 30px cyan;
+        }
+
+        hr {
+            border: none;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00ffff, #ff00ff, transparent);
+            margin: 1.2rem 0;
+            box-shadow: 0 0 20px cyan;
+        }
+
+        code {
+            font-family: 'Share Tech Mono', monospace;
+            color: #aaffff;
+            text-shadow: 0 0 6px cyan;
+        }
+
+        /* Grid de tags */
+        .tags-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
+            margin-top: 0.8rem;
+        }
+
+        .tag-item {
+            background: rgba(0, 0, 0, 0.55);
+            border: 1px solid rgba(0, 255, 255, 0.45);
+            border-radius: 18px;
+            padding: 0.85rem 1rem;
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            box-shadow: 0 0 14px rgba(0, 255, 255, 0.25);
+            transition: all 0.25s ease;
+        }
+
+        .tag-item:hover {
+            border-color: #ff00ff;
+            box-shadow: 0 0 30px rgba(255, 0, 255, 0.5), 0 0 50px rgba(0, 255, 255, 0.3);
+            background: rgba(20, 0, 35, 0.7);
+            transform: translateX(4px);
+        }
+
+        .tag-display {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            flex: 1;
+            min-width: 200px;
+            flex-wrap: wrap;
+        }
+
+        .tag-name {
+            background: rgba(0, 255, 255, 0.2);
+            color: #aaffff;
+            font-family: 'Share Tech Mono', monospace;
+            font-weight: 700;
+            font-size: 0.95rem;
+            padding: 0.3rem 0.7rem;
+            border-radius: 12px;
+            text-shadow: 0 0 8px cyan;
+            letter-spacing: 0.05em;
+            white-space: nowrap;
+        }
+
+        .tag-desc {
+            color: #d4f4ff;
+            font-size: 0.9rem;
+            text-shadow: 0 0 4px rgba(0,255,255,0.5);
+        }
+
+        /* Botão copiar tag */
+        .copy-tag-btn {
+            background: #000;
+            border: 2px solid #ff00ff;
+            color: #ffb3ff;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 0.75rem;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 14px rgba(255, 0, 255, 0.6);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            transition: all 0.25s;
+            white-space: nowrap;
+            touch-action: manipulation;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .copy-tag-btn:hover {
+            background: #ff00ff;
+            color: #000;
+            border-color: #00ffff;
+            box-shadow: 0 0 30px #ff00ff, 0 0 50px #00ffff;
+        }
+
+        .copy-tag-btn:active {
+            transform: scale(0.88);
+            background: #fff;
+            color: #000;
+            border-color: #fff;
+            box-shadow: 0 0 40px #fff;
+            transition: 0.06s;
+        }
+
+        /* Exemplos de uso */
+        .example-box {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px dashed rgba(255, 0, 255, 0.4);
+            border-radius: 16px;
+            padding: 1rem 1.2rem;
+            margin: 0.5rem 0;
+        }
+
+        .example-box h1, .example-box h2, .example-box h3, 
+        .example-box h4, .example-box h5, .example-box h6 {
+            font-family: 'Orbitron', sans-serif;
+            color: #ffb3ff;
+            text-shadow: 0 0 10px magenta;
+            margin: 0.3rem 0;
+        }
+
+        .example-box h1 { font-size: 1.8rem; }
+        .example-box h2 { font-size: 1.5rem; }
+        .example-box h3 { font-size: 1.3rem; }
+        .example-box h4 { font-size: 1.1rem; }
+        .example-box h5 { font-size: 1rem; }
+        .example-box h6 { font-size: 0.9rem; }
+
+        /* Rodapé */
+        .footer-signature {
+            margin-top: 2.5rem;
+            text-align: center;
+            border-top: 1px dashed #00ffff;
+            padding-top: 2rem;
+            width: 100%;
+        }
+
+        .footer-signature p {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.25em;
+            color: #aaa;
+            text-shadow: 0 0 8px #ff00ff;
+        }
+
+        .footer-signature small {
+            font-size: 0.85rem;
+            color: #0ff;
+        }
+
+        .footer-signature em {
+            font-style: italic;
+            color: #ffb3ff;
+            text-shadow: 0 0 10px magenta;
+            display: block;
+            margin-top: 0.3rem;
+        }
+
+        @media (max-width: 480px) {
+            body { padding: 1rem 0.8rem; }
+            .nav-btn { font-size: 0.85rem; padding: 0.7rem 1.3rem; }
+            .copy-tag-btn { font-size: 0.7rem; padding: 0.4rem 0.8rem; }
+            .tag-name { font-size: 0.85rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Botões de navegação superiores (COMPLETAMENTE CLICÁVEIS) -->
+        <div class="nav-buttons">
+            <button class="nav-btn" onclick="navegarPara('../../index.html')">🏠 Voltar Home</button>
+            <button class="nav-btn secondary" onclick="navegarPara('../html1.html')">📄 HTML Nível I</button>
+        </div>
+
+        <!-- Título principal -->
+        <h1 class="main-title">
+            <span class="tags-title-icon">🏷️</span>
+            Tag's HTML
+        </h1>
+
+        <!-- Lista de Tags -->
+        <div class="card">
+            <h2>📌 Principais Tags HTML</h2>
+            <div class="tags-grid" id="tagsContainer"></div>
+        </div>
+
+        <hr>
+
+        <!-- Exemplos de uso -->
+        <div class="card">
+            <h2>👁️ Exemplo de Uso das Tags</h2>
+            <div class="example-box">
+                <h1>Este é um título principal</h1>
+                <h2>Este é um título secundário</h2>
+                <h3>Este é um título terciário</h3>
+                <h4>Este é um título quádruplo</h4>
+                <h5>Este é um título quíntuplo</h5>
+                <h6>Este é um título sextuplo</h6>
+                <p>Este é um parágrafo de texto.</p>
+                <p>Este é outro parágrafo de texto.</p>
+                <p>Este é um parágrafo de texto com uma <a href="https://www.google.com" target="_blank">link para o Google</a>.</p>
+                <p>Este é um parágrafo de texto com uma imagem: <img src="https://via.placeholder.com/150" alt="Imagem de exemplo" style="border-radius: 8px; margin-top: 0.3rem;"></p>
+                <p>Este é um parágrafo de texto com uma quebra de linha:<br>Esta é a segunda linha do parágrafo.</p>
+            </div>
+        </div>
+
+        <hr>
+
+        <!-- Notas Importantes -->
+        <div class="card">
+            <h2>📝 Notas Importantes</h2>
+            <p>As tags em HTML são elementos que definem a estrutura e o conteúdo de uma página web.</p>
+        </div>
+
+        <!-- Rodapé -->
+        <footer class="footer-signature">
+            <p><small>&copy; Pensador Sem Fronteiras. Todos os direitos reservados.</small></p>
+            <p><em>Do Zero ao Infinito</em></p>
+        </footer>
+    </div>
+
+    <script>
+        (function() {
+            // 🌟 FUNÇÃO DE NAVEGAÇÃO REAL COM BOTÕES 🌟
+            window.navegarPara = function(url) {
+                if (!url || url === '#') return;
+                
+                const botoes = document.querySelectorAll('.nav-btn');
+                botoes.forEach(btn => {
+                    btn.style.pointerEvents = 'none';
+                    btn.style.opacity = '0.7';
+                });
+                
+                setTimeout(() => {
+                    window.location.href = url;
+                }, 120);
+                
+                setTimeout(() => {
+                    botoes.forEach(btn => {
+                        btn.style.pointerEvents = 'auto';
+                        btn.style.opacity = '1';
+                    });
+                }, 600);
+            };
+
+            // 🌟 FUNÇÃO PARA COPIAR CÓDIGO 🌟
+            function copiarCodigo(codigo, botao) {
+                navigator.clipboard.writeText(codigo).then(() => {
+                    const originalHTML = botao.innerHTML;
+                    botao.innerHTML = '✅';
+                    botao.style.background = '#00ffaa';
+                    botao.style.color = '#000';
+                    botao.style.borderColor = '#fff';
+                    botao.style.boxShadow = '0 0 20px #00ffaa';
+                    
+                    setTimeout(() => {
+                        botao.innerHTML = originalHTML;
+                        botao.style.background = '#000';
+                        botao.style.color = '#ffb3ff';
+                        botao.style.borderColor = '#ff00ff';
+                        botao.style.boxShadow = '0 0 14px rgba(255, 0, 255, 0.6)';
+                    }, 1500);
+                }).catch(() => {
+                    alert('Falha ao copiar. Tente novamente.');
+                });
+            }
+
+            // 🌟 DADOS DAS TAGS (FIEL AO CONTEÚDO ORIGINAL) 🌟
+            const tags = [
+                { nome: '<code> </code>', copiar: '<code> </code>', desc: 'é usada para definir um trecho de código.' },
+                { nome: '<!-- comentário -->', copiar: '<!-- comentário -->', desc: 'é usada para criar um comentário no código HTML.' },
+                { nome: '<h1> </h1>', copiar: '<h1> </h1>', desc: 'é usada para definir o título principal da página.' },
+                { nome: '<h2> </h2>', copiar: '<h2> </h2>', desc: 'é usada para definir o título secundário da página.' },
+                { nome: '<h3> </h3>', copiar: '<h3> </h3>', desc: 'é usada para definir o título terciário da página.' },
+                { nome: '<h4> </h4>', copiar: '<h4> </h4>', desc: 'é usada para definir o título quádruplo da página.' },
+                { nome: '<h5> </h5>', copiar: '<h5> </h5>', desc: 'é usada para definir o título quíntuplo da página.' },
+                { nome: '<h6> </h6>', copiar: '<h6> </h6>', desc: 'é usada para definir o título sextuplo da página.' },
+                { nome: '<p> </p>', copiar: '<p> </p>', desc: 'é usada para definir um parágrafo de texto.' },
+                { nome: '<br>', copiar: '<br>', desc: 'é usada para criar uma quebra de linha.' },
+                { nome: '<hr>', copiar: '<hr>', desc: 'é usada para criar uma linha horizontal.' },
+                { nome: '<a href=""> link </a>', copiar: '<a href=""> link </a>', desc: 'é usada para criar um link para outra página ou recurso na web.' },
+                { nome: '<img src="" alt="">', copiar: '<img src="" alt="">', desc: 'é usada para inserir uma imagem na página.' }
+            ];
+
+            // 🌟 RENDERIZAR TAGS 🌟
+            const tagsContainer = document.getElementById('tagsContainer');
+            
+            tags.forEach(tag => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'tag-item';
+                
+                itemDiv.innerHTML = `
+                    <div class="tag-display">
+                        <span class="tag-name">${tag.nome}</span>
+                        <span class="tag-desc">${tag.desc}</span>
+                    </div>
+                    <button class="copy-tag-btn">📋 Copiar</button>
+                `;
+                
+                const copyBtn = itemDiv.querySelector('.copy-tag-btn');
+                copyBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    copiarCodigo(tag.copiar, copyBtn);
+                });
+                
+                tagsContainer.appendChild(itemDiv);
+            });
+
+            // Suporte para tecla Enter nos botões (acessibilidade)
+            document.querySelectorAll('.nav-btn, .copy-tag-btn').forEach(btn => {
+                btn.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        this.click();
+                    }
+                });
+            });
+
+        })();
+    </script>
+</body>
+</html>

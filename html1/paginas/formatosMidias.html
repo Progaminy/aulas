@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+  <title>Catálogo de Formatos MIME | Pensador Sem Fronteiras</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Share+Tech+Mono&family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background: radial-gradient(circle at 30% 15%, #0a0c0f 0%, #020304 100%);
+      font-family: 'Inter', sans-serif;
+      padding: 1.5rem 1.2rem 2.5rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      color: #eef2ff;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        linear-gradient(rgba(0, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 0, 255, 0.02) 1px, transparent 1px);
+      background-size: 30px 30px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 1400px;
+      width: 100%;
+      background: rgba(8, 12, 22, 0.75);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 2.5rem;
+      padding: 2rem 2rem 2.5rem;
+      box-shadow: 0 0 40px rgba(0, 255, 255, 0.3), 0 20px 50px rgba(0, 0, 0, 0.8);
+      border: 1px solid rgba(0, 255, 255, 0.25);
+      position: relative;
+      z-index: 2;
+      transition: all 0.3s ease;
+    }
+
+    .container:hover {
+      border-color: #ff00ff;
+      box-shadow: 0 0 60px rgba(255, 0, 255, 0.4), 0 25px 60px rgba(0, 0, 0, 0.9);
+    }
+
+    /* Botões de navegação superiores */
+    .nav-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .nav-btn {
+      background: rgba(0, 0, 0, 0.72);
+      border: 2px solid #00ffff;
+      color: #aaffff;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 0.8rem 1.8rem;
+      border-radius: 45px;
+      cursor: pointer;
+      backdrop-filter: blur(12px);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      box-shadow: 0 0 22px rgba(0, 255, 255, 0.55), 0 8px 20px rgba(0,0,0,0.7);
+      transition: all 0.25s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      touch-action: manipulation;
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .nav-btn:hover {
+      background: #00ffff;
+      color: #000;
+      border-color: #ff00ff;
+      box-shadow: 0 0 45px #00ffff, 0 0 75px #ff00ff;
+      transform: translateY(-3px);
+    }
+
+    .nav-btn:active {
+      transform: scale(0.92);
+      background: #fff;
+      color: #000;
+      border-color: #fff;
+      box-shadow: 0 0 60px #fff, 0 0 100px #00ffff;
+      transition: 0.08s;
+    }
+
+    .nav-btn.secondary {
+      border-color: #ff00ff;
+      color: #ffb3ff;
+      box-shadow: 0 0 22px rgba(255, 0, 255, 0.55), 0 8px 20px rgba(0,0,0,0.7);
+    }
+
+    .nav-btn.secondary:hover {
+      background: #ff00ff;
+      color: #000;
+      border-color: #00ffff;
+      box-shadow: 0 0 45px #ff00ff, 0 0 75px #00ffff;
+    }
+
+    .nav-btn.secondary:active {
+      background: #fff;
+      color: #000;
+      border-color: #fff;
+      box-shadow: 0 0 60px #fff, 0 0 100px #ff00ff;
+    }
+
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(2rem, 6vw, 2.8rem);
+      font-weight: 800;
+      text-align: center;
+      color: #fff;
+      text-shadow: 
+        0 0 10px #0ff,
+        0 0 30px #0ff,
+        0 0 60px #f0f,
+        0 0 90px #00ffff;
+      margin-bottom: 0.3rem;
+      letter-spacing: 0.08em;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      filter: drop-shadow(0 0 15px magenta);
+    }
+
+    h1 i {
+      color: #fbbf24;
+      font-size: 2.5rem;
+      text-shadow: 0 0 20px #f59e0b, 0 0 40px #ff8800;
+      filter: drop-shadow(0 0 10px #ff8800);
+    }
+
+    .subtitle {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+      color: #aaffff;
+      font-weight: 500;
+      border-bottom: 1px solid rgba(0, 255, 255, 0.3);
+      padding-bottom: 1.2rem;
+      text-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
+    }
+
+    .stats-badge {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 0.5rem 1.3rem;
+      border-radius: 3rem;
+      font-size: 0.9rem;
+      color: #ffb3ff;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
+      border: 1px solid rgba(255, 0, 255, 0.4);
+    }
+
+    /* Painel de busca */
+    .search-panel {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      background: rgba(0, 0, 0, 0.35);
+      padding: 1.2rem 1.5rem;
+      border-radius: 2.5rem;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(0, 255, 255, 0.2);
+      align-items: center;
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.2);
+    }
+
+    .search-box {
+      flex: 2;
+      min-width: 260px;
+      position: relative;
+    }
+
+    .search-box i {
+      position: absolute;
+      left: 1.2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #ff00ff;
+      font-size: 1.2rem;
+      text-shadow: 0 0 10px #ff00ff;
+    }
+
+    #searchInput {
+      width: 100%;
+      padding: 0.9rem 1rem 0.9rem 3rem;
+      border-radius: 2.5rem;
+      border: 2px solid rgba(0, 255, 255, 0.3);
+      background: #0a0f1a;
+      font-weight: 500;
+      font-size: 1rem;
+      color: #e0f0ff;
+      outline: none;
+      transition: all 0.3s;
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+      font-family: 'Share Tech Mono', monospace;
+    }
+
+    #searchInput:focus {
+      background: #0d1525;
+      border-color: #ff00ff;
+      box-shadow: 0 0 25px rgba(255, 0, 255, 0.6), 0 0 50px rgba(0, 255, 255, 0.3);
+    }
+
+    #searchInput::placeholder {
+      color: #6b7280;
+    }
+
+    .filter-group {
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .category-select {
+      padding: 0.9rem 2.5rem 0.9rem 1.2rem;
+      border-radius: 2.5rem;
+      border: 2px solid rgba(0, 255, 255, 0.3);
+      background: #0a0f1a;
+      font-weight: 600;
+      color: #aaffff;
+      cursor: pointer;
+      outline: none;
+      appearance: none;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="%2300ffff" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>');
+      background-repeat: no-repeat;
+      background-position: right 0.8rem center;
+      background-size: 1.2rem;
+      font-family: 'Share Tech Mono', monospace;
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+      transition: all 0.3s;
+    }
+
+    .category-select:focus {
+      border-color: #ff00ff;
+      box-shadow: 0 0 25px rgba(255, 0, 255, 0.5);
+    }
+
+    .btn-modern {
+      background: linear-gradient(135deg, #ff00ff, #00ffff);
+      border: none;
+      color: #000;
+      font-weight: 700;
+      padding: 0.9rem 1.8rem;
+      border-radius: 2.5rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s;
+      box-shadow: 0 0 25px rgba(255, 0, 255, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      font-family: 'Orbitron', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      touch-action: manipulation;
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .btn-modern:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 45px rgba(0, 255, 255, 0.8), 0 0 75px rgba(255, 0, 255, 0.6);
+      filter: brightness(1.2);
+    }
+
+    .btn-modern:active {
+      transform: scale(0.92);
+      transition: 0.08s;
+    }
+
+    .btn-reset {
+      background: rgba(0, 0, 0, 0.6);
+      border: 2px solid #00ffff;
+      color: #aaffff;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+    }
+
+    .btn-reset:hover {
+      background: #00ffff;
+      color: #000;
+      border-color: #ff00ff;
+    }
+
+    /* Blocos categóricos */
+    .category-block {
+      margin-bottom: 2.5rem;
+      background: rgba(8, 12, 24, 0.7);
+      border-radius: 2rem;
+      overflow: hidden;
+      border: 1px solid rgba(0, 255, 255, 0.2);
+      transition: all 0.3s;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.2);
+    }
+
+    .category-block:hover {
+      border-color: #ff00ff;
+      box-shadow: 0 0 40px rgba(255, 0, 255, 0.5), 0 0 70px rgba(0, 255, 255, 0.3);
+    }
+
+    .category-header {
+      padding: 1rem 1.8rem;
+      background: linear-gradient(105deg, rgba(0, 255, 255, 0.2) 0%, rgba(255, 0, 255, 0.2) 100%);
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      font-size: 1.4rem;
+      letter-spacing: 0.05em;
+      border-bottom: 2px solid rgba(255, 0, 255, 0.5);
+      color: #fff;
+      text-transform: uppercase;
+      text-shadow: 0 0 12px #0ff, 0 0 25px #f0f;
+    }
+
+    .category-header i {
+      font-size: 1.6rem;
+      color: #fbbf24;
+      filter: drop-shadow(0 0 10px #f59e0b);
+      text-shadow: 0 0 15px #ff8800;
+    }
+
+    .table-wrapper {
+      overflow-x: auto;
+      padding: 0.2rem 0.5rem 0.5rem 0.5rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      white-space: nowrap;
+      font-size: 0.9rem;
+      min-width: 650px;
+    }
+
+    th {
+      text-align: left;
+      padding: 1rem 1.2rem;
+      background: rgba(0, 0, 0, 0.5);
+      color: #00ffff;
+      font-weight: 600;
+      text-transform: uppercase;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      border-bottom: 2px solid #ff00ff;
+      text-shadow: 0 0 10px #0ff;
+    }
+
+    td {
+      padding: 0.8rem 1.2rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+      color: #d1d5db;
+      font-weight: 500;
+    }
+
+    .mime-name {
+      font-family: 'Share Tech Mono', monospace;
+      font-weight: 600;
+      color: #ffb3ff;
+      background: rgba(255, 0, 255, 0.15);
+      padding: 0.2rem 0.6rem;
+      border-radius: 1rem;
+      display: inline-block;
+      text-shadow: 0 0 8px magenta;
+    }
+
+    /* Container do template MIME com botão copiar */
+    .mime-template-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    .mime-template {
+      font-family: 'Share Tech Mono', monospace;
+      color: #aaffff;
+      font-weight: 500;
+      text-shadow: 0 0 6px cyan;
+      background: rgba(0, 255, 255, 0.08);
+      padding: 0.2rem 0.6rem;
+      border-radius: 0.8rem;
+      cursor: default;
+    }
+
+    /* 🌟🌟🌟 BOTÃO COPIAR MIME (PEQUENO E FUNCIONAL) 🌟🌟🌟 */
+    .copy-mime-btn {
+      background: rgba(0, 0, 0, 0.7);
+      border: 1.5px solid #ff00ff;
+      color: #ffb3ff;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 600;
+      font-size: 0.7rem;
+      padding: 0.35rem 0.8rem;
+      border-radius: 20px;
+      cursor: pointer;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 0 12px rgba(255, 0, 255, 0.5);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      transition: all 0.2s;
+      white-space: nowrap;
+      touch-action: manipulation;
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .copy-mime-btn:hover {
+      background: #ff00ff;
+      color: #000;
+      border-color: #00ffff;
+      box-shadow: 0 0 20px #00ffff, 0 0 35px #ff00ff;
+    }
+
+    .copy-mime-btn:active {
+      transform: scale(0.88);
+      background: #fff;
+      color: #000;
+      border-color: #fff;
+      box-shadow: 0 0 30px #fff;
+      transition: 0.06s;
+    }
+
+    .reference {
+      color: #ffcc99;
+      font-size: 0.85rem;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 0.15rem 0.6rem;
+      border-radius: 1rem;
+      border: 1px solid rgba(255, 136, 0, 0.3);
+    }
+
+    tr:hover td {
+      background: rgba(255, 0, 255, 0.08);
+    }
+
+    .empty-message {
+      text-align: center;
+      padding: 2.5rem;
+      color: #9ca3af;
+      font-style: italic;
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: 1rem;
+      border: 1px dashed rgba(255, 255, 255, 0.2);
+    }
+
+    .no-results-global {
+      background: rgba(45, 35, 48, 0.6);
+      padding: 2rem;
+      border-radius: 2rem;
+      text-align: center;
+      color: #fbcfe8;
+      border: 1px solid rgba(255, 0, 255, 0.3);
+      text-shadow: 0 0 8px magenta;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    /* Rodapé */
+    .footer-signature {
+      margin-top: 2rem;
+      text-align: center;
+      border-top: 1px dashed #00ffff;
+      padding-top: 1.8rem;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .footer-signature p {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      color: #aaa;
+      text-shadow: 0 0 8px #ff00ff;
+      margin: 0;
+    }
+
+    .footer-signature small {
+      font-size: 0.85rem;
+      color: #0ff;
+    }
+
+    .footer-signature em {
+      font-style: italic;
+      color: #ffb3ff;
+      text-shadow: 0 0 10px magenta;
+      display: block;
+      margin-top: 0.3rem;
+    }
+
+    .footer-data {
+      color: #6b7280;
+      font-size: 0.8rem;
+    }
+
+    @media (max-width: 700px) {
+      .container {
+        padding: 1.2rem;
+      }
+      h1 {
+        font-size: 1.8rem;
+      }
+      .nav-btn {
+        font-size: 0.8rem;
+        padding: 0.7rem 1.3rem;
+      }
+      .copy-mime-btn {
+        font-size: 0.65rem;
+        padding: 0.3rem 0.65rem;
+      }
+      .mime-template-wrapper {
+        gap: 0.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <!-- Botões de navegação superiores (COMPLETAMENTE CLICÁVEIS) -->
+  <div class="nav-buttons">
+    <button class="nav-btn" onclick="navegarPara('../../index.html')">🏠 Voltar Home</button>
+    <button class="nav-btn secondary" onclick="navegarPara('../html1.html')">📄 HTML Nível I</button>
+  </div>
+
+  <h1>
+    <i class="fas fa-cube"></i> 
+    Formatos de Mídia
+  </h1>
+  <div class="subtitle">
+    <span>Registro IANA · Catálogo interativo</span>
+    <div class="stats-badge">
+      <i class="fas fa-database"></i> <span id="totalFormats">0</span> formatos
+    </div>
+  </div>
+
+  <!-- MECANISMO DE BUSCA DIVERSIFICADO -->
+  <div class="search-panel">
+    <div class="search-box">
+      <i class="fas fa-search"></i>
+      <input type="text" id="searchInput" placeholder="Nome, tipo MIME ou referência...">
+    </div>
+    <div class="filter-group">
+      <select id="categoryFilter" class="category-select">
+        <option value="all">📂 Todas as categorias</option>
+        <option value="application">📦 Application</option>
+        <option value="audio">🎵 Audio</option>
+        <option value="font">✍️ Font</option>
+        <option value="example">📋 Example</option>
+        <option value="haptics">📳 Haptics</option>
+        <option value="image">🖼️ Image</option>
+        <option value="message">✉️ Message</option>
+        <option value="model">🗿 Model</option>
+        <option value="multipart">🧩 Multipart</option>
+        <option value="text">📝 Text</option>
+        <option value="video">🎬 Video</option>
+      </select>
+      <button id="resetButton" class="btn-modern btn-reset">
+        <i class="fas fa-undo-alt"></i> Limpar
+      </button>
+    </div>
+  </div>
+
+  <!-- CONTEÚDO DINÂMICO: BLOCOS CATEGÓRICOS -->
+  <div id="categoriesContainer"></div>
+  
+  <!-- Rodapé com assinatura -->
+  <div class="footer-signature">
+    <p class="footer-data">📡 Dados baseados no registro IANA de tipos MIME</p>
+    <p><small>&copy; Pensador Sem Fronteiras. Todos os direitos reservados.</small></p>
+    <p><em>Do Zero ao Infinito</em></p>
+  </div>
+</div>
+
+<script>
+  (function() {
+    // 🌟 FUNÇÃO DE NAVEGAÇÃO REAL COM BOTÕES 🌟
+    window.navegarPara = function(url) {
+      if (!url || url === '#') return;
+      
+      const botoes = document.querySelectorAll('.nav-btn');
+      botoes.forEach(btn => {
+        btn.style.pointerEvents = 'none';
+        btn.style.opacity = '0.7';
+      });
+      
+      setTimeout(() => {
+        window.location.href = url;
+      }, 120);
+      
+      setTimeout(() => {
+        botoes.forEach(btn => {
+          btn.style.pointerEvents = 'auto';
+          btn.style.opacity = '1';
+        });
+      }, 600);
+    };
+
+    // 🌟 FUNÇÃO GLOBAL PARA COPIAR MIME (USADA NOS BOTÕES DINÂMICOS) 🌟
+    window.copiarMime = function(template, botao) {
+      navigator.clipboard.writeText(template).then(() => {
+        const originalHTML = botao.innerHTML;
+        botao.innerHTML = '✅';
+        botao.style.background = '#00ffaa';
+        botao.style.color = '#000';
+        botao.style.borderColor = '#fff';
+        botao.style.boxShadow = '0 0 20px #00ffaa';
+        
+        setTimeout(() => {
+          botao.innerHTML = originalHTML;
+          botao.style.background = 'rgba(0, 0, 0, 0.7)';
+          botao.style.color = '#ffb3ff';
+          botao.style.borderColor = '#ff00ff';
+          botao.style.boxShadow = '0 0 12px rgba(255, 0, 255, 0.5)';
+        }, 1500);
+      }).catch(() => {
+        alert('Falha ao copiar. Tente novamente.');
+      });
+    };
+
+    // --------------------------------------------------------------
+    // 1. ESTRUTURA DE DADOS EXTRAÍDA E ORGANIZADA (CATEGORIAS)
+    // --------------------------------------------------------------
+    const mediaCategories = {
+      application: [
+        {name:"1d-interleaved-parityfec", template:"application/1d-interleaved-parityfec", reference:"[RFC6015]"},
+        {name:"3gpdash-qoe-report+xml", template:"application/3gpdash-qoe-report+xml", reference:"[_3GPP][Ozgur_Oyman]"},
+        {name:"3gpp-ims+xml", template:"application/3gpp-ims+xml", reference:"[_3GPP][Dongwook_Kim]"},
+        {name:"3gpp-mbs-object-manifest+json", template:"application/3gpp-mbs-object-manifest+json", reference:"[_3GPP_TSG_SA_WG4][Dongwook_Kim]"},
+        {name:"3gpp-mbs-user-service-descriptions+json", template:"application/3gpp-mbs-user-service-descriptions+json", reference:"[_3GPP_TSG_SA_WG4][Dongwook_Kim]"},
+        {name:"3gpp-media-delivery-metrics-report+json", template:"application/3gpp-media-delivery-metrics-report+json", reference:"[_3GPP_TSG_SA_WG4][Dongwook_Kim]"},
+        {name:"3gppHal+json", template:"application/3gppHal+json", reference:"[_3GPP][Ulrich_Wiehe]"},
+        {name:"3gppHalForms+json", template:"application/3gppHalForms+json", reference:"[_3GPP][Ulrich_Wiehe]"},
+        {name:"aas+zip", template:"application/aas+zip", reference:"[Industrial_Digital_Twin_Association][Sandeep_Rudra]"},
+        {name:"A2L", template:"application/A2L", reference:"[ASAM][Bernd_Wenzel]"},
+        {name:"ace-groupcomm+cbor", template:"application/ace-groupcomm+cbor", reference:"[RFC9594]"},
+        {name:"ace-trl+cbor", template:"application/ace-trl+cbor", reference:"[RFC9770]"},
+        {name:"ace+cbor", template:"application/ace+cbor", reference:"[RFC9200]"},
+        {name:"ace+json", template:"application/ace+json", reference:"[RFC9431]"},
+        {name:"activemessage", template:"application/activemessage", reference:"[Ehud_Shapiro]"},
+        {name:"activity+json", template:"application/activity+json", reference:"[W3C][Benjamin_Goering]"},
+        {name:"aif+cbor", template:"application/aif+cbor", reference:"[RFC9237]"},
+        {name:"aif+json", template:"application/aif+json", reference:"[RFC9237]"},
+        {name:"alto-cdni+json", template:"application/alto-cdni+json", reference:"[RFC9241]"},
+        {name:"alto-cdnifilter+json", template:"application/alto-cdnifilter+json", reference:"[RFC9241]"},
+        {name:"json", template:"application/json", reference:"[RFC8259]"},
+        {name:"xml", template:"application/xml", reference:"[RFC7303]"},
+        {name:"zip", template:"application/zip", reference:"[Paul_Lindner]"},
+        {name:"pdf", template:"application/pdf", reference:"[RFC8118]"},
+        {name:"msword", template:"application/msword", reference:"[Paul_Lindner]"},
+        {name:"octet-stream", template:"application/octet-stream", reference:"[RFC2045][RFC2046]"}
+      ],
+      audio: [
+        {name:"3gpp", template:"audio/3gpp", reference:"[RFC3839][RFC6381]"},
+        {name:"aac", template:"audio/aac", reference:"[ISO-IEC_JTC_1][Max_Neuendorf]"},
+        {name:"flac", template:"audio/flac", reference:"[RFC9639]"},
+        {name:"mp4", template:"audio/mp4", reference:"[RFC4337][RFC6381]"},
+        {name:"mpeg", template:"audio/mpeg", reference:"[RFC3003]"},
+        {name:"ogg", template:"audio/ogg", reference:"[RFC5334][RFC7845]"},
+        {name:"opus", template:"audio/opus", reference:"[RFC7587]"},
+        {name:"wav", template:"audio/wav", reference:"[RFC2361]"},
+        {name:"webm", template:"audio/webm", reference:"[WebM]"},
+        {name:"basic", template:"audio/basic", reference:"[RFC2045][RFC2046]"}
+      ],
+      font: [
+        {name:"collection", template:"font/collection", reference:"[RFC8081]"},
+        {name:"otf", template:"font/otf", reference:"[RFC8081]"},
+        {name:"sfnt", template:"font/sfnt", reference:"[RFC8081]"},
+        {name:"ttf", template:"font/ttf", reference:"[RFC8081]"},
+        {name:"woff", template:"font/woff", reference:"[RFC8081]"},
+        {name:"woff2", template:"font/woff2", reference:"[RFC8081]"}
+      ],
+      example: [
+        {name:"example", template:"application/example", reference:"[RFC4735]"},
+        {name:"example", template:"audio/example", reference:"[RFC4735]"},
+        {name:"example", template:"image/example", reference:"[RFC4735]"},
+        {name:"example", template:"message/example", reference:"[RFC4735]"},
+        {name:"example", template:"model/example", reference:"[RFC4735]"},
+        {name:"example", template:"multipart/example", reference:"[RFC4735]"},
+        {name:"example", template:"text/example", reference:"[RFC4735]"},
+        {name:"example", template:"video/example", reference:"[RFC4735]"}
+      ],
+      haptics: [
+        {name:"ivs", template:"haptics/ivs", reference:"[RFC9695]"},
+        {name:"hjif", template:"haptics/hjif", reference:"[RFC9695]"},
+        {name:"hmpg", template:"haptics/hmpg", reference:"[RFC9695][RFC-ietf-avtcore-rtp-haptics-13]"}
+      ],
+      image: [
+        {name:"apng", template:"image/apng", reference:"[W3C][W3C_PNG_WG]"},
+        {name:"avif", template:"image/avif", reference:"[Alliance_for_Open_Media][Cyril_Concolato]"},
+        {name:"gif", template:"image/gif", reference:"[RFC2045][RFC2046]"},
+        {name:"jpeg", template:"image/jpeg", reference:"[RFC2045][RFC2046]"},
+        {name:"png", template:"image/png", reference:"[W3C][PNG_WG][PNG]"},
+        {name:"svg+xml", template:"image/svg+xml", reference:"[W3C]"},
+        {name:"webp", template:"image/webp", reference:"[RFC9649]"},
+        {name:"bmp", template:"image/bmp", reference:"[RFC7903]"},
+        {name:"tiff", template:"image/tiff", reference:"[RFC3302]"}
+      ],
+      message: [
+        {name:"CPIM", template:"message/CPIM", reference:"[RFC3862]"},
+        {name:"http", template:"message/http", reference:"[RFC9112]"},
+        {name:"rfc822", template:"message/rfc822", reference:"[RFC2045][RFC2046]"},
+        {name:"sip", template:"message/sip", reference:"[RFC3261]"}
+      ],
+      model: [
+        {name:"3mf", template:"model/3mf", reference:"[_3MF][Michael_Sweet]"},
+        {name:"gltf-binary", template:"model/gltf-binary", reference:"[Khronos][Saurabh_Bhatia]"},
+        {name:"gltf+json", template:"model/gltf+json", reference:"[Khronos][Uli_Klumpp]"},
+        {name:"obj", template:"model/obj", reference:"[DICOM_Standard_Committee]"},
+        {name:"stl", template:"model/stl", reference:"[DICOM_Standard_Committee]"}
+      ],
+      multipart: [
+        {name:"alternative", template:"multipart/alternative", reference:"[RFC2046][RFC2045]"},
+        {name:"form-data", template:"multipart/form-data", reference:"[RFC7578]"},
+        {name:"mixed", template:"multipart/mixed", reference:"[RFC2046][RFC2045]"},
+        {name:"related", template:"multipart/related", reference:"[RFC2387]"}
+      ],
+      text: [
+        {name:"css", template:"text/css", reference:"[RFC2318]"},
+        {name:"csv", template:"text/csv", reference:"[RFC4180][RFC7111]"},
+        {name:"html", template:"text/html", reference:"[W3C][Robin_Berjon]"},
+        {name:"javascript", template:"text/javascript", reference:"[RFC9239]"},
+        {name:"markdown", template:"text/markdown", reference:"[RFC7763]"},
+        {name:"plain", template:"text/plain", reference:"[RFC2046][RFC3676][RFC5147]"},
+        {name:"xml", template:"text/xml", reference:"[RFC7303]"}
+      ],
+      video: [
+        {name:"3gpp", template:"video/3gpp", reference:"[RFC3839][RFC6381]"},
+        {name:"H264", template:"video/H264", reference:"[RFC6184]"},
+        {name:"H265", template:"video/H265", reference:"[RFC7798]"},
+        {name:"mp4", template:"video/mp4", reference:"[RFC4337][RFC6381]"},
+        {name:"mpeg", template:"video/mpeg", reference:"[RFC2045][RFC2046]"},
+        {name:"ogg", template:"video/ogg", reference:"[RFC5334][RFC7845]"},
+        {name:"quicktime", template:"video/quicktime", reference:"[RFC6381][Paul_Lindner]"},
+        {name:"webm", template:"video/webm", reference:"[WebM]"},
+        {name:"VP8", template:"video/VP8", reference:"[RFC7741]"},
+        {name:"VP9", template:"video/VP9", reference:"[RFC9628]"}
+      ]
+    };
+
+    const countTotalFormats = () => {
+      let total = 0;
+      for (let cat in mediaCategories) {
+        total += mediaCategories[cat].length;
+      }
+      return total;
+    };
+
+    document.getElementById('totalFormats').textContent = countTotalFormats();
+
+    const container = document.getElementById('categoriesContainer');
+    const searchInput = document.getElementById('searchInput');
+    const categoryFilter = document.getElementById('categoryFilter');
+    const resetBtn = document.getElementById('resetButton');
+
+    const categoryIcons = {
+      application: 'fa-cube',
+      audio: 'fa-headphones',
+      font: 'fa-font',
+      example: 'fa-flask',
+      haptics: 'fa-hand-paper',
+      image: 'fa-image',
+      message: 'fa-envelope',
+      model: 'fa-cubes',
+      multipart: 'fa-puzzle-piece',
+      text: 'fa-file-alt',
+      video: 'fa-video'
+    };
+
+    // Contador único para IDs dos botões
+    let buttonIdCounter = 0;
+
+    function renderCategories() {
+      const searchTerm = searchInput.value.toLowerCase().trim();
+      const selectedCategory = categoryFilter.value;
+
+      container.innerHTML = '';
+      let anyVisible = false;
+      buttonIdCounter = 0;
+
+      for (let [category, items] of Object.entries(mediaCategories)) {
+        if (selectedCategory !== 'all' && selectedCategory !== category) continue;
+
+        const filteredItems = items.filter(item => {
+          if (searchTerm === '') return true;
+          return item.name.toLowerCase().includes(searchTerm) ||
+                 item.template.toLowerCase().includes(searchTerm) ||
+                 item.reference.toLowerCase().includes(searchTerm);
+        });
+
+        if (filteredItems.length === 0) continue;
+        anyVisible = true;
+
+        const block = document.createElement('div');
+        block.className = 'category-block';
+
+        const iconClass = categoryIcons[category] || 'fa-tag';
+        
+        // Construir as linhas da tabela com botões copiar
+        let tableRows = '';
+        filteredItems.forEach(item => {
+          const btnId = `copyMimeBtn_${buttonIdCounter}`;
+          buttonIdCounter++;
+          
+          tableRows += `
+            <tr>
+              <td><span class="mime-name">${escapeHTML(item.name)}</span></td>
+              <td>
+                <div class="mime-template-wrapper">
+                  <code class="mime-template">${escapeHTML(item.template)}</code>
+                  <button class="copy-mime-btn" id="${btnId}" data-template="${escapeHTML(item.template)}">📋 Copiar</button>
+                </div>
+              </td>
+              <td><span class="reference">${escapeHTML(item.reference)}</span></td>
+            </tr>
+          `;
+        });
+
+        block.innerHTML = `
+          <div class="category-header">
+            <i class="fas ${iconClass}"></i> ${category}
+            <span style="margin-left:auto; font-size:0.9rem; opacity:0.8;">${filteredItems.length} tipo(s)</span>
+          </div>
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr><th>Nome</th><th>Template (tipo MIME)</th><th>Referência</th></tr>
+              </thead>
+              <tbody>
+                ${tableRows}
+              </tbody>
+            </table>
+          </div>
+        `;
+        container.appendChild(block);
+      }
+
+      if (!anyVisible) {
+        container.innerHTML = `<div class="no-results-global"><i class="fas fa-search-minus"></i> Nenhum formato corresponde aos filtros atuais.</div>`;
+      }
+
+      // 🌟 ADICIONAR EVENT LISTENERS AOS BOTÕES COPIAR 🌟
+      document.querySelectorAll('.copy-mime-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          const template = this.getAttribute('data-template');
+          window.copiarMime(template, this);
+        });
+      });
+    }
+
+    function escapeHTML(str) {
+      return String(str).replace(/[&<>"]/g, function(m) {
+        if (m === '&') return '&amp;';
+        if (m === '<') return '&lt;';
+        if (m === '>') return '&gt;';
+        if (m === '"') return '&quot;';
+        return m;
+      });
+    }
+
+    searchInput.addEventListener('input', renderCategories);
+    categoryFilter.addEventListener('change', renderCategories);
+    resetBtn.addEventListener('click', () => {
+      searchInput.value = '';
+      categoryFilter.value = 'all';
+      renderCategories();
+    });
+
+    // Suporte para tecla Enter nos botões
+    document.querySelectorAll('.nav-btn, .btn-modern').forEach(btn => {
+      btn.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          this.click();
+        }
+      });
+    });
+
+    renderCategories();
+  })();
+</script>
+</body>
+</html>

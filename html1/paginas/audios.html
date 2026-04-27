@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+    <title>Áudios | Pensador Sem Fronteiras</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: radial-gradient(circle at 50% 20%, #0a0c0f 0%, #020304 100%);
+            font-family: 'Share Tech Mono', 'Courier New', monospace;
+            color: #e0f0ff;
+            min-height: 100vh;
+            padding: 1.5rem 1.2rem 2.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 0, 255, 0.03) 1px, transparent 1px);
+            background-size: 28px 28px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+        }
+
+        /* Botões de navegação */
+        .nav-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 0.5rem;
+            justify-content: center;
+        }
+
+        .nav-btn {
+            background: rgba(0, 0, 0, 0.7);
+            border: 2px solid #00ffff;
+            color: #0ff;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 0.95rem;
+            padding: 0.7rem 1.5rem;
+            border-radius: 40px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .nav-btn:hover {
+            background: #00ffff;
+            color: #000;
+            border-color: #ff00ff;
+            box-shadow: 0 0 40px #ff00ff, 0 0 70px #00ffff;
+            transform: translateY(-2px);
+        }
+
+        .nav-btn:active {
+            transform: scale(0.94);
+        }
+
+        .nav-btn.secondary {
+            border-color: #ff00ff;
+            color: #ffb3ff;
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
+        }
+
+        .nav-btn.secondary:hover {
+            background: #ff00ff;
+            color: #000;
+            border-color: #0ff;
+            box-shadow: 0 0 40px cyan, 0 0 70px magenta;
+        }
+
+        /* Título principal */
+        .main-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2.2rem, 8vw, 3.5rem);
+            font-weight: 800;
+            text-align: center;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #fff;
+            text-shadow: 
+                0 0 10px #0ff,
+                0 0 30px #0ff,
+                0 0 60px #f0f,
+                0 0 90px #00ffff;
+            margin-bottom: 0.3rem;
+            filter: drop-shadow(0 0 18px magenta);
+            word-break: break-word;
+        }
+
+        .emoji-title {
+            font-size: 2.5rem;
+            display: block;
+            filter: drop-shadow(0 0 20px #ff00ff);
+            margin-bottom: 0.3rem;
+        }
+
+        /* Cartão padrão */
+        .card {
+            background: rgba(8, 12, 22, 0.78);
+            backdrop-filter: blur(18px);
+            border: 1px solid rgba(0, 255, 255, 0.28);
+            border-radius: 28px;
+            padding: 1.4rem 1.3rem;
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.3), 0 10px 30px rgba(0, 0, 0, 0.8);
+            transition: all 0.25s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            border-color: #ff00ff;
+            box-shadow: 0 0 40px #ff00ff80, 0 0 80px #00ffff4d;
+        }
+
+        .card::after {
+            content: "";
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #00ffff, #ff00ff, #00ffaa, #cc00ff);
+            border-radius: 30px;
+            z-index: -1;
+            opacity: 0.25;
+            filter: blur(14px);
+            transition: opacity 0.3s;
+        }
+
+        .card:hover::after {
+            opacity: 0.7;
+        }
+
+        h2 {
+            font-family: 'Orbitron', sans-serif;
+            color: #00ffff;
+            text-shadow: 0 0 14px #0ff, 0 0 28px #f0f;
+            margin-bottom: 0.9rem;
+            letter-spacing: 0.08em;
+            font-size: 1.6rem;
+        }
+
+        p {
+            color: #d4f4ff;
+            text-shadow: 0 0 5px rgba(0,255,255,0.5);
+            margin-bottom: 0.7rem;
+        }
+
+        a {
+            color: #ffb3ff;
+            text-decoration: none;
+            font-weight: 600;
+            text-shadow: 0 0 8px magenta;
+            transition: 0.2s;
+        }
+
+        a:hover {
+            color: #fff;
+            text-shadow: 0 0 18px #f0f, 0 0 30px cyan;
+        }
+
+        hr {
+            border: none;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00ffff, #ff00ff, transparent);
+            margin: 1.2rem 0;
+            box-shadow: 0 0 20px cyan;
+        }
+
+        /* Caixa de código */
+        .code-box {
+            background: #0a0c14;
+            border: 2px solid #00ffff;
+            border-radius: 20px;
+            padding: 1.3rem 1.2rem 1.2rem;
+            margin: 1rem 0;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.5), inset 0 0 15px rgba(0,255,200,0.2);
+            position: relative;
+            backdrop-filter: blur(5px);
+        }
+
+        .code-box code {
+            display: block;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.95rem;
+            color: #b5fffa;
+            white-space: pre-wrap;
+            word-break: break-word;
+            text-shadow: 0 0 6px cyan;
+            line-height: 1.8;
+        }
+
+        .copy-code-btn {
+            position: absolute;
+            top: 10px;
+            right: 12px;
+            background: #000;
+            border: 2px solid #ff00ff;
+            color: #ffaef0;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 0.8rem;
+            padding: 0.5rem 1.1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 18px #ff00ffcc;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            transition: 0.25s;
+            z-index: 5;
+        }
+
+        .copy-code-btn:hover {
+            background: #ff00ff;
+            color: #000;
+            border-color: cyan;
+            box-shadow: 0 0 35px cyan;
+        }
+
+        .note-label {
+            display: inline-block;
+            background: rgba(255, 0, 255, 0.3);
+            color: #fff;
+            padding: 0.2rem 0.9rem;
+            border-radius: 20px;
+            font-weight: bold;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.4rem;
+            text-shadow: 0 0 8px magenta;
+        }
+
+        .install-link {
+            display: inline-block;
+            margin: 0.3rem 0;
+            padding: 0.5rem 1rem;
+            background: rgba(0,255,255,0.1);
+            border: 1px dashed #0ff;
+            border-radius: 25px;
+            color: #0ff;
+            font-weight: 600;
+        }
+
+        .install-link:hover {
+            background: rgba(0,255,255,0.25);
+            border-style: solid;
+        }
+
+        /* Rodapé */
+        .footer-signature {
+            margin-top: 2.5rem;
+            text-align: center;
+            border-top: 1px dashed #00ffff;
+            padding-top: 2rem;
+            width: 100%;
+        }
+
+        .footer-signature p {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.25em;
+            color: #aaa;
+            text-shadow: 0 0 8px #ff00ff;
+        }
+
+        .footer-signature small {
+            font-size: 0.85rem;
+            color: #0ff;
+        }
+
+        .footer-signature em {
+            font-style: italic;
+            color: #ffb3ff;
+            text-shadow: 0 0 10px magenta;
+            display: block;
+            margin-top: 0.3rem;
+        }
+
+        @media (max-width: 480px) {
+            body { padding: 1rem 0.8rem; }
+            .nav-btn { font-size: 0.8rem; padding: 0.6rem 1rem; }
+            .copy-code-btn { font-size: 0.7rem; padding: 0.35rem 0.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Botões de navegação -->
+        <div class="nav-buttons">
+            <a href="../../index.html" class="nav-btn">🏠 Voltar Home</a>
+            <a href="../html1.html" class="nav-btn secondary">📄 HTML Nível I</a>
+        </div>
+
+        <!-- Título principal -->
+        <h1 class="main-title">
+            <span class="emoji-title">🎵</span>
+            Áudio
+        </h1>
+
+        <!-- Instalações -->
+        <div class="card">
+            <h2>⚙️ Instalações</h2>
+            <p>
+                <a href="#" class="install-link">🔧 Para converter formato de áudio baixe</a>
+            </p>
+            <p>
+                <a href="#" class="install-link">🎬 Para converter vídeo em áudio</a>
+            </p>
+        </div>
+
+        <hr>
+
+        <!-- Tag de áudio principal -->
+        <div class="card">
+            <h2>📌 Como Inserir Áudio</h2>
+            <p>Para colocar um áudio use a seguinte tag:</p>
+
+            <div class="code-box" id="codeAudioTag">
+                <button class="copy-code-btn" id="copyAudioTag">📋 Copiar</button>
+                <code>
+&lt;audio controls preload="metadata"&gt;
+    &lt;source src="audio/audio.mp3" type="audio/mpeg"&gt;
+    &lt;source src="audio/audio.ogg" type="audio/ogg"&gt;
+    &lt;source src="audio/audio.wav" type="audio/wav"&gt;
+    &lt;source src="audio/audio.aac" type="audio/aac"&gt;
+    &lt;source src="audio/audio.flac" type="audio/flac"&gt;
+    &lt;source src="audio/audio.opus" type="audio/opus"&gt;
+    &lt;source src="audio/audio.webm" type="audio/webm"&gt;
+&lt;/audio&gt;
+                </code>
+            </div>
+
+            <p><span class="note-label">Nota A:</span></p>
+            <p>O atributo <strong>controls</strong> é usado para exibir os controles de reprodução do áudio, como play, pause e volume.<br> O atributo <strong>preload="metadata"</strong> indica que o navegador deve carregar apenas os metadados do áudio, como duração e informações de formato, sem carregar o arquivo completo até que seja necessário.</p>
+
+            <p><span class="note-label">Nota B:</span></p>
+            <p>É recomendado fornecer várias fontes de áudio em diferentes formatos para garantir a compatibilidade com diferentes navegadores, pois nem todos os navegadores suportam os mesmos formatos de áudio.</p>
+        </div>
+
+        <hr>
+
+        <!-- Tag de download de áudio -->
+        <div class="card">
+            <h2>⬇️ Como Baixar Áudio</h2>
+            <p>Para baixar áudio, usa-se a tag <code>&lt;a&gt;</code> com o atributo <strong>href</strong> apontando para o arquivo de áudio.</p>
+
+            <div class="code-box" id="codeDownloadTag">
+                <button class="copy-code-btn" id="copyDownloadTag">📋 Copiar</button>
+                <code>
+&lt;a href="audio/audio.mp3" type="audio/mp3" download&gt;Baixar áudio&lt;/a&gt;
+                </code>
+            </div>
+        </div>
+
+        <!-- Rodapé -->
+        <footer class="footer-signature">
+            <p><small>&copy; Pensador Sem Fronteiras. Todos os direitos reservados.</small></p>
+            <p><em>Do Zero ao Infinito</em></p>
+        </footer>
+    </div>
+
+    <script>
+        (function() {
+            // Função genérica para copiar código
+            function setupCopyButton(buttonId, codeString) {
+                const btn = document.getElementById(buttonId);
+                if (!btn) return;
+
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    navigator.clipboard.writeText(codeString).then(() => {
+                        const originalHTML = btn.innerHTML;
+                        btn.innerHTML = '✅ Copiado!';
+                        btn.style.background = '#00ffaa';
+                        btn.style.color = '#000';
+                        btn.style.borderColor = '#fff';
+                        setTimeout(() => {
+                            btn.innerHTML = originalHTML;
+                            btn.style.background = '#000';
+                            btn.style.color = '#ffaef0';
+                            btn.style.borderColor = '#ff00ff';
+                        }, 1800);
+                    }).catch(() => {
+                        alert('Falha ao copiar. Tente novamente.');
+                    });
+                });
+            }
+
+            // Código da tag de áudio
+            const audioTagCode = `<audio controls preload="metadata">\n    <source src="audio/audio.mp3" type="audio/mpeg">\n    <source src="audio/audio.ogg" type="audio/ogg">\n    <source src="audio/audio.wav" type="audio/wav">\n    <source src="audio/audio.aac" type="audio/aac">\n    <source src="audio/audio.flac" type="audio/flac">\n    <source src="audio/audio.opus" type="audio/opus">\n    <source src="audio/audio.webm" type="audio/webm">\n</audio>`;
+
+            // Código da tag de download
+            const downloadTagCode = `<a href="audio/audio.mp3" type="audio/mp3" download>Baixar áudio</a>`;
+
+            // Configurar botões de cópia
+            setupCopyButton('copyAudioTag', audioTagCode);
+            setupCopyButton('copyDownloadTag', downloadTagCode);
+        })();
+    </script>
+</body>
+</html>

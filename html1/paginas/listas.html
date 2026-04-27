@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+    <title>Listas | Pensador Sem Fronteiras</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background: radial-gradient(circle at 50% 20%, #0a0c0f 0%, #020304 100%);
+            font-family: 'Share Tech Mono', 'Courier New', monospace;
+            color: #e0f0ff;
+            min-height: 100vh;
+            padding: 1.5rem 1.2rem 2.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            line-height: 1.6;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 200, 0, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 200, 255, 0.03) 1px, transparent 1px);
+            background-size: 28px 28px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 850px;
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+        }
+
+        /* Botões de navegação superiores */
+        .nav-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.9rem;
+            justify-content: center;
+            margin-bottom: 0.3rem;
+        }
+
+        .nav-btn {
+            background: rgba(0, 0, 0, 0.72);
+            border: 2px solid #ffcc00;
+            color: #ffe680;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            padding: 0.85rem 1.8rem;
+            border-radius: 45px;
+            cursor: pointer;
+            backdrop-filter: blur(12px);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            box-shadow: 0 0 22px rgba(255, 204, 0, 0.55), 0 8px 20px rgba(0,0,0,0.7);
+            transition: all 0.25s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            touch-action: manipulation;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .nav-btn:hover {
+            background: #ffcc00;
+            color: #000;
+            border-color: #00ccff;
+            box-shadow: 0 0 45px #ffcc00, 0 0 75px #00ccff;
+            transform: translateY(-3px);
+        }
+
+        .nav-btn:active {
+            transform: scale(0.92);
+            background: #fff;
+            color: #000;
+            border-color: #fff;
+            box-shadow: 0 0 60px #fff, 0 0 100px #ffcc00;
+            transition: 0.08s;
+        }
+
+        .nav-btn.secondary {
+            border-color: #00ccff;
+            color: #aaddff;
+            box-shadow: 0 0 22px rgba(0, 204, 255, 0.55), 0 8px 20px rgba(0,0,0,0.7);
+        }
+
+        .nav-btn.secondary:hover {
+            background: #00ccff;
+            color: #000;
+            border-color: #ffcc00;
+            box-shadow: 0 0 45px #00ccff, 0 0 75px #ffcc00;
+        }
+
+        .nav-btn.secondary:active {
+            background: #fff;
+            color: #000;
+            border-color: #fff;
+            box-shadow: 0 0 60px #fff, 0 0 100px #00ccff;
+        }
+
+        /* Título principal */
+        .main-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2.4rem, 8vw, 3.8rem);
+            font-weight: 800;
+            text-align: center;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #fff;
+            text-shadow: 
+                0 0 10px #ffcc00,
+                0 0 32px #ffcc00,
+                0 0 62px #ff8800,
+                0 0 95px #ffcc00;
+            margin-bottom: 0.3rem;
+            filter: drop-shadow(0 0 18px #00ccff);
+            word-break: break-word;
+        }
+
+        .list-title-icon {
+            font-size: 3.2rem;
+            display: block;
+            filter: drop-shadow(0 0 25px #ffcc00);
+            margin-bottom: 0.3rem;
+            animation: listFloat 2.5s ease-in-out infinite;
+        }
+
+        @keyframes listFloat {
+            0%, 100% { transform: translateY(0px); filter: drop-shadow(0 0 25px #ffcc00); }
+            50% { transform: translateY(-10px); filter: drop-shadow(0 0 45px #00ccff); }
+        }
+
+        /* Cartão padrão */
+        .card {
+            background: rgba(8, 12, 22, 0.8);
+            backdrop-filter: blur(18px);
+            border: 1px solid rgba(255, 204, 0, 0.3);
+            border-radius: 28px;
+            padding: 1.4rem 1.3rem;
+            box-shadow: 0 0 30px rgba(255, 204, 0, 0.25), 0 10px 30px rgba(0, 0, 0, 0.8);
+            transition: all 0.25s ease;
+            position: relative;
+            overflow: visible;
+        }
+
+        .card:hover {
+            border-color: #00ccff;
+            box-shadow: 0 0 45px #00ccff80, 0 0 85px #ffcc004d;
+        }
+
+        h2, h3 {
+            font-family: 'Orbitron', sans-serif;
+            color: #ffcc00;
+            text-shadow: 0 0 14px #ffcc00, 0 0 30px #ff8800;
+            margin-bottom: 1rem;
+            letter-spacing: 0.1em;
+        }
+
+        h2 { font-size: 1.6rem; }
+        h3 { font-size: 1.3rem; color: #ffe680; }
+
+        p, li {
+            color: #fff8d4;
+            text-shadow: 0 0 4px rgba(255,204,0,0.5);
+            margin-bottom: 0.5rem;
+        }
+
+        a {
+            color: #aaddff;
+            text-decoration: none;
+            font-weight: 600;
+            text-shadow: 0 0 8px #00ccff;
+            transition: 0.2s;
+        }
+
+        a:hover {
+            color: #fff;
+            text-shadow: 0 0 18px #ffcc00, 0 0 30px #00ccff;
+        }
+
+        ol, ul {
+            padding-left: 1.6rem;
+            margin: 0.7rem 0;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        hr {
+            border: none;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #ffcc00, #00ccff, transparent);
+            margin: 1.2rem 0;
+            box-shadow: 0 0 20px #ffcc00;
+        }
+
+        code {
+            font-family: 'Share Tech Mono', monospace;
+            color: #ffe680;
+            text-shadow: 0 0 6px #ffcc00;
+        }
+
+        /* Caixa de código estética */
+        .code-box {
+            background: #0a0c14;
+            border: 2px solid #ffcc00;
+            border-radius: 20px;
+            padding: 1.3rem 1.2rem 1.2rem;
+            margin: 1rem 0;
+            box-shadow: 0 0 30px rgba(255, 204, 0, 0.5), inset 0 0 15px rgba(255,204,0,0.2);
+            position: relative;
+            backdrop-filter: blur(5px);
+        }
+
+        .code-box code {
+            display: block;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.95rem;
+            color: #fff8d4;
+            white-space: pre-wrap;
+            word-break: break-word;
+            text-shadow: 0 0 6px #ffcc00;
+            line-height: 1.7;
+        }
+
+        .copy-code-btn {
+            position: absolute;
+            top: 10px;
+            right: 12px;
+            background: #000;
+            border: 2px solid #00ccff;
+            color: #aaddff;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 0.8rem;
+            padding: 0.5rem 1.1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 18px rgba(0, 204, 255, 0.7);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            transition: all 0.25s;
+            z-index: 5;
+            touch-action: manipulation;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .copy-code-btn:hover {
+            background: #00ccff;
+            color: #000;
+            border-color: #ffcc00;
+            box-shadow: 0 0 35px #ffcc00, 0 0 55px #00ccff;
+        }
+
+        .copy-code-btn:active {
+            transform: scale(0.9);
+            background: #fff;
+            color: #000;
+            border-color: #fff;
+            box-shadow: 0 0 45px #fff;
+            transition: 0.08s;
+        }
+
+        /* Grid de navegação interna */
+        .nav-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 0.8rem;
+        }
+
+        .internal-nav-btn {
+            background: rgba(0, 0, 0, 0.65);
+            border: 2px solid #00ccff;
+            color: #aaddff;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 0.9rem;
+            padding: 0.75rem 1.4rem;
+            border-radius: 40px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 18px rgba(0, 204, 255, 0.6);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            transition: all 0.25s;
+            flex: 1 1 auto;
+            min-width: 140px;
+            text-align: center;
+            touch-action: manipulation;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .internal-nav-btn:hover {
+            background: #00ccff;
+            color: #000;
+            border-color: #ffcc00;
+            box-shadow: 0 0 40px #00ccff, 0 0 70px #ffcc00;
+            transform: translateY(-3px);
+        }
+
+        .internal-nav-btn:active {
+            transform: scale(0.92);
+            background: #fff;
+            color: #000;
+            border-color: #fff;
+            box-shadow: 0 0 60px #fff;
+            transition: 0.08s;
+        }
+
+        .type-badge {
+            display: inline-block;
+            background: rgba(255, 204, 0, 0.2);
+            color: #fff;
+            padding: 0.15rem 0.7rem;
+            border-radius: 15px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.9rem;
+            margin: 0.2rem 0;
+            border: 1px solid rgba(255, 204, 0, 0.4);
+            text-shadow: 0 0 6px #ffcc00;
+        }
+
+        /* Rodapé */
+        .footer-signature {
+            margin-top: 2.5rem;
+            text-align: center;
+            border-top: 1px dashed #ffcc00;
+            padding-top: 2rem;
+            width: 100%;
+        }
+
+        .footer-signature p {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.25em;
+            color: #aaa;
+            text-shadow: 0 0 8px #00ccff;
+        }
+
+        .footer-signature small {
+            font-size: 0.85rem;
+            color: #ffcc00;
+        }
+
+        .footer-signature em {
+            font-style: italic;
+            color: #ffe680;
+            text-shadow: 0 0 10px #ffcc00;
+            display: block;
+            margin-top: 0.3rem;
+        }
+
+        @media (max-width: 480px) {
+            body { padding: 1rem 0.8rem; }
+            .nav-btn { font-size: 0.85rem; padding: 0.7rem 1.3rem; }
+            .copy-code-btn { font-size: 0.7rem; padding: 0.4rem 0.9rem; }
+            .internal-nav-btn { font-size: 0.8rem; padding: 0.65rem 1rem; min-width: 120px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Botões de navegação superiores (COMPLETAMENTE CLICÁVEIS) -->
+        <div class="nav-buttons">
+            <button class="nav-btn" onclick="navegarPara('../../index.html')">🏠 Voltar Home</button>
+            <button class="nav-btn secondary" onclick="navegarPara('../html1.html')">📄 HTML Nível I</button>
+        </div>
+
+        <!-- Título principal -->
+        <h1 class="main-title">
+            <span class="list-title-icon">📋</span>
+            Listas
+        </h1>
+
+        <!-- Lista Ordenada -->
+        <div class="card">
+            <h2>🔢 Lista Ordenada</h2>
+            <p>Para criar lista ordenada utiliza-se a tag:</p>
+            <p><code>&lt;ol&gt; itens &lt;/ol&gt;</code></p>
+            <p>Para cada item da lista utiliza-se a tag:</p>
+            <p><code>&lt;li&gt; &lt;/li&gt;</code></p>
+        </div>
+
+        <hr>
+
+        <!-- Mudar tipo de contagem -->
+        <div class="card">
+            <h3>🔄 Mudar Tipo de Contagem de Ordenadas</h3>
+            <p>Para mudar o tipo de contagem de uma lista ordenada, você pode usar o atributo <code>type</code> na tag <code>&lt;ol&gt;</code>. O atributo <code>type</code> pode ter os seguintes valores:</p>
+            
+            <p><span class="type-badge">&lt;ol type="1"&gt;</span> - para contagem numérica (padrão)</p>
+            <p><span class="type-badge">&lt;ol type="a"&gt;</span> - para contagem alfabética minúscula</p>
+            <p><span class="type-badge">&lt;ol type="A"&gt;</span> - para contagem alfabética maiúscula</p>
+            <p><span class="type-badge">&lt;ol type="i"&gt;</span> - para contagem romana minúscula</p>
+            <p><span class="type-badge">&lt;ol type="I"&gt;</span> - para contagem romana maiúscula</p>
+        </div>
+
+        <hr>
+
+        <!-- Começar contagem em posição específica -->
+        <div class="card">
+            <h3>📍 Começar a Contagem em uma Determinada Posição</h3>
+            <p>Para começar a contagem de uma lista ordenada em uma determinada posição, você pode usar o atributo <code>start</code> na tag <code>&lt;ol&gt;</code>. O atributo <code>start</code> especifica o número inicial da contagem. Por exemplo:</p>
+
+            <div class="code-box" id="codeListaStart">
+                <button class="copy-code-btn" id="copyListaStart">📋 Copiar</button>
+                <code>
+&lt;ol start="5"&gt;
+    &lt;li&gt; Item 5 &lt;/li&gt;
+    &lt;li&gt; Item 6 &lt;/li&gt;
+    &lt;li&gt; Item 7 &lt;/li&gt;
+&lt;/ol&gt;
+                </code>
+            </div>
+        </div>
+
+        <hr>
+
+        <!-- Lista Não Ordenada -->
+        <div class="card">
+            <h2>🔘 Lista Não Ordenada</h2>
+            <p>Para criar uma lista não ordenada, utiliza-se a tag <code>&lt;ul&gt;</code>. Para cada item da lista, utiliza-se a tag <code>&lt;li&gt;</code>. Por exemplo:</p>
+
+            <div class="code-box" id="codeListaNaoOrdenada">
+                <button class="copy-code-btn" id="copyListaNaoOrdenada">📋 Copiar</button>
+                <code>
+&lt;ul&gt;
+    &lt;li&gt; Item 1 &lt;/li&gt;
+    &lt;li&gt; Item 2 &lt;/li&gt;
+    &lt;li&gt; Item 3 &lt;/li&gt;
+&lt;/ul&gt;
+                </code>
+            </div>
+
+            <h3>🔄 Mudar Tipo de Marcador de Lista Não Ordenada</h3>
+            <p>Para mudar o tipo de marcador de uma lista não ordenada, você pode usar o atributo <code>type</code> na tag <code>&lt;ul&gt;</code>. O atributo <code>type</code> pode ter os seguintes valores:</p>
+            
+            <p><span class="type-badge">&lt;ul type="disc"&gt;</span> - para marcador de disco (padrão)</p>
+            <p><span class="type-badge">&lt;ul type="circle"&gt;</span> - para marcador de círculo</p>
+            <p><span class="type-badge">&lt;ul type="square"&gt;</span> - para marcador de quadrado</p>
+            <p><span class="type-badge">&lt;ul type="none"&gt;</span> - para nenhum marcador</p>
+        </div>
+
+        <hr>
+
+        <!-- Junção de listas -->
+        <div class="card">
+            <h2>🔗 Junção de Listas</h2>
+            <p>Para juntar listas, você pode utilizar a tag <code>&lt;ol&gt;</code> ou a tag <code>&lt;ul&gt;</code> dentro de outra tag <code>&lt;ol&gt;</code> ou a tag <code>&lt;ul&gt;</code> criando uma lista aninhada. Por exemplo:</p>
+
+            <div class="code-box" id="codeListaAninhada">
+                <button class="copy-code-btn" id="copyListaAninhada">📋 Copiar</button>
+                <code>
+&lt;ol&gt;
+    &lt;li&gt; lista 1 &lt;/li&gt;
+    &lt;ul&gt; 
+        &lt;li&gt; lista 1.1 &lt;/li&gt;
+        &lt;li&gt; lista 1.2 &lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;li&gt; lista 2 &lt;/li&gt;
+    &lt;ul&gt; 
+        &lt;li&gt; lista 2.1 &lt;/li&gt;
+        &lt;li&gt; lista 2.2 &lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/ol&gt;
+                </code>
+            </div>
+        </div>
+
+        <hr>
+
+        <!-- Lista de Definição -->
+        <div class="card">
+            <h2>📖 Lista de Definição</h2>
+            <p>Para criar uma lista de definição, utiliza-se a tag <code>&lt;dl&gt;</code>. Para cada termo a ser definido, utiliza-se a tag <code>&lt;dt&gt;</code>, e para cada definição, utiliza-se a tag <code>&lt;dd&gt;</code>. Por exemplo:</p>
+
+            <div class="code-box" id="codeListaDefinicao">
+                <button class="copy-code-btn" id="copyListaDefinicao">📋 Copiar</button>
+                <code>
+&lt;dl&gt;
+    &lt;dt&gt; Termo 1 &lt;/dt&gt;
+    &lt;dd&gt; Definição do termo 1 &lt;/dd&gt;
+    &lt;dt&gt; Termo 2 &lt;/dt&gt;
+    &lt;dd&gt; Definição do termo 2 &lt;/dd&gt;
+&lt;/dl&gt;
+                </code>
+            </div>
+        </div>
+
+        <hr>
+
+        <!-- Navegação Rápida -->
+        <div class="card">
+            <h2>🧭 Navegação Rápida</h2>
+            <div class="nav-grid">
+                <button class="internal-nav-btn" onclick="navegarPara('simbolos.html')">💠 Símbolos</button>
+                <button class="internal-nav-btn" onclick="navegarPara('emojis.html')">😀 Emojis</button>
+                <button class="internal-nav-btn" onclick="navegarPara('imagens.html')">🖼️ Imagens</button>
+                <button class="internal-nav-btn" onclick="navegarPara('favicon.html')">🌟 Favicons</button>
+                <button class="internal-nav-btn" onclick="navegarPara('textos.html')">📝 Formatação</button>
+                <button class="internal-nav-btn" onclick="navegarPara('links.html')">🔗 Links</button>
+            </div>
+        </div>
+
+        <!-- Rodapé -->
+        <footer class="footer-signature">
+            <p><small>&copy; Pensador Sem Fronteiras. Todos os direitos reservados.</small></p>
+            <p><em>Do Zero ao Infinito</em></p>
+        </footer>
+    </div>
+
+    <script>
+        (function() {
+            // 🌟 FUNÇÃO DE NAVEGAÇÃO REAL COM BOTÕES 🌟
+            window.navegarPara = function(url) {
+                if (!url || url === '#') return;
+                
+                const botoes = document.querySelectorAll('.nav-btn, .internal-nav-btn');
+                botoes.forEach(btn => {
+                    btn.style.pointerEvents = 'none';
+                    btn.style.opacity = '0.7';
+                });
+                
+                setTimeout(() => {
+                    window.location.href = url;
+                }, 120);
+                
+                setTimeout(() => {
+                    botoes.forEach(btn => {
+                        btn.style.pointerEvents = 'auto';
+                        btn.style.opacity = '1';
+                    });
+                }, 600);
+            };
+
+            // 🌟 FUNÇÃO GENÉRICA PARA COPIAR CÓDIGO 🌟
+            function setupCopyButton(buttonId, codeString) {
+                const btn = document.getElementById(buttonId);
+                if (!btn) return;
+
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    navigator.clipboard.writeText(codeString).then(() => {
+                        const originalHTML = btn.innerHTML;
+                        btn.innerHTML = '✅ Copiado!';
+                        btn.style.background = '#00ffaa';
+                        btn.style.color = '#000';
+                        btn.style.borderColor = '#fff';
+                        
+                        setTimeout(() => {
+                            btn.innerHTML = originalHTML;
+                            btn.style.background = '#000';
+                            btn.style.color = '#aaddff';
+                            btn.style.borderColor = '#00ccff';
+                        }, 1800);
+                    }).catch(() => {
+                        alert('Falha ao copiar. Tente novamente.');
+                    });
+                });
+            }
+
+            // Configurar botões de cópia
+            setupCopyButton('copyListaStart', 
+`<ol start="5">
+    <li> Item 5 </li>
+    <li> Item 6 </li>
+    <li> Item 7 </li>
+</ol>`);
+
+            setupCopyButton('copyListaNaoOrdenada', 
+`<ul>
+    <li> Item 1 </li>
+    <li> Item 2 </li>
+    <li> Item 3 </li>
+</ul>`);
+
+            setupCopyButton('copyListaAninhada', 
+`<ol>
+    <li> lista 1 </li>
+    <ul> 
+        <li> lista 1.1 </li>
+        <li> lista 1.2 </li>
+    </ul>
+    <li> lista 2 </li>
+    <ul> 
+        <li> lista 2.1 </li>
+        <li> lista 2.2 </li>
+    </ul>
+</ol>`);
+
+            setupCopyButton('copyListaDefinicao', 
+`<dl>
+    <dt> Termo 1 </dt>
+    <dd> Definição do termo 1 </dd>
+    <dt> Termo 2 </dt>
+    <dd> Definição do termo 2 </dd>
+</dl>`);
+
+            // Suporte para tecla Enter nos botões (acessibilidade)
+            document.querySelectorAll('.nav-btn, .internal-nav-btn, .copy-code-btn').forEach(btn => {
+                btn.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        this.click();
+                    }
+                });
+            });
+
+        })();
+    </script>
+</body>
+</html>

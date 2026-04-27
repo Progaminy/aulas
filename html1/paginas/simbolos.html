@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+    <title>Símbolos | Pensador Sem Fronteiras</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background: radial-gradient(circle at 40% 15%, #0a0c0f 0%, #020304 100%);
+            font-family: 'Share Tech Mono', 'Courier New', monospace;
+            color: #e0f0ff;
+            min-height: 100vh;
+            padding: 1.5rem 1.2rem 2.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            line-height: 1.6;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(200, 100, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(100, 255, 200, 0.03) 1px, transparent 1px);
+            background-size: 28px 28px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 850px;
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+        }
+
+        /* Botões de navegação superiores */
+        .nav-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.9rem;
+            justify-content: center;
+            margin-bottom: 0.3rem;
+        }
+
+        .nav-btn {
+            background: rgba(0, 0, 0, 0.72);
+            border: 2px solid #c864ff;
+            color: #e0c0ff;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            padding: 0.85rem 1.8rem;
+            border-radius: 45px;
+            cursor: pointer;
+            backdrop-filter: blur(12px);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            box-shadow: 0 0 22px rgba(200, 100, 255, 0.55), 0 8px 20px rgba(0,0,0,0.7);
+            transition: all 0.25s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            touch-action: manipulation;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .nav-btn:hover {
+            background: #c864ff;
+            color: #000;
+            border-color: #64ffc8;
+            box-shadow: 0 0 45px #c864ff, 0 0 75px #64ffc8;
+            transform: translateY(-3px);
+        }
+
+        .nav-btn:active {
+            transform: scale(0.92);
+            background: #fff;
+            color: #000;
+            border-color: #fff;
+            box-shadow: 0 0 60px #fff, 0 0 100px #c864ff;
+            transition: 0.08s;
+        }
+
+        .nav-btn.secondary {
+            border-color: #64ffc8;
+            color: #b0ffe0;
+            box-shadow: 0 0 22px rgba(100, 255, 200, 0.55), 0 8px 20px rgba(0,0,0,0.7);
+        }
+
+        .nav-btn.secondary:hover {
+            background: #64ffc8;
+            color: #000;
+            border-color: #c864ff;
+            box-shadow: 0 0 45px #64ffc8, 0 0 75px #c864ff;
+        }
+
+        .nav-btn.secondary:active {
+            background: #fff;
+            color: #000;
+            border-color: #fff;
+            box-shadow: 0 0 60px #fff, 0 0 100px #64ffc8;
+        }
+
+        /* Título principal */
+        .main-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2.4rem, 8vw, 3.8rem);
+            font-weight: 800;
+            text-align: center;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #fff;
+            text-shadow: 
+                0 0 10px #c864ff,
+                0 0 32px #c864ff,
+                0 0 62px #a0f,
+                0 0 95px #c864ff;
+            margin-bottom: 0.3rem;
+            filter: drop-shadow(0 0 18px #64ffc8);
+            word-break: break-word;
+        }
+
+        .symbol-title-icon {
+            font-size: 3.2rem;
+            display: block;
+            filter: drop-shadow(0 0 25px #c864ff);
+            margin-bottom: 0.3rem;
+            animation: symbolPulse 2.5s ease-in-out infinite;
+        }
+
+        @keyframes symbolPulse {
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 25px #c864ff); }
+            50% { transform: scale(1.1); filter: drop-shadow(0 0 45px #64ffc8); }
+        }
+
+        /* Cartão padrão */
+        .card {
+            background: rgba(8, 12, 22, 0.8);
+            backdrop-filter: blur(18px);
+            border: 1px solid rgba(200, 100, 255, 0.3);
+            border-radius: 28px;
+            padding: 1.4rem 1.3rem;
+            box-shadow: 0 0 30px rgba(200, 100, 255, 0.25), 0 10px 30px rgba(0, 0, 0, 0.8);
+            transition: all 0.25s ease;
+            position: relative;
+            overflow: visible;
+        }
+
+        .card:hover {
+            border-color: #64ffc8;
+            box-shadow: 0 0 45px #64ffc880, 0 0 85px #c864ff4d;
+        }
+
+        h2 {
+            font-family: 'Orbitron', sans-serif;
+            color: #c864ff;
+            text-shadow: 0 0 14px #c864ff, 0 0 30px #a0f;
+            margin-bottom: 1rem;
+            letter-spacing: 0.1em;
+            font-size: 1.6rem;
+        }
+
+        p, li {
+            color: #e8d4ff;
+            text-shadow: 0 0 4px rgba(200,100,255,0.5);
+            margin-bottom: 0.5rem;
+        }
+
+        a {
+            color: #b0ffe0;
+            text-decoration: none;
+            font-weight: 600;
+            text-shadow: 0 0 8px #64ffc8;
+            transition: 0.2s;
+        }
+
+        a:hover {
+            color: #fff;
+            text-shadow: 0 0 18px #c864ff, 0 0 30px #64ffc8;
+        }
+
+        hr {
+            border: none;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #c864ff, #64ffc8, transparent);
+            margin: 1.2rem 0;
+            box-shadow: 0 0 20px #c864ff;
+        }
+
+        code {
+            font-family: 'Share Tech Mono', monospace;
+            color: #e0c0ff;
+            text-shadow: 0 0 6px #c864ff;
+        }
+
+        /* Grid de símbolos */
+        .symbol-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
+            margin-top: 0.8rem;
+        }
+
+        .symbol-item {
+            background: rgba(0, 0, 0, 0.55);
+            border: 1px solid rgba(200, 100, 255, 0.45);
+            border-radius: 18px;
+            padding: 0.8rem 1rem;
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            box-shadow: 0 0 14px rgba(200, 100, 255, 0.25);
+            transition: all 0.25s ease;
+        }
+
+        .symbol-item:hover {
+            border-color: #64ffc8;
+            box-shadow: 0 0 30px rgba(100, 255, 200, 0.5), 0 0 50px rgba(200, 100, 255, 0.3);
+            background: rgba(20, 0, 35, 0.7);
+            transform: translateX(4px);
+        }
+
+        .symbol-display {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .symbol-icon {
+            font-size: 1.8rem;
+            min-width: 45px;
+            text-align: center;
+            filter: drop-shadow(0 0 10px #c864ff);
+            color: #fff;
+        }
+
+        .symbol-code {
+            color: #e0c0ff;
+            font-size: 0.95rem;
+            font-family: 'Share Tech Mono', monospace;
+            text-shadow: 0 0 6px #c864ff;
+            word-break: break-all;
+        }
+
+        .symbol-desc {
+            color: #b0ffe0;
+            font-size: 0.85rem;
+            text-shadow: 0 0 5px #64ffc8;
+            margin-left: 0.3rem;
+        }
+
+        /* Botão copiar símbolo */
+        .copy-symbol-btn {
+            background: #000;
+            border: 2px solid #c864ff;
+            color: #e0c0ff;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 0.75rem;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 14px rgba(200, 100, 255, 0.6);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            transition: all 0.25s;
+            white-space: nowrap;
+            touch-action: manipulation;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .copy-symbol-btn:hover {
+            background: #c864ff;
+            color: #000;
+            border-color: #64ffc8;
+            box-shadow: 0 0 30px #c864ff, 0 0 50px #64ffc8;
+        }
+
+        .copy-symbol-btn:active {
+            transform: scale(0.88);
+            background: #fff;
+            color: #000;
+            border-color: #fff;
+            box-shadow: 0 0 40px #fff;
+            transition: 0.06s;
+        }
+
+        /* Links externos */
+        .external-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .external-btn {
+            background: rgba(0, 0, 0, 0.6);
+            border: 2px solid #64ffc8;
+            color: #b0ffe0;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 0.65rem 1.4rem;
+            border-radius: 35px;
+            cursor: pointer;
+            backdrop-filter: blur(8px);
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+            box-shadow: 0 0 16px rgba(100, 255, 200, 0.5);
+            transition: all 0.25s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            touch-action: manipulation;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .external-btn:hover {
+            background: #64ffc8;
+            color: #000;
+            border-color: #c864ff;
+            box-shadow: 0 0 35px #64ffc8, 0 0 55px #c864ff;
+            transform: translateY(-2px);
+        }
+
+        .external-btn:active {
+            transform: scale(0.92);
+            background: #fff;
+            transition: 0.08s;
+        }
+
+        /* Rodapé */
+        .footer-signature {
+            margin-top: 2.5rem;
+            text-align: center;
+            border-top: 1px dashed #c864ff;
+            padding-top: 2rem;
+            width: 100%;
+        }
+
+        .footer-signature p {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.25em;
+            color: #aaa;
+            text-shadow: 0 0 8px #64ffc8;
+        }
+
+        .footer-signature small {
+            font-size: 0.85rem;
+            color: #c864ff;
+        }
+
+        .footer-signature em {
+            font-style: italic;
+            color: #e0c0ff;
+            text-shadow: 0 0 10px #c864ff;
+            display: block;
+            margin-top: 0.3rem;
+        }
+
+        @media (max-width: 480px) {
+            body { padding: 1rem 0.8rem; }
+            .nav-btn { font-size: 0.85rem; padding: 0.7rem 1.3rem; }
+            .copy-symbol-btn { font-size: 0.7rem; padding: 0.4rem 0.8rem; }
+            .symbol-icon { font-size: 1.5rem; min-width: 35px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Botões de navegação superiores (COMPLETAMENTE CLICÁVEIS) -->
+        <div class="nav-buttons">
+            <button class="nav-btn" onclick="navegarPara('../../index.html')">🏠 Voltar Home</button>
+            <button class="nav-btn secondary" onclick="navegarPara('../html1.html')">📄 HTML Nível I</button>
+        </div>
+
+        <!-- Título principal -->
+        <h1 class="main-title">
+            <span class="symbol-title-icon">💠</span>
+            Símbolos
+        </h1>
+
+        <!-- Links externos -->
+        <div class="card" style="text-align: center;">
+            <p style="margin-bottom: 0.8rem;">Para pesquisar mais símbolos:</p>
+            <div class="external-links" style="justify-content: center;">
+                <button class="external-btn" onclick="abrirLink('https://www.w3schools.com/charsets/ref_html_entities.asp')">
+                    🌐 W3Schools
+                </button>
+                <button class="external-btn" onclick="abrirLink('https://www.w3schools.com/charsets/ref_html_entities.asp')">
+                    🔍 Mais Símbolos
+                </button>
+            </div>
+            <p style="margin-top: 0.6rem; font-size: 0.85rem; color: #888;">
+                ou clique: <a href="https://www.w3schools.com/charsets/ref_html_entities.asp" target="_blank" rel="external">W3Schools Entities</a>
+            </p>
+        </div>
+
+        <hr>
+
+        <!-- Símbolos HTML Principais -->
+        <div class="card">
+            <h2>📌 Símbolos HTML</h2>
+            <div class="symbol-grid" id="symbolsHtml"></div>
+        </div>
+
+        <hr>
+
+        <!-- Moedas -->
+        <div class="card">
+            <h2>💲 Moedas</h2>
+            <div class="symbol-grid" id="symbolsMoedas"></div>
+        </div>
+
+        <hr>
+
+        <!-- Símbolos Matemáticos -->
+        <div class="card">
+            <h2>🔢 Símbolos Matemáticos</h2>
+            <div class="symbol-grid" id="symbolsMatematicos"></div>
+        </div>
+
+        <!-- Rodapé -->
+        <footer class="footer-signature">
+            <p><small>&copy; Pensador Sem Fronteiras. Todos os direitos reservados.</small></p>
+            <p><em>Do Zero ao Infinito</em></p>
+        </footer>
+    </div>
+
+    <script>
+        (function() {
+            // 🌟 FUNÇÃO DE NAVEGAÇÃO REAL COM BOTÕES 🌟
+            window.navegarPara = function(url) {
+                if (!url || url === '#') return;
+                
+                const botoes = document.querySelectorAll('.nav-btn, .external-btn');
+                botoes.forEach(btn => {
+                    btn.style.pointerEvents = 'none';
+                    btn.style.opacity = '0.7';
+                });
+                
+                setTimeout(() => {
+                    window.location.href = url;
+                }, 120);
+                
+                setTimeout(() => {
+                    botoes.forEach(btn => {
+                        btn.style.pointerEvents = 'auto';
+                        btn.style.opacity = '1';
+                    });
+                }, 600);
+            };
+
+            // 🌟 FUNÇÃO PARA ABRIR LINKS EXTERNOS 🌟
+            window.abrirLink = function(url) {
+                if (!url) return;
+                window.open(url, '_blank', 'noopener,noreferrer');
+            };
+
+            // 🌟 FUNÇÃO PARA COPIAR CÓDIGO 🌟
+            function copiarCodigo(codigo, botao) {
+                navigator.clipboard.writeText(codigo).then(() => {
+                    const originalHTML = botao.innerHTML;
+                    botao.innerHTML = '✅';
+                    botao.style.background = '#00ffaa';
+                    botao.style.color = '#000';
+                    botao.style.borderColor = '#fff';
+                    botao.style.boxShadow = '0 0 20px #00ffaa';
+                    
+                    setTimeout(() => {
+                        botao.innerHTML = originalHTML;
+                        botao.style.background = '#000';
+                        botao.style.color = '#e0c0ff';
+                        botao.style.borderColor = '#c864ff';
+                        botao.style.boxShadow = '0 0 14px rgba(200, 100, 255, 0.6)';
+                    }, 1500);
+                }).catch(() => {
+                    alert('Falha ao copiar. Tente novamente.');
+                });
+            }
+
+            // 🌟 DADOS DOS SÍMBOLOS (FIEL AO CONTEÚDO ORIGINAL) 🌟
+            const simbolosHtml = [
+                { entidade: '&amp;lt;', hex: '&lt;', desc: 'Menor que', icone: '<' },
+                { entidade: '&amp;gt;', hex: '&gt;', desc: 'Maior que', icone: '>' },
+                { entidade: '&amp;amp;', hex: '&amp;', desc: 'E comercial', icone: '&' },
+                { entidade: '&amp;quot;', hex: '&quot;', desc: 'Aspas', icone: '"' },
+                { entidade: '&amp;apos;', hex: '&apos;', desc: 'Aspa simples', icone: "'" },
+                { entidade: '&amp;reg;', hex: '&reg;', desc: 'Marca registrada', icone: '®' },
+                { entidade: '&amp;copy;', hex: '&copy;', desc: 'Direitos autorais', icone: '©' },
+                { entidade: '&amp;trade;', hex: '&trade;', desc: 'Marca comercial', icone: '™' },
+                { entidade: '&amp;nbsp;', hex: '&nbsp;', desc: 'Espaço não quebrável', icone: '␣' },
+                { entidade: '&amp;uparrow;', hex: '&uparrow;', desc: 'Seta para cima', icone: '↑' },
+                { entidade: '&amp;downarrow;', hex: '&downarrow;', desc: 'Seta para baixo', icone: '↓' },
+                { entidade: '&amp;larr;', hex: '&larr;', desc: 'Seta para a esquerda', icone: '←' },
+                { entidade: '&amp;rarr;', hex: '&rarr;', desc: 'Seta para a direita', icone: '→' },
+                { entidade: '&amp;harr;', hex: '&harr;', desc: 'Seta para esquerda e direita', icone: '↔' },
+                { entidade: '&amp;rAarr;', hex: '&rAarr;', desc: 'Seta para direita maior', icone: '⇛' },
+                { entidade: '&amp;lAarr;', hex: '&lAarr;', desc: 'Seta para esquerda maior', icone: '⇚' },
+                { entidade: '&amp;hArr;', hex: '&hArr;', desc: 'Seta para esquerda e direita maior', icone: '⇔' },
+                { entidade: '&amp;home;', hex: '&home;', desc: 'Símbolo de tela inicial', icone: '⌂' }
+            ];
+
+            const simbolosMoedas = [
+                { entidade: '&amp;curren;', hex: '&curren;', desc: 'Moeda', icone: '¤' },
+                { entidade: '&amp;euro;', hex: '&euro;', desc: 'Euro', icone: '€' },
+                { entidade: '&amp;dollar;', hex: '&dollar;', desc: 'Dólar', icone: '$' },
+                { entidade: '&amp;yen;', hex: '&yen;', desc: 'Iene', icone: '¥' },
+                { entidade: '&amp;pound;', hex: '&pound;', desc: 'Libra esterlina', icone: '£' },
+                { entidade: '&amp;cent;', hex: '&cent;', desc: 'Centavo', icone: '¢' }
+            ];
+
+            const simbolosMatematicos = [
+                { entidade: '&amp;plus;', hex: '&plus;', desc: 'Mais', icone: '+' },
+                { entidade: '&amp;minus;', hex: '&minus;', desc: 'Menos', icone: '−' },
+                { entidade: '&amp;times;', hex: '&times;', desc: 'Multiplicação', icone: '×' },
+                { entidade: '&amp;divide;', hex: '&divide;', desc: 'Divisão', icone: '÷' },
+                { entidade: '&amp;equals;', hex: '&equals;', desc: 'Igual', icone: '=' },
+                { entidade: '&amp;ne;', hex: '&ne;', desc: 'Diferente', icone: '≠' },
+                { entidade: '&amp;lt;', hex: '&lt;', desc: 'Menor que', icone: '<' },
+                { entidade: '&amp;gt;', hex: '&gt;', desc: 'Maior que', icone: '>' },
+                { entidade: '&amp;le;', hex: '&le;', desc: 'Menor ou igual', icone: '≤' },
+                { entidade: '&amp;ge;', hex: '&ge;', desc: 'Maior ou igual', icone: '≥' },
+                { entidade: '&amp;infin;', hex: '&infin;', desc: 'Infinito', icone: '∞' },
+                { entidade: '&amp;prop;', hex: '&prop;', desc: 'Proporcional', icone: '∝' },
+                { entidade: '&amp;radic;', hex: '&radic;', desc: 'Raiz quadrada', icone: '√' },
+                { entidade: '&amp;sum;', hex: '&sum;', desc: 'Soma', icone: '∑' },
+                { entidade: '&amp;Delta;', hex: '&Delta;', desc: 'Delta', icone: 'Δ' }
+            ];
+
+            // 🌟 FUNÇÃO PARA RENDERIZAR SÍMBOLOS 🌟
+            function renderizarSimbolos(containerId, simbolos) {
+                const container = document.getElementById(containerId);
+                if (!container) return;
+
+                container.innerHTML = '';
+                
+                simbolos.forEach(simbolo => {
+                    const itemDiv = document.createElement('div');
+                    itemDiv.className = 'symbol-item';
+                    
+                    itemDiv.innerHTML = `
+                        <div class="symbol-display">
+                            <span class="symbol-icon">${simbolo.icone}</span>
+                            <span class="symbol-code"><strong>${simbolo.entidade}</strong></span>
+                            <span class="symbol-desc">- ${simbolo.desc}</span>
+                        </div>
+                        <button class="copy-symbol-btn">📋 Copiar</button>
+                    `;
+                    
+                    const copyBtn = itemDiv.querySelector('.copy-symbol-btn');
+                    copyBtn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        copiarCodigo(simbolo.hex, copyBtn);
+                    });
+                    
+                    container.appendChild(itemDiv);
+                });
+            }
+
+            // Renderizar todos os símbolos
+            renderizarSimbolos('symbolsHtml', simbolosHtml);
+            renderizarSimbolos('symbolsMoedas', simbolosMoedas);
+            renderizarSimbolos('symbolsMatematicos', simbolosMatematicos);
+
+            // Suporte para tecla Enter nos botões (acessibilidade)
+            document.querySelectorAll('.nav-btn, .external-btn, .copy-symbol-btn').forEach(btn => {
+                btn.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        this.click();
+                    }
+                });
+            });
+
+        })();
+    </script>
+</body>
+</html>

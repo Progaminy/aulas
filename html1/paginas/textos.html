@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+    <title>Formatar Texto | Pensador Sem Fronteiras</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background: radial-gradient(circle at 35% 15%, #0a0c0f 0%, #020304 100%);
+            font-family: 'Share Tech Mono', 'Courier New', monospace;
+            color: #e0f0ff;
+            min-height: 100vh;
+            padding: 1.5rem 1.2rem 2.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            line-height: 1.6;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 150, 0, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 0, 200, 0.03) 1px, transparent 1px);
+            background-size: 28px 28px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 850px;
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+        }
+
+        /* Botões de navegação superiores */
+        .nav-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.9rem;
+            justify-content: center;
+            margin-bottom: 0.3rem;
+        }
+
+        .nav-btn {
+            background: rgba(0, 0, 0, 0.72);
+            border: 2px solid #ff9600;
+            color: #ffcc80;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            padding: 0.85rem 1.8rem;
+            border-radius: 45px;
+            cursor: pointer;
+            backdrop-filter: blur(12px);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            box-shadow: 0 0 22px rgba(255, 150, 0, 0.55), 0 8px 20px rgba(0,0,0,0.7);
+            transition: all 0.25s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            touch-action: manipulation;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .nav-btn:hover {
+            background: #ff9600;
+            color: #000;
+            border-color: #ff00c8;
+            box-shadow: 0 0 45px #ff9600, 0 0 75px #ff00c8;
+            transform: translateY(-3px);
+        }
+
+        .nav-btn:active {
+            transform: scale(0.92);
+            background: #fff;
+            color: #000;
+            border-color: #fff;
+            box-shadow: 0 0 60px #fff, 0 0 100px #ff9600;
+            transition: 0.08s;
+        }
+
+        .nav-btn.secondary {
+            border-color: #ff00c8;
+            color: #ffb3e6;
+            box-shadow: 0 0 22px rgba(255, 0, 200, 0.55), 0 8px 20px rgba(0,0,0,0.7);
+        }
+
+        .nav-btn.secondary:hover {
+            background: #ff00c8;
+            color: #000;
+            border-color: #ff9600;
+            box-shadow: 0 0 45px #ff00c8, 0 0 75px #ff9600;
+        }
+
+        .nav-btn.secondary:active {
+            background: #fff;
+            color: #000;
+            border-color: #fff;
+            box-shadow: 0 0 60px #fff, 0 0 100px #ff00c8;
+        }
+
+        /* Título principal */
+        .main-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2.2rem, 7vw, 3.5rem);
+            font-weight: 800;
+            text-align: center;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #fff;
+            text-shadow: 
+                0 0 10px #ff9600,
+                0 0 32px #ff9600,
+                0 0 62px #ff00c8,
+                0 0 95px #ff9600;
+            margin-bottom: 0.3rem;
+            filter: drop-shadow(0 0 18px #ff00c8);
+            word-break: break-word;
+        }
+
+        .text-title-icon {
+            font-size: 3.2rem;
+            display: block;
+            filter: drop-shadow(0 0 25px #ff9600);
+            margin-bottom: 0.3rem;
+            animation: textFloat 2.5s ease-in-out infinite;
+        }
+
+        @keyframes textFloat {
+            0%, 100% { transform: translateY(0px); filter: drop-shadow(0 0 25px #ff9600); }
+            50% { transform: translateY(-10px); filter: drop-shadow(0 0 45px #ff00c8); }
+        }
+
+        /* Cartão padrão */
+        .card {
+            background: rgba(8, 12, 22, 0.8);
+            backdrop-filter: blur(18px);
+            border: 1px solid rgba(255, 150, 0, 0.3);
+            border-radius: 28px;
+            padding: 1.4rem 1.3rem;
+            box-shadow: 0 0 30px rgba(255, 150, 0, 0.25), 0 10px 30px rgba(0, 0, 0, 0.8);
+            transition: all 0.25s ease;
+            position: relative;
+            overflow: visible;
+        }
+
+        .card:hover {
+            border-color: #ff00c8;
+            box-shadow: 0 0 45px #ff00c880, 0 0 85px #ff96004d;
+        }
+
+        h2 {
+            font-family: 'Orbitron', sans-serif;
+            color: #ff9600;
+            text-shadow: 0 0 14px #ff9600, 0 0 30px #ff6600;
+            margin-bottom: 1rem;
+            letter-spacing: 0.1em;
+            font-size: 1.6rem;
+        }
+
+        p {
+            color: #ffe0c8;
+            text-shadow: 0 0 4px rgba(255,150,0,0.5);
+            margin-bottom: 0.5rem;
+        }
+
+        hr {
+            border: none;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #ff9600, #ff00c8, transparent);
+            margin: 1.2rem 0;
+            box-shadow: 0 0 20px #ff9600;
+        }
+
+        code {
+            font-family: 'Share Tech Mono', monospace;
+            color: #ffcc80;
+            text-shadow: 0 0 6px #ff9600;
+        }
+
+        /* Grid de formatações */
+        .format-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
+            margin-top: 0.8rem;
+        }
+
+        .format-item {
+            background: rgba(0, 0, 0, 0.55);
+            border: 1px solid rgba(255, 150, 0, 0.45);
+            border-radius: 18px;
+            padding: 0.85rem 1rem;
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            box-shadow: 0 0 14px rgba(255, 150, 0, 0.25);
+            transition: all 0.25s ease;
+        }
+
+        .format-item:hover {
+            border-color: #ff00c8;
+            box-shadow: 0 0 30px rgba(255, 0, 200, 0.5), 0 0 50px rgba(255, 150, 0, 0.3);
+            background: rgba(30, 0, 40, 0.7);
+            transform: translateX(4px);
+        }
+
+        .format-display {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            flex: 1;
+            min-width: 200px;
+            flex-wrap: wrap;
+        }
+
+        .format-tag {
+            background: rgba(255, 150, 0, 0.2);
+            color: #ffcc80;
+            font-family: 'Share Tech Mono', monospace;
+            font-weight: 700;
+            font-size: 0.9rem;
+            padding: 0.3rem 0.7rem;
+            border-radius: 12px;
+            text-shadow: 0 0 8px #ff9600;
+            letter-spacing: 0.05em;
+            white-space: nowrap;
+        }
+
+        .format-preview {
+            font-size: 1.1rem;
+            padding: 0.2rem 0.5rem;
+            min-width: 60px;
+            text-align: center;
+        }
+
+        .format-desc {
+            color: #ffe0c8;
+            font-size: 0.85rem;
+            text-shadow: 0 0 4px rgba(255,150,0,0.5);
+        }
+
+        /* Botão copiar formatação */
+        .copy-format-btn {
+            background: #000;
+            border: 2px solid #ff00c8;
+            color: #ffb3e6;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 0.75rem;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 14px rgba(255, 0, 200, 0.6);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            transition: all 0.25s;
+            white-space: nowrap;
+            touch-action: manipulation;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .copy-format-btn:hover {
+            background: #ff00c8;
+            color: #000;
+            border-color: #ff9600;
+            box-shadow: 0 0 30px #ff00c8, 0 0 50px #ff9600;
+        }
+
+        .copy-format-btn:active {
+            transform: scale(0.88);
+            background: #fff;
+            color: #000;
+            border-color: #fff;
+            box-shadow: 0 0 40px #fff;
+            transition: 0.06s;
+        }
+
+        /* Exemplos de formatação */
+        .example-box {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px dashed rgba(255, 150, 0, 0.5);
+            border-radius: 16px;
+            padding: 1.2rem;
+            margin: 0.5rem 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .example-box p {
+            margin: 0;
+        }
+
+        .example-box strong { color: #ffcc80; text-shadow: 0 0 8px #ff9600; }
+        .example-box em { color: #ffb3e6; text-shadow: 0 0 8px #ff00c8; }
+        .example-box u { color: #aaffff; text-shadow: 0 0 8px cyan; text-decoration-color: #00ffff; }
+        .example-box del { color: #ff8888; }
+        .example-box mark { background: rgba(255, 255, 0, 0.3); color: #fff; padding: 0.1rem 0.4rem; border-radius: 4px; }
+        .example-box small { font-size: 0.8rem; color: #aaa; }
+        .example-box big { font-size: 1.3rem; color: #fff; }
+        .example-box sub, .example-box sup { color: #ffcc80; }
+
+        /* Rodapé */
+        .footer-signature {
+            margin-top: 2.5rem;
+            text-align: center;
+            border-top: 1px dashed #ff9600;
+            padding-top: 2rem;
+            width: 100%;
+        }
+
+        .footer-signature p {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.25em;
+            color: #aaa;
+            text-shadow: 0 0 8px #ff00c8;
+        }
+
+        .footer-signature small {
+            font-size: 0.85rem;
+            color: #ff9600;
+        }
+
+        .footer-signature em {
+            font-style: italic;
+            color: #ffcc80;
+            text-shadow: 0 0 10px #ff9600;
+            display: block;
+            margin-top: 0.3rem;
+        }
+
+        @media (max-width: 480px) {
+            body { padding: 1rem 0.8rem; }
+            .nav-btn { font-size: 0.85rem; padding: 0.7rem 1.3rem; }
+            .copy-format-btn { font-size: 0.7rem; padding: 0.4rem 0.8rem; }
+            .format-tag { font-size: 0.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Botões de navegação superiores (COMPLETAMENTE CLICÁVEIS) -->
+        <div class="nav-buttons">
+            <button class="nav-btn" onclick="navegarPara('../../index.html')">🏠 Voltar Home</button>
+            <button class="nav-btn secondary" onclick="navegarPara('../html1.html')">📄 HTML Nível I</button>
+        </div>
+
+        <!-- Título principal -->
+        <h1 class="main-title">
+            <span class="text-title-icon">📝</span>
+            Formatação de Texto
+        </h1>
+
+        <!-- Tags de formatação -->
+        <div class="card">
+            <h2>🏷️ Tags de Formatação</h2>
+            <p>Para formatar o texto em HTML, você pode usar as seguintes tags:</p>
+            <div class="format-grid" id="formatContainer"></div>
+        </div>
+
+        <hr>
+
+        <!-- Exemplos de formatação -->
+        <div class="card">
+            <h2>👁️ Exemplo de Formatação de Texto</h2>
+            <div class="example-box">
+                <p><strong>Texto em negrito</strong></p>
+                <p><em>Texto em itálico</em></p>
+                <p><u>Texto sublinhado</u></p>
+                <p><del>Texto riscado</del></p>
+                <p><mark>Texto destacado</mark></p>
+                <p><mark style="background-color: yellow; color: #000;">Texto destacado com cor amarela</mark></p>
+                <p><small>Texto em tamanho menor</small></p>
+                <p><big>Texto em tamanho maior</big></p>
+                <p><sub>Texto em formato de subscrito</sub></p>
+                <p><sup>Texto em formato de sobrescrito</sup></p>
+            </div>
+        </div>
+
+        <!-- Rodapé -->
+        <footer class="footer-signature">
+            <p><small>&copy; Pensador Sem Fronteiras. Todos os direitos reservados.</small></p>
+            <p><em>Do Zero ao Infinito</em></p>
+        </footer>
+    </div>
+
+    <script>
+        (function() {
+            // 🌟 FUNÇÃO DE NAVEGAÇÃO REAL COM BOTÕES 🌟
+            window.navegarPara = function(url) {
+                if (!url || url === '#') return;
+                
+                const botoes = document.querySelectorAll('.nav-btn');
+                botoes.forEach(btn => {
+                    btn.style.pointerEvents = 'none';
+                    btn.style.opacity = '0.7';
+                });
+                
+                setTimeout(() => {
+                    window.location.href = url;
+                }, 120);
+                
+                setTimeout(() => {
+                    botoes.forEach(btn => {
+                        btn.style.pointerEvents = 'auto';
+                        btn.style.opacity = '1';
+                    });
+                }, 600);
+            };
+
+            // 🌟 FUNÇÃO PARA COPIAR CÓDIGO 🌟
+            function copiarCodigo(codigo, botao) {
+                navigator.clipboard.writeText(codigo).then(() => {
+                    const originalHTML = botao.innerHTML;
+                    botao.innerHTML = '✅';
+                    botao.style.background = '#00ffaa';
+                    botao.style.color = '#000';
+                    botao.style.borderColor = '#fff';
+                    botao.style.boxShadow = '0 0 20px #00ffaa';
+                    
+                    setTimeout(() => {
+                        botao.innerHTML = originalHTML;
+                        botao.style.background = '#000';
+                        botao.style.color = '#ffb3e6';
+                        botao.style.borderColor = '#ff00c8';
+                        botao.style.boxShadow = '0 0 14px rgba(255, 0, 200, 0.6)';
+                    }, 1500);
+                }).catch(() => {
+                    alert('Falha ao copiar. Tente novamente.');
+                });
+            }
+
+            // 🌟 DADOS DAS FORMATAÇÕES (FIEL AO CONTEÚDO ORIGINAL) 🌟
+            const formatacoes = [
+                { 
+                    tag: '<strong> texto </strong>', 
+                    copiar: '<strong> texto </strong>', 
+                    preview: '<strong>texto</strong>', 
+                    desc: 'para deixar o texto em negrito.' 
+                },
+                { 
+                    tag: '<b> texto </b>', 
+                    copiar: '<b> texto </b>', 
+                    preview: '<b>texto</b>', 
+                    desc: 'para deixar o texto em negrito não semântico.' 
+                },
+                { 
+                    tag: '<em> texto </em>', 
+                    copiar: '<em> texto </em>', 
+                    preview: '<em>texto</em>', 
+                    desc: 'para deixar o texto em itálico.' 
+                },
+                { 
+                    tag: '<i> texto </i>', 
+                    copiar: '<i> texto </i>', 
+                    preview: '<i>texto</i>', 
+                    desc: 'para deixar o texto em itálico não semântico.' 
+                },
+                { 
+                    tag: '<u> texto </u>', 
+                    copiar: '<u> texto </u>', 
+                    preview: '<u>texto</u>', 
+                    desc: 'para sublinhar o texto.' 
+                },
+                { 
+                    tag: '<del> texto </del>', 
+                    copiar: '<del> texto </del>', 
+                    preview: '<del>texto</del>', 
+                    desc: 'para riscar o texto.' 
+                },
+                { 
+                    tag: '<mark> texto </mark>', 
+                    copiar: '<mark> texto </mark>', 
+                    preview: '<mark>texto</mark>', 
+                    desc: 'para destacar o texto.' 
+                },
+                { 
+                    tag: '<mark style="background-color: cor"> texto </mark>', 
+                    copiar: '<mark style="background-color: yellow"> texto </mark>', 
+                    preview: '<mark style="background-color: yellow; color:#000;">texto</mark>', 
+                    desc: 'para destacar texto mudar de cor.' 
+                },
+                { 
+                    tag: '<small> texto </small>', 
+                    copiar: '<small> texto </small>', 
+                    preview: '<small>texto</small>', 
+                    desc: 'para deixar o texto em um tamanho menor.' 
+                },
+                { 
+                    tag: '<big> texto </big>', 
+                    copiar: '<big> texto </big>', 
+                    preview: '<big>texto</big>', 
+                    desc: 'para deixar o texto em um tamanho maior.' 
+                },
+                { 
+                    tag: '<sub> texto </sub>', 
+                    copiar: '<sub> texto </sub>', 
+                    preview: '<sub>texto</sub>', 
+                    desc: 'para deixar o texto em um formato de subscrito.' 
+                },
+                { 
+                    tag: '<sup> texto </sup>', 
+                    copiar: '<sup> texto </sup>', 
+                    preview: '<sup>texto</sup>', 
+                    desc: 'para deixar o texto em um formato de sobrescrito.' 
+                }
+            ];
+
+            // 🌟 RENDERIZAR FORMATAÇÕES 🌟
+            const formatContainer = document.getElementById('formatContainer');
+            
+            formatacoes.forEach(format => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'format-item';
+                
+                itemDiv.innerHTML = `
+                    <div class="format-display">
+                        <span class="format-tag">${format.tag}</span>
+                        <span class="format-preview">${format.preview}</span>
+                        <span class="format-desc">${format.desc}</span>
+                    </div>
+                    <button class="copy-format-btn">📋 Copiar</button>
+                `;
+                
+                const copyBtn = itemDiv.querySelector('.copy-format-btn');
+                copyBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    copiarCodigo(format.copiar, copyBtn);
+                });
+                
+                formatContainer.appendChild(itemDiv);
+            });
+
+            // Suporte para tecla Enter nos botões (acessibilidade)
+            document.querySelectorAll('.nav-btn, .copy-format-btn').forEach(btn => {
+                btn.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        this.click();
+                    }
+                });
+            });
+
+        })();
+    </script>
+</body>
+</html>
