@@ -433,7 +433,7 @@
 
     <script>
         (function() {
-            // 🌟 FUNÇÃO DE NAVEGAÇÃO REAL COM BOTÕES 🌟
+            // 🌟 FUNÇÃO DE NAVEGAÇÃO COM BOTÕES 🌟
             window.navegarPara = function(url) {
                 if (!url || url === '#') return;
                 
@@ -477,21 +477,21 @@
                 });
             }
 
-            // 🌟 DADOS DAS TAGS (FIEL AO CONTEÚDO ORIGINAL) 🌟
+            // 🌟 DADOS DAS TAGS 🌟
             const tags = [
-                { nome: '<code> </code>', copiar: '<code> </code>', desc: 'é usada para definir um trecho de código.' },
-                { nome: '<!-- comentário -->', copiar: '<!-- comentário -->', desc: 'é usada para criar um comentário no código HTML.' },
-                { nome: '<h1> </h1>', copiar: '<h1> </h1>', desc: 'é usada para definir o título principal da página.' },
-                { nome: '<h2> </h2>', copiar: '<h2> </h2>', desc: 'é usada para definir o título secundário da página.' },
-                { nome: '<h3> </h3>', copiar: '<h3> </h3>', desc: 'é usada para definir o título terciário da página.' },
-                { nome: '<h4> </h4>', copiar: '<h4> </h4>', desc: 'é usada para definir o título quádruplo da página.' },
-                { nome: '<h5> </h5>', copiar: '<h5> </h5>', desc: 'é usada para definir o título quíntuplo da página.' },
-                { nome: '<h6> </h6>', copiar: '<h6> </h6>', desc: 'é usada para definir o título sextuplo da página.' },
-                { nome: '<p> </p>', copiar: '<p> </p>', desc: 'é usada para definir um parágrafo de texto.' },
-                { nome: '<br>', copiar: '<br>', desc: 'é usada para criar uma quebra de linha.' },
-                { nome: '<hr>', copiar: '<hr>', desc: 'é usada para criar uma linha horizontal.' },
-                { nome: '<a href=""> link </a>', copiar: '<a href=""> link </a>', desc: 'é usada para criar um link para outra página ou recurso na web.' },
-                { nome: '<img src="" alt="">', copiar: '<img src="" alt="">', desc: 'é usada para inserir uma imagem na página.' }
+                { nome: '&lt;code&gt; &lt;/code&gt;', copiar: '<code> </code>', desc: 'é usada para definir um trecho de código.' },
+                { nome: '&lt;!-- comentário --&gt;', copiar: '<!-- comentário -->', desc: 'é usada para criar um comentário no código HTML.' },
+                { nome: '&lt;h1&gt; &lt;/h1&gt;', copiar: '<h1> </h1>', desc: 'é usada para definir o título principal da página.' },
+                { nome: '&lt;h2&gt; &lt;/h2&gt;', copiar: '<h2> </h2>', desc: 'é usada para definir o título secundário da página.' },
+                { nome: '&lt;h3&gt; &lt;/h3&gt;', copiar: '<h3> </h3>', desc: 'é usada para definir o título terciário da página.' },
+                { nome: '&lt;h4&gt; &lt;/h4&gt;', copiar: '<h4> </h4>', desc: 'é usada para definir o título quádruplo da página.' },
+                { nome: '&lt;h5&gt; &lt;/h5&gt;', copiar: '<h5> </h5>', desc: 'é usada para definir o título quíntuplo da página.' },
+                { nome: '&lt;h6&gt; &lt;/h6&gt;', copiar: '<h6> </h6>', desc: 'é usada para definir o título sextuplo da página.' },
+                { nome: '&lt;p&gt; &lt;/p&gt;', copiar: '<p> </p>', desc: 'é usada para definir um parágrafo de texto.' },
+                { nome: '&lt;br&gt;', copiar: '<br>', desc: 'é usada para criar uma quebra de linha.' },
+                { nome: '&lt;hr&gt;', copiar: '<hr>', desc: 'é usada para criar uma linha horizontal.' },
+                { nome: '&lt;a href="caminho/url"&gt; ir para link &lt;/a&gt;', copiar: '<a href="caminho/url"> link </a>', desc: 'é usada para criar um link para outra página ou recurso na web.' },
+                { nome: '&lt;img src="" alt=""&gt;', copiar: '<img src="" alt="">', desc: 'é usada para inserir uma imagem na página.' }
             ];
 
             // 🌟 RENDERIZAR TAGS 🌟
