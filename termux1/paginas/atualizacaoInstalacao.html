@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atualização e Instalação</title>
+</head>
+<body>
+
+    <!-- transformar em botão completamente clicável -->
+
+    <a href="../../index.html" class="btn-link">Voltar Home</a> <a href="../termux.html">Voltar Termux</a>
+
+    <h1>Atualização e Instalação</h1>
+    
+    <p>Para que o Termux saiba o que pode ser instalado e qual a versão mais recente disponível, ele precisa de uma lista. Essa lista é mantida nos servidores do Termux e é atualizada regularmente pelos desenvolvedores.</p>
+
+    <h2>COMANDO: atualizar a lista de pacotes</h2>
+
+     <code>pkg update</code>
+
+    <p><strong>SIGNIFICA:</strong> "package update" — em português, "atualizar pacote" (mas aqui, atualiza a lista de pacotes).</p>
+
+    <p><strong>FUNÇÃO:</strong> Sincroniza seu Termux com os servidores oficiais, baixando a lista mais recente de todos os softwares disponíveis.</p>
+
+    <p><strong>O QUE FAZ:</strong></p>
+    <ul>
+        <li>Conecta-se ao repositório principal do Termux (ou ao espelho que você configurou via termux-change-repo).</li>
+        <li>Baixa arquivos de índice que contêm nomes, versões e descrições de todos os pacotes.</li>
+    </ul>
+    <p><strong>Atualiza o banco de dados interno do gerenciador apt.</strong></p>
+    <p><strong>NÃO INSTALA NADA:</strong> Este comando é totalmente seguro e não modifica nenhum programa no seu dispositivo. Ele só atualiza o "catálogo".</p>
+    <p><strong>RELAÇÃO COM OUTROS:</strong> Este é o primeiro passo obrigatório. Sem executar pkg update antes, os comandos pkg upgrade (atualizar programas) e pkg install (instalar novos programas) podem falhar ou instalar versões antigas.</p>
+    <p><strong>Exemplo prático do que acontece se você não fizer isso:</strong></p>
+    <p>Imagine que foi lançada uma atualização de segurança para o Python. Se você não rodar pkg update primeiro, seu Termux ainda estará olhando para uma lista velha, onde essa atualização não existe. Ele não vai encontrá-la.</p>
+    
+
+    <h2>COMANDO: atualizar os programas instalados</h2>
+
+     <code>pkg upgrade</code>
+    <p><strong>SIGNIFICA:</strong> "package upgrade" — em português, "atualizar pacote" (mas aqui, atualiza os programas instalados).</p>
+    <p><strong>FUNÇÃO:</strong> Verifica quais programas instalados têm versões mais recentes disponíveis e os atualiza para essas versões.</p>
+    <p><strong>O QUE FAZ:</strong></p>
+    <ul>
+        <li>Primeiro, verifica a lista de pacotes atualizada (que você obteve com pkg update) para ver se há versões mais recentes dos programas que você tem.</li>
+        <li>Se encontrar atualizações, baixa os arquivos necessários e instala as novas versões, substituindo as antigas.</li>
+    </ul>
+    <p><strong>IMPORTANTE:</strong> Este comando pode modificar ou substituir programas no
+    seu dispositivo. Ele é seguro, mas é recomendado revisar as mudanças propostas antes de confirmar a atualização, especialmente se você tiver programas personalizados ou dependências específicas.</p>
+    <p><strong>RELAÇÃO COM OUTROS:</strong> Este comando depende de pkg update para funcionar corretamente. Sem uma lista atualizada, ele pode não encontrar as atualizações disponíveis.</p>
+    <p><strong>Exemplo prático do que acontece se você não fizer isso:</strong></p>
+    <p>Se uma vulnerabilidade de segurança for corrigida em um programa que você usa, e você não rodar pkg upgrade, seu programa continuará vulnerável. Mesmo que você tenha a lista atualizada, se não fizer a atualização, estará exposto a riscos.</p>
+
+
+    <h2>Comando: Listando Pacotes Disponíveis</h2>
+
+     <code>pkg list-all</code>
+
+    <p><strong>SIGNIFICA:</strong> "**p**ac**k**a**g**e **list-all**" — em português, "listar todos os pacotes".
+    <p><strong>FUNÇÃO:</strong> Exibe uma lista completa de todos os pacotes disponíveis no catálogo que o `pkg update` baixou.
+    <p><strong>O QUE FAZ:</strong></p>
+    <ul>
+        <li>Lê o banco de dados de pacotes disponíveis.</li>
+        <li>Mostra na tela uma lista imensa (mais de 5000 itens)   nome-do-pacote/versão arquitetura
+    </ul>
+    
+    <p>Essa lista passará rapidamente pela tela (rolagem contínua).<strong></strong>NÃO INSTALA NADA:</strong> <br> 
+        É apenas uma consulta ao catálogo. <br>
+        - <strong>RELAÇÃO COM OUTROS:</strong> <br>
+        - <strong>Depende do</strong> `pkg update`: Só mostra o que está no catálogo atualizado. <br>
+        - <strong>Precede buscas mais específicas:</strong> É útil para ver tudo, mas pouco prático para achar algo específico
+    </p>.
+
+
+
+
+
+    <footer>
+        <p><small>Pensadoer Sem Fronteiras</small> <br>
+        <em>Do Zero ao Infinito</em></p>
+    </footer>
+
+
+
+
+
+</body>
+</html>
