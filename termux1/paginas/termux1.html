@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Termux - Nivel I</title>
+</head>
+<body>
+
+<!-- Transformar em botão completamente digitável -->
+
+    <a href="../termux1.html">Voltar Home</a>
+
+    <h1>Comandos Basicos das ferramentas básicas do sistema.</h1>
+
+    <ol>
+        <li>
+            <h2>Comando: Verificar Usuario do terminal</h2>
+        </li>
+
+        <code>whoami</code> <br>
+
+        <h3>Explicação do comando</h3>
+        <p>O comando <strong>whoami</strong> pergunta ao sistema: "Qual é o nome do usuário atual?" O Termux responde com um identificador interno do Android. <br>
+        Não é o nome do usuário do sistema Linux tradicional, mas sim um ID específico do ambiente Termux. <br>
+        📌 Para que serve whoami? <br>
+        Saber qual usuário está controlando o terminal <br>
+        📌 Útil quando você tiver vários usuários ou permissões diferentes</b></p>
+
+        <li>
+            <h2>Comando: Verificar diretório atual (mostrar caminho)</h2>
+        </li>
+
+        <code>pwd</code> <br>
+
+        <h3>Explicação do comando</h3>
+        <p>O comando <strong>pwd</strong> significa "print working directory", ou seja, "imprimir diretório de trabalho". Ele mostra o caminho completo do diretório atual em que você está no terminal. <br>
+        📌 Para que serve pwd? <br>
+        Saber em qual diretório você está trabalhando <br>
+        📌 Útil para navegar e organizar arquivos</b></p>
+
+        <li>
+            <h2>Comando: Listar arquivos e pastas</h2>
+        </li>
+
+        <code>ls</code> <br>
+
+        <h3>Explicação do comando</h3>
+        <p>O comando <strong>ls</strong> significa "list", ou seja, "listar". Ele mostra a lista de arquivos e pastas no diretório atual. <br>
+        📌 Para que serve ls? <br>
+        Visualizar o conteúdo de um diretório <br>
+        📌 Útil para navegar e encontrar arquivos</b></p>
+
+        <li>
+            <h2>Comando: Obter informações sobre um arquivo ou pasta (listar detalhadamente)</h2>
+        </li>
+
+        <code>ls -l</code> <br>
+
+
+        <h3>Explicação do comando</h3>
+        <p>O comando <strong>ls -l</strong> mostra uma lista detalhada dos arquivos e pastas no diretório atual, incluindo permissões, proprietário, tamanho e data de modificação. <br>
+        📌 Para que serve ls -l? <br>
+        Obter informações detalhadas sobre arquivos e pastas <br>
+        📌 Útil para entender as propriedades dos arquivos</b></p>
+
+        <li>
+            <h2>Comando: Limpar a tela do terminal</h2>
+        </li>
+
+        <code> </code>clear</code> <br>
+
+        <h3>Explicação do comando</h3>
+        <p>O comando <strong>clear</strong> serve para limpar a tela do terminal. Ele remove todo o texto visível, os comandos antigos e suas saídas, deixando a tela completamente em branco. Seu único objetivo é ajudar na organização visual. Ele não apaga arquivos, não desfaz ações, não fecha nada. Só limpa a poluição visual da tela. <br>
+        📌 Para que serve clear? <br>
+        Limpar a tela do terminal <br>
+        📌 Útil para organizar a visualização do terminal</b></p>
+
+        <li>
+            <h2>Comando: Mudar de diretório</h2>
+        </li>
+
+        <code>cd</code> <br>
+
+        <h3>Explicação do comando</h3>
+        <p>O comando <strong>cd</strong> significa "change directory", ou seja, "mudar de diretório". Ele permite que você navegue entre as pastas do sistema. <br>
+        📌 Para que serve cd? <br>
+        Navegar entre diretórios <br>
+        📌 Útil para acessar diferentes partes do sistema de arquivos</b></p>
+
+        <h3>cd (entrando em uma pasta específica)</h3>
+        <p>Para entrar em uma pasta específica, você pode usar o comando <strong>cd</strong> seguido do nome da pasta. Por exemplo, se você quiser entrar na pasta "Documentos", basta digitar:</p>
+
+        <code>cd Documentos</code> <br>
+
+        <p>Isso mudará o diretório atual para a pasta "Documentos", desde que ela exista no diretório atual. Se a pasta estiver em outro local, você pode fornecer o caminho completo ou relativo para ela.</p>
+
+
+        <p>Este comando tem duas partes: o comando em si e o destino. O destino pode ser um caminho ou um atalho especial. Para esta primeira aula de navegação, usaremos um atalho fundamental: .. (dois pontos finais).</p>
+
+        <code>cd ..</code> <br>
+
+        <h3>Explicação do comando cd ..</h3>
+        <p>O comando <strong>cd ..</strong> é usado para subir um nível na hierarquia de diretórios. O <strong>..</strong> significa "o diretório acima deste" ou "a pasta pai". É o que contém a pasta onde você está agora. <br>
+        📌 Para que serve cd ..? <br>
+        Subir um nível na hierarquia de diretórios <br>
+        📌 Útil para navegar para pastas superiores</b></p>
+
+        <li>
+            <h2>Comando: Voltar para o diretório inicial</h2>
+        </li>
+
+        <code>cd ~</code> <br>
+
+        <h3>Explicação do comando cd ~</h3>
+        <p>O comando <strong>cd ~</strong> é usado para voltar para o diretório inicial do usuário. O símbolo <strong>~</strong> representa o diretório home do usuário, que é onde você começa quando abre o terminal. <br>
+        📌 Para que serve cd ~? <br>
+        Voltar para o diretório inicial do usuário <br>
+        📌 Útil para acessar rapidamente o diretório home</b></p>
+
+        <li>
+            <h2>Comando: Criar uma nova pasta</h2>
+        </li>
+
+        <code>mkdir nome_da_pasta</code> <br>
+
+        <h3>Explicação do comando</h3>
+        <p>O comando <strong>mkdir</strong> significa "make directory", ou seja, "criar diretório". Ele permite que você crie uma nova pasta no diretório atual. <br>
+        📌 Para que serve mkdir? <br>
+        Criar novas pastas <br>
+        📌 Útil para organizar arquivos e diretórios</b></p>
+
+        <li>
+            <h2>Comando: Criar um novo arquivo de texto</h2>
+        </li>
+
+        <code>touch nome_do_arquivo.txt</code> <br>
+
+        <h3>Explicação do comando</h3>
+        <p>O comando <strong>touch</strong> é usado para criar um novo arquivo vazio ou atualizar a data de modificação de um arquivo existente. Para criar um novo arquivo, basta usar o comando seguido do nome do arquivo que deseja criar. Por exemplo:</p><br>
+
+        <p>Você criou um arquivo vazio. Ele não tem conteúdo algum, mas já existe e ocupa um nome. A extensão .txt é apenas um nome sugestivo para arquivos de texto, mas o comando funciona com qualquer nome: imagem.png, dados.csv, musica.mp3, tudo é criado vazio da mesma forma.</p>
+
+        <li>
+            <h2>Comando: Remover um arquivo ou pasta</h2>
+        </li>
+
+        <code>rm nome_do_arquivo.txt</code> <br>
+
+        <code>rm -r nome_da_pasta</code> <br>
+
+        <h3>Explicação do comando</h3>
+        <p>O comando <strong>rm</strong> significa "remove", ou seja, "remover". Ele é usado para deletar arquivos e pastas. Para remover um arquivo, basta usar o comando seguido do nome do arquivo. Por exemplo:</p><br>
+        <p>Para remover uma pasta e todo o seu conteúdo, você pode usar a opção -r (recursive). Por exemplo:</p><br>
+        <p>⚠️ Cuidado: O comando rm é poderoso e não tem uma lixeira. Ele apaga arquivos e pastas permanentemente, sem confirmação. Use com cautela!</p>
+
+        <li>
+            <h2>Comando: remover pasta</h2>
+        </li>
+
+        <code>rmdir nome_da_pasta</code> <br>
+        <h3>Explicação do comando</h3>
+        <p>O comando <strong>rmdir</strong> significa "remove directory", ou seja, "remover diretório". Ele é usado para deletar pastas vazias. Para remover uma pasta, basta usar o comando seguido do nome da pasta. Por exemplo:</p><br>
+        <p>⚠️ Cuidado: O comando rmdir só funciona para pastas vazias. Se a pasta contiver arquivos ou outras pastas, você precisará usar o comando rm -r para removê-la.</p>
+
+        <li>
+            <h2>Comando: Copiar um arquivo ou pasta</h2>
+        </li>
+
+        <code>cp nome_do_arquivo.txt destino</code> <br>
+        
+        <code>cp -r nome_da_pasta destino</code> <br>
+
+        <h3>Explicação do comando</h3>
+        <p>O comando <strong>cp</strong> significa "copy", ou seja, "copiar". Ele é usado para criar uma cópia de um arquivo ou pasta. Para copiar um arquivo, basta usar o comando seguido do nome do arquivo e do destino onde deseja criar a cópia. Por exemplo:</p><br>
+        <p>Para copiar uma pasta e todo o seu conteúdo, você pode usar a opção -r (recursive). Por exemplo:</p><br>
+        <p>📌 Para que serve cp? <br>
+        Criar cópias de arquivos e pastas</p>
+
+    </ol>
+
+    <footer>
+        <small>Pensadoe Sem Fronteiras</small> <br>
+        <em>Do zero ao Infinito</em>
+    </footer>
+
+</body>
+</html>
