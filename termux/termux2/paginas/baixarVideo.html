@@ -420,17 +420,26 @@
                 <li>Baixar um vídeo do YouTube usando yt-dlp</li>
                 <code id="cmd15">yt-dlp "URL_DO_VÍDEO"</code>
                 <button class="copy-btn" data-target="cmd15">📋 Copiar comando</button>
-                <p>Substitua &lt;URL_DO_VÍDEO&gt; pelo URL do vídeo do YouTube que você deseja baixar. O comando acima baixará o vídeo e o salvará na pasta "MeusVideos" com o nome do título do vídeo e a extensão correta.</p>
-                <p>ou</p>
-                <code id="cmd16">yt-dlp -o ~/storage/downloads/MeusVideos/%(title)s.%(ext)s &lt;URL_DO_VÍDEO&gt;</code>
-                <button class="copy-btn" data-target="cmd16">📋 Copiar comando</button>
-                <p>Substitua &lt;URL_DO_VÍDEO&gt; pelo URL do vídeo do YouTube que você deseja baixar. O comando acima baixará o vídeo e o salvará na pasta "MeusVideos" com o nome do título do vídeo e a extensão correta.</p>
+                <p>Substitua "URL_DO_VÍDEO" pelo URL do vídeo do YouTube que você deseja baixar. O comando acima baixará o vídeo e o salvará na pasta "MeusVideos" com o nome do título do vídeo e a extensão correta.</p>
+
+                <!-- 01 -->
+                <li>Baixar Video do melhor formato</li>
+                <code id="cmd01"> yt-dlp -f "bestvideo+bestaudio/best" "URL"</code>
+                 <button class="copy-btn" data-target="cmd01">📋 Copiar comando</button>
+
+                <li>Baixar Video do melhor formato</li>
+                <code id="cmd02"> yt-dlp -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]/best" "URL"</code>
 
                 <!-- 17 -->
-                <li>Verificar Formatos disponíveis para um vídeo</li>
-                <code id="cmd17">youtube-dl -F &lt;URL_DO_VÍDEO&gt;</code>
+                <li>Verificar Formatos disponíveis para um vídeo (youtube-dl)</li>
+                <code id="cmd17">youtube-dl -F "URL_DO_VÍDEO"</code>
                 <button class="copy-btn" data-target="cmd17">📋 Copiar comando</button>
-                <p>Substitua &lt;URL_DO_VÍDEO&gt; pelo URL do vídeo do YouTube que você deseja verificar os formatos. O comando acima mostrará uma lista dos formatos disponíveis para o vídeo.</p>
+                <p>Substitua "URL_DO_VÍDEO" pelo URL do vídeo do YouTube que você deseja verificar os formatos. O comando acima mostrará uma lista dos formatos disponíveis para o vídeo.</p>
+
+                <li>Verificar Formatos disponíveis para um vídeo (yt-dlp)</li>
+                <code id="cmd17">yt-dlp -F "URL_DO_VÍDEO"</code>
+                <button class="copy-btn" data-target="cmd17">📋 Copiar comando</button>
+                <p>Substitua "URL_DO_VÍDEO" pelo URL do vídeo do YouTube que você deseja verificar os formatos. O comando acima mostrará uma lista dos formatos disponíveis para o vídeo.</p>
 
                 <!-- 18 -->
                 <li>Baixar vídeo em formato específico pelo Id</li>
