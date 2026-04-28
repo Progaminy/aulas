@@ -2,18 +2,314 @@
 <html lang="pt-pt">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Corporar CSS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes, viewport-fit=cover">
+    <title>🎨 Corporar CSS · Estilos em Cascata</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: radial-gradient(circle at 30% 12%, #0b1429, #02050f);
+            font-family: 'Segoe UI', 'Inter', system-ui, -apple-system, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            padding: 1.4rem 1rem 2.8rem;
+            color: #daf0ff;
+            line-height: 1.55;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at 80% 25%, rgba(255, 0, 200, 0.08) 0%, transparent 55%),
+                        radial-gradient(circle at 15% 75%, rgba(0, 255, 200, 0.09) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 780px;
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        h1 {
+            font-size: clamp(2.4rem, 8vw, 3.5rem);
+            font-weight: 800;
+            text-align: center;
+            background: linear-gradient(135deg, #7bf0ff, #f472b6, #bef264);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 26px #ff00d0);
+            text-shadow: 0 0 22px #38bdf8, 0 0 48px #d946ef;
+            margin-bottom: 0.3rem;
+            border-bottom: 3px solid #4ec9b0;
+            padding-bottom: 0.8rem;
+        }
+
+        h2 {
+            font-size: 1.7rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #cbd5e1, #f0abfc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 1rem 0 0.9rem;
+            border-left: 6px solid #22d3ee;
+            padding-left: 1.1rem;
+            text-shadow: 0 0 14px #06b6d4;
+        }
+
+        .card {
+            background: rgba(5, 14, 32, 0.7);
+            backdrop-filter: blur(22px);
+            -webkit-backdrop-filter: blur(22px);
+            border: 1px solid rgba(0, 255, 200, 0.32);
+            border-radius: 2.2rem;
+            padding: 1.5rem 1.4rem;
+            box-shadow: 0 24px 50px rgba(255, 0, 200, 0.3), 0 0 50px #00ffff38;
+            transition: transform 0.2s ease, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            box-shadow: 0 34px 65px #ff66c070, 0 0 70px #22d3ee;
+        }
+
+        p {
+            margin: 0.9rem 0 0.5rem;
+            font-size: 1.02rem;
+            color: #c8e9ff;
+        }
+
+        strong {
+            color: #fcd34d;
+            text-shadow: 0 0 8px #fbbf24;
+        }
+
+        hr {
+            border: none;
+            border-top: 2px dashed #38bdf8;
+            margin: 1.8rem 0 0.8rem;
+            opacity: 0.7;
+            box-shadow: 0 0 15px #06b6d4;
+        }
+
+        code {
+            background: #000b1a;
+            display: block;
+            padding: 1rem 1.3rem;
+            border-radius: 1.2rem;
+            margin: 0.9rem 0 0.3rem;
+            font-family: 'Fira Code', 'Courier New', monospace;
+            font-size: 0.98rem;
+            color: #bbf7d0;
+            border: 1px solid #38bdf8;
+            box-shadow: inset 0 0 22px #2563eb40, 0 10px 20px #000;
+            white-space: pre-wrap;
+            word-break: break-word;
+            letter-spacing: 0.3px;
+            line-height: 1.6;
+        }
+
+        .copy-btn {
+            background: #082f49;
+            border: 1.5px solid #22d3ee;
+            color: #cffafe;
+            font-weight: 700;
+            padding: 0.7rem 1.7rem;
+            border-radius: 3rem;
+            font-size: 0.95rem;
+            backdrop-filter: blur(8px);
+            cursor: pointer;
+            margin: 0.5rem 0 0.8rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            box-shadow: 0 0 22px #06b6d4;
+            transition: 0.25s;
+            background: rgba(2, 15, 30, 0.8);
+        }
+
+        .copy-btn:hover {
+            background: #06b6d4;
+            color: #020617;
+            border-color: #facc15;
+            box-shadow: 0 0 38px #eab308;
+        }
+
+        footer {
+            margin-top: 2rem;
+            text-align: center;
+            font-weight: 300;
+            font-size: 1rem;
+            color: #a5d8ff;
+            border-top: 1px dashed #38bdf8;
+            padding-top: 1.4rem;
+            width: 100%;
+        }
+
+        footer p {
+            color: #a5d8ff;
+        }
+
+        footer small {
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            color: #e0f2fe;
+        }
+
+        footer em {
+            font-style: italic;
+            color: #c084fc;
+            text-shadow: 0 0 12px #c026d3;
+        }
+
+        .highlight-inline {
+            display: inline;
+            background: #000b1a;
+            padding: 0.2rem 0.6rem;
+            border-radius: 0.5rem;
+            font-size: 0.95rem;
+            border: 1px solid #38bdf8;
+            color: #bbf7d0;
+        }
+
+        @media (max-width: 480px) {
+            .card {
+                padding: 1.2rem 1rem;
+            }
+            code {
+                font-size: 0.83rem;
+                padding: 0.85rem;
+            }
+        }
+    </style>
 </head>
 <body>
+    <div class="container">
 
-    <h1>Corporar CSS</h1>
+        <h1>🎨 Corporar CSS</h1>
 
-    <h2>In Line</h2>
+        <!-- CSS Inline -->
+        <div class="card">
+            <h2>📌 In Line</h2>
+            <p>Pode incorporar CSS em cada linha colocando dentro da tag iniciando com a palavra <strong>style=""</strong></p>
+            
+            <code id="cmd1">&lt;p style="color: red;"&gt; <span style="color: #f87171;">texto em vermelho</span> &lt;/p&gt;</code>
+            <button class="copy-btn" data-target="cmd1">📋 Copiar código</button>
 
-    <p>pode incorporar css em cada linha colocando dendro da tag iniciando com a palavra <strong>style=""</strong></p>
+            <p>O CSS in line tem prioridade sobre o CSS externo e interno</p>
+        </div>
 
-    <code>&lt;p style="color: red;&gt; <code style="color: red;">texto em vermelho</code> &lt;/&gt;"</code>
-    
+        <hr>
+
+        <!-- CSS Interno ou Local -->
+        <div class="card">
+            <h2>📄 CSS Interno ou Local</h2>
+            <p>Pode incorporar CSS dentro da tag <strong>&lt;head&gt;</strong> usando a tag <strong>&lt;style&gt;</strong></p>
+            
+            <code id="cmd2">&lt;head&gt;
+    &lt;style&gt;
+        body {
+            color: red;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;</code>
+            <button class="copy-btn" data-target="cmd2">📋 Copiar código</button>
+
+            <p>O CSS interno ou local tem prioridade sobre o CSS externo</p>
+        </div>
+
+        <hr>
+
+        <!-- CSS Externos -->
+        <div class="card">
+            <h2>🌐 CSS Externos</h2>
+            <p>No cabeçalho crie um <strong>link:css</strong></p>
+            
+            <code id="cmd3">&lt;link rel="stylesheet" href="CAMINHO_DA_PASTA/style.css"&gt;</code>
+            <button class="copy-btn" data-target="cmd3">📋 Copiar código</button>
+
+            <p>Na pasta <strong>style.css</strong> coloque o código CSS</p>
+            
+            <code id="cmd4">@charset "UTF-8";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    background: radial-gradient(circle at 20% 10%, #0a0c0f 0%, #020304 100%);
+    font-family: 'Share Tech Mono', 'Courier New', monospace;
+    color: #e0f0ff;
+    min-height: 100vh;
+    padding: 1.5rem 1.2rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+    line-height: 1.5;
+    -webkit-user-select: none;
+    user-select: none;
+}</code>
+            <button class="copy-btn" data-target="cmd4">📋 Copiar código</button>
+        </div>
+
+        <footer>
+            <p>&copy; <small>Pensador Sem Fronteiras</small> <br> <em>Do Zero ao Infinito</em></p>
+        </footer>
+    </div>
+
+    <script>
+        (function() {
+            const copyButtons = document.querySelectorAll('.copy-btn');
+
+            copyButtons.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('data-target');
+                    const codeElement = document.getElementById(targetId);
+                    
+                    if (!codeElement) return;
+
+                    const textToCopy = codeElement.innerText.trim();
+                    
+                    navigator.clipboard.writeText(textToCopy).then(() => {
+                        const originalText = this.innerHTML;
+                        this.innerHTML = '✅ Copiado!';
+                        this.style.borderColor = '#facc15';
+                        this.style.boxShadow = '0 0 35px #fbbf24';
+                        this.style.color = '#000';
+                        this.style.background = '#facc15';
+                        
+                        setTimeout(() => {
+                            this.innerHTML = originalText;
+                            this.style.borderColor = '#22d3ee';
+                            this.style.boxShadow = '0 0 22px #06b6d4';
+                            this.style.color = '#cffafe';
+                            this.style.background = 'rgba(2, 15, 30, 0.8)';
+                        }, 1700);
+                    }).catch(err => {
+                        alert('Erro ao copiar. Tente novamente.');
+                    });
+                });
+            });
+        })();
+    </script>
 </body>
 </html>

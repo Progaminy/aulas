@@ -406,9 +406,9 @@
 
                 <!-- 14 -->
                 <li>Baixar um vídeo do YouTube</li>
-                <code id="cmd13">youtube-dl -o ~/storage/downloads/MeusVideos/%(title)s.%(ext)s &lt;URL_DO_VÍDEO&gt;</code>
+                <code id="cmd13">youtube-dl -o ~/storage/downloads/MeusVideos/%(title)s.%(ext)s "URL_DO_VÍDEO"</code>
                 <button class="copy-btn" data-target="cmd13">📋 Copiar comando</button>
-                <p>Substitua &lt;URL_DO_VÍDEO&gt; pelo URL do vídeo do YouTube que você deseja baixar. O comando acima baixará o vídeo e o salvará na pasta "MeusVideos" com o nome do título do vídeo e a extensão correta.</p>
+                <p>Substitua "URL_DO_VÍDEO" pelo URL do vídeo do YouTube que você deseja baixar. O comando acima baixará o vídeo e o salvará na pasta "MeusVideos" com o nome do título do vídeo e a extensão correta.</p>
 
                 <!-- 15 -->
                 <li>Entrar na pasta onde os vídeos estão salvos</li>
@@ -424,11 +424,12 @@
 
                 <!-- 01 -->
                 <li>Baixar Video do melhor formato</li>
-                <code id="cmd01"> yt-dlp -f "bestvideo+bestaudio/best" "URL"</code>
+                <code id="cmd01">yt-dlp -f "bestvideo+bestaudio/best" "URL_DO_VIDEO""</code>
                  <button class="copy-btn" data-target="cmd01">📋 Copiar comando</button>
 
                 <li>Baixar Video do melhor formato</li>
-                <code id="cmd02"> yt-dlp -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]/best" "URL"</code>
+                <code id="cmd02"> yt-dlp -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best"</code>
+                <button class="copy-btn" data-target="cmd02">📋 Copiar comando</button>
 
                 <!-- 17 -->
                 <li>Verificar Formatos disponíveis para um vídeo (youtube-dl)</li>
