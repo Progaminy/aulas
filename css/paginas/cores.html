@@ -1,20 +1,1549 @@
 <!DOCTYPE html>
 <html lang="pt-pt">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cores - CSS</title>
-    <style>
-        body {
-            color-scheme: ;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <title>✨ 100 Itens Cores CSS · Pensador Sem Fronteiras</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0a0a0f;
+      font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      color: #e0e0e0;
+      padding: 1.5rem 1.2rem;
+      line-height: 1.5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-image: radial-gradient(circle at 30% 10%, rgba(0, 255, 255, 0.08) 0%, transparent 40%),
+                        radial-gradient(circle at 80% 70%, rgba(255, 0, 255, 0.06) 0%, transparent 50%);
+    }
+
+    .container {
+      max-width: 950px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-bottom: 2rem;
+    }
+
+    .nav-btn {
+      background: rgba(20, 20, 30, 0.8);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(0, 255, 255, 0.4);
+      color: #00ffff;
+      padding: 0.7rem 1.4rem;
+      border-radius: 3rem;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      box-shadow: 0 0 12px rgba(0, 255, 255, 0.2);
+      letter-spacing: 0.3px;
+      display: inline-block;
+    }
+
+    .nav-btn:hover, .nav-btn:active {
+      background: #00ffff;
+      color: #0a0a0f;
+      border-color: #00ffff;
+      box-shadow: 0 0 28px #00ffffaa;
+      transform: translateY(-2px);
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      margin: 1.8rem 0 1.2rem;
+      background: linear-gradient(135deg, #ff00ff, #00ffff, #39ff14);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 0 18px #ff00ff80);
+      text-align: center;
+      word-break: break-word;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin: 2.2rem 0 1.2rem;
+      color: #ff00ff;
+      text-shadow: 0 0 14px #ff00ffaa;
+      border-left: 7px solid #00ffff;
+      padding-left: 1.3rem;
+      font-weight: 700;
+    }
+
+    h3 {
+      font-size: 1.3rem;
+      margin: 1.5rem 0 0.8rem;
+      color: #00ffff;
+      font-weight: 600;
+      text-shadow: 0 0 10px #00ffff;
+    }
+
+    .card {
+      background: rgba(18, 18, 26, 0.85);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 0, 255, 0.3);
+      border-radius: 2.2rem;
+      padding: 1.8rem 1.3rem;
+      margin: 2rem 0;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7), 0 0 25px rgba(0, 255, 255, 0.25);
+      transition: transform 0.2s, border-color 0.2s;
+      word-wrap: break-word;
+    }
+
+    .card:hover {
+      border-color: #39ff14;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 35px #39ff1490;
+    }
+
+    hr {
+      border: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #ff00ff, #00ffff, transparent);
+      margin: 2.2rem 0;
+      opacity: 0.7;
+    }
+
+    .code-block {
+      background: #0b0b14;
+      border: 1px solid #00ffff;
+      border-radius: 1.8rem;
+      padding: 1.4rem;
+      margin: 1.2rem 0;
+      position: relative;
+      box-shadow: 0 0 28px #00ffff40, inset 0 0 15px #ff00ff20;
+      font-family: 'Fira Code', 'Courier New', monospace;
+      font-size: 0.9rem;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      color: #b0f0ff;
+      line-height: 1.5;
+    }
+
+    .copy-btn {
+      background: #ff00ff;
+      border: none;
+      color: #0a0a0f;
+      font-weight: bold;
+      padding: 0.6rem 1.3rem;
+      border-radius: 2.5rem;
+      margin-top: 0.8rem;
+      font-size: 0.9rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      cursor: pointer;
+      box-shadow: 0 0 22px #ff00ffcc;
+      transition: all 0.25s;
+      border: 1px solid #ffffff80;
+      letter-spacing: 0.4px;
+    }
+
+    .copy-btn:hover, .copy-btn:active {
+      background: #39ff14;
+      color: #000;
+      box-shadow: 0 0 35px #39ff14;
+      border-color: #fff;
+    }
+
+    .demo-box {
+      margin: 1rem 0;
+      padding: 0.5rem;
+      border-radius: 1.5rem;
+      background: rgba(255,255,255,0.02);
+    }
+
+    /* Todos os estilos originais mantidos */
+    .exemplo-accent input { accent-color: #e74c3c; }
+    .texto-ex { color: red; }
+    .fundo-ex { background-color: mediumseagreen; padding: 1rem; border-radius: 1rem; }
+    .borda-ex { border: 3px solid; border-color: blueviolet; padding: 10px; border-radius: 1rem; }
+    .outline-ex { outline: 2px solid; outline-color: blue; padding: 10px; margin: 10px 0; }
+    .sombra-box { box-shadow: 5px 5px 15px rgba(0,0,0,0.3); background-color: #9b59b6; color: white; padding: 10px; border-radius: 1rem; }
+    .sombra-texto { text-shadow: 2px 2px 4px #e67e22; font-size: 24px; }
+    .caret-ex input { caret-color: #f39c12; border: 2px solid #ddd; padding: 8px; border-radius: 2rem; width: 100%; background: #111; color: white; }
+    .sublinhado-ex { text-decoration: underline; text-decoration-color: #2ecc71; text-decoration-thickness: 3px; }
+    .riscado-ex { text-decoration: line-through; text-decoration-color: #e74c3c; }
+    .enfase-ex { text-emphasis: filled circle; text-emphasis-color: #e74c3c; }
+    .colunas-ex { columns: 3; column-rule: 3px solid; column-rule-color: #9b59b6; padding: 10px; background-color: #1a1a2e; border-radius: 1rem; }
+    .scrollbar-ex { height: 150px; width: 100%; overflow-y: scroll; scrollbar-color: #3498db #0f0f1a; background: #0f0f1a; padding: 0.8rem; border-radius: 1rem; }
+    .tap-ex { -webkit-tap-highlight-color: rgba(231, 76, 60, 0.5); padding: 20px; background-color: #1e1e2a; cursor: pointer; border-radius: 1rem; }
+    .pai-ex { color: #3498db; }
+    .filho-ex { border: 2px solid currentColor; box-shadow: 0 0 10px currentColor; padding: 10px; margin: 10px 0; border-radius: 1rem; }
+    .circulo-ex { fill: #e74c3c; }
+    .retangulo-ex { fill: #2ecc71; }
+    .linha-ex { stroke: #9b59b6; stroke-width: 3px; fill: none; }
+    .filtro-ex { flood-color: rgba(231, 76, 60, 0.7); }
+    .iluminacao-ex { lighting-color: #f39c12; }
+    .stop1-ex { stop-color: #e74c3c; }
+    .stop2-ex { stop-color: #3498db; }
+    .scheme-ex { color-scheme: dark light; background-color: Canvas; color: CanvasText; padding: 10px; border-radius: 1rem; }
+    .backdrop-ex { background-color: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px); padding: 20px; border-radius: 1.5rem; }
+    .fundo-backdrop { background: linear-gradient(45deg, #e74c3c, #3498db); padding: 30px; border-radius: 1.5rem; }
+    .opacidade-1 { background-color: #e74c3c; opacity: 1; padding: 10px; border-radius: 1rem; }
+    .opacidade-05 { background-color: #e74c3c; opacity: 0.5; padding: 10px; border-radius: 1rem; }
+    .opacidade-02 { background-color: #e74c3c; opacity: 0.2; padding: 10px; border-radius: 1rem; }
+    .blend-fundo { background: linear-gradient(90deg, #e74c3c, #3498db); padding: 20px; border-radius: 1rem; }
+    .blend-multiply { background-color: white; mix-blend-mode: multiply; padding: 10px; border-radius: 1rem; color: black; }
+    .blend-screen { background-color: white; mix-blend-mode: screen; padding: 10px; border-radius: 1rem; color: black; }
+    .bg-blend { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="black"/></svg>'); background-size: cover; background-color: #e74c3c; background-blend-mode: multiply; padding: 40px; color: white; border-radius: 1rem; }
+    .adjust-economy { color-adjust: economy; background-color: #333; color: #fff; padding: 10px; border-radius: 1rem; }
+    .adjust-exact { color-adjust: exact; background-color: #e74c3c; color: #f39c12; padding: 10px; border-radius: 1rem; }
+    .force-auto { forced-color-adjust: auto; background-color: #3498db; color: white; padding: 10px; border-radius: 1rem; }
+    .force-none { forced-color-adjust: none; background-color: #e74c3c; color: white; padding: 10px; border-radius: 1rem; }
+    .border-block-ex { border-block-style: solid; border-block-width: 3px; border-block-color: #e74c3c; padding: 10px; border-radius: 1rem; }
+    .border-inline-ex { border-inline-style: solid; border-inline-width: 3px; border-inline-color: #3498db; padding: 10px; border-radius: 1rem; }
+    .canto-cor-ex { border: 3px solid #e74c3c; border-start-start-radius: 20px; padding: 10px; background-color: #1e1e2a; border-radius: 1rem; }
+    .offset-ex { outline: 3px solid #9b59b6; outline-offset: 8px; padding: 10px; background-color: #1a1a2e; border-radius: 1rem; }
+    .underline-offset-ex { text-decoration: underline; text-decoration-color: #e74c3c; text-underline-offset: 10px; text-decoration-thickness: 3px; font-size: 24px; }
+    .gamut-ex { background-color: #e74c3c; padding: 10px; border-radius: 1rem; }
+    @media (color-gamut: p3) { .gamut-ex { background-color: color(display-p3 1 0.3 0.2); } }
+    .dynamic-ex { dynamic-range-limit: standard; background-color: #3498db; color: white; padding: 10px; border-radius: 1rem; }
+    .border-top-ex { border-top-style: solid; border-top-width: 4px; border-top-color: #e74c3c; padding: 10px; border-radius: 1rem; }
+    .border-right-ex { border-right-style: solid; border-right-width: 4px; border-right-color: #3498db; padding: 10px; border-radius: 1rem; }
+    .border-bottom-ex { border-bottom-style: solid; border-bottom-width: 4px; border-bottom-color: #2ecc71; padding: 10px; border-radius: 1rem; }
+    .border-left-ex { border-left-style: solid; border-left-width: 4px; border-left-color: #f39c12; padding: 10px; border-radius: 1rem; }
+    .outline-top-ex { outline-style: solid; outline-width: 3px; outline-top-color: #9b59b6; padding: 10px; border-radius: 1rem; }
+    .column-rule-color-ex { columns: 3; column-rule-style: dotted; column-rule-width: 3px; column-rule-color: #e67e22; padding: 10px; background: #1a1a2e; border-radius: 1rem; }
+    .skip-ink-auto { text-decoration: underline; text-decoration-color: #e74c3c; text-decoration-skip-ink: auto; font-size: 32px; }
+    .skip-ink-none { text-decoration: underline; text-decoration-color: #3498db; text-decoration-skip-ink: none; font-size: 32px; }
+    .border-block-start-ex { border-block-start-style: solid; border-block-start-width: 4px; border-block-start-color: #e74c3c; padding: 10px; border-radius: 1rem; }
+    .border-block-end-ex { border-block-end-style: solid; border-block-end-width: 4px; border-block-end-color: #3498db; padding: 10px; border-radius: 1rem; }
+    .border-inline-start-ex { border-inline-start-style: solid; border-inline-start-width: 4px; border-inline-start-color: #2ecc71; padding: 10px; border-radius: 1rem; }
+    .border-inline-end-ex { border-inline-end-style: solid; border-inline-end-width: 4px; border-inline-end-color: #f39c12; padding: 10px; border-radius: 1rem; }
+    .scrollbar-track-ex { height: 150px; width: 100%; overflow-y: scroll; scrollbar-track-color: #1a1a2e; scrollbar-thumb-color: #e74c3c; background: #0f0f1a; padding: 0.8rem; border-radius: 1rem; }
+    .scrollbar-thumb-ex { height: 150px; width: 100%; overflow-y: scroll; scrollbar-thumb-color: #9b59b6; scrollbar-track-color: #1a1a2e; background: #0f0f1a; padding: 0.8rem; border-radius: 1rem; }
+    .text-fill-ex { background: linear-gradient(45deg, #e74c3c, #3498db); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; text-fill-color: transparent; font-size: 32px; font-weight: bold; }
+    .text-stroke-ex { -webkit-text-stroke-width: 2px; -webkit-text-stroke-color: #e74c3c; text-stroke-color: #e74c3c; font-size: 48px; color: white; }
+    .border-image-ex { border: 10px solid transparent; border-image-source: linear-gradient(45deg, #e74c3c, #3498db); border-image-slice: 1; padding: 20px; border-radius: 1rem; }
+    .img-orient-ex { image-orientation: from-image; width: 100px; height: 100px; border-radius: 1rem; }
+    .color-profile-ex { color-profile: sRGB; background-color: #3498db; padding: 10px; border-radius: 1rem; }
+    .rendering-ex { rendering-intent: perceptual; background: linear-gradient(45deg, #e74c3c, #3498db); padding: 10px; border-radius: 1rem; }
+    .contraste-ex { background-color: #3498db; color: color-contrast(#3498db vs white, black); padding: 10px; border-radius: 1rem; }
+    .color-mix-ex { background-color: color-mix(in srgb, #e74c3c 50%, #3498db 50%); padding: 10px; color: white; border-radius: 1rem; }
+    .color-function-ex { background-color: color(display-p3 1 0.3 0.2); padding: 10px; color: white; border-radius: 1rem; }
+    .lab-ex { background-color: lab(60% 80 40); padding: 10px; color: white; border-radius: 1rem; }
+    .lch-ex { background-color: lch(60% 80 30); padding: 10px; color: white; border-radius: 1rem; }
+    .oklab-ex { background-color: oklab(0.6 0.2 0.1); padding: 10px; color: white; border-radius: 1rem; }
+    .oklch-ex { background-color: oklch(0.7 0.2 140); padding: 10px; color: white; border-radius: 1rem; }
+    .hwb-ex { background-color: hwb(200 20% 10%); padding: 10px; color: white; border-radius: 1rem; }
+    .cmyk-ex { background-color: device-cmyk(0 1 1 0); padding: 10px; color: white; border-radius: 1rem; }
+    .print-economy { color-adjust: economy; background-color: #e74c3c; color: #f39c12; padding: 10px; border-radius: 1rem; }
+    .print-exact { color-adjust: exact; background-color: #e74c3c; color: #f39c12; padding: 10px; border-radius: 1rem; }
+    .light-dark-ex { color-scheme: dark light; background-color: light-dark(#1a1a1a, #f0f0f0); color: light-dark(#ffffff, #000000); padding: 10px; border-radius: 1rem; }
+    .accent-auto { accent-color: auto; }
+    .accent-custom { accent-color: #e74c3c; }
+    .only-dark { color-scheme: only dark; background-color: Canvas; color: CanvasText; padding: 10px; border-radius: 1rem; }
+    .color-srgb-ex { background-color: color(srgb 1 0.2 0.2); padding: 10px; color: white; border-radius: 1rem; }
+    .color-srgb-linear-ex { background-color: color(srgb-linear 1 0.5 0.2); padding: 10px; color: white; border-radius: 1rem; }
+    .color-a98-ex { background-color: color(a98-rgb 1 0.3 0.3); padding: 10px; color: white; border-radius: 1rem; }
+    .color-prophoto-ex { background-color: color(prophoto-rgb 0.8 0.4 0.2); padding: 10px; color: white; border-radius: 1rem; }
+    .color-rec2020-ex { background-color: color(rec2020 0.9 0.3 0.2); padding: 10px; color: white; border-radius: 1rem; }
+    .color-xyz-ex { background-color: color(xyz 0.5 0.3 0.2); padding: 10px; color: white; border-radius: 1rem; }
+    .color-xyz-d50-ex { background-color: color(xyz-d50 0.45 0.35 0.25); padding: 10px; color: white; border-radius: 1rem; }
+    .color-display-p3-ex { background-color: color(display-p3 1 0.2 0.2); padding: 10px; color: white; border-radius: 1rem; }
+    .color-mix-srgb { background-color: color-mix(in srgb, #e74c3c 70%, #3498db); padding: 10px; color: white; margin: 5px; border-radius: 1rem; }
+    .color-mix-lab { background-color: color-mix(in lab, #e74c3c 70%, #3498db); padding: 10px; color: white; margin: 5px; border-radius: 1rem; }
+    :root { --cor-primaria: #3498db; }
+    .relative-ex { background-color: rgb(from var(--cor-primaria) r g b / 0.5); padding: 10px; color: white; border-radius: 1rem; }
+    .relative-escuro { background-color: oklab(from var(--cor-primaria) calc(l - 0.2) a b); padding: 10px; color: white; margin-top: 5px; border-radius: 1rem; }
+    .contraste-normal { filter: contrast(100%); background: linear-gradient(45deg, #e74c3c, #3498db); padding: 10px; color: white; border-radius: 1rem; }
+    .contraste-alto { filter: contrast(200%); background: linear-gradient(45deg, #e74c3c, #3498db); padding: 10px; color: white; border-radius: 1rem; }
+    .brilho-normal { filter: brightness(100%); background-color: #e74c3c; padding: 10px; color: white; border-radius: 1rem; }
+    .brilho-alto { filter: brightness(150%); background-color: #e74c3c; padding: 10px; color: white; border-radius: 1rem; }
+    .brilho-baixo { filter: brightness(50%); background-color: #e74c3c; padding: 10px; color: white; border-radius: 1rem; }
+    .saturacao-normal { filter: saturate(100%); background-color: #9b59b6; padding: 10px; color: white; border-radius: 1rem; }
+    .saturacao-alta { filter: saturate(300%); background-color: #9b59b6; padding: 10px; color: white; border-radius: 1rem; }
+    .saturacao-baixa { filter: saturate(30%); background-color: #9b59b6; padding: 10px; color: white; border-radius: 1rem; }
+    .hue-normal { filter: hue-rotate(0deg); background-color: #3498db; padding: 10px; color: white; border-radius: 1rem; }
+    .hue-90 { filter: hue-rotate(90deg); background-color: #3498db; padding: 10px; color: white; border-radius: 1rem; }
+    .hue-180 { filter: hue-rotate(180deg); background-color: #3498db; padding: 10px; color: white; border-radius: 1rem; }
+    .hue-270 { filter: hue-rotate(270deg); background-color: #3498db; padding: 10px; color: white; border-radius: 1rem; }
+    .gray-0 { filter: grayscale(0%); background: linear-gradient(45deg, #e74c3c, #3498db); padding: 10px; color: white; border-radius: 1rem; }
+    .gray-50 { filter: grayscale(50%); background: linear-gradient(45deg, #e74c3c, #3498db); padding: 10px; color: white; border-radius: 1rem; }
+    .gray-100 { filter: grayscale(100%); background: linear-gradient(45deg, #e74c3c, #3498db); padding: 10px; color: white; border-radius: 1rem; }
+    .sepia-0 { filter: sepia(0%); background-color: #3498db; padding: 30px; color: white; border-radius: 1rem; }
+    .sepia-50 { filter: sepia(50%); background-color: #3498db; padding: 30px; color: white; border-radius: 1rem; }
+    .sepia-100 { filter: sepia(100%); background-color: #3498db; padding: 30px; color: white; border-radius: 1rem; }
+    .invert-0 { filter: invert(0%); background: linear-gradient(45deg, #e74c3c, #3498db); padding: 10px; color: white; border-radius: 1rem; }
+    .invert-50 { filter: invert(50%); background: linear-gradient(45deg, #e74c3c, #3498db); padding: 10px; color: white; border-radius: 1rem; }
+    .invert-100 { filter: invert(100%); background: linear-gradient(45deg, #e74c3c, #3498db); padding: 10px; color: white; border-radius: 1rem; }
+    .fundo-check { background: repeating-linear-gradient(45deg, #333 0px, #333 20px, #222 20px, #222 40px); padding: 10px; border-radius: 1rem; }
+    .opacity-filtro-100 { filter: opacity(100%); background-color: #e74c3c; padding: 10px; color: white; border-radius: 1rem; }
+    .opacity-filtro-50 { filter: opacity(50%); background-color: #e74c3c; padding: 10px; color: white; border-radius: 1rem; }
+    .opacity-filtro-20 { filter: opacity(20%); background-color: #e74c3c; padding: 10px; color: white; border-radius: 1rem; }
+    .drop-shadow-vermelha { filter: drop-shadow(5px 5px 10px #e74c3c); background-color: #3498db; padding: 20px; color: white; border-radius: 1.5rem; }
+    .drop-shadow-verde { filter: drop-shadow(8px 8px 15px #2ecc71); background-color: #9b59b6; padding: 20px; color: white; border-radius: 1.5rem; }
+    .drop-shadow-azul { filter: drop-shadow(0px 0px 20px #3498db); background-color: #e74c3c; padding: 20px; color: white; border-radius: 1.5rem; }
+    .blur-0 { filter: blur(0px); background: linear-gradient(45deg, #e74c3c, #3498db, #2ecc71); padding: 20px; color: white; border-radius: 1rem; }
+    .blur-2 { filter: blur(2px); background: linear-gradient(45deg, #e74c3c, #3498db, #2ecc71); padding: 20px; color: white; border-radius: 1rem; }
+    .blur-5 { filter: blur(5px); background: linear-gradient(45deg, #e74c3c, #3498db, #2ecc71); padding: 20px; color: white; border-radius: 1rem; }
+    .currentcolor-card { color: #e74c3c; border: 3px solid currentcolor; box-shadow: 0 0 15px currentcolor; background-color: #1a1a2e; padding: 20px; border-radius: 1.5rem; }
+    .currentcolor-texto { color: #3498db; }
+    .currentcolor-texto span { border-bottom: 2px solid currentcolor; }
+    .transparent-ex { background: repeating-linear-gradient(45deg, #333 0px, #333 20px, #222 20px, #222 40px); padding: 20px; border-radius: 1rem; }
+    .transparent-box { background-color: transparent; border: 3px solid #e74c3c; padding: 20px; margin: 10px; border-radius: 1rem; }
+    .semi-transparent { background-color: rgba(231, 76, 60, 0.5); padding: 20px; margin: 10px; color: white; border-radius: 1rem; }
+    .canvas-ex { background-color: Canvas; color: CanvasText; padding: 20px; border: 1px solid; border-radius: 1rem; }
+    .canvastext-ex { color: CanvasText; background-color: Canvas; padding: 20px; border: 1px solid CanvasText; border-radius: 1rem; }
+    .linktext-ex { color: LinkText; background-color: Canvas; padding: 20px; border-radius: 1rem; }
+    .visitedtext-ex { color: VisitedText; background-color: Canvas; padding: 20px; border-radius: 1rem; }
+    .activetext-ex { color: ActiveText; background-color: Canvas; padding: 20px; border-radius: 1rem; }
+    .buttonface-ex { background-color: ButtonFace; color: ButtonText; padding: 20px; border: 1px solid; border-radius: 1rem; }
+    .buttontext-ex { background-color: ButtonFace; color: ButtonText; padding: 20px; border: 1px solid; border-radius: 1rem; }
+    .field-ex { background-color: Field; color: FieldText; padding: 15px; border: 1px solid; border-radius: 1rem; }
+    .fieldtext-ex { background-color: Field; color: FieldText; padding: 15px; border: 1px solid; border-radius: 1rem; }
+    .highlight-ex { background-color: Highlight; color: HighlightText; padding: 15px; border-radius: 1rem; }
+    .highlighttext-ex { background-color: Highlight; color: HighlightText; padding: 15px; border-radius: 1rem; }
+    .graytext-ex { color: GrayText; background-color: Canvas; padding: 15px; border-radius: 1rem; }
+    .mark-ex { background-color: Mark; color: MarkText; padding: 15px; border-radius: 1rem; }
+    .marktext-ex { background-color: Mark; color: MarkText; padding: 15px; border-radius: 1rem; }
+    .selecteditem-ex { background-color: SelectedItem; color: SelectedItemText; padding: 15px; border-radius: 1rem; }
+    .selecteditemtext-ex { background-color: SelectedItem; color: SelectedItemText; padding: 15px; border-radius: 1rem; }
+
+    footer {
+      margin-top: 4rem;
+      text-align: center;
+      font-weight: 300;
+      color: #aaa;
+      border-top: 1px solid #ff00ff40;
+      padding-top: 2rem;
+    }
+
+    footer small {
+      font-size: 0.95rem;
+      letter-spacing: 0.5px;
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 2rem; }
+      .nav-btn { padding: 0.6rem 1.1rem; font-size: 0.85rem; }
+    }
+  </style>
 </head>
 <body>
+<div class="container">
 
-    <h1>Cores - CSS</h1>
+  <div class="nav-links">
+    <a href="../../index.html" class="nav-btn">🏠 Voltar Home</a>
+    <a href="../css1.html" class="nav-btn">🎨 Voltar CSS</a>
+  </div>
 
+  <h1>✨ Cores · CSS ✨</h1>
 
-    
+  <!-- ITENS 1-4: TEORIA -->
+  <div class="card">
+    <h3>1️⃣ Nomes de cores (palavras-chave)</h3>
+    <p>Usando nomes pré-definidos como red, blue, green, tomato, etc. Existem mais de 140 nomes reconhecidos.</p>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">.cor {<br>    color: red;<br>    background-color: lightblue;<br>}</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;p class="cor"&gt;Texto vermelho com fundo azul claro&lt;/p&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <p class="texto-ex">Texto vermelho com fundo azul claro (demonstração da cor)</p>
+  </div>
+
+  <div class="card">
+    <h3>2️⃣ Hexadecimal (hex)</h3>
+    <p>Formato #RRGGBB ou #RGB (com ou sem transparência #RRGGBBAA).</p>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">.cor {<br>    color: #ff5733;   /* laranja avermelhado */<br>    background: #0a0; /* equivalente a #00aa00 */<br>}</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;p class="cor"&gt;Texto laranja com fundo verde&lt;/p&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <p style="color:#ff5733; background:#0a0; padding:0.5rem; border-radius:0.5rem;">Texto laranja com fundo verde</p>
+  </div>
+
+  <div class="card">
+    <h3>3️⃣ RGB / RGBA</h3>
+    <p>Red, Green, Blue (0 a 255) e Alpha (0 a 1) para transparência.</p>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">.cor {<br>    color: rgb(255, 87, 51);<br>    background: rgba(0, 0, 0, 0.5); /* preto com 50% opacidade */<br>}</div><button class="copy-btn">📋 Copiar</button>
+    <p><em>Atualmente também pode usar rgb(255 87 51 / 0.8).</em></p>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;p class="cor"&gt;Texto com fundo semi-transparente&lt;/p&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <p style="color:rgb(255,87,51); background:rgba(0,0,0,0.5); padding:0.5rem; border-radius:0.5rem;">Texto com fundo semi-transparente</p>
+  </div>
+
+  <div class="card">
+    <h3>4️⃣ HSL / HSLA</h3>
+    <p>Hue (0-360), Saturation (0%-100%), Lightness (0%-100%), Alpha.</p>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">.cor {<br>    color: hsl(12, 100%, 60%); /* mesmo laranja */<br>    background: hsla(200, 80%, 50%, 0.3);<br>}</div><button class="copy-btn">📋 Copiar</button>
+    <p><em>Muito útil para criar variações de uma mesma cor (ex: mais claro/escuro).</em></p>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;p class="cor"&gt;Texto com fundo azul transparente&lt;/p&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <p style="color:hsl(12,100%,60%); background:hsla(200,80%,50%,0.3); padding:0.5rem; border-radius:0.5rem;">Texto com fundo azul transparente</p>
+  </div>
+
+  <hr>
+  <h2>💡 Dicas legais</h2>
+  <div class="card">
+    <p>Use HSL para gerar paletas. Para transparência, prefira rgba() ou hsla(). CSS moderno suporta color-mix(). Use variáveis CSS para temas.</p>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">:root {<br>    --primaria: #3498db;<br>}<br>button {<br>    background: var(--primaria);<br>}</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;button&gt;Botão com cor primária&lt;/button&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <button style="background:#3498db; color:white; padding:0.7rem 1.5rem; border:none; border-radius:2rem;">Botão com cor primária</button>
+  </div>
+
+  <hr>
+  <h2>🛠 Ferramentas</h2>
+  <div class="card">
+    <p>ColorZilla, Adobe Color, Coolors – para escolher paletas<br>DevTools do navegador – experimente cores ao vivo!</p>
+  </div>
+
+  <!-- ITEM 5: background-color -->
+  <div class="card">
+    <li><strong>background-color</strong> → fundo do elemento</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .fundo-ex {<br>    background-color: mediumseagreen;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;p class="fundo-ex"&gt;Fundo verde&lt;/p&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="fundo-ex"><p>Fundo verde</p></div>
+  </div>
+
+  <!-- ITEM 6: border-color -->
+  <div class="card">
+    <li><strong>border-color</strong> → cor da borda</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .borda-ex {<br>    border: 3px solid;<br>    border-color: blueviolet;<br>    padding: 10px;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;p class="borda-ex"&gt;Borda roxa&lt;/p&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="borda-ex"><p>Borda roxa</p></div>
+  </div>
+
+  <!-- ITEM 7: outline-color -->
+  <div class="card">
+    <li><strong>outline-color</strong> → cor do contorno</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .outline-ex {<br>    outline: 2px solid;<br>    outline-color: blue;<br>    padding: 10px;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;p class="outline-ex"&gt;Contorno azul&lt;/p&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="outline-ex"><p>Contorno azul</p></div>
+  </div>
+
+  <!-- ITEM 8: box-shadow / text-shadow -->
+  <div class="card">
+    <li><strong>box-shadow, text-shadow</strong> → sombras (usam cor também)</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .sombra-box {<br>    box-shadow: 5px 5px 15px rgba(0,0,0,0.3);<br>    background-color: #9b59b6;<br>    color: white;<br>    padding: 10px;<br>    }<br>    .sombra-texto {<br>    text-shadow: 2px 2px 4px #e67e22;<br>    font-size: 24px;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="sombra-box"&gt;Caixa com sombra&lt;/div&gt;<br>&lt;p class="sombra-texto"&gt;Texto com sombra laranja&lt;/p&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="sombra-box">Caixa com sombra</div>
+    <p class="sombra-texto">Texto com sombra laranja</p>
+  </div>
+
+  <!-- ITEM 9: caret-color -->
+  <div class="card">
+    <li><strong>caret-color</strong> → cor do cursor piscante em inputs e textarea</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .caret-ex input {<br>    caret-color: #f39c12;<br>    border: 2px solid #ddd;<br>    padding: 8px;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="caret-ex"&gt;<br>    &lt;input type="text" placeholder="Clique aqui - cursor laranja"&gt;<br>&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="caret-ex"><input type="text" placeholder="Clique aqui - cursor laranja"></div>
+  </div>
+
+  <!-- ITEM 10: text-decoration-color -->
+  <div class="card">
+    <li><strong>text-decoration-color</strong> → cor do sublinhado, tachado ou linha sobre o texto</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .sublinhado-ex {<br>    text-decoration: underline;<br>    text-decoration-color: #2ecc71;<br>    text-decoration-thickness: 3px;<br>    }<br>    .riscado-ex {<br>    text-decoration: line-through;<br>    text-decoration-color: #e74c3c;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;p class="sublinhado-ex"&gt;Texto com sublinhado verde&lt;/p&gt;<br>&lt;p class="riscado-ex"&gt;Texto com risco vermelho&lt;/p&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <p class="sublinhado-ex">Texto com sublinhado verde</p>
+    <p class="riscado-ex">Texto com risco vermelho</p>
+  </div>
+
+  <!-- ITEM 11: text-emphasis-color -->
+  <div class="card">
+    <li><strong>text-emphasis-color</strong> → cor dos caracteres de ênfase (como bolinhas acima do texto em chinês/japonês)</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .enfase-ex {<br>    text-emphasis: filled circle;<br>    text-emphasis-color: #e74c3c;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;p class="enfase-ex"&gt;Texto com ênfase vermelha&lt;/p&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <p class="enfase-ex">Texto com ênfase vermelha</p>
+  </div>
+
+  <!-- ITEM 12: column-rule-color -->
+  <div class="card">
+    <li><strong>column-rule-color</strong> → cor da linha entre colunas em layout multi-coluna</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .colunas-ex {<br>    columns: 3;<br>    column-rule: 3px solid;<br>    column-rule-color: #9b59b6;<br>    padding: 10px;<br>    background-color: #f9f9f9;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="colunas-ex"&gt;<br>    &lt;p&gt;Coluna 1 - Linha roxa separando&lt;/p&gt;<br>    &lt;p&gt;Coluna 2 - Observe a linha roxa&lt;/p&gt;<br>    &lt;p&gt;Coluna 3 - Entre as colunas&lt;/p&gt;<br>&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="colunas-ex"><p>Coluna 1 - Linha roxa separando</p><p>Coluna 2 - Observe a linha roxa</p><p>Coluna 3 - Entre as colunas</p></div>
+  </div>
+
+  <!-- ITEM 13: scrollbar-color -->
+  <div class="card">
+    <li><strong>scrollbar-color</strong> → cor da barra de rolagem (funciona em Firefox e alguns navegadores modernos)</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .scrollbar-ex {<br>    height: 150px;<br>    width: 300px;<br>    overflow-y: scroll;<br>    scrollbar-color: #3498db #ecf0f1;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="scrollbar-ex"&gt;<br>    &lt;p&gt;Linha 1&lt;/p&gt;<br>    &lt;p&gt;Linha 2&lt;/p&gt;<br>    &lt;p&gt;Linha 3&lt;/p&gt;<br>    &lt;p&gt;Linha 4&lt;/p&gt;<br>    &lt;p&gt;Linha 5&lt;/p&gt;<br>&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="scrollbar-ex"><p>Linha 1</p><p>Linha 2</p><p>Linha 3</p><p>Linha 4</p><p>Linha 5</p></div>
+  </div>
+
+  <!-- ITEM 14: -webkit-tap-highlight-color -->
+  <div class="card">
+    <li><strong>-webkit-tap-highlight-color</strong> → cor do destaque ao tocar em elementos no mobile (Safari/Chrome)</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .tap-ex {<br>    -webkit-tap-highlight-color: rgba(231, 76, 60, 0.5);<br>    padding: 20px;<br>    background-color: #ecf0f1;<br>    cursor: pointer;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="tap-ex" onclick="alert('Clicou!')"&gt;<br>    Toque aqui (no mobile) - destaque vermelho<br>&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="tap-ex" onclick="alert('Clicou!')">Toque aqui (no mobile) - destaque vermelho</div>
+  </div>
+
+  <!-- ITEM 15: currentColor -->
+  <div class="card">
+    <li><strong>currentColor</strong> → palavra-chave que herda a cor do elemento pai (muito útil para SVG e ícones)</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .pai-ex {<br>    color: #3498db;<br>    }<br>    .filho-ex {<br>    border: 2px solid currentColor;<br>    box-shadow: 0 0 10px currentColor;<br>    padding: 10px;<br>    margin: 10px 0;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="pai-ex"&gt;<br>    &lt;div class="filho-ex"&gt;Borda e sombra herdam a cor azul&lt;/div&gt;<br>&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="pai-ex"><div class="filho-ex">Borda e sombra herdam a cor azul</div></div>
+  </div>
+
+  <!-- ITEM 16: fill -->
+  <div class="card">
+    <li><strong>fill</strong> → cor de preenchimento para elementos SVG</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .circulo-ex {<br>    fill: #e74c3c;<br>    }<br>    .retangulo-ex {<br>    fill: #2ecc71;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;svg width="200" height="100"&gt;<br>    &lt;circle class="circulo-ex" cx="30" cy="30" r="25" /&gt;<br>    &lt;rect class="retangulo-ex" x="80" y="10" width="50" height="40" /&gt;<br>&lt;/svg&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <svg width="200" height="100"><circle class="circulo-ex" cx="30" cy="30" r="25"/><rect class="retangulo-ex" x="80" y="10" width="50" height="40"/></svg>
+  </div>
+
+  <!-- ITEM 17: stroke -->
+  <div class="card">
+    <li><strong>stroke</strong> → cor da borda/linha para elementos SVG</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .linha-ex {<br>    stroke: #9b59b6;<br>    stroke-width: 3px;<br>    fill: none;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;svg width="200" height="100"&gt;<br>    &lt;line class="linha-ex" x1="10" y1="50" x2="190" y2="50" /&gt;<br>&lt;/svg&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <svg width="200" height="100"><line class="linha-ex" x1="10" y1="50" x2="190" y2="50"/></svg>
+  </div>
+
+  <!-- ITEM 18: flood-color -->
+  <div class="card">
+    <li><strong>flood-color</strong> → cor do "flood" em filtros SVG (efeito de inundação)</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .filtro-ex {<br>    flood-color: rgba(231, 76, 60, 0.7);<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;svg width="200" height="100"&gt;<br>    &lt;filter id="flood"&gt;<br>        &lt;feFlood class="filtro-ex" /&gt;<br>    &lt;/filter&gt;<br>    &lt;rect width="200" height="100" filter="url(#flood)" /&gt;<br>&lt;/svg&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <svg width="200" height="100"><filter id="flood"><feFlood class="filtro-ex"/></filter><rect width="200" height="100" filter="url(#flood)"/></svg>
+  </div>
+
+  <!-- ITEM 19: lighting-color -->
+  <div class="card">
+    <li><strong>lighting-color</strong> → cor da iluminação em filtros SVG (efeito 3D)</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .iluminacao-ex {<br>    lighting-color: #f39c12;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;svg width="200" height="100"&gt;<br>    &lt;filter id="light"&gt;<br>        &lt;feDiffuseLighting class="iluminacao-ex"&gt;<br>            &lt;fePointLight x="50" y="50" z="200" /&gt;<br>        &lt;/feDiffuseLighting&gt;<br>    &lt;/filter&gt;<br>    &lt;rect width="200" height="100" filter="url(#light)" fill="#ccc" /&gt;<br>&lt;/svg&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <svg width="200" height="100"><filter id="light"><feDiffuseLighting class="iluminacao-ex"><fePointLight x="50" y="50" z="200"/></feDiffuseLighting></filter><rect width="200" height="100" filter="url(#light)" fill="#ccc"/></svg>
+  </div>
+
+  <!-- ITEM 20: stop-color -->
+  <div class="card">
+    <li><strong>stop-color</strong> → cor dos pontos de parada em gradientes SVG</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .stop1-ex {<br>    stop-color: #e74c3c;<br>    }<br>    .stop2-ex {<br>    stop-color: #3498db;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;svg width="200" height="100"&gt;<br>    &lt;linearGradient id="grad" x1="0" y1="0" x2="1" y2="0"&gt;<br>        &lt;stop offset="0%" class="stop1-ex" stop-opacity="1" /&gt;<br>        &lt;stop offset="100%" class="stop2-ex" stop-opacity="1" /&gt;<br>    &lt;/linearGradient&gt;<br>    &lt;rect width="200" height="100" fill="url(#grad)" /&gt;<br>&lt;/svg&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <svg width="200" height="100"><linearGradient id="grad"><stop offset="0%" class="stop1-ex" stop-opacity="1"/><stop offset="100%" class="stop2-ex" stop-opacity="1"/></linearGradient><rect width="200" height="100" fill="url(#grad)"/></svg>
+  </div>
+
+  <!-- ITEM 21: color-scheme -->
+  <div class="card">
+    <li><strong>color-scheme</strong> → indica quais esquemas de cores o elemento suporta (claro/escuro)</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .scheme-ex {<br>    color-scheme: dark light;<br>    background-color: Canvas;<br>    color: CanvasText;<br>    padding: 10px;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="scheme-ex"&gt;<br>    Este elemento se adapta ao tema claro/escuro do sistema<br>&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="scheme-ex">Este elemento se adapta ao tema claro/escuro do sistema</div>
+  </div>
+
+  <!-- ITEM 22: backdrop-filter -->
+  <div class="card">
+    <li><strong>backdrop-filter</strong> → aplica efeitos filtro atrás do elemento (como blur com cor de fundo)</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .backdrop-ex {<br>    background-color: rgba(255, 255, 255, 0.3);<br>    backdrop-filter: blur(10px);<br>    padding: 20px;<br>    border-radius: 10px;<br>    }<br>    .fundo-backdrop {<br>    background: linear-gradient(45deg, #e74c3c, #3498db);<br>    padding: 30px;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="fundo-backdrop"&gt;<br>    &lt;div class="backdrop-ex"&gt;<br>        Fundo borrado atrás de mim!<br>    &lt;/div&gt;<br>&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="fundo-backdrop"><div class="backdrop-ex">Fundo borrado atrás de mim!</div></div>
+  </div>
+
+  <!-- ITEM 23: opacity -->
+  <div class="card">
+    <li><strong>opacity</strong> → controla a transparência do elemento inteiro (0 a 1)</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .opacidade-1 {<br>    background-color: #e74c3c;<br>    opacity: 1;<br>    padding: 10px;<br>    }<br>    .opacidade-05 {<br>    background-color: #e74c3c;<br>    opacity: 0.5;<br>    padding: 10px;<br>    }<br>    .opacidade-02 {<br>    background-color: #e74c3c;<br>    opacity: 0.2;<br>    padding: 10px;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="opacidade-1"&gt;Opacidade 100%&lt;/div&gt;<br>&lt;div class="opacidade-05"&gt;Opacidade 50%&lt;/div&gt;<br>&lt;div class="opacidade-02"&gt;Opacidade 20%&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="opacidade-1">Opacidade 100%</div>
+    <div class="opacidade-05">Opacidade 50%</div>
+    <div class="opacidade-02">Opacidade 20%</div>
+  </div>
+
+  <!-- ITEM 24: mix-blend-mode -->
+  <div class="card">
+    <li><strong>mix-blend-mode</strong> → como as cores do elemento se misturam com as cores de fundo</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .blend-fundo {<br>    background: linear-gradient(90deg, #e74c3c, #3498db);<br>    padding: 20px;<br>    }<br>    .blend-multiply {<br>    background-color: white;<br>    mix-blend-mode: multiply;<br>    padding: 10px;<br>    }<br>    .blend-screen {<br>    background-color: white;<br>    mix-blend-mode: screen;<br>    padding: 10px;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="blend-fundo"&gt;<br>    &lt;div class="blend-multiply"&gt;Multiply (multiplicar)&lt;/div&gt;<br>    &lt;div class="blend-screen"&gt;Screen (tela)&lt;/div&gt;<br>&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="blend-fundo"><div class="blend-multiply">Multiply (multiplicar)</div><div class="blend-screen">Screen (tela)</div></div>
+  </div>
+
+  <!-- ITEM 25: background-blend-mode -->
+  <div class="card">
+    <li><strong>background-blend-mode</strong> → como as cores de fundo (imagens e cores) se misturam</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .bg-blend {<br>    background-image: url('data:image/svg+xml;utf8,&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"&gt;&lt;circle cx="50" cy="50" r="40" fill="black"/&gt;&lt;/svg&gt;');<br>    background-size: cover;<br>    background-color: #e74c3c;<br>    background-blend-mode: multiply;<br>    padding: 40px;<br>    color: white;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="bg-blend"&gt;<br>    Imagem e cor de fundo misturados<br>&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="bg-blend">Imagem e cor de fundo misturados</div>
+  </div>
+
+  <!-- ITEM 26: color-adjust -->
+  <div class="card">
+    <li><strong>color-adjust</strong> → controla se o navegador pode ajustar cores para otimizar contraste</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .adjust-economy {<br>    color-adjust: economy;<br>    background-color: #333;<br>    color: #fff;<br>    padding: 10px;<br>    }<br>    .adjust-exact {<br>    color-adjust: exact;<br>    background-color: #e74c3c;<br>    color: #f39c12;<br>    padding: 10px;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="adjust-economy"&gt;Economy (navegador pode ajustar)&lt;/div&gt;<br>&lt;div class="adjust-exact"&gt;Exact (cores exatas na impressão)&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="adjust-economy">Economy (navegador pode ajustar)</div>
+    <div class="adjust-exact">Exact (cores exatas na impressão)</div>
+  </div>
+
+  <!-- ITEM 27: forced-color-adjust -->
+  <div class="card">
+    <li><strong>forced-color-adjust</strong> → controla se o elemento respeita cores forçadas pelo sistema (modo alto contraste)</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .force-auto {<br>    forced-color-adjust: auto;<br>    background-color: #3498db;<br>    color: white;<br>    padding: 10px;<br>    }<br>    .force-none {<br>    forced-color-adjust: none;<br>    background-color: #e74c3c;<br>    color: white;<br>    padding: 10px;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="force-auto"&gt;Auto (respeita modo alto contraste)&lt;/div&gt;<br>&lt;div class="force-none"&gt;None (mantém cores originais)&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="force-auto">Auto (respeita modo alto contraste)</div>
+    <div class="force-none">None (mantém cores originais)</div>
+  </div>
+
+  <!-- ITEM 28: border-block-color -->
+  <div class="card">
+    <li><strong>border-block-color</strong> → cor das bordas no eixo de bloco (topo e fundo em texto horizontal)</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .border-block-ex {<br>    border-block-style: solid;<br>    border-block-width: 3px;<br>    border-block-color: #e74c3c;<br>    padding: 10px;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="border-block-ex"&gt;<br>    Borda vermelha no topo e fundo<br>&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="border-block-ex">Borda vermelha no topo e fundo</div>
+  </div>
+
+  <!-- ITEM 29: border-inline-color -->
+  <div class="card">
+    <li><strong>border-inline-color</strong> → cor das bordas no eixo inline (esquerda e direita em texto horizontal)</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .border-inline-ex {<br>    border-inline-style: solid;<br>    border-inline-width: 3px;<br>    border-inline-color: #3498db;<br>    padding: 10px;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="border-inline-ex"&gt;<br>    Borda azul na esquerda e direita<br>&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="border-inline-ex">Borda azul na esquerda e direita</div>
+  </div>
+
+  <!-- ITEM 30: border-start-start-radius -->
+  <div class="card">
+    <li><strong>border-start-start-radius</strong> → afeta a cor do canto superior esquerdo (em modo de escrita horizontal)</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .canto-cor-ex {<br>    border: 3px solid #e74c3c;<br>    border-start-start-radius: 20px;<br>    padding: 10px;<br>    background-color: #f9f9f9;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="canto-cor-ex"&gt;<br>    Canto superior esquerdo arredondado com borda vermelha<br>&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="canto-cor-ex">Canto superior esquerdo arredondado com borda vermelha</div>
+  </div>
+
+  <!-- ITEM 31: outline-offset -->
+  <div class="card">
+    <li><strong>outline-offset</strong> → espaço entre o outline e a borda (afeta visualmente a cor do outline)</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .offset-ex {<br>    outline: 3px solid #9b59b6;<br>    outline-offset: 8px;<br>    padding: 10px;<br>    background-color: #ecf0f1;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="offset-ex"&gt;<br>    Outline roxo com espaçamento de 8px<br>&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="offset-ex">Outline roxo com espaçamento de 8px</div>
+  </div>
+
+  <!-- ITEM 32: text-underline-offset -->
+  <div class="card">
+    <li><strong>text-underline-offset</strong> → posição do sublinhado (afeta a cor visualmente)</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .underline-offset-ex {<br>    text-decoration: underline;<br>    text-decoration-color: #e74c3c;<br>    text-underline-offset: 10px;<br>    text-decoration-thickness: 3px;<br>    font-size: 24px;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;p class="underline-offset-ex"&gt;<br>    Sublinhado vermelho com 10px de distância<br>&lt;/p&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <p class="underline-offset-ex">Sublinhado vermelho com 10px de distância</p>
+  </div>
+
+  <!-- ITEM 33: color-gamut -->
+  <div class="card">
+    <li><strong>color-gamut</strong> → media query para suporte a gamas de cores (rec2020, p3, srgb)</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .gamut-ex {<br>    background-color: #e74c3c;<br>    padding: 10px;<br>    }<br>    @media (color-gamut: p3) {<br>    .gamut-ex {<br>        background-color: color(display-p3 1 0.3 0.2);<br>    }<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="gamut-ex"&gt;<br>    Usa cor p3 se disponível, senão srgb<br>&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="gamut-ex">Usa cor p3 se disponível, senão srgb</div>
+  </div>
+
+  <!-- ITEM 34: dynamic-range-limit -->
+  <div class="card">
+    <li><strong>dynamic-range-limit</strong> → limita a faixa dinâmica de cores (high-contrast, standard)</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .dynamic-ex {<br>    dynamic-range-limit: standard;<br>    background-color: #3498db;<br>    color: white;<br>    padding: 10px;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="dynamic-ex"&gt;<br>    Limitado à faixa dinâmica standard<br>&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="dynamic-ex">Limitado à faixa dinâmica standard</div>
+  </div>
+
+  <!-- ITEM 35: border-top-color -->
+  <div class="card">
+    <li><strong>border-top-color</strong> → cor específica da borda superior</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .border-top-ex {<br>    border-top-style: solid;<br>    border-top-width: 4px;<br>    border-top-color: #e74c3c;<br>    padding: 10px;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="border-top-ex"&gt;<br>    Borda vermelha apenas no topo<br>&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="border-top-ex">Borda vermelha apenas no topo</div>
+  </div>
+
+  <!-- ITEM 36: border-right-color -->
+  <div class="card">
+    <li><strong>border-right-color</strong> → cor específica da borda direita</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .border-right-ex {<br>    border-right-style: solid;<br>    border-right-width: 4px;<br>    border-right-color: #3498db;<br>    padding: 10px;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="border-right-ex"&gt;<br>    Borda azul apenas na direita<br>&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="border-right-ex">Borda azul apenas na direita</div>
+  </div>
+
+  <!-- ITEM 37: border-bottom-color -->
+  <div class="card">
+    <li><strong>border-bottom-color</strong> → cor específica da borda inferior</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .border-bottom-ex {<br>    border-bottom-style: solid;<br>    border-bottom-width: 4px;<br>    border-bottom-color: #2ecc71;<br>    padding: 10px;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="border-bottom-ex"&gt;<br>    Borda verde apenas na parte inferior<br>&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="border-bottom-ex">Borda verde apenas na parte inferior</div>
+  </div>
+
+  <!-- ITEM 38: border-left-color -->
+  <div class="card">
+    <li><strong>border-left-color</strong> → cor específica da borda esquerda</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .border-left-ex {<br>    border-left-style: solid;<br>    border-left-width: 4px;<br>    border-left-color: #f39c12;<br>    padding: 10px;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="border-left-ex"&gt;<br>    Borda laranja apenas na esquerda<br>&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="border-left-ex">Borda laranja apenas na esquerda</div>
+  </div>
+
+  <!-- ITEM 39: outline-top-color -->
+  <div class="card">
+    <li><strong>outline-top-color</strong> → cor específica do contorno superior (navegadores baseados em WebKit)</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .outline-top-ex {<br>    outline-style: solid;<br>    outline-width: 3px;<br>    outline-top-color: #9b59b6;<br>    padding: 10px;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="outline-top-ex"&gt;<br>    Contorno roxo apenas no topo (WebKit)<br>&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="outline-top-ex">Contorno roxo apenas no topo (WebKit)</div>
+  </div>
+
+  <!-- ITEM 40: column-rule-color (reforço) -->
+  <div class="card">
+    <li><strong>column-rule-color</strong> → cor da linha entre colunas (reforço)</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .column-rule-color-ex {<br>    columns: 3;<br>    column-rule-style: dotted;<br>    column-rule-width: 3px;<br>    column-rule-color: #e67e22;<br>    padding: 10px;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="column-rule-color-ex"&gt;<br>    &lt;p&gt;Coluna 1 com linha laranja pontilhada&lt;/p&gt;<br>    &lt;p&gt;Coluna 2 com linha laranja pontilhada&lt;/p&gt;<br>    &lt;p&gt;Coluna 3 com linha laranja pontilhada&lt;/p&gt;<br>&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="column-rule-color-ex"><p>Coluna 1 com linha laranja pontilhada</p><p>Coluna 2 com linha laranja pontilhada</p><p>Coluna 3 com linha laranja pontilhada</p></div>
+  </div>
+
+  <!-- ITEM 41: text-decoration-skip-ink -->
+  <div class="card">
+    <li><strong>text-decoration-skip-ink</strong> → controla como o sublinhado contorna ascendentes/descendentes (afeta visualmente a cor)</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .skip-ink-auto {<br>    text-decoration: underline;<br>    text-decoration-color: #e74c3c;<br>    text-decoration-skip-ink: auto;<br>    font-size: 32px;<br>    }<br>    .skip-ink-none {<br>    text-decoration: underline;<br>    text-decoration-color: #3498db;<br>    text-decoration-skip-ink: none;<br>    font-size: 32px;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;p class="skip-ink-auto"&gt;gjpqy Auto (contorna)&lt;/p&gt;<br>&lt;p class="skip-ink-none"&gt;gjpqy None (não contorna)&lt;/p&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <p class="skip-ink-auto">gjpqy Auto (contorna)</p>
+    <p class="skip-ink-none">gjpqy None (não contorna)</p>
+  </div>
+
+  <!-- ITEM 42: border-block-start-color -->
+  <div class="card">
+    <li><strong>border-block-start-color</strong> → cor da borda no início do eixo de bloco (topo em modo horizontal)</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .border-block-start-ex {<br>    border-block-start-style: solid;<br>    border-block-start-width: 4px;<br>    border-block-start-color: #e74c3c;<br>    padding: 10px;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="border-block-start-ex"&gt;<br>    Borda vermelha apenas no início do bloco (topo)<br>&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="border-block-start-ex">Borda vermelha apenas no início do bloco (topo)</div>
+  </div>
+
+  <!-- ITEM 43: border-block-end-color -->
+  <div class="card">
+    <li><strong>border-block-end-color</strong> → cor da borda no fim do eixo de bloco (fundo em modo horizontal)</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .border-block-end-ex {<br>    border-block-end-style: solid;<br>    border-block-end-width: 4px;<br>    border-block-end-color: #3498db;<br>    padding: 10px;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="border-block-end-ex"&gt;<br>    Borda azul apenas no fim do bloco (fundo)<br>&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="border-block-end-ex">Borda azul apenas no fim do bloco (fundo)</div>
+  </div>
+
+  <!-- ITEM 44: border-inline-start-color -->
+  <div class="card">
+    <li><strong>border-inline-start-color</strong> → cor da borda no início do eixo inline (esquerda em modo horizontal)</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .border-inline-start-ex {<br>    border-inline-start-style: solid;<br>    border-inline-start-width: 4px;<br>    border-inline-start-color: #2ecc71;<br>    padding: 10px;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="border-inline-start-ex"&gt;<br>    Borda verde no início da linha (esquerda)<br>&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="border-inline-start-ex">Borda verde no início da linha (esquerda)</div>
+  </div>
+
+  <!-- ITEM 45: border-inline-end-color -->
+  <div class="card">
+    <li><strong>border-inline-end-color</strong> → cor da borda no fim do eixo inline (direita em modo horizontal)</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .border-inline-end-ex {<br>    border-inline-end-style: solid;<br>    border-inline-end-width: 4px;<br>    border-inline-end-color: #f39c12;<br>    padding: 10px;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="border-inline-end-ex"&gt;<br>    Borda laranja no fim da linha (direita)<br>&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="border-inline-end-ex">Borda laranja no fim da linha (direita)</div>
+  </div>
+
+  <!-- ITEM 46: scrollbar-track-color -->
+  <div class="card">
+    <li><strong>scrollbar-track-color</strong> → cor da trilha da barra de rolagem (não padrão, alguns navegadores)</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .scrollbar-track-ex {<br>    height: 150px;<br>    width: 300px;<br>    overflow-y: scroll;<br>    scrollbar-track-color: #ecf0f1;<br>    scrollbar-thumb-color: #e74c3c;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="scrollbar-track-ex"&gt;<br>    &lt;p&gt;Trilha cinza claro com polegar vermelho&lt;/p&gt;<br>    &lt;p&gt;Linha 2&lt;/p&gt; &lt;p&gt;Linha 3&lt;/p&gt;<br>    &lt;p&gt;Linha 4&lt;/p&gt; &lt;p&gt;Linha 5&lt;/p&gt;<br>&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="scrollbar-track-ex"><p>Trilha cinza claro com polegar vermelho</p><p>Linha 2</p><p>Linha 3</p><p>Linha 4</p><p>Linha 5</p></div>
+  </div>
+
+  <!-- ITEM 47: scrollbar-thumb-color -->
+  <div class="card">
+    <li><strong>scrollbar-thumb-color</strong> → cor do polegar (parte móvel) da barra de rolagem</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .scrollbar-thumb-ex {<br>    height: 150px;<br>    width: 300px;<br>    overflow-y: scroll;<br>    scrollbar-thumb-color: #9b59b6;<br>    scrollbar-track-color: #f1f1f1;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="scrollbar-thumb-ex"&gt;<br>    &lt;p&gt;Polegar roxo na barra de rolagem&lt;/p&gt;<br>    &lt;p&gt;Linha 2&lt;/p&gt; &lt;p&gt;Linha 3&lt;/p&gt;<br>    &lt;p&gt;Linha 4&lt;/p&gt; &lt;p&gt;Linha 5&lt;/p&gt;<br>&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="scrollbar-thumb-ex"><p>Polegar roxo na barra de rolagem</p><p>Linha 2</p><p>Linha 3</p><p>Linha 4</p><p>Linha 5</p></div>
+  </div>
+
+  <!-- ITEM 48: text-fill-color -->
+  <div class="card">
+    <li><strong>text-fill-color</strong> → cor de preenchimento do texto (WebKit - usado com gradientes)</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .text-fill-ex {<br>    background: linear-gradient(45deg, #e74c3c, #3498db);<br>    -webkit-background-clip: text;<br>    background-clip: text;<br>    -webkit-text-fill-color: transparent;<br>    text-fill-color: transparent;<br>    font-size: 32px;<br>    font-weight: bold;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;h2 class="text-fill-ex"&gt;Texto com gradiente!&lt;/h2&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <h2 class="text-fill-ex">Texto com gradiente!</h2>
+  </div>
+
+  <!-- ITEM 49: text-stroke-color -->
+  <div class="card">
+    <li><strong>text-stroke-color</strong> → cor do contorno do texto (WebKit)</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .text-stroke-ex {<br>    -webkit-text-stroke-width: 2px;<br>    -webkit-text-stroke-color: #e74c3c;<br>    text-stroke-color: #e74c3c;<br>    font-size: 48px;<br>    color: white;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;h2 class="text-stroke-ex"&gt;Texto com contorno vermelho&lt;/h2&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <h2 class="text-stroke-ex">Texto com contorno vermelho</h2>
+  </div>
+
+  <!-- ITEM 50: border-image -->
+  <div class="card">
+    <li><strong>border-image</strong> → usa imagem como borda (aceita cores como fallback)</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .border-image-ex {<br>    border: 10px solid transparent;<br>    border-image-source: linear-gradient(45deg, #e74c3c, #3498db);<br>    border-image-slice: 1;<br>    padding: 20px;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="border-image-ex"&gt;<br>    Borda com gradiente colorido!<br>&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="border-image-ex">Borda com gradiente colorido!</div>
+  </div>
+
+  <!-- ITEM 51: image-orientation -->
+  <div class="card">
+    <li><strong>image-orientation</strong> → orientação de imagem (afeta cores visuais)</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .img-orient-ex {<br>    image-orientation: from-image;<br>    width: 100px;<br>    height: 100px;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;img class="img-orient-ex" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23e74c3c'/%3E%3C/svg%3E"&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <img class="img-orient-ex" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23e74c3c'/%3E%3C/svg%3E" alt="">
+  </div>
+
+  <!-- ITEM 52: color-profile -->
+  <div class="card">
+    <li><strong>color-profile</strong> → especifica perfil de cores para imagens (navegadores antigos)</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .color-profile-ex {<br>    color-profile: sRGB;<br>    background-color: #3498db;<br>    padding: 10px;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="color-profile-ex"&gt;<br>    Perfil de cores sRGB aplicado<br>&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="color-profile-ex">Perfil de cores sRGB aplicado</div>
+  </div>
+
+  <!-- ITEM 53: rendering-intent -->
+  <div class="card">
+    <li><strong>rendering-intent</strong> → intenção de renderização para perfis de cor</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .rendering-ex {<br>    rendering-intent: perceptual;<br>    background: linear-gradient(45deg, #e74c3c, #3498db);<br>    padding: 10px;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="rendering-ex"&gt;<br>    Intenção perceptual de cores<br>&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="rendering-ex">Intenção perceptual de cores</div>
+  </div>
+
+  <!-- ITEM 54: color-contrast() -->
+  <div class="card">
+    <li><strong>color-contrast()</strong> → função CSS que seleciona cor de maior contraste (CSS Color Level 5)</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .contraste-ex {<br>    background-color: #3498db;<br>    color: color-contrast(#3498db vs white, black);<br>    padding: 10px;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="contraste-ex"&gt;<br>    Texto com melhor contraste automático<br>&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="contraste-ex">Texto com melhor contraste automático</div>
+  </div>
+
+  <!-- ITEM 55: color-mix() -->
+  <div class="card">
+    <li><strong>color-mix()</strong> → função CSS para misturar duas cores (CSS Color Level 5)</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .color-mix-ex {<br>    background-color: color-mix(in srgb, #e74c3c 50%, #3498db 50%);<br>    padding: 10px;<br>    color: white;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="color-mix-ex"&gt;<br>    Mistura 50% vermelho + 50% azul<br>&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="color-mix-ex">Mistura 50% vermelho + 50% azul</div>
+  </div>
+
+  <!-- ITEM 56: color() Display P3 -->
+  <div class="card">
+    <li><strong>color()</strong> → função CSS para especificar cores em espaços de cor personalizados (Display P3, Rec.2020)</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .color-function-ex {<br>    background-color: color(display-p3 1 0.3 0.2);<br>    padding: 10px;<br>    color: white;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="color-function-ex"&gt;<br>    Cor usando espaço Display P3<br>&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="color-function-ex">Cor usando espaço Display P3</div>
+  </div>
+
+  <!-- ITEM 57: lab() -->
+  <div class="card">
+    <li><strong>lab()</strong> → função CSS para cores no espaço CIELAB (mais perceptualmente uniforme)</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .lab-ex {<br>    background-color: lab(60% 80 40);<br>    padding: 10px;<br>    color: white;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="lab-ex"&gt;<br>    Cor definida no espaço LAB<br>&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="lab-ex">Cor definida no espaço LAB</div>
+  </div>
+
+  <!-- ITEM 58: lch() -->
+  <div class="card">
+    <li><strong>lch()</strong> → função CSS para cores no espaço LCH (Luminosidade, Croma, Matiz)</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .lch-ex {<br>    background-color: lch(60% 80 30);<br>    padding: 10px;<br>    color: white;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="lch-ex"&gt;<br>    Cor definida no espaço LCH<br>&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="lch-ex">Cor definida no espaço LCH</div>
+  </div>
+
+  <!-- ITEM 59: oklab() -->
+  <div class="card">
+    <li><strong>oklab()</strong> → função CSS para espaço OKLAB (versão melhorada do LAB)</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .oklab-ex {<br>    background-color: oklab(0.6 0.2 0.1);<br>    padding: 10px;<br>    color: white;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="oklab-ex"&gt;<br>    Cor definida no espaço OKLAB<br>&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="oklab-ex">Cor definida no espaço OKLAB</div>
+  </div>
+
+  <!-- ITEM 60: oklch() -->
+  <div class="card">
+    <li><strong>oklch()</strong> → função CSS para espaço OKLCH (versão melhorada do LCH)</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .oklch-ex {<br>    background-color: oklch(0.7 0.2 140);<br>    padding: 10px;<br>    color: white;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="oklch-ex"&gt;<br>    Cor definida no espaço OKLCH<br>&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="oklch-ex">Cor definida no espaço OKLCH</div>
+  </div>
+
+  <!-- ITEM 61: hwb() -->
+  <div class="card">
+    <li><strong>hwb()</strong> → função CSS para cores no espaço HWB (Hue, Whiteness, Blackness)</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .hwb-ex {<br>    background-color: hwb(200 20% 10%);<br>    padding: 10px;<br>    color: white;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="hwb-ex"&gt;<br>    Cor definida no espaço HWB<br>&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="hwb-ex">Cor definida no espaço HWB</div>
+  </div>
+
+  <!-- ITEM 62: device-cmyk() -->
+  <div class="card">
+    <li><strong>device-cmyk()</strong> → função CSS para cores no espaço CMYK (para impressão)</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .cmyk-ex {<br>    background-color: device-cmyk(0 1 1 0);<br>    padding: 10px;<br>    color: white;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="cmyk-ex"&gt;<br>    Cor definida no espaço CMYK (vermelho)<br>&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="cmyk-ex">Cor definida no espaço CMYK (vermelho)</div>
+  </div>
+
+  <!-- ITEM 63: color-adjust: economy -->
+  <div class="card">
+    <li><strong>color-adjust: economy</strong> → permite navegador ajustar cores para economizar tinta (impressão) - já visto, mas com exemplo focado</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .print-economy {<br>    color-adjust: economy;<br>    background-color: #e74c3c;<br>    color: #f39c12;<br>    padding: 10px;<br>    }<br>    .print-exact {<br>    color-adjust: exact;<br>    background-color: #e74c3c;<br>    color: #f39c12;<br>    padding: 10px;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="print-economy"&gt;Economy (na impressão pode economizar tinta)&lt;/div&gt;<br>&lt;div class="print-exact"&gt;Exact (na impressão mantém cores exatas)&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="print-economy">Economy (na impressão pode economizar tinta)</div>
+    <div class="print-exact">Exact (na impressão mantém cores exatas)</div>
+  </div>
+
+  <!-- ITEM 64: light-dark() -->
+  <div class="card">
+    <li><strong>light-dark()</strong> → função CSS que alterna entre duas cores baseado no tema claro/escuro</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .light-dark-ex {<br>    color-scheme: dark light;<br>    background-color: light-dark(#ffffff, #1a1a1a);<br>    color: light-dark(#000000, #ffffff);<br>    padding: 10px;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="light-dark-ex"&gt;<br>    Alterna cor automaticamente no claro/escuro<br>&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="light-dark-ex">Alterna cor automaticamente no claro/escuro</div>
+  </div>
+
+  <!-- ITEM 65: accent-color: auto -->
+  <div class="card">
+    <li><strong>accent-color: auto</strong> → valor especial para accent-color usar cor padrão do navegador</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .accent-auto {<br>    accent-color: auto;<br>    }<br>    .accent-custom {<br>    accent-color: #e74c3c;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;input type="checkbox" class="accent-auto"&gt; Auto (padrão navegador)<br>&lt;input type="checkbox" class="accent-custom"&gt; Custom (vermelho)</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <input type="checkbox" class="accent-auto"> Auto (padrão navegador)
+    <input type="checkbox" class="accent-custom"> Custom (vermelho)
+  </div>
+
+  <!-- ITEM 66: color-scheme: only -->
+  <div class="card">
+    <li><strong>color-scheme: only</strong> → indica que o elemento só suporta um esquema de cores específico</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .only-dark {<br>    color-scheme: only dark;<br>    background-color: Canvas;<br>    color: CanvasText;<br>    padding: 10px;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="only-dark"&gt;<br>    Apenas tema escuro suportado<br>&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="only-dark">Apenas tema escuro suportado</div>
+  </div>
+
+  <!-- ITEM 67: color(srgb) -->
+  <div class="card">
+    <li><strong>color()</strong> → com a palavra-chave 'srgb' para cores sRGB explícitas</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .color-srgb-ex {<br>    background-color: color(srgb 1 0.2 0.2);<br>    padding: 10px;<br>    color: white;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="color-srgb-ex"&gt;<br>    Cor usando espaço sRGB explícito<br>&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="color-srgb-ex">Cor usando espaço sRGB explícito</div>
+  </div>
+
+  <!-- ITEM 68: color(srgb-linear) -->
+  <div class="card">
+    <li><strong>color()</strong> → com a palavra-chave 'srgb-linear' para sRGB linear</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .color-srgb-linear-ex {<br>    background-color: color(srgb-linear 1 0.5 0.2);<br>    padding: 10px;<br>    color: white;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="color-srgb-linear-ex"&gt;<br>    sRGB linear (mais brilhante)<br>&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="color-srgb-linear-ex">sRGB linear (mais brilhante)</div>
+  </div>
+
+  <!-- ITEM 69: color(a98-rgb) -->
+  <div class="card">
+    <li><strong>color()</strong> → com a palavra-chave 'a98-rgb' (espaço Adobe RGB)</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .color-a98-ex {<br>    background-color: color(a98-rgb 1 0.3 0.3);<br>    padding: 10px;<br>    color: white;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="color-a98-ex"&gt;<br>    Espaço Adobe RGB 1998<br>&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="color-a98-ex">Espaço Adobe RGB 1998</div>
+  </div>
+
+  <!-- ITEM 70: color(prophoto-rgb) -->
+  <div class="card">
+    <li><strong>color()</strong> → com a palavra-chave 'prophoto-rgb' (espaço ProPhoto RGB)</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .color-prophoto-ex {<br>    background-color: color(prophoto-rgb 0.8 0.4 0.2);<br>    padding: 10px;<br>    color: white;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="color-prophoto-ex"&gt;<br>    Espaço ProPhoto RGB<br>&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="color-prophoto-ex">Espaço ProPhoto RGB</div>
+  </div>
+
+  <!-- ITEM 71: color(rec2020) -->
+  <div class="card">
+    <li><strong>color()</strong> → com a palavra-chave 'rec2020' (espaço Rec.2020 para HDR)</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .color-rec2020-ex {<br>    background-color: color(rec2020 0.9 0.3 0.2);<br>    padding: 10px;<br>    color: white;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="color-rec2020-ex"&gt;<br>    Espaço Rec.2020 (HDR)<br>&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="color-rec2020-ex">Espaço Rec.2020 (HDR)</div>
+  </div>
+
+  <!-- ITEM 72: color(xyz) -->
+  <div class="card">
+    <li><strong>color()</strong> → com a palavra-chave 'xyz' (espaço CIE XYZ)</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .color-xyz-ex {<br>    background-color: color(xyz 0.5 0.3 0.2);<br>    padding: 10px;<br>    color: white;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="color-xyz-ex"&gt;<br>    Espaço CIE XYZ (espaço de referência)<br>&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="color-xyz-ex">Espaço CIE XYZ (espaço de referência)</div>
+  </div>
+
+  <!-- ITEM 73: color(xyz-d50) -->
+  <div class="card">
+    <li><strong>color()</strong> → com a palavra-chave 'xyz-d50' (CIE XYZ com iluminante D50)</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .color-xyz-d50-ex {<br>    background-color: color(xyz-d50 0.45 0.35 0.25);<br>    padding: 10px;<br>    color: white;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="color-xyz-d50-ex"&gt;<br>    XYZ com iluminante D50 (padrão impressão)<br>&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="color-xyz-d50-ex">XYZ com iluminante D50 (padrão impressão)</div>
+  </div>
+
+  <!-- ITEM 74: color(display-p3) -->
+  <div class="card">
+    <li><strong>color()</strong> → com a palavra-chave 'display-p3' (espaço P3 da Apple - wide gamut)</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .color-display-p3-ex {<br>    background-color: color(display-p3 1 0.2 0.2);<br>    padding: 10px;<br>    color: white;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="color-display-p3-ex"&gt;<br>    Espaço Display P3 (wide gamut da Apple)<br>&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="color-display-p3-ex">Espaço Display P3 (wide gamut da Apple)</div>
+  </div>
+
+  <!-- ITEM 75: color-mix() sRGB -->
+  <div class="card">
+    <li><strong>color-mix()</strong> → com diferentes espaços de cor para mistura (srgb, hsl, lab, etc.)</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .color-mix-srgb {<br>    background-color: color-mix(in srgb, #e74c3c 70%, #3498db);<br>    padding: 10px;<br>    color: white;<br>    margin: 5px;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="color-mix-srgb"&gt;Mistura no espaço sRGB&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="color-mix-srgb">Mistura no espaço sRGB</div>
+  </div>
+
+  <!-- ITEM 76: color-mix() LAB -->
+  <div class="card">
+    <li><strong>color-mix()</strong> → mistura no espaço LAB</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .color-mix-lab {<br>    background-color: color-mix(in lab, #e74c3c 70%, #3498db);<br>    padding: 10px;<br>    color: white;<br>    margin: 5px;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="color-mix-lab"&gt;Mistura no espaço LAB&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="color-mix-lab">Mistura no espaço LAB</div>
+  </div>
+
+  <!-- ITEM 77: relative color syntax -->
+  <div class="card">
+    <li><strong>relative color syntax</strong> → criar novas cores baseadas em cores existentes (from keyword)</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    :root {<br>    --cor-primaria: #3498db;<br>    }<br>    .relative-ex {<br>    background-color: rgb(from var(--cor-primaria) r g b / 0.5);<br>    padding: 10px;<br>    color: white;<br>    }<br>    .relative-escuro {<br>    background-color: oklab(from var(--cor-primaria) calc(l - 0.2) a b);<br>    padding: 10px;<br>    color: white;<br>    margin-top: 5px;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="relative-ex"&gt;Cor primária com 50% opacidade&lt;/div&gt;<br>&lt;div class="relative-escuro"&gt;Cor primária mais escura&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="relative-ex">Cor primária com 50% opacidade</div>
+    <div class="relative-escuro">Cor primária mais escura</div>
+  </div>
+
+  <!-- ITEM 78: contrast() -->
+  <div class="card">
+    <li><strong>contrast()</strong> → função de filtro que ajusta contraste (afeta percepção de cores)</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .contraste-normal {<br>    filter: contrast(100%);<br>    background: linear-gradient(45deg, #e74c3c, #3498db);<br>    padding: 10px;<br>    color: white;<br>    }<br>    .contraste-alto {<br>    filter: contrast(200%);<br>    background: linear-gradient(45deg, #e74c3c, #3498db);<br>    padding: 10px;<br>    color: white;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="contraste-normal"&gt;Contraste normal (100%)&lt;/div&gt;<br>&lt;div class="contraste-alto"&gt;Contraste alto (200%)&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="contraste-normal">Contraste normal (100%)</div>
+    <div class="contraste-alto">Contraste alto (200%)</div>
+  </div>
+
+  <!-- ITEM 79: brightness() -->
+  <div class="card">
+    <li><strong>brightness()</strong> → função de filtro que ajusta brilho (afeta cores)</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .brilho-normal {<br>    filter: brightness(100%);<br>    background-color: #e74c3c;<br>    padding: 10px;<br>    color: white;<br>    }<br>    .brilho-alto {<br>    filter: brightness(150%);<br>    background-color: #e74c3c;<br>    padding: 10px;<br>    color: white;<br>    }<br>    .brilho-baixo {<br>    filter: brightness(50%);<br>    background-color: #e74c3c;<br>    padding: 10px;<br>    color: white;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="brilho-normal"&gt;Brilho 100%&lt;/div&gt;<br>&lt;div class="brilho-alto"&gt;Brilho 150%&lt;/div&gt;<br>&lt;div class="brilho-baixo"&gt;Brilho 50%&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="brilho-normal">Brilho 100%</div>
+    <div class="brilho-alto">Brilho 150%</div>
+    <div class="brilho-baixo">Brilho 50%</div>
+  </div>
+
+  <!-- ITEM 80: saturate() -->
+  <div class="card">
+    <li><strong>saturate()</strong> → função de filtro que ajusta saturação de cores</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .saturacao-normal {<br>    filter: saturate(100%);<br>    background-color: #9b59b6;<br>    padding: 10px;<br>    color: white;<br>    }<br>    .saturacao-alta {<br>    filter: saturate(300%);<br>    background-color: #9b59b6;<br>    padding: 10px;<br>    color: white;<br>    }<br>    .saturacao-baixa {<br>    filter: saturate(30%);<br>    background-color: #9b59b6;<br>    padding: 10px;<br>    color: white;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="saturacao-normal"&gt;Saturação 100%&lt;/div&gt;<br>&lt;div class="saturacao-alta"&gt;Saturação 300%&lt;/div&gt;<br>&lt;div class="saturacao-baixa"&gt;Saturação 30%&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="saturacao-normal">Saturação 100%</div>
+    <div class="saturacao-alta">Saturação 300%</div>
+    <div class="saturacao-baixa">Saturação 30%</div>
+  </div>
+
+  <!-- ITEM 81: hue-rotate() -->
+  <div class="card">
+    <li><strong>hue-rotate()</strong> → função de filtro que rotaciona o matiz das cores (em graus)</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .hue-normal {<br>    filter: hue-rotate(0deg);<br>    background-color: #3498db;<br>    padding: 10px;<br>    color: white;<br>    }<br>    .hue-90 {<br>    filter: hue-rotate(90deg);<br>    background-color: #3498db;<br>    padding: 10px;<br>    color: white;<br>    }<br>    .hue-180 {<br>    filter: hue-rotate(180deg);<br>    background-color: #3498db;<br>    padding: 10px;<br>    color: white;<br>    }<br>    .hue-270 {<br>    filter: hue-rotate(270deg);<br>    background-color: #3498db;<br>    padding: 10px;<br>    color: white;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="hue-normal"&gt;Hue 0° (azul original)&lt;/div&gt;<br>&lt;div class="hue-90"&gt;Hue 90° (verde)&lt;/div&gt;<br>&lt;div class="hue-180"&gt;Hue 180° (laranja/rosa)&lt;/div&gt;<br>&lt;div class="hue-270"&gt;Hue 270° (roxo)&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="hue-normal">Hue 0° (azul original)</div>
+    <div class="hue-90">Hue 90° (verde)</div>
+    <div class="hue-180">Hue 180° (laranja/rosa)</div>
+    <div class="hue-270">Hue 270° (roxo)</div>
+  </div>
+
+  <!-- ITEM 82: grayscale() -->
+  <div class="card">
+    <li><strong>grayscale()</strong> → função de filtro que converte cores para escala de cinza</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .gray-0 {<br>    filter: grayscale(0%);<br>    background: linear-gradient(45deg, #e74c3c, #3498db);<br>    padding: 10px;<br>    color: white;<br>    }<br>    .gray-50 {<br>    filter: grayscale(50%);<br>    background: linear-gradient(45deg, #e74c3c, #3498db);<br>    padding: 10px;<br>    color: white;<br>    }<br>    .gray-100 {<br>    filter: grayscale(100%);<br>    background: linear-gradient(45deg, #e74c3c, #3498db);<br>    padding: 10px;<br>    color: white;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="gray-0"&gt;Grayscale 0% (cores originais)&lt;/div&gt;<br>&lt;div class="gray-50"&gt;Grayscale 50%&lt;/div&gt;<br>&lt;div class="gray-100"&gt;Grayscale 100% (preto e branco)&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="gray-0">Grayscale 0% (cores originais)</div>
+    <div class="gray-50">Grayscale 50%</div>
+    <div class="gray-100">Grayscale 100% (preto e branco)</div>
+  </div>
+
+  <!-- ITEM 83: sepia() -->
+  <div class="card">
+    <li><strong>sepia()</strong> → função de filtro que aplica efeito sépia (tonalidade marrom)</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .sepia-0 {<br>    filter: sepia(0%);<br>    background-image: url('data:image/svg+xml;utf8,&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"&gt;&lt;rect width="100" height="100" fill="%233498db"/&gt;&lt;circle cx="50" cy="50" r="40" fill="%23e74c3c"/&gt;&lt;/svg&gt;');<br>    background-size: cover;<br>    padding: 30px;<br>    color: white;<br>    }<br>    .sepia-50 {<br>    filter: sepia(50%);<br>    background-image: url('data:image/svg+xml;utf8,&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"&gt;&lt;rect width="100" height="100" fill="%233498db"/&gt;&lt;circle cx="50" cy="50" r="40" fill="%23e74c3c"/&gt;&lt;/svg&gt;');<br>    background-size: cover;<br>    padding: 30px;<br>    color: white;<br>    }<br>    .sepia-100 {<br>    filter: sepia(100%);<br>    background-image: url('data:image/svg+xml;utf8,&lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"&gt;&lt;rect width="100" height="100" fill="%233498db"/&gt;&lt;circle cx="50" cy="50" r="40" fill="%23e74c3c"/&gt;&lt;/svg&gt;');<br>    background-size: cover;<br>    padding: 30px;<br>    color: white;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="sepia-0"&gt;Sépia 0%&lt;/div&gt;<br>&lt;div class="sepia-50"&gt;Sépia 50%&lt;/div&gt;<br>&lt;div class="sepia-100"&gt;Sépia 100%&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="sepia-0">Sépia 0%</div>
+    <div class="sepia-50">Sépia 50%</div>
+    <div class="sepia-100">Sépia 100%</div>
+  </div>
+
+  <!-- ITEM 84: invert() -->
+  <div class="card">
+    <li><strong>invert()</strong> → função de filtro que inverte as cores (negativo)</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .invert-0 {<br>    filter: invert(0%);<br>    background: linear-gradient(45deg, #e74c3c, #3498db);<br>    padding: 10px;<br>    color: white;<br>    }<br>    .invert-50 {<br>    filter: invert(50%);<br>    background: linear-gradient(45deg, #e74c3c, #3498db);<br>    padding: 10px;<br>    color: white;<br>    }<br>    .invert-100 {<br>    filter: invert(100%);<br>    background: linear-gradient(45deg, #e74c3c, #3498db);<br>    padding: 10px;<br>    color: white;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="invert-0"&gt;Invert 0%&lt;/div&gt;<br>&lt;div class="invert-50"&gt;Invert 50%&lt;/div&gt;<br>&lt;div class="invert-100"&gt;Invert 100% (negativo)&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="invert-0">Invert 0%</div>
+    <div class="invert-50">Invert 50%</div>
+    <div class="invert-100">Invert 100% (negativo)</div>
+  </div>
+
+  <!-- ITEM 85: opacity() filtro -->
+  <div class="card">
+    <li><strong>opacity()</strong> → função de filtro que aplica transparência (similar à propriedade opacity)</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .fundo-check {<br>    background: repeating-linear-gradient(45deg, #ccc 0px, #ccc 20px, #fff 20px, #fff 40px);<br>    padding: 10px;<br>    display: inline-block;<br>    }<br>    .opacity-filtro-100 {<br>    filter: opacity(100%);<br>    background-color: #e74c3c;<br>    padding: 10px;<br>    color: white;<br>    }<br>    .opacity-filtro-50 {<br>    filter: opacity(50%);<br>    background-color: #e74c3c;<br>    padding: 10px;<br>    color: white;<br>    }<br>    .opacity-filtro-20 {<br>    filter: opacity(20%);<br>    background-color: #e74c3c;<br>    padding: 10px;<br>    color: white;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="fundo-check"&gt;<br>    &lt;div class="opacity-filtro-100"&gt;Opacidade 100%&lt;/div&gt;<br>    &lt;div class="opacity-filtro-50"&gt;Opacidade 50%&lt;/div&gt;<br>    &lt;div class="opacity-filtro-20"&gt;Opacidade 20%&lt;/div&gt;<br>&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="fundo-check"><div class="opacity-filtro-100">Opacidade 100%</div><div class="opacity-filtro-50">Opacidade 50%</div><div class="opacity-filtro-20">Opacidade 20%</div></div>
+  </div>
+
+  <!-- ITEM 86: drop-shadow() -->
+  <div class="card">
+    <li><strong>drop-shadow()</strong> → função de filtro que adiciona sombra com cor específica</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .drop-shadow-vermelha {<br>    filter: drop-shadow(5px 5px 10px #e74c3c);<br>    background-color: #3498db;<br>    padding: 20px;<br>    color: white;<br>    border-radius: 10px;<br>    }<br>    .drop-shadow-verde {<br>    filter: drop-shadow(8px 8px 15px #2ecc71);<br>    background-color: #9b59b6;<br>    padding: 20px;<br>    color: white;<br>    border-radius: 10px;<br>    }<br>    .drop-shadow-azul {<br>    filter: drop-shadow(0px 0px 20px #3498db);<br>    background-color: #e74c3c;<br>    padding: 20px;<br>    color: white;<br>    border-radius: 10px;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="drop-shadow-vermelha"&gt;Sombra vermelha&lt;/div&gt;<br>&lt;div class="drop-shadow-verde"&gt;Sombra verde&lt;/div&gt;<br>&lt;div class="drop-shadow-azul"&gt;Sombra azul (glow)&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="drop-shadow-vermelha">Sombra vermelha</div><br>
+    <div class="drop-shadow-verde">Sombra verde</div><br>
+    <div class="drop-shadow-azul">Sombra azul (glow)</div>
+  </div>
+
+  <!-- ITEM 87: blur() -->
+  <div class="card">
+    <li><strong>blur()</strong> → função de filtro que desfoca (afeta percepção de cores)</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .blur-0 {<br>    filter: blur(0px);<br>    background: linear-gradient(45deg, #e74c3c, #3498db, #2ecc71);<br>    padding: 20px;<br>    color: white;<br>    }<br>    .blur-2 {<br>    filter: blur(2px);<br>    background: linear-gradient(45deg, #e74c3c, #3498db, #2ecc71);<br>    padding: 20px;<br>    color: white;<br>    }<br>    .blur-5 {<br>    filter: blur(5px);<br>    background: linear-gradient(45deg, #e74c3c, #3498db, #2ecc71);<br>    padding: 20px;<br>    color: white;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="blur-0"&gt;Blur 0px (nítido)&lt;/div&gt;<br>&lt;div class="blur-2"&gt;Blur 2px (leve desfoque)&lt;/div&gt;<br>&lt;div class="blur-5"&gt;Blur 5px (alto desfoque)&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="blur-0">Blur 0px (nítido)</div><br>
+    <div class="blur-2">Blur 2px (leve desfoque)</div><br>
+    <div class="blur-5">Blur 5px (alto desfoque)</div>
+  </div>
+
+  <!-- ITEM 88: currentcolor avançado -->
+  <div class="card">
+    <li><strong>currentcolor</strong> → palavra-chave já vista, mas com exemplo de uso em bordas e sombras juntas</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .currentcolor-card {<br>    color: #e74c3c;<br>    border: 3px solid currentcolor;<br>    box-shadow: 0 0 15px currentcolor;<br>    background-color: #f9f9f9;<br>    padding: 20px;<br>    border-radius: 10px;<br>    }<br>    .currentcolor-texto {<br>    color: #3498db;<br>    }<br>    .currentcolor-texto span {<br>    border-bottom: 2px solid currentcolor;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="currentcolor-card"&gt;<br>    Borda e sombra usam currentColor (vermelho)<br>&lt;/div&gt;<br>&lt;p class="currentcolor-texto"&gt;<br>    Texto azul com &lt;span&gt;sublinhado da mesma cor&lt;/span&gt;<br>&lt;/p&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="currentcolor-card">Borda e sombra usam currentColor (vermelho)</div>
+    <p class="currentcolor-texto">Texto azul com <span>sublinhado da mesma cor</span></p>
+  </div>
+
+  <!-- ITEM 89: transparent -->
+  <div class="card">
+    <li><strong>transparent</strong> → palavra-chave para cor totalmente transparente</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .transparent-ex {<br>    background: repeating-linear-gradient(45deg, #ccc 0px, #ccc 20px, #fff 20px, #fff 40px);<br>    padding: 20px;<br>    }<br>    .transparent-box {<br>    background-color: transparent;<br>    border: 3px solid #e74c3c;<br>    padding: 20px;<br>    margin: 10px;<br>    }<br>    .semi-transparent {<br>    background-color: rgba(231, 76, 60, 0.5);<br>    padding: 20px;<br>    margin: 10px;<br>    color: white;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="transparent-ex"&gt;<br>    &lt;div class="transparent-box"&gt;Fundo transparente&lt;/div&gt;<br>    &lt;div class="semi-transparent"&gt;Fundo semi-transparente&lt;/div&gt;<br>&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="transparent-ex"><div class="transparent-box">Fundo transparente</div><div class="semi-transparent">Fundo semi-transparente</div></div>
+  </div>
+
+  <!-- ITEM 90: Canvas -->
+  <div class="card">
+    <li><strong>Canvas</strong> → cor de fundo padrão do conteúdo (sistema)</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .canvas-ex {<br>    background-color: Canvas;<br>    color: CanvasText;<br>    padding: 20px;<br>    border: 1px solid;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="canvas-ex"&gt;<br>    Usa cores padrão do sistema (Canvas/CanvasText)<br>&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="canvas-ex">Usa cores padrão do sistema (Canvas/CanvasText)</div>
+  </div>
+
+  <!-- ITEM 91: CanvasText -->
+  <div class="card">
+    <li><strong>CanvasText</strong> → cor de texto padrão do conteúdo (sistema)</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .canvastext-ex {<br>    color: CanvasText;<br>    background-color: Canvas;<br>    padding: 20px;<br>    border: 1px solid CanvasText;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="canvastext-ex"&gt;<br>    Texto usando CanvasText (cor do sistema)<br>&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="canvastext-ex">Texto usando CanvasText (cor do sistema)</div>
+  </div>
+
+  <!-- ITEM 92: LinkText -->
+  <div class="card">
+    <li><strong>LinkText</strong> → cor padrão de links não visitados (sistema)</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .linktext-ex {<br>    color: LinkText;<br>    background-color: Canvas;<br>    padding: 20px;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="linktext-ex"&gt;<br>    Texto na cor padrão de links do sistema<br>&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="linktext-ex">Texto na cor padrão de links do sistema</div>
+  </div>
+
+  <!-- ITEM 93: VisitedText -->
+  <div class="card">
+    <li><strong>VisitedText</strong> → cor padrão de links visitados (sistema)</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .visitedtext-ex {<br>    color: VisitedText;<br>    background-color: Canvas;<br>    padding: 20px;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="visitedtext-ex"&gt;<br>    Texto na cor padrão de links visitados<br>&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="visitedtext-ex">Texto na cor padrão de links visitados</div>
+  </div>
+
+  <!-- ITEM 94: ActiveText -->
+  <div class="card">
+    <li><strong>ActiveText</strong> → cor de texto ativo/links ativos (sistema)</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .activetext-ex {<br>    color: ActiveText;<br>    background-color: Canvas;<br>    padding: 20px;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="activetext-ex"&gt;<br>    Texto na cor ativa do sistema<br>&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="activetext-ex">Texto na cor ativa do sistema</div>
+  </div>
+
+  <!-- ITEM 95: ButtonFace -->
+  <div class="card">
+    <li><strong>ButtonFace</strong> → cor de fundo de botões (sistema)</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .buttonface-ex {<br>    background-color: ButtonFace;<br>    color: ButtonText;<br>    padding: 20px;<br>    border: 1px solid;<br>    border-radius: 5px;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="buttonface-ex"&gt;<br>    Aparência de botão do sistema<br>&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="buttonface-ex">Aparência de botão do sistema</div>
+  </div>
+
+  <!-- ITEM 96: ButtonText -->
+  <div class="card">
+    <li><strong>ButtonText</strong> → cor de texto de botões (sistema)</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .buttontext-ex {<br>    background-color: ButtonFace;<br>    color: ButtonText;<br>    padding: 20px;<br>    border: 1px solid;<br>    border-radius: 5px;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="buttontext-ex"&gt;<br>    Texto de botão na cor do sistema<br>&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="buttontext-ex">Texto de botão na cor do sistema</div>
+  </div>
+
+  <!-- ITEM 97: Field -->
+  <div class="card">
+    <li><strong>Field</strong> → cor de fundo de campos de formulário (sistema)</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .field-ex {<br>    background-color: Field;<br>    color: FieldText;<br>    padding: 15px;<br>    border: 1px solid;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="field-ex"&gt;<br>    Aparência de campo de formulário do sistema<br>&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="field-ex">Aparência de campo de formulário do sistema</div>
+  </div>
+
+  <!-- ITEM 98: FieldText -->
+  <div class="card">
+    <li><strong>FieldText</strong> → cor de texto de campos de formulário (sistema)</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .fieldtext-ex {<br>    background-color: Field;<br>    color: FieldText;<br>    padding: 15px;<br>    border: 1px solid;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="fieldtext-ex"&gt;<br>    Texto de campo na cor do sistema<br>&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="fieldtext-ex">Texto de campo na cor do sistema</div>
+  </div>
+
+  <!-- ITEM 99: Highlight / HighlightText -->
+  <div class="card">
+    <li><strong>Highlight / HighlightText</strong> → cor de fundo/texto de itens selecionados (sistema)</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .highlight-ex {<br>    background-color: Highlight;<br>    color: HighlightText;<br>    padding: 15px;<br>    }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="highlight-ex"&gt;<br>    Aparência de item selecionado do sistema<br>&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="highlight-ex">Aparência de item selecionado do sistema</div>
+  </div>
+
+  <!-- ITEM 100: GrayText / Mark / MarkText / SelectedItem -->
+  <div class="card">
+    <li><strong>GrayText, Mark, MarkText, SelectedItem, SelectedItemText</strong> → cores do sistema</li>
+    <h3>Exemplo do CSS</h3>
+    <div class="code-block">&lt;style&gt;<br>    .graytext-ex { color: GrayText; }<br>    .mark-ex { background-color: Mark; color: MarkText; }<br>    .selecteditem-ex { background-color: SelectedItem; color: SelectedItemText; }<br>&lt;/style&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Exemplo do HTML</h3>
+    <div class="code-block">&lt;div class="graytext-ex"&gt;Texto desabilitado&lt;/div&gt;<br>&lt;div class="mark-ex"&gt;Texto marcado&lt;/div&gt;<br>&lt;div class="selecteditem-ex"&gt;Item selecionado&lt;/div&gt;</div><button class="copy-btn">📋 Copiar</button>
+    <h3>Demonstração</h3>
+    <div class="graytext-ex">Texto desabilitado (cor do sistema)</div>
+    <div class="mark-ex">Texto marcado (cor de marcação do sistema)</div>
+    <div class="selecteditem-ex">Item selecionado em lista (cor do sistema)</div>
+  </div>
+
+  <h2 style="margin-top: 3rem;">🎉 PARABÉNS! VOCÊ COMPLETOU 100 ITENS DE CORES NO CSS! 🎉</h2>
+  <div class="card">
+    <h3>📊 Resumo Final: 100 Propriedades/Funções/Palavras-chave de Cores</h3>
+    <p><strong>1. Propriedades básicas (5):</strong> color, background-color, border-color, outline-color, opacity</p>
+    <p><strong>2. Sombras e efeitos (4):</strong> box-shadow, text-shadow, backdrop-filter, mix-blend-mode</p>
+    <p><strong>3. Bordas específicas (8):</strong> border-top-color, border-right-color, border-bottom-color, border-left-color, border-block-color, border-inline-color, border-block-start-color, border-block-end-color</p>
+    <p><strong>4. Formulários (3):</strong> accent-color, caret-color, color-scheme</p>
+    <p><strong>5. Decoração de texto (6):</strong> text-decoration-color, text-emphasis-color, text-underline-offset, text-decoration-skip-ink, text-fill-color, text-stroke-color</p>
+    <p><strong>6. Scrollbars (4):</strong> scrollbar-color, scrollbar-track-color, scrollbar-thumb-color, -webkit-tap-highlight-color</p>
+    <p><strong>7. SVG (5):</strong> fill, stroke, flood-color, lighting-color, stop-color</p>
+    <p><strong>8. Layout (3):</strong> column-rule-color, color-adjust, forced-color-adjust</p>
+    <p><strong>9. Filtros (10):</strong> contrast(), brightness(), saturate(), hue-rotate(), grayscale(), sepia(), invert(), opacity(), drop-shadow(), blur()</p>
+    <p><strong>10. Funções modernas (12):</strong> rgb(), hsl(), hwb(), lab(), lch(), oklab(), oklch(), color(), device-cmyk(), color-mix(), color-contrast(), light-dark()</p>
+    <p><strong>11. Palavras-chave (2):</strong> currentcolor, transparent</p>
+    <p><strong>12. Cores do sistema (14):</strong> Canvas, CanvasText, LinkText, VisitedText, ActiveText, ButtonFace, ButtonText, Field, FieldText, Highlight, HighlightText, GrayText, Mark, MarkText, SelectedItem, SelectedItemText</p>
+    <p><strong>🎨 CSS Colors - Um mundo infinito de possibilidades!</strong></p>
+  </div>
+
+  <footer>
+    <small>Pensador Sem Fronteiras</small><br>
+    <small><em>do zero ao infinito</em></small>
+  </footer>
+</div>
+
+<script>
+  (function() {
+    const buttons = document.querySelectorAll('.copy-btn');
+    buttons.forEach(btn => {
+      btn.addEventListener('click', function() {
+        const card = this.closest('.card');
+        const codeBlock = card ? card.querySelector('.code-block') : null;
+        if (!codeBlock) return;
+        const textToCopy = codeBlock.innerText.trim();
+        navigator.clipboard.writeText(textToCopy).then(() => {
+          const originalText = this.innerHTML;
+          this.innerHTML = '✅ Copiado!';
+          this.style.background = '#39ff14';
+          setTimeout(() => {
+            this.innerHTML = originalText;
+            this.style.background = '#ff00ff';
+          }, 1500);
+        }).catch(() => {
+          alert('Falha ao copiar.');
+        });
+      });
+    });
+  })();
+</script>
 </body>
 </html>
