@@ -1,22 +1,564 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-PT">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+    <title>HTML Lendário - Nível I | Pensador Sem Fronteiras</title>
+    <link rel="shortcut icon" href="imagens/Iconarchive-Childrens-Book-Animals-Chameleon-Green.512.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background: radial-gradient(circle at 30% 15%, #0a0c0f 0%, #020304 100%);
+            font-family: 'Share Tech Mono', 'Courier New', monospace;
+            color: #e0f0ff;
+            min-height: 100vh;
+            padding: 1.5rem 1.2rem 2.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            line-height: 1.6;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 0, 255, 0.03) 1px, transparent 1px);
+            background-size: 28px 28px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+        }
+
+        .nav-btn {
+            background: rgba(0, 0, 0, 0.7);
+            border: 2px solid #00ffff;
+            color: #0ff;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 0.95rem;
+            padding: 0.7rem 1.5rem;
+            border-radius: 40px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        /* Título principal */
+        .main-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2rem, 7vw, 3.2rem);
+            font-weight: 800;
+            text-align: center;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #fff;
+            text-shadow: 
+                0 0 10px #0ff,
+                0 0 30px #0ff,
+                0 0 60px #f0f,
+                0 0 90px #00ffff;
+            margin-bottom: 0.3rem;
+            filter: drop-shadow(0 0 15px magenta);
+            word-break: break-word;
+        }
+
+        /* Cartão padrão */
+        .card {
+            background: rgba(8, 12, 22, 0.78);
+            backdrop-filter: blur(18px);
+            border: 1px solid rgba(0, 255, 255, 0.28);
+            border-radius: 28px;
+            padding: 1.4rem 1.3rem;
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.3), 0 10px 30px rgba(0, 0, 0, 0.8);
+            transition: all 0.25s ease;
+            position: relative;
+            overflow: visible;
+        }
+
+        .card:hover {
+            border-color: #ff00ff;
+            box-shadow: 0 0 40px #ff00ff80, 0 0 80px #00ffff4d;
+        }
+
+        .card::after {
+            content: "";
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #00ffff, #ff00ff, #00ffaa, #cc00ff);
+            border-radius: 30px;
+            z-index: -1;
+            opacity: 0.25;
+            filter: blur(14px);
+            transition: opacity 0.3s;
+        }
+
+        .card:hover::after {
+            opacity: 0.7;
+        }
+
+        h2, h3, h1 {
+            font-family: 'Orbitron', sans-serif;
+            color: #00ffff;
+            text-shadow: 0 0 12px #0ff, 0 0 25px #f0f;
+            margin-bottom: 0.8rem;
+            letter-spacing: 0.08em;
+        }
+
+        h1 { font-size: 2rem; }
+        h2 { font-size: 1.6rem; }
+        h3 { font-size: 1.3rem; color: #ffb3ff; }
+
+        p, li {
+            color: #d4f4ff;
+            text-shadow: 0 0 4px rgba(0,255,255,0.5);
+            margin-bottom: 0.5rem;
+        }
+
+        a {
+            color: #ffb3ff;
+            text-decoration: none;
+            font-weight: 600;
+            text-shadow: 0 0 8px magenta;
+            transition: 0.2s;
+        }
+
+        a:hover {
+            color: #fff;
+            text-shadow: 0 0 18px #f0f, 0 0 30px cyan;
+        }
+
+        ol, ul {
+            padding-left: 1.6rem;
+            margin: 0.7rem 0;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        hr {
+            border: none;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00ffff, #ff00ff, transparent);
+            margin: 1.8rem 0;
+            box-shadow: 0 0 20px cyan;
+        }
+
+        /* Caixa de código esteticamente perfeita */
+        .code-box {
+            background: #0a0c14;
+            border: 2px solid #00ffff;
+            border-radius: 20px;
+            padding: 1.2rem;
+            margin: 1rem 0;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.5), inset 0 0 15px rgba(0,255,200,0.2);
+            position: relative;
+            backdrop-filter: blur(5px);
+        }
+
+        .code-box code {
+            display: block;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 1rem;
+            color: #b5fffa;
+            white-space: pre-wrap;
+            word-break: break-word;
+            text-shadow: 0 0 6px cyan;
+            line-height: 1.7;
+        }
+
+        .copy-code-btn {
+            position: absolute;
+            top: 10px;
+            right: 12px;
+            background: #000;
+            border: 2px solid #ff00ff;
+            color: #ffaef0;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 0.8rem;
+            padding: 0.45rem 1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 18px #ff00ffcc;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            transition: 0.25s;
+            z-index: 5;
+        }
+
+        .copy-code-btn:hover {
+            background: #ff00ff;
+            color: #000;
+            border-color: cyan;
+            box-shadow: 0 0 35px cyan;
+        }
+
+        .copy-code-btn:active {
+            transform: scale(0.92);
+            transition: 0.1s;
+        }
+
+        .mark-highlight {
+            background: rgba(255, 0, 255, 0.25);
+            color: #fff;
+            padding: 0.1rem 0.4rem;
+            border-radius: 6px;
+            text-shadow: 0 0 8px magenta;
+        }
+
+        /* 🌟🌟🌟 BOTÕES DE NAVEGAÇÃO REAIS (CORRIGIDOS) 🌟🌟🌟 */
+        .nav-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 0.8rem;
+        }
+
+        .nav-btn-card {
+            background: rgba(0, 0, 0, 0.75);
+            border: 2px solid #ff00ff;
+            color: #ffb3ff;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            padding: 1rem 1.5rem;
+            border-radius: 45px;
+            cursor: pointer;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 0 22px rgba(255, 0, 255, 0.6), 0 8px 20px rgba(0,0,0,0.7);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: all 0.25s ease;
+            flex: 1 1 auto;
+            min-width: 140px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+            outline: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        /* Efeito de brilho pulsante no botão */
+        .nav-btn-card::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,0,255,0.3) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+
+        .nav-btn-card:hover::before {
+            opacity: 1;
+        }
+
+        .nav-btn-card:hover {
+            background: #ff00ff;
+            color: #000;
+            border-color: #00ffff;
+            box-shadow: 0 0 50px rgba(0, 255, 255, 0.9), 0 0 90px rgba(255, 0, 255, 0.8);
+            transform: translateY(-4px);
+            letter-spacing: 0.15em;
+        }
+
+        /* ESTILO DE CLIQUE REAL (ACTIVE) - O MAIS IMPORTANTE */
+        .nav-btn-card:active {
+            transform: scale(0.92);
+            background: #00ffff;
+            color: #000;
+            border-color: #fff;
+            box-shadow: 0 0 60px #fff, 0 0 100px cyan;
+            transition: 0.08s;
+        }
+
+        /* Feedback tátil visual ao tocar */
+        .nav-btn-card:active::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 45px;
+            animation: pulse 0.3s ease-out;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        /* Rodapé */
+        .footer-signature {
+            margin-top: 2.5rem;
+            text-align: center;
+            border-top: 1px dashed #00ffff;
+            padding-top: 2rem;
+            width: 100%;
+        }
+
+        .footer-signature p {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.25em;
+            color: #aaa;
+            text-shadow: 0 0 8px #ff00ff;
+        }
+
+        .footer-signature small {
+            font-size: 0.85rem;
+            color: #0ff;
+        }
+
+        .footer-signature em {
+            font-style: italic;
+            color: #ffb3ff;
+            text-shadow: 0 0 10px magenta;
+            display: block;
+            margin-top: 0.3rem;
+        }
+
+        @media (max-width: 480px) {
+            body { padding: 1rem 0.8rem; }
+            .copy-code-btn { font-size: 0.7rem; padding: 0.35rem 0.8rem; }
+            .nav-btn-card { 
+                font-size: 0.85rem; 
+                padding: 0.9rem 1.2rem; 
+                min-width: 120px;
+                border-radius: 40px;
+            }
+        }
+    </style>
 </head>
 <body>
+    <div class="container">
+        <div class="nav-buttons">
+            <a href="../../index.html" class="nav-btn">🏠 Voltar Home</a>
+            <a href="../html.html" class="nav-btn">&lt;/&gt; Voltar HTML</a>
+            <a href="html1.html" class="nav-btn">🔄 ATUALIZAR</a>
+        </div>
+        <h1 class="main-title">HTML Lendário - Nível I</h1>
 
+        <!-- Definição de siglas preservada -->
+        <div class="card">
+            <p><strong>H</strong> - HyperText Markup Language</p>
+            <p><strong>T</strong> - Text</p>
+            <p><strong>M</strong> - Markup</p>
+            <p><strong>L</strong> - Language</p>
+            <p style="margin-top:0.8rem;"><strong>C</strong> - Cascading Style Sheets</p>
+            <p><strong>S</strong> - Style</p>
+            <p><strong>S</strong> - Sheets</p>
+        </div>
 
+        <!-- Instalações Necessárias -->
+        <div class="card">
+            <h2>⚙️ Instalações Necessárias</h2>
+            <p>Para instalar o ambiente de desenvolvimento para HTML - CSS, siga os passos abaixo:</p>
+            <ol>
+                <li>Instale um editor de texto ou IDE (Visual Studio Code);</li>
+                <li>Instale um navegador web moderno (Google Chrome);</li>
+                <li>Configure o ambiente de desenvolvimento (Extensões Português, word wrap);</li>
+                <li>Baixe e instale editor de imagem para reduzir e definir formatos (GIMP);</li>
+                <li>Baixe e instale um editor de áudio para editar e definir formatos (Audacity);</li>
+                <li>Baixe e instale um editor de vídeo para editar e definir formatos (DaVinci Resolve, HandBrake).</li>
+            </ol>
+        </div>
 
+        <hr>
 
+        <!-- Recursos de consulta -->
+        <div class="card">
+            <h2>📚 Recursos de consulta HTML - CSS</h2>
+            <p>Para aprender mais sobre HTML, recomendo a leitura da documentação oficial, que fica no link: <a href="https://developer.mozilla.org/pt-BR/docs/Web/HTML" target="_blank">Documentação oficial de HTML</a></p>
+            <p>Para aprender mais sobre CSS, recomendo a leitura da documentação oficial, que fica no link: <a href="https://developer.mozilla.org/pt-BR/docs/Web/CSS" target="_blank">Documentação oficial de CSS</a></p>
+            <p>Para aprender mais sobre JavaScript, recomendo a leitura da documentação oficial, que fica no link: <a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript" target="_blank">Documentação oficial de JavaScript</a></p>
+            <p>Para aprender mais sobre Python, recomendo a leitura da documentação oficial, que fica no link: <a href="https://developer.mozilla.org/pt-BR/docs/Web/Python" target="_blank">Documentação oficial de Python</a></p>
+            <p>Para aprender mais sobre Java, recomendo a leitura da documentação oficial, que fica no link: <a href="https://developer.mozilla.org/pt-BR/docs/Web/Java" target="_blank">Documentação oficial de Java</a></p>
+        </div>
 
-    
+        <hr>
 
-    
-    <footer class="footer-signature">
-      <p><small>© Pensador Sem Fronteiras. Todos os direitos reservados.</small></p>
-      <p><em>do zero ao infinito</em></p>
-    </footer>
+        <!-- Formatos de mídia -->
+        <div class="card">
+            <h2>🎬 Formatos de Mídia</h2>
+            <p><a href="paginas/formatosMidias.html" target="_blank">Para ver a lista de <strong>Formatos de Mídia</strong> Clique Aqui!</a></p>
+            <p><a href="https://www.iana.org/assignments/media-types/media-types.xhtml" target="_blank">Ver lista de mídia Online</a></p>
+        </div>
+
+        <hr>
+
+        <!-- Código Base HTML 5 -->
+        <div class="card">
+            <h2>📄 Código Base de HTML 5</h2>
+            <p>Para mostrar o código base de <strong>HTML 5</strong> no Visual Studio: </p>
+            <p><mark class="mark-highlight">! (ENTER)</mark></p>
+
+            <h3>Código Base em HTML 5</h3>
+
+            <div class="code-box" id="codeBaseHtml">
+                <button class="copy-code-btn" id="copyBaseCode">📋 Copiar</button>
+                <code>
+                    &lt;!DOCTYPE html&gt;
+                    &lt;html lang="pt-br"&gt;
+                    &lt;head&gt;
+                        &lt;meta charset="UTF-8"&gt;
+                        &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+                        &lt;title&gt;Document&lt;/title&gt;
+                    &lt;/head&gt;
+                    &lt;body&gt;
+                        &lt;!-- Conteúdo da página --&gt;
+
+                    &lt;/body&gt;
+                    &lt;/html&gt;
+                </code>
+            </div>
+
+            <h2>📌 TAGS DO CÓDIGO BASE HTML</h2>
+            <ol>
+                <li>A tag <code><strong>&lt;!DOCTYPE html&gt;</strong></code> é usada para declarar o tipo de documento e a versão do HTML que está sendo usada. Ela deve ser a primeira linha do código HTML e informa ao navegador como interpretar o conteúdo da página.</li>
+                <li>A tag <code><strong>&lt;html&gt;</strong></code> é a tag raiz de um documento HTML e contém todos os elementos do documento.</li>
+                <li>A tag <code><strong>&lt;head&gt;</strong></code> é usada para conter informações sobre o documento, como o título e meta tags.</li>
+                <li>A tag <code><strong>&lt;body&gt;</strong></code> é usada para conter o conteúdo visível da página web.</li>
+            </ol>
+        </div>
+
+        <hr>
+
+        <!-- 🌟🌟🌟 NAVEGAÇÃO COM BOTÕES REAIS E FUNCIONAIS 🌟🌟🌟 -->
+        <div class="card">
+            <h2>🧭 Navegação Rápida</h2>
+            <div class="nav-grid">
+                <button class="nav-btn-card" onclick="navegarPara('paginas/tags.html')">🏷️ Tags HTML</button>
+                <button class="nav-btn-card" onclick="navegarPara('paginas/textos.html')">📝 Textos</button>
+                <button class="nav-btn-card" onclick="navegarPara('paginas/favicon.html')">🌟 Favicon</button>
+                <button class="nav-btn-card" onclick="navegarPara('paginas/imagens.html')">🖼️ Imagens</button>
+                <button class="nav-btn-card" onclick="navegarPara('paginas/videos.html')">🎥 Vídeos</button>
+                <button class="nav-btn-card" onclick="navegarPara('paginas/audios.html')">🎵 Áudio</button>
+                <button class="nav-btn-card" onclick="navegarPara('paginas/listas.html')">📋 Listas</button>
+                <button class="nav-btn-card" onclick="navegarPara('paginas/links.html')">🔗 Links</button>
+                <button class="nav-btn-card" onclick="navegarPara('paginas/simbolos.html')">💠 Símbolos</button>
+                <button class="nav-btn-card" onclick="navegarPara('paginas/emojis.html')">😀 Emojis</button>
+            </div>
+        </div>
+
+        <footer class="footer-signature">
+            <p><small>&copy; Pensador Sem Fronteiras. Todos os direitos reservados.</small></p>
+            <p><em>Do Zero ao Infinito</em></p>
+        </footer>
+    </div>
+
+    <script>
+        (function() {
+            // 🌟 FUNÇÃO DE NAVEGAÇÃO REAL COM BOTÕES 🌟
+            window.navegarPara = function(url) {
+                if (!url || url === '#') return;
+                
+                // Feedback visual instantâneo
+                const botoes = document.querySelectorAll('.nav-btn-card');
+                botoes.forEach(btn => {
+                    btn.style.pointerEvents = 'none';
+                });
+                
+                // Pequeno delay para mostrar o feedback de clique
+                setTimeout(() => {
+                    window.location.href = url;
+                }, 100);
+                
+                // Reativar botões caso a navegação falhe
+                setTimeout(() => {
+                    botoes.forEach(btn => {
+                        btn.style.pointerEvents = 'auto';
+                    });
+                }, 500);
+            };
+
+            // Suporte para tecla Enter nos botões (acessibilidade)
+            document.querySelectorAll('.nav-btn-card').forEach(btn => {
+                btn.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        this.click();
+                    }
+                });
+            });
+
+            // Copiar código base HTML5
+            const copyBaseBtn = document.getElementById('copyBaseCode');
+            if (copyBaseBtn) {
+                copyBaseBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    const codeToCopy = `<!DOCTYPE html>\n<html lang="pt-br">\n<head>\n    <meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>Document</title>\n</head>\n<body>\n    <!-- Conteúdo da página -->\n\n</body>\n</html>`;
+                    
+                    navigator.clipboard.writeText(codeToCopy).then(() => {
+                        const originalText = copyBaseBtn.innerHTML;
+                        copyBaseBtn.innerHTML = '✅ Copiado!';
+                        copyBaseBtn.style.background = '#00ffaa';
+                        copyBaseBtn.style.color = '#000';
+                        copyBaseBtn.style.borderColor = '#fff';
+                        
+                        setTimeout(() => {
+                            copyBaseBtn.innerHTML = originalText;
+                            copyBaseBtn.style.background = '#000';
+                            copyBaseBtn.style.color = '#ffaef0';
+                            copyBaseBtn.style.borderColor = '#ff00ff';
+                        }, 1800);
+                    }).catch(() => {
+                        alert('Falha ao copiar. Tente novamente.');
+                    });
+                });
+            }
+        })();
+    </script>
 </body>
 </html>

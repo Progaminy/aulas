@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
-    <title>HTML Lendário - Nível I | Pensador Sem Fronteiras</title>
+    <title>HTML Lendário | Pensador Sem Fronteiras</title>
     <link rel="shortcut icon" href="imagens/Iconarchive-Childrens-Book-Animals-Chameleon-Green.512.png" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -332,6 +332,98 @@
             animation: pulse 0.3s ease-out;
         }
 
+         /* Estilos para o índice */
+        .section-card {
+            background: rgba(8, 14, 28, 0.7);
+            backdrop-filter: blur(22px);
+            -webkit-backdrop-filter: blur(22px);
+            border: 1px solid rgba(0, 255, 200, 0.3);
+            border-radius: 2.5rem;
+            padding: 2rem 1.5rem;
+            box-shadow: 0 25px 50px rgba(255, 0, 200, 0.3), 0 0 50px #00ffff38;
+            width: 100%;
+        }
+
+        .header-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #bafff7;
+            text-shadow: 0 0 10px #7dd3fc;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .toggle-btn {
+            background: linear-gradient(135deg, #2a1035, #0f1a2e);
+            border: 2px solid #f472b6;
+            border-radius: 2rem;
+            padding: 0.6rem 1.5rem;
+            font-weight: 700;
+            font-size: 1rem;
+            color: #fdf2ff;
+            cursor: pointer;
+            backdrop-filter: blur(14px);
+            box-shadow: 0 0 20px #ec4899, 0 5px 15px #000000;
+            transition: all 0.25s;
+            text-shadow: 0 0 10px #f472b6;
+        }
+
+        .toggle-btn:hover {
+            border-color: #00f2fe;
+            box-shadow: 0 0 40px #00e5ff, 0 0 20px #d946ef;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .link-indice {
+            list-style: none;
+            padding: 0;
+            margin-top: 1rem;
+        }
+
+        .link-indice h1 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 20px #38bdf8, 0 0 40px #d946ef;
+        }
+
+        .link-indice h2 {
+            font-size: 1.4rem;
+            color: #f472b6;
+            text-shadow: 0 0 15px #f43f9e;
+            margin: 1rem 0 0.5rem;
+        }
+
+        .link-indice li {
+            color: #c8e9ff;
+            font-size: 1.1rem;
+            margin: 0.5rem 0;
+            padding-left: 1rem;
+            text-shadow: 0 0 8px #7dd3fc;
+        }
+
+        .link-indice li p {
+            margin: 0;
+        }
+
+        .link-indice li p strong {
+            color: #bafff7;
+            text-shadow: 0 0 12px #2dd4bf;
+        }
+
+        .hidden-indice {
+            display: none;
+        }
+
+
         @keyframes pulse {
             0% { opacity: 1; }
             100% { opacity: 0; }
@@ -383,8 +475,9 @@
     <div class="container">
         <div class="nav-buttons">
             <a href="../../index.html" class="nav-btn">🏠 Voltar Home</a>
+            <a href="html.html" class="nav-btn">🔄 ATUALIZAR</a>
         </div>
-        <h1 class="main-title">HTML Lendário - Nível I</h1>
+        <h1 class="main-title">HTML Lendário</h1>
 
         <!-- Definição de siglas preservada -->
         <div class="card">
@@ -396,95 +489,43 @@
             <p><strong>S</strong> - Style</p>
             <p><strong>S</strong> - Sheets</p>
         </div>
-
-        <!-- Instalações Necessárias -->
-        <div class="card">
-            <h2>⚙️ Instalações Necessárias</h2>
-            <p>Para instalar o ambiente de desenvolvimento para HTML - CSS, siga os passos abaixo:</p>
-            <ol>
-                <li>Instale um editor de texto ou IDE (Visual Studio Code);</li>
-                <li>Instale um navegador web moderno (Google Chrome);</li>
-                <li>Configure o ambiente de desenvolvimento (Extensões Português, word wrap);</li>
-                <li>Baixe e instale editor de imagem para reduzir e definir formatos (GIMP);</li>
-                <li>Baixe e instale um editor de áudio para editar e definir formatos (Audacity);</li>
-                <li>Baixe e instale um editor de vídeo para editar e definir formatos (DaVinci Resolve, HandBrake).</li>
-            </ol>
-        </div>
-
+ 
         <hr>
 
-        <!-- Recursos de consulta -->
-        <div class="card">
-            <h2>📚 Recursos de consulta HTML - CSS</h2>
-            <p>Para aprender mais sobre HTML, recomendo a leitura da documentação oficial, que fica no link: <a href="https://developer.mozilla.org/pt-BR/docs/Web/HTML" target="_blank">Documentação oficial de HTML</a></p>
-            <p>Para aprender mais sobre CSS, recomendo a leitura da documentação oficial, que fica no link: <a href="https://developer.mozilla.org/pt-BR/docs/Web/CSS" target="_blank">Documentação oficial de CSS</a></p>
-            <p>Para aprender mais sobre JavaScript, recomendo a leitura da documentação oficial, que fica no link: <a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript" target="_blank">Documentação oficial de JavaScript</a></p>
-            <p>Para aprender mais sobre Python, recomendo a leitura da documentação oficial, que fica no link: <a href="https://developer.mozilla.org/pt-BR/docs/Web/Python" target="_blank">Documentação oficial de Python</a></p>
-            <p>Para aprender mais sobre Java, recomendo a leitura da documentação oficial, que fica no link: <a href="https://developer.mozilla.org/pt-BR/docs/Web/Java" target="_blank">Documentação oficial de Java</a></p>
-        </div>
 
-        <hr>
-
-        <!-- Formatos de mídia -->
-        <div class="card">
-            <h2>🎬 Formatos de Mídia</h2>
-            <p><a href="paginas/formatosMidias.html" target="_blank">Para ver a lista de <strong>Formatos de Mídia</strong> Clique Aqui!</a></p>
-            <p><a href="https://www.iana.org/assignments/media-types/media-types.xhtml" target="_blank">Ver lista de mídia Online</a></p>
-        </div>
-
-        <hr>
-
-        <!-- Código Base HTML 5 -->
-        <div class="card">
-            <h2>📄 Código Base de HTML 5</h2>
-            <p>Para mostrar o código base de <strong>HTML 5</strong> no Visual Studio: </p>
-            <p><mark class="mark-highlight">! (ENTER)</mark></p>
-
-            <h3>Código Base em HTML 5</h3>
-
-            <div class="code-box" id="codeBaseHtml">
-                <button class="copy-code-btn" id="copyBaseCode">📋 Copiar</button>
-                <code>
-&lt;!DOCTYPE html&gt;
-&lt;html lang="pt-br"&gt;
-&lt;head&gt;
-    &lt;meta charset="UTF-8"&gt;
-    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-    &lt;title&gt;Document&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;!-- Conteúdo da página --&gt;
-
-&lt;/body&gt;
-&lt;/html&gt;
-                </code>
+         <!-- Índice HTML -->
+        <div class="section-card" data-section="html-indice">
+            <div class="header-row">
+                <div class="section-title"><i>📄</i> Índice HTML</div>
+                <button class="toggle-btn" id="toggleIndiceHTML">📂 Expandir</button>
             </div>
-
-            <h2>📌 TAGS DO CÓDIGO BASE HTML</h2>
-            <ol>
-                <li>A tag <code><strong>&lt;!DOCTYPE html&gt;</strong></code> é usada para declarar o tipo de documento e a versão do HTML que está sendo usada. Ela deve ser a primeira linha do código HTML e informa ao navegador como interpretar o conteúdo da página.</li>
-                <li>A tag <code><strong>&lt;html&gt;</strong></code> é a tag raiz de um documento HTML e contém todos os elementos do documento.</li>
-                <li>A tag <code><strong>&lt;head&gt;</strong></code> é usada para conter informações sobre o documento, como o título e meta tags.</li>
-                <li>A tag <code><strong>&lt;body&gt;</strong></code> é usada para conter o conteúdo visível da página web.</li>
+            <ol class="link-indice hidden-indice" id="indiceHTML">
+                <h1>Índice</h1>
+                <h2>HTML I</h2>
+                <li><p><strong>Tag's HTML</strong> - Principais Tags HTML · Exemplo de Uso das Tags</p></li>
+                <li><p><strong>Textos</strong> - Formatação de Texto · Exemplo de Formatação de Texto</p></li>
+                <li><p><strong>Favicon</strong> - Inserir um Favicon · Links para Favicon </p></li>
+                <li><p><strong>Imagens</strong> - Editores de imagem · Imagem Responsiva · Carregar imagens externas · Baixar Imagem </p></li>
+                <li><p><strong>Vídeos</strong> - Editores e Conversor · Inserir um Vídeo </p></li>
+                <li><p><strong>Áudio</strong> - Conversor · Inserir Audio · Baixar Audio </p></li>
+                <li><p><strong>Listas</strong> - Listas Ordenadas e nao ordenadas · tipo de contagr e de marcacao · Começar contagem em posição específica · Junção de listas · Lista de Definição</p></li>
+                <li><p><strong>Links</strong> - Link Interno e Externo · Link para limitar busca de link externo · formatos de mídia disponíveis </p></li>
+                i><p><strong>Símbolos</strong> - Para pesquisar mais símbolos · Símbolos HTML Principais · Moedas ·Símbolos Matemáticos</p></li>
+                <li><p><strong>Links</strong> - Link Interno e Externo · Link para limitar busca de link externo · formatos de mídia disponíveis </p></li>
+                i><p><strong>Emojis</strong> - Link para Emojipedia · Lista de Emojis</p></li>
+                <h2>CSS II</h2>
+                <li><p><strong>Brevemente</strong> - Brevemente</p></li>
             </ol>
         </div>
 
-        <hr>
-
-        <!-- 🌟🌟🌟 NAVEGAÇÃO COM BOTÕES REAIS E FUNCIONAIS 🌟🌟🌟 -->
+        <!-- NAVEGAÇÃO COM BOTÕES -->
         <div class="card">
-            <h2>🧭 Navegação Rápida</h2>
             <div class="nav-grid">
-                <button class="nav-btn-card" onclick="navegarPara('paginas/tags.html')">🏷️ Tags HTML</button>
-                <button class="nav-btn-card" onclick="navegarPara('paginas/textos.html')">📝 Textos</button>
-                <button class="nav-btn-card" onclick="navegarPara('paginas/favicon.html')">🌟 Favicon</button>
-                <button class="nav-btn-card" onclick="navegarPara('paginas/imagens.html')">🖼️ Imagens</button>
-                <button class="nav-btn-card" onclick="navegarPara('paginas/videos.html')">🎥 Vídeos</button>
-                <button class="nav-btn-card" onclick="navegarPara('paginas/audios.html')">🎵 Áudio</button>
-                <button class="nav-btn-card" onclick="navegarPara('paginas/listas.html')">📋 Listas</button>
-                <button class="nav-btn-card" onclick="navegarPara('paginas/links.html')">🔗 Links</button>
-                <button class="nav-btn-card" onclick="navegarPara('paginas/simbolos.html')">💠 Símbolos</button>
-                <button class="nav-btn-card" onclick="navegarPara('paginas/emojis.html')">😀 Emojis</button>
+                <button class="nav-btn-card" onclick="navegarPara('html1/html1.html')">&lt;/&gt; HTML I</button>
+                <button class="nav-btn-card" onclick="navegarPara('html2/html2.html')">&lt;/&gt; HTML II</button>
+                <button class="nav-btn-card" onclick="navegarPara('#')">&lt;/&gt; HTML III</button>
+                <button class="nav-btn-card" onclick="navegarPara('#')">&lt;/&gt; HTML IV</button>
+                <button class="nav-btn-card" onclick="navegarPara('#')">&lt;/&gt; HTML V</button>
             </div>
         </div>
 
@@ -496,7 +537,7 @@
 
     <script>
         (function() {
-            // 🌟 FUNÇÃO DE NAVEGAÇÃO REAL COM BOTÕES 🌟
+            // 🌟 FUNÇÃO DE NAVEGAÇÃO COM BOTÕES 🌟
             window.navegarPara = function(url) {
                 if (!url || url === '#') return;
                 
@@ -557,6 +598,29 @@
                 });
             }
         })();
+
+        // Função toggle expandir/recolher para o índice HTML
+        document.addEventListener('DOMContentLoaded', function() {
+            const btn = document.getElementById('toggleIndiceHTML');
+            const indice = document.getElementById('indiceHTML');
+            
+            if (!btn || !indice) {
+                console.error('Elementos do índice não encontrados');
+                return;
+            }
+
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const isHidden = indice.classList.contains('hidden-indice');
+                if (isHidden) {
+                    indice.classList.remove('hidden-indice');
+                    btn.innerHTML = '📁 Recolher';
+                } else {
+                    indice.classList.add('hidden-indice');
+                    btn.innerHTML = '📂 Expandir';
+                }
+            });
+        });
     </script>
 </body>
 </html>

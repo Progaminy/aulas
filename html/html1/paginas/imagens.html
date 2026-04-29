@@ -430,22 +430,73 @@
 
         <hr>
 
-        <!-- Imagem Responsiva - Tag básica -->
+        <!-- Inserir Imagem - Tag básica -->
         <div class="card">
-            <h2>📐 Imagem Responsiva</h2>
-            <p>Para colocar imagem responsiva use a seguinte tag:</p>
+            <h2>Inserir Imagem</h2>
+            <p>Para colocar imagem use a seguinte tag:</p>
             <p>Para carregar uma imagem em HTML, você pode usar a tag <code><strong>&lt;img&gt;</strong></code>. A sintaxe básica para usar essa tag é a seguinte:</p>
 
             <div class="code-box" id="codeImgBasico">
                 <button class="copy-code-btn" id="copyImgBasico">📋 Copiar</button>
-                <code>&lt;img src="caminho/para/imagem.jpg" alt="Descrição da imagem"&gt;</code>
+                <code>
+                    &lt;picture&gt; 
+                        &lt;img src="caminho/para/imagem.jpg" alt="Descrição da imagem"&gt;
+                        &lt;img src="caminho/para/imagem.png" alt="Descrição da imagem"&gt;
+                    &lt;picture&gt;
+                </code>
             </div>
 
-            <p><strong>Onde:</strong></p>
+            <!-- Notas importantes -->
+            <div class="card">
+                <h2>📝 Notas Importantes</h2>
+            
+                <p><span class="note-badge">Nota A:</span></p>
+                <p>É recomendado fornecer várias fontes de imagem em diferentes formatos para garantir a compatibilidade com diferentes navegadores, pois nem todos os navegadores suportam os mesmos formatos de imagem.</p>
+
+                <p><strong>Onde:</strong></p>
+                <ul>
+                    <li><code>src</code>: Especifica o caminho para a imagem que você deseja carregar. Pode ser um caminho relativo ou absoluto.</li>
+                    <li><code>alt</code>: Fornece uma descrição alternativa da imagem, que é exibida caso a imagem não possa ser carregada ou para leitores de tela.</li>
+                </ul>
+            </div>
+
+        <hr>
+
+         <!-- Imagem Responsiva - Tag básica -->
+        <div class="card">
+            <h2>📐 Imagem Responsiva</h2>
+            <p>Para colocar imagem responsiva use a seguinte tag:</p>
+            <p>Para carregar uma imagem em HTML, você pode usar a tag <code><strong>&lt;picture&gt;</strong> dentro de colocar a tag <code><strong>&lt;source&gt;</strong> midia pyte</code>. A sintaxe básica para usar essa tag é a seguinte:</p>
+
+            <div class="code-box" id="codeImgBasico">
+                <button class="copy-code-btn" id="copyImgBasico">📋 Copiar</button>
+                <code>
+                    &lt;picture&gt;
+                        &lt;source media="(max-width: 1000px)" srcset="caminho/imagem.png" type="image/png"&gt;
+                        &lt;img src="caminho/imagem" alt="descricao"&gt;
+                        &lt;source media="(max-width: 700px)" srcset="caminho/imagem.png" type="image/png"&gt;
+                        &lt;img src="caminho/imagem" alt="descricao"&gt;
+                        &lt;img src="caminho/imagem" alt="descricao"&gt;
+                    &lt;/picture&gt;
+                </code>
+                    
+            </div>
+
+            <p><strong>Onde: B</strong></p>
             <ul>
+                <li><code>source</code> : p[or ode comaca a calcular para exibir imagem, max-width: do maior para menor, min-width: do menor para maior. para garantir melhor aumentar 20 ou mais px do tamanho real</li>
+                <li>a ultima imagem usar a tag <img src="" alt=""> sem a tag source</li>
                 <li><code>src</code>: Especifica o caminho para a imagem que você deseja carregar. Pode ser um caminho relativo ou absoluto.</li>
                 <li><code>alt</code>: Fornece uma descrição alternativa da imagem, que é exibida caso a imagem não possa ser carregada ou para leitores de tela.</li>
             </ul>
+        </div>
+
+         <!-- Notas importantes -->
+        <div class="card">
+            <h2>📝 Notas Importantes</h2>
+
+            <p><span class="note-badge">Nota:</span></p>
+            <p>As imagens devem ser colocadas de ordem crescente, acrescente sempre pelo menos 10px no valor máximo da imagem.</p>
         </div>
 
         <hr>
@@ -482,9 +533,6 @@
         <!-- Notas importantes -->
         <div class="card">
             <h2>📝 Notas Importantes</h2>
-            
-            <p><span class="note-badge">Nota A:</span></p>
-            <p>É recomendado fornecer várias fontes de imagem em diferentes formatos para garantir a compatibilidade com diferentes navegadores, pois nem todos os navegadores suportam os mesmos formatos de imagem.</p>
 
             <p><span class="note-badge">Nota B:</span></p>
             <p>As imagens devem ser colocadas de ordem crescente, acrescente sempre pelo menos 10px no valor máximo da imagem.</p>
