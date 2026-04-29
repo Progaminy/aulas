@@ -44,6 +44,34 @@
             gap: 1.5rem;
         }
 
+        .nav-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.9rem;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .btn-link {
+            background: rgba(0, 0, 0, 0.55);
+            border: 2px solid #f472b6;
+            border-radius: 3rem;
+            padding: 0.9rem 2rem;
+            font-weight: 700;
+            font-size: 1.15rem;
+            text-decoration: none;
+            color: #fdf2ff;
+            backdrop-filter: blur(14px);
+            box-shadow: 0 0 30px #ec4899, 0 10px 22px #000000;
+            transition: all 0.25s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #2a1035, #0f1a2e);
+            text-shadow: 0 0 10px #f472b6;
+            letter-spacing: 0.3px;
+        }
+
         h1 {
             font-size: clamp(2.4rem, 8vw, 3.5rem);
             font-weight: 800;
@@ -200,7 +228,16 @@
 <body>
     <div class="container">
 
-        <h1>🎨 Corporar CSS</h1>
+        <!-- Botões de navegação superiores -->
+        <div class="nav-buttons">
+            <a href="../../../index.html" class="btn-link">🏠 Voltar Home</a>
+            <a href="../../css.html" class="btn-link">🎨 Voltar CSS</a>
+            <a href="../css1.html" class="btn-link">🎨 Voltar CSS</a>
+            <a href="incorporarStyle.html" class="btn-link">🔄 REFRESCAR</a>
+            
+        </div>
+
+        <h1>🎨 Incorporar CSS</h1>
 
         <!-- CSS Inline -->
         <div class="card">

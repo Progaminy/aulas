@@ -223,6 +223,97 @@
             box-shadow: 0 0 55px #f43f9e, 0 0 35px #facc15 !important;
         }
 
+        /* Estilos para o índice */
+        .section-card {
+            background: rgba(8, 14, 28, 0.7);
+            backdrop-filter: blur(22px);
+            -webkit-backdrop-filter: blur(22px);
+            border: 1px solid rgba(0, 255, 200, 0.3);
+            border-radius: 2.5rem;
+            padding: 2rem 1.5rem;
+            box-shadow: 0 25px 50px rgba(255, 0, 200, 0.3), 0 0 50px #00ffff38;
+            width: 100%;
+        }
+
+        .header-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #bafff7;
+            text-shadow: 0 0 10px #7dd3fc;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .toggle-btn {
+            background: linear-gradient(135deg, #2a1035, #0f1a2e);
+            border: 2px solid #f472b6;
+            border-radius: 2rem;
+            padding: 0.6rem 1.5rem;
+            font-weight: 700;
+            font-size: 1rem;
+            color: #fdf2ff;
+            cursor: pointer;
+            backdrop-filter: blur(14px);
+            box-shadow: 0 0 20px #ec4899, 0 5px 15px #000000;
+            transition: all 0.25s;
+            text-shadow: 0 0 10px #f472b6;
+        }
+
+        .toggle-btn:hover {
+            border-color: #00f2fe;
+            box-shadow: 0 0 40px #00e5ff, 0 0 20px #d946ef;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .link-indice {
+            list-style: none;
+            padding: 0;
+            margin-top: 1rem;
+        }
+
+        .link-indice h1 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 20px #38bdf8, 0 0 40px #d946ef;
+        }
+
+        .link-indice h2 {
+            font-size: 1.4rem;
+            color: #f472b6;
+            text-shadow: 0 0 15px #f43f9e;
+            margin: 1rem 0 0.5rem;
+        }
+
+        .link-indice li {
+            color: #c8e9ff;
+            font-size: 1.1rem;
+            margin: 0.5rem 0;
+            padding-left: 1rem;
+            text-shadow: 0 0 8px #7dd3fc;
+        }
+
+        .link-indice li p {
+            margin: 0;
+        }
+
+        .link-indice li p strong {
+            color: #bafff7;
+            text-shadow: 0 0 12px #2dd4bf;
+        }
+
+        .hidden-indice {
+            display: none;
+        }
+
         footer {
             margin-top: 1rem;
             text-align: center;
@@ -251,7 +342,7 @@
         }
 
         @media (max-width: 480px) {
-            .sigla-card, .menu-card {
+            .sigla-card, .menu-card, .section-card {
                 padding: 1.4rem 1.1rem;
                 border-radius: 2rem;
             }
@@ -269,6 +360,11 @@
             .sigla-letra {
                 font-size: 1.8rem;
             }
+            .header-row {
+                flex-direction: column;
+                gap: 0.8rem;
+                text-align: center;
+            }
         }
     </style>
 </head>
@@ -277,8 +373,8 @@
 
         <!-- Botões de navegação superiores -->
         <div class="nav-buttons">
-            <a href="../index.html" class="btn-link">🏠 Voltar Home</a>
-            <a href="css.html" class="btn-link">🔄 REFRESCAR</a>
+            <a href="../index.html" class="btn-link">🏠 Voltar à Home</a>
+            <a href="css.html" class="btn-link">🔄 ATUALIZAR</a>
         </div>
 
         <!-- Título principal -->
@@ -304,63 +400,60 @@
             </p>
             <p style="color:#c8e9ff;">Serve para definir o estilo e a apresentação de elementos HTML</p>
             <p style="color:#94d8ff; font-style:italic; text-shadow:0 0 8px #38bdf8;">Folhas de Estilo em Cascata</p>
+        </div>
 
-            <!-- Indice CSS-->
+        <!-- Índice CSS -->
+        <div class="section-card" data-section="css-indice">
+            <div class="header-row">
+                <div class="section-title"><i>📄</i> Índice CSS</div>
+                <button class="toggle-btn" id="toggleIndiceCSS">📂 Expandir</button>
             </div>
+            <ol class="link-indice hidden-indice" id="indiceCSS">
+                <h1>Índice</h1>
+                <h2>CSS I</h2>
+                <li><p><strong>Incorporar CSS</strong> - CSS inline · interno · externo</p></li>
+                <li><p><strong>Fontes</strong> - Tipografia · fontes · Google Fonts · estilização</p></li>
+                <li><p><strong>Cores</strong> - Cores · estilização</p></li>
+                <h2>CSS II</h2>
+                <li><p><strong>Brevemente</strong> - Brevemente</p></li>
+            </ol>
+        </div>
 
-                <div class="section-card" data-section="css1-indice">
-                    <div class="header-row">
-                        <div class="section-title"><i>📄</i> Indice-CSS </div>
-                        <button class="toggle-btn" id="toggleIndiceCSS">📂 Expandir</button>
-                        
-                    </div>
-                    <ol class="link-indice hidden-indice" id="indiceCSS">
-                        <h1>Indice</h1>
-                        <h2>CSS I</h2>
-                        <li><p><strong>Incorporar CSS</strong> - CSS inline · interno · externo</p></button></li>
-                        <li><p><strong>Fontes</strong> - Tipografia · fontes · Google Fonts · estilização</p></button></li>
-                        <li><p><strong>Cores</strong> - Cores · estilização</p></button></li>
-                        <h2>CSS II</h2>
-                        <li><p><strong>Brevimente</strong> - Brevimente</p></li>
-                    </ol>
-                </div>
+        <!-- Link: css1 -->
+        <a href="css1/css1.html" class="menu-btn">
+            <span class="menu-icon">📌</span>
+            <span class="menu-text">
+                CSS I ⭐
+                <span class="menu-subtitle">CSS base</span>
+            </span>
+        </a>
 
-            <!-- Link: css1 -->
-            <a href="css1/css1.html" class="menu-btn">
-                <span class="menu-icon">📌</span>
-                <span class="menu-text">
-                    CSS I ⭐
-                    <span class="menu-subtitle">CSS base</span>
-                </span>
-            </a>
+        <!-- Link: css2 -->
+        <a href="css2/css2.html" class="menu-btn">
+            <span class="menu-icon">🔤</span>
+            <span class="menu-text">
+                CSS II ⭐⭐
+                <span class="menu-subtitle">CSS médio</span>
+            </span>
+        </a>
 
-            <!-- Link: css2 -->
-            <a href="css2/css2.html" class="menu-btn">
-                <span class="menu-icon">🔤</span>
-                <span class="menu-text">
-                    CSS II ⭐⭐
-                    <span class="menu-subtitle">Css medio</span>
-                </span>
-            </a>
+        <!-- css3 -->
+        <a href="#" class="menu-btn">
+            <span class="menu-icon">🔤</span>
+            <span class="menu-text">
+                CSS III ⭐⭐⭐
+                <span class="menu-subtitle">CSS Intermediário</span>
+            </span>
+        </a>
 
-            <!-- css3 -->
-            
-            <a href="#" class="menu-btn">
-                <span class="menu-icon">🔤</span>
-                <span class="menu-text">
-                    CSS III ⭐⭐⭐
-                    <span class="menu-subtitle">CSS Intermediario</span>
-                </span>
-            </a>
-
-            <!-- Link destacado: Tabela Lendária -->
-            <a href="tabela.html" class="menu-btn destacado-btn">
-                <span class="menu-icon">📊</span>
-                <span class="menu-text">
-                    Tabela Lendária - CSS
-                    <span class="menu-subtitle">Resumo Geral</span>
-                </span>
-            </a>
+        <!-- Link destacado: Tabela Lendária -->
+        <a href="tabela.html" class="menu-btn destacado-btn">
+            <span class="menu-icon">📊</span>
+            <span class="menu-text">
+                Tabela Lendária - CSS
+                <span class="menu-subtitle">Resumo Geral</span>
+            </span>
+        </a>
 
         <footer>
             <p>&copy; <small>Pensador Sem Fronteiras</small> <br> <em>Do Zero ao Infinito</em></p>
@@ -368,21 +461,24 @@
     </div>
 
     <script>
-
-        // Função toggle expandir/recolher
-        sections.forEach(({ toggleId, indiceCSS }) => {
-            const btn = document.getElementById(toggleId);
-            const list = document.getElementById(indiceCSS);
-            if (!btn || !list) return;
+        // Função toggle expandir/recolher para o índice CSS
+        document.addEventListener('DOMContentLoaded', function() {
+            const btn = document.getElementById('toggleIndiceCSS');
+            const indice = document.getElementById('indiceCSS');
+            
+            if (!btn || !indice) {
+                console.error('Elementos do índice não encontrados');
+                return;
+            }
 
             btn.addEventListener('click', function(e) {
                 e.stopPropagation();
-                const isHidden = list.classList.contains('hidden-indice');
+                const isHidden = indice.classList.contains('hidden-indice');
                 if (isHidden) {
-                    list.classList.remove('hidden-indice');
+                    indice.classList.remove('hidden-indice');
                     btn.innerHTML = '📁 Recolher';
                 } else {
-                    list.classList.add('hidden-indice');
+                    indice.classList.add('hidden-indice');
                     btn.innerHTML = '📂 Expandir';
                 }
             });

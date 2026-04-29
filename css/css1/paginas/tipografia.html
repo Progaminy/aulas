@@ -1,231 +1,545 @@
 <!DOCTYPE html>
-<html lang="pt-pt">
+<html lang="pt-PT">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tpografia - Fontes</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <title>Tipografia • Fontes | Estudo CSS</title>
+  <!-- Google Fonts para títulos e corpo -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0a0c0f;
+      font-family: 'Open Sans', 'Segoe UI', system-ui, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      padding: 1.5rem 1.2rem;
+      color: #e0f0ff;
+      line-height: 1.5;
+    }
+
+    /* Container principal com borda neon pulsante */
+    .master-container {
+      max-width: 900px;
+      width: 100%;
+      background: rgba(10, 15, 22, 0.85);
+      backdrop-filter: blur(14px);
+      border: 1px solid #0ff2;
+      border-radius: 3rem 1.5rem 3rem 1.5rem;
+      padding: 2rem 1.5rem;
+      box-shadow: 0 0 30px #00ffff33, 0 20px 40px rgba(0, 0, 0, 0.8);
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    /* Navegação – botões clicáveis gigantes, estilo link completo */
+    .nav-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      justify-content: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .nav-btn {
+      background: #0f172a;
+      border: 1px solid #00e5ff;
+      color: #00f7ff;
+      font-weight: 700;
+      text-decoration: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 3rem;
+      font-size: 1rem;
+      letter-spacing: 0.5px;
+      box-shadow: 0 0 12px #00ffff80, 0 4px 10px rgba(0,0,0,0.6);
+      transition: all 0.25s ease;
+      display: inline-block;
+      text-align: center;
+      background: linear-gradient(145deg, #0b1120, #001a2f);
+      backdrop-filter: blur(8px);
+    }
+
+    .nav-btn:hover, .nav-btn:active {
+      background: #00ffff;
+      color: #0a0f1a;
+      border-color: #ff00d4;
+      box-shadow: 0 0 35px #ff00d4, 0 0 20px #00ffff;
+      transform: translateY(-2px);
+      font-weight: 800;
+    }
+
+    h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      text-align: center;
+      letter-spacing: -0.5px;
+      color: #ffffff;
+      text-shadow: 0 0 18px #00ffff, 0 0 40px #ff00b3;
+      background: linear-gradient(180deg, #fff 0%, #c4f0ff 80%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin: 0.2rem 0 0.5rem;
+    }
+
+    h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #ff66f0;
+      text-shadow: 0 0 15px #ff00c8, 0 0 30px #8a2be2;
+      border-left: 6px solid #0ff;
+      padding-left: 1rem;
+      margin: 1.5rem 0 1rem;
+      letter-spacing: -0.3px;
+    }
+
+    h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: #b3ff00;
+      text-shadow: 0 0 12px #b3ff00aa;
+      margin: 1.2rem 0 0.5rem;
+    }
+
+    h4 {
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: #00ffe0;
+      margin: 1.2rem 0 0.3rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-shadow: 0 0 10px cyan;
+    }
+
+    strong {
+      color: #ffb3ff;
+      font-weight: 700;
+      text-shadow: 0 0 6px magenta;
+    }
+
+    em {
+      color: #ccf0ff;
+      font-style: italic;
+    }
+
+    p, li {
+      font-size: 1.05rem;
+      margin: 0.6rem 0;
+    }
+
+    ul {
+      list-style-type: none;
+      padding-left: 0.3rem;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+
+    /* Cartões elegantes para blocos de código e conceitos */
+    .card {
+      background: #0b1420;
+      border: 1px solid #0ff4;
+      border-radius: 2rem 1rem 2rem 1rem;
+      padding: 1.5rem 1.2rem;
+      margin: 1.5rem 0 1.2rem;
+      box-shadow: 0 0 28px #00ffff30, inset 0 0 10px #ff00d420;
+      backdrop-filter: blur(10px);
+      position: relative;
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      border-color: #ff00d4;
+      box-shadow: 0 0 45px #ff00d488, 0 0 20px #00ffff;
+    }
+
+    .code-block {
+      background: #020617;
+      border-radius: 1.2rem;
+      padding: 1.2rem;
+      margin: 1rem 0 1.2rem;
+      border: 1px solid #ff00d4;
+      box-shadow: 0 0 28px #ff00d466, inset 0 0 15px #0ff2;
+      color: #f0e68c;
+      font-family: 'Courier New', monospace;
+      font-size: 0.95rem;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+      position: relative;
+      line-height: 1.6;
+    }
+
+    .copy-btn {
+      background: #1e1e2f;
+      border: 1px solid #0ff;
+      color: #0ff;
+      font-weight: bold;
+      font-size: 0.85rem;
+      padding: 0.5rem 1.2rem;
+      border-radius: 2rem;
+      cursor: pointer;
+      margin-top: 0.5rem;
+      display: inline-block;
+      background: linear-gradient(145deg, #111827, #0b1120);
+      box-shadow: 0 0 18px #00ffffaa;
+      transition: all 0.2s;
+      letter-spacing: 0.4px;
+    }
+
+    .copy-btn:hover {
+      background: #00ffff;
+      color: #000;
+      border-color: #ff00d4;
+      box-shadow: 0 0 40px #ff00d4, 0 0 25px cyan;
+      font-weight: 800;
+    }
+
+    /* Botão de navegação estilo link (sem copiar) */
+    .link-btn {
+      background: #1a1030;
+      border: 1px solid #ff66ff;
+      color: #ffb3ff;
+      font-weight: 700;
+      padding: 0.85rem 1.8rem;
+      border-radius: 3rem;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 1.1rem;
+      text-align: center;
+      box-shadow: 0 0 24px #ff00d4aa, 0 5px 15px black;
+      background: linear-gradient(145deg, #2e1a4a, #0f0c24);
+      margin: 0.4rem 0;
+      transition: 0.25s;
+    }
+
+    .link-btn:hover {
+      background: #ff00d4;
+      color: #000;
+      border-color: cyan;
+      box-shadow: 0 0 45px cyan, 0 0 30px magenta;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      background: #0a0e17;
+      border-radius: 1rem;
+      overflow: hidden;
+      box-shadow: 0 0 25px #0ff3;
+    }
+
+    th {
+      background: #1f1040;
+      color: #f0f;
+      padding: 0.7rem;
+      text-shadow: 0 0 8px magenta;
+    }
+
+    td {
+      padding: 0.7rem;
+      border-bottom: 1px solid #0ff4;
+      color: #d9f0ff;
+    }
+
+    footer {
+      margin-top: 2.5rem;
+      text-align: center;
+      font-weight: 300;
+      color: #aaaacc;
+      border-top: 1px solid #00ffff55;
+      padding-top: 1.5rem;
+    }
+
+    footer small {
+      font-size: 1rem;
+      letter-spacing: 2px;
+      color: #b0f0ff;
+      text-shadow: 0 0 10px cyan;
+    }
+
+    footer em {
+      display: block;
+      font-style: italic;
+      color: #c0c0ff;
+      margin-top: 0.2rem;
+    }
+
+    @media (max-width: 500px) {
+      .master-container {
+        padding: 1.5rem 1rem;
+      }
+      h1 {
+        font-size: 2.2rem;
+      }
+      .nav-btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
 </head>
 <body>
+  <div class="master-container">
+    
+    <!-- Navegação como botões grandes clicáveis -->
+    <div class="nav-row">
+      <a href="../../../index.html" class="nav-btn">🏠 Voltar Home</a>
+      <a href="../../css.html" class="nav-btn">🎨 Voltar CSS</a>
+      <a href="../css1.html" class="nav-btn">📘 Voltar CSS1</a>
+      <a href="tipografia.html" class="nav-btn">🔄 Refrescar</a>
+    </div>
 
-    <a href="../../index.html">Voltar Home</a> <a href="../css1.html">Voltaer CSS</a>
     <h1>Tipografia</h1>
 
-    <p><strong>Tipografia</strong> é a arte e a técnica de organizar e dar forma às letras, palavras e blocos de texto, com o objetivo duplo de garantir boa legibilidade e transmitir uma atmosfera ou emoção específica na comunicação visual.</p>
+    <div class="card">
+      <p><strong>Tipografia</strong> é a arte e a técnica de organizar e dar forma às letras, palavras e blocos de texto, com o objetivo duplo de garantir boa legibilidade e transmitir uma atmosfera ou emoção específica na comunicação visual.</p>
+    </div>
 
-    <h2>Categorias de fontrs</h2>
-
+    <h2>Categorias de fontes</h2>
     <ul>
-        <li><strong>Serifadas (Serif)</strong> – Com pequenos "pés" nas extremidades. Exemplos: Times New Roman, Garamond, Georgia.</li>
-        <li><strong>Sem Serifas (Sans Serif)</strong> – Sem os pés, traços limpos e retos. Exemplos: Helvetica, Arial, Open Sans.</li>
-        <li><strong>Sem Serifas (Sans Serif)</strong> – Sem os pés, traços limpos e retos. Exemplos: Helvetica, Arial, Open Sans.</li>
-        <li><strong>Manuscritas (Script)</strong> – Imitam caligrafia ou letra cursiva. Exemplos: Brush Script, Pacifico.</li>
-        <li><strong>Monoespaçadas (Monospace)</strong> – Todas as letras ocupam a mesma largura. Exemplos: Courier New, Consolas.</li>
-        <li><sytrong>Display / Decorativas</sytrong> – Feitas para chamar atenção em títulos e cartazes. Exemplos: Impact, fontes temáticas.</li>
+      <li><strong>Serifadas (Serif)</strong> – Com pequenos "pés" nas extremidades. Exemplos: Times New Roman, Garamond, Georgia.</li>
+      <li><strong>Sem Serifas (Sans Serif)</strong> – Sem os pés, traços limpos e retos. Exemplos: Helvetica, Arial, Open Sans.</li>
+      <li><strong>Manuscritas (Script)</strong> – Imitam caligrafia ou letra cursiva. Exemplos: Brush Script, Pacifico.</li>
+      <li><strong>Monoespaçadas (Monospace)</strong> – Todas as letras ocupam a mesma largura. Exemplos: Courier New, Consolas.</li>
+      <li><strong>Display / Decorativas</strong> – Feitas para chamar atenção em títulos e cartazes. Exemplos: Impact, fontes temáticas.</li>
     </ul>
-    <h1>Fontes</h1>
-    <ul>
-        <li>font-family – Define a fonte</li>
 
-        
-        <code>
-            body { <br>
-            font-family: "Helvetica Neue", Arial, sans-serif; <br>
-            } <br>
-        </code>
+    <h1 style="font-size: 2.2rem; margin-top: 1rem;">Fontes</h1>
+    
+    <div class="card">
+      <ul>
+        <li><strong>font-family</strong> – Define a fonte</li>
+      </ul>
+      <div class="code-block" id="code1">body {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}</div>
+      <button class="copy-btn" onclick="copyCode('code1')">📋 Copiar</button>
+      <p>Colocam-se 2 ou 3 combinações para garantir a funcionalidade em diversos navegadores. Para saber combinações de fontes, visite:</p>
+      <!-- Link transformado em botão clicável (sem copiar) -->
+      <a href="https://www.w3schools.com/cssref/css_websafe_fonts.php" target="_blank" rel="noopener" class="link-btn">🔗 CSS Web Safe Font Combinations</a>
+      <p style="margin-top: 1rem;">Várias opções (fallbacks) – a última deve ser uma genérica (<code>serif</code>, <code>sans-serif</code>, <code>monospace</code>) - Nomes com espaços vão entre <strong>aspas</strong>.</p>
+    </div>
 
-        <p>colocasse 2 ou 3 combinacao para garantir a funcionalidade em divesros navegadores, para saber combinacoes de fonte vao para </p>
+    <h2>Fonte para Elementos HTML</h2>
+    <div class="code-block" id="code2">&lt;style&gt;
+    h1, h2 {
+        font-family: 'Times New Roman', Times, serif;
+    }
+&lt;/style&gt;</div>
+    <button class="copy-btn" onclick="copyCode('code2')">📋 Copiar</button>
 
-        <a href="https://www.w3schools.com/cssref/css_websafe_fonts.php">css web safe font combinations</a>
+    <div class="card">
+      <ul>
+        <li><strong>font-size</strong> – Tamanho de fonte</li>
+      </ul>
+      <h4>Medidas Absolutas:</h4>
+      <p>
+        cm (centímetro) <br>
+        mm (milímetro) <br>
+        in (polegada) <br>
+        px (pixel) <br>
+        pt (ponto) – melhor para impressão no papel, Word usa pt <br>
+        pc (paica) – melhor para impressão no papel
+      </p>
+      <h4>Medidas Relativas</h4>
+      <p>
+        <strong>rem</strong> (relativo ao <code>html</code>) – melhor para acessibilidade <br>
+        <strong>em</strong> – relativo ao elemento pai <br>
+        <strong>ex</strong> – altura do x <br>
+        <strong>vw</strong> – largura da viewport <br>
+        <strong>%</strong>
+      </p>
+      <h4>Medidas Recomendadas</h4>
+      <p><strong>em</strong> <br> <strong>px</strong></p>
+      <p><em>Não pode haver espaço entre o número e a unidade.</em></p>
+    </div>
 
-        <p></p>várias opções (fallbacks) – a última deve ser uma genérica (`serif`, `sans-serif`, `monospace`) - Nomes com espaços vão entre <strong>aspas</strong></p>
+    <div class="card">
+      <ul>
+        <li><strong>font-weight</strong> – Espessura</li>
+      </ul>
+      <div class="code-block" id="code3">&lt;style&gt;
+    h1 { font-weight: lighter; }   /* Fina */
+    h2 { font-weight: normal; }   /* 400 normal */
+    h3 { font-weight: bold; }     /* 700 */
+    h4 { font-weight: bolder; }   /* grossa */
+    h2 { font-weight: 100; }      /* variação de 100 a 900 */
+&lt;/style&gt;</div>
+      <button class="copy-btn" onclick="copyCode('code3')">📋 Copiar</button>
+      <p>Valores: 100 (thin), 200–<strong>900</strong> (black)</p>
+    </div>
 
-        <h2>fonte para Elementos HTML</h2>
+    <div class="card">
+      <ul>
+        <li><strong>font-style</strong> – Estilo</li>
+      </ul>
+      <p>Normal ou itálico</p>
+      <div class="code-block" id="code4">p { font-style: italic; }
+h1 { font-style: normal; }</div>
+      <button class="copy-btn" onclick="copyCode('code4')">📋 Copiar</button>
+    </div>
 
-        <code>
-            &lt;style&gt;
-                h1, h2 { <br>
-                     font-family: 'Times New Roman', Times, serif; <br>
-                } <br>
-            &lt;/style&gt; 
-        </code>
-        
-        <li>font-size – Tamanho de fonte</li>
+    <div class="card">
+      <ul>
+        <li><strong>shorthand font</strong></li>
+      </ul>
+      <div class="code-block" id="code5">&lt;style&gt;
+    p {
+        /* font-style → font-weight → font-size → font-family */
+        font: italic bolder 4em 'Work Sans', sans-serif;
+    }
+&lt;/style&gt;</div>
+      <button class="copy-btn" onclick="copyCode('code5')">📋 Copiar</button>
+    </div>
 
-        <h4>Medidas Absoluta : </h4>
+    <div class="card">
+      <ul>
+        <li><strong>text-decoration</strong> (decorar texto)</li>
+      </ul>
+      <div class="code-block" id="code6">body {
+    text-decoration: underline; /* sublinhado */
+}</div>
+      <button class="copy-btn" onclick="copyCode('code6')">📋 Copiar</button>
+    </div>
 
-        <p>
-            cm (centimetro) <br>
-            mm (milimetro) <br>
-            in (Polegada) <br>
-            px (pixel) <br>
-            pt (Ponto) melhor para impresso  no papel  world usa pt <br>
-            pc (paica) melhor para impresso no papel <br>
-        </p>
+    <div class="card">
+      <ul>
+        <li><strong>line-height</strong> – Entrelinha (fundamental para leitura)</li>
+      </ul>
+      <div class="code-block" id="code7">&lt;style&gt;
+    body {
+        line-height: 1.5;   /* sem unidade = múltiplo do tamanho da fonte */
+    }
+&lt;/style&gt;</div>
+      <button class="copy-btn" onclick="copyCode('code7')">📋 Copiar</button>
+      <p>Ideal para textos longos: entre <strong>1.4 e 1.6</strong></p>
+    </div>
 
-        <h4>Medidas Relatvas</h4>
+    <div class="card">
+      <ul>
+        <li><strong>letter-spacing</strong> – Entrelace/Kerning</li>
+      </ul>
+      <div class="code-block" id="code8">&lt;style&gt;
+    h1 { letter-spacing: 2px; }   /* aumenta espaço entre letras */
+    .uppercase { letter-spacing: 1px; } /* maiúsculas precisam mais */
+&lt;/style&gt;</div>
+      <button class="copy-btn" onclick="copyCode('code8')">📋 Copiar</button>
+    </div>
 
-        <p>
-            <strong>rem</strong>(relativo ao `html`) – melhor para acessibilidade <br>
-            <strong>em</strong> – relativo ao elemento pai <br>
-            <strong>ex</strong> –  <br>
-            <strong>vw</strong> - <br>
-            <strong>%</strong>
-        </p>
+    <div class="card">
+      <ul>
+        <li><strong>text-align</strong> – Alinhamento</li>
+      </ul>
+      <div class="code-block" id="code9">p  { text-align: left; }    /* padrão */
+.center { text-align: center; }
+.justify { text-align: justify; } /* cuidado com "rios" brancos */</div>
+      <button class="copy-btn" onclick="copyCode('code9')">📋 Copiar</button>
+    </div>
 
-        <h4>Medidas Recomendadas</h4>
-        <p>
-            <strong>em</strong> <br>
-            <strong>px</strong> <br>
-        </p>
-
-        <p><em>Nao pode espaco entre o numero e a unidade</em></p>
-        
-        <li>font-weight – Espessura</li>
-
-        <code>
-            &lt;style&gt;
-                h1 { font-weight: lighter;}   /* Fina */ <br>
-                h2 { font-weight: normal; }  /* 400 normal */ <br>
-                b3 { font-weight: bold; }    /* 700 */ <br>
-                h4 { font-size: bolder;}     /* grossa */ <br>
-                h2 { font-weight: 100 - 300; }    /* variacao de 100 a 200 */ <br>
-            &lt;/style&gt;
-        </code>
-
-        <p>Valores: 100 (thin), 200–`900` (black)</p>
-        
-        <li>font-style – Estilo</li>
-
-        <p>Normal ou italico</p>
-
-        <code>
-            p { font-style: italic; } <br>
-            h1 { font-style: normal; } <br>
-        </code>
-
-        <li>shortthand font</li>
-
-
-
-        <code>
-            &lt;style&gt;
-                p { <br>
-                    /* font-style &rightarrow; font-weigth &RightArrow; font-size &RightArrow; font-family
-                    font: italic bolder 4em 'work sans', sans-serif; <br>
-                } <br>
-            &lt;/style&gt;
-        </code>
-
-        <li>text-decoratio (decorar texto)</li>
-
-        <code>
-            body {
-                text-decoration: underline; /* sublinhado  */
-            }
-        </code>
-        
-        <li>line-height – Entrelinha (fundamental para leitura)</li>
-
-        <code>
-            &lt;style&gt;
-                body { <br>
-                    line-height: 1.5;   /* sem unidade = múltiplo do tamanho da fonte */ <br>
-                } <br>
-            &lt;/style&gt;
-        </code>
-
-        <p>Ideal para textos longos: entre <strong>1.4 e 1.6</strong></p>
-        
-        <li>letter-spacing – Entrelace/Kerning</li>
-
-       <code>
-           &lt;style&gt;
-               h1 { letter-spacing: 2px; }   /* aumenta espaço entre letras */ <br>
-               .uppercase { letter-spacing: 1px; } /* maiúsculas precisam mais */ <br>
-           &lt;/style&gt;
-       </code>
-        
-        <li>text-align – Alinhamento</li>
-
-        <code>
-            p  { text-align: left; }    /* padrão */ <br>
-            .center { text-align: center; } <br>
-            .justify { text-align: justify; } /* cuidado com "rios" brancos */ <br>
-        </code>
-        
-        <h2>Como importar fontes no CSS</h2>
-
-        <li>Buscar fontes externos</li>
-        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
-        
-        
-        <code>
-            body { <br>
-            font-family: 'Open Sans', sans-serif; <br>
-            } <br>
-        </code>
-        
-        <code>
-            @import no CSS <br>
-            @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap'); <br>
-        </code>
-        
+    <h2>Como importar fontes no CSS</h2>
+    <div class="card">
+      <ul>
+        <li><strong>Buscar fontes externas</strong></li>
+      </ul>
+      <!-- Google Fonts link já incluído no head, mas demonstrativo com botão de link funcional -->
+      <p>Exemplo de link no HTML:</p>
+      <div class="code-block">&lt;link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet"&gt;</div>
+      <div class="code-block" id="code10">body {
+    font-family: 'Open Sans', sans-serif;
+}</div>
+      <button class="copy-btn" onclick="copyCode('code10')">📋 Copiar</button>
+      
+      <p style="margin-top: 1rem;"><strong>@import no CSS</strong></p>
+      <div class="code-block" id="code11">@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');</div>
+      <button class="copy-btn" onclick="copyCode('code11')">📋 Copiar</button>
+      
+      <ul style="margin-top: 1.2rem;">
         <li><strong>@font-face</strong> – fonte local ou personalizada</li>
-
-        <code>
-            @font-face { <br>
-            font-family: 'MinhaFonte'; <br>
-            src: url('minha-fonte.woff2') format('woff2'); <br>
-            font-weight: normal; <br>
-            font-style: normal; <br>
-            }
-        </code>
-
-    </ul>
+      </ul>
+      <div class="code-block" id="code12">@font-face {
+    font-family: 'MinhaFonte';
+    src: url('minha-fonte.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}</div>
+      <button class="copy-btn" onclick="copyCode('code12')">📋 Copiar</button>
+    </div>
 
     <h2>Boas práticas para web</h2>
+    <h3>Tabela</h3>
+    <div style="overflow-x: auto;">
+      <table>
+        <thead>
+          <tr><th>Prática</th><th>Por quê?</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Use <code>rem</code> para <code>font-size</code></td><td>Respeita as configurações de acessibilidade do usuário</td></tr>
+          <tr><td><code>line-height</code> sem unidade (<code>1.5</code>)</td><td>Mantém proporção ao tamanho da fonte</td></tr>
+          <tr><td>Prefira fontes <strong>sem serifa</strong> para corpo de texto em telas</td><td>Melhor leiturabilidade em monitores</td></tr>
+          <tr><td>Limite a <strong>3 fontes</strong> por projeto</td><td>Performance e coerência visual</td></tr>
+          <tr><td>Use <code>font-display: swap</code></td><td>Evita "flash de texto invisível" (FOIT)</td></tr>
+        </tbody>
+      </table>
+    </div>
 
-    <h3>Tabvela</h3>
-    <p>
-        | Prática | Por quê? |
-        |---------|----------|
-        | Use `rem` para `font-size` | Respeita as configurações de acessibilidade do usuário |
-        | `line-height` sem unidade (`1.5`) | Mantém proporção ao tamanho da fonte |
-        | Prefira fontes **sem serifa** para corpo de texto em telas | Melhor leiturabilidade em monitores |
-        | Limite a **3 fontes** por projeto | Performance e coerência visual |
-        | Use `font-display: swap` | Evita "flash de texto invisível" (FOIT) |
-        
-    </p>
+    <div class="card">
+      <p><strong>Exemplo de configuração base sólida</strong></p>
+      <div class="code-block" id="code13">/* Exemplo de configuração base sólida */
+html {
+    font-size: 100%; /* 16px por padrão */
+}</div>
+      <button class="copy-btn" onclick="copyCode('code13')">📋 Copiar</button>
+      
+      <div class="code-block" id="code14">body {
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    font-size: 1rem;
+    line-height: 1.5;
+    font-weight: 400;
+    color: #1a1a1a;
+}</div>
+      <button class="copy-btn" onclick="copyCode('code14')">📋 Copiar</button>
+      
+      <div class="code-block" id="code15">h1, h2, h3 {
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.02em; /* títulos levemente mais juntos */
+}</div>
+      <button class="copy-btn" onclick="copyCode('code15')">📋 Copiar</button>
+    </div>
 
-    <code>
-        /* Exemplo de configuração base sólida */ <br>
-        html { <br>
-        font-size: 100%; /* 16px por padrão */ <br>
-        }
-    </code>
-    
-    <code>
-        body { <br>
-        font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; <br>
-        font-size: 1rem; <br>
-        line-height: 1.5; <br>
-        font-weight: 400; <br>
-        color: #1a1a1a; <br>
-        }
-    </code>
-    
-    <code>
-        h1, h2, h3 { <br>
-        font-weight: 600; <br>
-        line-height: 1.2; <br>
-        letter-spacing: -0.02em; /* títulos levemente mais juntos */ <br>
-        }
-    </code>
+    <footer>
+      <small>Pensador Sem Fronteiras</small>
+      <br>
+      <em>do zero ao infinito</em>
+    </footer>
+  </div>
 
-
-
-    <footer><small>Pensador Sem Fronteiras </small> <br> <em>Do Zero Ao Infinito</em></footer>
-
-    
+  <script>
+    function copyCode(blockId) {
+      const codeBlock = document.getElementById(blockId);
+      if (!codeBlock) return;
+      const textToCopy = codeBlock.innerText || codeBlock.textContent;
+      navigator.clipboard.writeText(textToCopy).then(() => {
+        alert('✨ Código copiado com estilo!');
+      }).catch(() => {
+        alert('⚠️ Copie manualmente, ocorreu um erro.');
+      });
+    }
+  </script>
 </body>
 </html>
