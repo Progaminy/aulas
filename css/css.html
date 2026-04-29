@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes, viewport-fit=cover">
+    <title>🎨 CSS · Lendário</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: radial-gradient(circle at 30% 15%, #0b1429, #02050f);
+            font-family: 'Segoe UI', 'Inter', system-ui, -apple-system, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 1.5rem 1rem 2.5rem;
+            color: #daf0ff;
+            line-height: 1.55;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at 85% 20%, rgba(255, 0, 200, 0.08) 0%, transparent 55%),
+                        radial-gradient(circle at 10% 80%, rgba(0, 255, 200, 0.09) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 650px;
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        h1 {
+            font-size: clamp(2.6rem, 9vw, 4rem);
+            font-weight: 800;
+            text-align: center;
+            background: linear-gradient(135deg, #7bf0ff, #f472b6, #bef264);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 28px #ff00d0);
+            text-shadow: 0 0 25px #38bdf8, 0 0 50px #d946ef;
+            margin-bottom: 0.2rem;
+            letter-spacing: -0.5px;
+            animation: pulseGlow 2.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulseGlow {
+            0% {
+                filter: drop-shadow(0 0 20px #ff00d0);
+            }
+            100% {
+                filter: drop-shadow(0 0 45px #00e5ff) drop-shadow(0 0 20px #f472b6);
+            }
+        }
+
+        .nav-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.9rem;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .btn-link {
+            background: rgba(0, 0, 0, 0.55);
+            border: 2px solid #f472b6;
+            border-radius: 3rem;
+            padding: 0.9rem 2rem;
+            font-weight: 700;
+            font-size: 1.15rem;
+            text-decoration: none;
+            color: #fdf2ff;
+            backdrop-filter: blur(14px);
+            box-shadow: 0 0 30px #ec4899, 0 10px 22px #000000;
+            transition: all 0.25s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #2a1035, #0f1a2e);
+            text-shadow: 0 0 10px #f472b6;
+            letter-spacing: 0.3px;
+        }
+
+        .btn-link:hover, .btn-link:active {
+            border-color: #00f2fe;
+            box-shadow: 0 0 50px #00e5ff, 0 0 25px #d946ef;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Card da sigla CSS */
+        .sigla-card {
+            background: rgba(8, 14, 28, 0.7);
+            backdrop-filter: blur(22px);
+            -webkit-backdrop-filter: blur(22px);
+            border: 1px solid rgba(0, 255, 200, 0.3);
+            border-radius: 2.5rem;
+            padding: 2rem 1.5rem;
+            box-shadow: 0 25px 50px rgba(255, 0, 200, 0.3), 0 0 50px #00ffff38;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            text-align: center;
+        }
+
+        .sigla-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #bafff7;
+            text-shadow: 0 0 15px #2dd4bf;
+        }
+
+        .sigla-letra {
+            background: linear-gradient(135deg, #f472b6, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 2.4rem;
+            font-weight: 900;
+            filter: drop-shadow(0 0 18px #f43f9e);
+        }
+
+        .sigla-descricao {
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: #c8e9ff;
+            text-shadow: 0 0 10px #7dd3fc;
+        }
+
+        /* Card do menu */
+        .menu-card {
+            background: rgba(8, 14, 28, 0.7);
+            backdrop-filter: blur(22px);
+            -webkit-backdrop-filter: blur(22px);
+            border: 1px solid rgba(0, 255, 200, 0.3);
+            border-radius: 2.5rem;
+            padding: 2rem 1.5rem;
+            box-shadow: 0 25px 50px rgba(255, 0, 200, 0.3), 0 0 50px #00ffff38;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .menu-btn {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 1rem;
+            background: rgba(0, 0, 0, 0.5);
+            border: 2px solid #2dd4bf;
+            border-radius: 2rem;
+            padding: 1.3rem 1.5rem;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: #bafff7;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 0 30px #14b8a6, 0 10px 20px #00000060;
+            transition: all 0.3s;
+            background: linear-gradient(135deg, #0d3340, #08192b);
+            text-shadow: 0 0 8px #7fffd4;
+            letter-spacing: 0.3px;
+        }
+
+        .menu-btn:hover, .menu-btn:active {
+            border-color: #f472b6;
+            box-shadow: 0 0 50px #f43f9e, 0 0 30px #2dd4bf;
+            color: #ffffff;
+            background: #0b2838;
+            transform: scale(1.02);
+        }
+
+        .menu-icon {
+            font-size: 2.2rem;
+            flex-shrink: 0;
+            filter: drop-shadow(0 0 12px #00f2fe);
+        }
+
+        .menu-text {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+        }
+
+        .menu-subtitle {
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: #94d8ff;
+            text-shadow: 0 0 6px #38bdf8;
+            letter-spacing: 0.5px;
+        }
+
+        .destacado-btn {
+            border: 2px solid #facc15 !important;
+            box-shadow: 0 0 35px #fbbf24, 0 10px 20px #00000060 !important;
+            background: linear-gradient(135deg, #3b2a0a, #1a1a0f) !important;
+        }
+
+        .destacado-btn:hover {
+            border-color: #f472b6 !important;
+            box-shadow: 0 0 55px #f43f9e, 0 0 35px #facc15 !important;
+        }
+
+        footer {
+            margin-top: 1rem;
+            text-align: center;
+            font-weight: 300;
+            font-size: 1rem;
+            color: #a5d8ff;
+            border-top: 1px dashed #38bdf8;
+            padding-top: 1.4rem;
+            width: 100%;
+        }
+
+        footer p {
+            color: #a5d8ff;
+        }
+
+        footer small {
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            color: #e0f2fe;
+        }
+
+        footer em {
+            font-style: italic;
+            color: #c084fc;
+            text-shadow: 0 0 12px #c026d3;
+        }
+
+        @media (max-width: 480px) {
+            .sigla-card, .menu-card {
+                padding: 1.4rem 1.1rem;
+                border-radius: 2rem;
+            }
+            .menu-btn {
+                padding: 1.1rem 1.2rem;
+                font-size: 1.1rem;
+                gap: 0.8rem;
+            }
+            .menu-icon {
+                font-size: 1.8rem;
+            }
+            h1 {
+                font-size: 2.2rem;
+            }
+            .sigla-letra {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- Botões de navegação superiores -->
+        <div class="nav-buttons">
+            <a href="../index.html" class="btn-link">🏠 Voltar Home</a>
+            <a href="css.html" class="btn-link">🔄 REFRESCAR</a>
+        </div>
+
+        <!-- Título principal -->
+        <h1>🎨 CSS · Lendário</h1>
+
+        <!-- Card da sigla CSS -->
+        <div class="sigla-card">
+            <div class="sigla-item">
+                <span class="sigla-letra">C</span>
+                <span class="sigla-descricao"> - Cascading</span>
+            </div>
+            <div class="sigla-item">
+                <span class="sigla-letra">S</span>
+                <span class="sigla-descricao"> - Style</span>
+            </div>
+            <div class="sigla-item">
+                <span class="sigla-letra">S</span>
+                <span class="sigla-descricao"> - Sheets</span>
+            </div>
+
+            <p style="margin-top:1rem; font-size:1.1rem; color:#bafff7; text-shadow:0 0 10px #7dd3fc;">
+                <strong style="color:#f472b6; text-shadow:0 0 12px #f43f9e;">CSS</strong> — é uma linguagem de estilização
+            </p>
+            <p style="color:#c8e9ff;">Serve para definir o estilo e a apresentação de elementos HTML</p>
+            <p style="color:#94d8ff; font-style:italic; text-shadow:0 0 8px #38bdf8;">Folhas de Estilo em Cascata</p>
+
+            <!-- Indice CSS-->
+            </div>
+
+                <div class="section-card" data-section="css1-indice">
+                    <div class="header-row">
+                        <div class="section-title"><i>📄</i> Indice-CSS </div>
+                        <button class="toggle-btn" id="toggleIndiceCSS">📂 Expandir</button>
+                        
+                    </div>
+                    <ol class="link-indice hidden-indice" id="indiceCSS">
+                        <h1>Indice</h1>
+                        <h2>CSS I</h2>
+                        <li><p><strong>Incorporar CSS</strong> - CSS inline · interno · externo</p></button></li>
+                        <li><p><strong>Fontes</strong> - Tipografia · fontes · Google Fonts · estilização</p></button></li>
+                        <li><p><strong>Cores</strong> - Cores · estilização</p></button></li>
+                        <h2>CSS II</h2>
+                        <li><p><strong>Brevimente</strong> - Brevimente</p></li>
+                    </ol>
+                </div>
+
+            <!-- Link: css1 -->
+            <a href="css1/css1.html" class="menu-btn">
+                <span class="menu-icon">📌</span>
+                <span class="menu-text">
+                    CSS I ⭐
+                    <span class="menu-subtitle">CSS base</span>
+                </span>
+            </a>
+
+            <!-- Link: css2 -->
+            <a href="css2/css2.html" class="menu-btn">
+                <span class="menu-icon">🔤</span>
+                <span class="menu-text">
+                    CSS II ⭐⭐
+                    <span class="menu-subtitle">Css medio</span>
+                </span>
+            </a>
+
+            <!-- css3 -->
+            
+            <a href="#" class="menu-btn">
+                <span class="menu-icon">🔤</span>
+                <span class="menu-text">
+                    CSS III ⭐⭐⭐
+                    <span class="menu-subtitle">CSS Intermediario</span>
+                </span>
+            </a>
+
+            <!-- Link destacado: Tabela Lendária -->
+            <a href="tabela.html" class="menu-btn destacado-btn">
+                <span class="menu-icon">📊</span>
+                <span class="menu-text">
+                    Tabela Lendária - CSS
+                    <span class="menu-subtitle">Resumo Geral</span>
+                </span>
+            </a>
+
+        <footer>
+            <p>&copy; <small>Pensador Sem Fronteiras</small> <br> <em>Do Zero ao Infinito</em></p>
+        </footer>
+    </div>
+
+    <script>
+
+        // Função toggle expandir/recolher
+        sections.forEach(({ toggleId, indiceCSS }) => {
+            const btn = document.getElementById(toggleId);
+            const list = document.getElementById(indiceCSS);
+            if (!btn || !list) return;
+
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const isHidden = list.classList.contains('hidden-indice');
+                if (isHidden) {
+                    list.classList.remove('hidden-indice');
+                    btn.innerHTML = '📁 Recolher';
+                } else {
+                    list.classList.add('hidden-indice');
+                    btn.innerHTML = '📂 Expandir';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

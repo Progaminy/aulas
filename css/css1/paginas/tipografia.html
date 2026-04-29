@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tpografia - Fontes</title>
+</head>
+<body>
+
+    <a href="../../index.html">Voltar Home</a> <a href="../css1.html">Voltaer CSS</a>
+    <h1>Tipografia</h1>
+
+    <p><strong>Tipografia</strong> é a arte e a técnica de organizar e dar forma às letras, palavras e blocos de texto, com o objetivo duplo de garantir boa legibilidade e transmitir uma atmosfera ou emoção específica na comunicação visual.</p>
+
+    <h2>Categorias de fontrs</h2>
+
+    <ul>
+        <li><strong>Serifadas (Serif)</strong> – Com pequenos "pés" nas extremidades. Exemplos: Times New Roman, Garamond, Georgia.</li>
+        <li><strong>Sem Serifas (Sans Serif)</strong> – Sem os pés, traços limpos e retos. Exemplos: Helvetica, Arial, Open Sans.</li>
+        <li><strong>Sem Serifas (Sans Serif)</strong> – Sem os pés, traços limpos e retos. Exemplos: Helvetica, Arial, Open Sans.</li>
+        <li><strong>Manuscritas (Script)</strong> – Imitam caligrafia ou letra cursiva. Exemplos: Brush Script, Pacifico.</li>
+        <li><strong>Monoespaçadas (Monospace)</strong> – Todas as letras ocupam a mesma largura. Exemplos: Courier New, Consolas.</li>
+        <li><sytrong>Display / Decorativas</sytrong> – Feitas para chamar atenção em títulos e cartazes. Exemplos: Impact, fontes temáticas.</li>
+    </ul>
+    <h1>Fontes</h1>
+    <ul>
+        <li>font-family – Define a fonte</li>
+
+        
+        <code>
+            body { <br>
+            font-family: "Helvetica Neue", Arial, sans-serif; <br>
+            } <br>
+        </code>
+
+        <p>colocasse 2 ou 3 combinacao para garantir a funcionalidade em divesros navegadores, para saber combinacoes de fonte vao para </p>
+
+        <a href="https://www.w3schools.com/cssref/css_websafe_fonts.php">css web safe font combinations</a>
+
+        <p></p>várias opções (fallbacks) – a última deve ser uma genérica (`serif`, `sans-serif`, `monospace`) - Nomes com espaços vão entre <strong>aspas</strong></p>
+
+        <h2>fonte para Elementos HTML</h2>
+
+        <code>
+            &lt;style&gt;
+                h1, h2 { <br>
+                     font-family: 'Times New Roman', Times, serif; <br>
+                } <br>
+            &lt;/style&gt; 
+        </code>
+        
+        <li>font-size – Tamanho de fonte</li>
+
+        <h4>Medidas Absoluta : </h4>
+
+        <p>
+            cm (centimetro) <br>
+            mm (milimetro) <br>
+            in (Polegada) <br>
+            px (pixel) <br>
+            pt (Ponto) melhor para impresso  no papel  world usa pt <br>
+            pc (paica) melhor para impresso no papel <br>
+        </p>
+
+        <h4>Medidas Relatvas</h4>
+
+        <p>
+            <strong>rem</strong>(relativo ao `html`) – melhor para acessibilidade <br>
+            <strong>em</strong> – relativo ao elemento pai <br>
+            <strong>ex</strong> –  <br>
+            <strong>vw</strong> - <br>
+            <strong>%</strong>
+        </p>
+
+        <h4>Medidas Recomendadas</h4>
+        <p>
+            <strong>em</strong> <br>
+            <strong>px</strong> <br>
+        </p>
+
+        <p><em>Nao pode espaco entre o numero e a unidade</em></p>
+        
+        <li>font-weight – Espessura</li>
+
+        <code>
+            &lt;style&gt;
+                h1 { font-weight: lighter;}   /* Fina */ <br>
+                h2 { font-weight: normal; }  /* 400 normal */ <br>
+                b3 { font-weight: bold; }    /* 700 */ <br>
+                h4 { font-size: bolder;}     /* grossa */ <br>
+                h2 { font-weight: 100 - 300; }    /* variacao de 100 a 200 */ <br>
+            &lt;/style&gt;
+        </code>
+
+        <p>Valores: 100 (thin), 200–`900` (black)</p>
+        
+        <li>font-style – Estilo</li>
+
+        <p>Normal ou italico</p>
+
+        <code>
+            p { font-style: italic; } <br>
+            h1 { font-style: normal; } <br>
+        </code>
+
+        <li>shortthand font</li>
+
+
+
+        <code>
+            &lt;style&gt;
+                p { <br>
+                    /* font-style &rightarrow; font-weigth &RightArrow; font-size &RightArrow; font-family
+                    font: italic bolder 4em 'work sans', sans-serif; <br>
+                } <br>
+            &lt;/style&gt;
+        </code>
+
+        <li>text-decoratio (decorar texto)</li>
+
+        <code>
+            body {
+                text-decoration: underline; /* sublinhado  */
+            }
+        </code>
+        
+        <li>line-height – Entrelinha (fundamental para leitura)</li>
+
+        <code>
+            &lt;style&gt;
+                body { <br>
+                    line-height: 1.5;   /* sem unidade = múltiplo do tamanho da fonte */ <br>
+                } <br>
+            &lt;/style&gt;
+        </code>
+
+        <p>Ideal para textos longos: entre <strong>1.4 e 1.6</strong></p>
+        
+        <li>letter-spacing – Entrelace/Kerning</li>
+
+       <code>
+           &lt;style&gt;
+               h1 { letter-spacing: 2px; }   /* aumenta espaço entre letras */ <br>
+               .uppercase { letter-spacing: 1px; } /* maiúsculas precisam mais */ <br>
+           &lt;/style&gt;
+       </code>
+        
+        <li>text-align – Alinhamento</li>
+
+        <code>
+            p  { text-align: left; }    /* padrão */ <br>
+            .center { text-align: center; } <br>
+            .justify { text-align: justify; } /* cuidado com "rios" brancos */ <br>
+        </code>
+        
+        <h2>Como importar fontes no CSS</h2>
+
+        <li>Buscar fontes externos</li>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+        
+        
+        <code>
+            body { <br>
+            font-family: 'Open Sans', sans-serif; <br>
+            } <br>
+        </code>
+        
+        <code>
+            @import no CSS <br>
+            @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap'); <br>
+        </code>
+        
+        <li><strong>@font-face</strong> – fonte local ou personalizada</li>
+
+        <code>
+            @font-face { <br>
+            font-family: 'MinhaFonte'; <br>
+            src: url('minha-fonte.woff2') format('woff2'); <br>
+            font-weight: normal; <br>
+            font-style: normal; <br>
+            }
+        </code>
+
+    </ul>
+
+    <h2>Boas práticas para web</h2>
+
+    <h3>Tabvela</h3>
+    <p>
+        | Prática | Por quê? |
+        |---------|----------|
+        | Use `rem` para `font-size` | Respeita as configurações de acessibilidade do usuário |
+        | `line-height` sem unidade (`1.5`) | Mantém proporção ao tamanho da fonte |
+        | Prefira fontes **sem serifa** para corpo de texto em telas | Melhor leiturabilidade em monitores |
+        | Limite a **3 fontes** por projeto | Performance e coerência visual |
+        | Use `font-display: swap` | Evita "flash de texto invisível" (FOIT) |
+        
+    </p>
+
+    <code>
+        /* Exemplo de configuração base sólida */ <br>
+        html { <br>
+        font-size: 100%; /* 16px por padrão */ <br>
+        }
+    </code>
+    
+    <code>
+        body { <br>
+        font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; <br>
+        font-size: 1rem; <br>
+        line-height: 1.5; <br>
+        font-weight: 400; <br>
+        color: #1a1a1a; <br>
+        }
+    </code>
+    
+    <code>
+        h1, h2, h3 { <br>
+        font-weight: 600; <br>
+        line-height: 1.2; <br>
+        letter-spacing: -0.02em; /* títulos levemente mais juntos */ <br>
+        }
+    </code>
+
+
+
+    <footer><small>Pensador Sem Fronteiras </small> <br> <em>Do Zero Ao Infinito</em></footer>
+
+    
+</body>
+</html>
