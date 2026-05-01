@@ -1,11 +1,623 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-pt">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes, viewport-fit=cover">
+    <title>🎬 Baixar Vídeo · Termux</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: radial-gradient(circle at 40% 10%, #0b1a30, #020812);
+            font-family: 'Segoe UI', 'Inter', system-ui, -apple-system, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            padding: 1.3rem 1rem 2.8rem;
+            color: #dcf2ff;
+            line-height: 1.55;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at 85% 20%, rgba(0, 255, 200, 0.09) 0%, transparent 55%),
+                        radial-gradient(circle at 10% 80%, rgba(255, 0, 255, 0.09) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            gap: 1.6rem;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 7vw, 3rem);
+            font-weight: 800;
+            text-align: center;
+            background: linear-gradient(135deg, #7bf0ff, #f472b6, #bef264);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 25px #ff00d0);
+            margin-bottom: 0.3rem;
+            text-shadow: 0 0 22px #38bdf8, 0 0 48px #d946ef;
+            border-bottom: 3px solid #4ec9b0;
+            padding-bottom: 0.8rem;
+        }
+
+        h2 {
+            font-size: 1.7rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #cbd5e1, #f0abfc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 1rem 0 0.9rem;
+            border-left: 6px solid #22d3ee;
+            padding-left: 1.1rem;
+            text-shadow: 0 0 14px #06b6d4;
+        }
+
+        h3 {
+            font-size: 1.35rem;
+            margin: 1.3rem 0 0.6rem;
+            color: #ce9178;
+            font-weight: 600;
+            text-shadow: 0 0 8px #f97316;
+        }
+
+        .card {
+            background: rgba(5, 14, 32, 0.7);
+            backdrop-filter: blur(22px);
+            -webkit-backdrop-filter: blur(22px);
+            border: 1px solid rgba(0, 255, 200, 0.32);
+            border-radius: 2.2rem;
+            padding: 1.5rem 1.4rem;
+            box-shadow: 0 24px 50px rgba(255, 0, 200, 0.3), 0 0 50px #00ffff38;
+            transition: transform 0.2s ease, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            box-shadow: 0 34px 65px #ff66c070, 0 0 70px #22d3ee;
+        }
+
+        .nav-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin: 0.2rem 0 0.6rem;
+            justify-content: center;
+        }
+
+        .btn-link {
+            background: rgba(0, 0, 0, 0.55);
+            border: 2px solid #f472b6;
+            border-radius: 3rem;
+            padding: 0.85rem 1.7rem;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-decoration: none;
+            color: #fdf2ff;
+            backdrop-filter: blur(14px);
+            box-shadow: 0 0 30px #ec4899, 0 10px 22px #000000;
+            transition: all 0.25s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #2a1035, #0f1a2e);
+            text-shadow: 0 0 10px #f472b6;
+            letter-spacing: 0.3px;
+        }
+
+        .btn-link:hover, .btn-link:active {
+            border-color: #00f2fe;
+            box-shadow: 0 0 45px #00e5ff, 0 0 20px #d946ef;
+            color: white;
+        }
+
+        ol {
+            list-style: none;
+            padding-left: 0;
+            counter-reset: step-counter;
+            margin: 0.9rem 0 0.4rem;
+        }
+
+        ol > li {
+            counter-increment: step-counter;
+            position: relative;
+            margin-bottom: 1.8rem;
+            padding-left: 3rem;
+            font-weight: 500;
+            color: #d6ebff;
+            font-size: 1rem;
+        }
+
+        ol > li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0.2rem;
+            background: #020617;
+            border: 2px solid #facc15;
+            color: #facc15;
+            font-weight: 800;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 22px #fbbf24, 0 0 12px #ec4899;
+            font-size: 0.95rem;
+        }
+
+        code {
+            background: #000b1a;
+            display: block;
+            padding: 1rem 1.3rem;
+            border-radius: 1.2rem;
+            margin: 0.9rem 0 0.3rem;
+            font-family: 'Fira Code', 'Courier New', monospace;
+            font-size: 1.05rem;
+            color: #bbf7d0;
+            border: 1px solid #38bdf8;
+            box-shadow: inset 0 0 22px #2563eb40, 0 10px 20px #000;
+            white-space: pre-wrap;
+            word-break: break-word;
+            letter-spacing: 0.3px;
+        }
+
+        .copy-btn {
+            background: #082f49;
+            border: 1.5px solid #22d3ee;
+            color: #cffafe;
+            font-weight: 700;
+            padding: 0.7rem 1.7rem;
+            border-radius: 3rem;
+            font-size: 0.95rem;
+            backdrop-filter: blur(8px);
+            cursor: pointer;
+            margin: 0.5rem 0 0.8rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            box-shadow: 0 0 22px #06b6d4;
+            transition: 0.25s;
+            background: rgba(2, 15, 30, 0.8);
+        }
+
+        .copy-btn:hover {
+            background: #06b6d4;
+            color: #020617;
+            border-color: #facc15;
+            box-shadow: 0 0 38px #eab308;
+        }
+
+        p {
+            margin: 0.8rem 0 0.5rem;
+            font-size: 1rem;
+            color: #c8e9ff;
+        }
+
+        strong {
+            color: #fcd34d;
+            text-shadow: 0 0 8px #fbbf24;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0.3rem;
+            margin: 0.7rem 0;
+        }
+
+        ul li {
+            position: relative;
+            padding-left: 1.6rem;
+            margin-bottom: 0.55rem;
+            color: #d1eaff;
+            font-size: 0.98rem;
+        }
+
+        ul li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: #22d3ee;
+            font-weight: bold;
+            text-shadow: 0 0 10px #06b6d4;
+        }
+
+        /* Tabela estilo neon */
+        .arsenal-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.2rem 0;
+            background: rgba(5, 14, 32, 0.5);
+            border-radius: 1rem;
+            overflow: hidden;
+            font-size: 0.88rem;
+        }
+
+        .arsenal-table th {
+            background: #020b1a;
+            color: #4ec9b0;
+            padding: 0.9rem;
+            text-align: left;
+            border: 1px solid #3e3e42;
+            text-shadow: 0 0 10px #4ec9b0;
+        }
+
+        .arsenal-table td {
+            padding: 0.7rem;
+            border: 1px solid #3e3e42;
+            color: #d4edff;
+        }
+
+        .arsenal-table tr:nth-child(even) {
+            background: rgba(45, 45, 48, 0.3);
+        }
+
+        .importante-box {
+            background: rgba(13, 22, 40, 0.7);
+            border: 2px solid #facc15;
+            border-radius: 1.2rem;
+            padding: 1rem 1.2rem;
+            margin: 1.2rem 0;
+            box-shadow: 0 0 22px #facc1540;
+        }
+
+        .importante-box p {
+            color: #fcd34d;
+        }
+
+        footer {
+            margin-top: 2rem;
+            text-align: center;
+            font-weight: 300;
+            font-size: 1rem;
+            color: #a5d8ff;
+            border-top: 1px dashed #38bdf8;
+            padding-top: 1.4rem;
+            width: 100%;
+        }
+
+        footer small {
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            color: #e0f2fe;
+        }
+
+        footer em {
+            font-style: italic;
+            color: #c084fc;
+            text-shadow: 0 0 12px #c026d3;
+        }
+
+        @media (max-width: 480px) {
+            .card {
+                padding: 1.2rem 1rem;
+            }
+            code {
+                font-size: 0.9rem;
+                padding: 0.85rem;
+            }
+            .arsenal-table {
+                font-size: 0.7rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    
+    <div class="container">
+
+        <!-- Botões de navegação (completamente clicáveis) -->
+        <div class="nav-buttons">
+            <a href="../../../index.html" class="btn-link">🏠 Voltar Home</a>
+            <a href="../termux2.html" class="btn-link">📂 Voltar Termux II</a>
+            <a href="audio.html" class="btn-link">🔄 REFRESCAR</a>
+        </div>
+
+        <h1>🎬 Baixar Vídeo do YouTube</h1>
+
+        <div class="card">
+            <ol>
+                <!-- 1 -->
+                <li>Baixar Termux</li>
+
+                <!-- 2 -->
+                <li>Actualizar pacotes existentes</li>
+                <code id="cmd1">pkg update</code>
+                <button class="copy-btn" data-target="cmd1">📋 Copiar comando</button>
+
+                <!-- 3 -->
+                <li>Actualizar programas</li>
+                <code id="cmd2">pkg upgrade</code>
+                <button class="copy-btn" data-target="cmd2">📋 Copiar comando</button>
+
+                <!-- 4 -->
+                <li>Instalar o Python</li>
+                <code id="cmd3">pkg install python</code>
+                <button class="copy-btn" data-target="cmd3">📋 Copiar comando</button>
+                <p>Para que serve? Instala o ambiente Python completo no seu Termux. Durante a instalação, confirme com Y se perguntado. Isso baixará e instalará vários arquivos (cerca de 100 MB).</p>
+
+                <!-- 5 -->
+                <li>Verificar a instalação de Python</li>
+                <code id="cmd4">python --version</code>
+                <button class="copy-btn" data-target="cmd4">📋 Copiar comando</button>
+
+                <!-- 6 -->
+                <li>Instalar o pip</li>
+                <code id="cmd5">pkg install python-pip</code>
+                <button class="copy-btn" data-target="cmd5">📋 Copiar comando</button>
+
+                <!-- 7 -->
+                <li>Verificar a instalação do pip</li>
+                <code id="cmd6">pip --version</code>
+                <button class="copy-btn" data-target="cmd6">📋 Copiar comando</button>
+                <p>O pip é um gerenciador de pacotes para Python. Ele permite que você instale e gerencie bibliotecas e dependências de Python. Durante a instalação, confirme com Y se perguntado. Isso baixará e instalará vários arquivos (cerca de 20 MB).</p>
+
+                <!-- 8 -->
+                <li>Instalar o youtube-dl</li>
+                <code id="cmd7">pip install youtube-dl</code>
+                <button class="copy-btn" data-target="cmd7">📋 Copiar comando</button>
+                <p>O youtube-dl é uma ferramenta de linha de comando para baixar vídeos do YouTube e de outros sites de vídeo. Ele suporta uma ampla variedade de sites e formatos de vídeo. Durante a instalação, o pip baixará e instalará o youtube-dl e suas dependências (cerca de 10 MB).</p>
+
+                <!-- 9 -->
+                <li>Verificar a instalação do youtube-dl</li>
+                <code id="cmd8">youtube-dl --version</code>
+                <button class="copy-btn" data-target="cmd8">📋 Copiar comando</button>
+
+                <!-- 10 -->
+                <li>Instalar o yt-dlp</li>
+                <code id="cmd9">pip install yt-dlp</code>
+                <button class="copy-btn" data-target="cmd9">📋 Copiar comando</button>
+                <p>O yt-dlp é uma ferramenta de linha de comando para baixar vídeos do YouTube e de outros sites de vídeo. Ele suporta uma ampla variedade de sites e formatos de vídeo. Durante a instalação, o pip baixará e instalará o yt-dlp e suas dependências (cerca de 10 MB).</p>
+
+                <!-- 11 -->
+                <li>Verificar a instalação do yt-dlp</li>
+                <code id="cmd10">yt-dlp --version</code>
+                <button class="copy-btn" data-target="cmd10">📋 Copiar comando</button>
+
+                <!-- 12 -->
+                <li>Conceder Permissões do storage</li>
+                <code id="cmd11">termux-setup-storage</code>
+                <button class="copy-btn" data-target="cmd11">📋 Copiar comando</button>
+                <p>Este comando solicitará que você conceda permissão ao Termux para acessar o armazenamento do seu dispositivo. Siga as instruções na tela para conceder as permissões necessárias. Isso é necessário para que o Termux possa salvar os vídeos baixados no armazenamento do seu dispositivo.</p>
+
+                <!-- 13 -->
+                <li>Criar pasta para os vídeos baixados</li>
+                <code id="cmd12">mkdir -p ~/storage/downloads/MeusVideos</code>
+                <button class="copy-btn" data-target="cmd12">📋 Copiar comando</button>
+                <p>Este comando cria uma pasta chamada "MeusVideos" dentro da pasta "downloads" no armazenamento do seu dispositivo. Você pode escolher um nome diferente para a pasta, se desejar.</p>
+
+                <!-- 14 -->
+                <li>Baixar um vídeo do YouTube</li>
+                <code id="cmd13">youtube-dl -o ~/storage/downloads/MeusVideos/%(title)s.%(ext)s "URL_DO_VÍDEO"</code>
+                <button class="copy-btn" data-target="cmd13">📋 Copiar comando</button>
+                <p>Substitua "URL_DO_VÍDEO" pelo URL do vídeo do YouTube que você deseja baixar. O comando acima baixará o vídeo e o salvará na pasta "MeusVideos" com o nome do título do vídeo e a extensão correta.</p>
+
+                <!-- 15 -->
+                <li>Entrar na pasta onde os vídeos estão salvos</li>
+                <code id="cmd14">cd ~/storage/downloads/MeusVideos</code>
+                <button class="copy-btn" data-target="cmd14">📋 Copiar comando</button>
+                <p>Este comando entra na pasta "MeusVideos" dentro da pasta "downloads" no armazenamento do seu dispositivo.</p>
+
+                <!-- 16 -->
+                <li>Baixar um vídeo do YouTube usando yt-dlp</li>
+                <code id="cmd15">yt-dlp "URL_DO_VÍDEO"</code>
+                <button class="copy-btn" data-target="cmd15">📋 Copiar comando</button>
+                <p>Substitua "URL_DO_VÍDEO" pelo URL do vídeo do YouTube que você deseja baixar. O comando acima baixará o vídeo e o salvará na pasta "MeusVideos" com o nome do título do vídeo e a extensão correta.</p>
+
+                <!-- 01 -->
+                <li>Baixar Video do melhor formato</li>
+                <code id="cmd01">yt-dlp -f "bestvideo+bestaudio/best" "URL_DO_VIDEO""</code>
+                 <button class="copy-btn" data-target="cmd01">📋 Copiar comando</button>
+
+                <li>Baixar Video do melhor formato</li>
+                <code id="cmd02"> yt-dlp -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best"</code>
+                <button class="copy-btn" data-target="cmd02">📋 Copiar comando</button>
+
+                <!-- 17 -->
+                <li>Verificar Formatos disponíveis para um vídeo (youtube-dl)</li>
+                <code id="cmd17">youtube-dl -F "URL_DO_VÍDEO"</code>
+                <button class="copy-btn" data-target="cmd17">📋 Copiar comando</button>
+                <p>Substitua "URL_DO_VÍDEO" pelo URL do vídeo do YouTube que você deseja verificar os formatos. O comando acima mostrará uma lista dos formatos disponíveis para o vídeo.</p>
+
+                <li>Verificar Formatos disponíveis para um vídeo (yt-dlp)</li>
+                <code id="cmd17">yt-dlp -F "URL_DO_VÍDEO"</code>
+                <button class="copy-btn" data-target="cmd17">📋 Copiar comando</button>
+                <p>Substitua "URL_DO_VÍDEO" pelo URL do vídeo do YouTube que você deseja verificar os formatos. O comando acima mostrará uma lista dos formatos disponíveis para o vídeo.</p>
+
+                <!-- 18 -->
+                <li>Baixar vídeo em formato específico pelo Id</li>
+                <code id="cmd18">yt-dlp -f 136 "URL_DO_VÍDEO"</code>
+                <button class="copy-btn" data-target="cmd18">📋 Copiar comando</button>
+                <p>Substitua &lt;URL_DO_VÍDEO&gt; pelo URL do vídeo do YouTube que você deseja baixar e 136 pelo Id do formato que você deseja baixar. O comando acima baixará o vídeo no formato especificado e o salvará na pasta "MeusVideos" com o nome do título do vídeo e a extensão correta.</p>
+
+                <!-- 19 -->
+                <li>Baixar apenas o áudio de um vídeo do YouTube</li>
+                <code id="cmd19">yt-dlp -x --audio-format mp3 "URL_DO_VÍDEO"</code>
+                <button class="copy-btn" data-target="cmd19">📋 Copiar comando</button>
+                <p>Substitua &lt;URL_DO_VÍDEO&gt; pelo URL do vídeo do YouTube do qual você deseja extrair o áudio. O comando acima extrairá o áudio do vídeo e o salvará como um arquivo MP3 na pasta "MeusVideos" com o nome do título do vídeo.</p>
+
+                <!-- 20 -->
+                <li>Baixar apenas um vídeo mudo do YouTube</li>
+                <code id="cmd20">yt-dlp -f 136 --no-audio "URL_DO_VÍDEO"</code>
+                <button class="copy-btn" data-target="cmd20">📋 Copiar comando</button>
+                <p>Substitua &lt;URL_DO_VÍDEO&gt; pelo URL do vídeo do YouTube do qual você deseja baixar apenas o vídeo sem áudio. O comando acima baixará o vídeo no formato especificado (neste caso, 136 M4A) e o salvará na pasta "MeusVideos" com o nome do título do vídeo e a extensão correta, mas sem incluir o áudio.</p>
+
+                <!-- 21 -->
+                <li>Juntar áudio e vídeo</li>
+                <p>Primeiro deve instalar o ffmpeg</p>
+
+                <!-- 22 -->
+                <li>Instalar o ffmpeg</li>
+                <code id="cmd21">pkg install ffmpeg</code>
+                <button class="copy-btn" data-target="cmd21">📋 Copiar comando</button>
+
+                <h2>Verificar a instalação</h2>
+                <code id="cmd22">ffmpeg -version</code>
+                <button class="copy-btn" data-target="cmd22">📋 Copiar comando</button>
+                <p>O ffmpeg é uma ferramenta de linha de comando para processar arquivos de áudio e vídeo. Ele pode ser usado para converter, cortar, juntar e realizar outras operações em arquivos de mídia. Durante a instalação, confirme com Y se perguntado. Isso baixará e instalará o ffmpeg e suas dependências (cerca de 50 MB).</p>
+
+                <!-- 23 -->
+                <li>Juntar áudio e vídeo usando ffmpeg</li>
+                <code id="cmd23">yt-dlp -f "bv*+ba/b" "URL_DO_VÍDEO"</code>
+                <button class="copy-btn" data-target="cmd23">📋 Copiar comando</button>
+                <p>Substitua &lt;URL_DO_VÍDEO&gt; pelo URL do vídeo do YouTube que você deseja baixar. O comando acima baixará o vídeo e o áudio separadamente e os juntará usando o ffmpeg, salvando o resultado na pasta "MeusVideos" com o nome do título do vídeo e a extensão correta.</p>
+
+                <h3>Vantagens</h3>
+                <ul>
+                    <li>Permite baixar vídeos em alta qualidade, mesmo que o áudio e o vídeo estejam disponíveis apenas em formatos separados.</li>
+                    <li>Garante que o áudio e o vídeo sejam sincronizados corretamente, evitando problemas de descompasso entre eles.</li>
+                    <li>Oferece uma maneira eficiente de baixar e combinar os arquivos de mídia, economizando tempo e recursos do sistema.</li>
+                </ul>
+
+                <!-- 24 -->
+                <li>Forçar a combinação de áudio e vídeo para ser universal</li>
+                <code id="cmd24">yt-dlp -f "bv[codec*=avc1]+ba[ext=m4a]/b" "URL_DO_VÍDEO"</code>
+                <button class="copy-btn" data-target="cmd24">📋 Copiar comando</button>
+                <p>Substitua &lt;URL_DO_VÍDEO&gt; pelo URL do vídeo do YouTube que você deseja baixar. O comando acima baixará o vídeo e o áudio separadamente, os juntará usando o ffmpeg e forçará a saída para ser no formato MP4, garantindo que seja compatível com a maioria dos dispositivos e players de mídia.</p>
+            </ol>
+        </div>
+
+        <!-- AVANÇADO -->
+        <div class="card">
+            <h1 style="font-size:2rem; margin-bottom:1rem;">🚀 Avançado</h1>
+            <ol start="25">
+                <!-- 25 -->
+                <li>Baixar playlist completo e organizado</li>
+                <code id="cmd25">yt-dlp -o "%(playlist)s/%(title)s.%(ext)s" "URL_DA_PLAYLIST"</code>
+                <button class="copy-btn" data-target="cmd25">📋 Copiar comando</button>
+                <p>Substitua &lt;URL_DA_PLAYLIST&gt; pelo URL da playlist do YouTube que você deseja baixar. O comando acima baixará todos os vídeos da playlist e os salvará em uma pasta com o nome da playlist, organizando os arquivos de acordo com seus títulos e extensões corretas.</p>
+                <p>O link de playlist contém <strong>playlist?list=</strong> — isso é o que diferencia de um vídeo.</p>
+
+                <!-- 26 -->
+                <li>Playlist + formato específico</li>
+                <code id="cmd26">yt-dlp -f "bv[codec*=avc1]+ba[ext=m4a]/b" -o "%(playlist)s/%(title)s.%(ext)s" "URL_DA_PLAYLIST"</code>
+                <button class="copy-btn" data-target="cmd26">📋 Copiar comando</button>
+                <p>Substitua &lt;URL_DA_PLAYLIST&gt; pelo URL da playlist do YouTube que você deseja baixar. O comando acima baixará todos os vídeos da playlist no formato especificado, os juntará usando o ffmpeg e os salvará em uma pasta com o nome da playlist, organizando os arquivos de acordo com seus títulos e extensões corretas.</p>
+
+                <!-- 27 -->
+                <li>Baixar playlist completa apenas com áudio</li>
+                <code id="cmd27">yt-dlp -f 140 -o "%(playlist)s/%(title)s.%(ext)s" "URL_DA_PLAYLIST"</code>
+                <button class="copy-btn" data-target="cmd27">📋 Copiar comando</button>
+                <p>Substitua &lt;URL_DA_PLAYLIST&gt; pelo URL da playlist do YouTube que você deseja baixar. O comando acima baixará apenas o áudio de todos os vídeos da playlist no formato M4A (ID 140) e os salvará em uma pasta com o nome da playlist, organizando os arquivos de acordo com seus títulos e extensões corretas.</p>
+
+                <!-- 28 -->
+                <li>Playlist com numeração automática (para cursos/aulas)</li>
+                <code id="cmd28">yt-dlp -o "%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s" "URL_DA_PLAYLIST"</code>
+                <button class="copy-btn" data-target="cmd28">📋 Copiar comando</button>
+                <p>Substitua &lt;URL_DA_PLAYLIST&gt; pelo URL da playlist do YouTube que você deseja baixar. O comando acima baixará todos os vídeos da playlist e os salvará em uma pasta com o nome da playlist, organizando os arquivos de acordo com seus títulos e extensões corretas, e adicionando um número de índice automático no início do nome do arquivo para manter a ordem dos vídeos.</p>
+            </ol>
+        </div>
+
+        <!-- Nosso arsenal completo -->
+        <div class="card">
+            <h2>🧰 Nosso arsenal completo</h2>
+            <table class="arsenal-table">
+                <tr>
+                    <th>Item</th>
+                    <th>Recurso</th>
+                    <th>Função</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td><code style="display:inline;padding:0.2rem 0.5rem;font-size:0.9rem;">yt-dlp [link]</code></td>
+                    <td>Download simples</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td><code style="display:inline;padding:0.2rem 0.5rem;font-size:0.9rem;">-F</code></td>
+                    <td>Listar formatos</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td><code style="display:inline;padding:0.2rem 0.5rem;font-size:0.9rem;">-f [ID]</code></td>
+                    <td>Formato específico</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td><code style="display:inline;padding:0.2rem 0.5rem;font-size:0.9rem;">-f "bv*+ba/b"</code></td>
+                    <td>Melhor vídeo + áudio</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td><code style="display:inline;padding:0.2rem 0.5rem;font-size:0.9rem;">filtros [codec*=]</code></td>
+                    <td>Compatibilidade forçada</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td><code style="display:inline;padding:0.2rem 0.5rem;font-size:0.9rem;">-o + %(playlist)s</code></td>
+                    <td>Playlists organizadas</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td><code style="display:inline;padding:0.2rem 0.5rem;font-size:0.9rem;">-o + %(playlist_index)s</code></td>
+                    <td>Playlists organizadas com numeração automática</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Importante -->
+        <div class="importante-box">
+            <h2 style="border-left-color:#facc15; margin-top:0;">⚠️ Importante:</h2>
+            <p>AAC → Codec de áudio universal, compatível com qualquer dispositivo.</p>
+        </div>
+
+        <footer>
+            <p><small>Pensador Sem Fronteiras</small><br><em>Do Zero Ao Infinito</em></p>
+        </footer>
+    </div>
+
+    <script>
+        (function() {
+            const copyButtons = document.querySelectorAll('.copy-btn');
+
+            copyButtons.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('data-target');
+                    const codeElement = document.getElementById(targetId);
+                    
+                    if (!codeElement) return;
+
+                    const textToCopy = codeElement.innerText.trim();
+                    
+                    navigator.clipboard.writeText(textToCopy).then(() => {
+                        const originalText = this.innerHTML;
+                        this.innerHTML = '✅ Copiado!';
+                        this.style.borderColor = '#facc15';
+                        this.style.boxShadow = '0 0 35px #fbbf24';
+                        this.style.color = '#000';
+                        this.style.background = '#facc15';
+                        
+                        setTimeout(() => {
+                            this.innerHTML = originalText;
+                            this.style.borderColor = '#22d3ee';
+                            this.style.boxShadow = '0 0 22px #06b6d4';
+                            this.style.color = '#cffafe';
+                            this.style.background = 'rgba(2, 15, 30, 0.8)';
+                        }, 1700);
+                    }).catch(err => {
+                        alert('Erro ao copiar. Tente novamente.');
+                    });
+                });
+            });
+        })();
+    </script>
 </body>
 </html>

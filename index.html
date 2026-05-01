@@ -91,6 +91,84 @@
       align-self: center;
     }
 
+    /* 🌟🌟🌟 ESTILO EXAGERADO 3D PARA A FOTO (ARREDONDADA, BOMBAR, ANIMAÇÃO) 🌟🌟🌟 */
+    .foto-pensador-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0.5rem 0 1rem;
+      perspective: 800px;
+    }
+
+    .foto-pensador {
+      width: 140px;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid #00ffff;
+      box-shadow: 
+        0 0 25px #00ffff,
+        0 0 50px #ff00ff,
+        0 0 80px #00ffff,
+        0 15px 35px rgba(0, 0, 0, 0.8),
+        inset 0 -8px 15px rgba(0,0,0,0.5);
+      filter: brightness(1.1) contrast(1.1) saturate(1.2);
+      animation: flutuar3D 4s ease-in-out infinite, brilhoPulsante 2.5s ease-in-out infinite;
+      transform-style: preserve-3d;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .foto-pensador:hover {
+      transform: scale(1.08) rotateY(8deg) rotateX(5deg);
+      box-shadow: 
+        0 0 40px #ffffff,
+        0 0 70px #ff00ff,
+        0 0 110px #00ffff,
+        0 20px 50px rgba(0,0,0,0.9);
+      border-color: #ff00ff;
+      animation: flutuar3D 1.5s ease-in-out infinite, brilhoPulsante 1s ease-in-out infinite;
+    }
+
+    @keyframes flutuar3D {
+      0%, 100% {
+        transform: translateY(0px) rotateY(0deg) rotateX(0deg);
+      }
+      25% {
+        transform: translateY(-8px) rotateY(3deg) rotateX(2deg);
+      }
+      50% {
+        transform: translateY(-4px) rotateY(-2deg) rotateX(-1deg);
+      }
+      75% {
+        transform: translateY(-10px) rotateY(2deg) rotateX(3deg);
+      }
+    }
+
+    @keyframes brilhoPulsante {
+      0%, 100% {
+        box-shadow: 
+          0 0 25px #00ffff,
+          0 0 50px #ff00ff,
+          0 0 80px #00ffff,
+          0 15px 35px rgba(0, 0, 0, 0.8);
+      }
+      50% {
+        box-shadow: 
+          0 0 40px #ffffff,
+          0 0 75px #ff00ff,
+          0 0 120px #00ffff,
+          0 15px 35px rgba(0, 0, 0, 0.8);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .foto-pensador {
+        width: 110px;
+        height: 110px;
+      }
+    }
+
     .section-card {
       background: rgba(8, 12, 20, 0.75);
       backdrop-filter: blur(18px);
@@ -294,163 +372,161 @@
 <body>
   <div class="container">
     <h1 class="main-title">Pensador Sem Fronteiras</h1>
-    <div class="sub-header">⚡ Aprendizagem Lendária - tudo que se quer aprender! ⚡</div>
+    <div class="sub-header">⚡ Eterno Aprendiz ⚡</div>
 
-    <!-- Vs Code -->
-    <div class="section-card" data-section="vscode">
-      <div class="header-row">
-        <div class="section-title"><i>💎</i> Vs Code - Lendário</div>
-        <button class="toggle-btn" id="toggleVsCode">📂 Expandir</button>
-      </div>
-      <ul class="link-list hidden-list" id="listVsCode">
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">⭐</span> Vs Code - Lendário Nível I</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">⭐⭐</span> Vs Code - Lendário Nível II</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">⭐⭐⭐</span> Vs Code - Lendário Nível III</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">⭐⭐⭐⭐</span> Vs Code - Lendário Nível IV</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">⭐⭐⭐⭐⭐</span> Vs Code - Lendário Nível V</button></li>
-      </ul>
+    <!-- estilizar foto de forma arredondada, diminuir tamanho, colocar a bombar, estilo extravagante 3D, colocar animação -->
+    <div class="foto-pensador-wrapper">
+      <img src="img/pensador.png.jpeg" alt="foto do pensador sem fronteiras" class="foto-pensador">
     </div>
 
-    <!-- Termux -->
+    <!-- programação -->
     <div class="section-card" data-section="termux">
       <div class="header-row">
-        <div class="section-title"><i>📱</i> Termux - Lendário</div>
+        <div class="section-title"><i>&lt;/&gt;</i> Programação - Lendário</div>
         <button class="toggle-btn" id="toggleTermux">📂 Expandir</button>
       </div>
       <ul class="link-list hidden-list" id="listTermux">
-        <li><button class="nav-level-btn" onclick="navegarPara('termux/termux.html')"><span class="level-icon">⭐</span> Termux - Lendário Nível I</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">⭐⭐</span> Termux - Lendário Nível II</button></li>
-        <a
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">⭐⭐⭐</span> Termux - Lendário Nível III</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">⭐⭐⭐⭐</span> Termux - Lendário Nível IV</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">⭐⭐⭐⭐⭐</span> Termux - Lendário Nível V</button></li>
+        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">💎</span> Vs Code - Lendário </button></li>
+        <a href=""></a>
+        <li><button class="nav-level-btn" onclick="navegarPara('termux/termux.html')"><span class="level-icon">📱</span> Termux - Lendário</button></li>
+        <li><button class="nav-level-btn" onclick="navegarPara('')"><span class="level-icon">🖥️</span> Termux X11 - Lendário</button></li>
+        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">🐧</span> Linux - Lendário</button></li>
+        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">🐙</span> GitHub - Lendário</button></li>
+        <li><button class="nav-level-btn" onclick="navegarPara('html/html.html')"><span class="level-icon">🌐</span> HTML - Lendário</button></li>
+        <li><button class="nav-level-btn" onclick="navegarPara('css/css.html')"><span class="level-icon">🎨</span> CSS - Lendário</button></li>
+         <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">⚡</span> JavaScript - Lendário</button></li>
+         <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">🔷</span> TypeScript - Lendário</button></li>
+         <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">🔥</span> Firebase - Lendário</button></li>
       </ul>
     </div>
 
-    <!-- Termux-x11 -->
+    <!-- colocar os símbolos e trocar símbolos devidamente -->
+    <!-- Ciência - Didática Lendária -->
     <div class="section-card" data-section="termuxx11">
       <div class="header-row">
-        <div class="section-title"><i>🖥️</i> Termux-x11 - Lendário</div>
+        <div class="section-title"><i>🖥️</i> Ciência - Didática Lendária</div>
         <button class="toggle-btn" id="toggleTermuxX11">📂 Expandir</button>
       </div>
       <ul class="link-list hidden-list" id="listTermuxX11">
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">⭐</span> Termux-x11 - Lendário Nível I</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">⭐⭐</span> Termux-x11 - Lendário Nível II</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">⭐⭐⭐</span> Termux-x11 - Lendário Nível III</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">⭐⭐⭐⭐</span> Termux-x11 - Lendário Nível IV</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">⭐⭐⭐⭐⭐</span> Termux-x11 - Lendário Nível V</button></li>
+        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">📐</span> Matemática</button></li>
+        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">🧪</span> Química</button></li>
+        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">⚛️</span> Física</button></li>
+        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">🧬</span> Biologia</button></li>
+        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">🌍</span> Geografia</button></li>
+        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">🏛️</span> Filosofia</button></li>
+        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">🔭</span> Astronomia</button></li>
+        
       </ul>
     </div>
 
-    <!-- Linux -->
+    <!-- Religião -->
     <div class="section-card" data-section="linux">
       <div class="header-row">
-        <div class="section-title"><i>🐧</i> Linux - Lendário</div>
+        <div class="section-title"><i>🐧</i> Religião</div>
         <button class="toggle-btn" id="toggleLinux">📂 Expandir</button>
       </div>
       <ul class="link-list hidden-list" id="listLinux">
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">⭐</span> Linux - Lendário Nível I</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">⭐⭐</span> Linux - Lendário Nível II</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">⭐⭐⭐</span> Linux - Lendário Nível III</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">⭐⭐⭐⭐</span> Linux - Lendário Nível IV</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">⭐⭐⭐⭐⭐</span> Linux - Lendário Nível V</button></li>
+        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">✝️</span> Cristianismo</button></li>
+        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">☪️</span> Islão</button></li>
+        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">🕎</span> Judaísmo</button></li>
+        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">☸️</span> Budismo</button></li>
+        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">🕉️</span> Hinduísmo</button></li>
       </ul>
     </div>
 
-    <!-- GitHub -->
+    <!-- Engenharia Técnica -->
     <div class="section-card" data-section="github">
       <div class="header-row">
-        <div class="section-title"><i>🐙</i> GitHub - Lendário</div>
+        <div class="section-title"><i>🔧</i> Engenharia - Técnica Profissional Lendária</div>
         <button class="toggle-btn" id="toggleGitHub">📂 Expandir</button>
       </div>
       <ul class="link-list hidden-list" id="listGitHub">
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">⭐</span> GitHub - Lendário Nível I</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">⭐⭐</span> GitHub - Lendário Nível II</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">⭐⭐⭐</span> GitHub - Lendário Nível III</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">⭐⭐⭐⭐</span> GitHub - Lendário Nível IV</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">⭐⭐⭐⭐⭐</span> GitHub - Lendário Nível V</button></li>
+        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">⚡</span> Eletricidade</button></li>
+        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">🔩</span> Mecânica</button></li>
+        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">🌐</span> Redes de Computadores</button></li>
+        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">🤖</span> Robótica</button></li>
+        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">🐙</span> GitHub - Lendário Nível V</button></li>
       </ul>
     </div>
 
-    <!-- HTML -->
+    <!-- ? -->
     <div class="section-card" data-section="html">
       <div class="header-row">
-        <div class="section-title"><i>🌐</i> HTML Lendário</div>
+        <div class="section-title"><i>❓</i> ?</div>
         <button class="toggle-btn" id="toggleHtml">📂 Expandir</button>
       </div>
       <ul class="link-list hidden-list" id="listHtml">
-        <li><button class="nav-level-btn" onclick="navegarPara('html/html.html')"><span class="level-icon">⭐</span> HTML - Lendário Nível I</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">⭐⭐</span> HTML - Lendário Nível II</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">⭐⭐⭐</span> HTML - Lendário Nível III</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">⭐⭐⭐⭐</span> HTML - Lendário Nível IV</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">⭐⭐⭐⭐⭐</span> HTML - Lendário Nível V</button></li>
+        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">🌐</span> HTML - Lendário Nível I</button></li>
+        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">🌐</span> HTML - Lendário Nível II</button></li>
+        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">🌐</span> HTML - Lendário Nível III</button></li>
+        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">🌐</span> HTML - Lendário Nível IV</button></li>
+        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">🌐</span> HTML - Lendário Nível V</button></li>
       </ul>
     </div>
 
-    <!-- CSS -->
+    <!-- Passo a passo -->
     <div class="section-card" data-section="css">
       <div class="header-row">
-        <div class="section-title"><i>🎨</i> CSS Lendário</div>
+        <div class="section-title"><i>🎯</i> Passo a Passo - Lendário</div>
 
         <button class="toggle-btn" id="toggleCss">📂 Expandir</button>
-        <button class="nav-level-btn" onclick="navegarPara('css/css.html')"><span class="level-icon">⭐</span> CSS - Lendário Nível I</button
       </div>
       <ul class="link-list hidden-list" id="listCss">
-        <li><button class="nav-level-btn" onclick="navegarPara('css/css.html')"><span class="level-icon">⭐</span> CSS - Lendário Nível I</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">⭐⭐</span> CSS - Lendário Nível II</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">⭐⭐⭐</span> CSS - Lendário Nível III</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">⭐⭐⭐⭐</span> CSS - Lendário Nível IV</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">⭐⭐⭐⭐⭐</span> CSS - Lendário Nível V</button></li>
+        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">1️⃣</span> ?I</button></li>
+        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">2️⃣</span> CSS - ?</button></li>
+        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">3️⃣</span> CSS - ?</button></li>
+        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">4️⃣</span> CSS - ?</button></li>
+        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">5️⃣</span> CSS - ?</button></li>
       </ul>
     </div>
 
-    <!-- JavaScript -->
+    <!-- ? -->
     <div class="section-card" data-section="js">
       <div class="header-row">
-        <div class="section-title"><i>⚡</i> JavaScript Lendário</div>
+        <div class="section-title"><i>❓</i> ?</div>
         <button class="toggle-btn" id="toggleJs">📂 Expandir</button>
       </div>
       <ul class="link-list hidden-list" id="listJs">
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">⭐</span> JavaScript - Lendário Nível I</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">⭐⭐</span> JavaScript - Lendário Nível II</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">⭐⭐⭐</span> JavaScript - Lendário Nível III</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">⭐⭐⭐⭐</span> JavaScript - Lendário Nível IV</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">⭐⭐⭐⭐⭐</span> JavaScript - Lendário Nível V</button></li>
+        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">🔮</span> ?</button></li>
+        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">🔮</span> ?</button></li>
+        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">🔮</span> ? </button></li>
+        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">🔮</span> ?</button></li>
+        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">🔮</span> ?</button></li>
       </ul>
     </div>
 
-    <!-- TypeScript -->
+    <!-- ? -->
     <div class="section-card" data-section="ts">
       <div class="header-row">
-        <div class="section-title"><i>🔷</i> TypeScript Lendário</div>
+        <div class="section-title"><i>❓</i> ?</div>
         <button class="toggle-btn" id="toggleTs">📂 Expandir</button>
       </div>
       <ul class="link-list hidden-list" id="listTs">
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">⭐</span> TypeScript - Lendário Nível I</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">⭐⭐</span> TypeScript - Lendário Nível II</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">⭐⭐⭐</span> TypeScript - Lendário Nível III</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">⭐⭐⭐⭐</span> TypeScript - Lendário Nível IV</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">⭐⭐⭐⭐⭐</span> TypeScript - Lendário Nível V</button></li>
+        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">💠</span> ?</button></li>
+        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">💠</span> ?</button></li>
+        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">💠</span> ?</button></li>
+        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">💠</span> ?</button></li>
+        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">💠</span> ?</button></li>
       </ul>
     </div>
 
-    <!-- Firebase -->
+    <!-- ? -->
     <div class="section-card" data-section="firebase">
       <div class="header-row">
-        <div class="section-title"><i>🔥</i> Firebase Lendário</div>
+        <div class="section-title"><i>❓</i> ?</div>
         <button class="toggle-btn" id="toggleFirebase">📂 Expandir</button>
       </div>
       <ul class="link-list hidden-list" id="listFirebase">
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">⭐</span> Firebase - Lendário Nível I</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">⭐⭐</span> Firebase - Lendário Nível II</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">⭐⭐⭐</span> Firebase - Lendário Nível III</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">⭐⭐⭐⭐</span> Firebase - Lendário Nível IV</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">⭐⭐⭐⭐⭐</span> Firebase - Lendário Nível V</button></li>
+        <li><button class="nav-level-btn" onclick="navegarPara('paginas/prompts.html')"><span class="level-icon">🔥</span> Prompts</button></li>
+        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">🔥</span> ?</button></li>
+        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">🔥</span> ?</button></li>
+        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">🔥</span> ?</button></li>
+        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">🔥</span> ?</button></li>
       </ul>
     </div>
 
     <footer class="footer-signature">
-      <p><small>© Pensador Sem Fronteiras. ok</small></p>
+      <p><small>© Pensador Sem Fronteiras.</small></p>
       <p><em>Do Zero ao Infinito</em></p>
     </footer>
   </div>

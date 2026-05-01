@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes, viewport-fit=cover">
+  <title>Prompts · Lendário · Pensador Sem Fronteiras</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0a0c0f;
+      font-family: 'Segoe UI', 'Inter', system-ui, -apple-system, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      padding: 1.5rem 1rem;
+      margin: 0;
+      color: #e0f0ff;
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 850px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+    }
+
+    h1 {
+      font-size: 2.6rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, #00ffff 0%, #ff00ff 70%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 0 14px #00ffffcc);
+      margin-bottom: 0.5rem;
+      text-align: center;
+      word-break: break-word;
+    }
+
+    h2 {
+      font-size: 1.7rem;
+      font-weight: 500;
+      color: #b3f0ff;
+      text-shadow: 0 0 8px #00bcd4;
+      margin-bottom: 0.3rem;
+      border-left: 5px solid #ff00ff;
+      padding-left: 1rem;
+    }
+
+    .section-card {
+      background: rgba(16, 20, 28, 0.8);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(0, 255, 255, 0.3);
+      border-radius: 2.3rem;
+      padding: 1.7rem 1.4rem;
+      box-shadow: 0 0 32px rgba(0, 255, 255, 0.25), 0 12px 24px rgba(0,0,0,0.8);
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 1.4rem;
+    }
+
+    .section-card:hover {
+      border-color: #ff00ff;
+      box-shadow: 0 0 48px rgba(255, 0, 255, 0.55), 0 0 20px #00ffff;
+    }
+
+    .header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .section-title {
+      font-size: 1.6rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: linear-gradient(to right, #ccff00, #00ffff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 0 0 12px #39ff14;
+      letter-spacing: 1px;
+    }
+
+    .toggle-btn {
+      background: rgba(0, 255, 255, 0.06);
+      border: 1.8px solid #00ffff;
+      color: #00ffff;
+      font-weight: bold;
+      font-size: 1rem;
+      padding: 0.65rem 1.5rem;
+      border-radius: 3rem;
+      backdrop-filter: blur(12px);
+      cursor: pointer;
+      transition: 0.25s;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      box-shadow: 0 0 18px #00ffff66;
+      background: #0b1015;
+      white-space: nowrap;
+    }
+
+    .toggle-btn:hover {
+      background: #ff00ff20;
+      border-color: #ff00ff;
+      color: #ff99ff;
+      box-shadow: 0 0 30px #ff00ff;
+    }
+
+    .link-indice {
+      list-style: none;
+      padding: 0;
+      margin-top: 0.8rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .hidden-indice {
+      display: none;
+    }
+
+    .visible-indice {
+      display: flex;
+    }
+
+    .link-indice li {
+      background: rgba(6, 10, 16, 0.75);
+      backdrop-filter: blur(14px);
+      border: 1px solid #00ffff55;
+      border-radius: 2rem;
+      padding: 1.5rem 1.3rem;
+      box-shadow: 0 0 22px #00ffff33;
+      transition: 0.2s;
+      display: flex;
+      flex-direction: column;
+      gap: 1.3rem;
+    }
+
+    .link-indice li:hover {
+      border-color: #ccff00;
+      box-shadow: 0 0 35px #ccff00aa;
+    }
+
+    code {
+      background: #02040a;
+      border: 1px solid #ff00ff;
+      border-radius: 1.3rem;
+      padding: 1.3rem;
+      display: block;
+      font-family: 'Fira Code', 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+      color: #b5ffb5;
+      white-space: pre-wrap;
+      word-break: break-word;
+      overflow-x: auto;
+      box-shadow: inset 0 0 20px #000000, 0 0 25px #ff00ff66;
+      line-height: 1.6;
+      max-height: 500px;
+      overflow-y: auto;
+    }
+
+    code p {
+      margin: 0;
+      font-family: inherit;
+      color: #d4ffcc;
+      text-shadow: 0 0 4px #00ffcc;
+      white-space: pre-wrap;
+    }
+
+    /* Área editável mantém estilo de código */
+    .editable-code {
+      background: #02040a;
+      border: 1px solid #ff00ff;
+      border-radius: 1.3rem;
+      padding: 1.3rem;
+      font-family: 'Fira Code', 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+      color: #d4ffcc;
+      text-shadow: 0 0 4px #00ffcc;
+      box-shadow: inset 0 0 20px #000000, 0 0 25px #ff00ff66;
+      line-height: 1.6;
+      width: 100%;
+      resize: vertical;
+      min-height: 180px;
+      background: #02040a;
+      outline: none;
+      white-space: pre-wrap;
+      word-break: break-word;
+      overflow-wrap: break-word;
+    }
+
+    .button-group {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.8rem;
+      margin-top: 0.3rem;
+    }
+
+    .copy-btn, .edit-btn, .save-btn, .reset-btn {
+      background: #0f0f1a;
+      border: 1.5px solid #ccff00;
+      color: #ccff00;
+      font-weight: bold;
+      font-size: 0.95rem;
+      padding: 0.7rem 1.4rem;
+      border-radius: 3rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      cursor: pointer;
+      backdrop-filter: blur(12px);
+      transition: all 0.25s;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      box-shadow: 0 0 18px #a3ff00;
+      background: rgba(0, 0, 0, 0.7);
+    }
+
+    .edit-btn {
+      border-color: #00ffff;
+      color: #00ffff;
+      box-shadow: 0 0 18px #00ffff;
+    }
+
+    .save-btn {
+      border-color: #ff00ff;
+      color: #ff99ff;
+      box-shadow: 0 0 18px #ff00ff;
+    }
+
+    .reset-btn {
+      border-color: #ff5555;
+      color: #ffaaaa;
+      box-shadow: 0 0 18px #ff4444;
+    }
+
+    .copy-btn:hover, .edit-btn:hover, .save-btn:hover, .reset-btn:hover {
+      transform: scale(1.03);
+      filter: brightness(1.2);
+    }
+
+    .copy-btn:hover {
+      background: #ccff00;
+      color: #000;
+      box-shadow: 0 0 38px #ccff00;
+    }
+
+    .edit-btn:hover {
+      background: #00ffff;
+      color: #000;
+      box-shadow: 0 0 32px #00ffff;
+    }
+
+    .save-btn:hover {
+      background: #ff00ff;
+      color: #000;
+      box-shadow: 0 0 32px #ff00ff;
+    }
+
+    .reset-btn:hover {
+      background: #ff5555;
+      color: #000;
+    }
+
+    footer {
+      margin-top: 2.8rem;
+      padding: 1.9rem 1rem 1rem;
+      width: 100%;
+      text-align: center;
+      border-top: 2px solid #00ffff44;
+      background: linear-gradient(0deg, #020106, transparent);
+    }
+
+    footer p {
+      font-weight: 300;
+      letter-spacing: 1.5px;
+      color: #b0f0ff;
+    }
+
+    footer small {
+      font-size: 1.15rem;
+      font-weight: 300;
+      letter-spacing: 2px;
+      color: #99eeff;
+      text-shadow: 0 0 10px cyan;
+    }
+
+    footer em {
+      font-style: italic;
+      font-size: 1.3rem;
+      background: linear-gradient(to right, #ccff00, #00ffff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 500;
+      display: inline-block;
+      margin-top: 0.2rem;
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 1rem 0.6rem;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      .toggle-btn {
+        padding: 0.55rem 1.2rem;
+        font-size: 0.9rem;
+      }
+      .button-group {
+        gap: 0.5rem;
+      }
+      .copy-btn, .edit-btn, .save-btn, .reset-btn {
+        padding: 0.65rem 1.1rem;
+        font-size: 0.85rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>⚡ Prompts · Lendário</h1>
+
+    <div class="section-card" data-section="css-indice">
+      <div class="header-row">
+        <div class="section-title"><i>📄</i> Índice Prompt</div>
+        <button class="toggle-btn" id="toggleIndiceCSS" aria-label="Expandir ou recolher índice">📂 Expandir</button>
+      </div>
+
+      <ol class="link-indice hidden-indice" id="indiceCSS">
+        <h2 style="font-size:1.7rem; margin:0 0 0.4rem 0; border:none; padding-left:0;">📌 Índice · Prompt</h2>
+        
+        <!-- Item 1: Prompt CSS -->
+        <li data-prompt-id="cssPrompt">
+          <div class="header-row">
+            <div class="section-title"><i>📄</i> Prompt CSS</div>
+            <button class="toggle-btn internal-toggle" data-target="cssBlock1">📂 Expandir</button>
+          </div>
+          <div class="code-block-wrapper" id="cssBlock1" style="display: none;">
+            <div id="cssDisplayArea">
+              <code><p id="cssOriginalText">"Aja como um desenvolvedor front-end de elite, extremamente vaidoso, prático e altamente inteligente.
+
+Eu irei fornecer um código ou anotações de estudo. Sua tarefa é transformar esse conteúdo em uma interface visual impecável, seguindo rigorosamente as regras abaixo:
+
+⚠️ REGRAS INEGOCIÁVEIS
+
+1. FIDELIDADE ABSOLUTA
+
+Não resumir, não cortar e não alterar nenhum conteúdo.
+Não modificar teoria, conceitos, links ou dicas.
+O conteúdo é intocável.
+Permitido apenas: correção ortográfica e formatação visual.
+
+2. ESTÉTICA EXTRAVAGANTE (VISUAL IMPACTANTE)
+
+Tema: fundo escuro (dark mode).
+Paleta: Neon, Ciano, Magenta, Verde-limão.
+Usar:
+sombras radiantes (glow effects)
+bordas luminosas
+animações sutis (hover, transições suaves)
+O design deve parecer premium e futurista.
+
+3. FUNCIONALIDADE PRÁTICA (UX PERFEITA)
+
+Organizar tudo em cartões (cards) bem definidos.
+Cada bloco de código deve:
+estar dentro de uma caixa estilizada
+ter obrigatoriamente um botão “Copiar” funcional em JavaScript
+Links devem ser:
+transformados em botões 100% clicáveis
+sem botão de copiar
+navegação direta ao clicar
+
+4. RESPONSIVIDADE (MOBILE-FIRST)
+
+Priorizar smartphones (especialmente Android)
+Layout adaptável e fluido
+Botões grandes, espaçados e fáceis de tocar
+Interface deve funcionar perfeitamente em telas pequenas
+
+5. ASSINATURA OBRIGATÓRIA
+
+Rodapé contendo sempre:
+Pensador Sem Fronteiras (letras finas)
+slogan em itálico: Do zero ao Infinito"</p></code>
+            </div>
+            <div class="button-group">
+              <button class="copy-btn" data-copy-target="cssPrompt">📋 Copiar</button>
+              <button class="edit-btn" data-edit-target="cssPrompt">✏️ Editar</button>
+              <button class="save-btn hidden" data-save-target="cssPrompt">💾 Salvar edição</button>
+              <button class="reset-btn" data-reset-target="cssPrompt">↩️ Original</button>
+            </div>
+          </div>
+        </li>
+
+        <!-- Item 2: Prompt Música -->
+        <li data-prompt-id="musicaPrompt">
+          <div class="header-row">
+            <div class="section-title"><i>📄</i> Prompt Música</div>
+            <button class="toggle-btn internal-toggle" data-target="musicaBlock2">📂 Expandir</button>
+          </div>
+          <div class="code-block-wrapper" id="musicaBlock2" style="display: none;">
+            <div id="musicaDisplayArea">
+              <code><p id="musicaOriginalText">"Crie uma música seguindo rigorosamente todas as regras abaixo:
+
+Seja totalmente fiel à letra fornecida.
+Não modificar, não corrigir e não reescrever nenhuma palavra.
+A música deve ter tom masculino.
+Estilo musical: Kizomba, inspirado em Soraia Ramos, porém com voz masculina.
+Na parte de rap:
+Início: usar duas melodias no mesmo tom, estilo Hernâni.
+Meio: mudar para estilo “duas caras” (variação de flow).
+Final: voltar ao estilo Hernâni.
+Não omitir nenhuma palavra da letra original.
+Garantir pronúncia correta e natural.
+
+Estrutura da música:
+
+Intro (suave, melancólico)
+Verso(s)
+Coro
+Parte de rap
+Finalização
+
+Letra:
+(Intro – suave, melancólico)
+Yeah… Pensador sem fronteiras…"</p></code>
+            </div>
+            <div class="button-group">
+              <button class="copy-btn" data-copy-target="musicaPrompt">📋 Copiar</button>
+              <button class="edit-btn" data-edit-target="musicaPrompt">✏️ Editar</button>
+              <button class="save-btn hidden" data-save-target="musicaPrompt">💾 Salvar edição</button>
+              <button class="reset-btn" data-reset-target="musicaPrompt">↩️ Original</button>
+            </div>
+          </div>
+        </li>
+      </ol>
+    </div>
+
+    <footer>
+      <p>
+        <small>Pensador Sem Fronteiras</small><br>
+        <em>Do zero ao Infinito</em>
+      </p>
+    </footer>
+  </div>
+
+  <script>
+    (function() {
+      // ----- ESTADO GLOBAL: armazena conteúdo original e referências -----
+      const promptStore = new Map(); // key: promptId, value: { originalText, currentElement }
+
+      // Inicializa o armazenamento com os textos originais
+      function initializeStore() {
+        // Prompt CSS
+        const cssOriginalEl = document.getElementById('cssOriginalText');
+        if (cssOriginalEl) {
+          promptStore.set('cssPrompt', {
+            originalText: cssOriginalEl.innerText.trim(),
+            displayElement: cssOriginalEl.parentElement, // referência ao <code>
+            textNodeId: 'cssOriginalText'
+          });
+        }
+        // Prompt Música
+        const musicaOriginalEl = document.getElementById('musicaOriginalText');
+        if (musicaOriginalEl) {
+          promptStore.set('musicaPrompt', {
+            originalText: musicaOriginalEl.innerText.trim(),
+            displayElement: musicaOriginalEl.parentElement,
+            textNodeId: 'musicaOriginalText'
+          });
+        }
+      }
+
+      // Restaura o conteúdo original (remove textarea, recoloca <code><p>)
+      function restoreOriginalDisplay(promptId) {
+        const data = promptStore.get(promptId);
+        if (!data) return;
+        
+        const displayElement = data.displayElement;
+        if (!displayElement) return;
+        
+        // Verifica se já está no estado original (evita recriar)
+        const existingCode = displayElement.querySelector('code');
+        if (existingCode && existingCode.querySelector(`#${data.textNodeId}`)) {
+          return; // já está correto
+        }
+
+        // Remove textarea se existir
+        const parentWrapper = displayElement.closest('.code-block-wrapper') || displayElement.parentElement;
+        const existingTextarea = parentWrapper?.querySelector('.editable-code');
+        if (existingTextarea) {
+          existingTextarea.remove();
+        }
+
+        // Recria estrutura code + p com texto original
+        displayElement.innerHTML = '';
+        const code = document.createElement('code');
+        const p = document.createElement('p');
+        p.id = data.textNodeId;
+        p.textContent = data.originalText;
+        code.appendChild(p);
+        displayElement.appendChild(code);
+        
+        // Atualiza a referência do displayElement (pode ter mudado)
+        data.displayElement = displayElement;
+        promptStore.set(promptId, data);
+      }
+
+      // Atualiza o texto original no armazenamento (quando salva edição)
+      function updateOriginalText(promptId, newText) {
+        const data = promptStore.get(promptId);
+        if (data) {
+          data.originalText = newText;
+          promptStore.set(promptId, data);
+        }
+      }
+
+      // Obtém o texto atual (do textarea ou do elemento original)
+      function getCurrentText(promptId) {
+        const data = promptStore.get(promptId);
+        if (!data) return '';
+        
+        const parentWrapper = data.displayElement?.closest('.code-block-wrapper');
+        if (!parentWrapper) return data.originalText;
+        
+        const textarea = parentWrapper.querySelector('.editable-code');
+        if (textarea) {
+          return textarea.value;
+        }
+        
+        // Caso contrário, pega do elemento <p> original
+        const pElement = document.getElementById(data.textNodeId);
+        return pElement ? pElement.innerText : data.originalText;
+      }
+
+      // Habilita modo de edição (troca <code> por textarea)
+      function enableEditMode(promptId) {
+        const data = promptStore.get(promptId);
+        if (!data || !data.displayElement) return;
+        
+        const displayElement = data.displayElement;
+        const parentWrapper = displayElement.closest('.code-block-wrapper');
+        if (!parentWrapper) return;
+        
+        // Se já existe textarea, apenas foca
+        const existingTextarea = parentWrapper.querySelector('.editable-code');
+        if (existingTextarea) {
+          existingTextarea.focus();
+          toggleButtonsForEditMode(promptId, true);
+          return;
+        }
+
+        const currentText = getCurrentText(promptId);
+        
+        // Limpa displayElement e insere textarea
+        displayElement.innerHTML = '';
+        const textarea = document.createElement('textarea');
+        textarea.className = 'editable-code';
+        textarea.value = currentText;
+        textarea.setAttribute('aria-label', 'Editar conteúdo');
+        textarea.style.minHeight = '200px';
+        displayElement.appendChild(textarea);
+        
+        // Ajusta altura automaticamente
+        textarea.style.height = 'auto';
+        textarea.style.height = textarea.scrollHeight + 'px';
+        textarea.addEventListener('input', function() {
+          this.style.height = 'auto';
+          this.style.height = this.scrollHeight + 'px';
+        });
+        
+        toggleButtonsForEditMode(promptId, true);
+        textarea.focus();
+      }
+
+      // Salva a edição: atualiza store e restaura visual com novo texto
+      function saveEdit(promptId) {
+        const data = promptStore.get(promptId);
+        if (!data) return;
+        
+        const parentWrapper = data.displayElement?.closest('.code-block-wrapper');
+        if (!parentWrapper) return;
+        
+        const textarea = parentWrapper.querySelector('.editable-code');
+        if (!textarea) return;
+        
+        const newText = textarea.value;
+        // Atualiza o texto original no armazenamento
+        updateOriginalText(promptId, newText);
+        
+        // Recria a exibição com o novo conteúdo
+        const displayElement = data.displayElement;
+        displayElement.innerHTML = '';
+        const code = document.createElement('code');
+        const p = document.createElement('p');
+        p.id = data.textNodeId;
+        p.textContent = newText;
+        code.appendChild(p);
+        displayElement.appendChild(code);
+        
+        // Atualiza referência
+        data.displayElement = displayElement;
+        promptStore.set(promptId, data);
+        
+        toggleButtonsForEditMode(promptId, false);
+      }
+
+      // Reseta para o conteúdo original (hard reset)
+      function resetToOriginal(promptId) {
+        const data = promptStore.get(promptId);
+        if (!data) return;
+        
+        // Recupera o texto original armazenado (imutável desde a primeira carga)
+        const original = data.originalText;
+        const displayElement = data.displayElement;
+        if (!displayElement) return;
+        
+        const parentWrapper = displayElement.closest('.code-block-wrapper');
+        // Remove textarea se existir
+        const textarea = parentWrapper?.querySelector('.editable-code');
+        if (textarea) {
+          textarea.remove();
+        }
+        
+        // Reconstroi com original
+        displayElement.innerHTML = '';
+        const code = document.createElement('code');
+        const p = document.createElement('p');
+        p.id = data.textNodeId;
+        p.textContent = original;
+        code.appendChild(p);
+        displayElement.appendChild(code);
+        
+        data.displayElement = displayElement;
+        promptStore.set(promptId, data);
+        
+        toggleButtonsForEditMode(promptId, false);
+      }
+
+      // Controla visibilidade dos botões (Editar/Salvar)
+      function toggleButtonsForEditMode(promptId, isEditing) {
+        const data = promptStore.get(promptId);
+        if (!data || !data.displayElement) return;
+        const parentWrapper = data.displayElement.closest('.code-block-wrapper');
+        if (!parentWrapper) return;
+        
+        const editBtn = parentWrapper.querySelector('.edit-btn');
+        const saveBtn = parentWrapper.querySelector('.save-btn');
+        
+        if (editBtn) {
+          editBtn.classList.toggle('hidden', isEditing);
+        }
+        if (saveBtn) {
+          saveBtn.classList.toggle('hidden', !isEditing);
+        }
+      }
+
+      // Função de cópia (considera conteúdo editado)
+      function handleCopy(promptId) {
+        const textToCopy = getCurrentText(promptId);
+        navigator.clipboard.writeText(textToCopy).then(() => {
+          // Feedback visual no botão copiar correspondente
+          const data = promptStore.get(promptId);
+          if (data && data.displayElement) {
+            const wrapper = data.displayElement.closest('.code-block-wrapper');
+            if (wrapper) {
+              const copyBtn = wrapper.querySelector('.copy-btn');
+              if (copyBtn) {
+                const originalHTML = copyBtn.innerHTML;
+                copyBtn.innerHTML = '✅ Copiado!';
+                copyBtn.style.backgroundColor = '#ccff00';
+                copyBtn.style.color = '#000';
+                setTimeout(() => {
+                  copyBtn.innerHTML = originalHTML;
+                  copyBtn.style.backgroundColor = '';
+                  copyBtn.style.color = '';
+                }, 1800);
+              }
+            }
+          }
+        }).catch(err => {
+          alert('Falha ao copiar.');
+        });
+      }
+
+      // Configura listeners globais
+      function attachEvents() {
+        // Toggle principal do índice
+        const mainToggle = document.getElementById('toggleIndiceCSS');
+        const indiceLista = document.getElementById('indiceCSS');
+        if (mainToggle && indiceLista) {
+          mainToggle.addEventListener('click', function(e) {
+            const isHidden = indiceLista.classList.contains('hidden-indice');
+            if (isHidden) {
+              indiceLista.classList.remove('hidden-indice');
+              indiceLista.classList.add('visible-indice');
+              mainToggle.innerHTML = '📁 Recolher';
+            } else {
+              indiceLista.classList.add('hidden-indice');
+              indiceLista.classList.remove('visible-indice');
+              mainToggle.innerHTML = '📂 Expandir';
+            }
+          });
+        }
+
+        // Toggles internos (expandir cada bloco)
+        document.querySelectorAll('.internal-toggle').forEach(btn => {
+          btn.addEventListener('click', function(e) {
+            const targetId = this.getAttribute('data-target');
+            const targetBlock = document.getElementById(targetId);
+            if (!targetBlock) return;
+            const isHidden = targetBlock.style.display === 'none' || targetBlock.style.display === '';
+            if (isHidden) {
+              targetBlock.style.display = 'block';
+              this.innerHTML = '📁 Recolher';
+            } else {
+              targetBlock.style.display = 'none';
+              this.innerHTML = '📂 Expandir';
+            }
+          });
+        });
+
+        // Delegação de eventos para botões de ação (copiar, editar, salvar, reset)
+        document.body.addEventListener('click', function(e) {
+          const target = e.target.closest('button');
+          if (!target) return;
+
+          // Botão Copiar
+          if (target.classList.contains('copy-btn')) {
+            e.preventDefault();
+            const promptId = target.getAttribute('data-copy-target');
+            if (promptId) handleCopy(promptId);
+          }
+
+          // Botão Editar
+          if (target.classList.contains('edit-btn')) {
+            e.preventDefault();
+            const promptId = target.getAttribute('data-edit-target');
+            if (promptId) enableEditMode(promptId);
+          }
+
+          // Botão Salvar
+          if (target.classList.contains('save-btn')) {
+            e.preventDefault();
+            const promptId = target.getAttribute('data-save-target');
+            if (promptId) saveEdit(promptId);
+          }
+
+          // Botão Reset (Original)
+          if (target.classList.contains('reset-btn')) {
+            e.preventDefault();
+            const promptId = target.getAttribute('data-reset-target');
+            if (promptId) resetToOriginal(promptId);
+          }
+        });
+
+        // Fechar ao clicar fora ou tecla Escape? (não solicitado, mas manter UX)
+        // Apenas mantemos a integridade.
+      }
+
+      // Inicialização completa
+      initializeStore();
+      attachEvents();
+
+      // Garantir que ao carregar a página os estados de botão estejam corretos
+      window.addEventListener('load', function() {
+        // Força estado inicial dos botões de save hidden
+        document.querySelectorAll('.save-btn').forEach(btn => btn.classList.add('hidden'));
+        document.querySelectorAll('.edit-btn').forEach(btn => btn.classList.remove('hidden'));
+      });
+
+    })();
+  </script>
+</body>
+</html>

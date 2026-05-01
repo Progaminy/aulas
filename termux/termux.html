@@ -210,6 +210,96 @@
       word-break: break-word;
       position: relative;
     }
+    /* Estilos para o índice */
+    .section-card {
+        background: rgba(8, 14, 28, 0.7);
+        backdrop-filter: blur(22px);
+        -webkit-backdrop-filter: blur(22px);
+        border: 1px solid rgba(0, 255, 200, 0.3);
+        border-radius: 2.5rem;
+        padding: 2rem 1.5rem;
+        box-shadow: 0 25px 50px rgba(255, 0, 200, 0.3), 0 0 50px #00ffff38;
+        width: 100%;
+    }
+
+    .header-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+    }
+
+    .section-title {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: #bafff7;
+        text-shadow: 0 0 10px #7dd3fc;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .toggle-btn {
+        background: linear-gradient(135deg, #2a1035, #0f1a2e);
+        border: 2px solid #f472b6;
+        border-radius: 2rem;
+        padding: 0.6rem 1.5rem;
+        font-weight: 700;
+        font-size: 1rem;
+        color: #fdf2ff;
+        cursor: pointer;
+        backdrop-filter: blur(14px);
+        box-shadow: 0 0 20px #ec4899, 0 5px 15px #000000;
+        transition: all 0.25s;
+        text-shadow: 0 0 10px #f472b6;
+    }
+
+    .toggle-btn:hover {
+        border-color: #00f2fe;
+        box-shadow: 0 0 40px #00e5ff, 0 0 20px #d946ef;
+        color: white;
+        transform: translateY(-2px);
+    }
+
+    .link-indice {
+        list-style: none;
+        padding: 0;
+        margin-top: 1rem;
+    }
+
+    .link-indice h1 {
+        font-size: 1.8rem;
+        margin-bottom: 0.5rem;
+        text-shadow: 0 0 20px #38bdf8, 0 0 40px #d946ef;
+    }
+
+    .link-indice h2 {
+        font-size: 1.4rem;
+        color: #f472b6;
+        text-shadow: 0 0 15px #f43f9e;
+        margin: 1rem 0 0.5rem;
+    }
+
+    .link-indice li {
+        color: #c8e9ff;
+        font-size: 1.1rem;
+        margin: 0.5rem 0;
+        padding-left: 1rem;
+        text-shadow: 0 0 8px #7dd3fc;
+    }
+
+    .link-indice li p {
+        margin: 0;
+    }
+
+    .link-indice li p strong {
+        color: #bafff7;
+        text-shadow: 0 0 12px #2dd4bf;
+    }
+
+    .hidden-indice {
+        display: none;
+    }
 
     footer {
       margin-top: 2.2rem;
@@ -249,76 +339,47 @@
 <body>
   <div class="container">
 
-    <div><a href="../../index.html" class="btn-link">🏠 Voltar Home</a></div>
+    <div>
+      <a href="../index.html" class="btn-link">🏠 Voltar Home</a>
+      <a href="termux.html" class="btn-link">🔄 ATUALIZAR</a>
+    </div>
     
-    <h1>⚡Termux Lendário I</h1>
+    <h1>⚡Termux - Lendário</h1>
 
-    <div class="card">
-      <h2>🛠️ Preparação do Ambiente e Primeiros Passos</h2>
-      <p>Termux é um aplicativo para celular Android (funciona também em Chromebooks com suporte a apps Android). Ele cria um ambiente de terminal Linux dentro do seu celular, sem precisar instalar outro sistema operacional. Termux é um terminal Android que oferece um ambiente Linux completo. Para começar, siga os passos abaixo:</p>
-    </div>
-
-    <!-- Card: Instalação via F-Droid -->
-    <div class="card">
-      <h2>📲 Baixar e instalar Termux no F-Droid (passo a passo)</h2>
-      <ol>
-        <li>No seu celular Android, abra o navegador (Chrome, Firefox, etc.)</li>
-        <li>Digite na barra de endereço: <strong>https://f-droid.org</strong></li>
-        <li>Na página do F-Droid, toque no botão <strong>"Download F-Droid"</strong> para baixar o arquivo APK do aplicativo. (isso é apenas uma loja alternativa, segura e confiável)</li>
-        <li>Abra o app F-Droid já instalado</li>
-        <li>Toque na lupa (buscar) e digite: <strong>Termux</strong></li>
-        <li>Aparecerá Termux (com ícone de terminal preto com /> branco)</li>
-        <li>Toque em Termux e depois em <strong>INSTALL</strong></li>
-        <li>Aguarde a instalação (normalmente 10–30 segundos)</li>
-        <li>Após instalar, toque em OPEN ou encontre o ícone do Termux na tela inicial do seu celular</li>
+    <!-- Índice -->
+    <div class="section-card" data-section="css-indice">
+      <div class="header-row">
+          <div class="section-title"><i>📄</i> Índice CSS</div>
+          <button class="toggle-btn" id="toggleIndiceCSS">📂 Expandir</button>
+      </div>
+      <ol class="link-indice hidden-indice" id="indiceCSS">
+          <h1>Índice</h1>
+          <h2>Termux I</h2>
+          <li><p><strong>Primeiros Passos</strong> - Instalação · Atualização</p></li>
+          <li><p><strong>Comandos</strong> - Comandos Básicos · Comandos avancados</p></li>
+          <h2>Termux - II</h2>
+          <li><p><strong>Audio</strong> - Baixar audio do youtube · Baixar Audio do melhor formato  Baixar Audio em formato específico pelo Id ou Qualidade · Baixar audio noutras Plataformas</p></li>
+          <li><p><strong>Audio</strong> - baixar Video do youtube · Baixar Video do melhor formato · Baixar vídeo em formato específico pelo Id ou Qualidade · Baixar audio noutras Plataformas</p></li>
+          
       </ol>
-      <!-- Link transformado em botão clicável completo -->
-      <div class="nav-links">
-        <a href="https://f-droid.org" target="_blank" class="btn-link">🔗 Baixar F-Droid</a>
-      </div>
     </div>
 
-    <!-- Card: Instalação direta pelo navegador -->
-    <div class="card">
-      <h2>🌐 Baixar e instalar Termux no navegador (passo a passo)</h2>
-      <ol>
-        <li>No seu celular Android, abra o navegador (Chrome, Firefox, etc.)</li>
-        <li>Digite na barra de endereço: <strong>https://f-droid.org/pt/packages/com.termux/</strong></li>
-        <li>Na página do Termux, toque no botão <strong>"Download APK"</strong> para baixar o arquivo APK do aplicativo, escolha versão estável e não beta.</li>
-        <li>Após o download, abra o arquivo APK para iniciar a instalação.</li>
-        <li>Siga as instruções na tela para concluir a instalação do Termux.</li>
-        <li>Após instalar, toque em OPEN ou encontre o ícone do Termux na tela inicial do seu celular</li>
-        <li>Agora você tem o Termux instalado e pode começar a usar o terminal Linux no seu celular Android!</li>
-      </ol>
-      <div class="nav-links">
-        <a href="https://f-droid.org/pt/packages/com.termux/" target="_blank" class="btn-link">📦 Repositório Termux (APK)</a>
-      </div>
-      
-      <!-- Bloco de código com botão copiar (exemplo prático do terminal) -->
-      <div class="code-block" id="codeSnippet1">
-# Assim que abrir o Termux, pode começar a digitar comandos Linux.
-# Exemplo: atualizar pacotes básicos
-pkg update && pkg upgrade -y
-      </div>
-      <button class="copy-btn" id="copyButton1">📋 Copiar comando</button>
-    </div>
+    <!-- Navegacao para niveis de estudo de termux -->
 
-    <!-- Navegação entre níveis – botões grandes e clicáveis -->
     <div class="card" style="text-align: center;">
-      <h2 style="border-left-color: #f472b6;">🔮 Navegação Lendária</h2>
+      <h2 style="border-left-color: #f472b6;">🔮 Termux _ Lendario</h2>
       <div class="nav-links" style="justify-content: center; flex-wrap: wrap;">
-        <a href="paginas/comandosBasicos.html" class="btn-link">📘 Comandos Básicos</a>
-        <a href="paginas/atualizacaoInstalacao.html" class="btn-link">📗 Atualização e Instalação</a>
+        <a href="termux1/termux1.html" class="btn-link">📘 Termux - Nível I</a>
+        <a href="termux2/termux2.html" class="btn-link">📗 Termux - Nível II</a>
         <a href="#" class="btn-link">📙 Nível III</a>
         <a href="#" class="btn-link">📓 Nível IV</a>
         <a href="#" class="btn-link">📕 Nível V</a>
       </div>
-      <p style="margin-top:0.8rem; color:#bdf2ff;">Toque no nível para navegar diretamente.</p>
     </div>
 
     <footer>
       <small>Pensador Sem Fronteiras</small> <br>
-      <em>do zero ao infinito</em>
+      <em>Do Zero ao Infinito</em>
     </footer>
   </div>
 
@@ -348,6 +409,29 @@ pkg update && pkg upgrade -y
         });
       }
     })();
+
+    // Função toggle expandir/recolher para o índice CSS
+    document.addEventListener('DOMContentLoaded', function() {
+        const btn = document.getElementById('toggleIndiceCSS');
+        const indice = document.getElementById('indiceCSS');
+        
+        if (!btn || !indice) {
+            console.error('Elementos do índice não encontrados');
+            return;
+        }
+
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const isHidden = indice.classList.contains('hidden-indice');
+            if (isHidden) {
+                indice.classList.remove('hidden-indice');
+                btn.innerHTML = '📁 Recolher';
+            } else {
+                indice.classList.add('hidden-indice');
+                btn.innerHTML = '📂 Expandir';
+            }
+        });
+    });
   </script>
 </body>
 </html>

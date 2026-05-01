@@ -256,6 +256,24 @@
       color: #d9f0ff;
     }
 
+    /* Listas ordenadas dentro de cartões */
+    .card ol, .card ul {
+      padding-left: 1.5rem;
+      list-style-position: outside;
+    }
+
+    .card ol li, .card ul li {
+      margin-bottom: 0.7rem;
+    }
+
+    /* Separador visual */
+    hr {
+      border: none;
+      border-top: 1px solid #0ff4;
+      margin: 1rem 0;
+      box-shadow: 0 0 15px #00ffff55;
+    }
+
     footer {
       margin-top: 2.5rem;
       text-align: center;
@@ -279,29 +297,89 @@
       margin-top: 0.2rem;
     }
 
-    @media (max-width: 500px) {
+    /* Mobile first – ajustes para ecrãs pequenos */
+    @media (max-width: 600px) {
+      body {
+        padding: 1rem 0.8rem;
+      }
+
       .master-container {
         padding: 1.5rem 1rem;
+        border-radius: 2rem 1rem 2rem 1rem;
+        gap: 1.5rem;
       }
+
       h1 {
-        font-size: 2.2rem;
+        font-size: 2rem;
       }
+
+      h2 {
+        font-size: 1.6rem;
+      }
+
+      h3 {
+        font-size: 1.3rem;
+      }
+
       .nav-btn {
-        padding: 0.6rem 1.2rem;
-        font-size: 0.9rem;
+        padding: 0.6rem 1rem;
+        font-size: 0.85rem;
+      }
+
+      .card {
+        padding: 1.2rem 1rem;
+      }
+
+      .code-block {
+        font-size: 0.8rem;
+        padding: 0.8rem;
+      }
+
+      table {
+        font-size: 0.85rem;
+      }
+
+      th, td {
+        padding: 0.5rem;
+      }
+    }
+
+    @media (max-width: 400px) {
+      h1 {
+        font-size: 1.7rem;
+      }
+
+      h2 {
+        font-size: 1.4rem;
+      }
+
+      .nav-btn {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.8rem;
       }
     }
   </style>
 </head>
 <body>
-  <div class="master-container">
-    
-    <!-- Navegação como botões grandes clicáveis -->
+
+   <!-- Navegação como botões grandes clicáveis -->
     <div class="nav-row">
       <a href="../../../index.html" class="nav-btn">🏠 Voltar Home</a>
       <a href="../../css.html" class="nav-btn">🎨 Voltar CSS</a>
       <a href="../css1.html" class="nav-btn">📘 Voltar CSS1</a>
       <a href="tipografia.html" class="nav-btn">🔄 Refrescar</a>
+    </div>
+
+    <hr>
+
+  <div class="master-container">
+
+    <h1>Links Baixar e usar fontes Externas</h1>
+
+    <div class="card">
+      <p>Link para baixar ou usar fontes online <a href="https://fonts.google.com/">fonts.google.com</a></p>
+      <p>Link para baixar fontes diversificadas <a href="https://www.dafont.com/">https://www.dafont.com/ </a></p>
+      <p><em>Importante ver os glifos para ver os tipos que se podem usar ou não</em></p>
     </div>
 
     <h1>Tipografia</h1>
@@ -316,7 +394,7 @@
       <li><strong>Sem Serifas (Sans Serif)</strong> – Sem os pés, traços limpos e retos. Exemplos: Helvetica, Arial, Open Sans.</li>
       <li><strong>Manuscritas (Script)</strong> – Imitam caligrafia ou letra cursiva. Exemplos: Brush Script, Pacifico.</li>
       <li><strong>Monoespaçadas (Monospace)</strong> – Todas as letras ocupam a mesma largura. Exemplos: Courier New, Consolas.</li>
-      <li><strong>Display / Decorativas</strong> – Feitas para chamar atenção em títulos e cartazes. Exemplos: Impact, fontes temáticas.</li>
+      <li><strong>Display / Decorativas</strong> – Feitas para chamar a atenção em títulos e cartazes. Exemplos: Impact, fontes temáticas.</li>
     </ul>
 
     <h1 style="font-size: 2.2rem; margin-top: 1rem;">Fontes</h1>
@@ -330,12 +408,11 @@
 }</div>
       <button class="copy-btn" onclick="copyCode('code1')">📋 Copiar</button>
       <p>Colocam-se 2 ou 3 combinações para garantir a funcionalidade em diversos navegadores. Para saber combinações de fontes, visite:</p>
-      <!-- Link transformado em botão clicável (sem copiar) -->
       <a href="https://www.w3schools.com/cssref/css_websafe_fonts.php" target="_blank" rel="noopener" class="link-btn">🔗 CSS Web Safe Font Combinations</a>
       <p style="margin-top: 1rem;">Várias opções (fallbacks) – a última deve ser uma genérica (<code>serif</code>, <code>sans-serif</code>, <code>monospace</code>) - Nomes com espaços vão entre <strong>aspas</strong>.</p>
     </div>
 
-    <h2>Fonte para Elementos HTML</h2>
+    <h2>Fonte para Elementos HTML</h2> 
     <div class="code-block" id="code2">&lt;style&gt;
     h1, h2 {
         font-family: 'Times New Roman', Times, serif;
@@ -448,34 +525,81 @@ h1 { font-style: normal; }</div>
         <li><strong>text-align</strong> – Alinhamento</li>
       </ul>
       <div class="code-block" id="code9">p  { text-align: left; }    /* padrão */
-.center { text-align: center; }
-.justify { text-align: justify; } /* cuidado com "rios" brancos */</div>
+        .center { text-align: center; }
+        .justify { text-align: justify; } /* cuidado com "rios" brancos */
+      </div>
       <button class="copy-btn" onclick="copyCode('code9')">📋 Copiar</button>
     </div>
 
     <hr>
 
+    <!-- SECÇÃO REORGANIZADA: Fontes Externas -->
     <h2>Fontes Externas</h2>
 
-    <p>Link para buscar fontea <a href="https://fonts.google.com/">fonts.google.com</a></p>
-    <p>aqui pode procurar por cadegoria </p>
+    <div class="card">
+      <p>Link para buscar fontes: <a href="https://fonts.google.com/">fonts.google.com</a></p>
+      <p>Aqui pode procurar por categoria.</p>
+      
+      <h3>Como usar fontes externas online</h3>
+      <ol>
+        <li>Escolher a fonte no Google Fonts</li>
+        <li>Clicar em "Obter código incorporado"</li>
+        <li>Escolher entre a opção <strong>link</strong> (dentro do HTML) ou <strong>@import</strong> (dentro do CSS)</li>
+        <li>Copiar o código para o <code>&lt;head&gt;</code> ou para o ficheiro CSS</li>
+        <li>Usar a fonte com a propriedade <code>font-family</code></li>
+      </ol>
+      <p><em>Recomenda-se usar na formatação, além da fonte importada, outras fontes de fallback nativas.</em></p>
 
-    <h3>como usar: </h3>
+      <h3>Como usar fontes baixadas (ficheiro zip)</h3>
+      <ol>
+        <li>Baixar a fonte do site desejado</li>
+        <li>Descompactar (extrair tudo) – normalmente contém 1 ou mais formatos</li>
+        <li>Colocar os ficheiros na pasta do projeto (ex.: <code>/fontes/</code>)</li>
+        <li>Usar a regra <code>@font-face</code> no CSS para declarar a fonte</li>
+      </ol>
+      
+      <p><strong>Exemplo de @font-face:</strong></p>
+      <div class="code-block" id="codeFontFace">
+&lt;style&gt;
+  @font-face {
+    font-family: 'NomeDaFonte';
+    src: url('caminho/fonte.woff2') format('woff2'),
+         url('caminho/fonte.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+&lt;/style&gt;
+      </div>
+      <button class="copy-btn" onclick="copyCode('codeFontFace')">📋 Copiar</button>
+      <p><em>Nota: No <code>src</code>, o caminho deve estar entre aspas simples. Coloque múltiplos formatos para garantir compatibilidade. O <code>font-family</code> recebe um nome à sua escolha, sempre entre aspas se tiver espaços.</em></p>
+    </div>
 
-    <p>pode usar diretamente internet, ou baixar</p>
-    <p>Usar sem baixar</p>
-    <ol>
-      <li>Escolher a fonte</li>
-      <li>Clicar em obter codigo incorporado</li>
-      <li>Escolher entre a opcao link (dentro de htmk) ou @import (dentro do CSS)</li>
-    </ol>
+    <h2>Tipos de formato de fonte</h2>
+
+    <div class="card">
+      <h3>Tabela de formatos</h3>
+      <div style="overflow-x: auto;">
+        <table>
+          <thead>
+            <tr><th>Formato</th><th>Extensão</th><th>Descrição</th><th>Recomendação de Uso</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>WOFF2</td><td>.woff2</td><td>Web Open Font Format 2.0. Oferece a melhor compressão (30% menor que o WOFF).</td><td>Prioridade máxima. É o padrão moderno para quase todos os navegadores atuais.</td></tr>
+            <tr><td>WOFF</td><td>.woff</td><td>Web Open Font Format. O antecessor do WOFF2.</td><td>Backup. Use como segunda opção para navegadores um pouco mais antigos.</td></tr>
+            <tr><td>TTF</td><td>.ttf</td><td><code>TrueType Font</code>. Desenvolvido pela Apple e Microsoft nos anos 80.</td><td>Compatibilidade. Útil para sistemas muito antigos, mas o arquivo costuma ser pesado.</td></tr>
+            <tr><td>OTF</td><td>.otf</td><td>OpenType Font. Evolução do TTF com mais recursos tipográficos.</td><td>Opcional. Funciona bem, mas prefira converter para WOFF2 antes de subir para a web.</td></tr>
+            <tr><td>EOT</td><td>.eot</td><td>Embedded OpenType. Criado pela Microsoft.</td><td>Legado. Use apenas se ainda precisar de dar suporte ao Internet Explorer 6-8.</td></tr>
+            <tr><td>SVG</td><td>.svg / .svgz</td><td>Scalable Vector Graphics.</td><td>Obsoleto. Era usado em versões antigas do Safari Mobile. Pode ignorar hoje em dia.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
 
     <h2>Como importar fontes no CSS</h2>
     <div class="card">
       <ul>
         <li><strong>Buscar fontes externas</strong></li>
       </ul>
-      <!-- Google Fonts link já incluído no head, mas demonstrativo com botão de link funcional -->
       <p>Exemplo de link no HTML:</p>
       <div class="code-block">&lt;link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet"&gt;</div>
       <div class="code-block" id="code10">body {
@@ -491,25 +615,81 @@ h1 { font-style: normal; }</div>
         <li><strong>@font-face</strong> – fonte local ou personalizada</li>
       </ul>
       <div class="code-block" id="code12">@font-face {
-    font-family: 'MinhaFonte';
-    src: url('minha-fonte.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-}</div>
+  font-family: 'MinhaFonte';
+  src: url('minha-fonte.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+      </div>
       <button class="copy-btn" onclick="copyCode('code12')">📋 Copiar</button>
     </div>
+
+    <hr>
+
+    <!-- SECÇÃO REORGANIZADA: Capturar e identificar fontes -->
+    <h2>Como capturar fontes de um site</h2>
+
+    <div class="card">
+      <ol>
+        <li>No Google, clique em <strong>Chrome Web Store</strong>: <a href="https://chromewebstore.google.com/">https://chromewebstore.google.com/</a></li>
+        <li>Nas extensões, procure por <strong>Fonts Ninja</strong> &rarr; usar no Chrome &rarr; adicionar extensão</li>
+        <li>Navegue até à página desejada e clique no ícone da extensão Ninja. A extensão irá analisar e mostrar todas as fontes do site.</li>
+        <li>Também pode apontar o cursor diretamente sobre o texto para ver a fonte usada.</li>
+        <li>Clique na fonte identificada &rarr; procurar no Google &rarr; baixar ou obter a fonte.</li>
+      </ol>
+    </div>
+
+    <h2>Como identificar fontes dentro de imagens</h2>
+
+    <div class="card">
+      <h3>Método 1: WhatFontIs</h3>
+      <ol>
+        <li>Aceder ao site <a href="https://whatfontis.com" target="_blank" rel="noopener">whatfontis.com</a></li>
+        <li>Arrastar a imagem para a área reservada</li>
+        <li>Clicar em <strong>Next Step</strong></li>
+        <li>Ajustar o contraste para as letras serem facilmente detetadas</li>
+        <li>Criar linhas de separação entre as linhas de texto</li>
+        <li>Clique em <strong>Next Step</strong> e digite as letras que quer identificar</li>
+        <li><strong>Next Step</strong> – processo final de identificação e obtenção da fonte</li>
+      </ol>
+
+      <h3>Método 2: WhatFontIs (alternativo rápido)</h3>
+      <ol>
+        <li>Aceder ao site <a href="https://www.whatfontis.com/" target="_blank" rel="noopener">https://www.whatfontis.com/</a></li>
+        <li>Arrastar a imagem</li>
+        <li>Selecionar a palavra na imagem</li>
+        <li>Clicar em <strong>Next</strong></li>
+        <li>Obter o resultado final com a fonte identificada</li>
+      </ol>
+
+      <h3>Método 3: Font Squirrel Matcherator</h3>
+      <ol>
+        <li>Aceder ao site <a href="https://www.fontsquirrel.com/matcherator" target="_blank" rel="noopener">Font Squirrel Matcherator</a></li>
+        <li>Arrastar a imagem para o campo indicado</li>
+        <li>Selecionar a palavra ou letras na imagem</li>
+        <li>Clicar em <strong>Matcherate It!</strong></li>
+        <li>Obter a lista de fontes correspondentes</li>
+      </ol>
+    </div>
+
+    <h2>Desligar extensões no Chrome</h2>
+    <div class="card">
+      <p>Clique nos <strong>3 pontinhos</strong> (canto superior direito) &rarr; <strong>Mais ferramentas</strong> &rarr; <strong>Extensões</strong> &rarr; Gerir/desativar conforme necessário.</p>
+    </div>
+
+    <hr>
 
     <h2>Boas práticas para web</h2>
     <h3>Tabela</h3>
     <div style="overflow-x: auto;">
       <table>
         <thead>
-          <tr><th>Prática</th><th>Por quê?</th></tr>
+          <tr><th>Prática</th><th>Porquê?</th></tr>
         </thead>
         <tbody>
-          <tr><td>Use <code>rem</code> para <code>font-size</code></td><td>Respeita as configurações de acessibilidade do usuário</td></tr>
+          <tr><td>Use <code>rem</code> para <code>font-size</code></td><td>Respeita as configurações de acessibilidade do utilizador</td></tr>
           <tr><td><code>line-height</code> sem unidade (<code>1.5</code>)</td><td>Mantém proporção ao tamanho da fonte</td></tr>
-          <tr><td>Prefira fontes <strong>sem serifa</strong> para corpo de texto em telas</td><td>Melhor leiturabilidade em monitores</td></tr>
+          <tr><td>Prefira fontes <strong>sem serifa</strong> para corpo de texto em ecrãs</td><td>Melhor legibilidade em monitores</td></tr>
           <tr><td>Limite a <strong>3 fontes</strong> por projeto</td><td>Performance e coerência visual</td></tr>
           <tr><td>Use <code>font-display: swap</code></td><td>Evita "flash de texto invisível" (FOIT)</td></tr>
         </tbody>
@@ -541,12 +721,16 @@ html {
       <button class="copy-btn" onclick="copyCode('code15')">📋 Copiar</button>
     </div>
 
-    <footer>
-      <small>Pensador Sem Fronteiras</small>
-      <br>
-      <em>do zero ao infinito</em>
-    </footer>
+    
   </div>
+  
+  <hr>
+
+  <footer>
+        <small>Pensador Sem Fronteiras</small>
+        <br>
+        <em>Do zero ao Infinito</em>
+  </footer>
 
   <script>
     function copyCode(blockId) {

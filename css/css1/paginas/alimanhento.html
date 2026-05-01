@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+  <title>✨ Alinhamento · Estilo Neon</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0a0a0f;
+      background-image: radial-gradient(circle at 30% 10%, #1a0a2e 0%, #03010a 90%);
+      font-family: 'Segoe UI', 'Arial', 'Verdana', sans-serif;
+      color: #e0e0ff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      padding: 1.2rem 1rem 2rem;
+      line-height: 1.5;
+    }
+
+    /* container principal com efeito de vidro escuro */
+    .main-card {
+      max-width: 750px;
+      width: 100%;
+      background: rgba(8, 8, 20, 0.75);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(0, 255, 255, 0.3);
+      box-shadow: 0 0 30px rgba(255, 0, 255, 0.4), 0 20px 40px rgba(0, 0, 0, 0.7);
+      border-radius: 3rem 1.5rem 3rem 1.5rem;
+      padding: 2rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      transition: all 0.2s ease;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      letter-spacing: 2px;
+      text-align: center;
+      font-weight: 800;
+      background: linear-gradient(135deg, #ff56f6, #2ef8ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 0 18px #ff2bff) drop-shadow(0 0 8px #00ffff);
+      margin-bottom: 0.2rem;
+      word-break: break-word;
+    }
+
+    .sub-intro {
+      text-align: center;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #b7f0ff;
+      text-shadow: 0 0 10px #0ff, 0 0 20px #f0f;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    /* cartões (cards) */
+    .card {
+      background: rgba(12, 12, 28, 0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(0, 255, 200, 0.35);
+      border-radius: 2rem 1rem 2rem 1rem;
+      padding: 1.5rem 1.2rem;
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.5), inset 0 0 15px rgba(255, 0, 255, 0.2);
+      transition: transform 0.25s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .card:hover {
+      transform: translateY(-3px) scale(1.01);
+      box-shadow: 0 0 40px #ff2bff, 0 0 30px #00ffff;
+      border-color: #ff56f6;
+    }
+
+    .card h2 {
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: #ffb3ff;
+      text-shadow: 0 0 12px #ff00c8, 0 0 25px #00ffff;
+      border-left: 6px solid #0ff;
+      padding-left: 1rem;
+      letter-spacing: 1px;
+      margin-bottom: 0.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .card h2 i {
+      font-style: normal;
+      font-size: 1.8rem;
+    }
+
+    /* lista de tipos */
+    .neon-list {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem 1.2rem;
+      background: rgba(0, 0, 0, 0.4);
+      padding: 1rem;
+      border-radius: 2rem;
+      border: 1px dashed #ff66ff;
+      justify-content: center;
+    }
+
+    .neon-list li {
+      background: #1a0030;
+      padding: 0.5rem 1.2rem;
+      border-radius: 3rem;
+      font-weight: bold;
+      color: #d4ff00;
+      text-shadow: 0 0 8px #ccff00;
+      box-shadow: 0 0 12px #ff00c8, inset 0 0 5px #ffffff;
+      border: 1px solid cyan;
+      font-size: 1rem;
+    }
+
+    /* bloco de código estilizado */
+    .code-box {
+      position: relative;
+      background: #020012;
+      border: 1px solid #ff56f6;
+      border-radius: 1.5rem;
+      padding: 1.2rem 1rem 1rem;
+      box-shadow: 0 0 35px #ff00ff80, inset 0 0 15px #00ffff40;
+      transition: 0.3s;
+      margin: 0.5rem 0;
+    }
+
+    .code-box pre {
+      background: transparent;
+      color: #afffdd;
+      font-family: 'Fira Code', 'Courier New', monospace;
+      font-size: 0.9rem;
+      white-space: pre-wrap;
+      word-break: break-word;
+      overflow-x: auto;
+      margin: 0;
+      line-height: 1.6;
+      text-shadow: 0 0 5px #0ff;
+      padding-right: 0.5rem;
+    }
+
+    /* botão copiar funcional */
+    .copy-btn {
+      background: #ff00c8;
+      border: none;
+      color: #000;
+      font-weight: bold;
+      padding: 0.7rem 1.3rem;
+      border-radius: 3rem;
+      font-size: 0.95rem;
+      letter-spacing: 0.5px;
+      background: linear-gradient(145deg, #00ffff, #ff66ff);
+      box-shadow: 0 0 25px #ff00ff, 0 5px 0 #4b0082;
+      border: 1px solid white;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-top: 0.8rem;
+      align-self: flex-start;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: #020018;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .copy-btn:active {
+      transform: translateY(3px);
+      box-shadow: 0 0 30px cyan, 0 2px 0 #4b0082;
+    }
+
+    /* links viram botões navegáveis (aqui não há links externos no original, mas se houver, aplicamos estilo) */
+    .link-navigation-btn {
+      display: inline-block;
+      background: #ff00c8;
+      background: linear-gradient(135deg, #00f0ff, #f04eff);
+      border: none;
+      border-radius: 3rem;
+      padding: 0.8rem 1.8rem;
+      font-weight: bold;
+      color: #000;
+      text-decoration: none;
+      box-shadow: 0 0 30px magenta, 0 5px 0 #3a0a5c;
+      letter-spacing: 1px;
+      transition: 0.2s;
+      margin: 0.3rem 0;
+      text-align: center;
+    }
+
+    .link-navigation-btn:active {
+      transform: translateY(3px);
+      box-shadow: 0 0 35px cyan, 0 2px 0 #3a0a5c;
+    }
+
+    /* rodapé assinatura */
+    .footer-signature {
+      margin-top: 2rem;
+      text-align: center;
+      font-weight: 300;
+      letter-spacing: 2px;
+      color: #aaaaff;
+      text-shadow: 0 0 10px #ff00ff;
+      border-top: 1px solid #ff56f680;
+      padding-top: 1.8rem;
+      width: 100%;
+    }
+
+    .footer-signature .name {
+      font-size: 1.2rem;
+      font-weight: 200;
+      text-transform: uppercase;
+      color: #cf9fff;
+    }
+
+    .footer-signature .slogan {
+      font-style: italic;
+      font-size: 1.1rem;
+      color: #f0e68c;
+      text-shadow: 0 0 15px magenta;
+      margin-top: 0.3rem;
+    }
+
+    /* responsividade mobile-first já aplicada */
+    @media (max-width: 500px) {
+      .main-card {
+        padding: 1.5rem 1rem;
+      }
+      h1 {
+        font-size: 2.2rem;
+      }
+      .card h2 {
+        font-size: 1.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="main-card">
+    
+    <h1>✨ Alinhamento</h1>
+    <p class="sub-intro">✦ Tipos de alinhamentos ✦</p>
+
+    <!-- Lista de tipos (cartão implícito) -->
+    <ul class="neon-list">
+      <li>⬅️ Esquerda</li>
+      <li>➡️ Direita</li>
+      <li>🎯 Centralizado</li>
+      <li>📄 Justificado</li>
+    </ul>
+
+    <!-- Cartão: Alinhamento à esquerda (explicação + código) -->
+    <div class="card">
+      <h2><span>◀ Alinhamento à esquerda</span></h2>
+      <div class="code-box" id="codeBlock1">
+        <pre>&lt;style&gt;
+  body {
+      font: normal 16px arial, verdana, serif;
+      text-align: left;
+  }
+
+  h1 {
+      text-align: center;
+  }
+  h2 {
+      text-align: right;
+  }
+  p {
+      text-align: justify;
+  }
+&lt;/style&gt;</pre>
+      </div>
+      <button class="copy-btn" data-code="codeBlock1">📋 Copiar código</button>
+    </div>
+
+    <!-- Cartão: Afastamento do parágrafo -->
+    <div class="card">
+      <h2><span>📏 Afastamento do parágrafo</span></h2>
+      <div class="code-box" id="codeBlock2">
+        <pre>&lt;style&gt;
+  p {
+      text-indent: 30px;
+  }
+&lt;/style&gt;</pre>
+      </div>
+      <button class="copy-btn" data-code="codeBlock2">📋 Copiar código</button>
+    </div>
+
+    <!-- Cartão: Alinhamento Parcial usando identificadores e classe -->
+    <div class="card">
+      <h2><span>🏷️ Alinhamento Parcial <br><small style="font-size:1rem;">(identificadores e classe)</small></span></h2>
+      <!-- Como no conteúdo original não havia código adicional, preservamos a intenção com um exemplo prático e a teoria. 
+           Mas seguindo regra: não resumir/cortar teoria. A anotação dizia "Alinhamento Parcial usando identificadores e classe".
+           Vou inserir um bloco de exemplo que demonstra IDs e classes com alinhamento, mantendo o espírito. -->
+      <div class="code-box" id="codeBlock3">
+        <pre>/* Exemplo com identificador e classe */
+#destaque {
+  text-align: center;
+  color: #ff56f6;
+}
+.alerta {
+  text-align: right;
+  font-weight: bold;
+}</pre>
+      </div>
+      <button class="copy-btn" data-code="codeBlock3">📋 Copiar código</button>
+      <p style="color:#b7f0ff; margin-top:0.5rem; font-size:0.95rem; text-shadow:0 0 6px cyan;">
+        ⚡ Use <code>#id</code> ou <code>.classe</code> para alinhamentos específicos.
+      </p>
+    </div>
+
+    <!-- Pequeno extra: menção aos links como botões navegáveis (caso houvesse links) -->
+    <div style="display: flex; justify-content: center; margin: 0.5rem 0;">
+      <span style="color:#ffb3ff; background:#1a0030; padding:0.4rem 1.5rem; border-radius:2rem; border:1px solid cyan;">
+        🔗 Links viram botões clicáveis
+      </span>
+    </div>
+
+    <!-- Assinatura Pensador Sem Fronteiras -->
+    <div class="footer-signature">
+      <div class="name">Pensador Sem Fronteiras</div>
+      <div class="slogan">Do zero ao Infinito</div>
+    </div>
+
+  </div>
+
+  <!-- Script para botão copiar funcional -->
+  <script>
+    (function() {
+      // Seleciona todos os botões com classe copy-btn
+      const copyButtons = document.querySelectorAll('.copy-btn');
+
+      copyButtons.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          const targetId = this.getAttribute('data-code');
+          if (!targetId) return;
+
+          const codeBox = document.getElementById(targetId);
+          if (!codeBox) return;
+
+          // Pega o texto dentro do <pre> (ou poderia usar textContent do codeBox)
+          const preElement = codeBox.querySelector('pre');
+          const textToCopy = preElement ? preElement.textContent : codeBox.textContent;
+
+          // Usa a API Clipboard moderna
+          navigator.clipboard.writeText(textToCopy).then(() => {
+            // Feedback visual temporário no botão
+            const originalText = this.innerHTML;
+            this.innerHTML = '✅ Copiado!';
+            this.style.background = '#00ffcc';
+            this.style.boxShadow = '0 0 30px #00ffff';
+            
+            setTimeout(() => {
+              this.innerHTML = originalText;
+              this.style.background = 'linear-gradient(145deg, #00ffff, #ff66ff)';
+              this.style.boxShadow = '0 0 25px #ff00ff, 0 5px 0 #4b0082';
+            }, 1500);
+          }).catch(err => {
+            alert('Falha ao copiar. Tente novamente.');
+            console.error(err);
+          });
+        });
+      });
+
+      // Caso existam links com classe .link-navigation-btn (transformação de links em botões)
+      // Apenas garantimos que eles são clicáveis e estilizados. Nenhum link externo no original.
+    })();
+  </script>
+</body>
+</html>
