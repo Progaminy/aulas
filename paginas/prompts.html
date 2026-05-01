@@ -215,7 +215,7 @@
       margin-top: 0.3rem;
     }
 
-    .copy-btn, .edit-btn, .save-btn, .reset-btn {
+    .copy-btn, .edit-btn, .save-btn, .reset-btn, .nav-btn {
       background: #0f0f1a;
       border: 1.5px solid #ccff00;
       color: #ccff00;
@@ -234,6 +234,7 @@
       letter-spacing: 1px;
       box-shadow: 0 0 18px #a3ff00;
       background: rgba(0, 0, 0, 0.7);
+      text-decoration: none;
     }
 
     .edit-btn {
@@ -254,18 +255,24 @@
       box-shadow: 0 0 18px #ff4444;
     }
 
-    .copy-btn:hover, .edit-btn:hover, .save-btn:hover, .reset-btn:hover {
+    .nav-btn.refresh-btn {
+      border-color: #00ffff;
+      color: #00ffff;
+      box-shadow: 0 0 18px #00ffff;
+    }
+
+    .copy-btn:hover, .edit-btn:hover, .save-btn:hover, .reset-btn:hover, .nav-btn:hover {
       transform: scale(1.03);
       filter: brightness(1.2);
     }
 
-    .copy-btn:hover {
+    .copy-btn:hover, .nav-btn.home-btn:hover {
       background: #ccff00;
       color: #000;
       box-shadow: 0 0 38px #ccff00;
     }
 
-    .edit-btn:hover {
+    .edit-btn:hover, .nav-btn.refresh-btn:hover {
       background: #00ffff;
       color: #000;
       box-shadow: 0 0 32px #00ffff;
@@ -331,7 +338,7 @@
       .button-group {
         gap: 0.5rem;
       }
-      .copy-btn, .edit-btn, .save-btn, .reset-btn {
+      .copy-btn, .edit-btn, .save-btn, .reset-btn, .nav-btn {
         padding: 0.65rem 1.1rem;
         font-size: 0.85rem;
       }
@@ -340,6 +347,11 @@
 </head>
 <body>
   <div class="container">
+
+    <div class="button-group">
+      <a class="nav-btn home-btn" href="../index.html">Voltar Home 🏠</a>
+      <a class="nav-btn refresh-btn" href="prompts.html">🔄 Atualizar</a>
+    </div>
     <h1>⚡ Prompts · Lendário</h1>
 
     <div class="section-card" data-section="css-indice">
