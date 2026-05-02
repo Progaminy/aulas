@@ -159,34 +159,29 @@
       box-shadow: 0 0 35px #ccff00aa;
     }
 
-    code {
+    /* ESTILO UNIFICADO PARA ÁREA DE TEXTO (tanto visualização quanto edição) */
+    .code-display {
       background: #02040a;
       border: 1px solid #ff00ff;
       border-radius: 1.3rem;
       padding: 1.3rem;
-      display: block;
       font-family: 'Fira Code', 'JetBrains Mono', monospace;
       font-size: 0.9rem;
-      color: #b5ffb5;
-      white-space: pre-wrap;
-      word-break: break-word;
-      overflow-x: auto;
-      box-shadow: inset 0 0 20px #000000, 0 0 25px #ff00ff66;
-      line-height: 1.6;
-      max-height: 500px;
-      overflow-y: auto;
-    }
-
-    code p {
-      margin: 0;
-      font-family: inherit;
       color: #d4ffcc;
       text-shadow: 0 0 4px #00ffcc;
+      box-shadow: inset 0 0 20px #000000, 0 0 25px #ff00ff66;
+      line-height: 1.6;
+      width: 100%;
       white-space: pre-wrap;
+      word-break: break-word;
+      overflow-wrap: break-word;
+      max-height: 500px;
+      overflow-y: auto;
+      box-sizing: border-box;
     }
 
-    /* Área editável mantém estilo de código */
-    .editable-code {
+    /* Textarea de edição - mesma aparência, mas editável */
+    .editable-textarea {
       background: #02040a;
       border: 1px solid #ff00ff;
       border-radius: 1.3rem;
@@ -205,6 +200,9 @@
       white-space: pre-wrap;
       word-break: break-word;
       overflow-wrap: break-word;
+      box-sizing: border-box;
+      /* CORREÇÃO: posiciona o cursor no topo */
+      display: block;
     }
 
     .button-group {
@@ -215,7 +213,7 @@
       margin-top: 0.3rem;
     }
 
-    .copy-btn, .edit-btn, .save-btn, .reset-btn, .nav-btn {
+    .copy-btn, .edit-btn, .save-btn, .reset-btn, .cancel-btn, .nav-btn {
       background: #0f0f1a;
       border: 1.5px solid #ccff00;
       color: #ccff00;
@@ -249,6 +247,12 @@
       box-shadow: 0 0 18px #ff00ff;
     }
 
+    .cancel-btn {
+      border-color: #ffaa00;
+      color: #ffcc00;
+      box-shadow: 0 0 18px #ffaa00;
+    }
+
     .reset-btn {
       border-color: #ff5555;
       color: #ffaaaa;
@@ -261,7 +265,11 @@
       box-shadow: 0 0 18px #00ffff;
     }
 
-    .copy-btn:hover, .edit-btn:hover, .save-btn:hover, .reset-btn:hover, .nav-btn:hover {
+    .hidden {
+      display: none !important;
+    }
+
+    .copy-btn:hover, .edit-btn:hover, .save-btn:hover, .reset-btn:hover, .cancel-btn:hover, .nav-btn:hover {
       transform: scale(1.03);
       filter: brightness(1.2);
     }
@@ -282,6 +290,12 @@
       background: #ff00ff;
       color: #000;
       box-shadow: 0 0 32px #ff00ff;
+    }
+
+    .cancel-btn:hover {
+      background: #ffaa00;
+      color: #000;
+      box-shadow: 0 0 32px #ffaa00;
     }
 
     .reset-btn:hover {
@@ -338,7 +352,7 @@
       .button-group {
         gap: 0.5rem;
       }
-      .copy-btn, .edit-btn, .save-btn, .reset-btn, .nav-btn {
+      .copy-btn, .edit-btn, .save-btn, .reset-btn, .cancel-btn, .nav-btn {
         padding: 0.65rem 1.1rem;
         font-size: 0.85rem;
       }
@@ -371,7 +385,8 @@
           </div>
           <div class="code-block-wrapper" id="cssBlock1" style="display: none;">
             <div id="cssDisplayArea">
-              <code><p id="cssOriginalText">"Aja como um desenvolvedor front-end de elite, extremamente vaidoso, prático e altamente inteligente.
+              <div class="code-display" id="cssCodeContainer">
+                <p id="cssOriginalText">"Aja como um desenvolvedor front-end de elite, extremamente vaidoso, prático e altamente inteligente.
 
 Eu irei fornecer um código ou anotações de estudo. Sua tarefa é transformar esse conteúdo em uma interface visual impecável, seguindo rigorosamente as regras abaixo:
 
@@ -399,7 +414,7 @@ O design deve parecer premium e futurista.
 Organizar tudo em cartões (cards) bem definidos.
 Cada bloco de código deve:
 estar dentro de uma caixa estilizada
-ter obrigatoriamente um botão “Copiar” funcional em JavaScript
+ter obrigatoriamente um botão "Copiar" funcional em JavaScript
 Links devem ser:
 transformados em botões 100% clicáveis
 sem botão de copiar
@@ -416,12 +431,14 @@ Interface deve funcionar perfeitamente em telas pequenas
 
 Rodapé contendo sempre:
 Pensador Sem Fronteiras (letras finas)
-slogan em itálico: Do zero ao Infinito"</p></code>
+slogan em itálico: Do zero ao Infinito"</p>
+              </div>
             </div>
             <div class="button-group">
               <button class="copy-btn" data-copy-target="cssPrompt">📋 Copiar</button>
               <button class="edit-btn" data-edit-target="cssPrompt">✏️ Editar</button>
-              <button class="save-btn hidden" data-save-target="cssPrompt">💾 Salvar edição</button>
+              <button class="save-btn hidden" data-save-target="cssPrompt">💾 Salvar</button>
+              <button class="cancel-btn hidden" data-cancel-target="cssPrompt">❌ Cancelar</button>
               <button class="reset-btn" data-reset-target="cssPrompt">↩️ Original</button>
             </div>
           </div>
@@ -435,7 +452,8 @@ slogan em itálico: Do zero ao Infinito"</p></code>
           </div>
           <div class="code-block-wrapper" id="musicaBlock2" style="display: none;">
             <div id="musicaDisplayArea">
-              <code><p id="musicaOriginalText">"Crie uma música seguindo rigorosamente todas as regras abaixo:
+              <div class="code-display" id="musicaCodeContainer">
+                <p id="musicaOriginalText">"Crie uma música seguindo rigorosamente todas as regras abaixo:
 
 Seja totalmente fiel à letra fornecida.
 Não modificar, não corrigir e não reescrever nenhuma palavra.
@@ -443,7 +461,7 @@ A música deve ter tom masculino.
 Estilo musical: Kizomba, inspirado em Soraia Ramos, porém com voz masculina.
 Na parte de rap:
 Início: usar duas melodias no mesmo tom, estilo Hernâni.
-Meio: mudar para estilo “duas caras” (variação de flow).
+Meio: mudar para estilo "duas caras" (variação de flow).
 Final: voltar ao estilo Hernâni.
 Não omitir nenhuma palavra da letra original.
 Garantir pronúncia correta e natural.
@@ -458,12 +476,14 @@ Finalização
 
 Letra:
 (Intro – suave, melancólico)
-Yeah… Pensador sem fronteiras…"</p></code>
+Yeah… Pensador sem fronteiras…"</p>
+              </div>
             </div>
             <div class="button-group">
               <button class="copy-btn" data-copy-target="musicaPrompt">📋 Copiar</button>
               <button class="edit-btn" data-edit-target="musicaPrompt">✏️ Editar</button>
-              <button class="save-btn hidden" data-save-target="musicaPrompt">💾 Salvar edição</button>
+              <button class="save-btn hidden" data-save-target="musicaPrompt">💾 Salvar</button>
+              <button class="cancel-btn hidden" data-cancel-target="musicaPrompt">❌ Cancelar</button>
               <button class="reset-btn" data-reset-target="musicaPrompt">↩️ Original</button>
             </div>
           </div>
@@ -481,72 +501,31 @@ Yeah… Pensador sem fronteiras…"</p></code>
 
   <script>
     (function() {
-      // ----- ESTADO GLOBAL: armazena conteúdo original e referências -----
-      const promptStore = new Map(); // key: promptId, value: { originalText, currentElement }
+      // ----- ESTADO GLOBAL -----
+      const promptStore = new Map(); // promptId -> { originalText, containerElement }
 
-      // Inicializa o armazenamento com os textos originais
+      // Inicializa o armazenamento
       function initializeStore() {
         // Prompt CSS
-        const cssOriginalEl = document.getElementById('cssOriginalText');
-        if (cssOriginalEl) {
+        const cssContainer = document.getElementById('cssCodeContainer');
+        const cssTextEl = document.getElementById('cssOriginalText');
+        if (cssContainer && cssTextEl) {
           promptStore.set('cssPrompt', {
-            originalText: cssOriginalEl.innerText.trim(),
-            displayElement: cssOriginalEl.parentElement, // referência ao <code>
-            textNodeId: 'cssOriginalText'
+            originalText: cssTextEl.innerText.trim(),
+            containerElement: cssContainer,
+            textElementId: 'cssOriginalText'
           });
         }
+        
         // Prompt Música
-        const musicaOriginalEl = document.getElementById('musicaOriginalText');
-        if (musicaOriginalEl) {
+        const musicaContainer = document.getElementById('musicaCodeContainer');
+        const musicaTextEl = document.getElementById('musicaOriginalText');
+        if (musicaContainer && musicaTextEl) {
           promptStore.set('musicaPrompt', {
-            originalText: musicaOriginalEl.innerText.trim(),
-            displayElement: musicaOriginalEl.parentElement,
-            textNodeId: 'musicaOriginalText'
+            originalText: musicaTextEl.innerText.trim(),
+            containerElement: musicaContainer,
+            textElementId: 'musicaOriginalText'
           });
-        }
-      }
-
-      // Restaura o conteúdo original (remove textarea, recoloca <code><p>)
-      function restoreOriginalDisplay(promptId) {
-        const data = promptStore.get(promptId);
-        if (!data) return;
-        
-        const displayElement = data.displayElement;
-        if (!displayElement) return;
-        
-        // Verifica se já está no estado original (evita recriar)
-        const existingCode = displayElement.querySelector('code');
-        if (existingCode && existingCode.querySelector(`#${data.textNodeId}`)) {
-          return; // já está correto
-        }
-
-        // Remove textarea se existir
-        const parentWrapper = displayElement.closest('.code-block-wrapper') || displayElement.parentElement;
-        const existingTextarea = parentWrapper?.querySelector('.editable-code');
-        if (existingTextarea) {
-          existingTextarea.remove();
-        }
-
-        // Recria estrutura code + p com texto original
-        displayElement.innerHTML = '';
-        const code = document.createElement('code');
-        const p = document.createElement('p');
-        p.id = data.textNodeId;
-        p.textContent = data.originalText;
-        code.appendChild(p);
-        displayElement.appendChild(code);
-        
-        // Atualiza a referência do displayElement (pode ter mudado)
-        data.displayElement = displayElement;
-        promptStore.set(promptId, data);
-      }
-
-      // Atualiza o texto original no armazenamento (quando salva edição)
-      function updateOriginalText(promptId, newText) {
-        const data = promptStore.get(promptId);
-        if (data) {
-          data.originalText = newText;
-          promptStore.set(promptId, data);
         }
       }
 
@@ -555,149 +534,156 @@ Yeah… Pensador sem fronteiras…"</p></code>
         const data = promptStore.get(promptId);
         if (!data) return '';
         
-        const parentWrapper = data.displayElement?.closest('.code-block-wrapper');
-        if (!parentWrapper) return data.originalText;
-        
-        const textarea = parentWrapper.querySelector('.editable-code');
+        const container = data.containerElement;
+        const textarea = container?.querySelector('.editable-textarea');
         if (textarea) {
           return textarea.value;
         }
         
-        // Caso contrário, pega do elemento <p> original
-        const pElement = document.getElementById(data.textNodeId);
+        const pElement = document.getElementById(data.textElementId);
         return pElement ? pElement.innerText : data.originalText;
       }
 
-      // Habilita modo de edição (troca <code> por textarea)
+      // Alterna para modo de edição (substitui a div por textarea)
       function enableEditMode(promptId) {
         const data = promptStore.get(promptId);
-        if (!data || !data.displayElement) return;
+        if (!data || !data.containerElement) return;
         
-        const displayElement = data.displayElement;
-        const parentWrapper = displayElement.closest('.code-block-wrapper');
+        const container = data.containerElement;
+        const parentWrapper = container.closest('.code-block-wrapper');
         if (!parentWrapper) return;
         
-        // Se já existe textarea, apenas foca
-        const existingTextarea = parentWrapper.querySelector('.editable-code');
-        if (existingTextarea) {
-          existingTextarea.focus();
-          toggleButtonsForEditMode(promptId, true);
+        // Se já estiver em modo de edição, apenas foca
+        let textarea = container.querySelector('.editable-textarea');
+        if (textarea) {
+          textarea.focus();
+          toggleEditButtons(promptId, true);
           return;
         }
 
         const currentText = getCurrentText(promptId);
         
-        // Limpa displayElement e insere textarea
-        displayElement.innerHTML = '';
-        const textarea = document.createElement('textarea');
-        textarea.className = 'editable-code';
+        // Guarda a div original para restaurar depois
+        container._originalDiv = container.cloneNode(true);
+        
+        // Limpa o container e insere textarea
+        container.innerHTML = '';
+        textarea = document.createElement('textarea');
+        textarea.className = 'editable-textarea';
         textarea.value = currentText;
-        textarea.setAttribute('aria-label', 'Editar conteúdo');
-        textarea.style.minHeight = '200px';
-        displayElement.appendChild(textarea);
+        textarea.setAttribute('aria-label', 'Editar conteúdo do prompt');
+        textarea.spellcheck = false;
         
         // Ajusta altura automaticamente
         textarea.style.height = 'auto';
-        textarea.style.height = textarea.scrollHeight + 'px';
+        textarea.style.height = Math.max(textarea.scrollHeight, 200) + 'px';
+        
         textarea.addEventListener('input', function() {
           this.style.height = 'auto';
-          this.style.height = this.scrollHeight + 'px';
+          this.style.height = Math.max(this.scrollHeight, 200) + 'px';
         });
         
-        toggleButtonsForEditMode(promptId, true);
+        container.appendChild(textarea);
+        
+        toggleEditButtons(promptId, true);
+        
+        // Foca e posiciona o cursor no início
         textarea.focus();
+        textarea.setSelectionRange(0, 0);
       }
 
-      // Salva a edição: atualiza store e restaura visual com novo texto
+      // Salva a edição
       function saveEdit(promptId) {
         const data = promptStore.get(promptId);
-        if (!data) return;
+        if (!data || !data.containerElement) return;
         
-        const parentWrapper = data.displayElement?.closest('.code-block-wrapper');
-        if (!parentWrapper) return;
-        
-        const textarea = parentWrapper.querySelector('.editable-code');
+        const container = data.containerElement;
+        const textarea = container.querySelector('.editable-textarea');
         if (!textarea) return;
         
         const newText = textarea.value;
+        
         // Atualiza o texto original no armazenamento
-        updateOriginalText(promptId, newText);
-        
-        // Recria a exibição com o novo conteúdo
-        const displayElement = data.displayElement;
-        displayElement.innerHTML = '';
-        const code = document.createElement('code');
-        const p = document.createElement('p');
-        p.id = data.textNodeId;
-        p.textContent = newText;
-        code.appendChild(p);
-        displayElement.appendChild(code);
-        
-        // Atualiza referência
-        data.displayElement = displayElement;
+        data.originalText = newText;
         promptStore.set(promptId, data);
         
-        toggleButtonsForEditMode(promptId, false);
+        // Reconstrói a visualização com o novo texto
+        restoreCodeDisplay(promptId, newText);
+        toggleEditButtons(promptId, false);
       }
 
-      // Reseta para o conteúdo original (hard reset)
-      function resetToOriginal(promptId) {
+      // Cancela a edição e volta ao texto original
+      function cancelEdit(promptId) {
         const data = promptStore.get(promptId);
-        if (!data) return;
+        if (!data || !data.containerElement) return;
         
-        // Recupera o texto original armazenado (imutável desde a primeira carga)
-        const original = data.originalText;
-        const displayElement = data.displayElement;
-        if (!displayElement) return;
+        restoreCodeDisplay(promptId, data.originalText);
+        toggleEditButtons(promptId, false);
+      }
+
+      // Restaura a visualização do código (remove textarea, recria div com texto)
+      function restoreCodeDisplay(promptId, text) {
+        const data = promptStore.get(promptId);
+        if (!data || !data.containerElement) return;
         
-        const parentWrapper = displayElement.closest('.code-block-wrapper');
-        // Remove textarea se existir
-        const textarea = parentWrapper?.querySelector('.editable-code');
+        const container = data.containerElement;
+        
+        // Remove textarea
+        const textarea = container.querySelector('.editable-textarea');
         if (textarea) {
           textarea.remove();
         }
         
-        // Reconstroi com original
-        displayElement.innerHTML = '';
-        const code = document.createElement('code');
+        // Limpa e recria estrutura
+        container.innerHTML = '';
+        container.className = 'code-display';
+        
         const p = document.createElement('p');
-        p.id = data.textNodeId;
-        p.textContent = original;
-        code.appendChild(p);
-        displayElement.appendChild(code);
-        
-        data.displayElement = displayElement;
-        promptStore.set(promptId, data);
-        
-        toggleButtonsForEditMode(promptId, false);
+        p.id = data.textElementId;
+        p.textContent = text;
+        container.appendChild(p);
       }
 
-      // Controla visibilidade dos botões (Editar/Salvar)
-      function toggleButtonsForEditMode(promptId, isEditing) {
+      // Reseta para o conteúdo original (hard reset)
+      function resetToOriginal(promptId) {
+        if (!confirm('Tem certeza que deseja restaurar o texto original? Esta ação não pode ser desfeita.')) {
+          return;
+        }
+        
         const data = promptStore.get(promptId);
-        if (!data || !data.displayElement) return;
-        const parentWrapper = data.displayElement.closest('.code-block-wrapper');
+        if (!data || !data.containerElement) return;
+        
+        // Recria a visualização com o texto original
+        restoreCodeDisplay(promptId, data.originalText);
+        toggleEditButtons(promptId, false);
+      }
+
+      // Controla a visibilidade dos botões (Editar/Salvar/Cancelar)
+      function toggleEditButtons(promptId, isEditing) {
+        const data = promptStore.get(promptId);
+        if (!data || !data.containerElement) return;
+        
+        const container = data.containerElement;
+        const parentWrapper = container.closest('.code-block-wrapper');
         if (!parentWrapper) return;
         
         const editBtn = parentWrapper.querySelector('.edit-btn');
         const saveBtn = parentWrapper.querySelector('.save-btn');
+        const cancelBtn = parentWrapper.querySelector('.cancel-btn');
         
-        if (editBtn) {
-          editBtn.classList.toggle('hidden', isEditing);
-        }
-        if (saveBtn) {
-          saveBtn.classList.toggle('hidden', !isEditing);
-        }
+        if (editBtn) editBtn.classList.toggle('hidden', isEditing);
+        if (saveBtn) saveBtn.classList.toggle('hidden', !isEditing);
+        if (cancelBtn) cancelBtn.classList.toggle('hidden', !isEditing);
       }
 
-      // Função de cópia (considera conteúdo editado)
+      // Função de cópia
       function handleCopy(promptId) {
         const textToCopy = getCurrentText(promptId);
+        
         navigator.clipboard.writeText(textToCopy).then(() => {
-          // Feedback visual no botão copiar correspondente
           const data = promptStore.get(promptId);
-          if (data && data.displayElement) {
-            const wrapper = data.displayElement.closest('.code-block-wrapper');
+          if (data && data.containerElement) {
+            const wrapper = data.containerElement.closest('.code-block-wrapper');
             if (wrapper) {
               const copyBtn = wrapper.querySelector('.copy-btn');
               if (copyBtn) {
@@ -714,11 +700,12 @@ Yeah… Pensador sem fronteiras…"</p></code>
             }
           }
         }).catch(err => {
-          alert('Falha ao copiar.');
+          alert('Falha ao copiar. Verifique as permissões do navegador.');
+          console.error('Erro ao copiar:', err);
         });
       }
 
-      // Configura listeners globais
+      // Configura todos os event listeners
       function attachEvents() {
         // Toggle principal do índice
         const mainToggle = document.getElementById('toggleIndiceCSS');
@@ -730,32 +717,37 @@ Yeah… Pensador sem fronteiras…"</p></code>
               indiceLista.classList.remove('hidden-indice');
               indiceLista.classList.add('visible-indice');
               mainToggle.innerHTML = '📁 Recolher';
+              mainToggle.setAttribute('aria-expanded', 'true');
             } else {
               indiceLista.classList.add('hidden-indice');
               indiceLista.classList.remove('visible-indice');
               mainToggle.innerHTML = '📂 Expandir';
+              mainToggle.setAttribute('aria-expanded', 'false');
             }
           });
         }
 
-        // Toggles internos (expandir cada bloco)
+        // Toggles internos (expandir/recolher cada bloco de código)
         document.querySelectorAll('.internal-toggle').forEach(btn => {
           btn.addEventListener('click', function(e) {
             const targetId = this.getAttribute('data-target');
             const targetBlock = document.getElementById(targetId);
             if (!targetBlock) return;
+            
             const isHidden = targetBlock.style.display === 'none' || targetBlock.style.display === '';
             if (isHidden) {
               targetBlock.style.display = 'block';
               this.innerHTML = '📁 Recolher';
+              this.setAttribute('aria-expanded', 'true');
             } else {
               targetBlock.style.display = 'none';
               this.innerHTML = '📂 Expandir';
+              this.setAttribute('aria-expanded', 'false');
             }
           });
         });
 
-        // Delegação de eventos para botões de ação (copiar, editar, salvar, reset)
+        // Delegação de eventos para botões de ação
         document.body.addEventListener('click', function(e) {
           const target = e.target.closest('button');
           if (!target) return;
@@ -781,6 +773,13 @@ Yeah… Pensador sem fronteiras…"</p></code>
             if (promptId) saveEdit(promptId);
           }
 
+          // Botão Cancelar
+          if (target.classList.contains('cancel-btn')) {
+            e.preventDefault();
+            const promptId = target.getAttribute('data-cancel-target');
+            if (promptId) cancelEdit(promptId);
+          }
+
           // Botão Reset (Original)
           if (target.classList.contains('reset-btn')) {
             e.preventDefault();
@@ -789,18 +788,43 @@ Yeah… Pensador sem fronteiras…"</p></code>
           }
         });
 
-        // Fechar ao clicar fora ou tecla Escape? (não solicitado, mas manter UX)
-        // Apenas mantemos a integridade.
+        // Suporte a atalhos de teclado
+        document.addEventListener('keydown', function(e) {
+          // Ctrl+S para salvar edição
+          if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+            const activeTextarea = document.activeElement;
+            if (activeTextarea && activeTextarea.classList.contains('editable-textarea')) {
+              e.preventDefault();
+              const container = activeTextarea.closest('[id$="CodeContainer"]');
+              if (container) {
+                const promptId = container.id === 'cssCodeContainer' ? 'cssPrompt' : 'musicaPrompt';
+                saveEdit(promptId);
+              }
+            }
+          }
+          
+          // Escape para cancelar edição
+          if (e.key === 'Escape') {
+            const activeTextarea = document.activeElement;
+            if (activeTextarea && activeTextarea.classList.contains('editable-textarea')) {
+              const container = activeTextarea.closest('[id$="CodeContainer"]');
+              if (container) {
+                const promptId = container.id === 'cssCodeContainer' ? 'cssPrompt' : 'musicaPrompt';
+                cancelEdit(promptId);
+              }
+            }
+          }
+        });
       }
 
-      // Inicialização completa
+      // Inicialização
       initializeStore();
       attachEvents();
 
-      // Garantir que ao carregar a página os estados de botão estejam corretos
+      // Garantir estado inicial correto dos botões
       window.addEventListener('load', function() {
-        // Força estado inicial dos botões de save hidden
         document.querySelectorAll('.save-btn').forEach(btn => btn.classList.add('hidden'));
+        document.querySelectorAll('.cancel-btn').forEach(btn => btn.classList.add('hidden'));
         document.querySelectorAll('.edit-btn').forEach(btn => btn.classList.remove('hidden'));
       });
 
