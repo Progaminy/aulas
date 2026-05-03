@@ -1,48 +1,738 @@
 <!DOCTYPE html>
-<html lang="pt -pt">
+<html lang="pt-pt">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Linux (Kali) - Lendário</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Kali Linux — Arsenal Ético | Lendário</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: radial-gradient(circle at 10% 20%, #0a0f1e, #03060c);
+            font-family: 'Inter', system-ui, 'Segoe UI', 'Poppins', 'Orbitron', sans-serif;
+            color: #eef5ff;
+            line-height: 1.5;
+            padding: 2rem 1.5rem;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .nav-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.2rem;
+            margin-bottom: 3rem;
+        }
+
+        .nav-btn {
+            background: rgba(12, 20, 35, 0.75);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(0, 255, 255, 0.4);
+            padding: 0.9rem 2rem;
+            border-radius: 60px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            color: #0ff;
+            transition: all 0.25s ease;
+            box-shadow: 0 0 6px rgba(0, 255, 255, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: monospace;
+        }
+
+        .nav-btn:hover {
+            background: #0ff22d1c;
+            border-color: #0ff;
+            box-shadow: 0 0 18px #0ff, 0 0 8px #0ff inset;
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        .main-title {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #c0ffb0, #0ff, #ff44cc);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 8px rgba(0, 255, 255, 0.4);
+            margin-bottom: 2rem;
+            letter-spacing: -0.5px;
+            word-break: break-word;
+        }
+
+        .cards-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2.2rem;
+        }
+
+        .legend-card {
+            background: rgba(8, 14, 26, 0.75);
+            backdrop-filter: blur(4px);
+            border-radius: 2rem;
+            border: 1px solid rgba(0, 255, 200, 0.5);
+            box-shadow: 0 20px 35px -15px rgba(0, 0, 0, 0.7), 0 0 0 2px rgba(0, 255, 255, 0.1), 0 0 12px rgba(0, 255, 200, 0.3);
+            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            overflow: hidden;
+            padding: 1.5rem 1.8rem;
+        }
+
+        .legend-card:hover {
+            border-color: #ff44cc;
+            box-shadow: 0 0 28px rgba(255, 68, 204, 0.5), 0 0 0 1px rgba(0, 255, 255, 0.6);
+            transform: translateY(-5px);
+            background: rgba(12, 20, 34, 0.9);
+        }
+
+        .card-title {
+            font-size: 2rem;
+            font-weight: 800;
+            font-family: 'Orbitron', monospace;
+            background: linear-gradient(120deg, #f0f, #0ff, #b3ff9b);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+            letter-spacing: -0.5px;
+            border-left: 5px solid #0ff;
+            padding-left: 1rem;
+        }
+
+        .sub-def {
+            color: #bbf0ff;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            display: inline-block;
+            background: rgba(0, 255, 255, 0.15);
+            padding: 0.25rem 0.9rem;
+            border-radius: 30px;
+            backdrop-filter: blur(2px);
+        }
+
+        .desc-text {
+            font-size: 1rem;
+            color: #d6e6ff;
+            margin-bottom: 1.4rem;
+            line-height: 1.5;
+            border-left: 2px solid #ff44cc60;
+            padding-left: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .term-block {
+            margin: 1rem 0 0.5rem;
+        }
+
+        .term-name {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #5effbc;
+            text-shadow: 0 0 3px #0f0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .term-name::before {
+            content: "⚡";
+            font-size: 1.3rem;
+            filter: drop-shadow(0 0 4px cyan);
+        }
+
+        .code-box {
+            background: #010a17;
+            border-radius: 20px;
+            padding: 1rem 1.2rem;
+            margin: 1.4rem 0 0.8rem;
+            border: 1px solid #0ff66a;
+            box-shadow: inset 0 0 8px rgba(0, 255, 255, 0.2), 0 5px 12px black;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .code-text {
+            font-family: 'Fira Code', 'Courier New', monospace;
+            font-size: 0.9rem;
+            word-break: break-all;
+            color: #bbffe6;
+            flex: 1;
+        }
+
+        .copy-btn {
+            background: #0a192f;
+            border: 1.5px solid cyan;
+            color: cyan;
+            padding: 0.5rem 1.2rem;
+            border-radius: 2rem;
+            font-weight: bold;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: 0.2s;
+            backdrop-filter: blur(4px);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: monospace;
+        }
+
+        .copy-btn:hover {
+            background: cyan;
+            color: #000;
+            box-shadow: 0 0 12px cyan;
+            border-color: white;
+            transform: scale(1.02);
+        }
+
+        .link-group {
+            margin: 1rem 0 0.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .resource-link {
+            background: linear-gradient(95deg, #1f2b3c, #0e1a28);
+            padding: 0.7rem 1.4rem;
+            border-radius: 40px;
+            text-decoration: none;
+            color: #b5ffea;
+            font-weight: 600;
+            border: 1px solid #ff66d0;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            backdrop-filter: blur(4px);
+        }
+
+        .resource-link:hover {
+            background: #ff45b340;
+            border-color: #ff99ff;
+            color: white;
+            box-shadow: 0 0 16px magenta;
+            transform: scale(1.02);
+        }
+
+        /* Seção de índice */
+        .section-card {
+            background: rgba(8, 14, 26, 0.75);
+            backdrop-filter: blur(4px);
+            border-radius: 2rem;
+            border: 1px solid rgba(0, 255, 200, 0.5);
+            box-shadow: 0 20px 35px -15px rgba(0, 0, 0, 0.7), 0 0 0 2px rgba(0, 255, 255, 0.1), 0 0 12px rgba(0, 255, 200, 0.3);
+            padding: 1.5rem 1.8rem;
+            margin-top: 2.5rem;
+        }
+
+        .header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            font-family: 'Orbitron', monospace;
+            background: linear-gradient(120deg, #f0f, #0ff, #b3ff9b);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .toggle-btn {
+            background: #0a192f;
+            border: 1.5px solid cyan;
+            color: cyan;
+            padding: 0.5rem 1.2rem;
+            border-radius: 2rem;
+            font-weight: bold;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: 0.2s;
+            backdrop-filter: blur(4px);
+            font-family: monospace;
+        }
+
+        .toggle-btn:hover {
+            background: cyan;
+            color: #000;
+            box-shadow: 0 0 12px cyan;
+        }
+
+        .hidden-indice {
+            display: none;
+        }
+
+        .link-indice {
+            color: #d6e6ff;
+            padding-left: 2rem;
+            line-height: 1.8;
+        }
+
+        .link-indice h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(120deg, #f0f, #0ff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .link-indice h2 {
+            font-size: 1.6rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #0ff;
+            border-left: 4px solid #0ff;
+            padding-left: 1rem;
+        }
+
+        .link-indice h3 {
+            font-size: 1.3rem;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            color: #ff44cc;
+            border-left: 3px solid #ff44cc;
+            padding-left: 1rem;
+        }
+
+        .link-indice li {
+            margin-bottom: 0.4rem;
+        }
+
+        .link-indice li p {
+            margin: 0;
+        }
+
+        .link-indice li p strong {
+            color: #5effbc;
+        }
+
+        /* Navegação entre módulos */
+        .card {
+            background: rgba(8, 14, 26, 0.75);
+            backdrop-filter: blur(4px);
+            border-radius: 2rem;
+            border: 1px solid rgba(0, 255, 200, 0.5);
+            box-shadow: 0 20px 35px -15px rgba(0, 0, 0, 0.7), 0 0 0 2px rgba(0, 255, 255, 0.1), 0 0 12px rgba(0, 255, 200, 0.3);
+            padding: 1.5rem 1.8rem;
+            margin-top: 2rem;
+        }
+
+        .nav-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .nav-btn-card {
+            background: linear-gradient(95deg, #1f2b3c, #0e1a28);
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px;
+            text-decoration: none;
+            color: #b5ffea;
+            font-weight: 600;
+            border: 1px solid #ff66d0;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95rem;
+            backdrop-filter: blur(4px);
+            cursor: pointer;
+            font-family: monospace;
+        }
+
+        .nav-btn-card:hover {
+            background: #ff45b340;
+            border-color: #ff99ff;
+            color: white;
+            box-shadow: 0 0 16px magenta;
+            transform: scale(1.05);
+        }
+
+        .footer-signature {
+            margin-top: 4rem;
+            text-align: center;
+            padding: 1.5rem 0.5rem;
+            border-top: 1px dashed rgba(0, 255, 255, 0.3);
+            font-size: 0.85rem;
+        }
+
+        .footer-signature p:first-child {
+            letter-spacing: 1px;
+            font-weight: 300;
+            font-size: 0.8rem;
+            color: #ccddee;
+        }
+
+        .footer-signature em {
+            font-style: italic;
+            background: linear-gradient(145deg, #0ff, #fc4eff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            font-weight: 500;
+        }
+
+        .toast-msg {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #0e1f2fb3;
+            backdrop-filter: blur(20px);
+            border-radius: 60px;
+            border: 1px solid #0ff;
+            color: #0ff;
+            font-weight: bold;
+            padding: 8px 20px;
+            font-size: 0.8rem;
+            z-index: 999;
+            pointer-events: none;
+            animation: fadeUp 1.2s ease forwards;
+            font-family: monospace;
+        }
+
+        @keyframes fadeUp {
+            0% { opacity: 0; transform: translateX(-50%) translateY(10px); }
+            15% { opacity: 1; transform: translateX(-50%) translateY(0); }
+            85% { opacity: 1; transform: translateX(-50%) translateY(0); }
+            100% { opacity: 0; transform: translateX(-50%) translateY(-12px); }
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 1.2rem;
+            }
+            .main-title {
+                font-size: 1.6rem;
+            }
+            .card-title {
+                font-size: 1.6rem;
+            }
+            .legend-card {
+                padding: 1.2rem;
+            }
+            .code-box {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .copy-btn {
+                align-self: flex-end;
+            }
+            .nav-btn {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.85rem;
+            }
+            .resource-link {
+                padding: 0.5rem 1rem;
+                font-size: 0.8rem;
+            }
+            .section-title {
+                font-size: 1.4rem;
+            }
+            .nav-btn-card {
+                padding: 0.6rem 1rem;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .cards-grid {
+                gap: 2.5rem;
+            }
+            .main-title {
+                font-size: 3rem;
+            }
+        }
+    </style>
 </head>
 <body>
 
-    <div class="container">
-        <div class="nav-buttons">
-            <a href="../index.html" class="nav-btn">🏠 Voltar Home</a>
-            <a href="kali.html" class="nav-btn">🔄 ATUALIZAR</a>
+<div class="container">
+    <!-- Navegação principal -->
+    <div class="nav-buttons">
+        <a href="../index.html" class="nav-btn">🏠 Voltar Home</a>
+        <a href="kali.html" class="nav-btn">🔄 ATUALIZAR</a>
+    </div>
+
+    <h1 class="main-title">⚡ LINUX (KALI) — LENDÁRIO ⚡</h1>
+
+    <!-- Cards de definições -->
+    <div class="cards-grid">
+        <!-- CARD 1: LINUX -->
+        <div class="legend-card">
+            <div class="card-title">🐧 LINUX</div>
+            <div class="term-block">
+                <div class="term-name">Definição</div>
+                <div class="desc-text">
+                    O Linux é um núcleo (kernel) de sistema operacional de código aberto, baseado no UNIX.
+                    Criado por Linus Torvalds, é a base de distribuições como Ubuntu, Debian, Fedora e claro, Kali.
+                    Combina liberdade, segurança e desempenho lendário.
+                </div>
+            </div>
+            <div class="term-block">
+                <div class="term-name">📌 Para que serve?</div>
+                <div class="desc-text">
+                    ✅ Servidores e mainframes · ✅ Desenvolvimento de software · ✅ Segurança e pentesting ·
+                    ✅ Sistemas embutidos (IoT) · ✅ Estações de trabalho criativas e científicas.
+                    O ambiente Linux domina o mundo cloud e infraestrutura crítica.
+                </div>
+            </div>
+            <div class="code-box">
+                <code class="code-text" id="codeLinux">uname -a   # Exibe versão do kernel Linux
+lsb_release -a  # Mostra a distribuição</code>
+                <button class="copy-btn" data-copy="codeLinux">📋 Copiar</button>
+            </div>
+            <div class="link-group">
+                <a href="https://www.kernel.org/" target="_blank" rel="noopener noreferrer" class="resource-link">🔗 kernel.org</a>
+                <a href="https://www.linux.org/" target="_blank" rel="noopener noreferrer" class="resource-link">🐧 Comunidade Linux</a>
+            </div>
         </div>
 
-        <h1 class="main-title">Linux (Kali) - Lendário</h1>
+        <!-- CARD 2: VirtualBox -->
+        <div class="legend-card">
+            <div class="card-title">🖥️ VIRTUALBOX</div>
+            <div class="term-block">
+                <div class="term-name">Definição</div>
+                <div class="desc-text">
+                    Oracle VM VirtualBox é um hypervisor (máquina virtual) gratuito e multiplataforma.
+                    Permite criar e executar sistemas operacionais convidados (guest) dentro do sistema hospedeiro.
+                </div>
+            </div>
+            <div class="term-block">
+                <div class="term-name">🎯 Para que serve?</div>
+                <div class="desc-text">
+                    • Executar o Kali Linux sem perder o sistema principal.<br>
+                    • Criar laboratórios de segurança isolados (sandbox).<br>
+                    • Testar novas distribuições ou softwares em ambientes controlados.<br>
+                    • Simular redes virtuais, snapshots e clonagem rápida de máquinas.
+                </div>
+            </div>
+            <div class="code-box">
+                <code class="code-text" id="codeVbox">VBoxManage --version   # Ver versão do VirtualBox
+VBoxManage list vms    # Listar VMs registadas</code>
+                <button class="copy-btn" data-copy="codeVbox">📋 Copiar</button>
+            </div>
+            <div class="link-group">
+                <a href="https://www.virtualbox.org/" target="_blank" rel="noopener noreferrer" class="resource-link">⬇️ Site Oficial VirtualBox</a>
+                <a href="https://www.virtualbox.org/wiki/Downloads" target="_blank" rel="noopener noreferrer" class="resource-link">📦 Download + Extensions</a>
+            </div>
+        </div>
 
-        <dl>
-            <dt> Linux </dt>
-            <dd> </dd>
-            <h2>serve para: </h2>
-            <p> </p>
-            <dt> Virtual Box </dt>
-            <dd> </dd>
-            <h2>serve para: </h2>
-            <p> </p>
-            <dt> Kali </dt>
-            <dd> </dd>
-            <h2>serve para: </h2>
-            <p> </p>
-        </dl>
+        <!-- CARD 3: KALI LINUX -->
+        <div class="legend-card">
+            <div class="card-title">💀 KALI LINUX — LENDÁRIO</div>
+            <div class="term-block">
+                <div class="term-name">Definição</div>
+                <div class="desc-text">
+                    Kali Linux é uma distribuição baseada em Debian, desenvolvida pela Offensive Security,
+                    projetada especificamente para testes de penetração (pentesting), forense digital e segurança ofensiva.
+                    Vem com mais de 600 ferramentas de ethical hacking.
+                </div>
+            </div>
+            <div class="term-block">
+                <div class="term-name">⚔️ Para que serve?</div>
+                <div class="desc-text">
+                    🔐 Auditoria de redes e sistemas · 💣 Análise de vulnerabilidades · 🛡️ Engenharia reversa<br>
+                    📡 Ataques Wi-Fi (Aircrack-ng, Reaver) · 🔍 Password cracking (John, Hashcat) · 🕵️‍♂️ Testes de intrusão (Metasploit, BurpSuite).<br>
+                    <span style="color:#b0ffb0;">Indispensável para profissionais de cibersegurança e hackers éticos.</span>
+                </div>
+            </div>
+            <div class="code-box">
+                <code class="code-text" id="codeKali">sudo apt update && sudo apt upgrade -y   # actualizar Kali
+msfconsole          # iniciar Metasploit
+nmap -sV alvo.com   # escaneamento de portas</code>
+                <button class="copy-btn" data-copy="codeKali">📋 Copiar</button>
+            </div>
+            <div class="link-group">
+                <a href="https://www.kali.org/" target="_blank" rel="noopener noreferrer" class="resource-link">🎯 Site Oficial Kali</a>
+                <a href="https://www.kali.org/docs/" target="_blank" rel="noopener noreferrer" class="resource-link">📘 Documentação Oficial</a>
+                <a href="https://www.offsec.com/" target="_blank" rel="noopener noreferrer" class="resource-link">🧪 Offensive Security</a>
+            </div>
+        </div>
 
+        <!-- CARD 4: Integração -->
+        <div class="legend-card">
+            <div class="card-title">🔗 INTEGRAÇÃO PERFEITA: Kali + VirtualBox</div>
+            <div class="desc-text">
+                <strong>Laboratório imbatível:</strong> Instale o Kali Linux numa máquina virtual no VirtualBox para praticar pentesting
+                sem comprometer o sistema base. <strong>Dicas profissionais:</strong> active os "Guest Additions" para resolução de ecrã adaptável,
+                partilhe pastas com cuidado, utilize snapshots antes de testes arriscados.
+            </div>
+            <div class="code-box">
+                <code class="code-text" id="codeIntegration"># Instalar Guest Additions no Kali (VM)
+sudo apt update && sudo apt install -y virtualbox-guest-x11
+# Configurar rede em modo bridge para ataques locais
+VBoxManage modifyvm "Kali" --nic1 bridged</code>
+                <button class="copy-btn" data-copy="codeIntegration">📋 Copiar</button>
+            </div>
+            <div class="link-group">
+                <a href="https://www.kali.org/docs/virtualization/install-virtualbox-guest-additions/" target="_blank" rel="noopener noreferrer" class="resource-link">🪄 Guest Additions Kali</a>
+                <a href="https://www.virtualbox.org/manual/" target="_blank" rel="noopener noreferrer" class="resource-link">📖 Manual VirtualBox</a>
+            </div>
+        </div>
+    </div>
 
+    <!-- Índice HTML -->
+    <div class="section-card" data-section="html-indice">
+        <div class="header-row">
+            <div class="section-title">📄 Índice KALI</div>
+            <button class="toggle-btn" id="toggleIndiceHTML">📂 Expandir</button>
+        </div>
+        <ol class="link-indice hidden-indice" id="indiceHTML">
+            <h1>Índice</h1>
+            <h2>KALI I</h2>
+            <li><p><strong>Instalação</strong> - Baixar Kali e VirtualBox · Instalação de VM e Kali</p></li>
+            <li><p><strong>Primeiros comandos</strong> - Comandos essenciais para funcionalidade do KALI</p></li>
+            <li><p><strong>Comandos Básicos</strong> - </p></li>
+            <li><p><strong>Reconfigurações</strong> - </p></li>
+            <li><p><strong>Comandos avançados</strong> - </p></li>
+            <li><p><strong>Áudio</strong> - Conversor · Inserir Áudio · Baixar Áudio</p></li>
+            <li><p><strong></strong> - </p></li>
+            <li><p><strong></strong> - </p></li>
+            <li><p><strong></strong> - </p></li>
+            <li><p><strong></strong> - </p></li>
+            <li><p><strong></strong> - </p></li>
+            <h2>KALI II</h2>
+            <li><p><strong>Instalações adicionais</strong> - Como instalar programas no Kali de uso diário (VS Code, Word, VLC, leitor de música etc.)</p></li>
+            <h2>KALI III</h2>
+            <h3>Hacker Ético</h3>
+            <h3>Hacker Ético Nível I</h3>
+            <li><p><strong>Estudando os aplicativos favoritos (reconhecimento)</strong> - Recolha de informação na rede, todos</p></li>
+            <li><p><strong>Estudando os aplicativos favoritos (desenvolvimento de recursos)</strong> - Recolha de informação na rede, todos</p></li>
+            <li><p><strong>Todos</strong> - Todos</p></li>
+            <h2>KALI IV</h2>
+            <h3>Hacker Ético</h3>
+            <h3>Hacker Ético Nível II</h3>
+            <li><p><strong></strong> - </p></li>
+        </ol>
+    </div>
 
-
-
-
-
+    <!-- Navegação entre módulos -->
+    <div class="card">
+        <div class="nav-grid">
+            <button class="nav-btn-card" onclick="navegarPara('kali1/kali1.html')">&lt;/&gt; Kali I</button>
+            <button class="nav-btn-card" onclick="navegarPara('#')">&lt;/&gt; Kali II</button>
+            <button class="nav-btn-card" onclick="navegarPara('#')">&lt;/&gt; Kali III</button>
+            <button class="nav-btn-card" onclick="navegarPara('#')">&lt;/&gt; Kali IV</button>
+            <button class="nav-btn-card" onclick="navegarPara('#')">&lt;/&gt; Kali V</button>
+        </div>
     </div>
 
     <footer class="footer-signature">
-        <p><small>&copy; Pensador Sem Fronteiras.</small></p>
+        <p><small>© Pensador Sem Fronteiras.</small></p>
         <p><em>Do Zero ao Infinito</em></p>
     </footer>
+</div>
 
-    
+<script>
+    (function() {
+        // Função para exibir notificação flutuante (toast)
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className = 'toast-msg';
+            toast.innerText = message;
+            document.body.appendChild(toast);
+            setTimeout(() => {
+                toast.remove();
+            }, 1300);
+        }
+
+        // Função de navegação para os botões dos módulos
+        window.navegarPara = function(url) {
+            if (url && url !== '#') {
+                window.location.href = url;
+            } else {
+                showToast('⚠️ Módulo em desenvolvimento');
+            }
+        };
+
+        // Capturar todos os botões de cópia
+        const copyButtons = document.querySelectorAll('.copy-btn');
+        copyButtons.forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('data-copy');
+                if (targetId) {
+                    const codeElement = document.getElementById(targetId);
+                    if (codeElement) {
+                        const textToCopy = codeElement.innerText;
+                        navigator.clipboard.writeText(textToCopy).then(() => {
+                            showToast('✅ Comando copiado com sucesso!');
+                        }).catch(() => {
+                            // Fallback para navegadores que não suportam clipboard API
+                            const textarea = document.createElement('textarea');
+                            textarea.value = textToCopy;
+                            document.body.appendChild(textarea);
+                            textarea.select();
+                            document.execCommand('copy');
+                            document.body.removeChild(textarea);
+                            showToast('✅ Código copiado (método alternativo)');
+                        });
+                    } else {
+                        showToast('❌ Erro: elemento não encontrado');
+                    }
+                } else {
+                    showToast('⚠️ Sem referência para cópia');
+                }
+            });
+        });
+
+        // Botão de expandir/colapsar índice
+        const toggleBtn = document.getElementById('toggleIndiceHTML');
+        const indiceHTML = document.getElementById('indiceHTML');
+        if (toggleBtn && indiceHTML) {
+            toggleBtn.addEventListener('click', function() {
+                const isHidden = indiceHTML.classList.contains('hidden-indice');
+                if (isHidden) {
+                    indiceHTML.classList.remove('hidden-indice');
+                    toggleBtn.textContent = '📂 Colapsar';
+                } else {
+                    indiceHTML.classList.add('hidden-indice');
+                    toggleBtn.textContent = '📂 Expandir';
+                }
+            });
+        }
+
+        // Botão de atualizar página
+        const atualizarBtn = document.querySelector('a[href="kali.html"]');
+        if (atualizarBtn) {
+            atualizarBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.location.reload();
+            });
+        }
+    })();
+</script>
+
 </body>
 </html>

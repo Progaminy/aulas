@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes, viewport-fit=cover">
+    <title>KALI I — Fundamentos do Sistema</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: radial-gradient(circle at 15% 10%, #1a0a2e, #0a0015);
+            font-family: 'Inter', 'Segoe UI', system-ui, 'Orbitron', sans-serif;
+            color: #f0e6ff;
+            line-height: 1.5;
+            padding: 2rem 1.5rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: 
+                radial-gradient(circle at 85% 20%, rgba(212, 175, 55, 0.08) 0%, transparent 55%),
+                radial-gradient(circle at 10% 80%, rgba(147, 51, 234, 0.10) 0%, transparent 60%),
+                radial-gradient(circle at 50% 50%, rgba(0, 255, 200, 0.04) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 750px;
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        /* Navegação principal */
+        .nav-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.9rem;
+            width: 100%;
+        }
+
+        .nav-btn {
+            background: rgba(30, 10, 50, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1.5px solid rgba(212, 175, 55, 0.6);
+            padding: 0.85rem 1.8rem;
+            border-radius: 60px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            color: #ffd700;
+            transition: all 0.25s ease;
+            box-shadow: 0 0 12px rgba(212, 175, 55, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: monospace;
+        }
+
+        .nav-btn:hover {
+            background: rgba(212, 175, 55, 0.15);
+            border-color: #ffd700;
+            box-shadow: 0 0 25px #ffd700, 0 0 12px #ffd700 inset;
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        /* Título principal com animação */
+        .main-title {
+            font-size: clamp(2.2rem, 7vw, 3.5rem);
+            font-weight: 900;
+            text-align: center;
+            background: linear-gradient(135deg, #c084fc, #ffd700, #00ff99);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            filter: drop-shadow(0 0 30px rgba(192, 132, 252, 0.6));
+            margin-bottom: 0.3rem;
+            letter-spacing: -0.5px;
+            word-break: break-word;
+            animation: pulseGlow 2.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulseGlow {
+            0% {
+                filter: drop-shadow(0 0 20px rgba(192, 132, 252, 0.7));
+            }
+            100% {
+                filter: drop-shadow(0 0 45px rgba(255, 215, 0, 0.9)) drop-shadow(0 0 25px rgba(0, 255, 153, 0.7));
+            }
+        }
+
+        /* Card principal do menu */
+        .menu-card {
+            background: rgba(20, 8, 40, 0.75);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border-radius: 2.5rem;
+            border: 1px solid rgba(192, 132, 252, 0.5);
+            box-shadow: 
+                0 25px 40px -15px rgba(0, 0, 0, 0.8),
+                0 0 0 2px rgba(212, 175, 55, 0.1),
+                0 0 45px rgba(147, 51, 234, 0.3);
+            padding: 2rem 1.8rem;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 1.3rem;
+            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+
+        .menu-card:hover {
+            border-color: #ffd700;
+            box-shadow: 
+                0 0 55px rgba(255, 215, 0, 0.4),
+                0 0 0 1px rgba(192, 132, 252, 0.6),
+                0 25px 40px -15px rgba(0, 0, 0, 0.8);
+        }
+
+        /* Botões do menu */
+        .menu-btn {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 1.2rem;
+            background: rgba(20, 8, 40, 0.7);
+            border: 2px solid rgba(192, 132, 252, 0.5);
+            border-radius: 2rem;
+            padding: 1.3rem 1.5rem;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #e8d5ff;
+            backdrop-filter: blur(10px);
+            box-shadow: 
+                0 0 25px rgba(147, 51, 234, 0.3),
+                0 10px 20px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            background: linear-gradient(135deg, rgba(60, 20, 100, 0.5), rgba(20, 8, 40, 0.7));
+            text-shadow: 0 0 10px rgba(192, 132, 252, 0.8);
+            letter-spacing: 0.3px;
+            cursor: pointer;
+        }
+
+        .menu-btn:hover, .menu-btn:active {
+            border-color: #ffd700;
+            box-shadow: 
+                0 0 50px rgba(255, 215, 0, 0.5),
+                0 0 30px rgba(192, 132, 252, 0.5),
+                0 10px 20px rgba(0, 0, 0, 0.4);
+            color: #ffffff;
+            background: linear-gradient(135deg, rgba(80, 30, 130, 0.7), rgba(30, 10, 50, 0.9));
+            transform: scale(1.03) translateY(-3px);
+        }
+
+        .menu-icon {
+            font-size: 2.3rem;
+            flex-shrink: 0;
+            filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.8));
+            transition: all 0.3s;
+        }
+
+        .menu-btn:hover .menu-icon {
+            filter: drop-shadow(0 0 18px rgba(0, 255, 153, 0.9));
+        }
+
+        .menu-text {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .menu-subtitle {
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: #c4b5fd;
+            text-shadow: 0 0 8px rgba(147, 51, 234, 0.6);
+            letter-spacing: 0.5px;
+        }
+
+        /* Botão destacado */
+        .destacado-btn {
+            border: 2px solid #00ff99 !important;
+            box-shadow: 
+                0 0 35px rgba(0, 255, 153, 0.5),
+                0 10px 20px rgba(0, 0, 0, 0.4) !important;
+            background: linear-gradient(135deg, rgba(0, 80, 40, 0.5), rgba(10, 30, 20, 0.7)) !important;
+        }
+
+        .destacado-btn:hover {
+            border-color: #ffd700 !important;
+            box-shadow: 
+                0 0 55px rgba(255, 215, 0, 0.6),
+                0 0 35px rgba(0, 255, 153, 0.5) !important;
+        }
+
+        /* Caixa de código com botão copiar */
+        .code-section {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: rgba(10, 5, 25, 0.6);
+            border-radius: 1.5rem;
+            border: 1px solid rgba(192, 132, 252, 0.3);
+        }
+
+        .code-box {
+            background: #0a0015;
+            border-radius: 1.2rem;
+            padding: 1rem 1.2rem;
+            margin: 0.8rem 0;
+            border: 1px solid rgba(0, 255, 153, 0.5);
+            box-shadow: inset 0 0 15px rgba(147, 51, 234, 0.2), 0 5px 15px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .code-text {
+            font-family: 'Fira Code', 'Courier New', monospace;
+            font-size: 0.9rem;
+            word-break: break-all;
+            color: #00ff99;
+            flex: 1;
+            text-shadow: 0 0 5px rgba(0, 255, 153, 0.5);
+        }
+
+        .copy-btn {
+            background: rgba(60, 20, 100, 0.6);
+            border: 1.5px solid #c084fc;
+            color: #c084fc;
+            padding: 0.5rem 1.2rem;
+            border-radius: 2rem;
+            font-weight: bold;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: 0.2s;
+            backdrop-filter: blur(4px);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: monospace;
+        }
+
+        .copy-btn:hover {
+            background: #c084fc;
+            color: #0a0015;
+            box-shadow: 0 0 15px #c084fc;
+            border-color: #ffd700;
+            transform: scale(1.05);
+        }
+
+        /* Assinatura no rodapé */
+        .footer-signature {
+            margin-top: 1.5rem;
+            text-align: center;
+            padding: 1.5rem 1rem;
+            border-top: 1px dashed rgba(192, 132, 252, 0.4);
+            font-size: 0.85rem;
+            width: 100%;
+        }
+
+        .footer-signature p:first-child {
+            letter-spacing: 1px;
+            font-weight: 300;
+            font-size: 0.85rem;
+            color: #c4b5fd;
+        }
+
+        .footer-signature small {
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            color: #e0d5ff;
+        }
+
+        .footer-signature em {
+            font-style: italic;
+            background: linear-gradient(145deg, #c084fc, #ffd700);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            font-weight: 500;
+        }
+
+        /* Toast de notificação */
+        .toast-msg {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(30, 10, 50, 0.8);
+            backdrop-filter: blur(20px);
+            border-radius: 60px;
+            border: 1px solid #c084fc;
+            color: #ffd700;
+            font-weight: bold;
+            padding: 8px 20px;
+            font-size: 0.8rem;
+            z-index: 999;
+            pointer-events: none;
+            animation: fadeUp 1.2s ease forwards;
+            font-family: monospace;
+        }
+
+        @keyframes fadeUp {
+            0% { opacity: 0; transform: translateX(-50%) translateY(10px); }
+            15% { opacity: 1; transform: translateX(-50%) translateY(0); }
+            85% { opacity: 1; transform: translateX(-50%) translateY(0); }
+            100% { opacity: 0; transform: translateX(-50%) translateY(-12px); }
+        }
+
+        /* Responsividade mobile-first */
+        @media (max-width: 480px) {
+            body {
+                padding: 1.2rem 0.8rem;
+            }
+            .menu-card {
+                padding: 1.5rem 1rem;
+                border-radius: 2rem;
+            }
+            .menu-btn {
+                padding: 1.1rem 1.2rem;
+                font-size: 1.05rem;
+                gap: 0.9rem;
+                border-radius: 1.8rem;
+            }
+            .menu-icon {
+                font-size: 1.9rem;
+            }
+            .main-title {
+                font-size: 2rem;
+            }
+            .nav-btn {
+                padding: 0.7rem 1.2rem;
+                font-size: 0.85rem;
+            }
+            .code-box {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .copy-btn {
+                align-self: flex-end;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .menu-card {
+                padding: 2.2rem 2rem;
+            }
+            .menu-btn {
+                font-size: 1.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- Botões de navegação superiores -->
+        <div class="nav-buttons">
+            <a href="../../index.html" class="nav-btn">🏠 Voltar Home</a>
+            <a href="../kali.html" class="nav-btn">⬅ Voltar KALI</a>
+            <a href="kali1.html" class="nav-btn">🔄 REFRESCAR</a>
+        </div>
+
+        <!-- Título principal -->
+        <h1 class="main-title">💀 KALI I · FUNDAMENTOS</h1>
+
+        <!-- Card do menu com conteúdo Kali Linux -->
+        <div class="menu-card">
+
+            <!-- 1. Instalação do Kali Linux -->
+            <a href="paginas/instalacao.html" class="menu-btn">
+                <span class="menu-icon">💿</span>
+                <span class="menu-text">
+                    Instalação do Kali Linux
+                    <span class="menu-subtitle">Download · VirtualBox · VMware · USB bootável</span>
+                </span>
+            </a>
+
+            <!-- 2. Primeiros Comandos -->
+            <a href="paginas/primeirosComandos.html" class="menu-btn">
+                <span class="menu-icon">⌨️</span>
+                <span class="menu-text">
+                    Primeiros Comandos
+                    <span class="menu-subtitle">Navegação · atualização · permissões · sudo</span>
+                </span>
+            </a>
+
+            <!-- 3. Comandos Básicos - Com snippet de código -->
+            <a href="paginas/comandosBasicos.html" class="menu-btn">
+                <span class="menu-icon">🐧</span>
+                <span class="menu-text">
+                    Comandos Básicos
+                    <span class="menu-subtitle">ls · cd · pwd · mkdir · cp · mv · rm</span>
+                </span>
+            </a>
+
+            <!-- Caixa de código com botão copiar -->
+            <div class="code-section">
+                <div class="code-box">
+                    <code class="code-text" id="codeBasicos">ls -la          # Listar arquivos detalhados
+cd /home        # Navegar para diretório
+pwd             # Mostrar caminho actual
+mkdir pasta     # Criar directório
+cp arquivo.txt backup.txt   # Copiar ficheiro</code>
+                    <button class="copy-btn" data-copy="codeBasicos">📋 Copiar</button>
+                </div>
+            </div>
+
+            <!-- 4. Reconfigurações do Sistema -->
+            <a href="paginas/reconfiguracoes.html" class="menu-btn">
+                <span class="menu-icon">⚙️</span>
+                <span class="menu-text">
+                    Reconfigurações
+                    <span class="menu-subtitle">Rede · teclado · idioma · sources.list</span>
+                </span>
+            </a>
+
+            <!-- 5. Comandos Avançados -->
+            <a href="paginas/comandosAvancados.html" class="menu-btn destacado-btn">
+                <span class="menu-icon">🔥</span>
+                <span class="menu-text">
+                    Comandos Avançados
+                    <span class="menu-subtitle">grep · find · chmod · processos · pipes</span>
+                </span>
+            </a>
+
+            <!-- Caixa de código com botão copiar -->
+            <div class="code-section">
+                <div class="code-box">
+                    <code class="code-text" id="codeAvancados">grep "erro" log.txt          # Filtrar texto
+find / -name "*.conf"       # Buscar ficheiros
+chmod +x script.sh          # Tornar executável
+ps aux | grep apache        # Ver processos
+sudo systemctl status ssh   # Ver estado serviço</code>
+                    <button class="copy-btn" data-copy="codeAvancados">📋 Copiar</button>
+                </div>
+            </div>
+
+            <!-- 6. Gestão de Pacotes -->
+            <a href="paginas/gestaodePacotes.html" class="menu-btn">
+                <span class="menu-icon">📦</span>
+                <span class="menu-text">
+                    Gestão de Pacotes
+                    <span class="menu-subtitle">apt · dpkg · repositórios · dependências</span>
+                </span>
+            </a>
+
+            <!-- 7. Áudio e Multimédia -->
+            <a href="paginas/audioMultimedia.html" class="menu-btn">
+                <span class="menu-icon">🎵</span>
+                <span class="menu-text">
+                    Áudio e Multimédia
+                    <span class="menu-subtitle">Conversor · inserir áudio · baixar áudio · codecs</span>
+                </span>
+            </a>
+
+            <!-- 8. Rede e Conectividade -->
+            <a href="paginas/redeConectividade.html" class="menu-btn">
+                <span class="menu-icon">🌐</span>
+                <span class="menu-text">
+                    Rede e Conectividade
+                    <span class="menu-subtitle">ifconfig · ip · ping · netstat · SSH</span>
+                </span>
+            </a>
+
+            <!-- 9. Utilizadores e Grupos -->
+            <a href="paginas/utilizadoresGrupos.html" class="menu-btn">
+                <span class="menu-icon">👥</span>
+                <span class="menu-text">
+                    Utilizadores e Grupos
+                    <span class="menu-subtitle">adduser · passwd · chown · grupos</span>
+                </span>
+            </a>
+
+            <!-- 10. Sistema de Ficheiros -->
+            <a href="paginas/sistemaFicheiros.html" class="menu-btn destacado-btn">
+                <span class="menu-icon">🗂️</span>
+                <span class="menu-text">
+                    Sistema de Ficheiros
+                    <span class="menu-subtitle">Hierarquia · partições · montagem · fstab</span>
+                </span>
+            </a>
+
+            <!-- Caixa de código com botão copiar -->
+            <div class="code-section">
+                <div class="code-box">
+                    <code class="code-text" id="codeFicheiros">df -h              # Ver espaço em disco
+mount /dev/sdb1 /mnt   # Montar dispositivo
+fdisk -l              # Listar partições
+cat /etc/fstab        # Ver montagens automáticas</code>
+                    <button class="copy-btn" data-copy="codeFicheiros">📋 Copiar</button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Rodapé com assinatura obrigatória -->
+        <footer class="footer-signature">
+            <p><small>© Pensador Sem Fronteiras</small></p>
+            <p><em>Do Zero ao Infinito</em></p>
+        </footer>
+    </div>
+
+    <script>
+        (function() {
+            // Função para exibir notificação flutuante (toast)
+            function showToast(message) {
+                const toast = document.createElement('div');
+                toast.className = 'toast-msg';
+                toast.innerText = message;
+                document.body.appendChild(toast);
+                setTimeout(() => {
+                    toast.remove();
+                }, 1300);
+            }
+
+            // Capturar todos os botões de cópia
+            const copyButtons = document.querySelectorAll('.copy-btn');
+            copyButtons.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation(); // Impedir navegação do link pai
+                    
+                    const targetId = this.getAttribute('data-copy');
+                    if (targetId) {
+                        const codeElement = document.getElementById(targetId);
+                        if (codeElement) {
+                            const textToCopy = codeElement.innerText;
+                            navigator.clipboard.writeText(textToCopy).then(() => {
+                                showToast('✅ Comando copiado com sucesso!');
+                            }).catch(() => {
+                                // Fallback
+                                const textarea = document.createElement('textarea');
+                                textarea.value = textToCopy;
+                                document.body.appendChild(textarea);
+                                textarea.select();
+                                document.execCommand('copy');
+                                document.body.removeChild(textarea);
+                                showToast('✅ Código copiado (alternativo)');
+                            });
+                        } else {
+                            showToast('❌ Erro: elemento não encontrado');
+                        }
+                    } else {
+                        showToast('⚠️ Sem referência para cópia');
+                    }
+                });
+            });
+
+            // Botão de refrescar página
+            const refreshBtn = document.querySelector('a[href="kali1.html"]');
+            if (refreshBtn) {
+                refreshBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    window.location.reload();
+                    showToast('🔄 Página actualizada');
+                });
+            }
+
+            console.log('%c💀 KALI I — Fundamentos %c| %cDomine o sistema',
+                'color: #c084fc; font-size: 1.2rem; font-weight: bold;',
+                'color: #ffd700;',
+                'color: #00ff99;');
+        })();
+    </script>
+</body>
+</html>
