@@ -543,6 +543,120 @@
         <div class="note-box">
           ⚡ <strong>Resumo rápido:</strong> <code>cd REPO</code> → <code>git add .</code> → <code>git commit -m "msg"</code> → <code>git pull origin main</code> → <code>git push origin main</code>
         </div>
+        <div class="explain-text">
+          Vamos resolver isso passo a passo no seu Kali Linux.
+
+## 1. Verifique se está dentro do repositório clonado
+```bash
+ls -la   # Deve mostrar a pasta .git
+```
+
+Se não ver `.git`, você não está no diretório certo. Entre nele:
+```bash
+cd nome-do-repositorio
+```
+
+## 2. Configure seu usuário (se não fez ainda)
+```bash
+git config --global user.name "Seu Nome"
+git config --global user.email "seu-email@example.com"
+```
+
+## 3. Para fazer commit das alterações
+```bash
+# Ver o que mudou
+git status
+
+# Adicionar arquivos específicos
+git add nome-do-arquivo
+
+# Ou adicionar tudo
+git add .
+
+# Fazer o commit com mensagem
+git commit -m "Descrição clara das alterações"
+```
+
+## 4. Para enviar (push) para o GitHub
+```bash
+git push origin main
+```
+(Se a branch for `master`, use `git push origin master`)
+
+## 5. Se pedir login
+- **Usuário/senha**: use um **Personal Access Token** (não a senha do GitHub) - [crie um aqui](https://github.com/settings/tokens)
+- **Ou use SSH** (mais prático):
+  ```bash
+  # Gerar chave (se não tiver)
+  ssh-keygen -t ed25519 -C "seu-email"
+  
+  # Ver a chave pública
+  cat ~/.ssh/id_ed25519.pub
+  # Copie e adicione no GitHub > Settings > SSH Keys
+  ```
+
+## Fluxo completo (VS Code incluído)
+1. **No VS Code**: faça as alterações nos arquivos
+2. **Terminal ou GUI do VS Code**:
+   - Abra o Source Control (Ctrl+Shift+G)
+   - Digite a mensagem e clique ✓ (commit)
+   - Clique em "Sync Changes" ou "Push" (seta para cima)
+3. Ou use os comandos do terminal acima
+
+Qual parte exatamente está travando? Aparece alguma mensagem de erro?
+
+Perfeito! Você já está dentro do repositório (tem a pasta `.git`). Agora vamos fazer o commit e push.
+
+## Primeiro, veja o que foi alterado:
+```bash
+git status
+```
+
+Você verá arquivos em vermelho (modificados/adicionados).
+
+## Para fazer commit das alterações:
+
+```bash
+# Adicionar tudo que mudou
+git add .
+
+# Fazer o commit
+git commit -m "Atualizações do site"
+```
+
+## Agora enviar para o GitHub:
+
+Primeiro, veja qual branch você está:
+```bash
+git branch
+```
+(Vai mostrar `* main` ou `* master`)
+
+Depois faça o push:
+```bash
+git push origin main
+```
+(Se for `master`, use `git push origin master`)
+
+## Se pedir usuário/senha:
+- **Usuário**: seu nome de usuário do GitHub
+- **Senha**: use um **Personal Access Token** (não a senha da sua conta)
+
+### Como criar o token:
+1. Acesse: https://github.com/settings/tokens
+2. Clique em "Generate new token (classic)"
+3. Marque `repo` (acesso total a repositórios)
+4. Gere e copie o token (use ELE como senha)
+
+## Alternativa mais fácil - usar VS Code:
+1. No VS Code, abra o Source Control (Ctrl+Shift+G)
+2. Digite uma mensagem no campo acima
+3. Clique no ✓ (commit)
+4. Clique nos "..." e "Push" ou no botão de sincronizar
+
+Qual comando deu erro? Copie a mensagem se aparecer alguma.
+
+        </div>
       </div>
     </div>
 
