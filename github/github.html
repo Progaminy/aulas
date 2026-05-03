@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+  <title>Push GitHub · Terminal Kali Linux</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: radial-gradient(circle at 20% 10%, #1a0e20, #0b0512 90%);
+      font-family: 'Segoe UI', 'Inter', system-ui, -apple-system, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      padding: 1.2rem 1rem 2.5rem;
+      color: #e0e0ff;
+      line-height: 1.5;
+    }
+
+    /* main container */
+    .guide-container {
+      max-width: 750px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    /* navigation buttons */
+    .nav-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .nav-btn {
+      background: rgba(20, 8, 33, 0.8);
+      backdrop-filter: blur(12px);
+      border: 1px solid #c44eff;
+      color: #f0c0ff;
+      padding: 0.9rem 1.5rem;
+      border-radius: 3rem;
+      font-weight: bold;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 1rem;
+      letter-spacing: 0.03em;
+      box-shadow: 0 0 18px #b547ff40, 0 5px 12px rgba(0,0,0,0.6);
+      transition: all 0.25s ease;
+      flex: 1 1 auto;
+      justify-content: center;
+    }
+
+    .nav-btn:hover, .nav-btn:focus-visible {
+      background: #351d4a;
+      border-color: #ff6ec7;
+      color: #fff;
+      box-shadow: 0 0 28px #ff66c0, 0 0 15px #bc13fe;
+      transform: translateY(-2px);
+      outline: none;
+    }
+
+    .main-title {
+      font-size: 2.6rem;
+      font-weight: 800;
+      text-align: center;
+      letter-spacing: 2px;
+      background: linear-gradient(180deg, #ffb3f0 0%, #a364ff 80%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 0 20px #e45eff);
+      margin: 0.2rem 0 0.5rem;
+      word-break: break-word;
+    }
+
+    /* card design */
+    .card {
+      background: rgba(12, 4, 22, 0.75);
+      backdrop-filter: blur(20px);
+      border-radius: 2.5rem;
+      padding: 1.8rem 1.5rem;
+      border: 1px solid rgba(180, 60, 255, 0.6);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.7), 0 0 35px #b300ff33;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      transition: transform 0.2s ease, border-color 0.2s;
+    }
+
+    .card:hover {
+      border-color: #ff69e0;
+      box-shadow: 0 0 45px #d946ff, 0 20px 40px black;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.7rem;
+      font-weight: 700;
+      border-bottom: 1px solid #c45eff66;
+      padding-bottom: 0.7rem;
+      color: #ffddf4;
+      text-shadow: 0 0 12px #dd44ff;
+      letter-spacing: 0.5px;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      background: linear-gradient(to right, #f6b0ff, #8f6eff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .step-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.4rem;
+    }
+
+    .command-box {
+      background: #0d041a;
+      border-radius: 1.5rem;
+      padding: 1.2rem 1rem;
+      border: 1px solid #c154ff;
+      box-shadow: 0 0 25px #aa3eff40, inset 0 0 10px #290042;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .command-text {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.7rem;
+    }
+
+    code {
+      font-family: 'Fira Code', 'Courier New', monospace;
+      background: #1e082b;
+      padding: 0.75rem 1rem;
+      border-radius: 1.2rem;
+      font-size: 1rem;
+      color: #ffd966;
+      word-break: break-all;
+      border-left: 4px solid #ff66c0;
+      box-shadow: 0 0 18px #ca42ff;
+      display: block;
+      flex: 1;
+    }
+
+    .copy-btn {
+      background: #2e1045;
+      border: none;
+      border-radius: 2.5rem;
+      padding: 0.7rem 1.4rem;
+      font-weight: bold;
+      color: #ffdaf0;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      cursor: pointer;
+      font-size: 0.9rem;
+      border: 1px solid #ea6eff;
+      box-shadow: 0 0 18px #ff2be0, 0 4px 8px black;
+      transition: 0.2s;
+      white-space: nowrap;
+    }
+
+    .copy-btn:hover {
+      background: #b341ff;
+      color: white;
+      border-color: #ffe88e;
+      box-shadow: 0 0 30px #ff3cda;
+    }
+
+    .explain-text {
+      font-size: 0.95rem;
+      color: #cfb3ff;
+      margin-top: 0.2rem;
+      background: rgba(62, 25, 82, 0.4);
+      padding: 0.6rem 1rem;
+      border-radius: 1rem;
+      border-left: 3px solid #ff79c6;
+    }
+
+    .directory-hint {
+      font-weight: bold;
+      color: #ffb86c;
+      background: #1f0b2e;
+      padding: 0.3rem 0.9rem;
+      border-radius: 2rem;
+      font-size: 0.8rem;
+      display: inline-block;
+      margin-top: 0.3rem;
+    }
+
+    .link-btn {
+      background: transparent;
+      border: 1.5px solid #ff7be0;
+      color: #ffcff0;
+      padding: 0.8rem 1.8rem;
+      border-radius: 3rem;
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      font-size: 1rem;
+      box-shadow: 0 0 22px #f956ff;
+      transition: 0.25s;
+      text-align: center;
+    }
+
+    .link-btn:hover {
+      background: #ff5cd9;
+      color: #0b0015;
+      border-color: white;
+      box-shadow: 0 0 35px #ff00c8;
+    }
+
+    .footer-signature {
+      margin-top: 2.8rem;
+      text-align: center;
+      font-weight: 300;
+      color: #bb8eff;
+      border-top: 1px solid #7928ca;
+      padding-top: 1.8rem;
+      width: 100%;
+    }
+
+    .footer-signature p {
+      margin: 0.3rem 0;
+    }
+
+    .footer-signature small {
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+    }
+
+    .footer-signature em {
+      font-style: italic;
+      color: #ffb6f0;
+      text-shadow: 0 0 8px magenta;
+    }
+
+    @media (max-width: 500px) {
+      .main-title {
+        font-size: 2rem;
+      }
+      .card {
+        padding: 1.2rem 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="guide-container">
+    <!-- Navigation -->
+    <div class="nav-buttons">
+      <a href="../index.html" class="nav-btn">🏠 Voltar Home</a>
+      <a href="github.html" class="nav-btn">🔄 ATUALIZAR</a>
+    </div>
+
+    <h1 class="main-title">⚡GitHub · Kali Terminal</h1>
+
+    <!-- CARD: Instalações necessárias -->
+    <div class="card">
+      <div class="card-header">🔧 1. INSTALAÇÃO & PRÉ-REQUISITOS</div>
+      <div class="step-list">
+        <div class="command-box">
+          <div class="command-text">
+            <code>sudo apt update && sudo apt install git -y</code>
+            <button class="copy-btn" data-code="sudo apt update && sudo apt install git -y">📋 Copiar</button>
+          </div>
+          <div class="explain-text">
+            <strong>git:</strong> sistema de controle de versão. Essencial para comunicar com GitHub.
+            <span class="directory-hint">📁 qualquer diretório</span>
+          </div>
+        </div>
+        <div class="command-box">
+          <div class="command-text">
+            <code>git --version</code>
+            <button class="copy-btn" data-code="git --version">📋 Copiar</button>
+          </div>
+          <div class="explain-text">
+            Verifica se o Git foi instalado. Mostra a versão atual.
+          </div>
+        </div>
+        <div style="margin-top: 0.5rem; background: #1c052b; padding: 0.8rem; border-radius: 1.2rem;">
+          <p style="color:#ffb3ff;">🔐 <strong>Porquê token?</strong> GitHub deixou de aceitar senha em linha de comandos. Token = senha segura gerada no site.</p>
+          <a href="https://github.com/settings/tokens" target="_blank" rel="noopener" class="link-btn" style="margin-top:0.6rem;">🔗 Criar Token (GitHub)</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD: Configuração inicial (nome/email) -->
+    <div class="card">
+      <div class="card-header">👤 2. CONFIGURAÇÃO GLOBAL (UMA VEZ)</div>
+      <div class="command-box">
+        <div class="command-text">
+          <code>git config --global user.name "SeuNome"</code>
+          <button class="copy-btn" data-code='git config --global user.name "SeuNome"'>📋 Copiar</button>
+        </div>
+        <div class="explain-text">Define o nome que aparecerá nos commits.</div>
+      </div>
+      <div class="command-box">
+        <div class="command-text">
+          <code>git config --global user.email "email@exemplo.com"</code>
+          <button class="copy-btn" data-code='git config --global user.email "email@exemplo.com"'>📋 Copiar</button>
+        </div>
+        <div class="explain-text">Email vinculado à conta GitHub.</div>
+      </div>
+    </div>
+
+    <!-- CARD: PRIMEIRA FORMA (token sempre solicitado) -->
+    <div class="card">
+      <div class="card-header">🔁 FORMA 1 · TOKEN PEDIDO SEMPRE</div>
+      <div class="step-list">
+        <p style="color:#ffcef0; margin-bottom:-0.5rem;">⏳ A cada push, o terminal pede nome de usuário e token.</p>
+        <div class="command-box">
+          <div class="command-text">
+            <code>git init</code>
+            <button class="copy-btn" data-code="git init">📋 Copiar</button>
+          </div>
+          <div class="explain-text">
+            Inicializa repositório Git local. <span class="directory-hint">📁 dentro da pasta do projeto</span>
+          </div>
+        </div>
+        <div class="command-box">
+          <div class="command-text">
+            <code>git add .</code>
+            <button class="copy-btn" data-code="git add .">📋 Copiar</button>
+          </div>
+          <div class="explain-text">Adiciona todos os ficheiros à área de stage (preparação).</div>
+        </div>
+        <div class="command-box">
+          <div class="command-text">
+            <code>git commit -m "primeiro commit"</code>
+            <button class="copy-btn" data-code='git commit -m "primeiro commit"'>📋 Copiar</button>
+          </div>
+          <div class="explain-text">Cria o commit (fotografia do código).</div>
+        </div>
+        <div class="command-box">
+          <div class="command-text">
+            <code>git branch -M main</code>
+            <button class="copy-btn" data-code="git branch -M main">📋 Copiar</button>
+          </div>
+          <div class="explain-text">Renomeia branch atual para 'main'.</div>
+        </div>
+        <div class="command-box">
+          <div class="command-text">
+            <code>git remote add origin https://github.com/USER/REPO.git</code>
+            <button class="copy-btn" data-code="git remote add origin https://github.com/USER/REPO.git">📋 Copiar</button>
+          </div>
+          <div class="explain-text">
+            Liga repositório local ao remoto. <strong>USER/REPO</strong> deve ser o teu.
+          </div>
+        </div>
+        <div class="command-box">
+          <div class="command-text">
+            <code>git push -u origin main</code>
+            <button class="copy-btn" data-code="git push -u origin main">📋 Copiar</button>
+          </div>
+          <div class="explain-text">
+            ⚠️ Vai pedir <strong>Username</strong> (teu nick GitHub) e <strong>Password</strong> (cola o token).
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD: SEGUNDA FORMA (guardar token permanentemente) -->
+    <div class="card">
+      <div class="card-header">💾 FORMA 2 · TOKEN GUARDADO (SEM REPETIR)</div>
+      <div class="step-list">
+        <div class="command-box">
+          <div class="command-text">
+            <code>git config --global credential.helper store</code>
+            <button class="copy-btn" data-code="git config --global credential.helper store">📋 Copiar</button>
+          </div>
+          <div class="explain-text">
+            Ativa armazenamento permanente. Após o primeiro push bem-sucedido, token fica salvo em disco (ficheiro ~/.git-credentials).
+          </div>
+        </div>
+        <div class="command-box">
+          <div class="command-text">
+            <code>git push -u origin main</code>
+            <button class="copy-btn" data-code="git push -u origin main">📋 Copiar</button>
+          </div>
+          <div class="explain-text">
+            🔐 Primeira vez: insere username + token. Depois nunca mais pede.
+          </div>
+        </div>
+        <div style="background:#1e0733; border-radius:1.2rem; padding:0.8rem; margin-top:0.5rem;">
+          <p style="color:#f0b3ff;">💡 <strong>Dica de segurança:</strong> O token fica guardado em texto plano. Use apenas em máquina confiável.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD: Sequência resumo rápida -->
+    <div class="card">
+      <div class="card-header">⚡ FLUXO COMPLETO (RESUMO)</div>
+      <div class="command-box">
+        <code style="white-space: pre-wrap;">cd meu-projeto/
+git init
+git add .
+git commit -m "mensagem"
+git branch -M main
+git remote add origin https://github.com/usuario/repo.git
+git push -u origin main</code>
+        <button class="copy-btn" style="margin-top:0.8rem; align-self: flex-end;" data-code="cd meu-projeto/
+git init
+git add .
+git commit -m "mensagem"
+git branch -M main
+git remote add origin https://github.com/usuario/repo.git
+git push -u origin main">📋 Copiar tudo</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer-signature">
+    <p><small>&copy; Pensador Sem Fronteiras.</small></p>
+    <p><em>Do Zero ao Infinito</em></p>
+  </footer>
+
+  <!-- JavaScript funcional para botões copiar -->
+  <script>
+    (function() {
+      // Seleciona todos os botões com a classe copy-btn
+      const copyButtons = document.querySelectorAll('.copy-btn');
+      
+      copyButtons.forEach(btn => {
+        btn.addEventListener('click', async () => {
+          const codeToCopy = btn.getAttribute('data-code');
+          if (!codeToCopy) return;
+          
+          try {
+            await navigator.clipboard.writeText(codeToCopy);
+            
+            // Feedback visual temporário
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '✅ Copiado!';
+            btn.style.background = '#ff4db8';
+            btn.style.color = '#000';
+            
+            setTimeout(() => {
+              btn.innerHTML = originalText;
+              btn.style.background = '';
+              btn.style.color = '';
+            }, 1500);
+            
+          } catch (err) {
+            // fallback para navegadores mais restritivos
+            const textarea = document.createElement('textarea');
+            textarea.value = codeToCopy;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            
+            btn.innerHTML = '📋 Copiado';
+            setTimeout(() => {
+              btn.innerHTML = '📋 Copiar';
+            }, 1200);
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
