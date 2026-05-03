@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes, viewport-fit=cover, minimal-ui">
-  <title>Kali Linux · Guia Primeiro Voo | Pensador Sem Fronteiras</title>
+  <title>Kali Linux · Guia Completo do Leigo | Pensador Sem Fronteiras</title>
   <style>
     * {
       margin: 0;
@@ -25,14 +25,14 @@
     }
 
     .container {
-      max-width: 750px;
+      max-width: 780px;
       width: 100%;
       display: flex;
       flex-direction: column;
-      gap: 1.8rem;
+      gap: 1.9rem;
     }
 
-    /* Navegação secundária consistente */
+    /* Navegação */
     .nav-links {
       display: flex;
       flex-wrap: wrap;
@@ -51,7 +51,7 @@
       font-weight: 500;
       text-decoration: none;
       transition: all 0.2s ease;
-      box-shadow: 0 0 6px #00ffff30;
+      box-shadow: 0 0 8px #00ffff30;
       display: inline-flex;
       align-items: center;
       gap: 0.3rem;
@@ -61,12 +61,12 @@
       background: #00ffff;
       color: #0a0c0f;
       border-color: #ccf381;
-      box-shadow: 0 0 22px #00ffffcc;
+      box-shadow: 0 0 24px #00ffffcc;
     }
 
     /* TIPOGRAFIA & GLOW */
     h1 {
-      font-size: 2.2rem;
+      font-size: 2.3rem;
       font-weight: 700;
       letter-spacing: 1px;
       background: linear-gradient(135deg, #00ffff, #b44dff);
@@ -81,9 +81,9 @@
     .sub-glow {
       color: #b0c7ff;
       font-weight: 400;
-      font-size: 1rem;
+      font-size: 1.1rem;
       letter-spacing: 0.4px;
-      border-left: 4px solid #ff66c4;
+      border-left: 5px solid #ff66c4;
       padding-left: 1rem;
       margin-bottom: 0.8rem;
       text-shadow: 0 0 10px #ff66c470;
@@ -93,26 +93,34 @@
       font-size: 1.5rem;
       font-weight: 600;
       color: #00e0ff;
-      text-shadow: 0 0 12px #00ccffaa;
-      margin: 0.4rem 0 0.7rem;
+      text-shadow: 0 0 14px #00ccffaa;
+      margin: 0.4rem 0 0.8rem;
       display: flex;
       align-items: center;
       gap: 0.5rem;
+    }
+
+    h3 {
+      font-weight: 600;
+      color: #ccf381;
+      font-size: 1.25rem;
+      margin: 1rem 0 0.4rem;
+      text-shadow: 0 0 8px #a5ff90;
     }
 
     .card {
       background: #12161c;
       border: 1px solid #2e3a4a;
       border-radius: 28px;
-      padding: 1.5rem 1.2rem;
+      padding: 1.6rem 1.3rem;
       backdrop-filter: blur(12px);
-      box-shadow: 0 0 28px rgba(0, 255, 255, 0.12), 0 12px 28px rgba(0,0,0,0.8);
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.1), 0 12px 30px rgba(0,0,0,0.8);
       transition: all 0.25s ease;
     }
 
     .card:hover {
       border-color: #00ffff;
-      box-shadow: 0 0 40px #00ffff50, 0 15px 30px #000000cc;
+      box-shadow: 0 0 42px #00ffff50, 0 15px 32px #000000cc;
     }
 
     .badge {
@@ -141,7 +149,6 @@
       color: #ccf381;
       word-break: break-word;
       overflow-x: auto;
-      min-height: 3.2rem;
     }
 
     .btn {
@@ -189,14 +196,14 @@
       padding: 0.7rem 1.8rem;
       border-radius: 3rem;
       display: inline-block;
-      margin: 0.3rem 0;
+      margin: 0.4rem 0.3rem;
       box-shadow: 0 0 25px #00ffff;
       border: none;
     }
 
     a.btn-link:hover {
       background: #ff66c4;
-      box-shadow: 0 0 35px #ff66c4;
+      box-shadow: 0 0 38px #ff66c4;
       color: #000;
     }
 
@@ -216,7 +223,7 @@
     }
 
     footer {
-      margin-top: 2.2rem;
+      margin-top: 2.4rem;
       text-align: center;
       font-weight: 300;
       color: #9aaec9;
@@ -244,6 +251,16 @@
       gap: 0.4rem;
     }
 
+    .command-explanation {
+      background: #1a2230;
+      border-left: 4px solid #ff66c4;
+      padding: 0.6rem 1rem;
+      border-radius: 12px;
+      margin-top: 0.4rem;
+      font-size: 0.9rem;
+      color: #ccdfff;
+    }
+
     @media (max-width: 480px) {
       h1 {
         font-size: 1.9rem;
@@ -255,16 +272,13 @@
         padding: 0.6rem 1.1rem;
         font-size: 0.75rem;
       }
-      .nav-links {
-        gap: 0.4rem;
-      }
     }
   </style>
 </head>
 <body>
   <div class="container">
 
-    <!-- Navegação refinada e consistente -->
+    <!-- Navegação -->
     <div class="nav-links">
       <a href="../../../index.html" class="nav-btn">🏠 Voltar Home</a>
       <a href="../../kali.html" class="nav-btn">📂 Voltar Kali</a>
@@ -272,151 +286,192 @@
       <a href="instalacaoKali.html" class="nav-btn">🔄 Recarregar guia</a>
     </div>
 
-    <!-- cabeçalho -->
+    <!-- TÍTULO PRINCIPAL -->
     <div style="text-align: left;">
-      <h1>⚡KALI 2026.1</h1>
-      <div class="sub-glow">Guia interativo · Do ISO ao primeiro login</div>
-      <p style="color:#a0bcdd; margin-top:0.3rem;">Baseado na tua jornada real — sem atalhos, cada etapa explicada.</p>
+      <h1>🐉 Kali Linux para Leigos</h1>
+      <div class="sub-glow">Guia completo · Do download ao primeiro comando</div>
+      <p style="color:#a0bcdd; margin-top:0.3rem;">Passo a passo real, baseado na jornada de um iniciante. VirtualBox, instalação, configuração e primeiros comandos.</p>
     </div>
 
-    <!-- CARD 1: contexto real -->
+    <!-- INTRODUÇÃO: Tema Linux + Kali -->
     <div class="card">
-      <h2><span class="step-marker">1</span> O ponto de partida</h2>
-      <p><span class="badge">📦 kali-linux-2026.1-installer-amd64.iso</span> já está na tua pasta <strong>Downloads</strong>. Não é .zip, é um ISO legítimo. A confusão inicial foi desfeita: o arquivo <strong>não precisa ser extraído</strong> — apenas montado na máquina virtual.</p>
-      <div style="margin-top:1rem;">
-        <span style="color:#ccf381;">🔐 Hash SHA256 oficial (confirmado na página):</span>
-        <div class="code-box" id="hashBox">
-          271477ad6ea2676c7346576971b9acc2d32fabd9c2bbaf0e6302397626149306
-          <button class="btn btn-small" id="copyHashBtn">📋 Copiar</button>
-        </div>
+      <h2><span class="step-marker">📘</span> O que é Linux? E o Kali?</h2>
+      <p><strong>Linux</strong> é um sistema operativo (como Windows), mas gratuito e de código aberto. Existem muitas versões chamadas <strong>distribuições</strong>.</p>
+      <p style="margin-top:0.6rem;"><span class="badge">🐉 Kali Linux</span> é uma distribuição especializada em <strong>segurança digital e testes de penetração</strong>. Vem com centenas de ferramentas prontas.</p>
+      <p style="margin-top:0.6rem;">Neste guia, vais aprender a instalar o Kali dentro de uma <strong>máquina virtual</strong> — um computador simulado dentro do teu Windows.</p>
+    </div>
+
+    <!-- PASSO 0: Baixar VirtualBox e Kali -->
+    <div class="card">
+      <h2><span class="step-marker">0</span> Downloads necessários</h2>
+      <p>Antes de começar, precisas de dois ficheiros:</p>
+      <div style="display:flex; flex-wrap:wrap; gap:1rem; margin:1.2rem 0;">
+        <a href="https://www.virtualbox.org/" target="_blank" rel="noopener" class="btn-link">📦 Baixar VirtualBox</a>
+        <a href="https://www.kali.org/get-kali/#kali-installer-images" target="_blank" rel="noopener" class="btn-link">🌐 Baixar Kali ISO</a>
       </div>
+      <p><span class="badge">💡 Dica</span> O ficheiro do Kali termina em <code>.iso</code> — é uma imagem de disco. Não precisas de extrair!</p>
     </div>
 
-    <!-- CARD 2: VirtualBox & criação -->
+    <!-- PASSO 1: Criar a VM no VirtualBox -->
     <div class="card">
-      <h2><span class="step-marker">2</span> VirtualBox + nova VM</h2>
-      <p><strong>Oracle VirtualBox</strong> já instalado. Criar máquina com os valores refinados durante a conversa:</p>
-      <div style="display:flex; flex-wrap:wrap; gap:1rem; margin: 1rem 0;">
-        <div><span class="badge">🧠 RAM: 4869 MB</span></div>
-        <div><span class="badge">⚙️ CPU: 4 núcleos</span></div>
-        <div><span class="badge">💾 Disco: 30 GB (dinâmico)</span></div>
-      </div>
-      <p><span style="color:#ffb86c;">📌 Localização:</span> Disco <strong>E:</strong> (restavam 48 GB livres). Pasta sugerida: <code>E:\VMs\Kali2026</code></p>
-      <p><span style="color:#ffb86c;">📌 Versão:</span> Ubuntu (64-bit) — compatível com Kali.</p>
-      <p><span style="color:#ffb86c;">📌 EFI:</span> <strong>Desmarcado</strong> (boot legacy simples).</p>
+      <h2><span class="step-marker">1</span> Criar a máquina virtual</h2>
+      <p>Abre o <strong>Oracle VirtualBox</strong> e clica em <strong>"Novo"</strong>.</p>
+      <ul class="step-list" style="margin-top:0.8rem;">
+        <li>📛 <strong>Nome:</strong> Kali Linux 2026.1</li>
+        <li>🖥️ <strong>Tipo:</strong> Linux · <strong>Versão:</strong> Ubuntu (64-bit)</li>
+        <li>🧠 <strong>RAM:</strong> 4869 MB (ou 4096 MB se tiveres 8 GB no PC)</li>
+        <li>💾 <strong>Disco:</strong> 30 GB (dinâmico) — guarda em <strong>E:</strong> se o C: estiver cheio</li>
+        <li>⚙️ <strong>CPU:</strong> 4 núcleos (metade dos teus núcleos reais)</li>
+      </ul>
+      <p style="margin-top:0.6rem;"><span class="badge">⚠️ EFI</span> Deixa <strong>desmarcado</strong> (boot legacy é mais simples).</p>
     </div>
 
-    <!-- CARD 3: Montagem ISO -->
+    <!-- PASSO 2: Montar o ISO -->
     <div class="card">
-      <h2><span class="step-marker">3</span> Montar o ISO</h2>
-      <p>Configurações → Armazenamento → Controladora IDE → CD vazio → escolher arquivo de disco:</p>
-      <div class="code-box" style="font-size:0.9rem;">
+      <h2><span class="step-marker">2</span> Montar o ISO do Kali</h2>
+      <p>Com a VM selecionada, vai a <strong>Configurações → Armazenamento</strong>.</p>
+      <p>Clica no ícone do CD vazio e escolhe <strong>"Escolher um ficheiro de disco..."</strong>.</p>
+      <div class="code-box">
         kali-linux-2026.1-installer-amd64.iso
       </div>
-      <p>Iniciar a VM. Assim que surgir o menu preto, selecionar <strong>Graphical install</strong>.</p>
+      <p>Depois clica em <strong>Iniciar</strong> (seta verde).</p>
     </div>
 
-    <!-- CARD 4: Etapas da instalação -->
+    <!-- PASSO 3: Instalação assistida -->
     <div class="card">
-      <h2><span class="step-marker">4</span> Diálogo de instalação</h2>
-      <p>A sequência exata que seguiste (e as escolhas feitas):</p>
+      <h2><span class="step-marker">3</span> Instalação (Graphical Install)</h2>
+      <p>No menu preto, escolhe <strong>Graphical install</strong> e segue:</p>
       <ul class="step-list">
-        <li>🌐 <strong>Idioma:</strong> Português de Portugal</li>
-        <li>🌍 <strong>País:</strong> Portugal (Moçambique não listado; fuso ajustado depois)</li>
-        <li>⌨️ <strong>Teclado:</strong> Português (Portugal) — QWERTY com ç</li>
-        <li>🔌 <strong>Rede:</strong> DHCP automático (NAT VirtualBox funciona perfeitamente)</li>
-        <li>🏷️ <strong>Hostname:</strong> kali (ou kali-vm)</li>
-        <li>📛 <strong>Domínio:</strong> (vazio)</li>
-        <li>👤 <strong>Utilizador:</strong> kali · <strong>Senha:</strong> pensador123 (letras+números, sem barras)</li>
-        <li>🕒 <strong>Fuso horário:</strong> Lisboa (UTC+0, depois ajustar para Africa/Maputo)</li>
+        <li>🌐 <strong>Idioma:</strong> Português (Portugal)</li>
+        <li>🌍 <strong>País:</strong> Portugal (Moçambique não está na lista)</li>
+        <li>⌨️ <strong>Teclado:</strong> Português (Portugal)</li>
+        <li>🔌 <strong>Rede:</strong> DHCP automático</li>
+        <li>🏷️ <strong>Hostname:</strong> kali</li>
+        <li>📛 <strong>Domínio:</strong> (deixar vazio)</li>
+        <li>👤 <strong>Utilizador:</strong> kali · <strong>Senha:</strong> pensador123</li>
+        <li>🕒 <strong>Fuso:</strong> Lisboa (depois ajustamos para Maputo)</li>
       </ul>
     </div>
 
-    <!-- CARD 5: Particionamento sem LVM -->
+    <!-- PASSO 4: Particionamento -->
     <div class="card">
-      <h2><span class="step-marker">5</span> Particionamento (sem LVM)</h2>
-      <p><span class="badge">Guiado - usar todo o disco</span> · disco <strong>/dev/sda</strong> (30 GB).</p>
-      <p>Esquema: <strong>Todos os arquivos em uma partição</strong>. Nada de LVM — decisão consciente para primeira experiência.</p>
-      <div class="code-box" style="font-size:0.9rem;">
-        Finalizar o particionamento e escrever as alterações no disco → Sim
-      </div>
-      <p style="margin-top:0.6rem;">Motivo: LVM traria flexibilidade, mas aumenta complexidade na recuperação. <em>"Talvez quando estiver mais maduro"</em>.</p>
+      <h2><span class="step-marker">4</span> Particionamento (simples)</h2>
+      <p>Escolhe <span class="badge">Guiado - usar todo o disco</span> e seleciona o disco <strong>/dev/sda</strong>.</p>
+      <p>Esquema: <strong>Todos os ficheiros numa partição</strong>.</p>
+      <div class="code-box">Finalizar particionamento → Sim</div>
+      <p><em>Sem LVM</em> — mais fácil para recuperar se algo correr mal.</p>
     </div>
 
-    <!-- CARD 6: Software & continuação -->
+    <!-- PASSO 5: Seleção de software -->
     <div class="card">
-      <h2><span class="step-marker">6</span> Seleção de software</h2>
-      <p>Na tela dos quadrados (marcar/desmarcar), mantiveste:</p>
+      <h2><span class="step-marker">5</span> Seleção de software</h2>
+      <p>Na lista de quadrados, mantém marcado:</p>
       <div style="display:flex; flex-wrap:wrap; gap:0.6rem; margin:0.8rem 0;">
-        <span class="badge">✅ Xfce (desktop)</span>
-        <span class="badge">✅ collection of tools</span>
+        <span class="badge">✅ Xfce</span>
+        <span class="badge">✅ tools (coleção)</span>
         <span class="badge">✅ top10</span>
         <span class="badge">✅ default</span>
       </div>
-      <p>GNOME/KDE desmarcados. A instalação prosseguiu (sistema base + pacotes).</p>
+      <p>GNOME e KDE desmarcados. Continua.</p>
     </div>
 
-    <!-- CARD 7: Pós-instalação & ajustes -->
+    <!-- PASSO 6: GRUB e finalização -->
     <div class="card">
-      <h2><span class="step-marker">7</span> Finalização & GRUB</h2>
-      <p>Quando surgir <strong>Instalar o GRUB no /dev/sda</strong> → <strong>Sim</strong>. Após reiniciar, remover o ISO da unidade óptica (VirtualBox → Dispositivos → Remover disco).</p>
-      <p>Primeiro login: <code>kali</code> / <code>pensador123</code>.</p>
+      <h2><span class="step-marker">6</span> GRUB e primeiro login</h2>
+      <p>Quando perguntar <strong>"Instalar o GRUB no /dev/sda?"</strong> → <strong>Sim</strong>.</p>
+      <p>Após reiniciar, faz login com:</p>
+      <div class="code-box" id="loginBox">
+        kali / pensador123
+        <button class="btn btn-small" id="copyLoginBtn">📋 Copiar</button>
+      </div>
     </div>
 
-    <!-- CARD 8: Fuso horário Moçambique -->
+    <!-- CONFIGURAÇÕES INICIAIS ÚTEIS -->
     <div class="card">
-      <h2><span class="step-marker">8</span> Ajuste fuso horário (Maputo)</h2>
-      <p>Depois do login, abrir terminal e executar:</p>
+      <h2>⚙️ Configurações iniciais úteis</h2>
+      <p>Assim que entrares no Kali, executa estes passos:</p>
+
+      <h3>1. Ajustar fuso horário (Maputo)</h3>
       <div class="code-box" id="timezoneBox">
         sudo timedatectl set-timezone Africa/Maputo
         <button class="btn btn-small" id="copyTzBtn">📋 Copiar</button>
       </div>
-      <p style="font-size:0.9rem; margin-top:0.5rem;">Assim o relógio fica certo para Moçambique (UTC+2).</p>
-    </div>
+      <div class="command-explanation">
+        <strong>sudo</strong> = executa como administrador. <strong>timedatectl</strong> = comando que controla data/hora. <strong>set-timezone</strong> = define o fuso.
+      </div>
 
-    <!-- CARD 9: VS Code e ambiente dev -->
-    <div class="card">
-      <h2><span class="step-marker">9</span> Programar no Kali · VS Code</h2>
-      <p>O Kali <strong>pode ser usado para programar</strong> (APK, scripts, etc). O VS Code não vem incluso, mas instala-se facilmente:</p>
+      <h3>2. Atualizar o sistema</h3>
+      <div class="code-box" id="updateBox">
+        sudo apt update && sudo apt upgrade -y
+        <button class="btn btn-small" id="copyUpdateBtn">📋 Copiar</button>
+      </div>
+      <div class="command-explanation">
+        <strong>apt update</strong> = atualiza a lista de pacotes disponíveis. <strong>apt upgrade -y</strong> = instala todas as atualizações automaticamente. O <strong>&&</strong> executa o segundo comando só se o primeiro der certo.
+      </div>
+
+      <h3>3. Instalar o VS Code (opcional)</h3>
       <div class="code-box" id="vscodeBox">
-        sudo apt update && sudo apt install code -y
+        sudo apt install code -y
         <button class="btn btn-small" id="copyVsCodeBtn">📋 Copiar</button>
       </div>
-      <p style="margin-top:0.5rem;">Também podes ter <strong>outra VM com Ubuntu</strong> para desenvolvimento geral. Cada VM é independente.</p>
+      <div class="command-explanation">
+        <strong>apt install code</strong> = instala o Visual Studio Code. <strong>-y</strong> = responde "sim" automaticamente a perguntas.
+      </div>
     </div>
 
-    <!-- CARD 10: Recapitulação espaço em disco -->
+    <!-- PRIMEIROS COMANDOS -->
     <div class="card">
-      <h2><span class="step-marker">🔟</span> Resumo final de disco</h2>
-      <div style="display:flex; flex-wrap:wrap; gap:1rem; justify-content:space-between;">
-        <div><span class="badge">C: 95 GB (11 GB livres)</span></div>
-        <div><span class="badge">E: ~183 GB (48 GB livres)</span></div>
+      <h2>📟 Primeiros comandos (e o que fazem)</h2>
+      <p>Experimenta estes no terminal para te familiarizares:</p>
+
+      <div class="code-box" id="cmd1Box">
+        pwd
+        <button class="btn btn-small" id="copyCmd1Btn">📋 Copiar</button>
       </div>
-      <p style="margin-top:0.9rem;">VM criada em <strong>E:</strong> com 30 GB dinâmicos. Sobram ~18 GB para arquivos. Nada foi instalado em C:.</p>
+      <div class="command-explanation"><strong>pwd</strong> = mostra a pasta onde estás agora.</div>
+
+      <div class="code-box" id="cmd2Box" style="margin-top:1rem;">
+        ls
+        <button class="btn btn-small" id="copyCmd2Btn">📋 Copiar</button>
+      </div>
+      <div class="command-explanation"><strong>ls</strong> = lista ficheiros e pastas do diretório atual.</div>
+
+      <div class="code-box" id="cmd3Box" style="margin-top:1rem;">
+        cd /home/kali
+        <button class="btn btn-small" id="copyCmd3Btn">📋 Copiar</button>
+      </div>
+      <div class="command-explanation"><strong>cd</strong> = muda de diretório. Aqui vai para a pasta pessoal do utilizador "kali".</div>
+
+      <div class="code-box" id="cmd4Box" style="margin-top:1rem;">
+        whoami
+        <button class="btn btn-small" id="copyCmd4Btn">📋 Copiar</button>
+      </div>
+      <div class="command-explanation"><strong>whoami</strong> = mostra com que utilizador estás ligado.</div>
     </div>
 
-    <!-- LINKS ÚTEIS (botões clicáveis) -->
-    <div class="card" style="text-align:center;">
-      <h2 style="justify-content:center;">🔗 Links oficiais</h2>
-      <div style="display:flex; flex-wrap:wrap; gap:1rem; justify-content:center; margin-top:1rem;">
-        <a href="https://www.kali.org/get-kali/#kali-installer-images" target="_blank" rel="noopener" class="btn-link">🌐 Kali.org (get-kali)</a>
-        <a href="https://www.virtualbox.org/" target="_blank" rel="noopener" class="btn-link">📦 VirtualBox</a>
-        <a href="https://rufus.ie/" target="_blank" rel="noopener" class="btn-link">💿 Rufus (pendrive)</a>
-      </div>
-      <p style="margin-top:1rem; font-size:0.85rem;">Todos os botões abrem em nova aba · navegação direta.</p>
+    <!-- RESUMO FINAL -->
+    <div class="card">
+      <h2>✅ Checklist final</h2>
+      <ul class="step-list">
+        <li>✔️ VirtualBox instalado</li>
+        <li>✔️ ISO do Kali descarregado</li>
+        <li>✔️ VM criada com 4 GB RAM, 4 CPU, 30 GB disco</li>
+        <li>✔️ Kali instalado com Xfce</li>
+        <li>✔️ Fuso horário Maputo configurado</li>
+        <li>✔️ Sistema atualizado</li>
+      </ul>
     </div>
 
-    <!-- Rodapé assinatura obrigatória -->
+    <!-- Rodapé -->
     <footer>
       <p style="font-weight:200; font-size:1.3rem; letter-spacing:1px;">Pensador Sem Fronteiras</p>
       <p class="italic-slogan">Do zero ao Infinito</p>
-      <p style="margin-top:0.4rem; font-size:0.7rem; color:#5f7182;">Guia baseado na conversa real · VirtualBox · Kali 2026.1 · Moçambique</p>
+      <p style="margin-top:0.4rem; font-size:0.7rem; color:#5f7182;">Guia completo para leigos · VirtualBox · Kali 2026.1 · Moçambique</p>
     </footer>
   </div>
 
   <script>
     (function() {
-      // Função de cópia genérica + feedback visual consistente
       function setupCopyButton(buttonId, textElementId) {
         const btn = document.getElementById(buttonId);
         const textElement = document.getElementById(textElementId);
@@ -424,15 +479,12 @@
 
         btn.addEventListener('click', (e) => {
           e.stopPropagation();
-          // Remove texto do botão e espaços extras para obter o conteúdo puro
           const textToCopy = textElement.innerText.replace(/📋 Copiar|Copiar/g, '').trim();
-          
           navigator.clipboard.writeText(textToCopy).then(() => {
             btn.textContent = '✅ Copiado!';
             btn.style.background = '#00ffff';
             btn.style.color = '#000';
             btn.style.borderColor = '#ccf381';
-            
             setTimeout(() => {
               btn.textContent = '📋 Copiar';
               btn.style.background = '#1a212b';
@@ -445,12 +497,16 @@
         });
       }
 
-      // Garantir que o DOM está pronto
       window.addEventListener('DOMContentLoaded', () => {
-        setupCopyButton('copyHashBtn', 'hashBox');
+        setupCopyButton('copyLoginBtn', 'loginBox');
         setupCopyButton('copyTzBtn', 'timezoneBox');
+        setupCopyButton('copyUpdateBtn', 'updateBox');
         setupCopyButton('copyVsCodeBtn', 'vscodeBox');
-        console.log('✨ Guia Pensador Sem Fronteiras — consistente e pronto.');
+        setupCopyButton('copyCmd1Btn', 'cmd1Box');
+        setupCopyButton('copyCmd2Btn', 'cmd2Box');
+        setupCopyButton('copyCmd3Btn', 'cmd3Box');
+        setupCopyButton('copyCmd4Btn', 'cmd4Box');
+        console.log('🐉 Guia Kali para Leigos — pronto!');
       });
     })();
   </script>
