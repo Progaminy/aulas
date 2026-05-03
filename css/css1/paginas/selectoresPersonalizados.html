@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selectores Personalizados</title>
+</head>
+<body>
+
+    <div class="container">
+
+         <!-- Botões de navegação superiores -->
+        <div class="nav-buttons">
+            <a href="../../../index.html" class="btn-link">🏠 Voltar Home</a>
+            <a href="../../css.html" class="btn-link">🎨 Voltar CSS</a>
+            <a href="../css1.html" class="btn-link">🎨 Voltar CSS</a>
+            <a href="selectoresPersonalizados.html" class="btn-link">🔄 REFRESCAR</a>
+        </div>
+
+        <h1>Selectores Personalizados</h1>
+        
+
+        <h2><strong>id="" </strong>identificador unico ou individual</h2>
+
+        <h3>Tratamrnto no codigo HTML</h3>
+
+        <p>
+            Para usar selecror individual digitasse dentro da tag html que precisamos selecionar a paravra <strong>id="no,me-do-identificador"</strong>, <br> exemplo:
+
+            <code>
+                &lt;p id="paragrafo-imprtante"&gt; p-aragrafo com identificador&lt;/&gt;
+            </code> <br>
+            <button>Copiar</button>
+        </p>
+        
+        <h3>Tratamento no CSS</h3>
+
+        <p>
+            no CSS usamos o nome da tag + # + nome-do-identificador { estilizacao } <br> Exemplo:
+
+            <code>
+                p#nomde-do-identificador { <br>
+                    text-align: center; <br>
+                    color: rede; <br>
+                } <br>
+            </code> <br>
+            <button>Copiar</button>
+        </p>
+
+        <H3>Nota Importante</H3>
+
+        <P>
+            nao pode usar mesmo nome de id para 2 elementos no mesmo documeno html <BR></BR>
+            # em css significa id em html <BR></BR>
+            p#nomde-do-id &rarr; significa apenas id do paragrafo como o nome mencionado
+            #nomde-do-id &rarr; significa todos id do paragrafo como o nome mencionado
+        </P>
+
+        <h2> <strong>class=""</strong> Identofacador comum <strong>class</strong> </h2>
+
+        <p>
+            quando se tem 2 ou mais elementoos para fazer mesma pesonalizacao utiloizasse o idenfificador comum class="nomde-do-idenfificador-comum" dentro da tg html. em <strong>css </strong>colocamos ponto em seguida o node-do-identificador-comum <br>  <br>Exemplo em HTML: <br>
+
+            <code>
+                &lt;p class="nome-da-classe"&gt;trxto com formatacao em comum&lt;/&gt; <br>
+                &lt;p class="nome-da-classe2"&gt;trxto2 com formatacao2 em comum&lt;/&gt; <br>
+            </code> <br>
+            <button>Copiar</button>
+        </p>
+
+        <p>Exemplo em CSS: </p>
+
+        <code>
+            .nomde-da-classe { <br>
+                color: blue; <br>
+                
+            } <br>
+
+             .nomde-da-classe2 { <br>
+                
+                background-color: green; <br>
+            } <br>
+        </code> <br>
+        <button>Copiar</button>
+
+        <h3>Imformacao importante</h3>
+
+        <p>podemos usar duas ou mais class em uma ta, bata colocar o nome das das clsses dentro da tag separando entre si com espaco. <br>Exemplo de tag com duas classes: </p>
+        
+        <code>
+            &lt;p class="nome-da-classe nome-da-classe2"&gt;trxto com formatacao em comum duas classes <br>&lt;/&gt; <br>
+        </code> <br>
+        <button>Copiar</button>
+
+        <h3>Herarquia dos selectors personalizados</h3>
+
+        <p>primeiro e o id depos o class</p>
+
+        <h2>Pseodo Class</h2>
+
+        <p>Pseodo class esta relacionado ao estado do elemento (ativo, marcado, vazio ...)</p>
+        
+        <p>Exemplo em HTML: </p>
+
+        <code class="codigo">
+            <div id="d1"></div> <br>
+            <div id="d2"></div> <br>
+            <div id="d3"></div> <br>
+        </code> <br>
+        <button>Copiar</button>
+
+        <p>Exemplo em CSS: </p>
+
+        <code>
+            div: {
+                display: inline-block;
+                backgroud-color: blue;
+                border: 1px solid black;
+                text-align: center;
+                height: 200px;
+                weidth: 
+            }
+
+            div: hover {
+                background-color: red;
+            }
+        </code>
+
+
+
+    </div>
+
+     <footer>
+        <p>&copy; <small>Pensador Sem Fronteiras</small> <br> <em>Do Zero ao Infinito</em></p>
+    </footer>
+    
+</body>
+</html>
