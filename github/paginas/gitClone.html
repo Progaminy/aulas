@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Clone - Push</title>
+</head>
+<body>
+
+
+    <div>
+        I believe you're asking about **cloning a project from GitHub on Kali Linux**. Here's how to do it:
+
+## Basic Git Clone Command
+
+```bash
+git clone <repository-url>
+```
+
+## Common Examples
+
+```bash
+# Clone via HTTPS
+git clone https://github.com/username/repository.git
+
+# Clone via SSH (requires SSH key setup)
+git clone git@github.com:username/repository.git
+
+# Clone to a specific directory
+git clone https://github.com/username/repository.git my-folder
+```
+
+## Step-by-Step on Kali Linux
+
+1. **Install Git (if not already installed)**
+   ```bash
+   sudo apt update
+   sudo apt install git -y
+   ```
+
+2. **Navigate to where you want the project**
+   ```bash
+   cd ~/Desktop
+   # or
+   cd ~/Documents
+   ```
+
+3. **Clone the repository**
+   ```bash
+   git clone https://github.com/username/project-name.git
+   ```
+
+4. **Enter the project directory**
+   ```bash
+   cd project-name
+   ```
+
+## Useful Tips
+
+- **Clone specific branch:**
+  ```bash
+  git clone -b branch-name <repository-url>
+  ```
+
+- **Shallow clone (faster, no history):**
+  ```bash
+  git clone --depth 1 <repository-url>
+  ```
+
+- **If you get permission errors**, make sure you have write access to the target directory or use `sudo` (not recommended for git operations)
+
+Do you have a specific project URL you're trying to clone?
+
+
+Perfeito! Em **português**, continuando seus passos:
+
+## Passo a passo completo no Kali Linux:
+
+**Passo 1:** Acessar GitHub no navegador → github.com
+
+**Passo 2:** Fazer login no GitHub
+
+**Passo 3:** Ir para o repositório desejado
+
+**Passo 4:** Clicar no botão verde "**Code**" (Código)
+
+**Passo 5:** Copiar a URL HTTPS (ex: `https://github.com/Progaminy/aulas.git`)
+
+**Passo 6:** **Abrir o terminal no Kali Linux** (Ctrl + Alt + T)
+
+**Passo 7:** **Navegar até onde quer salvar o projeto:**
+```bash
+cd ~/Desktop
+# ou
+cd ~/Documentos
+```
+
+**Passo 8:** **Clonar o repositório:**
+```bash
+git clone https://github.com/Progaminy/aulas.git
+```
+
+**Passo 9:** **Entrar na pasta do projeto:**
+```bash
+cd aulas
+```
+
+**Passo 10:** **Verificar se funcionou:**
+```bash
+ls -la
+```
+
+## Se o Git não estiver instalado (Kali Linux geralmente já vem com ele):
+```bash
+sudo apt update
+sudo apt install git -y
+```
+
+## Resumo dos comandos principais:
+```bash
+git clone URL_DO_REPOSITORIO
+cd NOME_DA_PASTA
+```
+
+Pronto! O projeto estará baixado no seu Kali Linux. 🐉
+
+
+
+
+
+    </div>
+    
+</body>
+</html>

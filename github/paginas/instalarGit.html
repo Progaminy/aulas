@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div>
+
+        Esse erro indica que o pacote `code` (Visual Studio Code) não está nos repositórios padrão do Kali Linux. Para instalar o VS Code no Kali, siga estes passos:
+
+## Método 1: Via repositório oficial da Microsoft
+
+```bash
+# Adicionar a chave GPG da Microsoft
+wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
+sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
+
+# Adicionar o repositório
+sudo sh -c 'echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
+
+# Atualizar e instalar
+sudo apt update
+sudo apt install code -y
+```
+
+## Método 2: Download direto do .deb
+
+```bash
+# Baixar o pacote .deb mais recente
+wget -O code_latest_amd64.deb "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64"
+
+# Instalar
+sudo dpkg -i code_latest_amd64.deb
+
+# Corrigir dependências, se necessário
+sudo apt --fix-broken install -y
+```
+
+## Método 3: Via Flatpak (recomendado para isolamento)
+
+```bash
+# Instalar flatpak se não tiver
+sudo apt install flatpak -y
+
+# Adicionar Flathub
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+# Instalar VS Code
+flatpak install flathub com.visualstudio.code -y
+```
+
+Após qualquer um dos métodos, você pode iniciar o VS Code com:
+```bash
+code
+```
+ou
+```bash
+flatpak run com.visualstudio.code
+```
+
+**Nota:** O Kali é baseado no Debian, então todos esses métodos funcionam perfeitamente. Recomendo o Método 1 para atualizações automáticas.
+
+
+
+O `code-oss` é a versão open-source do Visual Studio Code (sem a telemetria da Microsoft) e está disponível nos repositórios padrão do Debian/Kali!
+
+## Instalação direta:
+
+```bash
+sudo apt update
+sudo apt install code-oss -y
+```
+
+## Diferenças entre code-oss e code:
+
+| **code-oss** (Open Source) | **code** (Microsoft) |
+|---------------------------|---------------------|
+| ✅ Totalmente open-source | 🔒 Inclui telemetria |
+| ✅ Sem tracker da MS | 📊 Coleta dados de uso |
+| ❌ Marketplace restrito | ✅ Marketplace completo |
+| ❌ Algumas extensões não funcionam | ✅ Todas extensões disponíveis |
+
+## Se precisar do marketplace completo no code-oss:
+
+```bash
+# Instalar extensões manualmente
+# Exemplo: instalar extensão do Python
+code-oss --install-extension ms-python.python
+
+# Ou baixar .vsix do marketplace e instalar localmente
+```
+
+## Para usar o VS Code completo (marketplace liberado):
+
+Se você quiser todas as extensões, recomendo instalar o `code` pelos métodos que mencionei anteriormente. O `code-oss` funciona bem para uso básico, mas alguns desenvolvedores encontram limitações com extensões proprietárias.
+
+**Qual escolher?**
+- **code-oss**: Se você prefere software 100% open-source
+- **code**: Se precisa do marketplace completo da Microsoft
+
+Após instalar, execute:
+```bash
+code-oss
+```
+
+
+
+Para desinstalar o `code-oss` do Kali Linux:
+
+## Desinstalação completa:
+
+```bash
+# Remover o pacote
+sudo apt remove code-oss -y
+
+# Remover também arquivos de configuração (opcional)
+sudo apt purge code-oss -y
+
+# Remover dependências não utilizadas
+sudo apt autoremove -y
+```
+
+## Remover configurações e dados do usuário:
+
+```bash
+# Remover configurações do usuário atual
+rm -rf ~/.config/Code - OSS/
+
+# Remover cache
+rm -rf ~/.cache/code-oss/
+
+# Remover dados locais
+rm -rf ~/.local/share/code-oss/
+```
+
+## Verificar se foi completamente removido:
+
+```bash
+# Verificar se o comando ainda existe
+which code-oss
+
+# Verificar pacotes relacionados
+dpkg -l | grep code-oss
+```
+
+## Se instalou via flatpak (método alternativo):
+
+```bash
+# Desinstalar versão flatpak
+flatpak uninstall com.visualstudio.code -y
+
+# Limpar flatpaks não utilizados
+flatpak uninstall --unused -y
+```
+
+Após a desinstalação, se quiser instalar o VS Code normal (code) no lugar, use os métodos que mostrei anteriormente.
+
+
+
+
+Sim, você pode interromper o processo de instalação do `code-oss` sem problemas!
+
+## Para interromper a instalação:
+
+**Pressione no terminal:**
+```
+Ctrl + C
+```
+
+Isso vai cancelar o processo imediatamente.
+
+## Se a instalação já concluiu e você quer remover:
+
+```bash
+# Verificar se foi instalado
+dpkg -l | grep code-oss
+
+# Se estiver instalado, remover
+sudo apt remove code-oss -y
+```
+
+## Se quiser impedir a instalação futura:
+
+```bash
+# Limpar o cache do apt
+sudo apt clean
+
+# Se estava rodando apt install, matar o processo
+sudo pkill apt
+```
+
+**Importante:** Pressionar `Ctrl + C` é seguro e não vai corromper seu sistema. O apt-get/apt é projetado para lidar com interrupções gracefully (ele vai limpar os arquivos temporários).
+
+Precisa de ajuda com mais alguma coisa?
+
+
+Perfeito! Você conseguiu interromper a instalação com `Ctrl + C` (mostra o `^C` no output). O `code-oss` estava baixando (307 MB total, 24% baixado) e você cancelou.
+
+## Agora, para limpar completamente e evitar problemas:
+
+```bash
+# Limpar o cache de pacotes baixados parcialmente
+sudo apt clean
+
+# Remover arquivos de bloqueio do apt (se houver)
+sudo rm /var/lib/dpkg/lock-frontend
+sudo rm /var/lib/dpkg/lock
+sudo rm /var/cache/apt/archives/lock
+
+# Corrigir possíveis problemas de dependências quebradas
+sudo apt --fix-broken install
+```
+
+## Verificar se não ficou nada pendente:
+
+```bash
+# Verificar se code-oss não está instalado
+dpkg -l | grep code-oss
+
+# Verificar se há pacotes quebrados
+sudo apt check
+```
+
+## Se quiser garantir que o apt está saudável:
+
+```bash
+# Atualizar novamente (opcional)
+sudo apt update
+
+# O apt deve estar normal agora
+```
+
+**Resumo:** A instalação foi interrompida com sucesso, nenhum dano foi feito ao sistema. O `code-oss` não foi instalado porque o download não foi concluído. Você pode seguir com outros trabalhos normalmente.
+
+Precisa de ajuda para instalar algo no lugar?
+
+
+
+    </div>
+    
+</body>
+</html>

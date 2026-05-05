@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+
+    Existem várias formas de mover arquivos entre o Windows (host) e o Kali Linux (virtual machine). Aqui estão os métodos mais comuns:
+
+## 1. **Drag and Drop (Mais simples)**
+- No VirtualBox ou VMware, basta arrastar arquivos/pastas da janela do Windows para a janela do Kali
+- **Pré-requisito**: Instalar as **Guest Additions** no VirtualBox ou **VMware Tools** no VMware
+
+## 2. **Pastas Compartilhadas (Recomendado)**
+
+### No VirtualBox:
+1. Com a VM desligada, vá em **Configurações > Pastas Compartilhadas**
+2. Adicione uma nova pasta (ícone +)
+3. Escolha o caminho da pasta no Windows
+4. Marque **"Montar automaticamente"** e **"Acesso total"**
+5. Inicie o Kali e monte a pasta:
+```bash
+sudo mount -t vboxsf nome_da_pasta /mnt/pasta_compartilhada
+```
+
+### No VMware:
+- **VM > Settings > Options > Shared Folders**
+- Adicione a pasta e configure como "Always enabled"
+
+## 3. **USB Drive**
+- Conecte o pendrive ao Windows, copie os arquivos
+- No VirtualBox: **Dispositivos > USB > Selecione o pendrive**
+- No Kali, monte e acesse:
+```bash
+lsblk  # Identificar o dispositivo (ex: /dev/sdb1)
+sudo mount /dev/sdb1 /mnt
+```
+
+## 4. **SCP (Via rede)**
+Se o Kali tiver acesso à rede:
+```bash
+# Copiar do Windows para o Kali
+scp usuario@ip_do_windows:/caminho/arquivo /destino/no/kali/
+
+# Ou usar o PowerShell no Windows:
+scp arquivo.txt usuario@ip_do_kali:/home/usuario/
+```
+
+## 5. **Servidor HTTP simples no Windows**
+No PowerShell (Windows):
+```powershell
+python -m http.server 8000  # Se tiver Python
+```
+No Kali:
+```bash
+wget http://ip_do_windows:8000/arquivo
+```
+
+## Dica importante:
+Para **mover** (cortar) ao invés de copiar, após transferir para o Kali, você pode deletar os originais manualmente no Windows.
+
+**O método mais prático para uso diário é o de pastas compartilhadas**, pois mantém sincronização automática entre os sistemas.
+
+
+
+
+    
+</body>
+</html>
