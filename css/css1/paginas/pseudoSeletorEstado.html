@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pseudo - Selectores de Estado/title>
+</head>
+<body>
+
+    <div>
+
+
+        <h1>Pseudo - Selectores de Estado</h1>
+
+        Tem sim! Vamos para o **Módulo Extra Master Class** — os seletores que poucos usam, mas que fazem mágica quando você domina.
+
+Prepare-se para o nível avançado.
+
+---
+
+### 🎭 Módulo 7: Pseudo-Classes — Seletores de Estado
+
+**O que são?**
+São palavras-chave adicionadas a um seletor que especificam um **estado especial** do elemento. Não são "personalizados" como classes, mas sim estados que o navegador entende.
+
+**Sintaxe:** `elemento:pseudo-classe { ... }`
+
+---
+
+#### 🔗 Pseudo-Classes de Interação (as mais famosas)
+
+| Pseudo-Classe | Quando Aplica | Para que serve |
+| :--- | :--- | :--- |
+| `:hover` | Mouse passa por cima | Feedback visual de interação |
+| `:active` | Elemento está sendo clicado | Efeito de "pressionado" |
+| `:focus` | Elemento recebe foco (tab/clique) | Acessibilidade, campos de formulário |
+| `:visited` | Link já foi visitado | Histórico de navegação |
+
+**Exemplo Prático:**
+
+```html
+<style>
+  /* Link normal */
+  a {
+    color: #3498db;
+    text-decoration: none;
+    transition: 0.3s;
+  }
+
+  /* Mouse em cima */
+  a:hover {
+    color: #e74c3c;
+    text-decoration: underline;
+  }
+
+  /* Clicando */
+  a:active {
+    color: #8e44ad;
+    transform: scale(0.95);
+  }
+
+  /* Já visitado */
+  a:visited {
+    color: #95a5a6;
+  }
+
+  /* Campo de formulário com foco */
+  input:focus {
+    outline: 3px solid #f39c12;
+    background-color: #fff9e6;
+    border-color: #e67e22;
+  }
+
+  /* Botão ao passar o mouse */
+  .btn:hover {
+    background-color: #2c3e50;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    cursor: pointer;
+  }
+</style>
+
+<a href="https://exemplo.com/pagina-nao-visitada">Link Não Visitado</a>
+<br><br>
+<a href="#">Link Já Clicado</a>
+<br><br>
+<input type="text" placeholder="Clique aqui para ver o foco">
+<br><br>
+<button class="btn">Passe o Mouse em Mim</button>
+```
+**Resultado:** Links mudam de cor, campos brilham ao receber foco, botões criam sombra ao passar o mouse.
+
+---
+
+#### 📦 Pseudo-Classes de Posição na Estrutura
+
+Selecionam elementos pela sua **posição** entre irmãos, sem precisar de classes extras.
+
+| Pseudo-Classe | Seleciona |
+| :--- | :--- |
+| `:first-child` | Primeiro filho do pai |
+| `:last-child` | Último filho do pai |
+| `:nth-child(n)` | O enésimo filho (fórmulas mágicas!) |
+| `:only-child` | Único filho do pai |
+| `:empty` | Elementos sem conteúdo (vazios) |
+
+**O Poder do `:nth-child()` — Fórmulas:**
+- `:nth-child(2)` → O segundo elemento.
+- `:nth-child(odd)` → Ímpares (1, 3, 5...).
+- `:nth-child(even)` → Pares (2, 4, 6...).
+- `:nth-child(3n)` → A cada 3 (3, 6, 9...).
+- `:nth-child(3n+1)` → 1, 4, 7, 10... (começa no 1º, depois a cada 3).
+
+**Exemplo Prático — Tabela Zebrada e Listas:**
+
+```html
+<style>
+  /* Lista: primeiro item em negrito */
+  li:first-child {
+    font-weight: bold;
+    color: #27ae60;
+  }
+
+  /* Lista: último item itálico */
+  li:last-child {
+    font-style: italic;
+    color: #e74c3c;
+  }
+
+  /* Tabela zebrada - linhas pares com fundo cinza */
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  /* Tabela - hover na linha inteira */
+  tr:hover {
+    background-color: #d5f5e3;
+    cursor: pointer;
+  }
+
+  /* Divs: a cada 3 elementos, borda diferente */
+  .card:nth-child(3n) {
+    border-right: 3px solid #8e44ad;
+  }
+
+  /* Parágrafo vazio - esconder */
+  p:empty {
+    display: none; /* Remove parágrafos vazios */
+  }
+</style>
+
+<h3>Lista Ordenada</h3>
+<ol>
+  <li>Item 1 - Primeiro (negrito verde)</li>
+  <li>Item 2</li>
+  <li>Item 3</li>
+  <li>Item 4 - Último (itálico vermelho)</li>
+</ol>
+
+<h3>Tabela Zebrada</h3>
+<table border="1" cellpadding="10">
+  <tr><td>Linha 1</td><td>Dados</td></tr>
+  <tr><td>Linha 2</td><td>Dados (par = cinza)</td></tr>
+  <tr><td>Linha 3</td><td>Dados</td></tr>
+  <tr><td>Linha 4</td><td>Dados (par = cinza)</td></tr>
+</table>
+```
+**Resultado:** Lista com primeiro e último itens destacados. Tabela com listras cinzas alternadas.
+
+---
+
+### 🎨 Módulo 8: Pseudo-Elementos — Criando Conteúdo Fantasma
+
+**O que são?**
+Diferente das pseudo-classes (que selecionam estados), os pseudo-elementos permitem estilizar **partes específicas de um elemento** ou até **injetar conteúdo virtual** via CSS, sem tocar no HTML.
+
+**Sintaxe:** `elemento::pseudo-elemento { ... }` (Use `::` - dois-pontos duplos é o padrão moderno)
+
+---
+
+#### Os Principais Pseudo-Elementos
+
+| Pseudo-Elemento | O que faz |
+| :--- | :--- |
+| `::before` | Insere conteúdo ANTES do conteúdo real do elemento |
+| `::after` | Insere conteúdo DEPOIS do conteúdo real do elemento |
+| `::first-line` | Estiliza apenas a primeira linha de um texto |
+| `::first-letter` | Estiliza apenas a primeira letra (efeito capitular) |
+| `::selection` | Estiliza o texto quando selecionado pelo usuário |
+| `::placeholder` | Estiliza o placeholder de inputs |
+
+---
+
+#### ⭐ `::before` e `::after` — Os Mais Poderosos
+
+**Regra de Ouro:** `::before` e `::after` **sempre precisam da propriedade `content`** (mesmo que vazia: `content: "";`). Sem ela, não aparecem.
+
+**Exemplo Prático — Ícones, Aspas e Decorações:**
+
+```html
+<style>
+  /* 1. Aspas decorativas em citações */
+  blockquote::before {
+    content: "❝";
+    font-size: 3em;
+    color: #e74c3c;
+    vertical-align: middle;
+    margin-right: 10px;
+  }
+
+  blockquote::after {
+    content: "❞";
+    font-size: 3em;
+    color: #e74c3c;
+    vertical-align: middle;
+    margin-left: 10px;
+  }
+
+  /* 2. Rótulo "Obrigatório" em campos required */
+  input[required] + label::after {
+    content: " (obrigatório)";
+    color: red;
+    font-size: 0.8em;
+    font-style: italic;
+  }
+
+  /* 3. Link externo automático com ícone */
+  a[href^="http"]::after {
+    content: " ↗";
+    font-size: 0.7em;
+    color: #7f8c8d;
+  }
+
+  /* 4. Linha decorativa antes e depois de um título */
+  h2.decorado {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  h2.decorado::before,
+  h2.decorado::after {
+    content: "";
+    flex: 1;
+    height: 2px;
+    background: linear-gradient(to right, transparent, #3498db, transparent);
+  }
+
+  /* 5. Efeito capitular (primeira letra) */
+  .capitular::first-letter {
+    font-size: 3em;
+    float: left;
+    line-height: 0.8;
+    margin-right: 8px;
+    color: #8e44ad;
+    font-weight: bold;
+  }
+
+  /* 6. Texto selecionado */
+  ::selection {
+    background-color: #f1c40f;
+    color: #2c3e50;
+  }
+</style>
+
+<blockquote>
+  A vida é o que acontece enquanto você está ocupado fazendo outros planos.
+</blockquote>
+
+<br>
+<label for="email">Email:</label>
+<input type="email" id="email" required>
+<label for="email"></label> <!-- O ::after vai aqui -->
+
+<br><br>
+<a href="https://google.com">Google (link externo)</a>
+<br>
+<a href="/contato">Contato (link interno)</a>
+
+<br><br>
+<h2 class="decorado">Título com Linhas Laterais</h2>
+
+<br>
+<p class="capitular">
+  Era uma vez, em uma terra distante, uma desenvolvedora que dominava os pseudo-elementos do CSS. Seus layouts nunca mais precisaram de HTML extra para decorações.
+</p>
+```
+**Resultado Visual:**
+- Citação com aspas grandes vermelhas.
+- "Google" com uma setinha indicando link externo automaticamente.
+- Título com linhas mágicas que crescem dos lados.
+- Parágrafo com primeira letra gigante (estilo livro antigo).
+- Ao selecionar qualquer texto na página, fundo amarelo e letra escura.
+
+---
+
+#### 🎯 `::first-line` e `::first-letter` na Prática
+
+```html
+<style>
+  .jornal::first-line {
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #2c3e50;
+  }
+
+  .jornal::first-letter {
+    font-size: 4em;
+    float: left;
+    margin-right: 10px;
+    color: #c0392b;
+    font-family: "Georgia", serif;
+  }
+</style>
+
+<p class="jornal">
+  A notícia de hoje é que os seletores CSS são mais poderosos do que muitos imaginavam. 
+  Desenvolvedores ao redor do mundo estão redescobrindo o poder dos pseudo-elementos
+  para criar layouts incríveis sem poluir o HTML com spans e divs desnecessárias.
+  Esta é uma nova era para o design web semântico.
+</p>
+```
+**Resultado:** Primeira linha em negrito e maiúsculas, a primeira letra ocupa 4 linhas de altura — puro estilo de jornal impresso.
+
+---
+
+### 🧠 Resumo do Módulo Extra
+
+| Categoria | Exemplos | Quando Usar |
+| :--- | :--- | :--- |
+| **Pseudo-Classes de Interação** | `:hover`, `:focus`, `:active` | Feedback visual ao usuário |
+| **Pseudo-Classes de Posição** | `:nth-child`, `:first-child` | Tabelas, listas, grids sem classes extras |
+| **Pseudo-Elementos `::before/after`** | Ícones, decorações, rótulos | Evitar HTML extra para elementos visuais |
+| **Pseudo-Elementos de Texto** | `::first-letter`, `::selection` | Tipografia avançada, experiência do usuário |
+
+---
+
+### 📝 Desafio Final (Projeto Completo)
+
+Crie uma **página de receita culinária** que contenha:
+
+1. **Título com linhas laterais** (use `::before` e `::after`).
+2. **Lista de ingredientes** onde:
+   - Primeiro item aparece em negrito e verde (`:first-child`).
+   - Último item aparece em vermelho itálico (`:last-child`).
+3. **Modo de preparo** com parágrafo de **efeito capitular** (`::first-letter`).
+4. **Dica especial** dentro de um `<blockquote>` com aspas decorativas (`::before`/`::after`).
+5. **Cor do texto selecionado** personalizada (`::selection`).
+6. **Link para vídeo da receita** que mostre ícone automático se for externo (`a[href^="http"]::after`).
+
+
+
+
+
+
+---
+
+Essa foi a aula completa! Da base sólida com IDs e Classes, passando por combinadores e atributos, até os poderes avançados de pseudo-classes e pseudo-elementos. Com esse conhecimento, você consegue estilizar praticamente qualquer layout sem sujar seu HTML com tags desnecessárias.
+
+Alguma dúvida sobre algum conceito? Ou prefere um exemplo mais específico? 📚✨
+
+
+
+
+    </div>
+
+
+    
+
+
+
+    
+</body>
+</html>

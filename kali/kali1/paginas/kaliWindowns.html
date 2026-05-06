@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+
+    Existem várias formas de mover arquivos entre o Windows (host) e o Kali Linux (virtual machine). Aqui estão os métodos mais comuns:
+
+## 1. **Drag and Drop (Mais simples)**
+- No VirtualBox ou VMware, basta arrastar arquivos/pastas da janela do Windows para a janela do Kali
+- **Pré-requisito**: Instalar as **Guest Additions** no VirtualBox ou **VMware Tools** no VMware
+
+## 2. **Pastas Compartilhadas (Recomendado)**
+
+### No VirtualBox:
+1. Com a VM desligada, vá em **Configurações > Pastas Compartilhadas**
+2. Adicione uma nova pasta (ícone +)
+3. Escolha o caminho da pasta no Windows
+4. Marque **"Montar automaticamente"** e **"Acesso total"**
+5. Inicie o Kali e monte a pasta:
+```bash
+sudo mount -t vboxsf nome_da_pasta /mnt/pasta_compartilhada
+```
+
+### No VMware:
+- **VM > Settings > Options > Shared Folders**
+- Adicione a pasta e configure como "Always enabled"
+
+## 3. **USB Drive**
+- Conecte o pendrive ao Windows, copie os arquivos
+- No VirtualBox: **Dispositivos > USB > Selecione o pendrive**
+- No Kali, monte e acesse:
+```bash
+lsblk  # Identificar o dispositivo (ex: /dev/sdb1)
+sudo mount /dev/sdb1 /mnt
+```
+
+## 4. **SCP (Via rede)**
+Se o Kali tiver acesso à rede:
+```bash
+# Copiar do Windows para o Kali
+scp usuario@ip_do_windows:/caminho/arquivo /destino/no/kali/
+
+# Ou usar o PowerShell no Windows:
+scp arquivo.txt usuario@ip_do_kali:/home/usuario/
+```
+
+## 5. **Servidor HTTP simples no Windows**
+No PowerShell (Windows):
+```powershell
+python -m http.server 8000  # Se tiver Python
+```
+No Kali:
+```bash
+wget http://ip_do_windows:8000/arquivo
+```
+
+## Dica importante:
+Para **mover** (cortar) ao invés de copiar, após transferir para o Kali, você pode deletar os originais manualmente no Windows.
+
+**O método mais prático para uso diário é o de pastas compartilhadas**, pois mantém sincronização automática entre os sistemas.
+\
+Esse erro indica que o diretório de montagem não existe ou há problema no nome da pasta compartilhada. Vamos resolver:
+
+## 1. Primeiro, verifique se o diretório de montagem existe:
+
+```bash
+ls -la /mnt/pasta_compartilhada
+```
+
+Se não existir, crie:
+```bash
+sudo mkdir -p /mnt/pasta_compartilhada
+```
+
+## 2. Liste as pastas compartilhadas disponíveis no VirtualBox:
+
+```bash
+VBoxControl sharedfolder list
+```
+
+ou
+
+```bash
+sudo mount.vboxsf
+```
+
+## 3. Verifique o nome exato da pasta compartilhada:
+
+O nome `aulas` pode estar diferente. No VirtualBox, a configuração da pasta compartilhada deve ter o nome exato (case-sensitive).
+
+## 4. Monte com a sintaxe correta:
+
+```bash
+sudo mount -t vboxsf NOME_EXATO /mnt/pasta_compartilhada
+```
+
+Substitua `NOME_EXATO` pelo nome que apareceu no passo 2.
+
+## 5. Alternativa (se o nome estiver correto):
+
+```bash
+sudo mount.vboxsf aulas /mnt/pasta_compartilhada
+```
+
+## 6. Se ainda der erro, tente com permissões:
+
+```bash
+sudo mount -t vboxsf -o uid=$(id -u),gid=$(id -g) aulas /mnt/pasta_compartilhada
+```
+
+## 7. Para montagem automática (opcional):
+
+Adicione ao `/etc/fstab`:
+```bash
+aulas /mnt/pasta_compartilhada vboxsf defaults 0 0
+```
+
+**Qual é a saída do comando `VBoxControl sharedfolder list`?** Assim posso ajudar com o nome exato.
+
+O problema é que o **VirtualBox Guest Additions não está funcionando corretamente** (o `VBoxControl` não conseguiu se comunicar com o host). Isso é comum no Kali Linux.
+
+## Solução: Reinstalar o Guest Additions
+
+### 1. Primeiro, atualize o sistema:
+```bash
+sudo apt update && sudo apt upgrade -y
+```
+
+### 2. Instale os pacotes necessários:
+```bash
+sudo apt install -y linux-headers-$(uname -r) build-essential dkms
+```
+
+### 3. No VirtualBox, vá no menu **Devices → Insert Guest Additions CD image...**
+
+### 4. Monte o CD e instale:
+```bash
+sudo mount /dev/cdrom /mnt
+cd /mnt
+sudo ./VBoxLinuxAdditions.run
+```
+
+### 5. Se der erro, instale versão do repositório:
+```bash
+sudo apt install -y virtualbox-guest-x11
+```
+
+### 6. Reinicie a máquina:
+```bash
+sudo reboot
+```
+
+### 7. Após reiniciar, verifique se o serviço está rodando:
+```bash
+lsmod | grep vbox
+systemctl status vboxservice
+```
+
+### 8. Se o serviço não estiver ativo:
+```bash
+sudo systemctl enable vboxservice
+sudo systemctl start vboxservice
+```
+
+### 9. Tente montar novamente:
+```bash
+sudo mount -t vboxsf aulas /mnt/pasta_compartilhada
+```
+
+### 10. Alternativa: monte como usuário normal:
+```bash
+sudo mount.vboxsf -o uid=1000,gid=1000 aulas /mnt/pasta_compartilhada
+```
+
+**Após reiniciar, o `VBoxControl sharedfolder list` deve funcionar.** Se ainda der erro, me avise qual mensagem aparece durante a instalação do Guest Additions.
+
+Você tentou montar um dispositivo `/dev/sdb1` que provavelmente não existe. Isso não está relacionado à pasta compartilhada do VirtualBox.
+
+Parece que o comando `mount -t vboxsf` não deu erro nem saída, o que pode ser **bom sinal**! Verifique se a montagem funcionou:
+
+## Verifique se a pasta foi montada:
+
+```bash
+ls -la /mnt/pasta_compartilhada
+```
+
+## Verifique os sistemas de arquivos montados:
+
+```bash
+df -h | grep pasta_compartilhada
+```
+
+ou
+
+```bash
+mount | grep vboxsf
+```
+
+## Se a pasta estiver vazia, tente criar um arquivo de teste:
+
+```bash
+touch /mnt/pasta_compartilhada/teste.txt
+echo "funcionou" > /mnt/pasta_compartilhada/teste.txt
+cat /mnt/pasta_compartilhada/teste.txt
+```
+
+## Se ainda não funcionar, verifique se o módulo vboxsf está carregado:
+
+```bash
+lsmod | grep vbox
+```
+
+## Se não aparecer nada, carregue o módulo:
+
+```bash
+sudo modprobe vboxsf
+```
+
+## Tente montar novamente com mais verbosidade:
+
+```bash
+sudo mount -t vboxsf -o uid=1000,gid=1000 aulas /mnt/pasta_compartilhada -v
+```
+
+**Qual é a saída desses comandos?** Principalmente o `ls -la /mnt/pasta_compartilhada` - se mostrar o conteúdo da pasta compartilhada do Windows/outro SO, então funcionou!
+
+Perfeito! 🎉 **A pasta compartilhada está montada e funcionando!**
+
+Você pode ver que:
+- ✅ A pasta `aulas` foi montada com sucesso em `/mnt/pasta_compartilhada`
+- ✅ O espaço em disco está disponível (466G total, 291G livre)
+- ✅ Os diretórios `css`, `html1` e `html2` estão visíveis
+
+## Agora você pode usar a pasta compartilhada normalmente:
+
+### Acessar os arquivos:
+```bash
+cd /mnt/pasta_compartilhada
+ls -la
+```
+
+### Navegar nas subpastas:
+```bash
+cd /mnt/pasta_compartilhada/css
+cd /mnt/pasta_compartilhada/html1
+cd /mnt/pasta_compartilhada/html2
+```
+
+### Copiar arquivos para o Kali:
+```bash
+cp /mnt/pasta_compartilhada/html1/index.html ~/
+```
+
+### Copiar arquivos do Kali para a pasta compartilhada:
+```bash
+cp ~/meu_arquivo.txt /mnt/pasta_compartilhada/
+```
+
+### Criar nova pasta compartilhada:
+```bash
+mkdir /mnt/pasta_compartilhada/meus_projetos
+```
+
+## Observação:
+A pasta também está montada em `/media/sf_aulas` (automática do VirtualBox). Você pode usar qualquer um dos dois caminhos.
+
+**Tudo resolvido!** A pasta compartilhada está pronta para uso. Precisa de ajuda com mais alguma coisa?
+
+
+    
+</body>
+</html>
