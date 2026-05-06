@@ -1,0 +1,1757 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sombras</title>
+</head>
+<body>
+
+    Perfeito, aluno! Vamos mergulhar fundo no mundo das **sombras em HTML/CSS**. Prepare-se para uma aula completa, detalhada e com muitos exemplos. Não se preocupe com o tempo; vamos explorar cada canto desse universo.
+
+Vou estruturar nossa aula em partes, começando com uma visão geral e depois detalhando cada propriedade.
+
+---
+
+### Aula: O Universo das Sombras no CSS
+
+Professor: Hoje, vamos aprender a dar profundidade e vida aos nossos elementos HTML usando sombras. Existem duas propriedades principais e uma terceira, mais recente e poderosa, para trabalharmos:
+
+1.  **`box-shadow`**: A sombra da "caixa". Aplica-se ao elemento HTML como um bloco retangular.
+2.  **`text-shadow`**: A sombra do texto. Aplica-se ao conteúdo textual dentro de um elemento.
+3.  **`filter: drop-shadow()`**: A sombra "inteligente". Aplica-se ao desenho real do elemento, incluindo imagens com transparência (PNG, SVG), de forma diferente da `box-shadow`.
+
+Antes dos detalhes, vamos a uma tabela-resumo para você ter uma visão geral e saber quando usar cada uma.
+
+---
+
+### Tabela Geral Comparativa
+
+| Característica | `box-shadow` | `text-shadow` | `filter: drop-shadow()` |
+| :--- | :--- | :--- | :--- |
+| **Alvo** | A **caixa** do elemento (seu box model retangular). | O **texto** dentro do elemento. | A **forma renderizada** do elemento (imagem alpha, formas SVG, etc.). |
+| **Forma da Sombra** | Sempre retangular, seguindo a `border-radius`. | Segue o contorno das letras do texto. | Segue o contorno exato da imagem/elemento (a máscara alfa). |
+| **Sintaxe Básica** | `box-shadow: offset-x offset-y blur spread color;` | `text-shadow: offset-x offset-y blur color;` | `filter: drop-shadow(offset-x offset-y blur color);` |
+| **Parâmetro `spread`** | **Sim**. Controla a expansão/contração da sombra. | **Não**. Inexistente. | **Não**. Inexistente. |
+| **Palavra-chave `inset`** | **Sim**. Cria sombras internas. | **Não**. Inexistente. | **Não**. Inexistente. |
+| **Múltiplas Sombras** | **Sim**, separadas por vírgula. | **Sim**, separadas por vírgula. | **Sim**, aplicando múltiplos `drop-shadow()` na mesma propriedade `filter`, separados por espaço. |
+| **Performance** | Alta performance, otimizada pelo navegador. | Alta performance, otimizada pelo navegador. | Pode ser menos performática em animações complexas, pois recalcula a forma. Use com moderação. |
+| **Uso Principal** | Criar profundidade em cards, botões, modais, containers. | Melhorar a legibilidade de texto em imagens, criar efeitos decorativos em títulos. | Aplicar sombra em imagens PNG/SVG recortadas, elementos com `clip-path`, ou quando a sombra da caixa não é adequada. |
+
+---
+
+Agora, vamos detalhar cada uma, como prometido.
+
+### 1. `box-shadow`: A Sombra da Caixa
+
+#### O que significa?
+A propriedade `box-shadow` adiciona uma ou mais sombras a um elemento HTML. A sombra é desenhada fora da borda do elemento (por padrão), seguindo o formato definido pela propriedade `border-radius`.
+
+#### Para que serve?
+- **Criar Profundidade (Elevação):** Fazer um elemento parecer que está flutuando sobre o fundo. É essencial para cards, modais (pop-ups) e menus dropdown.
+- **Destacar Elementos:** Dar foco visual a um botão ou campo de formulário.
+- **Efeitos Decorativos:** Criar um brilho externo (glow), contornos duplos ou um efeito "neon".
+- **Simular Relevo:** Com sombras internas (`inset`), podemos simular um elemento pressionado ou afundado.
+
+#### Sintaxe Detalhada
+
+A forma completa da propriedade é:
+
+```css
+box-shadow: offset-x offset-y blur-radius spread-radius color inset;
+```
+
+Vamos dissecar cada valor:
+
+1.  **`offset-x` (Obrigatório):**
+    - **Significado:** O deslocamento horizontal da sombra.
+    - **Valores:** Um valor CSS de comprimento (ex: `10px`, `-5px`, `0`).
+    - **Detalhe:** Valores positivos movem a sombra para a **direita**. Valores negativos movem para a **esquerda**.
+
+2.  **`offset-y` (Obrigatório):**
+    - **Significado:** O deslocamento vertical da sombra.
+    - **Valores:** Um valor CSS de comprimento.
+    - **Detalhe:** Valores positivos movem a sombra para **baixo**. Valores negativos movem para **cima**.
+
+3.  **`blur-radius` (Opcional - Padrão: 0):**
+    - **Significado:** O raio do desfoque da sombra. Quanto maior o valor, mais "borrada" e suave a sombra fica.
+    - **Valores:** Um valor CSS de comprimento **não-negativo** (ex: `5px`, `20px`). `0` significa uma sombra totalmente nítida.
+    - **Detalhe:** É um valor crucial para o realismo. Sombras na vida real raramente são perfeitamente nítidas.
+
+4.  **`spread-radius` (Opcional - Padrão: 0):**
+    - **Significado:** O raio de expansão ou contração da sombra. Ele muda o tamanho da sombra sem alterar seu desfoque.
+    - **Valores:** Um valor CSS de comprimento.
+    - **Detalhe:** Valores positivos **expandem** a sombra, tornando-a maior que o elemento. Valores negativos **contraem** a sombra. Isso é útil para simular sombras muito próximas a um lado ou criar bordas múltiplas.
+
+5.  **`color` (Opcional - Padrão: `currentColor`):**
+    - **Significado:** A cor da sombra.
+    - **Valores:** Qualquer valor de cor CSS válido (nome, hexadecimal, `rgb()`, `rgba()`, `hsl()`, `hsla()`).
+    - **Detalhe:** O uso de `rgba()` ou `hsla()` é fortemente recomendado, pois permite controlar a opacidade da sombra, tornando-a mais realista. Ex: `rgba(0, 0, 0, 0.2)`.
+
+6.  **`inset` (Opcional - Padrão: outset):**
+    - **Significado:** Uma palavra-chave que transforma a sombra de externa (padrão) para interna.
+    - **Valores:** `inset` ou nada.
+    - **Detalhe:** Uma sombra `inset` é desenhada *dentro* das bordas do elemento, no conteúdo e no padding. É perfeita para criar um efeito de "afundado".
+
+#### Exemplos Explicados de `box-shadow`
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  body { background-color: #f0f0f0; display: flex; flex-wrap: wrap; gap: 40px; padding: 40px; }
+  .box {
+    width: 150px;
+    height: 150px;
+    background-color: #4CAF50; /* Verde */
+    border-radius: 10px;
+    margin: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: sans-serif;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  /* 1. Sombra Sutil e Realista (a mais comum) */
+  .sombra-realista {
+    /* Deslocamento leve em X e Y, muito blur, spread pequeno, cor preta com baixa opacidade */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  /* 2. Sombra Nítida e Deslocada (estilo "dura") */
+  .sombra-dura {
+    /* Sem blur, sem spread, apenas um deslocamento sólido */
+    box-shadow: 8px 8px 0px #333;
+  }
+
+  /* 3. Efeito "Glow" (Brilho externo) */
+  .glow {
+    /* offset-x e offset-y = 0, blur grande, spread positivo, cor viva */
+    box-shadow: 0 0 20px 5px #ffeb3b; /* Amarelo */
+  }
+
+  /* 4. Múltiplas Sombras */
+  .multiplas {
+    /* Sombras separadas por vírgula, aplicadas da primeira (topo) para a última (base) */
+    box-shadow:
+      0 1px 2px rgba(0,0,0,0.1),  /* Mais próxima e escura */
+      0 4px 8px rgba(0,0,0,0.1),
+      0 8px 16px rgba(0,0,0,0.1),
+      0 16px 32px rgba(0,0,0,0.15); /* Mais distante e suave */
+  }
+
+  /* 5. Sombra Interna (Inset) para Efeito "Afundado" */
+  .inset-afundado {
+    background-color: #e0e0e0; /* Cinza claro */
+    color: #333;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.3);
+  }
+
+  /* 6. Usando Spread para Criar uma "Borda" Sólida */
+  .borda-com-sombra {
+    /* offset e blur = 0, spread = Xpx, cor sólida. Cria uma borda extra! */
+    box-shadow: 0 0 0 5px #2196F3; /* Azul */
+  }
+</style>
+</head>
+<body>
+
+  <div class="box sombra-realista">Realista</div>
+  <div class="box sombra-dura">Dura</div>
+  <div class="box glow">Glow</div>
+  <div class="box multiplas">Múltiplas</div>
+  <div class="box inset-afundado">Inset (Afundado)</div>
+  <div class="box borda-com-sombra">Borda via Sombra</div>
+
+</body>
+</html>
+```
+
+---
+
+### 2. `text-shadow`: A Sombra do Texto
+
+#### O que significa?
+A propriedade `text-shadow` adiciona sombra ao texto de um elemento. A forma da sombra segue precisamente o contorno das letras (glifos).
+
+#### Para que serve?
+- **Legibilidade:** Criar contraste para texto sobre imagens. Uma sombra escura sob texto claro ou vice-versa.
+- **Efeitos Tipográficos:** Criar texto com efeito "3D", "entintado" (letterpress), brilhante (neon) ou com um "fantasma".
+- **Decoração:** Simplesmente embelezar títulos e cabeçalhos.
+
+#### Sintaxe Detalhada
+
+A forma completa é muito parecida com `box-shadow`, mas com menos parâmetros:
+
+```css
+text-shadow: offset-x offset-y blur-radius color;
+```
+
+1.  **`offset-x`:** Deslocamento horizontal (obrigatório).
+2.  **`offset-y`:** Deslocamento vertical (obrigatório).
+3.  **`blur-radius`:** Desfoque (opcional, padrão: 0).
+4.  **`color`:** Cor da sombra (opcional, padrão: `currentColor`).
+
+**Não possui `spread-radius` nem `inset`.**
+
+Assim como `box-shadow`, aceita **múltiplas sombras**, separadas por vírgula.
+
+#### Exemplos Explicados de `text-shadow`
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  body { background-color: #ddd; display: flex; flex-direction: column; align-items: center; gap: 30px; padding: 40px; font-family: 'Arial Black', sans-serif; }
+  .texto-sombra { font-size: 3rem; }
+
+  /* 1. Legibilidade em Fundo Complexo */
+  .fundo-textura {
+    background: url('https://www.transparenttextures.com/patterns/concrete-wall-2.png'), linear-gradient(135deg, #f00, #00f);
+    padding: 20px;
+    margin: 10px;
+  }
+  .legibilidade {
+    color: white;
+    /* Uma sombra escura e semi-transparente faz o texto "saltar" */
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+  }
+
+  /* 2. Efeito 3D Simples */
+  .efeito-3d {
+    color: #333;
+    /* Múltiplas camadas de sombra, uma sobre a outra, criam profundidade */
+    text-shadow:
+      1px 1px 0 #ccc,
+      2px 2px 0 #aaa,
+      3px 3px 0 #888,
+      4px 4px 0 #666,
+      5px 5px 4px rgba(0,0,0,0.5);
+  }
+
+  /* 3. Efeito Letterpress (Entintado) */
+  .letterpress {
+    background-color: #4a4a4a;
+    color: #333; /* Cor do texto similar ao fundo */
+    padding: 10px 20px;
+    /* Uma sombra clara na parte de baixo e uma escura na parte de cima simulam relevo */
+    text-shadow:
+        0 -1px 0 rgba(255, 255, 255, 0.4), /* Brilho sutil na parte superior */
+        0 1px 2px rgba(0, 0, 0, 0.8);    /* Sombra escura na parte inferior */
+  }
+
+  /* 4. Efeito Neon (Glow) */
+  .neon {
+    background-color: #111;
+    color: #0ff; /* Ciano */
+    text-shadow:
+      0 0 5px #0ff,
+      0 0 15px #0ff,
+      0 0 30px #0ff,
+      0 0 60px #0ff;
+  }
+</style>
+</head>
+<body>
+
+  <div class="fundo-textura">
+    <span class="texto-sombra legibilidade">Texto Visível</span>
+  </div>
+
+  <span class="texto-sombra efeito-3d">Efeito 3D</span>
+
+  <div class="letterpress">
+    <span class="texto-sombra">Letterpress</span>
+  </div>
+
+  <div class="neon">
+    <span class="texto-sombra">NEON</span>
+  </div>
+
+</body>
+</html>
+```
+
+---
+
+### 3. `filter: drop-shadow()`: A Sombra Inteligente
+
+#### O que significa?
+`drop-shadow()` é uma função da propriedade `filter` do CSS. A diferença crucial é que ela aplica a sombra ao desenho real do conteúdo do elemento, respeitando áreas transparentes. Se você tiver uma imagem PNG com fundo transparente, a sombra será exatamente no formato do objeto desenhado, não no retângulo da imagem.
+
+#### Para que serve?
+- **Imagens com Transparência:** É a maneira correta de adicionar sombra a um ícone, logo ou foto PNG que não é um quadrado.
+- **Elementos com `clip-path`:** Se você usou `clip-path` para cortar uma `div` em forma de estrela, `box-shadow` ainda faria uma sombra retangular. `drop-shadow()` fará uma sombra em forma de estrela.
+- **SVGs:** Funciona perfeitamente com elementos SVG inline, seguindo as formas vetoriais.
+- **Tooltips com "setinha" (CSS):** Se você cria tooltips com pseudo-elementos (`::before`, `::after`) para fazer um triângulo, `drop-shadow()` sombreia o conjunto (balão + seta) como um todo, sem sombras separadas.
+
+#### Sintaxe Detalhada
+
+Ao contrário das outras, a sintaxe é uma função:
+
+```css
+filter: drop-shadow(offset-x offset-y blur-radius color);
+```
+
+- **`offset-x` (Obrigatório):** Deslocamento horizontal.
+- **`offset-y` (Obrigatório):** Deslocamento vertical.
+- **`blur-radius` (Opcional, padrão: 0):** Desfoque.
+- **`color` (Opcional, padrão: `currentColor`):** Cor da sombra.
+
+É obrigatório seguir esta ordem dentro dos parênteses. **Novamente, não há `spread-radius` nem `inset`.**
+
+Para múltiplas sombras, você usa múltiplas funções `drop-shadow()` separadas por espaço, dentro da string da propriedade `filter`.
+
+```css
+filter: drop-shadow(2px 2px 4px red) drop-shadow(-2px -2px 4px blue);
+```
+
+**Cuidado:** A propriedade `filter` é um "canivete suíço" que aceita outras funções (como `blur()`, `brightness()`, etc.). Se você usar `drop-shadow()`, precisa garantir que não está sobrescrevendo outros filtros. Para múltiplos filtros, você os separa por espaço.
+
+#### Exemplos Explicados de `filter: drop-shadow()`
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  body { background-color: #eee; display: flex; flex-wrap: wrap; gap: 50px; align-items: center; padding: 40px; font-family: sans-serif; }
+  .container { text-align: center; }
+  img { width: 100px; display: block; margin: 20px auto; }
+
+  /* 1. A Mágica do PNG Transparente */
+  .png-box { box-shadow: 0 4px 8px rgba(0,0,0,0.5); } /* Sombra retangular na caixa */
+  .png-drop { filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5)); } /* Sombra na imagem */
+
+  /* 2. Clip-Path: Sombras que Realmente se Encaixam */
+  .estrela {
+    width: 150px;
+    height: 150px;
+    background-color: gold;
+    margin: 20px;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  }
+  .estrela-box { box-shadow: 10px 10px 10px rgba(0,0,0,0.5); }
+  .estrela-drop {
+    filter: drop-shadow(10px 10px 10px rgba(0,0,0,0.5));
+    /* Nota: a sombra via filter NÃO será cortada pela clip-path, ela aparecerá inteira! */
+  }
+
+  /* 3. Tooltip com "Setinha" */
+  .tooltip {
+    position: relative;
+    background: #333;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin: 50px auto;
+    width: fit-content;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4)); /* Aplica a sombra em TUDO, inclusive na seta! */
+  }
+  /* A seta é um pseudo-elemento */
+  .tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%; /* Coloca embaixo */
+    left: 50%;
+    margin-left: -10px;
+    /* Truque CSS para fazer triângulo */
+    border-width: 10px;
+    border-style: solid;
+    border-color: #333 transparent transparent transparent;
+  }
+</style>
+</head>
+<body>
+
+  <div class="container">
+    <h3>box-shadow (na caixa)</h3>
+    <!-- Substitua por uma URL de um PNG com transparência -->
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/120px-HTML5_logo_and_wordmark.svg.png" alt="HTML5 Logo" class="png-box">
+  </div>
+
+  <div class="container">
+    <h3>drop-shadow (na imagem)</h3>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/120px-HTML5_logo_and_wordmark.svg.png" alt="HTML5 Logo" class="png-drop">
+  </div>
+
+  <div class="container">
+    <h3>box-shadow na clip-path</h3>
+    <div class="estrela estrela-box"></div>
+  </div>
+
+  <div class="container">
+    <h3>drop-shadow na clip-path</h3>
+    <div class="estrela estrela-drop"></div>
+  </div>
+
+  <div class="container" style="width:100%;">
+      <div class="tooltip">Isso é um tooltip com drop-shadow!</div>
+  </div>
+
+</body>
+</html>
+```
+
+---
+
+### Considerações Finais e Dicas de Performance
+
+1.  **Performance de `filter: drop-shadow()`:** Lembre-se, o `drop-shadow()` força o navegador a analisar a "máscara alfa" (transparência) do elemento, o que pode ser computacionalmente mais caro do que `box-shadow`. Use-o estrategicamente, evitando animar muitos elementos com esse filtro ao mesmo tempo.
+2.  **A Propriedade `filter` é "tudo ou nada" em animações:** Se você animar `filter` para mudar a sombra, o navegador pode ter que repintar a camada inteira do elemento. Para animações mais suaves, muitas vezes é melhor usar `box-shadow` (que tem a GPU acionada de forma mais otimizada) ou truques com pseudo-elementos.
+3.  **Combinação de Técnicas:** Nada impede de usar `box-shadow` para a elevação principal de um card e `filter: drop-shadow()` para a imagem dentro dele. Eles trabalham em camadas diferentes e podem coexistir.
+4.  **Compatibilidade:** Todas essas propriedades têm excelente suporte nos navegadores modernos. `text-shadow` e `box-shadow` são extremamente antigas (CSS 2/3). `filter` é mais recente, mas já é um padrão consolidado.
+
+Espero que esta aula completa tenha iluminado seu conhecimento sobre sombras no CSS! Agora é sua vez de praticar. Crie um pequeno projeto onde você usa cada uma dessas técnicas.
+
+Alguma dúvida, aluno?
+
+<h1>exemplo geral</h1>
+
+Perfeito, aluno! Aqui está o código completo reescrito com **um comentário detalhado em cada linha**, explicando o que cada propriedade e valor faz. Isso vai solidificar seu entendimento de cada aspecto das sombras.
+
+```html
+<!-- Declaração do tipo de documento como HTML5 -->
+<!DOCTYPE html>
+<!-- Início do documento HTML com idioma português do Brasil -->
+<html lang="pt-BR">
+<head>
+    <!-- Define a codificação de caracteres como UTF-8 para suportar acentos e símbolos -->
+    <meta charset="UTF-8">
+    <!-- Configura a viewport para responsividade em dispositivos móveis -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Título da página que aparece na aba do navegador -->
+    <title>🌑 Universo das Sombras - Demonstração Completa</title>
+    
+    <!-- Início do bloco de estilos CSS -->
+    <style>
+        /* ============================================
+           RESET E ESTILOS GERAIS - Remove margens e paddings padrão
+           ============================================ */
+        /* Seletor universal: aplica a TODOS os elementos */
+        * {
+            /* Remove a margem externa padrão de todos os elementos */
+            margin: 0;
+            /* Remove o padding interno padrão de todos os elementos */
+            padding: 0;
+            /* Altera o modelo de caixa para incluir borda e padding no tamanho total */
+            box-sizing: border-box;
+        }
+
+        /* Estilização do corpo da página */
+        body {
+            /* Define a família de fontes com fallback para sans-serif */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* Cria um fundo com gradiente linear diagonal (135 graus) do roxo ao azul */
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            /* Define altura mínima como 100% da viewport */
+            min-height: 100vh;
+            /* Adiciona espaçamento interno de 40px em cima/baixo e 20px nas laterais */
+            padding: 40px 20px;
+        }
+
+        /* Estilização do título principal h1 */
+        h1 {
+            /* Centraliza o texto horizontalmente */
+            text-align: center;
+            /* Define a cor do texto como branco */
+            color: white;
+            /* Define o tamanho da fonte como 3.5 vezes o tamanho base */
+            font-size: 3.5rem;
+            /* Adiciona margem inferior de 10px */
+            margin-bottom: 10px;
+            /* TÉCNICA 1: text-shadow para título principal - efeito 3D dramático com 4 camadas */
+            text-shadow:
+                /* Primeira camada: deslocamento 3px X e Y, sem blur, cor roxa escura */
+                3px 3px 0 #4a0e8f,
+                /* Segunda camada: deslocamento 6px, cor roxa mais escura para profundidade */
+                6px 6px 0 #3a0b6e,
+                /* Terceira camada: deslocamento 9px, cor ainda mais escura */
+                9px 9px 0 #2a084d,
+                /* Quarta camada: deslocamento 12px, blur 20px para sombra suave final */
+                12px 12px 20px rgba(0, 0, 0, 0.5);
+            /* Adiciona espaçamento entre letras de 3px */
+            letter-spacing: 3px;
+        }
+
+        /* Estilização do subtítulo */
+        .subtitulo {
+            /* Centraliza o texto */
+            text-align: center;
+            /* Cor lilás claro */
+            color: #f0e6ff;
+            /* Tamanho de fonte 1.2 vezes o base */
+            font-size: 1.2rem;
+            /* Margem inferior de 50px */
+            margin-bottom: 50px;
+            /* Estilo de fonte itálico */
+            font-style: italic;
+            /* TÉCNICA 2: text-shadow para legibilidade em fundo escuro */
+            /* Deslocamento 2px X e Y, blur 4px, cor preta semi-transparente */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        /* Container principal usando Grid Layout */
+        .container {
+            /* Largura máxima de 1400px */
+            max-width: 1400px;
+            /* Centraliza o container horizontalmente */
+            margin: 0 auto;
+            /* Ativa o CSS Grid */
+            display: grid;
+            /* Cria colunas automáticas que se ajustam, mínimo 380px, máximo 1 fração */
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            /* Espaçamento de 30px entre os cards */
+            gap: 30px;
+        }
+
+        /* Estilização de cada card */
+        .card {
+            /* Fundo branco */
+            background: white;
+            /* Bordas arredondadas de 20px */
+            border-radius: 20px;
+            /* Padding interno de 30px em todos os lados */
+            padding: 30px;
+            /* Transição suave de 0.3 segundos para todas as propriedades */
+            transition: all 0.3s ease;
+        }
+
+        /* Efeito hover nos cards */
+        .card:hover {
+            /* Move o card 5px para cima ao passar o mouse */
+            transform: translateY(-5px);
+        }
+
+        /* Título dentro de cada card */
+        .card h2 {
+            /* Tamanho de fonte 1.5 vezes o base */
+            font-size: 1.5rem;
+            /* Margem inferior de 20px */
+            margin-bottom: 20px;
+            /* Cor do texto cinza escuro */
+            color: #333;
+            /* Padding inferior de 10px */
+            padding-bottom: 10px;
+            /* Borda inferior de 3px sólida na cor azul/roxo */
+            border-bottom: 3px solid #667eea;
+        }
+
+        /* Área de demonstração dentro de cada card */
+        .demo-area {
+            /* Fundo cinza muito claro */
+            background: #f8f9fa;
+            /* Bordas arredondadas de 15px */
+            border-radius: 15px;
+            /* Padding de 25px */
+            padding: 25px;
+            /* Margem inferior de 15px */
+            margin-bottom: 15px;
+            /* Ativa flexbox */
+            display: flex;
+            /* Permite quebra de linha nos itens flex */
+            flex-wrap: wrap;
+            /* Espaçamento de 20px entre itens */
+            gap: 20px;
+            /* Alinha itens verticalmente ao centro */
+            align-items: center;
+            /* Alinha itens horizontalmente ao centro */
+            justify-content: center;
+            /* Altura mínima de 200px */
+            min-height: 200px;
+        }
+
+        /* Label que mostra "CSS" acima do bloco de código */
+        .code-label {
+            /* Fundo quase preto */
+            background: #2d2d2d;
+            /* Cor do texto verde neon */
+            color: #00ff88;
+            /* Padding de 8px vertical e 12px horizontal */
+            padding: 8px 12px;
+            /* Bordas arredondadas apenas no topo (superior esquerdo e direito) */
+            border-radius: 8px 8px 0 0;
+            /* Fonte monoespaçada para código */
+            font-family: 'Courier New', monospace;
+            /* Tamanho de fonte reduzido */
+            font-size: 0.8rem;
+            /* Espaçamento entre letras */
+            letter-spacing: 1px;
+        }
+
+        /* Bloco de código que mostra o CSS usado */
+        .code-block {
+            /* Fundo quase preto */
+            background: #2d2d2d;
+            /* Cor do texto cinza claro */
+            color: #e0e0e0;
+            /* Padding de 15px */
+            padding: 15px;
+            /* Bordas arredondadas apenas na parte inferior */
+            border-radius: 0 0 8px 8px;
+            /* Fonte monoespaçada */
+            font-family: 'Courier New', monospace;
+            /* Tamanho de fonte reduzido */
+            font-size: 0.8rem;
+            /* Permite scroll horizontal se o código for muito longo */
+            overflow-x: auto;
+            /* Altura da linha para melhor legibilidade */
+            line-height: 1.6;
+        }
+
+        /* Destaque para propriedades CSS no bloco de código */
+        .highlight {
+            /* Cor rosa para destacar as propriedades */
+            color: #ff6b9d;
+        }
+
+        /* ============================================
+           DEMO 1: box-shadow - Sombras básicas
+           ============================================ */
+        /* Caixa com sombra realista (a mais comum) */
+        .box-realista {
+            /* Largura fixa de 120px */
+            width: 120px;
+            /* Altura fixa de 120px */
+            height: 120px;
+            /* Fundo verde */
+            background: #4CAF50;
+            /* Bordas arredondadas de 12px */
+            border-radius: 12px;
+            /* Ativa flexbox para centralizar o texto */
+            display: flex;
+            /* Centraliza verticalmente */
+            align-items: center;
+            /* Centraliza horizontalmente */
+            justify-content: center;
+            /* Cor do texto branca */
+            color: white;
+            /* Peso da fonte negrito */
+            font-weight: bold;
+            /* Tamanho da fonte */
+            font-size: 1.1rem;
+            /* TÉCNICA 3: box-shadow realista */
+            /* offset-x: 0, offset-y: 8px (sombra para baixo), blur: 16px, cor preta com 25% opacidade */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Caixa com sombra dura (sem blur) */
+        .box-dura {
+            /* Largura fixa de 120px */
+            width: 120px;
+            /* Altura fixa de 120px */
+            height: 120px;
+            /* Fundo laranja */
+            background: #FF6B35;
+            /* Bordas arredondadas de 8px */
+            border-radius: 8px;
+            /* Ativa flexbox */
+            display: flex;
+            /* Centraliza verticalmente */
+            align-items: center;
+            /* Centraliza horizontalmente */
+            justify-content: center;
+            /* Texto branco */
+            color: white;
+            /* Texto em negrito */
+            font-weight: bold;
+            /* Tamanho da fonte */
+            font-size: 1.1rem;
+            /* TÉCNICA 4: box-shadow dura, sem blur */
+            /* offset-x: 10px, offset-y: 10px, blur: 0px (nítida), spread: 0 (padrão), cor sólida */
+            box-shadow: 10px 10px 0px #c44d1d;
+        }
+
+        /* Caixa com efeito glow (brilho) */
+        .box-glow {
+            /* Largura fixa de 120px */
+            width: 120px;
+            /* Altura fixa de 120px */
+            height: 120px;
+            /* Fundo roxo */
+            background: #9b59b6;
+            /* Bordas arredondadas de 50% (círculo perfeito) */
+            border-radius: 50%;
+            /* Ativa flexbox */
+            display: flex;
+            /* Centraliza verticalmente */
+            align-items: center;
+            /* Centraliza horizontalmente */
+            justify-content: center;
+            /* Texto branco */
+            color: white;
+            /* Texto em negrito */
+            font-weight: bold;
+            /* Tamanho da fonte */
+            font-size: 1rem;
+            /* TÉCNICA 5: box-shadow efeito glow */
+            /* offset-x: 0, offset-y: 0 (centralizado), blur: 30px, spread: 8px (expande), cor roxa com 80% opacidade */
+            box-shadow: 0 0 30px 8px rgba(155, 89, 182, 0.8);
+        }
+
+        /* ============================================
+           DEMO 2: box-shadow - Múltiplas sombras
+           ============================================ */
+        /* Caixa com múltiplas camadas de sombra */
+        .box-multiplas {
+            /* Largura fixa de 130px */
+            width: 130px;
+            /* Altura fixa de 130px */
+            height: 130px;
+            /* Fundo azul */
+            background: #3498db;
+            /* Bordas arredondadas de 15px */
+            border-radius: 15px;
+            /* Ativa flexbox */
+            display: flex;
+            /* Centraliza verticalmente */
+            align-items: center;
+            /* Centraliza horizontalmente */
+            justify-content: center;
+            /* Texto branco */
+            color: white;
+            /* Texto em negrito */
+            font-weight: bold;
+            /* Tamanho da fonte */
+            font-size: 1rem;
+            /* TÉCNICA 6: box-shadow com múltiplas camadas (4 camadas separadas por vírgula) */
+            box-shadow:
+                /* Camada 1: offset-y 2px, blur 4px, opacidade 0.3 */
+                0 2px 4px rgba(52, 152, 219, 0.3),
+                /* Camada 2: offset-y 8px, blur 16px, opacidade 0.4 */
+                0 8px 16px rgba(52, 152, 219, 0.4),
+                /* Camada 3: offset-y 16px, blur 32px, opacidade 0.5 */
+                0 16px 32px rgba(52, 152, 219, 0.5),
+                /* Camada 4: offset-y 32px, blur 64px, opacidade 0.3 */
+                0 32px 64px rgba(52, 152, 219, 0.3);
+        }
+
+        /* Caixa usando box-shadow como borda extra */
+        .box-borda {
+            /* Largura fixa de 130px */
+            width: 130px;
+            /* Altura fixa de 130px */
+            height: 130px;
+            /* Fundo vermelho */
+            background: #e74c3c;
+            /* Bordas arredondadas de 10px */
+            border-radius: 10px;
+            /* Ativa flexbox */
+            display: flex;
+            /* Centraliza verticalmente */
+            align-items: center;
+            /* Centraliza horizontalmente */
+            justify-content: center;
+            /* Texto branco */
+            color: white;
+            /* Texto em negrito */
+            font-weight: bold;
+            /* Tamanho da fonte */
+            font-size: 1rem;
+            /* TÉCNICA 7: box-shadow como borda extra (usando spread sem offset nem blur) */
+            box-shadow:
+                /* Primeira "borda": spread 5px, cor vermelho escuro */
+                0 0 0 5px #c0392b,
+                /* Segunda "borda": spread 10px, cor vermelho base */
+                0 0 0 10px #e74c3c,
+                /* Terceira "borda": spread 15px, cor vermelho escuro */
+                0 0 0 15px #c0392b;
+        }
+
+        /* ============================================
+           DEMO 3: box-shadow INSET (sombra interna)
+           ============================================ */
+        /* Caixa com sombra interna simples */
+        .box-inset {
+            /* Largura fixa de 120px */
+            width: 120px;
+            /* Altura fixa de 120px */
+            height: 120px;
+            /* Fundo cinza muito claro */
+            background: #ecf0f1;
+            /* Bordas arredondadas de 12px */
+            border-radius: 12px;
+            /* Ativa flexbox */
+            display: flex;
+            /* Centraliza verticalmente */
+            align-items: center;
+            /* Centraliza horizontalmente */
+            justify-content: center;
+            /* Cor do texto cinza */
+            color: #7f8c8d;
+            /* Texto em negrito */
+            font-weight: bold;
+            /* Tamanho da fonte */
+            font-size: 1rem;
+            /* TÉCNICA 8: box-shadow inset (interna) */
+            /* Palavra-chave inset, offset-y: 4px, blur: 8px, cor preta com 30% opacidade */
+            box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Caixa com sombra interna dupla para efeito de relevo */
+        .box-inset-relevo {
+            /* Largura fixa de 120px */
+            width: 120px;
+            /* Altura fixa de 120px */
+            height: 120px;
+            /* Fundo cinza médio */
+            background: #95a5a6;
+            /* Bordas arredondadas de 12px */
+            border-radius: 12px;
+            /* Ativa flexbox */
+            display: flex;
+            /* Centraliza verticalmente */
+            align-items: center;
+            /* Centraliza horizontalmente */
+            justify-content: center;
+            /* Texto branco */
+            color: white;
+            /* Texto em negrito */
+            font-weight: bold;
+            /* Tamanho da fonte */
+            font-size: 1rem;
+            /* TÉCNICA 9: box-shadow inset dupla para efeito de relevo */
+            box-shadow:
+                /* Sombra interna clara no topo (simula luz vindo de cima) */
+                inset 0 2px 4px rgba(255, 255, 255, 0.5),
+                /* Sombra interna escura embaixo (simula profundidade) */
+                inset 0 -4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        /* ============================================
+           DEMO 4: text-shadow - Todas as variações
+           ============================================ */
+        /* Texto com sombra para legibilidade em fundo complexo */
+        .texto-legibilidade {
+            /* Fundo com imagem SVG codificada em base64 (padrão colorido) */
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><rect width="100" height="100" fill="%23ff6b6b"/><circle cx="50" cy="50" r="30" fill="%234ecdc4"/><circle cx="30" cy="30" r="15" fill="%23ffe66d"/></svg>');
+            /* A imagem cobre todo o elemento */
+            background-size: cover;
+            /* Padding de 20px */
+            padding: 20px;
+            /* Bordas arredondadas de 10px */
+            border-radius: 10px;
+            /* Tamanho de fonte grande */
+            font-size: 2rem;
+            /* Texto em negrito */
+            font-weight: bold;
+            /* Cor do texto branca */
+            color: white;
+            /* TÉCNICA 10: text-shadow para legibilidade */
+            /* offset-x: 2px, offset-y: 2px, blur: 6px, cor preta com 90% opacidade */
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.9);
+        }
+
+        /* Texto com efeito letterpress (entintado/afundado) */
+        .texto-letterpress {
+            /* Fundo cinza */
+            background: #7f8c8d;
+            /* Padding vertical 15px, horizontal 25px */
+            padding: 15px 25px;
+            /* Bordas arredondadas de 10px */
+            border-radius: 10px;
+            /* Tamanho de fonte grande */
+            font-size: 2rem;
+            /* Texto em negrito */
+            font-weight: bold;
+            /* Cor do texto similar ao fundo (cinza escuro) */
+            color: #5d6d6d;
+            /* TÉCNICA 11: text-shadow letterpress */
+            text-shadow:
+                /* Sombra clara acima (simula iluminação superior) */
+                0 -1px 1px rgba(255, 255, 255, 0.3),
+                /* Sombra escura abaixo (simula profundidade) */
+                0 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Texto com efeito neon */
+        .texto-neon {
+            /* Fundo quase preto para contraste */
+            background: #111;
+            /* Padding de 20px */
+            padding: 20px;
+            /* Bordas arredondadas de 10px */
+            border-radius: 10px;
+            /* Tamanho de fonte muito grande */
+            font-size: 2.5rem;
+            /* Texto em negrito */
+            font-weight: bold;
+            /* Cor do texto ciano */
+            color: #00ffff;
+            /* TÉCNICA 12: text-shadow efeito neon com 5 camadas de glow */
+            text-shadow:
+                /* Camada 1: blur 7px (a mais próxima/intensa) */
+                0 0 7px #00ffff,
+                /* Camada 2: blur 14px */
+                0 0 14px #00ffff,
+                /* Camada 3: blur 28px */
+                0 0 28px #00ffff,
+                /* Camada 4: blur 56px */
+                0 0 56px #00ffff,
+                /* Camada 5: blur 84px (a mais distante/suave) */
+                0 0 84px #00ffff;
+        }
+
+        /* Texto com efeito 3D usando múltiplas camadas */
+        .texto-3d-multiplas {
+            /* Tamanho de fonte muito grande */
+            font-size: 2.5rem;
+            /* Texto em negrito */
+            font-weight: bold;
+            /* Cor do texto laranja */
+            color: #f39c12;
+            /* TÉCNICA 13: text-shadow 3D com múltiplas camadas (6 camadas) */
+            text-shadow:
+                /* Camada 1: deslocamento 1px, sem blur, cor laranja claro */
+                1px 1px 0 #e67e22,
+                /* Camada 2: deslocamento 2px, sem blur, cor laranja médio */
+                2px 2px 0 #d35400,
+                /* Camada 3: deslocamento 3px, sem blur, cor vermelha */
+                3px 3px 0 #c0392b,
+                /* Camada 4: deslocamento 4px, sem blur, cor vermelho escuro */
+                4px 4px 0 #a93226,
+                /* Camada 5: deslocamento 5px, sem blur, cor vinho */
+                5px 5px 0 #922b21,
+                /* Camada 6: deslocamento 6px, blur 10px, sombra preta suave para profundidade final */
+                6px 6px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        /* ============================================
+           DEMO 5: filter: drop-shadow()
+           ============================================ */
+        /* Imagem PNG com drop-shadow */
+        .imagem-png {
+            /* Largura de 100px */
+            width: 100px;
+            /* Altura automática para manter proporção */
+            height: auto;
+            /* TÉCNICA 14: drop-shadow em PNG transparente */
+            /* offset-x: 0, offset-y: 10px, blur: 15px, cor preta com 50% opacidade */
+            filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.5));
+        }
+
+        /* Elemento SVG inline com drop-shadow */
+        .svg-drop {
+            /* Largura de 100px */
+            width: 100px;
+            /* Altura automática */
+            height: auto;
+            /* TÉCNICA 15: drop-shadow em elemento SVG inline */
+            /* offset-x: 5px, offset-y: 5px, blur: 8px, cor vermelha com 60% opacidade */
+            filter: drop-shadow(5px 5px 8px rgba(255, 0, 0, 0.6));
+        }
+
+        /* Elemento com clip-path em forma de estrela */
+        .clip-path-star {
+            /* Largura fixa de 130px */
+            width: 130px;
+            /* Altura fixa de 130px */
+            height: 130px;
+            /* Fundo com gradiente linear diagonal em tons de amarelo/dourado */
+            background: linear-gradient(45deg, #f1c40f, #f39c12);
+            /* Clip-path que recorta o elemento em forma de estrela de 5 pontas */
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            /* Margem de 20px */
+            margin: 20px;
+            /* TÉCNICA 16: drop-shadow em elemento com clip-path */
+            /* offset-x: 8px, offset-y: 8px, blur: 12px, cor preta com 60% opacidade */
+            filter: drop-shadow(8px 8px 12px rgba(0, 0, 0, 0.6));
+        }
+
+        /* Tooltip com seta CSS */
+        .tooltip-demo {
+            /* Posicionamento relativo para a seta (pseudo-elemento) */
+            position: relative;
+            /* Fundo azul escuro */
+            background: #2c3e50;
+            /* Texto branco */
+            color: white;
+            /* Padding vertical 12px, horizontal 20px */
+            padding: 12px 20px;
+            /* Bordas arredondadas de 8px */
+            border-radius: 8px;
+            /* Tamanho de fonte reduzido */
+            font-size: 0.9rem;
+            /* TÉCNICA 17: drop-shadow em tooltip com seta */
+            /* offset-x: 0, offset-y: 5px, blur: 10px, cor preta com 50% opacidade */
+            filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.5));
+        }
+
+        /* Seta do tooltip usando pseudo-elemento ::after */
+        .tooltip-demo::after {
+            /* Conteúdo vazio necessário para pseudo-elementos */
+            content: '';
+            /* Posicionamento absoluto em relação ao tooltip */
+            position: absolute;
+            /* Posiciona no topo 100% (embaixo do tooltip) */
+            top: 100%;
+            /* Centraliza horizontalmente */
+            left: 50%;
+            /* Ajusta a centralização (metade da largura da seta) */
+            transform: translateX(-50%);
+            /* Largura da borda da seta (tamanho do triângulo) */
+            border-width: 10px;
+            /* Estilo sólido para criar o triângulo */
+            border-style: solid;
+            /* Cor apenas na borda superior (cria triângulo apontando para baixo) */
+            border-color: #2c3e50 transparent transparent transparent;
+        }
+
+        /* ============================================
+           DEMO 6: Múltiplas drop-shadows
+           ============================================ */
+        /* Elemento com múltiplas drop-shadows */
+        .drop-multiplas {
+            /* Largura de 80px */
+            width: 80px;
+            /* Altura automática */
+            height: auto;
+            /* TÉCNICA 18: múltiplas drop-shadow (separadas por espaço dentro do filter) */
+            filter:
+                /* Primeira: sombra vermelha à direita/baixo */
+                drop-shadow(3px 3px 6px rgba(255, 0, 0, 0.6))
+                /* Segunda: sombra azul à esquerda/cima */
+                drop-shadow(-3px -3px 6px rgba(0, 0, 255, 0.6))
+                /* Terceira: sombra preta abaixo */
+                drop-shadow(0 5px 10px rgba(0, 0, 0, 0.5));
+        }
+
+        /* ============================================
+           DEMO 7: Combinação de TODAS as técnicas
+           ============================================ */
+        /* Container master que combina box-shadow + drop-shadow + text-shadow */
+        .combinacao-master {
+            /* Fundo branco */
+            background: white;
+            /* Padding de 20px */
+            padding: 20px;
+            /* Bordas arredondadas de 20px */
+            border-radius: 20px;
+            /* Ativa flexbox */
+            display: flex;
+            /* Alinha itens verticalmente ao centro */
+            align-items: center;
+            /* Espaçamento de 20px entre itens */
+            gap: 20px;
+            /* TÉCNICA 19: box-shadow no container */
+            box-shadow:
+                /* Sombra grande e suave */
+                0 8px 32px rgba(0, 0, 0, 0.2),
+                /* Sombra pequena e próxima */
+                0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Imagem dentro do container master */
+        .combinacao-master img {
+            /* Largura de 80px */
+            width: 80px;
+            /* Altura automática */
+            height: auto;
+            /* TÉCNICA 20: drop-shadow na imagem dentro do box-shadow container */
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
+        }
+
+        /* Texto dentro do container master */
+        .combinacao-master .texto-master {
+            /* Tamanho de fonte grande */
+            font-size: 1.5rem;
+            /* Texto em negrito */
+            font-weight: bold;
+            /* Cor azul escuro */
+            color: #2c3e50;
+            /* TÉCNICA 21: text-shadow no texto, dentro do container com box-shadow e ao lado de imagem com drop-shadow */
+            text-shadow: 1px 1px 2px rgba(44, 62, 80, 0.2);
+        }
+
+        /* Ícone emoji SVG para demonstração */
+        .emoji-icon {
+            /* Largura de 80px */
+            width: 80px;
+            /* Altura de 80px */
+            height: 80px;
+            /* Drop-shadow suave para dar profundidade ao ícone */
+            filter: drop-shadow(3px 5px 6px rgba(0, 0, 0, 0.4));
+        }
+    </style>
+    <!-- Fim do bloco de estilos CSS -->
+</head>
+<body>
+
+    <!-- Título principal com efeito 3D usando text-shadow múltiplo -->
+    <h1>🌑 Universo das Sombras</h1>
+    <!-- Subtítulo com sombra para legibilidade -->
+    <p class="subtitulo">Demonstração completa de box-shadow, text-shadow e filter: drop-shadow()</p>
+
+    <!-- Container Grid que organiza todos os cards -->
+    <div class="container">
+
+        <!-- ========================================
+             CARD 1: Demonstração de box-shadow realista
+             ======================================== -->
+        <div class="card">
+            <!-- Título do card -->
+            <h2>📦 box-shadow: Realista</h2>
+            <!-- Área de demonstração visual -->
+            <div class="demo-area">
+                <!-- Div com classe box-realista exibindo sombra suave -->
+                <div class="box-realista">REALISTA</div>
+            </div>
+            <!-- Label indicando o bloco de código -->
+            <div class="code-label">CSS</div>
+            <!-- Bloco mostrando o código CSS utilizado -->
+            <div class="code-block">
+                <!-- Propriedade destacada em rosa -->
+                <span class="highlight">box-shadow:</span><br>
+                <!-- Valores da propriedade -->
+                &nbsp;&nbsp;0 8px 16px rgba(0,0,0,0.25);<br>
+                <!-- Comentário explicativo em cinza -->
+                <em style="color:#aaa;">/* offset-x: 0, offset-y: 8px, blur: 16px, spread: 0 (padrão), cor */</em>
+            </div>
+        </div>
+
+        <!-- ========================================
+             CARD 2: Demonstração de box-shadow duro (sem blur)
+             ======================================== -->
+        <div class="card">
+            <!-- Título do card -->
+            <h2>📦 box-shadow: Dura</h2>
+            <!-- Área de demonstração -->
+            <div class="demo-area">
+                <!-- Div com classe box-dura exibindo sombra nítida -->
+                <div class="box-dura">DURA</div>
+            </div>
+            <!-- Label CSS -->
+            <div class="code-label">CSS</div>
+            <!-- Bloco de código -->
+            <div class="code-block">
+                <!-- Propriedade destacada -->
+                <span class="highlight">box-shadow:</span><br>
+                <!-- Valores -->
+                &nbsp;&nbsp;10px 10px 0px #c44d1d;<br>
+                <!-- Explicação -->
+                <em style="color:#aaa;">/* blur: 0, spread: 0 (padrão), sombra nítida e sólida */</em>
+            </div>
+        </div>
+
+        <!-- ========================================
+             CARD 3: Demonstração de box-shadow glow
+             ======================================== -->
+        <div class="card">
+            <!-- Título -->
+            <h2>📦 box-shadow: Glow</h2>
+            <!-- Área demo -->
+            <div class="demo-area">
+                <!-- Div circular com efeito glow -->
+                <div class="box-glow">GLOW</div>
+            </div>
+            <!-- Label -->
+            <div class="code-label">CSS</div>
+            <!-- Código -->
+            <div class="code-block">
+                <!-- Propriedade -->
+                <span class="highlight">box-shadow:</span><br>
+                <!-- Valores -->
+                &nbsp;&nbsp;0 0 30px 8px rgba(155,89,182,0.8);<br>
+                <!-- Explicação -->
+                <em style="color:#aaa;">/* offset: 0, blur: 30px, spread: 8px */</em>
+            </div>
+        </div>
+
+        <!-- ========================================
+             CARD 4: Demonstração de box-shadow múltiplo
+             ======================================== -->
+        <div class="card">
+            <!-- Título -->
+            <h2>📦 box-shadow: Múltiplas</h2>
+            <!-- Área demo -->
+            <div class="demo-area">
+                <!-- Div com 4 camadas de sombra -->
+                <div class="box-multiplas">MÚLTIPLAS</div>
+            </div>
+            <!-- Label -->
+            <div class="code-label">CSS</div>
+            <!-- Código -->
+            <div class="code-block">
+                <!-- Propriedade -->
+                <span class="highlight">box-shadow:</span><br>
+                <!-- 4 camadas separadas por vírgula -->
+                &nbsp;&nbsp;0 2px 4px rgba(52,152,219,0.3),<br>
+                &nbsp;&nbsp;0 8px 16px rgba(52,152,219,0.4),<br>
+                &nbsp;&nbsp;0 16px 32px rgba(52,152,219,0.5),<br>
+                &nbsp;&nbsp;0 32px 64px rgba(52,152,219,0.3);<br>
+                <!-- Explicação -->
+                <em style="color:#aaa;">/* 4 camadas separadas por vírgula */</em>
+            </div>
+        </div>
+
+        <!-- ========================================
+             CARD 5: Demonstração de box-shadow como borda (spread)
+             ======================================== -->
+        <div class="card">
+            <!-- Título -->
+            <h2>📦 box-shadow: Borda (spread)</h2>
+            <!-- Área demo -->
+            <div class="demo-area">
+                <!-- Div com 3 bordas criadas via box-shadow -->
+                <div class="box-borda">BORDA</div>
+            </div>
+            <!-- Label -->
+            <div class="code-label">CSS</div>
+            <!-- Código -->
+            <div class="code-block">
+                <!-- Propriedade -->
+                <span class="highlight">box-shadow:</span><br>
+                <!-- 3 camadas com spread progressivo -->
+                &nbsp;&nbsp;0 0 0 5px #c0392b,<br>
+                &nbsp;&nbsp;0 0 0 10px #e74c3c,<br>
+                &nbsp;&nbsp;0 0 0 15px #c0392b;<br>
+                <!-- Explicação -->
+                <em style="color:#aaa;">/* offset/blur: 0, spread: 5/10/15px */</em>
+            </div>
+        </div>
+
+        <!-- ========================================
+             CARD 6: Demonstração de box-shadow inset simples
+             ======================================== -->
+        <div class="card">
+            <!-- Título -->
+            <h2>📦 box-shadow: Inset</h2>
+            <!-- Área demo -->
+            <div class="demo-area">
+                <!-- Div com sombra interna -->
+                <div class="box-inset">INSET</div>
+            </div>
+            <!-- Label -->
+            <div class="code-label">CSS</div>
+            <!-- Código -->
+            <div class="code-block">
+                <!-- Propriedade -->
+                <span class="highlight">box-shadow:</span><br>
+                <!-- Valor com palavra-chave inset -->
+                &nbsp;&nbsp;inset 0 4px 8px rgba(0,0,0,0.3);<br>
+                <!-- Explicação -->
+                <em style="color:#aaa;">/* palavra-chave inset para sombra interna */</em>
+            </div>
+        </div>
+
+        <!-- ========================================
+             CARD 7: Demonstração de box-shadow inset duplo (relevo)
+             ======================================== -->
+        <div class="card">
+            <!-- Título -->
+            <h2>📦 box-shadow: Inset Relevo</h2>
+            <!-- Área demo -->
+            <div class="demo-area">
+                <!-- Div com relevo interno -->
+                <div class="box-inset-relevo">RELEVO</div>
+            </div>
+            <!-- Label -->
+            <div class="code-label">CSS</div>
+            <!-- Código -->
+            <div class="code-block">
+                <!-- Propriedade -->
+                <span class="highlight">box-shadow:</span><br>
+                <!-- Duas sombras inset para efeito 3D -->
+                &nbsp;&nbsp;inset 0 2px 4px rgba(255,255,255,0.5),<br>
+                &nbsp;&nbsp;inset 0 -4px 8px rgba(0,0,0,0.3);<br>
+                <!-- Explicação -->
+                <em style="color:#aaa;">/* inset duplo para efeito 3D afundado */</em>
+            </div>
+        </div>
+
+        <!-- ========================================
+             CARD 8: Demonstração de text-shadow para legibilidade
+             ======================================== -->
+        <div class="card">
+            <!-- Título -->
+            <h2>🔤 text-shadow: Legibilidade</h2>
+            <!-- Área demo -->
+            <div class="demo-area">
+                <!-- Texto sobre fundo texturizado com sombra para legibilidade -->
+                <div class="texto-legibilidade">CONTRASTE</div>
+            </div>
+            <!-- Label -->
+            <div class="code-label">CSS</div>
+            <!-- Código -->
+            <div class="code-block">
+                <!-- Propriedade -->
+                <span class="highlight">text-shadow:</span><br>
+                <!-- Valores -->
+                &nbsp;&nbsp;2px 2px 6px rgba(0,0,0,0.9);<br>
+                <!-- Explicação -->
+                <em style="color:#aaa;">/* texto branco legível sobre fundo colorido */</em>
+            </div>
+        </div>
+
+        <!-- ========================================
+             CARD 9: Demonstração de text-shadow letterpress
+             ======================================== -->
+        <div class="card">
+            <!-- Título -->
+            <h2>🔤 text-shadow: Letterpress</h2>
+            <!-- Área demo -->
+            <div class="demo-area">
+                <!-- Texto com efeito entintado -->
+                <div class="texto-letterpress">PRESS</div>
+            </div>
+            <!-- Label -->
+            <div class="code-label">CSS</div>
+            <!-- Código -->
+            <div class="code-block">
+                <!-- Propriedade -->
+                <span class="highlight">text-shadow:</span><br>
+                <!-- Sombra clara acima e escura abaixo -->
+                &nbsp;&nbsp;0 -1px 1px rgba(255,255,255,0.3),<br>
+                &nbsp;&nbsp;0 2px 4px rgba(0,0,0,0.6);<br>
+                <!-- Explicação -->
+                <em style="color:#aaa;">/* luz superior + sombra inferior = entintado */</em>
+            </div>
+        </div>
+
+        <!-- ========================================
+             CARD 10: Demonstração de text-shadow neon
+             ======================================== -->
+        <div class="card">
+            <!-- Título -->
+            <h2>🔤 text-shadow: Neon</h2>
+            <!-- Área demo -->
+            <div class="demo-area">
+                <!-- Texto com efeito neon ciano -->
+                <div class="texto-neon">NEON</div>
+            </div>
+            <!-- Label -->
+            <div class="code-label">CSS</div>
+            <!-- Código -->
+            <div class="code-block">
+                <!-- Propriedade -->
+                <span class="highlight">text-shadow:</span><br>
+                <!-- 5 camadas de glow ciano -->
+                &nbsp;&nbsp;0 0 7px #0ff,<br>
+                &nbsp;&nbsp;0 0 14px #0ff,<br>
+                &nbsp;&nbsp;0 0 28px #0ff,<br>
+                &nbsp;&nbsp;0 0 56px #0ff,<br>
+                &nbsp;&nbsp;0 0 84px #0ff;<br>
+                <!-- Explicação -->
+                <em style="color:#aaa;">/* 5 camadas de glow ciano */</em>
+            </div>
+        </div>
+
+        <!-- ========================================
+             CARD 11: Demonstração de text-shadow 3D
+             ======================================== -->
+        <div class="card">
+            <!-- Título -->
+            <h2>🔤 text-shadow: 3D</h2>
+            <!-- Área demo -->
+            <div class="demo-area">
+                <!-- Texto com efeito 3D em camadas -->
+                <div class="texto-3d-multiplas">3D</div>
+            </div>
+            <!-- Label -->
+            <div class="code-label">CSS</div>
+            <!-- Código -->
+            <div class="code-block">
+                <!-- Propriedade -->
+                <span class="highlight">text-shadow:</span><br>
+                <!-- 6 camadas com deslocamento progressivo -->
+                &nbsp;&nbsp;1px 1px 0 #e67e22,<br>
+                &nbsp;&nbsp;2px 2px 0 #d35400,<br>
+                &nbsp;&nbsp;3px 3px 0 #c0392b,<br>
+                &nbsp;&nbsp;4px 4px 0 #a93226,<br>
+                &nbsp;&nbsp;5px 5px 0 #922b21,<br>
+                &nbsp;&nbsp;6px 6px 10px rgba(0,0,0,0.5);<br>
+                <!-- Explicação -->
+                <em style="color:#aaa;">/* 6 camadas com deslocamento progressivo */</em>
+            </div>
+        </div>
+
+        <!-- ========================================
+             CARD 12: Demonstração de drop-shadow em PNG
+             ======================================== -->
+        <div class="card">
+            <!-- Título -->
+            <h2>💧 drop-shadow: PNG</h2>
+            <!-- Área demo -->
+            <div class="demo-area">
+                <!-- Imagem SVG da logo HTML5 (possui transparência) -->
+                <img
+                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath fill='%23E34F26' d='M71 460L30 0h451l-41 460-185 52'/%3E%3Cpath fill='%23EF652A' d='M256 472l149-41 35-394H256'/%3E%3Cpath fill='%23EBEBEB' d='M256 208h-75l-5-58h80V94H114l15 171h127zm-1 147l-63-17-4-45h-56l7 89 116 32z'/%3E%3Cpath fill='%23FFF' d='M255 208v57h70l-7 73-63 17v59l116-32 16-174zm0-114v56h137l5-56z'/%3E%3C/svg%3E"
+                    alt="HTML5 Logo"
+                    class="imagem-png"
+                >
+            </div>
+            <!-- Label -->
+            <div class="code-label">CSS</div>
+            <!-- Código -->
+            <div class="code-block">
+                <!-- Função drop-shadow dentro de filter -->
+                <span class="highlight">filter: drop-shadow(</span><br>
+                <!-- Valores -->
+                &nbsp;&nbsp;0 10px 15px rgba(0,0,0,0.5)<br>
+                <!-- Fechamento -->
+                <span class="highlight">);</span><br>
+                <!-- Explicação -->
+                <em style="color:#aaa;">/* sombra segue o contorno do logo, não a caixa */</em>
+            </div>
+        </div>
+
+        <!-- ========================================
+             CARD 13: Demonstração de drop-shadow em SVG inline
+             ======================================== -->
+        <div class="card">
+            <!-- Título -->
+            <h2>💧 drop-shadow: SVG</h2>
+            <!-- Área demo -->
+            <div class="demo-area">
+                <!-- Elemento SVG inline (círculo verde com check) -->
+                <svg class="svg-drop" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Círculo verde com borda -->
+                    <circle cx="50" cy="50" r="40" fill="#2ecc71" stroke="#27ae60" stroke-width="4"/>
+                    <!-- Texto de check centralizado -->
+                    <text x="50" y="65" text-anchor="middle" fill="white" font-size="40" font-weight="bold">✓</text>
+                </svg>
+            </div>
+            <!-- Label -->
+            <div class="code-label">CSS</div>
+            <!-- Código -->
+            <div class="code-block">
+                <!-- Função drop-shadow -->
+                <span class="highlight">filter: drop-shadow(</span><br>
+                <!-- Valores -->
+                &nbsp;&nbsp;5px 5px 8px rgba(255,0,0,0.6)<br>
+                <!-- Fechamento -->
+                <span class="highlight">);</span><br>
+                <!-- Explicação -->
+                <em style="color:#aaa;">/* sombra avermelhada no círculo verde SVG */</em>
+            </div>
+        </div>
+
+        <!-- ========================================
+             CARD 14: Demonstração de drop-shadow em clip-path
+             ======================================== -->
+        <div class="card">
+            <!-- Título -->
+            <h2>💧 drop-shadow: clip-path</h2>
+            <!-- Área demo -->
+            <div class="demo-area">
+                <!-- Div recortada em forma de estrela via clip-path -->
+                <div class="clip-path-star"></div>
+            </div>
+            <!-- Label -->
+            <div class="code-label">CSS</div>
+            <!-- Código -->
+            <div class="code-block">
+                <!-- Propriedade clip-path -->
+                <span class="highlight">clip-path:</span> polygon(...);<br>
+                <!-- Função drop-shadow -->
+                <span class="highlight">filter: drop-shadow(</span><br>
+                <!-- Valores -->
+                &nbsp;&nbsp;8px 8px 12px rgba(0,0,0,0.6)<br>
+                <!-- Fechamento -->
+                <span class="highlight">);</span><br>
+                <!-- Explicação -->
+                <em style="color:#aaa;">/* sombra em forma de estrela, não quadrada */</em>
+            </div>
+        </div>
+
+        <!-- ========================================
+             CARD 15: Demonstração de drop-shadow em tooltip
+             ======================================== -->
+        <div class="card">
+            <!-- Título -->
+            <h2>💧 drop-shadow: Tooltip</h2>
+            <!-- Área demo -->
+            <div class="demo-area">
+                <!-- Tooltip com seta feita via pseudo-elemento -->
+                <div class="tooltip-demo">
+                    Tooltip com seta!
+                </div>
+            </div>
+            <!-- Label -->
+            <div class="code-label">CSS</div>
+            <!-- Código -->
+            <div class="code-block">
+                <!-- Função drop-shadow -->
+                <span class="highlight">filter: drop-shadow(</span><br>
+                <!-- Valores -->
+                &nbsp;&nbsp;0 5px 10px rgba(0,0,0,0.5)<br>
+                <!-- Fechamento -->
+                <span class="highlight">);</span><br>
+                <!-- Explicação -->
+                <em style="color:#aaa;">/* sombra aplicada ao balão + seta como um todo */</em>
+            </div>
+        </div>
+
+        <!-- ========================================
+             CARD 16: Demonstração de múltiplas drop-shadows
+             ======================================== -->
+        <div class="card">
+            <!-- Título -->
+            <h2>💧 drop-shadow: Múltiplas</h2>
+            <!-- Área demo -->
+            <div class="demo-area">
+                <!-- SVG de pentágono com estrela -->
+                <svg class="drop-multiplas" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Polígono de 5 lados (pentágono) roxo -->
+                    <polygon points="50,5 95,30 80,80 20,80 5,30" fill="#9b59b6" stroke="#8e44ad" stroke-width="3"/>
+                    <!-- Texto estrela centralizado -->
+                    <text x="50" y="55" text-anchor="middle" fill="white" font-size="35" font-weight="bold">★</text>
+                </svg>
+            </div>
+            <!-- Label -->
+            <div class="code-label">CSS</div>
+            <!-- Código -->
+            <div class="code-block">
+                <!-- Propriedade filter com 3 funções drop-shadow -->
+                <span class="highlight">filter:</span><br>
+                <!-- Primeira drop-shadow: vermelha -->
+                &nbsp;&nbsp;drop-shadow(3px 3px 6px rgba(255,0,0,0.6))<br>
+                <!-- Segunda drop-shadow: azul (offset negativo) -->
+                &nbsp;&nbsp;drop-shadow(-3px -3px 6px rgba(0,0,255,0.6))<br>
+                <!-- Terceira drop-shadow: preta abaixo -->
+                &nbsp;&nbsp;drop-shadow(0 5px 10px rgba(0,0,0,0.5));<br>
+                <!-- Explicação -->
+                <em style="color:#aaa;">/* 3 drop-shadows: vermelha, azul e preta */</em>
+            </div>
+        </div>
+
+        <!-- ========================================
+             CARD 17: Combinação Master (box + text + drop)
+             ======================================== -->
+        <div class="card">
+            <!-- Título -->
+            <h2>🎯 Combinação: Todas</h2>
+            <!-- Área demo -->
+            <div class="demo-area">
+                <!-- Container que combina as 3 técnicas -->
+                <div class="combinacao-master">
+                    <!-- SVG de emoji feliz com drop-shadow -->
+                    <svg class="emoji-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Círculo amarelo (rosto) -->
+                        <circle cx="50" cy="50" r="45" fill="#FFD93D" stroke="#F4A261" stroke-width="3"/>
+                        <!-- Olho esquerdo -->
+                        <circle cx="35" cy="40" r="5" fill="#333"/>
+                        <!-- Olho direito -->
+                        <circle cx="65" cy="40" r="5" fill="#333"/>
+                        <!-- Boca sorrindo (arco) -->
+                        <path d="M 30 60 Q 50 80 70 60" stroke="#333" stroke-width="4" fill="transparent" stroke-linecap="round"/>
+                    </svg>
+                    <!-- Texto com text-shadow -->
+                    <span class="texto-master">Box + Text + Drop!</span>
+                </div>
+            </div>
+            <!-- Label -->
+            <div class="code-label">CSS (3 técnicas combinadas)</div>
+            <!-- Código detalhado -->
+            <div class="code-block">
+                <!-- Comentário colorido -->
+                <em style="color:#ff6b9d;">/* Container: box-shadow */</em><br>
+                <!-- Propriedade box-shadow -->
+                <span class="highlight">box-shadow:</span><br>
+                <!-- Valores -->
+                &nbsp;&nbsp;0 8px 32px rgba(0,0,0,0.2);<br><br>
+                <!-- Comentário colorido -->
+                <em style="color:#ff6b9d;">/* Imagem SVG: drop-shadow */</em><br>
+                <!-- Função drop-shadow -->
+                <span class="highlight">filter: drop-shadow(</span><br>
+                <!-- Valores -->
+                &nbsp;&nbsp;3px 5px 6px rgba(0,0,0,0.4)<br>
+                <!-- Fechamento -->
+                <span class="highlight">);</span><br><br>
+                <!-- Comentário colorido -->
+                <em style="color:#ff6b9d;">/* Texto: text-shadow */</em><br>
+                <!-- Propriedade text-shadow -->
+                <span class="highlight">text-shadow:</span><br>
+                <!-- Valores -->
+                &nbsp;&nbsp;1px 1px 2px rgba(44,62,80,0.2);
+            </div>
+        </div>
+
+        <!-- ========================================
+             CARD 18: Comparação visual box-shadow vs drop-shadow
+             ======================================== -->
+        <div class="card">
+            <!-- Título -->
+            <h2>⚡ box-shadow vs drop-shadow</h2>
+            <!-- Área demo com flex-direction column -->
+            <div class="demo-area" style="flex-direction: column;">
+                <!-- Container flex para os dois exemplos lado a lado -->
+                <div style="display: flex; gap: 30px; align-items: center;">
+                    <!-- Exemplo com box-shadow -->
+                    <div style="text-align: center;">
+                        <!-- Rótulo -->
+                        <p style="font-weight: bold; margin-bottom: 5px;">box-shadow</p>
+                        <!-- Imagem SVG de círculo vermelho -->
+                        <img
+                            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='30' fill='%23ff6b6b'/%3E%3C/svg%3E"
+                            alt="Círculo"
+                            style="width: 80px; box-shadow: 5px 10px 15px rgba(0,0,0,0.5);"
+                        >
+                        <!-- Explicação do resultado -->
+                        <p style="font-size: 0.7rem; margin-top: 15px;">Sombra no retângulo</p>
+                    </div>
+                    <!-- Exemplo com drop-shadow -->
+                    <div style="text-align: center;">
+                        <!-- Rótulo -->
+                        <p style="font-weight: bold; margin-bottom: 5px;">drop-shadow</p>
+                        <!-- Imagem SVG de círculo vermelho -->
+                        <img
+                            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='30' fill='%23ff6b6b'/%3E%3C/svg%3E"
+                            alt="Círculo"
+                            style="width: 80px; filter: drop-shadow(5px 10px 15px rgba(0,0,0,0.5));"
+                        >
+                        <!-- Explicação do resultado -->
+                        <p style="font-size: 0.7rem; margin-top: 15px;">Sombra no círculo!</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Label -->
+            <div class="code-label">Comparação Visual</div>
+            <!-- Explicação no bloco de código -->
+            <div class="code-block">
+                <!-- Destaque para box-shadow -->
+                <strong style="color:#ff6b6b;">box-shadow</strong> → sombra no box model (retângulo)<br>
+                <!-- Destaque para drop-shadow -->
+                <strong style="color:#4ecdc4;">drop-shadow</strong> → sombra na forma alpha (círculo)<br>
+                <!-- Dica de uso -->
+                <em style="color:#aaa;">/* Use drop-shadow para imagens com transparência! */</em>
+            </div>
+        </div>
+
+        <!-- ========================================
+             CARD 19: Emoji SVG com drop-shadow
+             ======================================== -->
+        <div class="card">
+            <!-- Título -->
+            <h2>💧 drop-shadow: Emoji SVG</h2>
+            <!-- Área demo -->
+            <div class="demo-area">
+                <!-- SVG de coração -->
+                <svg class="emoji-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Círculo vermelho (fundo do emoji) -->
+                    <circle cx="50" cy="50" r="45" fill="#FF6B6B" stroke="#C0392B" stroke-width="3"/>
+                    <!-- Símbolo de coração centralizado -->
+                    <text x="50" y="55" text-anchor="middle" fill="white" font-size="30" font-weight="bold">♥</text>
+                </svg>
+            </div>
+            <!-- Label -->
+            <div class="code-label">CSS</div>
+            <!-- Código -->
+            <div class="code-block">
+                <!-- Função drop-shadow -->
+                <span class="highlight">filter: drop-shadow(</span><br>
+                <!-- Valores -->
+                &nbsp;&nbsp;3px 5px 6px rgba(0,0,0,0.4)<br>
+                <!-- Fechamento -->
+                <span class="highlight">);</span><br>
+                <!-- Explicação -->
+                <em style="color:#aaa;">/* sombra em elemento decorativo SVG */</em>
+            </div>
+        </div>
+
+        <!-- ========================================
+             CARD 20: Botão interativo com box-shadow + text-shadow
+             ======================================== -->
+        <div class="card">
+            <!-- Título -->
+            <h2>🔘 Botão: Técnica Combinada</h2>
+            <!-- Área demo -->
+            <div class="demo-area">
+                <!-- Botão com estilos inline para box-shadow e text-shadow -->
+                <button style="
+                    /* Fundo com gradiente roxo/azul */
+                    background: linear-gradient(135deg, #667eea, #764ba2);
+                    /* Texto branco */
+                    color: white;
+                    /* Remove borda padrão */
+                    border: none;
+                    /* Padding vertical 18px, horizontal 40px */
+                    padding: 18px 40px;
+                    /* Tamanho de fonte */
+                    font-size: 1.2rem;
+                    /* Texto em negrito */
+                    font-weight: bold;
+                    /* Bordas totalmente arredondadas (formato pílula) */
+                    border-radius: 50px;
+                    /* Cursor de mão ao passar o mouse */
+                    cursor: pointer;
+                    /* box-shadow para elevação do botão */
+                    box-shadow:
+                        /* Sombra roxa suave e grande */
+                        0 8px 24px rgba(102, 126, 234, 0.5),
+                        /* Sombra preta pequena e próxima */
+                        0 2px 6px rgba(0, 0, 0, 0.1);
+                    /* text-shadow no texto do botão para profundidade */
+                    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+                    /* Transição suave para hover */
+                    transition: all 0.2s ease;
+                " onmouseover="this.style.boxShadow='0 2px 6px rgba(102, 126, 234, 0.5), 0 1px 3px rgba(0, 0, 0, 0.1)'; this.style.transform='translateY(2px)';"
+                onmouseout="this.style.boxShadow='0 8px 24px rgba(102, 126, 234, 0.5), 0 2px 6px rgba(0, 0, 0, 0.1)'; this.style.transform='translateY(-2px)';">
+                    CLIQUE AQUI
+                </button>
+            </div>
+            <!-- Label -->
+            <div class="code-label">CSS (box-shadow + text-shadow)</div>
+            <!-- Código explicativo -->
+            <div class="code-block">
+                <!-- Comentário colorido -->
+                <em style="color:#ff6b9d;">/* Elevação: box-shadow */</em><br>
+                <!-- Propriedade -->
+                <span class="highlight">box-shadow:</span><br>
+                <!-- Valores -->
+                &nbsp;&nbsp;0 8px 24px rgba(102,126,234,0.5);<br><br>
+                <!-- Comentário colorido -->
+                <em style="color:#ff6b9d;">/* Texto: text-shadow */</em><br>
+                <!-- Propriedade -->
+                <span class="highlight">text-shadow:</span><br>
+                <!-- Valores -->
+                &nbsp;&nbsp;1px 1px 2px rgba(0,0,0,0.3);<br><br>
+                <!-- Dica de interatividade -->
+                <em style="color:#aaa;">/* Ao clicar, reduz box-shadow para efeito de pressão */</em>
+            </div>
+        </div>
+
+    </div>
+    <!-- Fim do container grid -->
+
+    <!-- Rodapé da página -->
+    <footer style="text-align: center; color: white; margin-top: 50px; opacity: 0.8;">
+        <!-- Texto do rodapé com sombra para legibilidade -->
+        <p style="font-size: 1.5rem; font-weight: bold;
+                  text-shadow:
+                    /* Sombra escura próxima */
+                    1px 1px 0 rgba(0,0,0,0.3),
+                    /* Sombra mais suave e distante */
+                    2px 2px 4px rgba(0,0,0,0.5);">
+            <!-- Emoji de check e mensagem de conclusão -->
+            ✅ Todas as 21 técnicas demonstradas com sucesso!
+        </p>
+    </footer>
+
+</body>
+</html>
+```
+
+---
+
+### 📝 O que foi adicionado:
+
+Cada linha do código agora possui um comentário explicando:
+- **O que** a propriedade faz
+- **Por que** aquele valor foi escolhido
+- **Qual técnica** de sombra está sendo aplicada
+- **Como** cada parâmetro contribui para o efeito final
+
+Isso transforma o código em uma verdadeira aula interativa. Agora você pode ler linha por linha e entender exatamente o propósito de cada declaração CSS.
+
+Alguma dúvida sobre algum comentário ou técnica específica, aluno?
+
+
+    
+</body>
+</html>
