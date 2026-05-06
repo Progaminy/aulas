@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formatcao de Texto</title>
+</head>
+<body>
+
+    <div class="container">
+
+        <h1>Formatacao de Texto</h1>
+
+        <h2>🧩 Estrutura básica do CSS</h2>
+
+    <p><strong>css:</strong></p> 
+
+<code class="codigos">
+    p { <br>
+      color: red; <br>
+    } <br>
+</code> <br>
+
+<button>Copiar</button>
+
+
+<h3>🔍 Explicação:</h3>
+
+<P>
+    * `p` → seletor (indica o elemento) <br>
+    * `{}` → bloco de estilo <br>
+    * `color` → propriedade <br>
+    * `red` → valor <br>
+</P>
+
+Tem sim — e bastante coisa importante que ainda não vimos. Se queres dominar **formatação de texto em CSS**, estas propriedades aqui já te colocam num nível acima da maioria.
+
+Vou continuar no mesmo estilo: **significado + o que faz + valores + exemplo**.
+
+---
+
+# 📘 Aula 2 — Formatação de Texto (nível seguinte)
+
+---
+
+## 📏 1. `line-height`
+
+👉 **Significado:** altura da linha
+👉 **O que faz:** controla o espaço entre linhas de texto
+
+### 🔹 Valores:
+
+* `normal` → padrão
+* `1.5`, `2` → multiplicador
+* `20px` → valor fixo
+
+### 💻 Exemplo:
+
+```css
+p {
+  line-height: 1.8;
+}
+```
+
+✔️ Resultado: texto mais “respirado”, fácil de ler
+
+---
+
+## 🔤 2. `text-transform`
+
+👉 **Significado:** transformação do texto
+👉 **O que faz:** muda letras para maiúsculas/minúsculas
+
+### 🔹 Valores:
+
+* `uppercase` → TUDO MAIÚSCULO
+* `lowercase` → tudo minúsculo
+* `capitalize` → Primeira Letra Maiúscula
+
+### 💻 Exemplo:
+
+```css
+p {
+  text-transform: uppercase;
+}
+```
+
+✔️ Resultado: texto todo em maiúsculas
+
+---
+
+## 📌 3. `text-decoration`
+
+👉 **Significado:** decoração do texto
+👉 **O que faz:** adiciona linhas ao texto
+
+### 🔹 Valores:
+
+* `none` → sem linha
+* `underline` → sublinhado
+* `line-through` → riscado
+* `overline` → linha em cima
+
+### 💻 Exemplo:
+
+```css
+p {
+  text-decoration: underline;
+}
+```
+
+✔️ Resultado: texto sublinhado
+
+---
+
+## 🌈 4. `text-shadow`
+
+👉 **Significado:** sombra do texto
+👉 **O que faz:** adiciona sombra às letras
+
+### 🔹 Estrutura:
+
+`horizontal vertical blur cor`
+
+### 💻 Exemplo:
+
+```css
+p {
+  text-shadow: 2px 2px 5px gray;
+}
+```
+
+✔️ Resultado: texto com sombra suave
+
+---
+
+## 📦 5. `word-spacing`
+
+👉 **Significado:** espaço entre palavras
+👉 **O que faz:** aumenta/diminui espaço entre palavras
+
+### 🔹 Valores:
+
+* `normal`
+* `5px`, `10px`
+
+### 💻 Exemplo:
+
+```css
+p {
+  word-spacing: 10px;
+}
+```
+
+✔️ Resultado: palavras mais separadas
+
+---
+
+## 🔒 6. `white-space`
+
+👉 **Significado:** espaço em branco
+👉 **O que faz:** controla quebra de linha e espaços
+
+### 🔹 Valores:
+
+* `normal` → comportamento padrão
+* `nowrap` → não quebra linha
+* `pre` → respeita espaços e quebras
+
+### 💻 Exemplo:
+
+```css
+p {
+  white-space: nowrap;
+}
+```
+
+✔️ Resultado: texto fica numa única linha
+
+---
+
+## ✂️ 7. `text-overflow`
+
+👉 **Significado:** excesso de texto
+👉 **O que faz:** define o que acontece quando texto ultrapassa o espaço
+
+### 🔹 Valores:
+
+* `clip` → corta
+* `ellipsis` → adiciona “...”
+
+### 💻 Exemplo:
+
+```css
+p {
+  width: 150px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+```
+
+✔️ Resultado: texto cortado com “...”
+
+---
+
+## 🧪 Exemplo completo avançado
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    p {
+      font-size: 20px;
+      line-height: 1.6;
+      text-transform: capitalize;
+      text-decoration: underline;
+      letter-spacing: 1px;
+      word-spacing: 5px;
+      text-shadow: 1px 1px 3px gray;
+    }
+  </style>
+</head>
+<body>
+
+  <p>aprendendo css como um profissional</p>
+
+</body>
+</html>
+```
+
+---
+
+## 🧠 Dica de nível profissional
+
+* `line-height` é MUITO importante para leitura
+* `text-transform` é muito usado em botões
+* `text-shadow` deve ser usado com moderação
+
+---
+
+## 🚀 Se quiser evoluir ainda mais
+
+Ainda dentro de texto, falta o nível **profissional mesmo**:
+
+👉 Fontes externas (Google Fonts)
+👉 Tipografia moderna
+👉 Hierarquia visual (títulos vs parágrafos)
+👉 Responsividade de texto
+
+Ou posso mudar para:
+
+👉 Aula 3 — **Classes e IDs (controle total do CSS)**
+
+Só diz:
+👉 “quero tipografia profissional” ou “aula 3”
+Tem sim — ainda há várias propriedades importantes para **formatação de texto** que te levam para nível mais profissional. Vou continuar no mesmo padrão (significado + o que faz + valores + exemplo).
+
+---
+
+# 📘 Aula 3 — Formatação de Texto (nível avançado)
+
+---
+
+## 🔤 1. `text-indent`
+
+👉 **Significado:** indentação do texto
+👉 **O que faz:** cria espaço no início da primeira linha
+
+### 🔹 Valores:
+
+* `20px`, `50px`
+* `%`
+
+### 💻 Exemplo:
+
+```css
+p {
+  text-indent: 30px;
+}
+```
+
+✔️ Resultado: primeira linha começa mais para dentro
+
+---
+
+## 📚 2. `text-justify`
+
+👉 **Significado:** justificação do texto
+👉 **O que faz:** controla como o texto justificado se distribui
+
+⚠️ Só funciona com `text-align: justify`
+
+### 🔹 Valores:
+
+* `auto`
+* `inter-word` → ajusta espaço entre palavras
+
+### 💻 Exemplo:
+
+```css
+p {
+  text-align: justify;
+  text-justify: inter-word;
+}
+```
+
+✔️ Resultado: texto alinhado dos dois lados com melhor distribuição
+
+---
+
+## 🔡 3. `direction`
+
+👉 **Significado:** direção do texto
+👉 **O que faz:** define o sentido da escrita
+
+### 🔹 Valores:
+
+* `ltr` → esquerda para direita
+* `rtl` → direita para esquerda
+
+### 💻 Exemplo:
+
+```css
+p {
+  direction: rtl;
+}
+```
+
+✔️ Resultado: texto começa da direita
+
+---
+
+## 🧭 4. `unicode-bidi`
+
+👉 **Significado:** controle de direção de texto
+👉 **O que faz:** ajuda a misturar idiomas diferentes
+
+### 🔹 Valores:
+
+* `normal`
+* `bidi-override`
+
+### 💻 Exemplo:
+
+```css
+p {
+  direction: rtl;
+  unicode-bidi: bidi-override;
+}
+```
+
+✔️ Resultado: força a direção do texto
+
+---
+
+## 📦 5. `overflow-wrap` (ou `word-wrap`)
+
+👉 **Significado:** quebra de palavra
+👉 **O que faz:** quebra palavras longas
+
+### 🔹 Valores:
+
+* `normal`
+* `break-word`
+
+### 💻 Exemplo:
+
+```css
+p {
+  overflow-wrap: break-word;
+}
+```
+
+✔️ Resultado: palavras longas não “estouram” o layout
+
+---
+
+## ✂️ 6. `word-break`
+
+👉 **Significado:** quebra de palavras
+👉 **O que faz:** define como palavras quebram
+
+### 🔹 Valores:
+
+* `normal`
+* `break-all`
+* `keep-all`
+
+### 💻 Exemplo:
+
+```css
+p {
+  word-break: break-all;
+}
+```
+
+✔️ Resultado: palavras podem quebrar em qualquer ponto
+
+---
+
+## 📏 7. `writing-mode`
+
+👉 **Significado:** modo de escrita
+👉 **O que faz:** muda orientação do texto
+
+### 🔹 Valores:
+
+* `horizontal-tb` → normal
+* `vertical-rl` → vertical
+
+### 💻 Exemplo:
+
+```css
+p {
+  writing-mode: vertical-rl;
+}
+```
+
+✔️ Resultado: texto na vertical
+
+---
+
+## 🎭 8. `font-variant`
+
+👉 **Significado:** variação da fonte
+👉 **O que faz:** muda estilo especial de letras
+
+### 🔹 Valores:
+
+* `normal`
+* `small-caps` → letras maiúsculas pequenas
+
+### 💻 Exemplo:
+
+```css
+p {
+  font-variant: small-caps;
+}
+```
+
+✔️ Resultado: letras maiúsculas estilizadas
+
+---
+
+## 🧪 Exemplo completo (nível avançado)
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    p {
+      text-indent: 40px;
+      text-align: justify;
+      line-height: 1.8;
+      letter-spacing: 1px;
+      word-spacing: 5px;
+      overflow-wrap: break-word;
+    }
+  </style>
+</head>
+<body>
+
+  <p>
+    Este é um exemplo de texto formatado com várias propriedades
+    avançadas de CSS para melhorar leitura e aparência.
+  </p>
+
+</body>
+</html>
+```
+
+---
+
+## 🧠 Visão de dev (importante)
+
+Essas propriedades são usadas para:
+
+* 📖 Melhorar leitura (line-height, indent)
+* 📱 Evitar quebra feia em mobile (word-break, overflow-wrap)
+* 🌍 Trabalhar com idiomas diferentes (direction)
+
+---
+
+## 🚀 Agora sim — nível profissional de texto
+
+Se quiser continuar evoluindo:
+
+👉 Tipografia profissional (combinação de fontes, hierarquia)
+👉 Google Fonts (usar fontes reais da web)
+👉 Design de UI (botões, títulos, landing pages)
+👉 Layout (Flexbox e Grid)
+
+---
+
+Se quiser continuar no modo curso:
+
+👉 “Aula 4 — Tipografia profissional”
+
+ou se quer algo mais prático:
+
+👉 “quero fazer um layout real com isso”
+Tem mais sim — mas agora entra um ponto importante:
+
+👉 **Você já aprendeu praticamente TODAS as propriedades diretas de formatação de texto do CSS.**
+
+O que “falta” não são novas propriedades isoladas…
+👉 É **combinar, refinar e usar como um profissional**.
+
+Mas ainda existem algumas propriedades extras (menos usadas, porém importantes). Vou fechar o conteúdo de texto com elas:
+
+---
+
+# 📘 Últimas propriedades de formatação de texto
+
+---
+
+## 🔠 1. `font`
+
+👉 **Significado:** propriedade abreviada (atalho)
+👉 **O que faz:** define várias coisas da fonte numa linha só
+
+### 🔹 Junta:
+
+* `font-style`
+* `font-weight`
+* `font-size`
+* `font-family`
+
+### 💻 Exemplo:
+
+```css
+p {
+  font: italic bold 20px Arial;
+}
+```
+
+✔️ Resultado:
+
+* itálico
+* negrito
+* tamanho 20px
+* fonte Arial
+
+---
+
+## 📏 2. `tab-size`
+
+👉 **Significado:** tamanho da tabulação
+👉 **O que faz:** controla o espaço da tecla TAB
+
+### 💻 Exemplo:
+
+```css
+p {
+  tab-size: 4;
+}
+```
+
+✔️ Resultado: TAB ocupa 4 espaços
+
+---
+
+## ✂️ 3. `hyphens`
+
+👉 **Significado:** hifenização
+👉 **O que faz:** adiciona hífen automático na quebra de palavras
+
+### 🔹 Valores:
+
+* `none`
+* `auto`
+* `manual`
+
+### 💻 Exemplo:
+
+```css
+p {
+  hyphens: auto;
+}
+```
+
+✔️ Resultado: palavras longas quebram com “-”
+
+---
+
+## 🔍 4. `text-rendering`
+
+👉 **Significado:** renderização do texto
+👉 **O que faz:** melhora aparência da fonte no navegador
+
+### 🔹 Valores:
+
+* `auto`
+* `optimizeSpeed`
+* `optimizeLegibility`
+
+### 💻 Exemplo:
+
+```css
+p {
+  text-rendering: optimizeLegibility;
+}
+```
+
+✔️ Resultado: texto mais suave e legível
+
+---
+
+## 🎯 5. `font-kerning`
+
+👉 **Significado:** ajuste entre letras
+👉 **O que faz:** melhora espaçamento automático
+
+### 🔹 Valores:
+
+* `auto`
+* `normal`
+* `none`
+
+### 💻 Exemplo:
+
+```css
+p {
+  font-kerning: normal;
+}
+```
+
+✔️ Resultado: espaçamento mais natural
+
+---
+
+# 🧠 VERDADE IMPORTANTE (nível profissional)
+
+👉 CSS de texto não é sobre quantidade… é sobre uso inteligente.
+
+Um dev forte usa basicamente:
+
+* `font-size`
+* `font-weight`
+* `line-height`
+* `color`
+* `text-align`
+* `letter-spacing`
+
+👉 E combina bem.
+
+---
+
+# 🚀 O que realmente vem agora
+
+Se continuares só em “propriedades”, vais travar.
+
+O próximo nível real é:
+
+### 🔥 1. Tipografia profissional
+
+* Hierarquia (título, subtítulo, parágrafo)
+* Contraste
+* Espaçamento correto
+
+### 🔥 2. Layout
+
+* `margin`
+* `padding`
+* `display`
+* `flexbox`
+
+👉 Isso sim transforma conhecimento em habilidade.
+
+---
+
+# ⚠️ Resposta direta à tua pergunta
+
+👉 “Ainda há mais formatação de texto?”
+
+✔️ **Propriedades novas?** → quase não
+✔️ **Domínio real?** → ainda MUITO para aprender
+
+---
+
+Se quiser evoluir de verdade, escolhe:
+
+👉 “quero tipografia profissional (design real)”
+👉 “quero layout (flexbox)”
+👉 “quero desafio prático”
+
+E eu te levo para nível acima.
+
+    
+    
+    
+    
+    <h3>Resumo simples</h3>
+
+    <!-- criar tabela-->
+    
+    | Propriedade    | Significado   | O que faz                   |
+    | -------------- | ------------- | --------------------------- |
+    | color          | cor           | muda a cor do texto         |
+    | font-size      | tamanho       | muda o tamanho              |
+    | font-family    | tipo de letra | muda a fonte                |
+    | font-weight    | peso          | deixa negrito               |
+    | font-style     | estilo        | deixa itálico               |
+    | text-align     | alinhamento   | posiciona o texto           |
+    | letter-spacing | espaço letras | aumenta espaço entre letras |
+    
+
+
+
+
+    </div>
+    
+</body>
+</html>
