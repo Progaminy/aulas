@@ -453,21 +453,12 @@
       <img src="img/pensador.png.jpeg" alt="foto do pensador sem fronteiras" class="foto-pensador" title="Pensador Sem Fronteiras">
     </div>
 
-    <!-- PESQUISA EM TEMPO REAL E BARRA DE PROGRESSO -->
+    <!-- PESQUISA EM TEMPO REAL EM DOCUMENTOS DE PESQUISA -->
     <div class="search-and-progress-container">
       <div class="search-box-wrapper">
         <span class="search-icon">🔍</span>
-        <input type="text" id="globalSearchInput" placeholder="Pesquisar módulo, aula ou tecnologia (ex: VS Code, Termux, Git, HTML, Química)...">
+        <input type="text" id="globalSearchInput" placeholder="Pesquisar documento, tecnologia ou comando (ex: VS Code, Termux, Git, HTML, Química)...">
         <button id="clearSearchBtn" class="clear-search-btn hidden" title="Limpar pesquisa">&times;</button>
-      </div>
-      <div class="progress-bar-container">
-        <div class="progress-bar-label">
-          <span>⚡ Progresso Geral de Aprendizagem:</span>
-          <span id="progressPercentageText">0% (0/0)</span>
-        </div>
-        <div class="progress-bar-track">
-          <div id="progressBarFill" class="progress-bar-fill" style="width: 0%;"></div>
-        </div>
       </div>
     </div>
 
@@ -582,23 +573,22 @@
 
   <script>
     (function() {
-      // 🌟 NAVEGAÇÃO COM EFEITO SUAVE 🌟
+      // 🌟 NAVEGAÇÃO DIRETA E FLUIDA 🌟
       window.navegarPara = function(url) {
         if (!url || url === '#') {
-          alert('📍 Este módulo está em desenvolvimento no Pensador Sem Fronteiras!');
+          alert('📍 Este documento de pesquisa está em desenvolvimento no Pensador Sem Fronteiras!');
           return;
         }
-        
-        const botoes = document.querySelectorAll('.nav-level-btn');
-        botoes.forEach(btn => {
-          btn.style.pointerEvents = 'none';
-          btn.style.opacity = '0.7';
-        });
-        
-        setTimeout(() => {
-          window.location.href = url;
-        }, 120);
+        window.location.href = url;
       };
+
+      // 🌟 GARANTIR QUE OS BOTÕES FIQUEM SEMPRE CLICÁVEIS APÓS VOLTAR NA NAVEGAÇÃO 🌟
+      window.addEventListener('pageshow', function() {
+        document.querySelectorAll('.nav-level-btn, .toggle-btn, .btn-link').forEach(btn => {
+          btn.style.pointerEvents = 'auto';
+          btn.style.opacity = '1';
+        });
+      });
 
       // 🌟 EXPANDIR / RECOLHER SECÇÕES DINAMICAMENTE 🌟
       document.querySelectorAll('.section-card').forEach(card => {
@@ -677,32 +667,6 @@
           searchInput.focus();
         });
       }
-
-      // 🌟 SISTEMA DE PROGRESSO DO ALUNO (LOCALSTORAGE) 🌟
-      function atualizarProgressoGeral() {
-        const todosBotoes = document.querySelectorAll('.nav-level-btn');
-        let total = todosBotoes.length;
-        let concluidos = 0;
-
-        todosBotoes.forEach(btn => {
-          const id = btn.getAttribute('data-id');
-          if (id && localStorage.getItem('psf_completed_' + id) === 'true') {
-            btn.style.borderColor = '#00ffaa';
-            btn.style.boxShadow = '0 0 15px rgba(0, 255, 170, 0.6)';
-            concluidos++;
-          }
-        });
-
-        const percent = total > 0 ? Math.round((concluidos / total) * 100) : 0;
-        const progressFill = document.getElementById('progressBarFill');
-        const progressText = document.getElementById('progressPercentageText');
-
-        if (progressFill) progressFill.style.width = percent + '%';
-        if (progressText) progressText.textContent = `${percent}% (${concluidos}/${total} Concluídos)`;
-      }
-
-      // Atualiza o progresso no carregamento da página
-      atualizarProgressoGeral();
 
       // Suporte para teclado (Enter / Espaço)
       document.querySelectorAll('.nav-level-btn, .toggle-btn').forEach(btn => {

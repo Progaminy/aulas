@@ -252,7 +252,6 @@
                 <a href="../index.html" class="nav-btn">🏠 Voltar Home</a>
                 <a href="javascript:location.reload()" class="nav-btn">🔄 ATUALIZAR</a>
             </div>
-            <button id="btnCompletePython" class="nav-btn" style="border-color:#00ffaa; color:#00ffaa;" onclick="toggleConcluido('mod-python')">☑️ Marcar como Concluído</button>
         </div>
 
         <h1 class="main-title">🐍 PYTHON — LENDÁRIO</h1>
@@ -369,6 +368,90 @@ def buscar_status_api():
 buscar_status_api()</code></pre>
                 </div>
             </div>
+
+            <!-- Card 4: Ficheiros & Tratamento de Erros -->
+            <div class="legend-card">
+                <div class="card-title">📁 4. Ficheiros Físicos & Exceções (`try / except`)</div>
+                <div class="term-block">
+                    <div class="term-name">Persistência de Dados e Robustez</div>
+                    <div class="desc-text">
+                        O bloco `with open(...)` garante o encerramento automático de ficheiros após leitura ou escrita, prevenindo fugas de memória. O tratamento de exceções impede que erros de execução parem o programa.
+                    </div>
+                </div>
+
+                <div class="code-box">
+                    <div class="code-header">
+                        <span>ficheiros.py — Escrita e Tratamento de Exceção</span>
+                        <button class="copy-btn" onclick="copiarCodigo('code4', this)">📋 Copiar</button>
+                    </div>
+                    <pre><code id="code4">import os
+
+# Escrita segura em arquivo com gerenciador de contexto (with)
+def salvar_relatorio(filename, dados):
+    try:
+        with open(filename, 'w', encoding='utf-8') as f:
+            f.write(dados)
+        print(f"✅ Ficheiro '{filename}' salvo com sucesso!")
+    except IOError as err:
+        print(f"❌ Erro ao gravar ficheiro: {err}")
+
+# Leitura e verificação de existência
+salvar_relatorio("pesquisa_pensador.txt", "Documento de Pesquisa Avançada em Python")
+
+if os.path.exists("pesquisa_pensador.txt"):
+    with open("pesquisa_pensador.txt", "r", encoding="utf-8") as f:
+        conteudo = f.read()
+        print(f"📖 Conteúdo Lido: {conteudo}")</code></pre>
+                </div>
+            </div>
+
+            <!-- Card 5: Cheat Sheet & Módulos da Biblioteca Padrão -->
+            <div class="legend-card">
+                <div class="card-title">📚 5. Guia Rápido de Módulos da Biblioteca Padrão</div>
+                <div class="term-block">
+                    <div class="term-name">Módulos Essenciais Integrados</div>
+                    <div class="desc-text">
+                        Python já vem com centenas de módulos na biblioteca padrão ("Batteries Included") que dispensam instalação de terceiros para tarefas de pesquisa:
+                    </div>
+                </div>
+
+                <table style="width: 100%; border-collapse: collapse; margin-top: 1rem; color: #d6e6ff; font-size: 0.9rem;">
+                    <thead>
+                        <tr style="border-bottom: 2px solid #ffd43b; text-align: left; color: #ffd43b;">
+                            <th style="padding: 0.5rem;">Módulo</th>
+                            <th style="padding: 0.5rem;">Função Principal</th>
+                            <th style="padding: 0.5rem;">Exemplo de Uso</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid rgba(255,212,59,0.2);">
+                            <td style="padding: 0.5rem;"><code>os</code> / <code>sys</code></td>
+                            <td style="padding: 0.5rem;">Integração com Sistema e Variáveis de Ambiente</td>
+                            <td style="padding: 0.5rem;"><code>os.listdir('.')</code> / <code>sys.argv</code></td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255,212,59,0.2);">
+                            <td style="padding: 0.5rem;"><code>json</code></td>
+                            <td style="padding: 0.5rem;">Codificação e Decodificação de Formato JSON</td>
+                            <td style="padding: 0.5rem;"><code>json.dumps(d)</code> / <code>json.loads(s)</code></td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255,212,59,0.2);">
+                            <td style="padding: 0.5rem;"><code>re</code></td>
+                            <td style="padding: 0.5rem;">Expressões Regulares para Busca e Extração de Texto</td>
+                            <td style="padding: 0.5rem;"><code>re.findall(r'\d+', text)</code></td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255,212,59,0.2);">
+                            <td style="padding: 0.5rem;"><code>datetime</code></td>
+                            <td style="padding: 0.5rem;">Manipulação de Datas, Horas e Fusos Horários</td>
+                            <td style="padding: 0.5rem;"><code>datetime.now()</code></td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255,212,59,0.2);">
+                            <td style="padding: 0.5rem;"><code>sqlite3</code></td>
+                            <td style="padding: 0.5rem;">Banco de Dados Relacional em Arquivo Local</td>
+                            <td style="padding: 0.5rem;"><code>sqlite3.connect('db.sqlite')</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
         <footer>
@@ -406,31 +489,13 @@ buscar_status_api()</code></pre>
             }
         });
 
-        // Toggle de Conclusão do Módulo
-        window.toggleConcluido = function(modId) {
-          const key = 'psf_completed_' + modId;
-          const cur = localStorage.getItem(key) === 'true';
-          localStorage.setItem(key, (!cur).toString());
-          updateCompleteBtn(modId);
-        };
-
-        function updateCompleteBtn(modId) {
-          const btn = document.getElementById('btnCompletePython');
-          if (!btn) return;
-          const isDone = localStorage.getItem('psf_completed_' + modId) === 'true';
-          if (isDone) {
-            btn.innerHTML = '✅ Concluído!';
-            btn.style.background = '#00ffaa';
-            btn.style.color = '#000';
-            btn.style.boxShadow = '0 0 20px #00ffaa';
-          } else {
-            btn.innerHTML = '☑️ Marcar como Concluído';
-            btn.style.background = '';
-            btn.style.color = '#00ffaa';
-            btn.style.boxShadow = '';
-          }
-        }
-        document.addEventListener('DOMContentLoaded', () => updateCompleteBtn('mod-python'));
+        // Garantir navegabilidade dos botões ao voltar
+        window.addEventListener('pageshow', function() {
+            document.querySelectorAll('.nav-btn, .copy-btn, .toggle-btn').forEach(btn => {
+                btn.style.pointerEvents = 'auto';
+                btn.style.opacity = '1';
+            });
+        });
     </script>
 </body>
 </html>

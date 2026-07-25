@@ -291,7 +291,6 @@
     <div class="nav-buttons">
       <a href="../index.html" class="nav-btn">🏠 Voltar Home</a>
       <a href="github.html" class="nav-btn">🔄 ATUALIZAR</a>
-      <button id="btnCompleteGitHub" class="nav-btn" style="border-color:#00ffaa; color:#00ffaa; cursor:pointer;" onclick="toggleConcluido('mod-github')">☑️ Marcar como Concluído</button>
     </div>    <!-- Índice Github -->
 
     <div class="section-card" data-section="html-indice">
@@ -807,30 +806,12 @@ git push -u origin main">📋 Copiar tudo</button>
         });
       });
 
-      window.toggleConcluido = function(modId) {
-        const key = 'psf_completed_' + modId;
-        const cur = localStorage.getItem(key) === 'true';
-        localStorage.setItem(key, (!cur).toString());
-        updateCompleteBtn(modId);
-      };
-
-      function updateCompleteBtn(modId) {
-        const btn = document.getElementById('btnCompleteGitHub');
-        if (!btn) return;
-        const isDone = localStorage.getItem('psf_completed_' + modId) === 'true';
-        if (isDone) {
-          btn.innerHTML = '✅ Concluído!';
-          btn.style.background = '#00ffaa';
-          btn.style.color = '#000';
-          btn.style.boxShadow = '0 0 20px #00ffaa';
-        } else {
-          btn.innerHTML = '☑️ Marcar como Concluído';
-          btn.style.background = '';
-          btn.style.color = '#00ffaa';
-          btn.style.boxShadow = '';
-        }
-      }
-      document.addEventListener('DOMContentLoaded', () => updateCompleteBtn('mod-github'));
+      window.addEventListener('pageshow', function() {
+        document.querySelectorAll('.nav-btn, .menu-btn, .copy-btn').forEach(btn => {
+          btn.style.pointerEvents = 'auto';
+          btn.style.opacity = '1';
+        });
+      });
     })();
   </script>
 </body>

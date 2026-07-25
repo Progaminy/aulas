@@ -252,7 +252,6 @@
                 <a href="../index.html" class="nav-btn">🏠 Voltar Home</a>
                 <a href="javascript:location.reload()" class="nav-btn">🔄 ATUALIZAR</a>
             </div>
-            <button id="btnCompletePHP" class="nav-btn" style="border-color:#00ffaa; color:#00ffaa;" onclick="toggleConcluido('mod-php')">☑️ Marcar como Concluído</button>
         </div>
 
         <h1 class="main-title">🐘 PHP — LENDÁRIO</h1>
@@ -381,6 +380,85 @@ try {
 ?&gt;</code></pre>
                 </div>
             </div>
+
+            <!-- Card 5: Sessões e Segurança -->
+            <div class="legend-card">
+                <div class="card-title">🔐 5. Gestão de Sessões (`session_start()`) & Cookies</div>
+                <div class="term-block">
+                    <div class="term-name">Persistência de Estado no Servidor</div>
+                    <div class="desc-text">
+                        Sessões mantêm o estado do utilizador entre diferentes requisições HTTP. É fundamental utilizar `session_regenerate_id(true)` após o login para prevenir ataques de *Session Fixation*.
+                    </div>
+                </div>
+
+                <div class="code-box">
+                    <div class="code-header">
+                        <span>sessao.php — Autenticação e Sessão Segura</span>
+                        <button class="copy-btn" onclick="copiarCodigo('code5', this)">📋 Copiar</button>
+                    </div>
+                    <pre><code id="code5">&lt;?php
+session_start();
+
+// Simulação de login bem sucedido
+$_SESSION['usuario_id'] = 42;
+$_SESSION['usuario_nome'] = "Pensador";
+$_SESSION['ip_remoto'] = $_SERVER['REMOTE_ADDR'];
+
+// Regenera o ID de sessão para segurança
+session_regenerate_id(true);
+
+echo "🟢 Sessão iniciada para " . $_SESSION['usuario_nome'];
+?&gt;</code></pre>
+                </div>
+            </div>
+
+            <!-- Card 6: Guia de Superglobais PHP -->
+            <div class="legend-card">
+                <div class="card-title">📚 6. Guia Rápido de Variáveis Superglobais PHP</div>
+                <div class="term-block">
+                    <div class="term-name">Superglobais Internas da Linguagem</div>
+                    <div class="desc-text">
+                        Variáveis pré-definidas no PHP que estão disponíveis em qualquer escopo de execução do script:
+                    </div>
+                </div>
+
+                <table style="width: 100%; border-collapse: collapse; margin-top: 1rem; color: #d6e6ff; font-size: 0.9rem;">
+                    <thead>
+                        <tr style="border-bottom: 2px solid #00ffff; text-align: left; color: #00ffff;">
+                            <th style="padding: 0.5rem;">Superglobal</th>
+                            <th style="padding: 0.5rem;">Finalidade Principal</th>
+                            <th style="padding: 0.5rem;">Exemplo de Uso</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid rgba(0,255,255,0.2);">
+                            <td style="padding: 0.5rem;"><code>$_POST</code></td>
+                            <td style="padding: 0.5rem;">Recebe dados enviados via método HTTP POST (Formulários)</td>
+                            <td style="padding: 0.5rem;"><code>$_POST['email']</code></td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(0,255,255,0.2);">
+                            <td style="padding: 0.5rem;"><code>$_GET</code></td>
+                            <td style="padding: 0.5rem;">Recebe parâmetros codificados na URL (Query String)</td>
+                            <td style="padding: 0.5rem;"><code>$_GET['id']</code></td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(0,255,255,0.2);">
+                            <td style="padding: 0.5rem;"><code>$_SERVER</code></td>
+                            <td style="padding: 0.5rem;">Informações sobre o Servidor e Ambiente HTTP</td>
+                            <td style="padding: 0.5rem;"><code>$_SERVER['REQUEST_METHOD']</code></td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(0,255,255,0.2);">
+                            <td style="padding: 0.5rem;"><code>$_FILES</code></td>
+                            <td style="padding: 0.5rem;">Gerencia uploads de ficheiros enviados por formulários</td>
+                            <td style="padding: 0.5rem;"><code>$_FILES['foto']['name']</code></td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(0,255,255,0.2);">
+                            <td style="padding: 0.5rem;"><code>$_SESSION</code></td>
+                            <td style="padding: 0.5rem;">Armazena dados de sessão do usuário no servidor</td>
+                            <td style="padding: 0.5rem;"><code>$_SESSION['user_id']</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
         <footer>
@@ -418,31 +496,13 @@ try {
             }
         });
 
-        // Toggle de Conclusão do Módulo
-        window.toggleConcluido = function(modId) {
-          const key = 'psf_completed_' + modId;
-          const cur = localStorage.getItem(key) === 'true';
-          localStorage.setItem(key, (!cur).toString());
-          updateCompleteBtn(modId);
-        };
-
-        function updateCompleteBtn(modId) {
-          const btn = document.getElementById('btnCompletePHP');
-          if (!btn) return;
-          const isDone = localStorage.getItem('psf_completed_' + modId) === 'true';
-          if (isDone) {
-            btn.innerHTML = '✅ Concluído!';
-            btn.style.background = '#00ffaa';
-            btn.style.color = '#000';
-            btn.style.boxShadow = '0 0 20px #00ffaa';
-          } else {
-            btn.innerHTML = '☑️ Marcar como Concluído';
-            btn.style.background = '';
-            btn.style.color = '#00ffaa';
-            btn.style.boxShadow = '';
-          }
-        }
-        document.addEventListener('DOMContentLoaded', () => updateCompleteBtn('mod-php'));
+        // Garantir navegabilidade dos botões ao voltar
+        window.addEventListener('pageshow', function() {
+            document.querySelectorAll('.nav-btn, .copy-btn, .toggle-btn').forEach(btn => {
+                btn.style.pointerEvents = 'auto';
+                btn.style.opacity = '1';
+            });
+        });
     </script>
 </body>
 </html>

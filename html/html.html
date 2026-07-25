@@ -476,7 +476,6 @@
         <div class="nav-buttons">
             <a href="../index.html" class="nav-btn">🏠 Voltar Home</a>
             <a href="html.html" class="nav-btn">🔄 ATUALIZAR</a>
-            <button id="btnCompleteHTML" class="nav-btn" style="border-color:#00ffaa; color:#00ffaa; cursor:pointer;" onclick="toggleConcluido('mod-html')">☑️ Marcar como Concluído</button>
         </div>
         <h1 class="main-title">HTML Lendário</h1>
 
@@ -623,30 +622,12 @@
             });
         });
 
-    window.toggleConcluido = function(modId) {
-      const key = 'psf_completed_' + modId;
-      const cur = localStorage.getItem(key) === 'true';
-      localStorage.setItem(key, (!cur).toString());
-      updateCompleteBtn(modId);
-    };
-
-    function updateCompleteBtn(modId) {
-      const btn = document.getElementById('btnCompleteHTML');
-      if (!btn) return;
-      const isDone = localStorage.getItem('psf_completed_' + modId) === 'true';
-      if (isDone) {
-        btn.innerHTML = '✅ Concluído!';
-        btn.style.background = '#00ffaa';
-        btn.style.color = '#000';
-        btn.style.boxShadow = '0 0 20px #00ffaa';
-      } else {
-        btn.innerHTML = '☑️ Marcar como Concluído';
-        btn.style.background = '';
-        btn.style.color = '#00ffaa';
-        btn.style.boxShadow = '';
-      }
-    }
-    document.addEventListener('DOMContentLoaded', () => updateCompleteBtn('mod-html'));
+    window.addEventListener('pageshow', function() {
+      document.querySelectorAll('.nav-btn, .btn-link, .copy-btn').forEach(btn => {
+        btn.style.pointerEvents = 'auto';
+        btn.style.opacity = '1';
+      });
+    });
 </script>
 </body>
 </html>

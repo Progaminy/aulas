@@ -335,7 +335,6 @@
             <a href="../index.html" class="btn-link">🏠 Voltar Home</a>
             <a href="javascript:location.reload()" class="btn-link">🔄 ATUALIZAR</a>
         </div>
-        <button id="btnCompleteVsCode" class="btn-link" style="border-color:#00ffaa; color:#00ffaa; cursor:pointer;" onclick="toggleConcluido('mod-vscode')">☑️ Marcar como Concluído</button>
     </div>
 
     <h1>⚡ VS code - Lendario ⚡</h1>
@@ -526,31 +525,13 @@ Atalhos úteis:
     // Reforço de validação: nenhum texto de estudo foi cortado. O arquivo original não possuía código além desses itens, e foi enriquecido com exemplos de código sem deletar informação. Tudo está contextualizado.
     
     // adicionar melhoria: garantir que nenhum bloco de link ou botão quebre
-    window.toggleConcluido = function(modId) {
-      const key = 'psf_completed_' + modId;
-      const cur = localStorage.getItem(key) === 'true';
-      localStorage.setItem(key, (!cur).toString());
-      updateCompleteBtn(modId);
-    };
-
-    function updateCompleteBtn(modId) {
-      const btn = document.getElementById('btnCompleteVsCode');
-      if (!btn) return;
-      const isDone = localStorage.getItem('psf_completed_' + modId) === 'true';
-      if (isDone) {
-        btn.innerHTML = '✅ Concluído!';
-        btn.style.background = '#00ffaa';
-        btn.style.color = '#000';
-        btn.style.boxShadow = '0 0 20px #00ffaa';
-      } else {
-        btn.innerHTML = '☑️ Marcar como Concluído';
-        btn.style.background = '';
-        btn.style.color = '#00ffaa';
-        btn.style.boxShadow = '';
-      }
-    }
-    document.addEventListener('DOMContentLoaded', () => updateCompleteBtn('mod-vscode'));
-    console.log('VS Code Lendário - UI ultracriativa, todas funcionalidades de copiar e navegação ok');
+    window.addEventListener('pageshow', function() {
+        document.querySelectorAll('.btn-link, .nav-btn-card, .toggle-btn, .copy-btn').forEach(btn => {
+            btn.style.pointerEvents = 'auto';
+            btn.style.opacity = '1';
+        });
+    });
+    console.log('VS Code Lendário — Documentação de Pesquisa Ativa');
 </script>
 
 <!-- Organização final: todo conteúdo original está representado visualmente, incluindo o indice expansível, botões de navegação, textos e dicas de produtividade.
