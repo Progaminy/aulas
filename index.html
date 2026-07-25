@@ -48,12 +48,12 @@
 
     .container {
       width: 100%;
-      max-width: 750px;
+      max-width: 780px;
       position: relative;
       z-index: 2;
       display: flex;
       flex-direction: column;
-      gap: 2rem;
+      gap: 1.8rem;
     }
 
     .main-title {
@@ -80,7 +80,7 @@
       font-weight: 400;
       color: #adf0ff;
       text-shadow: 0 0 8px #00ffff;
-      margin-bottom: 1.8rem;
+      margin-bottom: 0.8rem;
       letter-spacing: 0.1em;
       background: rgba(0, 0, 0, 0.5);
       padding: 0.5rem 1rem;
@@ -91,12 +91,12 @@
       align-self: center;
     }
 
-    /* 🌟🌟🌟 ESTILO EXAGERADO 3D PARA A FOTO (ARREDONDADA, BOMBAR, ANIMAÇÃO) 🌟🌟🌟 */
+    /* ESTILO 3D PARA A FOTO DO PENSADOR */
     .foto-pensador-wrapper {
       display: flex;
       justify-content: center;
       align-items: center;
-      margin: 0.5rem 0 1rem;
+      margin: 0.2rem 0 0.8rem;
       perspective: 800px;
     }
 
@@ -131,44 +131,116 @@
     }
 
     @keyframes flutuar3D {
-      0%, 100% {
-        transform: translateY(0px) rotateY(0deg) rotateX(0deg);
-      }
-      25% {
-        transform: translateY(-8px) rotateY(3deg) rotateX(2deg);
-      }
-      50% {
-        transform: translateY(-4px) rotateY(-2deg) rotateX(-1deg);
-      }
-      75% {
-        transform: translateY(-10px) rotateY(2deg) rotateX(3deg);
-      }
+      0%, 100% { transform: translateY(0px) rotateY(0deg) rotateX(0deg); }
+      25% { transform: translateY(-8px) rotateY(3deg) rotateX(2deg); }
+      50% { transform: translateY(-4px) rotateY(-2deg) rotateX(-1deg); }
+      75% { transform: translateY(-10px) rotateY(2deg) rotateX(3deg); }
     }
 
     @keyframes brilhoPulsante {
       0%, 100% {
-        box-shadow: 
-          0 0 25px #00ffff,
-          0 0 50px #ff00ff,
-          0 0 80px #00ffff,
-          0 15px 35px rgba(0, 0, 0, 0.8);
+        box-shadow: 0 0 25px #00ffff, 0 0 50px #ff00ff, 0 0 80px #00ffff, 0 15px 35px rgba(0, 0, 0, 0.8);
       }
       50% {
-        box-shadow: 
-          0 0 40px #ffffff,
-          0 0 75px #ff00ff,
-          0 0 120px #00ffff,
-          0 15px 35px rgba(0, 0, 0, 0.8);
+        box-shadow: 0 0 40px #ffffff, 0 0 75px #ff00ff, 0 0 120px #00ffff, 0 15px 35px rgba(0, 0, 0, 0.8);
       }
     }
 
-    @media (max-width: 480px) {
-      .foto-pensador {
-        width: 110px;
-        height: 110px;
-      }
+    /* BARRA DE PESQUISA EM TEMPO REAL & PROGRESSO */
+    .search-and-progress-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      background: rgba(8, 14, 26, 0.7);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(0, 255, 255, 0.3);
+      border-radius: 24px;
+      padding: 1.2rem;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
     }
 
+    .search-box-wrapper {
+      position: relative;
+      width: 100%;
+    }
+
+    .search-box-wrapper input {
+      width: 100%;
+      padding: 0.9rem 2.8rem 0.9rem 3rem;
+      background: rgba(4, 8, 15, 0.9);
+      border: 2px solid #00ffff;
+      border-radius: 40px;
+      color: #ffffff;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 1rem;
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.25);
+      outline: none;
+      transition: all 0.3s ease;
+    }
+
+    .search-box-wrapper input:focus {
+      border-color: #ff00ff;
+      box-shadow: 0 0 25px rgba(255, 0, 255, 0.6), 0 0 10px #00ffff;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 1.1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.2rem;
+      pointer-events: none;
+    }
+
+    .clear-search-btn {
+      position: absolute;
+      right: 1.1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: #ff00ff;
+      font-size: 1.4rem;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .clear-search-btn.hidden {
+      display: none;
+    }
+
+    .progress-bar-container {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .progress-bar-label {
+      display: flex;
+      justify-content: space-between;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.85rem;
+      color: #00ffff;
+      letter-spacing: 0.08em;
+    }
+
+    .progress-bar-track {
+      width: 100%;
+      height: 10px;
+      background: rgba(0, 0, 0, 0.7);
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid rgba(0, 255, 255, 0.3);
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #00ffff, #ff00ff);
+      box-shadow: 0 0 12px #ff00ff;
+      transition: width 0.4s ease;
+    }
+
+    /* CARDS DE SECÇÃO */
     .section-card {
       background: rgba(8, 12, 20, 0.75);
       backdrop-filter: blur(18px);
@@ -216,14 +288,14 @@
 
     .section-title {
       font-family: 'Orbitron', sans-serif;
-      font-size: 1.6rem;
+      font-size: 1.5rem;
       font-weight: 700;
       color: #00ffff;
       text-shadow: 0 0 12px #0ff, 0 0 30px #f0f;
-      letter-spacing: 0.1rem;
+      letter-spacing: 0.08rem;
       display: flex;
       align-items: center;
-      gap: 0.4rem;
+      gap: 0.5rem;
       flex: 1;
       min-width: 200px;
     }
@@ -240,7 +312,7 @@
       color: #0ff;
       font-family: 'Orbitron', sans-serif;
       font-weight: 600;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       padding: 0.65rem 1.3rem;
       border-radius: 40px;
       cursor: pointer;
@@ -255,7 +327,6 @@
       white-space: nowrap;
       touch-action: manipulation;
       outline: none;
-      -webkit-tap-highlight-color: transparent;
     }
 
     .toggle-btn:hover {
@@ -282,19 +353,19 @@
       display: none;
     }
 
-    /* 🌟🌟🌟 BOTÃO DE NAVEGAÇÃO ÚNICO (CLICÁVEL INTEIRO, SEM BOTÃO COPIAR) 🌟🌟🌟 */
+    /* BOTÃO DE NAVEGAÇÃO ÚNICO */
     .nav-level-btn {
       background: rgba(0, 0, 0, 0.65);
       border: 2px solid #00ffaa;
       color: #b5fffa;
       font-family: 'Orbitron', sans-serif;
       font-weight: 700;
-      font-size: 1rem;
-      padding: 0.9rem 1.5rem;
+      font-size: 0.95rem;
+      padding: 0.9rem 1.4rem;
       border-radius: 35px;
       cursor: pointer;
       backdrop-filter: blur(12px);
-      box-shadow: 0 0 20px rgba(0, 255, 170, 0.5), 0 6px 16px rgba(0,0,0,0.6);
+      box-shadow: 0 0 20px rgba(0, 255, 170, 0.4), 0 6px 16px rgba(0,0,0,0.6);
       text-transform: uppercase;
       letter-spacing: 0.08em;
       transition: all 0.25s ease;
@@ -305,7 +376,6 @@
       gap: 0.6rem;
       touch-action: manipulation;
       outline: none;
-      -webkit-tap-highlight-color: transparent;
     }
 
     .nav-level-btn:hover {
@@ -320,15 +390,19 @@
       transform: scale(0.96);
       background: #fff;
       color: #000;
-      border-color: #fff;
-      box-shadow: 0 0 50px #fff;
-      transition: 0.08s;
     }
 
     .level-icon {
       font-size: 1.4rem;
       filter: drop-shadow(0 0 8px cyan);
       flex-shrink: 0;
+    }
+
+    .search-highlight {
+      background: rgba(255, 0, 255, 0.3);
+      color: #ffffff;
+      border-color: #ff00ff;
+      box-shadow: 0 0 25px #ff00ff;
     }
 
     .footer-signature {
@@ -363,9 +437,10 @@
 
     @media (max-width: 480px) {
       body { padding: 1rem 0.8rem; }
-      .section-title { font-size: 1.3rem; }
-      .toggle-btn { padding: 0.6rem 1rem; font-size: 0.8rem; }
-      .nav-level-btn { font-size: 0.9rem; padding: 0.75rem 1.2rem; }
+      .section-title { font-size: 1.25rem; }
+      .toggle-btn { padding: 0.55rem 1rem; font-size: 0.78rem; }
+      .nav-level-btn { font-size: 0.85rem; padding: 0.75rem 1.1rem; }
+      .foto-pensador { width: 110px; height: 110px; }
     }
   </style>
 </head>
@@ -374,155 +449,123 @@
     <h1 class="main-title">Pensador Sem Fronteiras</h1>
     <div class="sub-header">⚡ Eterno Aprendiz ⚡</div>
 
-    <!-- estilizar foto de forma arredondada, diminuir tamanho, colocar a bombar, estilo extravagante 3D, colocar animação -->
     <div class="foto-pensador-wrapper">
-      <img src="img/pensador.png.jpeg" alt="foto do pensador sem fronteiras" class="foto-pensador">
+      <img src="img/pensador.png.jpeg" alt="foto do pensador sem fronteiras" class="foto-pensador" title="Pensador Sem Fronteiras">
     </div>
 
-    <!-- programação -->
-    <div class="section-card" data-section="termux">
-      <div class="header-row">
-        <div class="section-title"><i>&lt;/&gt;</i> Programação - Lendário</div>
-        <button class="toggle-btn" id="toggleTermux">📂 Expandir</button>
+    <!-- PESQUISA EM TEMPO REAL E BARRA DE PROGRESSO -->
+    <div class="search-and-progress-container">
+      <div class="search-box-wrapper">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="globalSearchInput" placeholder="Pesquisar módulo, aula ou tecnologia (ex: VS Code, Termux, Git, HTML, Química)...">
+        <button id="clearSearchBtn" class="clear-search-btn hidden" title="Limpar pesquisa">&times;</button>
       </div>
-      <ul class="link-list hidden-list" id="listTermux">
-        <li><button class="nav-level-btn" onclick="navegarPara('vscode/vscode.html')"><span class="level-icon">💎</span> Vs Code - Lendário </button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('kali/kali.html')"><span class="level-icon">📱</span> Linux (Kali) - Lendário</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('termux/termux.html')"><span class="level-icon">📱</span> Termux - Lendário</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('')"><span class="level-icon">🖥️</span> Termux X11 - Lendário</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">🐧</span> Linux - Lendário</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('github/github.html')"><span class="level-icon">🐙</span> GitHub - Lendário</button></li>
-        <a href="github/github.html"></a>
-        <li><button class="nav-level-btn" onclick="navegarPara('html/html.html')"><span class="level-icon">🌐</span> HTML - Lendário</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('css/css.html')"><span class="level-icon">🎨</span> CSS - Lendário</button></li>
-         <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">⚡</span> JavaScript - Lendário</button></li>
-         <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">🔷</span> TypeScript - Lendário</button></li>
-         <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">🔥</span> Firebase - Lendário</button></li>
+      <div class="progress-bar-container">
+        <div class="progress-bar-label">
+          <span>⚡ Progresso Geral de Aprendizagem:</span>
+          <span id="progressPercentageText">0% (0/0)</span>
+        </div>
+        <div class="progress-bar-track">
+          <div id="progressBarFill" class="progress-bar-fill" style="width: 0%;"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECÇÃO 1: PROGRAMAÇÃO -->
+    <div class="section-card" data-section="programacao">
+      <div class="header-row">
+        <div class="section-title"><i>💻</i> Programação & Ferramentas - Lendário</div>
+        <button class="toggle-btn">📂 Expandir</button>
+      </div>
+      <ul class="link-list hidden-list">
+        <li><button class="nav-level-btn" data-id="mod-vscode" onclick="navegarPara('vscode/vscode.html')"><span class="level-icon">💎</span> VS Code - Lendário</button></li>
+        <li><button class="nav-level-btn" data-id="mod-kali" onclick="navegarPara('kali/kali.html')"><span class="level-icon">🐉</span> Linux Kali - Lendário</button></li>
+        <li><button class="nav-level-btn" data-id="mod-termux" onclick="navegarPara('termux/termux.html')"><span class="level-icon">📱</span> Termux - Lendário</button></li>
+        <li><button class="nav-level-btn" data-id="mod-github" onclick="navegarPara('github/github.html')"><span class="level-icon">🐙</span> GitHub & Git - Lendário</button></li>
+        <li><button class="nav-level-btn" data-id="mod-html" onclick="navegarPara('html/html.html')"><span class="level-icon">🌐</span> HTML5 & Estruturas - Lendário</button></li>
+        <li><button class="nav-level-btn" data-id="mod-css" onclick="navegarPara('css/css.html')"><span class="level-icon">🎨</span> CSS3 & Estilização - Lendário</button></li>
+        <li><button class="nav-level-btn" data-id="mod-python" onclick="navegarPara('python/python.html')"><span class="level-icon">🐍</span> Python — Programação & IA - Lendário</button></li>
+        <li><button class="nav-level-btn" data-id="mod-php" onclick="navegarPara('php/php.html')"><span class="level-icon">🐘</span> PHP — Web Server-Side - Lendário</button></li>
+        <li><button class="nav-level-btn" data-id="mod-prompts" onclick="navegarPara('paginas/prompts.html')"><span class="level-icon">🤖</span> Prompts & Inteligência Artificial</button></li>
       </ul>
     </div>
 
-    <!-- colocar os símbolos e trocar símbolos devidamente -->
-    <!-- Ciência - Didática Lendária -->
-    <div class="section-card" data-section="termuxx11">
+    <!-- SECÇÃO 2: CIÊNCIA -->
+    <div class="section-card" data-section="ciencia">
       <div class="header-row">
-        <div class="section-title"><i>🖥️</i> Ciência - Didática Lendária</div>
-        <button class="toggle-btn" id="toggleTermuxX11">📂 Expandir</button>
+        <div class="section-title"><i>🧪</i> Ciência - Didática Lendária</div>
+        <button class="toggle-btn">📂 Expandir</button>
       </div>
-      <ul class="link-list hidden-list" id="listTermuxX11">
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">📐</span> Matemática</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">🧪</span> Química</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">⚛️</span> Física</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">🧬</span> Biologia</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">🌍</span> Geografia</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">🏛️</span> Filosofia</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">🔭</span> Astronomia</button></li>
-        
+      <ul class="link-list hidden-list">
+        <li><button class="nav-level-btn" data-id="mod-matematica" onclick="navegarPara('#')"><span class="level-icon">📐</span> Matemática & Lógica</button></li>
+        <li><button class="nav-level-btn" data-id="mod-quimica" onclick="navegarPara('#')"><span class="level-icon">🧪</span> Química & Reações</button></li>
+        <li><button class="nav-level-btn" data-id="mod-fisica" onclick="navegarPara('#')"><span class="level-icon">⚛️</span> Física & Mecânica</button></li>
+        <li><button class="nav-level-btn" data-id="mod-biologia" onclick="navegarPara('#')"><span class="level-icon">🧬</span> Biologia & Vida</button></li>
+        <li><button class="nav-level-btn" data-id="mod-geografia" onclick="navegarPara('#')"><span class="level-icon">🌍</span> Geografia & Sistemas</button></li>
+        <li><button class="nav-level-btn" data-id="mod-filosofia" onclick="navegarPara('#')"><span class="level-icon">🏛️</span> Filosofia & Razão</button></li>
+        <li><button class="nav-level-btn" data-id="mod-astronomia" onclick="navegarPara('#')"><span class="level-icon">🔭</span> Astronomia & Cosmos</button></li>
       </ul>
     </div>
 
-    <!-- Religião -->
-    <div class="section-card" data-section="linux">
+    <!-- SECÇÃO 3: RELIGIÃO -->
+    <div class="section-card" data-section="religiao">
       <div class="header-row">
-        <div class="section-title"><i>🐧</i> Religião</div>
-        <button class="toggle-btn" id="toggleLinux">📂 Expandir</button>
+        <div class="section-title"><i>📜</i> Religião & Teologia</div>
+        <button class="toggle-btn">📂 Expandir</button>
       </div>
-      <ul class="link-list hidden-list" id="listLinux">
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">✝️</span> Cristianismo</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">☪️</span> Islão</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">🕎</span> Judaísmo</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">☸️</span> Budismo</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">🕉️</span> Hinduísmo</button></li>
+      <ul class="link-list hidden-list">
+        <li><button class="nav-level-btn" data-id="mod-cristianismo" onclick="navegarPara('#')"><span class="level-icon">✝️</span> Cristianismo</button></li>
+        <li><button class="nav-level-btn" data-id="mod-islao" onclick="navegarPara('#')"><span class="level-icon">☪️</span> Islão</button></li>
+        <li><button class="nav-level-btn" data-id="mod-judaismo" onclick="navegarPara('#')"><span class="level-icon">🕎</span> Judaísmo</button></li>
+        <li><button class="nav-level-btn" data-id="mod-budismo" onclick="navegarPara('#')"><span class="level-icon">☸️</span> Budismo</button></li>
+        <li><button class="nav-level-btn" data-id="mod-hinduismo" onclick="navegarPara('#')"><span class="level-icon">🕉️</span> Hinduísmo</button></li>
       </ul>
     </div>
 
-    <!-- Engenharia Técnica -->
-    <div class="section-card" data-section="github">
+    <!-- SECÇÃO 4: ENGENHARIA -->
+    <div class="section-card" data-section="engenharia">
       <div class="header-row">
-        <div class="section-title"><i>🔧</i> Engenharia - Técnica Profissional Lendária</div>
-        <button class="toggle-btn" id="toggleGitHub">📂 Expandir</button>
+        <div class="section-title"><i>⚙️</i> Engenharia & Técnica Profissional</div>
+        <button class="toggle-btn">📂 Expandir</button>
       </div>
-      <ul class="link-list hidden-list" id="listGitHub">
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">⚡</span> Eletricidade</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">🔩</span> Mecânica</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">🌐</span> Redes de Computadores</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">🤖</span> Robótica</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">🐙</span> GitHub - Lendário Nível V</button></li>
+      <ul class="link-list hidden-list">
+        <li><button class="nav-level-btn" data-id="mod-eletricidade" onclick="navegarPara('#')"><span class="level-icon">⚡</span> Eletricidade & Circuitos</button></li>
+        <li><button class="nav-level-btn" data-id="mod-mecanica" onclick="navegarPara('#')"><span class="level-icon">🔩</span> Mecânica Industrial</button></li>
+        <li><button class="nav-level-btn" data-id="mod-redes" onclick="navegarPara('#')"><span class="level-icon">🌐</span> Redes de Computadores</button></li>
+        <li><button class="nav-level-btn" data-id="mod-robotica" onclick="navegarPara('#')"><span class="level-icon">🤖</span> Robótica & Sistemas</button></li>
+        <li><button class="nav-level-btn" data-id="mod-automacao" onclick="navegarPara('#')"><span class="level-icon">🎛️</span> Automação & IoT</button></li>
       </ul>
     </div>
 
-    <!-- ? -->
-    <div class="section-card" data-section="html">
+    <!-- SECÇÃO 5: DEV WEB & FRAMEWORKS -->
+    <div class="section-card" data-section="devweb">
       <div class="header-row">
-        <div class="section-title"><i>❓</i> ?</div>
-        <button class="toggle-btn" id="toggleHtml">📂 Expandir</button>
+        <div class="section-title"><i>🌐</i> Dev Web & Linguagens</div>
+        <button class="toggle-btn">📂 Expandir</button>
       </div>
-      <ul class="link-list hidden-list" id="listHtml">
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">🌐</span> HTML - Lendário Nível I</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">🌐</span> HTML - Lendário Nível II</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">🌐</span> HTML - Lendário Nível III</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">🌐</span> HTML - Lendário Nível IV</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">🌐</span> HTML - Lendário Nível V</button></li>
+      <ul class="link-list hidden-list">
+        <li><button class="nav-level-btn" data-id="mod-html-adv" onclick="navegarPara('html/html.html')"><span class="level-icon">🌐</span> HTML5 Semântico & Acessibilidade</button></li>
+        <li><button class="nav-level-btn" data-id="mod-css-adv" onclick="navegarPara('css/css.html')"><span class="level-icon">🎨</span> CSS Grid, Flexbox & Animações</button></li>
+        <li><button class="nav-level-btn" data-id="mod-python-web" onclick="navegarPara('python/python.html')"><span class="level-icon">🐍</span> Python Backend & Scripting</button></li>
+        <li><button class="nav-level-btn" data-id="mod-php-web" onclick="navegarPara('php/php.html')"><span class="level-icon">🐘</span> PHP Server-Side & PDO</button></li>
+        <li><button class="nav-level-btn" data-id="mod-js" onclick="navegarPara('#')"><span class="level-icon">⚡</span> JavaScript ES6+ & DOM</button></li>
+        <li><button class="nav-level-btn" data-id="mod-ts" onclick="navegarPara('#')"><span class="level-icon">🔷</span> TypeScript & Tipagem Forte</button></li>
+        <li><button class="nav-level-btn" data-id="mod-firebase" onclick="navegarPara('#')"><span class="level-icon">🔥</span> Firebase Backend & Auth</button></li>
       </ul>
     </div>
 
-    <!-- Passo a passo -->
-    <div class="section-card" data-section="css">
+    <!-- SECÇÃO 6: PASSO A PASSO -->
+    <div class="section-card" data-section="passo-a-passo">
       <div class="header-row">
-        <div class="section-title"><i>🎯</i> Passo a Passo - Lendário</div>
-
-        <button class="toggle-btn" id="toggleCss">📂 Expandir</button>
+        <div class="section-title"><i>🎯</i> Passo a Passo & Roteiros Lendários</div>
+        <button class="toggle-btn">📂 Expandir</button>
       </div>
-      <ul class="link-list hidden-list" id="listCss">
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">1️⃣</span> ?I</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">2️⃣</span> CSS - ?</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">3️⃣</span> CSS - ?</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">4️⃣</span> CSS - ?</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">5️⃣</span> CSS - ?</button></li>
-      </ul>
-    </div>
-
-    <!-- ? -->
-    <div class="section-card" data-section="js">
-      <div class="header-row">
-        <div class="section-title"><i>❓</i> ?</div>
-        <button class="toggle-btn" id="toggleJs">📂 Expandir</button>
-      </div>
-      <ul class="link-list hidden-list" id="listJs">
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">🔮</span> ?</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">🔮</span> ?</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">🔮</span> ? </button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">🔮</span> ?</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">🔮</span> ?</button></li>
-      </ul>
-    </div>
-
-    <!-- ? -->
-    <div class="section-card" data-section="ts">
-      <div class="header-row">
-        <div class="section-title"><i>❓</i> ?</div>
-        <button class="toggle-btn" id="toggleTs">📂 Expandir</button>
-      </div>
-      <ul class="link-list hidden-list" id="listTs">
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">💠</span> ?</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">💠</span> ?</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">💠</span> ?</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">💠</span> ?</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">💠</span> ?</button></li>
-      </ul>
-    </div>
-
-    <!-- ? -->
-    <div class="section-card" data-section="firebase">
-      <div class="header-row">
-        <div class="section-title"><i>❓</i> ?</div>
-        <button class="toggle-btn" id="toggleFirebase">📂 Expandir</button>
-      </div>
-      <ul class="link-list hidden-list" id="listFirebase">
-        <li><button class="nav-level-btn" onclick="navegarPara('paginas/prompts.html')"><span class="level-icon">🔥</span> Prompts</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">🔥</span> ?</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">🔥</span> ?</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">🔥</span> ?</button></li>
-        <li><button class="nav-level-btn" onclick="navegarPara('#')"><span class="level-icon">🔥</span> ?</button></li>
+      <ul class="link-list hidden-list">
+        <li><button class="nav-level-btn" data-id="mod-roteiro-dev" onclick="navegarPara('vscode/paginas/proctutividadeVs.html')"><span class="level-icon">🚀</span> Roteiro: Do Zero a Dev de Produtividade</button></li>
+        <li><button class="nav-level-btn" data-id="mod-roteiro-terminal" onclick="navegarPara('termux/termux.html')"><span class="level-icon">🐧</span> Roteiro: Dominando o Terminal Linux</button></li>
+        <li><button class="nav-level-btn" data-id="mod-roteiro-git" onclick="navegarPara('github/paginas/gitClone.html')"><span class="level-icon">🐙</span> Roteiro: Clonagem e Gestão Git</button></li>
+        <li><button class="nav-level-btn" data-id="mod-roteiro-cyberpunk" onclick="navegarPara('css/css.html')"><span class="level-icon">💎</span> Roteiro: Design Web Futurista Cyberpunk</button></li>
+        <li><button class="nav-level-btn" data-id="mod-roteiro-ai" onclick="navegarPara('paginas/prompts.html')"><span class="level-icon">🧠</span> Roteiro: Engenharia de Prompts para IA</button></li>
       </ul>
     </div>
 
@@ -534,9 +577,12 @@
 
   <script>
     (function() {
-      // 🌟 FUNÇÃO DE NAVEGAÇÃO REAL COM BOTÕES 🌟
+      // 🌟 NAVEGAÇÃO COM EFEITO SUAVE 🌟
       window.navegarPara = function(url) {
-        if (!url || url === '#') return;
+        if (!url || url === '#') {
+          alert('📍 Este módulo está em desenvolvimento no Pensador Sem Fronteiras!');
+          return;
+        }
         
         const botoes = document.querySelectorAll('.nav-level-btn');
         botoes.forEach(btn => {
@@ -546,50 +592,114 @@
         
         setTimeout(() => {
           window.location.href = url;
-        }, 100);
-        
-        setTimeout(() => {
-          botoes.forEach(btn => {
-            btn.style.pointerEvents = 'auto';
-            btn.style.opacity = '1';
-          });
-        }, 500);
+        }, 120);
       };
 
-      // Mapeamento dos botões toggle e listas correspondentes
-      const sections = [
-        { toggleId: 'toggleVsCode', listId: 'listVsCode' },
-        { toggleId: 'toggleTermux', listId: 'listTermux' },
-        { toggleId: 'toggleTermuxX11', listId: 'listTermuxX11' },
-        { toggleId: 'toggleLinux', listId: 'listLinux' },
-        { toggleId: 'toggleGitHub', listId: 'listGitHub' },
-        { toggleId: 'toggleHtml', listId: 'listHtml' },
-        { toggleId: 'toggleCss', listId: 'listCss' },
-        { toggleId: 'toggleJs', listId: 'listJs' },
-        { toggleId: 'toggleTs', listId: 'listTs' },
-        { toggleId: 'toggleFirebase', listId: 'listFirebase' }
-      ];
-
-      // Função toggle expandir/recolher
-      sections.forEach(({ toggleId, listId }) => {
-        const btn = document.getElementById(toggleId);
-        const list = document.getElementById(listId);
-        if (!btn || !list) return;
-
-        btn.addEventListener('click', function(e) {
-          e.stopPropagation();
-          const isHidden = list.classList.contains('hidden-list');
-          if (isHidden) {
-            list.classList.remove('hidden-list');
-            btn.innerHTML = '📁 Recolher';
-          } else {
-            list.classList.add('hidden-list');
-            btn.innerHTML = '📂 Expandir';
-          }
-        });
+      // 🌟 EXPANDIR / RECOLHER SECÇÕES DINAMICAMENTE 🌟
+      document.querySelectorAll('.section-card').forEach(card => {
+        const btn = card.querySelector('.toggle-btn');
+        const list = card.querySelector('.link-list');
+        if (btn && list) {
+          btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isHidden = list.classList.contains('hidden-list');
+            if (isHidden) {
+              list.classList.remove('hidden-list');
+              btn.innerHTML = '📁 Recolher';
+            } else {
+              list.classList.add('hidden-list');
+              btn.innerHTML = '📂 Expandir';
+            }
+          });
+        }
       });
 
-      // Suporte para tecla Enter nos botões
+      // 🌟 PESQUISA EM TEMPO REAL 🌟
+      const searchInput = document.getElementById('globalSearchInput');
+      const clearBtn = document.getElementById('clearSearchBtn');
+
+      if (searchInput) {
+        searchInput.addEventListener('input', function() {
+          const query = this.value.trim().toLowerCase();
+          
+          if (query.length > 0) {
+            clearBtn.classList.remove('hidden');
+          } else {
+            clearBtn.classList.add('hidden');
+          }
+
+          document.querySelectorAll('.section-card').forEach(card => {
+            const list = card.querySelector('.link-list');
+            const toggleBtn = card.querySelector('.toggle-btn');
+            const items = card.querySelectorAll('.nav-level-btn');
+            let hasMatch = false;
+
+            items.forEach(btn => {
+              const text = btn.textContent.toLowerCase();
+              if (query === '' || text.includes(query)) {
+                btn.parentElement.style.display = 'block';
+                hasMatch = true;
+                if (query !== '') {
+                  btn.classList.add('search-highlight');
+                } else {
+                  btn.classList.remove('search-highlight');
+                }
+              } else {
+                btn.parentElement.style.display = 'none';
+                btn.classList.remove('search-highlight');
+              }
+            });
+
+            if (query !== '') {
+              if (hasMatch) {
+                card.style.display = 'block';
+                if (list) list.classList.remove('hidden-list');
+                if (toggleBtn) toggleBtn.innerHTML = '📁 Recolher';
+              } else {
+                card.style.display = 'none';
+              }
+            } else {
+              card.style.display = 'block';
+              if (list) list.classList.add('hidden-list');
+              if (toggleBtn) toggleBtn.innerHTML = '📂 Expandir';
+            }
+          });
+        });
+
+        clearBtn.addEventListener('click', function() {
+          searchInput.value = '';
+          searchInput.dispatchEvent(new Event('input'));
+          searchInput.focus();
+        });
+      }
+
+      // 🌟 SISTEMA DE PROGRESSO DO ALUNO (LOCALSTORAGE) 🌟
+      function atualizarProgressoGeral() {
+        const todosBotoes = document.querySelectorAll('.nav-level-btn');
+        let total = todosBotoes.length;
+        let concluidos = 0;
+
+        todosBotoes.forEach(btn => {
+          const id = btn.getAttribute('data-id');
+          if (id && localStorage.getItem('psf_completed_' + id) === 'true') {
+            btn.style.borderColor = '#00ffaa';
+            btn.style.boxShadow = '0 0 15px rgba(0, 255, 170, 0.6)';
+            concluidos++;
+          }
+        });
+
+        const percent = total > 0 ? Math.round((concluidos / total) * 100) : 0;
+        const progressFill = document.getElementById('progressBarFill');
+        const progressText = document.getElementById('progressPercentageText');
+
+        if (progressFill) progressFill.style.width = percent + '%';
+        if (progressText) progressText.textContent = `${percent}% (${concluidos}/${total} Concluídos)`;
+      }
+
+      // Atualiza o progresso no carregamento da página
+      atualizarProgressoGeral();
+
+      // Suporte para teclado (Enter / Espaço)
       document.querySelectorAll('.nav-level-btn, .toggle-btn').forEach(btn => {
         btn.addEventListener('keydown', function(e) {
           if (e.key === 'Enter' || e.key === ' ') {
@@ -598,7 +708,6 @@
           }
         });
       });
-
     })();
   </script>
 </body>

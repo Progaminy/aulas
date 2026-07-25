@@ -375,6 +375,7 @@
         <div class="nav-buttons">
             <a href="../index.html" class="btn-link">🏠 Voltar à Home</a>
             <a href="css.html" class="btn-link">🔄 ATUALIZAR</a>
+            <button id="btnCompleteCSS" class="btn-link" style="border-color:#00ffaa; color:#00ffaa; cursor:pointer;" onclick="toggleConcluido('mod-css')">☑️ Marcar como Concluído</button>
         </div>
 
         <!-- Título principal -->
@@ -485,6 +486,31 @@
                 }
             });
         });
+
+        window.toggleConcluido = function(modId) {
+            const key = 'psf_completed_' + modId;
+            const cur = localStorage.getItem(key) === 'true';
+            localStorage.setItem(key, (!cur).toString());
+            updateCompleteBtn(modId);
+        };
+
+        function updateCompleteBtn(modId) {
+            const btn = document.getElementById('btnCompleteCSS');
+            if (!btn) return;
+            const isDone = localStorage.getItem('psf_completed_' + modId) === 'true';
+            if (isDone) {
+                btn.innerHTML = '✅ Concluído!';
+                btn.style.background = '#00ffaa';
+                btn.style.color = '#000';
+                btn.style.boxShadow = '0 0 20px #00ffaa';
+            } else {
+                btn.innerHTML = '☑️ Marcar como Concluído';
+                btn.style.background = '';
+                btn.style.color = '#00ffaa';
+                btn.style.boxShadow = '';
+            }
+        }
+        document.addEventListener('DOMContentLoaded', () => updateCompleteBtn('mod-css'));
     </script>
 </body>
 </html>

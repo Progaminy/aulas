@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Python — Programação & IA | Lendário</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background: radial-gradient(circle at 10% 20%, #0a0f1e, #03060c);
+            font-family: 'Share Tech Mono', monospace;
+            color: #eef5ff;
+            line-height: 1.5;
+            padding: 2rem 1.5rem;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+        }
+
+        .nav-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .nav-btn {
+            background: rgba(12, 20, 35, 0.75);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(0, 255, 255, 0.4);
+            padding: 0.8rem 1.6rem;
+            border-radius: 60px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            color: #0ff;
+            transition: all 0.25s ease;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Orbitron', sans-serif;
+            cursor: pointer;
+        }
+
+        .nav-btn:hover {
+            background: rgba(0, 255, 255, 0.15);
+            border-color: #ffd43b;
+            box-shadow: 0 0 20px #ffd43b, 0 0 10px #0ff;
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        .main-title {
+            text-align: center;
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2rem, 6vw, 3.2rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffd43b, #3776ab, #ff00ff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 15px rgba(255, 212, 59, 0.4);
+            letter-spacing: 1px;
+        }
+
+        .cards-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .legend-card, .section-card {
+            background: rgba(8, 14, 26, 0.75);
+            backdrop-filter: blur(12px);
+            border-radius: 2rem;
+            border: 1px solid rgba(255, 212, 59, 0.4);
+            box-shadow: 0 20px 35px -15px rgba(0, 0, 0, 0.7), 0 0 15px rgba(255, 212, 59, 0.2);
+            transition: all 0.3s ease;
+            padding: 1.6rem 1.8rem;
+        }
+
+        .legend-card:hover, .section-card:hover {
+            border-color: #ff00ff;
+            box-shadow: 0 0 30px rgba(255, 0, 255, 0.4), 0 0 15px #ffd43b;
+            transform: translateY(-3px);
+        }
+
+        .card-title, .section-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            font-family: 'Orbitron', sans-serif;
+            color: #ffd43b;
+            text-shadow: 0 0 10px #ffd43b;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .term-block {
+            margin: 1rem 0;
+        }
+
+        .term-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #3776ab;
+            text-shadow: 0 0 8px #00ffff;
+            margin-bottom: 0.4rem;
+        }
+
+        .desc-text {
+            font-size: 1rem;
+            color: #d6e6ff;
+            line-height: 1.6;
+            border-left: 3px solid #ffd43b;
+            padding-left: 1rem;
+        }
+
+        .code-box {
+            background: #010a14;
+            border-radius: 1.2rem;
+            margin: 1.2rem 0;
+            border: 1px solid #ffd43b;
+            box-shadow: inset 0 0 15px rgba(255, 212, 59, 0.15);
+            overflow: hidden;
+        }
+
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.6rem 1rem;
+            background: #051424;
+            border-bottom: 1px solid rgba(255, 212, 59, 0.4);
+            font-size: 0.85rem;
+            color: #ffd43b;
+        }
+
+        .copy-btn {
+            background: rgba(255, 212, 59, 0.15);
+            border: 1px solid #ffd43b;
+            color: #ffd43b;
+            font-weight: bold;
+            padding: 0.35rem 1rem;
+            border-radius: 2rem;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.2s;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .copy-btn:hover {
+            background: #ffd43b;
+            color: #000;
+            box-shadow: 0 0 15px #ffd43b;
+        }
+
+        pre {
+            padding: 1.2rem;
+            margin: 0;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.95rem;
+            color: #bbf0ff;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        .header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .toggle-btn {
+            background: rgba(0, 0, 0, 0.7);
+            border: 2px solid #ffd43b;
+            color: #ffd43b;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 600;
+            font-size: 0.85rem;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .toggle-btn:hover {
+            background: #ffd43b;
+            color: #000;
+            box-shadow: 0 0 20px #ffd43b;
+        }
+
+        .hidden-indice {
+            display: none;
+        }
+
+        .link-indice {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .link-indice li {
+            margin-bottom: 0.8rem;
+            border-left: 3px solid #ff00ff;
+            padding-left: 1rem;
+        }
+
+        footer {
+            margin-top: 3rem;
+            text-align: center;
+            border-top: 1px dashed #ffd43b;
+            padding-top: 1.8rem;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        footer p { color: #8bb9ff; font-size: 0.9rem; }
+        footer em { color: #ff00ff; text-shadow: 0 0 10px magenta; }
+
+        @media (max-width: 600px) {
+            body { padding: 1rem 0.8rem; }
+            .nav-buttons { flex-direction: column; align-items: stretch; }
+            .nav-btn { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Navegação superior -->
+        <div class="nav-buttons">
+            <div>
+                <a href="../index.html" class="nav-btn">🏠 Voltar Home</a>
+                <a href="javascript:location.reload()" class="nav-btn">🔄 ATUALIZAR</a>
+            </div>
+            <button id="btnCompletePython" class="nav-btn" style="border-color:#00ffaa; color:#00ffaa;" onclick="toggleConcluido('mod-python')">☑️ Marcar como Concluído</button>
+        </div>
+
+        <h1 class="main-title">🐍 PYTHON — LENDÁRIO</h1>
+
+        <!-- Índice expansível -->
+        <div class="section-card">
+            <div class="header-row">
+                <div class="section-title">📄 Índice Python</div>
+                <button class="toggle-btn" id="toggleIndicePython">📂 Expandir</button>
+            </div>
+            <ul class="link-indice hidden-indice" id="indicePython">
+                <li><strong>1. Introdução</strong> — O que é Python, filosofia Zen e instalação do interpretador.</li>
+                <li><strong>2. Sintaxe Essencial</strong> — Variáveis, tipos de dados, condicionais e laços de repetição.</li>
+                <li><strong>3. Funções & Módulos</strong> — Declaração com `def`, retorno de valores e importação de pacotes.</li>
+                <li><strong>4. Automação & Scripting</strong> — Manipulação de ficheiros, requisições web e criação de scripts.</li>
+            </ul>
+        </div>
+
+        <!-- Conteúdo Teórico e Prático -->
+        <div class="cards-grid">
+            <!-- Card 1: Fundamentos -->
+            <div class="legend-card">
+                <div class="card-title">🚀 1. Fundamentos do Python</div>
+                <div class="term-block">
+                    <div class="term-name">O que é Python?</div>
+                    <div class="desc-text">
+                        Python é uma linguagem de programação de alto nível, interpretada, de script, imperativa, orientada a objetos e de tipagem dinâmica.
+                        É amplamente utilizada em Inteligência Artificial, Ciência de Dados, Automação de Tarefas e Desenvolvimento Web.
+                    </div>
+                </div>
+
+                <div class="code-box">
+                    <div class="code-header">
+                        <span>main.py — Olá Mundo e Variáveis</span>
+                        <button class="copy-btn" onclick="copiarCodigo('code1', this)">📋 Copiar</button>
+                    </div>
+                    <pre><code id="code1"># Primeiro Script Python Lendário
+nome = "Pensador Sem Fronteiras"
+nivel = 999
+
+print(f"⚡ Bem-vindo, {nome}! Nível atual: {nivel}")
+
+# Estrutura condicional simples
+if nivel >= 100:
+    print("🚀 Estatuto: Programador Lendário Ativado!")
+else:
+    print("🌱 Aprendiz em evolução...")</code></pre>
+                </div>
+            </div>
+
+            <!-- Card 2: Estruturas de Dados e Loops -->
+            <div class="legend-card">
+                <div class="card-title">📦 2. Listas, Dicionários e Laços</div>
+                <div class="term-block">
+                    <div class="term-name">Coleções e Repetição</div>
+                    <div class="desc-text">
+                        Listas `[]` armazenam sequências ordenadas de dados, enquanto Dicionários `{}` mapeiam chaves a valores únicos.
+                    </div>
+                </div>
+
+                <div class="code-box">
+                    <div class="code-header">
+                        <span>colecoes.py — Manipulação de Dados</span>
+                        <button class="copy-btn" onclick="copiarCodigo('code2', this)">📋 Copiar</button>
+                    </div>
+                    <pre><code id="code2"># Lista de linguagens
+tecnologias = ["Python", "JavaScript", "HTML5", "CSS3", "Kali Linux"]
+
+print("📚 Módulos do Pensador:")
+for tech in tecnologias:
+    print(f" -> {tech}")
+
+# Dicionário de perfil
+perfil = {
+    "usuario": "Pensador",
+    "módulos_concluidos": 7,
+    "status": "Ativo"
+}
+
+print(f"\n👤 Usuário: {perfil['usuario']} | Módulos: {perfil['módulos_concluidos']}")</code></pre>
+                </div>
+            </div>
+
+            <!-- Card 3: Automação e Requisições -->
+            <div class="legend-card">
+                <div class="card-title">⚡ 3. Funções e Automação Web</div>
+                <div class="term-block">
+                    <div class="term-name">Scripting Prático</div>
+                    <div class="desc-text">
+                        Com poucas linhas de Python, é possível realizar chamadas HTTP e automatizar processos no sistema operacional.
+                    </div>
+                </div>
+
+                <div class="code-box">
+                    <div class="code-header">
+                        <span>automacao.py — Requisição HTTP</span>
+                        <button class="copy-btn" onclick="copiarCodigo('code3', this)">📋 Copiar</button>
+                    </div>
+                    <pre><code id="code3">import urllib.request
+import json
+
+def buscar_status_api():
+    url = "https://api.github.com"
+    req = urllib.request.urlopen(url)
+    data = json.loads(req.read().decode('utf-8'))
+    print("🌐 Conexão com GitHub API bem sucedida!")
+    print(f"🔗 URL do usuário atual: {data.get('current_user_url')}")
+
+buscar_status_api()</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>© <small>Pensador Sem Fronteiras</small></p>
+            <p><em>Do Zero ao Infinito</em></p>
+        </footer>
+    </div>
+
+    <script>
+        // Cópia de Código
+        function copiarCodigo(id, btn) {
+          const codeText = document.getElementById(id).innerText;
+          navigator.clipboard.writeText(codeText).then(() => {
+            const original = btn.innerHTML;
+            btn.innerHTML = '✅ Copiado!';
+            btn.style.background = '#00ffaa';
+            btn.style.color = '#000';
+            setTimeout(() => {
+              btn.innerHTML = original;
+              btn.style.background = '';
+              btn.style.color = '#ffd43b';
+            }, 1500);
+          });
+        }
+
+        // Toggle do Índice
+        document.getElementById('toggleIndicePython').addEventListener('click', function() {
+            const list = document.getElementById('indicePython');
+            if (list.classList.contains('hidden-indice')) {
+                list.classList.remove('hidden-indice');
+                this.innerHTML = '📁 Recolher';
+            } else {
+                list.classList.add('hidden-indice');
+                this.innerHTML = '📂 Expandir';
+            }
+        });
+
+        // Toggle de Conclusão do Módulo
+        window.toggleConcluido = function(modId) {
+          const key = 'psf_completed_' + modId;
+          const cur = localStorage.getItem(key) === 'true';
+          localStorage.setItem(key, (!cur).toString());
+          updateCompleteBtn(modId);
+        };
+
+        function updateCompleteBtn(modId) {
+          const btn = document.getElementById('btnCompletePython');
+          if (!btn) return;
+          const isDone = localStorage.getItem('psf_completed_' + modId) === 'true';
+          if (isDone) {
+            btn.innerHTML = '✅ Concluído!';
+            btn.style.background = '#00ffaa';
+            btn.style.color = '#000';
+            btn.style.boxShadow = '0 0 20px #00ffaa';
+          } else {
+            btn.innerHTML = '☑️ Marcar como Concluído';
+            btn.style.background = '';
+            btn.style.color = '#00ffaa';
+            btn.style.boxShadow = '';
+          }
+        }
+        document.addEventListener('DOMContentLoaded', () => updateCompleteBtn('mod-python'));
+    </script>
+</body>
+</html>

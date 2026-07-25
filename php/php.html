@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>PHP — Web Backend Server-Side | Lendário</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background: radial-gradient(circle at 10% 20%, #0c0a1e, #04030d);
+            font-family: 'Share Tech Mono', monospace;
+            color: #eef5ff;
+            line-height: 1.5;
+            padding: 2rem 1.5rem;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+        }
+
+        .nav-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .nav-btn {
+            background: rgba(20, 15, 45, 0.75);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(136, 146, 191, 0.4);
+            padding: 0.8rem 1.6rem;
+            border-radius: 60px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            color: #b0b8e6;
+            transition: all 0.25s ease;
+            box-shadow: 0 0 10px rgba(136, 146, 191, 0.2);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Orbitron', sans-serif;
+            cursor: pointer;
+        }
+
+        .nav-btn:hover {
+            background: rgba(136, 146, 191, 0.25);
+            border-color: #00ffff;
+            box-shadow: 0 0 20px #8892bf, 0 0 10px #00ffff;
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        .main-title {
+            text-align: center;
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2rem, 6vw, 3.2rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, #8892bf, #00ffff, #ff00ff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 15px rgba(136, 146, 191, 0.5);
+            letter-spacing: 1px;
+        }
+
+        .cards-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .legend-card, .section-card {
+            background: rgba(12, 10, 28, 0.75);
+            backdrop-filter: blur(12px);
+            border-radius: 2rem;
+            border: 1px solid rgba(136, 146, 191, 0.4);
+            box-shadow: 0 20px 35px -15px rgba(0, 0, 0, 0.7), 0 0 15px rgba(136, 146, 191, 0.2);
+            transition: all 0.3s ease;
+            padding: 1.6rem 1.8rem;
+        }
+
+        .legend-card:hover, .section-card:hover {
+            border-color: #00ffff;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.4), 0 0 15px #8892bf;
+            transform: translateY(-3px);
+        }
+
+        .card-title, .section-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            font-family: 'Orbitron', sans-serif;
+            color: #b0b8e6;
+            text-shadow: 0 0 10px #8892bf;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .term-block {
+            margin: 1rem 0;
+        }
+
+        .term-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #00ffff;
+            text-shadow: 0 0 8px #00ffff;
+            margin-bottom: 0.4rem;
+        }
+
+        .desc-text {
+            font-size: 1rem;
+            color: #d6e6ff;
+            line-height: 1.6;
+            border-left: 3px solid #8892bf;
+            padding-left: 1rem;
+        }
+
+        .code-box {
+            background: #060414;
+            border-radius: 1.2rem;
+            margin: 1.2rem 0;
+            border: 1px solid #8892bf;
+            box-shadow: inset 0 0 15px rgba(136, 146, 191, 0.15);
+            overflow: hidden;
+        }
+
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.6rem 1rem;
+            background: #100b2b;
+            border-bottom: 1px solid rgba(136, 146, 191, 0.4);
+            font-size: 0.85rem;
+            color: #b0b8e6;
+        }
+
+        .copy-btn {
+            background: rgba(136, 146, 191, 0.2);
+            border: 1px solid #8892bf;
+            color: #00ffff;
+            font-weight: bold;
+            padding: 0.35rem 1rem;
+            border-radius: 2rem;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.2s;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .copy-btn:hover {
+            background: #00ffff;
+            color: #000;
+            box-shadow: 0 0 15px #00ffff;
+        }
+
+        pre {
+            padding: 1.2rem;
+            margin: 0;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.95rem;
+            color: #bbf0ff;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        .header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .toggle-btn {
+            background: rgba(0, 0, 0, 0.7);
+            border: 2px solid #8892bf;
+            color: #00ffff;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 600;
+            font-size: 0.85rem;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .toggle-btn:hover {
+            background: #00ffff;
+            color: #000;
+            box-shadow: 0 0 20px #00ffff;
+        }
+
+        .hidden-indice {
+            display: none;
+        }
+
+        .link-indice {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .link-indice li {
+            margin-bottom: 0.8rem;
+            border-left: 3px solid #00ffff;
+            padding-left: 1rem;
+        }
+
+        footer {
+            margin-top: 3rem;
+            text-align: center;
+            border-top: 1px dashed #8892bf;
+            padding-top: 1.8rem;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        footer p { color: #8bb9ff; font-size: 0.9rem; }
+        footer em { color: #ff00ff; text-shadow: 0 0 10px magenta; }
+
+        @media (max-width: 600px) {
+            body { padding: 1rem 0.8rem; }
+            .nav-buttons { flex-direction: column; align-items: stretch; }
+            .nav-btn { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Navegação superior -->
+        <div class="nav-buttons">
+            <div>
+                <a href="../index.html" class="nav-btn">🏠 Voltar Home</a>
+                <a href="javascript:location.reload()" class="nav-btn">🔄 ATUALIZAR</a>
+            </div>
+            <button id="btnCompletePHP" class="nav-btn" style="border-color:#00ffaa; color:#00ffaa;" onclick="toggleConcluido('mod-php')">☑️ Marcar como Concluído</button>
+        </div>
+
+        <h1 class="main-title">🐘 PHP — LENDÁRIO</h1>
+
+        <!-- Índice expansível -->
+        <div class="section-card">
+            <div class="header-row">
+                <div class="section-title">📄 Índice PHP</div>
+                <button class="toggle-btn" id="toggleIndicePHP">📂 Expandir</button>
+            </div>
+            <ul class="link-indice hidden-indice" id="indicePHP">
+                <li><strong>1. Introdução ao PHP</strong> — O que é PHP, tags `&lt;?php ?&gt;` e servidor Web.</li>
+                <li><strong>2. Variáveis & Arrays</strong> — Sintaxe com `$`, arrays associativos e operadores.</li>
+                <li><strong>3. Processamento de Formulários</strong> — Métodos `$_POST`, `$_GET` e sanitização.</li>
+                <li><strong>4. Conexão BD & PDO</strong> — Preparando queries seguras e evitando SQL Injection.</li>
+            </ul>
+        </div>
+
+        <!-- Conteúdo Teórico e Prático -->
+        <div class="cards-grid">
+            <!-- Card 1: Fundamentos PHP -->
+            <div class="legend-card">
+                <div class="card-title">🌐 1. Fundamentos do PHP</div>
+                <div class="term-block">
+                    <div class="term-name">O que é PHP?</div>
+                    <div class="desc-text">
+                        PHP (Hypertext Preprocessor) é uma linguagem de script open-source para o lado do servidor (Server-Side), especialmente adequada para o desenvolvimento web e que pode ser embutida dentro do HTML.
+                    </div>
+                </div>
+
+                <div class="code-box">
+                    <div class="code-header">
+                        <span>index.php — Olá Mundo e Variáveis</span>
+                        <button class="copy-btn" onclick="copiarCodigo('codePhp1', this)">📋 Copiar</button>
+                    </div>
+                    <pre><code id="codePhp1">&lt;?php
+// Script Backend PHP Lendário
+$titulo = "Pensador Sem Fronteiras";
+$ano = 2026;
+$ativo = true;
+
+echo "&lt;h1&gt;⚡ Bem-vindo ao portal " . $titulo . " (" . $ano . ")&lt;/h1&gt;";
+
+if ($ativo) {
+    echo "&lt;p style='color:#00ffaa;'&gt;🟢 Servidor PHP operacional em modo Lendário!&lt;/p&gt;";
+}
+?&gt;</code></pre>
+                </div>
+            </div>
+
+            <!-- Card 2: Processamento de Formulários -->
+            <div class="legend-card">
+                <div class="card-title">📝 2. Receber dados de Formulários ($_POST)</div>
+                <div class="term-block">
+                    <div class="term-name">Interação com o Utilizador</div>
+                    <div class="desc-text">
+                        O PHP captura dados submetidos por formulários web através das superglobais `$_POST` e `$_GET` sanitizando dados contra ataques XSS.
+                    </div>
+                </div>
+
+                <div class="code-box">
+                    <div class="code-header">
+                        <span>login.php — Sanitização e Processamento</span>
+                        <button class="copy-btn" onclick="copiarCodigo('codePhp2', this)">📋 Copiar</button>
+                    </div>
+                    <pre><code id="codePhp2">&lt;?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Sanitizar input para evitar ataques XSS
+    $usuario = htmlspecialchars(trim($_POST["usuario"]));
+    $email = filter_var($_POST["email"], FILTER_SANITIZE_EMAIL);
+
+    if (!empty($usuario) && filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        echo "&lt;div class='sucesso'&gt;✅ Login efetuado para: " . $usuario . "&lt;/div&gt;";
+    } else {
+        echo "&lt;div class='erro'&gt;❌ Dados inválidos!&lt;/div&gt;";
+    }
+}
+?&gt;</code></pre>
+                </div>
+            </div>
+
+            <!-- Card 3: PDO e Banco de Dados -->
+            <div class="legend-card">
+                <div class="card-title">🗄️ 3. Conexão Segura com Banco de Dados (PDO)</div>
+                <div class="term-block">
+                    <div class="term-name">Prepared Statements (Segurança)</div>
+                    <div class="desc-text">
+                        Utilizar o PDO (PHP Data Objects) com *Prepared Statements* protege completamente a aplicação contra ataques de SQL Injection.
+                    </div>
+                </div>
+
+                <div class="code-box">
+                    <div class="code-header">
+                        <span>conexao.php — PDO MySQL</span>
+                        <button class="copy-btn" onclick="copiarCodigo('codePhp3', this)">📋 Copiar</button>
+                    </div>
+                    <pre><code id="codePhp3">&lt;?php
+$host = "localhost";
+$db   = "pensador_db";
+$user = "root";
+$pass = "segredo123";
+
+try {
+    $pdo = new PDO("mysql:host=$host;dbname=$db;charset=utf8mb4", $user, $pass, [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+    ]);
+    
+    // Consulta Segura com Prepared Statement
+    $stmt = $pdo->prepare("SELECT id, nome, email FROM usuarios WHERE status = :status");
+    $stmt->execute(['status' => 'ativo']);
+    $usuarios = $stmt->fetchAll();
+    
+    foreach ($usuarios as $u) {
+        echo "👤 " . $u['nome'] . " (" . $u['email'] . ")&lt;br&gt;";
+    }
+} catch (PDOException $e) {
+    echo "❌ Erro na Conexão: " . $e->getMessage();
+}
+?&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>© <small>Pensador Sem Fronteiras</small></p>
+            <p><em>Do Zero ao Infinito</em></p>
+        </footer>
+    </div>
+
+    <script>
+        // Cópia de Código
+        function copiarCodigo(id, btn) {
+          const codeText = document.getElementById(id).innerText;
+          navigator.clipboard.writeText(codeText).then(() => {
+            const original = btn.innerHTML;
+            btn.innerHTML = '✅ Copiado!';
+            btn.style.background = '#00ffff';
+            btn.style.color = '#000';
+            setTimeout(() => {
+              btn.innerHTML = original;
+              btn.style.background = '';
+              btn.style.color = '#00ffff';
+            }, 1500);
+          });
+        }
+
+        // Toggle do Índice
+        document.getElementById('toggleIndicePHP').addEventListener('click', function() {
+            const list = document.getElementById('indicePHP');
+            if (list.classList.contains('hidden-indice')) {
+                list.classList.remove('hidden-indice');
+                this.innerHTML = '📁 Recolher';
+            } else {
+                list.classList.add('hidden-indice');
+                this.innerHTML = '📂 Expandir';
+            }
+        });
+
+        // Toggle de Conclusão do Módulo
+        window.toggleConcluido = function(modId) {
+          const key = 'psf_completed_' + modId;
+          const cur = localStorage.getItem(key) === 'true';
+          localStorage.setItem(key, (!cur).toString());
+          updateCompleteBtn(modId);
+        };
+
+        function updateCompleteBtn(modId) {
+          const btn = document.getElementById('btnCompletePHP');
+          if (!btn) return;
+          const isDone = localStorage.getItem('psf_completed_' + modId) === 'true';
+          if (isDone) {
+            btn.innerHTML = '✅ Concluído!';
+            btn.style.background = '#00ffaa';
+            btn.style.color = '#000';
+            btn.style.boxShadow = '0 0 20px #00ffaa';
+          } else {
+            btn.innerHTML = '☑️ Marcar como Concluído';
+            btn.style.background = '';
+            btn.style.color = '#00ffaa';
+            btn.style.boxShadow = '';
+          }
+        }
+        document.addEventListener('DOMContentLoaded', () => updateCompleteBtn('mod-php'));
+    </script>
+</body>
+</html>
