@@ -638,6 +638,40 @@ VBoxManage modifyvm "Kali" --nic1 bridged</code>
         </ol>
     </div>
 
+    <!-- Card de Pesquisa Avançada em Administração Linux & Segurança -->
+    <div class="card">
+        <h2 style="color:#00f3ff; font-family:'Orbitron', sans-serif;">🛡️ Documentação de Pesquisa: Kernel, Redes e Diagnóstico Ético</h2>
+        <p style="color:#c8e9ff; line-height:1.6;">
+            O Kali Linux é construído sobre o kernel Debian GNU/Linux. Para auditoria e administração profissional, dominar comandos de diagnóstico de rede, gerenciamento de processos e firewall é indispensável.
+        </p>
+
+        <div style="background:#010a14; border:1px solid #00f3ff; border-radius:12px; padding:1rem; margin:1rem 0;">
+            <div style="display:flex; justify-space-between; align-items:center; border-bottom:1px solid rgba(0,243,255,0.3); padding-bottom:0.5rem; margin-bottom:0.8rem;">
+                <span style="color:#00f3ff; font-weight:bold;">terminal — Diagnóstico de Rede e Processos</span>
+                <button class="copy-btn" data-copy="codeKaliAdvanced">📋 Copiar</button>
+            </div>
+            <pre><code id="codeKaliAdvanced"># 1. Informações do Kernel e Sistema
+uname -a                     # Versão completa do Kernel Linux
+lscpu                        # Arquitetura do Processador
+free -h                      # Uso de Memória RAM e Swap
+df -h                        # Espaço em Disco das Partições
+
+# 2. Diagnóstico e Análise de Rede
+ip a                         # Listar Interfaces de Rede e IPs
+netstat -tulpn               # Listar Portas Abertas e Serviços Ativos
+ss -tulpn                    # Alternativa moderna e rápida ao netstat
+traceroute scanme.nmap.org   # Rastrear Rota de Roteadores (Hops)
+
+# 3. Varredura com Nmap (Reconhecimento Ético)
+nmap -sV -sC -T4 192.168.1.1 # Detecção de Versão de Serviços e Scripts Padrão
+nmap -p 1-65535 -sS target    # Varredura SYN em todas as portas
+
+# 4. Gestão de Processos e Sinais
+ps aux | grep python         # Buscar PID de scripts Python
+kill -9 &lt;PID&gt;                # Finalizar processo forçadamente</code></pre>
+        </div>
+    </div>
+
     <!-- Navegação entre módulos -->
     <div class="card">
         <div class="nav-grid">

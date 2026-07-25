@@ -452,6 +452,89 @@ if os.path.exists("pesquisa_pensador.txt"):
                     </tbody>
                 </table>
             </div>
+
+            <!-- Card 6: Programação Orientada a Objetos (POO) -->
+            <div class="legend-card">
+                <div class="card-title">🧩 6. Orientação a Objetos Avançada (POO & Dunder Methods)</div>
+                <div class="term-block">
+                    <div class="term-name">Encapsulamento, Herança e Polimorfismo</div>
+                    <div class="desc-text">
+                        A POO em Python permite estruturar sistemas através de classes. Métodos mágicos (Dunder Methods como <code>__init__</code>, <code>__str__</code>, <code>__repr__</code> e <code>__call__</code>) personalizam a interação dos objetos com a linguagem.
+                    </div>
+                </div>
+
+                <div class="code-box">
+                    <div class="code-header">
+                        <span>poo_avancado.py — Classes e Herança</span>
+                        <button class="copy-btn" onclick="copiarCodigo('code6', this)">📋 Copiar</button>
+                    </div>
+                    <pre><code id="code6">class Servidor:
+    def __init__(self, ip: str, porta: int):
+        self._ip = ip          # Atributo protegido
+        self.__porta = porta   # Atributo privado
+        self.ativo = True
+
+    def __str__(self):
+        return f"Servidor({self._ip}:{self.__porta}) [{'Online' if self.ativo else 'Offline'}]"
+
+    def status(self):
+        return f"📡 IP: {self._ip} | Porta: {self.__porta}"
+
+class ServidorWeb(Servidor):
+    def __init__(self, ip: str, porta: int = 80, ssl: bool = True):
+        super().__init__(ip, porta)
+        self.ssl = ssl
+
+    def testar_conexao(self):
+        protocolo = "HTTPS" if self.ssl else "HTTP"
+        print(f"🔗 Conectando via {protocolo} ao servidor {self._ip}...")
+
+# Instanciação e Execução
+srv = ServidorWeb("192.168.1.100", 443, ssl=True)
+print(srv)
+srv.testar_conexao()</code></pre>
+                </div>
+            </div>
+
+            <!-- Card 7: Concorrência e Programação Assíncrona (Asyncio) -->
+            <div class="legend-card">
+                <div class="card-title">⚡ 7. Concorrência Assíncrona (`asyncio` & Sockets)</div>
+                <div class="term-block">
+                    <div class="term-name">Execução Não-Bloqueante de Alta Performance</div>
+                    <div class="desc-text">
+                        O módulo <code>asyncio</code> possibilita a execução concorrente de tarefas I/O bound utilizando corrotinas <code>async</code> e <code>await</code>, ideal para rastreadores web, scanners de rede e microserviços.
+                    </div>
+                </div>
+
+                <div class="code-box">
+                    <div class="code-header">
+                        <span>async_scanner.py — Scanner de Portas Assíncrono</span>
+                        <button class="copy-btn" onclick="copiarCodigo('code7', this)">📋 Copiar</button>
+                    </div>
+                    <pre><code id="code7">import asyncio
+
+async def verificar_porta(host, porta):
+    try:
+        reader, writer = await asyncio.wait_for(
+            asyncio.open_connection(host, porta), timeout=1.0
+        )
+        print(f"✅ Porta {porta} ABERTA em {host}")
+        writer.close()
+        await writer.wait_closed()
+    except (asyncio.TimeoutError, ConnectionRefusedError, OSError):
+        pass # Porta fechada ou sem resposta
+
+async def main():
+    target = "scanme.nmap.org"
+    portas = [21, 22, 80, 443, 8080]
+    print(f"🔍 Escaneando {target} assincronamente...")
+    tarefas = [verificar_porta(target, p) for p in portas]
+    await asyncio.gather(*tarefas)
+
+# Rodar o Event Loop Assíncrono
+asyncio.run(main())</code></pre>
+                </div>
+            </div>
         </div>
 
         <footer>

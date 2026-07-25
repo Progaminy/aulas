@@ -459,6 +459,102 @@ echo "🟢 Sessão iniciada para " . $_SESSION['usuario_nome'];
                     </tbody>
                 </table>
             </div>
+
+            <!-- Card 7: POO Avançada em PHP 8+ -->
+            <div class="legend-card">
+                <div class="card-title">🧩 7. POO Avançada no PHP 8+ (Constructor Promotion & Enums)</div>
+                <div class="term-block">
+                    <div class="term-name">Recursos Modernos do PHP 8.1+</div>
+                    <div class="desc-text">
+                        O PHP moderno suporta promoção de propriedades no construtor, tipos de retorno estritos, interfaces, classes abstratas e <code>enum</code> para tipagem segura de constantes.
+                    </div>
+                </div>
+
+                <div class="code-box">
+                    <div class="code-header">
+                        <span>poo_moderno.php — PHP 8+ POO</span>
+                        <button class="copy-btn" onclick="copiarCodigo('code7', this)">📋 Copiar</button>
+                    </div>
+                    <pre><code id="code7">&lt;?php
+declare(strict_types=1);
+
+enum StatusUsuario: string {
+    case Ativo = 'ativo';
+    case Inativo = 'inativo';
+    case Pendente = 'pendente';
+}
+
+interface Autenticavel {
+    public function autenticar(string $senha): bool;
+}
+
+class Usuario implements Autenticavel {
+    // Constructor Property Promotion (PHP 8.0+)
+    public function __construct(
+        public int $id,
+        public string $nome,
+        public string $email,
+        private string $hashSenha,
+        public StatusUsuario $status = StatusUsuario::Ativo
+    ) {}
+
+    public function autenticar(string $senha): bool {
+        return password_verify($senha, $self->hashSenha);
+    }
+}
+
+// Instanciação limpa
+$senhaHash = password_hash("minhasenha123", PASSWORD_ARGON2ID);
+$user = new Usuario(1, "Pensador", "pensador@exemplo.com", $senhaHash);
+
+echo "👤 Usuário: {$user->nome} | Status: {$user->status->value}";
+?&gt;</code></pre>
+                </div>
+            </div>
+
+            <!-- Card 8: Construção de APIs REST com JSON -->
+            <div class="legend-card">
+                <div class="card-title">🌐 8. Construção de Endpoints API REST JSON</div>
+                <div class="term-block">
+                    <div class="term-name">Backend para Single Page Applications & Mobile</div>
+                    <div class="desc-text">
+                        Como estruturar um controlador de API que responde em formato JSON, gerencia códigos de status HTTP (200, 400, 404, 500) e lê payloads JSON recebidos no corpo da requisição.
+                    </div>
+                </div>
+
+                <div class="code-box">
+                    <div class="code-header">
+                        <span>api.php — Endpoint JSON RESTful</span>
+                        <button class="copy-btn" onclick="copiarCodigo('code8', this)">📋 Copiar</button>
+                    </div>
+                    <pre><code id="code8">&lt;?php
+header('Content-Type: application/json; charset=utf-8');
+header('Access-Control-Allow-Origin: *');
+
+$metodo = $_SERVER['REQUEST_METHOD'];
+
+if ($metodo === 'GET') {
+    $resposta = [
+        'status' => 'sucesso',
+        'mensagem' => 'API de Pesquisa PHP Ativa',
+        'timestamp' => time(),
+        'dados' => ['modulo' => 'PHP 8 Backend', 'autor' => 'Pensador Sem Fronteiras']
+    ];
+    http_response_code(200);
+    echo json_encode($resposta, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+} elseif ($metodo === 'POST') {
+    $rawInput = file_get_contents('php://input');
+    $input = json_decode($rawInput, true);
+    
+    http_response_code(201);
+    echo json_encode(['status' => 'criado', 'recebido' => $input]);
+} else {
+    http_response_code(405);
+    echo json_encode(['erro' => 'Método Não Permitido']);
+}
+?&gt;</code></pre>
+                </div>
+            </div>
         </div>
 
         <footer>

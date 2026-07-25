@@ -377,6 +377,36 @@
       </div>
     </div>
 
+    <!-- Card de Pesquisa Avançada no Termux -->
+    <div class="card">
+      <h2>🚀 Documentação de Pesquisa: Servidor SSH & Linux Proot no Termux</h2>
+      <p style="color:#e2e8f0; line-height:1.6;">
+        O Termux transforma qualquer dispositivo Android num ambiente Linux completo sem necessidade de root. Abaixo estão os comandos para configurar o armazenamento interno, servidor SSH e distribuições completas (Ubuntu/Debian) via <code>proot-distro</code>.
+      </p>
+
+      <div style="background:#020617; border:1px solid #00ccff; border-radius:1rem; padding:1rem; margin:1rem 0;">
+        <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(0,204,255,0.3); padding-bottom:0.5rem; margin-bottom:0.8rem;">
+          <span style="color:#00ccff; font-weight:bold;">termux-cli — Configuração de Servidor & Proot</span>
+          <button class="copy-btn" id="copyButtonTermuxAdv" style="cursor:pointer;">📋 Copiar</button>
+        </div>
+        <pre><code id="codeSnippetTermuxAdv"># 1. Liberar Acesso ao Armazenamento Interno do Android
+termux-setup-storage
+
+# 2. Atualizar Repositórios e Instalar Pacotes Base
+pkg update && pkg upgrade -y
+pkg install python git openssh wget curl proot-distro -y
+
+# 3. Iniciar Servidor OpenSSH no Termux (Porta Padrão: 8022)
+sshd
+whoami   # Mostra seu nome de usuário no Termux
+passwd   # Define uma senha para acesso SSH remotamente
+
+# 4. Instalar Distribuição Ubuntu completa dentro do Termux
+proot-distro install ubuntu
+proot-distro login ubuntu   # Entra no terminal Ubuntu completo!</code></pre>
+      </div>
+    </div>
+
     <footer>
       <small>Pensador Sem Fronteiras</small> <br>
       <em>Do Zero ao Infinito</em>
