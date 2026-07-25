@@ -537,27 +537,10 @@
 
     <script>
         (function() {
-            // 🌟 FUNÇÃO DE NAVEGAÇÃO COM BOTÕES 🌟
+            // 🌟 FUNÇÃO DE NAVEGAÇÃO DIRETA 🌟
             window.navegarPara = function(url) {
                 if (!url || url === '#') return;
-                
-                // Feedback visual instantâneo
-                const botoes = document.querySelectorAll('.nav-btn-card');
-                botoes.forEach(btn => {
-                    btn.style.pointerEvents = 'none';
-                });
-                
-                // Pequeno delay para mostrar o feedback de clique
-                setTimeout(() => {
-                    window.location.href = url;
-                }, 100);
-                
-                // Reativar botões caso a navegação falhe
-                setTimeout(() => {
-                    botoes.forEach(btn => {
-                        btn.style.pointerEvents = 'auto';
-                    });
-                }, 500);
+                window.location.href = url;
             };
 
             // Suporte para tecla Enter nos botões (acessibilidade)

@@ -500,28 +500,18 @@
 
     <script>
         (function() {
-            //  FUNÇÃO DE NAVEGAÇÃO REAL COM BOTÕES 
+            //  FUNÇÃO DE NAVEGAÇÃO DIRETA 
             window.navegarPara = function(url) {
                 if (!url || url === '#') return;
-                
-                // Feedback visual instantâneo
-                const botoes = document.querySelectorAll('.nav-btn-card');
-                botoes.forEach(btn => {
-                    btn.style.pointerEvents = 'none';
-                });
-                
-                // Pequeno delay para mostrar o feedback de clique
-                setTimeout(() => {
-                    window.location.href = url;
-                }, 100);
-                
-                // Reativar botões caso a navegação falhe
-                setTimeout(() => {
-                    botoes.forEach(btn => {
-                        btn.style.pointerEvents = 'auto';
-                    });
-                }, 500);
+                window.location.href = url;
             };
+
+            window.addEventListener('pageshow', function() {
+                document.querySelectorAll('.btn-link, .nav-btn-card, .toggle-btn').forEach(btn => {
+                    btn.style.pointerEvents = 'auto';
+                    btn.style.opacity = '1';
+                });
+            });
 
             // Suporte para tecla Enter nos botões (acessibilidade)
             document.querySelectorAll('.nav-btn-card').forEach(btn => {

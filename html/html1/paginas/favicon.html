@@ -483,27 +483,18 @@
 
     <script>
         (function() {
-            // 🌟 FUNÇÃO DE NAVEGAÇÃO REAL COM BOTÕES 🌟
+            // 🌟 FUNÇÃO DE NAVEGAÇÃO DIRETA 🌟
             window.navegarPara = function(url) {
                 if (!url || url === '#') return;
-                
-                const botoes = document.querySelectorAll('.nav-btn, .resource-btn');
-                botoes.forEach(btn => {
-                    btn.style.pointerEvents = 'none';
-                    btn.style.opacity = '0.7';
-                });
-                
-                setTimeout(() => {
-                    window.location.href = url;
-                }, 120);
-                
-                setTimeout(() => {
-                    botoes.forEach(btn => {
-                        btn.style.pointerEvents = 'auto';
-                        btn.style.opacity = '1';
-                    });
-                }, 600);
+                window.location.href = url;
             };
+
+            window.addEventListener('pageshow', function() {
+                document.querySelectorAll('.nav-btn, .resource-btn, .btn-link, .toggle-btn').forEach(btn => {
+                    btn.style.pointerEvents = 'auto';
+                    btn.style.opacity = '1';
+                });
+            });
 
             // 🌟 FUNÇÃO PARA ABRIR LINKS EXTERNOS 🌟
             window.abrirLink = function(url) {
