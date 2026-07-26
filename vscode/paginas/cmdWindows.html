@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+  <title>🪟 Comandos Windows (CMD & PowerShell) · Lendário</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: radial-gradient(circle at 30% 15%, #081021, #02050e);
+      font-family: 'Segoe UI', 'Inter', system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+      color: #daf0ff;
+      padding: 1.5rem 1rem 3rem;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+    }
+
+    .nav-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+
+    .btn-link {
+      background: linear-gradient(135deg, #1e293b, #0f172a);
+      border: 1.5px solid #38bdf8;
+      color: #38bdf8;
+      padding: 0.65rem 1.4rem;
+      border-radius: 2rem;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+      transition: all 0.2s ease-in-out;
+    }
+
+    .btn-link:hover {
+      background: #38bdf8;
+      color: #000;
+      box-shadow: 0 0 25px #38bdf8;
+      transform: translateY(-2px);
+    }
+
+    .main-title {
+      font-size: clamp(2rem, 6vw, 3.2rem);
+      font-weight: 900;
+      text-align: center;
+      background: linear-gradient(135deg, #38bdf8, #818cf8, #c084fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 25px rgba(56, 189, 248, 0.4));
+      margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #94a3b8;
+      font-size: 1.05rem;
+      margin-top: -1rem;
+    }
+
+    .card {
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 1.5rem;
+      padding: 1.8rem;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(56, 189, 248, 0.1);
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .card-title {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #38bdf8;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+      padding-bottom: 0.6rem;
+    }
+
+    .desc-text {
+      font-size: 1rem;
+      color: #cbd5e1;
+      line-height: 1.6;
+    }
+
+    .code-box {
+      background: #020617;
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      border-radius: 1rem;
+      overflow: hidden;
+      margin-top: 0.5rem;
+    }
+
+    .code-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.6rem 1rem;
+      background: #090d16;
+      border-bottom: 1px solid rgba(56, 189, 248, 0.3);
+      font-size: 0.85rem;
+      color: #38bdf8;
+      font-weight: bold;
+    }
+
+    .copy-btn {
+      background: rgba(56, 189, 248, 0.15);
+      border: 1px solid #38bdf8;
+      color: #38bdf8;
+      font-weight: bold;
+      padding: 0.35rem 0.9rem;
+      border-radius: 1.5rem;
+      cursor: pointer;
+      font-size: 0.8rem;
+      transition: all 0.2s;
+    }
+
+    .copy-btn:hover {
+      background: #38bdf8;
+      color: #000;
+      box-shadow: 0 0 15px #38bdf8;
+    }
+
+    pre {
+      padding: 1.2rem;
+      margin: 0;
+      font-family: 'Consolas', 'Fira Code', 'Courier New', monospace;
+      font-size: 0.95rem;
+      color: #f1f5f9;
+      overflow-x: auto;
+      white-space: pre-wrap;
+    }
+
+    .highlight-badge {
+      background: rgba(129, 140, 248, 0.2);
+      border: 1px solid #818cf8;
+      color: #c7d2fe;
+      padding: 0.2rem 0.6rem;
+      border-radius: 0.4rem;
+      font-size: 0.85rem;
+      font-family: monospace;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px dashed rgba(56, 189, 248, 0.3);
+      color: #64748b;
+      font-size: 0.9rem;
+    }
+
+    footer em {
+      color: #c084fc;
+      font-style: normal;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Navegação -->
+    <div class="nav-buttons">
+      <a href="../../index.html" class="btn-link">🏠 Voltar Home</a>
+      <a href="../vscode.html" class="btn-link">💎 Voltar VS Code</a>
+      <a href="javascript:location.reload()" class="btn-link">🔄 ATUALIZAR</a>
+    </div>
+
+    <h1 class="main-title">🪟 Comandos Windows (CMD & PowerShell)</h1>
+    <p class="subtitle">Guia Completo: Navegação de Discos, Área de Trabalho & VS Code</p>
+
+    <!-- SECÇÃO 1: COMANDOS BÁSICOS -->
+    <div class="card">
+      <div class="card-title">🖥️ 1. Comandos Essenciais do Terminal Windows</div>
+      <div class="desc-text">
+        O <strong>Prompt de Comando (CMD)</strong> e o <strong>PowerShell</strong> são os terminais nativos do sistema operacional Windows para execução de comandos e automação.
+      </div>
+
+      <div class="code-box">
+        <div class="code-header">
+          <span>CMD / PowerShell — Comandos Básicos de Sistema</span>
+          <button class="copy-btn" onclick="copiarCodigo('code1', this)">📋 Copiar</button>
+        </div>
+        <pre><code id="code1"># 1. Listar arquivos e pastas no diretório atual
+dir
+
+# 2. Ver o caminho completo da pasta atual
+cd
+
+# 3. Criar uma nova pasta
+mkdir MinhaNovaPasta
+
+# 4. Limpar o histórico da tela do terminal
+cls
+
+# 5. Ver o endereço de IP e informações de rede
+ipconfig
+
+# 6. Exibir informações completas sobre o computador
+systeminfo</code></pre>
+      </div>
+    </div>
+
+    <!-- SECÇÃO 2: NAVEGAR ENTRE DISCOS -->
+    <div class="card">
+      <div class="card-title">💽 2. Como Alternar Entre Discos (C:, D:, E:)</div>
+      <div class="desc-text">
+        No Windows, cada disco ou partição possui uma letra identificadora seguida de dois pontos (ex: <span class="highlight-badge">C:</span>, <span class="highlight-badge">D:</span>, <span class="highlight-badge">E:</span>). 
+        <br><br>
+        ⚠️ <strong>Atenção:</strong> Para trocar de disco no Windows, você <strong>NÃO</strong> usa o comando <code>cd</code>. Você deve digitar diretamente a <strong>letra do disco seguida de dois pontos</strong> e pressionar <kbd>Enter</kbd>.
+      </div>
+
+      <div class="code-box">
+        <div class="code-header">
+          <span>CMD / PowerShell — Alternando entre Discos</span>
+          <button class="copy-btn" onclick="copiarCodigo('code2', this)">📋 Copiar</button>
+        </div>
+        <pre><code id="code2"># Para entrar no Disco D: (segundo disco ou HD externo):
+D:
+
+# Para voltar ao Disco C: (disco principal do sistema):
+C:
+
+# Para entrar no Disco E: (Pendrive ou disco secundário):
+E:
+
+# Depois de entrar no disco desejado, use o comando cd para navegar nas pastas:
+D:
+cd Projetos\MinhaAplicacao</code></pre>
+      </div>
+    </div>
+
+    <!-- SECÇÃO 3: ENTRAR NA ÁREA DE TRABALHO -->
+    <div class="card">
+      <div class="card-title">🖥️ 3. Como Entrar na Área de Trabalho (Desktop)</div>
+      <div class="desc-text">
+        A Área de Trabalho fica localizada dentro da pasta do seu perfil de usuário. Você pode entrar nela de duas formas rápidas:
+      </div>
+
+      <div class="code-box">
+        <div class="code-header">
+          <span>CMD / PowerShell — Navegando para o Desktop</span>
+          <button class="copy-btn" onclick="copiarCodigo('code3', this)">📋 Copiar</button>
+        </div>
+        <pre><code id="code3"># Opção A: Se você já estiver na sua pasta de usuário (C:\Users\SeuNome):
+cd Desktop
+
+# Opção B: Atalho direto no CMD de qualquer lugar do sistema:
+cd %USERPROFILE%\Desktop
+
+# Opção C: Atalho direto no PowerShell de qualquer lugar:
+cd $env:USERPROFILE\Desktop
+
+# Opção D: Especificando o caminho manual completo:
+cd C:\Users\SeuNomeDeUsuario\Desktop</code></pre>
+      </div>
+    </div>
+
+    <!-- SECÇÃO 4: ABRIR O VS CODE PELO TERMINAL -->
+    <div class="card">
+      <div class="card-title">💎 4. Como Abrir o VS Code a Partir do Terminal</div>
+      <div class="desc-text">
+        O executável do Visual Studio Code inclui o atalho CLI <span class="highlight-badge">code</span>. Com ele, você pode abrir qualquer pasta ou arquivo diretamente no VS Code com um único comando!
+      </div>
+
+      <div class="code-box">
+        <div class="code-header">
+          <span>CMD / PowerShell — Abrindo o VS Code</span>
+          <button class="copy-btn" onclick="copiarCodigo('code4', this)">📋 Copiar</button>
+        </div>
+        <pre><code id="code4"># 1. Abrir a pasta ATUAL inteira no VS Code:
+code .
+
+# 2. Abrir a pasta da Área de Trabalho no VS Code:
+cd %USERPROFILE%\Desktop
+code .
+
+# 3. Abrir um arquivo específico diretamente no editor:
+code index.html
+
+# 4. Abrir o VS Code em uma nova janela independente:
+code -n .
+
+# 💡 Dica: Se o comando 'code' não for reconhecido:
+# Abra o VS Code manualmente -> Pressione Ctrl+Shift+P -> Digite "Shell Command: Install 'code' command in PATH".</code></pre>
+      </div>
+    </div>
+
+    <footer>
+      <p>© Pensador Sem Fronteiras — <em>Do Zero ao Infinito</em></p>
+    </footer>
+  </div>
+
+  <script>
+    // Função para copiar snippets de código
+    function copiarCodigo(id, btn) {
+      const codeElement = document.getElementById(id);
+      if (!codeElement) return;
+      const textToCopy = codeElement.innerText.trim();
+      
+      navigator.clipboard.writeText(textToCopy).then(() => {
+        const originalText = btn.innerText;
+        btn.innerText = '✅ Copiado!';
+        btn.style.background = '#38bdf8';
+        btn.style.color = '#000';
+        setTimeout(() => {
+          btn.innerText = originalText;
+          btn.style.background = '';
+          btn.style.color = '#38bdf8';
+        }, 1500);
+      }).catch(() => {
+        alert('Selecione e copie o texto manualmente.');
+      });
+    }
+
+    // Garantir que a navegação seja 100% clicável no retorno
+    window.addEventListener('pageshow', function() {
+      document.querySelectorAll('.btn-link, .copy-btn').forEach(btn => {
+        btn.style.pointerEvents = 'auto';
+        btn.style.opacity = '1';
+      });
+    });
+  </script>
+</body>
+</html>
