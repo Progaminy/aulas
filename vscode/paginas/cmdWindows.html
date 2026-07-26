@@ -191,13 +191,54 @@
     </div>
 
     <h1 class="main-title">🪟 Comandos Windows (CMD & PowerShell)</h1>
-    <p class="subtitle">Guia Completo: Navegação de Discos, Área de Trabalho & VS Code</p>
+    <p class="subtitle">Guia Completo: Navegação de Pastas, Discos, Área de Trabalho & VS Code</p>
 
-    <!-- SECÇÃO 1: COMANDOS BÁSICOS -->
+    <!-- SECÇÃO 1: NAVEGAÇÃO E MANIPULAÇÃO DE PASTAS -->
     <div class="card">
-      <div class="card-title">🖥️ 1. Comandos Essenciais do Terminal Windows</div>
+      <div class="card-title">📂 1. Entrar, Sair e Criar Pastas (Navegação de Diretórios)</div>
       <div class="desc-text">
-        O <strong>Prompt de Comando (CMD)</strong> e o <strong>PowerShell</strong> são os terminais nativos do sistema operacional Windows para execução de comandos e automação.
+        Navegar entre pastas no Windows é feito com o comando <code>cd</code> (Change Directory). Aprenda os principais comandos para entrar, voltar e criar diretórios no terminal.
+      </div>
+
+      <div class="code-box">
+        <div class="code-header">
+          <span>CMD / PowerShell — Navegação e Criação de Pastas</span>
+          <button class="copy-btn" onclick="copiarCodigo('codeFolder', this)">📋 Copiar</button>
+        </div>
+        <pre><code id="codeFolder"># 1. Entrar em uma pasta (ex: pasta 'Projetos')
+cd Projetos
+
+# 2. Entrar em subpastas em um único comando
+cd Projetos\Web\MeusSites
+
+# 3. Voltar para a pasta anterior (subir 1 nível)
+cd ..
+
+# 4. Voltar 2 níveis de pasta de uma vez
+cd ..\..
+
+# 5. Voltar diretamente para a raiz do disco (ex: C:\)
+cd \
+
+# 6. Criar uma nova pasta
+mkdir MinhaNovaPasta
+
+# 7. Apagar uma pasta vazia
+rmdir MinhaNovaPasta
+
+# 8. Apagar uma pasta e TODAS as suas subpastas/arquivos sem pedir confirmação
+rmdir /s /q MinhaPastaAntiga
+
+# 9. Ver a árvore gráfica de estrutura das pastas
+tree /f</code></pre>
+      </div>
+    </div>
+
+    <!-- SECÇÃO 2: COMANDOS BÁSICOS -->
+    <div class="card">
+      <div class="card-title">🖥️ 2. Comandos Essenciais do Terminal Windows</div>
+      <div class="desc-text">
+        Comandos utilitários para listar arquivos, limpar a tela e consultar informações do sistema.
       </div>
 
       <div class="code-box">
@@ -205,29 +246,29 @@
           <span>CMD / PowerShell — Comandos Básicos de Sistema</span>
           <button class="copy-btn" onclick="copiarCodigo('code1', this)">📋 Copiar</button>
         </div>
-        <pre><code id="code1"># 1. Listar arquivos e pastas no diretório atual
+        <pre><code id="code1"># 1. Listar todos os arquivos e pastas no diretório atual
 dir
 
-# 2. Ver o caminho completo da pasta atual
+# 2. Listar SOMENTE pastas (diretórios)
+dir /ad
+
+# 3. Ver o caminho completo da pasta atual
 cd
 
-# 3. Criar uma nova pasta
-mkdir MinhaNovaPasta
-
-# 4. Limpar o histórico da tela do terminal
+# 4. Limpar a tela do terminal
 cls
 
 # 5. Ver o endereço de IP e informações de rede
 ipconfig
 
-# 6. Exibir informações completas sobre o computador
+# 6. Exibir informações detalhadas sobre a máquina e sistema
 systeminfo</code></pre>
       </div>
     </div>
 
-    <!-- SECÇÃO 2: NAVEGAR ENTRE DISCOS -->
+    <!-- SECÇÃO 3: NAVEGAR ENTRE DISCOS -->
     <div class="card">
-      <div class="card-title">💽 2. Como Alternar Entre Discos (C:, D:, E:)</div>
+      <div class="card-title">💽 3. Como Alternar Entre Discos (C:, D:, E:)</div>
       <div class="desc-text">
         No Windows, cada disco ou partição possui uma letra identificadora seguida de dois pontos (ex: <span class="highlight-badge">C:</span>, <span class="highlight-badge">D:</span>, <span class="highlight-badge">E:</span>). 
         <br><br>
@@ -248,17 +289,17 @@ C:
 # Para entrar no Disco E: (Pendrive ou disco secundário):
 E:
 
-# Depois de entrar no disco desejado, use o comando cd para navegar nas pastas:
+# Depois de entrar no disco desejado, use cd para navegar nas pastas:
 D:
 cd Projetos\MinhaAplicacao</code></pre>
       </div>
     </div>
 
-    <!-- SECÇÃO 3: ENTRAR NA ÁREA DE TRABALHO -->
+    <!-- SECÇÃO 4: ENTRAR NA ÁREA DE TRABALHO -->
     <div class="card">
-      <div class="card-title">🖥️ 3. Como Entrar na Área de Trabalho (Desktop)</div>
+      <div class="card-title">🖥️ 4. Como Entrar na Área de Trabalho (Desktop)</div>
       <div class="desc-text">
-        A Área de Trabalho fica localizada dentro da pasta do seu perfil de usuário. Você pode entrar nela de duas formas rápidas:
+        A Área de Trabalho fica localizada dentro da pasta do seu perfil de usuário:
       </div>
 
       <div class="code-box">
@@ -280,11 +321,49 @@ cd C:\Users\SeuNomeDeUsuario\Desktop</code></pre>
       </div>
     </div>
 
-    <!-- SECÇÃO 4: ABRIR O VS CODE PELO TERMINAL -->
+    <!-- SECÇÃO 5: GESTÃO DE ARQUIVOS E PROCESSOS -->
     <div class="card">
-      <div class="card-title">💎 4. Como Abrir o VS Code a Partir do Terminal</div>
+      <div class="card-title">📄 5. Ler, Copiar, Mover, Renomear & Processos</div>
       <div class="desc-text">
-        O executável do Visual Studio Code inclui o atalho CLI <span class="highlight-badge">code</span>. Com ele, você pode abrir qualquer pasta ou arquivo diretamente no VS Code com um único comando!
+        Comandos para manipular arquivos e gerenciar programas no Windows.
+      </div>
+
+      <div class="code-box">
+        <div class="code-header">
+          <span>CMD / PowerShell — Manipulação de Arquivos e Processos</span>
+          <button class="copy-btn" onclick="copiarCodigo('codeFiles', this)">📋 Copiar</button>
+        </div>
+        <pre><code id="codeFiles"># 1. Exibir o conteúdo de um arquivo de texto no terminal
+type notas.txt
+
+# 2. Abrir um arquivo no Bloco de Notas gráfico
+notepad notas.txt
+
+# 3. Copiar um arquivo para outra pasta ou nome
+copy arquivo.txt backup_arquivo.txt
+
+# 4. Mover um arquivo para outra pasta
+move arquivo.txt C:\Users\%USERNAME%\Documents\
+
+# 5. Renomear um arquivo ou pasta
+ren arquivo_antigo.txt arquivo_novo.txt
+
+# 6. Apagar um arquivo
+del arquivo_inutil.txt
+
+# 7. Listar todos os processos em execução no Windows
+tasklist
+
+# 8. Encerrar um processo travado por nome (ex: Chrome)
+taskkill /F /IM chrome.exe</code></pre>
+      </div>
+    </div>
+
+    <!-- SECÇÃO 6: ABRIR O VS CODE PELO TERMINAL -->
+    <div class="card">
+      <div class="card-title">💎 6. Como Abrir o VS Code a Partir do Terminal</div>
+      <div class="desc-text">
+        Abra qualquer pasta ou projeto diretamente no Visual Studio Code:
       </div>
 
       <div class="code-box">
@@ -295,7 +374,7 @@ cd C:\Users\SeuNomeDeUsuario\Desktop</code></pre>
         <pre><code id="code4"># 1. Abrir a pasta ATUAL inteira no VS Code:
 code .
 
-# 2. Abrir a pasta da Área de Trabalho no VS Code:
+# 2. Entrar na Área de Trabalho e abrir no VS Code:
 cd %USERPROFILE%\Desktop
 code .
 
@@ -303,10 +382,7 @@ code .
 code index.html
 
 # 4. Abrir o VS Code em uma nova janela independente:
-code -n .
-
-# 💡 Dica: Se o comando 'code' não for reconhecido:
-# Abra o VS Code manualmente -> Pressione Ctrl+Shift+P -> Digite "Shell Command: Install 'code' command in PATH".</code></pre>
+code -n .</code></pre>
       </div>
     </div>
 
