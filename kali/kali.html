@@ -666,9 +666,12 @@ traceroute scanme.nmap.org   # Rastrear Rota de Roteadores (Hops)
 nmap -sV -sC -T4 192.168.1.1 # Detecção de Versão de Serviços e Scripts Padrão
 nmap -p 1-65535 -sS target    # Varredura SYN em todas as portas
 
-# 4. Gestão de Processos e Sinais
-ps aux | grep python         # Buscar PID de scripts Python
-kill -9 &lt;PID&gt;                # Finalizar processo forçadamente</code></pre>
+# 5. Consultas de Busca de Arquivos, Textos e DNS (Grep, Find, Awk, Dig)
+grep -rnw '/var/log/' -e "ERROR"   # Consultar ocorrências do texto 'ERROR' nos logs
+find /var/www/ -name "*.php"       # Buscar todos os arquivos .php
+dig A google.com                   # Consulta de registros DNS tipo A
+nslookup github.com                # Consulta de servidor de nomes DNS
+awk -F: '{print $1, $3}' /etc/passwd # Filtrar usuários e UIDs do sistema</code></pre>
         </div>
     </div>
 

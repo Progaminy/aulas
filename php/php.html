@@ -374,8 +374,60 @@ try {
     foreach ($usuarios as $u) {
         echo "👤 " . $u['nome'] . " (" . $u['email'] . ")&lt;br&gt;";
     }
-} catch (PDOException $e) {
-    echo "❌ Erro na Conexão: " . $e->getMessage();
+?&gt;</code></pre>
+                </div>
+            </div>
+
+            <!-- Card 4.5: Consultas SQL Avançadas & Transações em Banco de Dados -->
+            <div class="legend-card">
+                <div class="card-title">🗄️ 4.1. Consultas SQL Avançadas & Transações ACID</div>
+                <div class="term-block">
+                    <div class="term-name">Modelagem, JOINs e Operações Atómicas</div>
+                    <div class="desc-text">
+                        Consultas a banco de dados relacional exigem rigor contra inconsistências. O uso de <strong>JOINs</strong> permite relacionar dados de múltiplas tabelas, enquanto <strong>Transações (ACID)</strong> garantem que operações compostas (ex: transferência de saldo) sejam concluídas com sucesso total ou desfeitas com <code>rollBack()</code>.
+                    </div>
+                </div>
+
+                <div class="code-box">
+                    <div class="code-header">
+                        <span>consultas_avancadas.php — JOINs e Transações Atómicas</span>
+                        <button class="copy-btn" onclick="copiarCodigo('codeSqlAdv', this)">📋 Copiar</button>
+                    </div>
+                    <pre><code id="codeSqlAdv">&lt;?php
+// 1. Consulta SQL Avançada com INNER JOIN, GROUP BY e ORDER BY
+$sql = "SELECT u.id, u.nome, COUNT(p.id) AS total_postagens, MAX(p.criado_em) AS ultima_postagem
+        FROM usuarios u
+        INNER JOIN postagens p ON u.id = p.usuario_id
+        WHERE u.status = :status
+        GROUP BY u.id, u.nome
+        HAVING total_postagens > 0
+        ORDER BY total_postagens DESC
+        LIMIT :limit OFFSET :offset";
+
+$stmt = $pdo->prepare($sql);
+$stmt->bindValue(':status', 'ativo', PDO::PARAM_STR);
+$stmt->bindValue(':limit', 10, PDO::PARAM_INT);
+$stmt->bindValue(':offset', 0, PDO::PARAM_INT);
+$stmt->execute();
+$relatorio = $stmt->fetchAll();
+
+// 2. Transação Atómica Segura (Transferência de Saldo / Pontos)
+try {
+    $pdo->beginTransaction(); // Inicia transação segura
+
+    // Subtrai da conta de origem
+    $stmt1 = $pdo->prepare("UPDATE contas SET saldo = saldo - :valor WHERE id = :de");
+    $stmt1->execute([':valor' => 100.00, ':de' => 1]);
+
+    // Adiciona na conta de destino
+    $stmt2 = $pdo->prepare("UPDATE contas SET saldo = saldo + :valor WHERE id = :para");
+    $stmt2->execute([':valor' => 100.00, ':para' => 2]);
+
+    $pdo->commit(); // Confirma alterações no Banco de Dados
+    echo "✅ Transferência realizada com sucesso atómico!";
+} catch (Exception $e) {
+    $pdo->rollBack(); // Reverte todas as alterações em caso de erro!
+    echo "❌ Transação cancelada: " . $e->getMessage();
 }
 ?&gt;</code></pre>
                 </div>

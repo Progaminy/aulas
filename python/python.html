@@ -453,6 +453,55 @@ if os.path.exists("pesquisa_pensador.txt"):
                 </table>
             </div>
 
+            <!-- Card 5.5: Consultas a Bancos de Dados com SQLite3 & JSON -->
+            <div class="legend-card">
+                <div class="card-title">🗄️ 5.1. Consultas a Bancos de Dados (SQLite3) & Filtros JSON</div>
+                <div class="term-block">
+                    <div class="term-name">Persistência Relacional com Consultas Parametrizadas</div>
+                    <div class="desc-text">
+                        Python disponibiliza o motor de banco de dados <strong>SQLite3</strong> integrado. É fundamental utilizar tuplas no <code>execute()</code> para consultas parametrizadas seguras contra injeção SQL, permitindo consultas avançadas com <code>WHERE</code>, <code>LIKE</code> e <code>ORDER BY</code>.
+                    </div>
+                </div>
+
+                <div class="code-box">
+                    <div class="code-header">
+                        <span>consultas_sqlite.py — CRUD & Consultas Parametrizadas</span>
+                        <button class="copy-btn" onclick="copiarCodigo('codePySql', this)">📋 Copiar</button>
+                    </div>
+                    <pre><code id="codePySql">import sqlite3
+
+# Conectar/Criar banco de dados local em memória ou arquivo
+conn = sqlite3.connect("pesquisa_pensador.db")
+cursor = conn.cursor()
+
+# 1. Criar Tabela
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS modulos (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    tecnologia TEXT NOT NULL,
+    nivel INTEGER NOT NULL,
+    concluido INTEGER DEFAULT 0
+)
+""")
+
+# 2. Inserir Dados Parametrizados (Segurança Total)
+cursor.execute("INSERT INTO modulos (tecnologia, nivel) VALUES (?, ?)", ("Python", 1))
+cursor.execute("INSERT INTO modulos (tecnologia, nivel) VALUES (?, ?)", ("PHP", 1))
+conn.commit()
+
+# 3. Executar Consulta SQL com Filtros e Ordenação
+busca = "%Py%"
+cursor.execute("SELECT id, tecnologia, nivel FROM modulos WHERE tecnologia LIKE ? ORDER BY nivel DESC", (busca,))
+resultados = cursor.fetchall()
+
+print("🔍 Resultados da Consulta SQL:")
+for linha in resultados:
+    print(f" -> ID: {linha[0]} | Tecnologia: {linha[1]} | Nível: {linha[2]}")
+
+conn.close()</code></pre>
+                </div>
+            </div>
+
             <!-- Card 6: Programação Orientada a Objetos (POO) -->
             <div class="legend-card">
                 <div class="card-title">🧩 6. Orientação a Objetos Avançada (POO & Dunder Methods)</div>
