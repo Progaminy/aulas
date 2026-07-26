@@ -278,13 +278,62 @@
 
         <!-- Conteúdo Teórico e Prático -->
         <div class="cards-grid">
-            <!-- Card 1: Fundamentos PHP -->
+            <!-- Card 1: Fundamentos PHP e Como Executar -->
             <div class="legend-card">
-                <div class="card-title">🌐 1. Fundamentos do PHP</div>
+                <div class="card-title">🌐 1. Fundamentos & Como Executar/Rodar Códigos PHP</div>
                 <div class="term-block">
                     <div class="term-name">O que é PHP?</div>
                     <div class="desc-text">
-                        PHP (Hypertext Preprocessor) é uma linguagem de script open-source para o lado do servidor (Server-Side), especialmente adequada para o desenvolvimento web e que pode ser embutida dentro do HTML.
+                        PHP (Hypertext Preprocessor) é uma linguagem de script open-source para o lado do servidor (Server-Side). O código PHP é executado no servidor e o resultado é enviado para o navegador do utilizador como HTML puro.
+                    </div>
+                </div>
+
+                <div class="term-block">
+                    <div class="term-name">⚡ Como Rodar/Executar o PHP Passo a Passo (4 Métodos)</div>
+                    <div class="desc-text">
+                        Para executar código PHP, você não pode simplesmente clicar com dois cliques num ficheiro <code>.php</code>. O PHP precisa de um servidor web ou do interpretador CLI. Escolha o método desejado abaixo (copie 1 a 1):
+                    </div>
+                </div>
+
+                <!-- Métodos de Execução de PHP -->
+                <div class="cmd-group" style="margin-bottom:1.2rem;">
+                    <!-- Método 1: Servidor Embutido -->
+                    <div style="background:#020617; border:1px solid rgba(56,189,248,0.35); border-radius:0.8rem; padding:0.8rem; display:flex; flex-direction:column; gap:0.4rem;">
+                        <span style="font-size:0.85rem; color:#94a3b8; font-weight:bold;">🚀 Método 1 (Mais Recomendado): Iniciar Servidor Web Embutido no VS Code:</span>
+                        <div style="font-size:0.85rem; color:#cbd5e1;">Abra o terminal do VS Code (<code>Ctrl + `</code>), entre na pasta do projeto e inicie o servidor:</div>
+                        <div style="display:flex; justify-content:space-between; align-items:center; background:#090d16; padding:0.5rem 0.8rem; border-radius:0.5rem; margin-top:0.3rem;">
+                            <code style="color:#38bdf8; font-weight:bold;">php -S localhost:8000</code>
+                            <button class="copy-btn" onclick="copiarCodigoTexto('php -S localhost:8000', this)">📋 Copiar</button>
+                        </div>
+                        <div style="font-size:0.8rem; color:#818cf8; margin-top:0.3rem;">👉 Depois abra o navegador em: <code>http://localhost:8000</code></div>
+                    </div>
+
+                    <!-- Método 2: Executar no Terminal CLI -->
+                    <div style="background:#020617; border:1px solid rgba(56,189,248,0.35); border-radius:0.8rem; padding:0.8rem; display:flex; flex-direction:column; gap:0.4rem;">
+                        <span style="font-size:0.85rem; color:#94a3b8; font-weight:bold;">🖥️ Método 2: Executar direto no Terminal (CLI sem navegador):</span>
+                        <div style="font-size:0.85rem; color:#cbd5e1;">Executa o script PHP e mostra o resultado de texto direto na tela do terminal:</div>
+                        <div style="display:flex; justify-content:space-between; align-items:center; background:#090d16; padding:0.5rem 0.8rem; border-radius:0.5rem; margin-top:0.3rem;">
+                            <code style="color:#38bdf8; font-weight:bold;">php index.php</code>
+                            <button class="copy-btn" onclick="copiarCodigoTexto('php index.php', this)">📋 Copiar</button>
+                        </div>
+                    </div>
+
+                    <!-- Método 3: Checar Versão -->
+                    <div style="background:#020617; border:1px solid rgba(56,189,248,0.35); border-radius:0.8rem; padding:0.8rem; display:flex; flex-direction:column; gap:0.4rem;">
+                        <span style="font-size:0.85rem; color:#94a3b8; font-weight:bold;">🔍 Verificar se o PHP está instalado no seu computador:</span>
+                        <div style="display:flex; justify-content:space-between; align-items:center; background:#090d16; padding:0.5rem 0.8rem; border-radius:0.5rem;">
+                            <code style="color:#38bdf8; font-weight:bold;">php -v</code>
+                            <button class="copy-btn" onclick="copiarCodigoTexto('php -v', this)">📋 Copiar</button>
+                        </div>
+                    </div>
+
+                    <!-- Método 4: Instalar PHP no Linux -->
+                    <div style="background:#020617; border:1px solid rgba(56,189,248,0.35); border-radius:0.8rem; padding:0.8rem; display:flex; flex-direction:column; gap:0.4rem;">
+                        <span style="font-size:0.85rem; color:#94a3b8; font-weight:bold;">🐧 Instalar PHP no Linux (Ubuntu / Kali / Debian):</span>
+                        <div style="display:flex; justify-content:space-between; align-items:center; background:#090d16; padding:0.5rem 0.8rem; border-radius:0.5rem;">
+                            <code style="color:#38bdf8; font-weight:bold;">sudo apt update && sudo apt install php -y</code>
+                            <button class="copy-btn" onclick="copiarCodigoTexto('sudo apt update && sudo apt install php -y', this)">📋 Copiar</button>
+                        </div>
                     </div>
                 </div>
 
