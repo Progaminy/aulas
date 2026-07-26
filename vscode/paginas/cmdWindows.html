@@ -685,6 +685,43 @@
       </div>
     </div>
 
+    <!-- CARTÃO: ABRIR SITES E URLS NO NAVEGADOR PELO TERMINAL -->
+    <div class="card">
+      <div class="card-title">🌐 Abrir Links, URLs e Sites no Navegador pelo Terminal</div>
+      <div class="desc-text">
+        Se digitar diretamente <code>https://...</code> no terminal do Windows, receberá a mensagem de erro <em>"'https:' não é reconhecido como um comando interno..."</em>. Para abrir qualquer site ou link do GitHub Pages pelo terminal, utilize o comando <code>start</code> (CMD) ou <code>Start-Process</code> (PowerShell):
+      </div>
+
+      <div class="cmd-group">
+        <!-- Comando URL 1 -->
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Abrir site do GitHub Pages no Navegador Padrão (CMD):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">start https://progaminy.github.io/aulas/index.html</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('start https://progaminy.github.io/aulas/index.html', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <!-- Comando URL 2 -->
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Abrir site no Navegador Padrão (PowerShell):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">Start-Process "https://progaminy.github.io/aulas/index.html"</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('Start-Process &quot;https://progaminy.github.io/aulas/index.html&quot;', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <!-- Comando URL 3 -->
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Forçar abertura de um site especificamente no Google Chrome (CMD):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">start chrome https://progaminy.github.io/aulas/index.html</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('start chrome https://progaminy.github.io/aulas/index.html', this)">📋 Copiar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <footer>
       <p>© Pensador Sem Fronteiras — <em>Do Zero ao Infinito</em></p>
     </footer>
