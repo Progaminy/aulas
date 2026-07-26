@@ -52,11 +52,13 @@
       display: flex; flex-direction: column; gap: 1.2rem;
     }
     .card-title { font-size: 1.4rem; font-weight: 800; color: #38bdf8; border-bottom: 1px solid rgba(56, 189, 248, 0.2); padding-bottom: 0.6rem; }
-    .code-box { background: #020617; border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 1rem; overflow: hidden; margin-top: 0.5rem; }
-    .code-header { display: flex; justify-content: space-between; align-items: center; padding: 0.6rem 1rem; background: #090d16; border-bottom: 1px solid rgba(56, 189, 248, 0.3); font-size: 0.85rem; color: #38bdf8; font-weight: bold; }
-    .copy-btn { background: rgba(56, 189, 248, 0.15); border: 1px solid #38bdf8; color: #38bdf8; font-weight: bold; padding: 0.35rem 0.9rem; border-radius: 1.5rem; cursor: pointer; font-size: 0.8rem; transition: all 0.2s; }
+    .cmd-group { display: flex; flex-direction: column; gap: 0.8rem; margin-top: 0.5rem; }
+    .cmd-block { background: #020617; border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 1rem; padding: 1rem; display: flex; flex-direction: column; gap: 0.4rem; }
+    .cmd-label { font-size: 0.9rem; font-weight: 700; color: #94a3b8; }
+    .cmd-row { display: flex; justify-content: space-between; align-items: center; gap: 1rem; background: #090d16; border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 0.6rem; padding: 0.6rem 0.9rem; }
+    .cmd-code { font-family: 'Consolas', 'Fira Code', monospace; color: #38bdf8; font-weight: bold; font-size: 1rem; word-break: break-all; }
+    .copy-btn { background: rgba(56, 189, 248, 0.15); border: 1px solid #38bdf8; color: #38bdf8; font-weight: bold; padding: 0.4rem 1rem; border-radius: 1.5rem; cursor: pointer; font-size: 0.82rem; white-space: nowrap; transition: all 0.2s; }
     .copy-btn:hover { background: #38bdf8; color: #000; box-shadow: 0 0 15px #38bdf8; }
-    pre { padding: 1.2rem; margin: 0; font-family: 'Consolas', 'Fira Code', monospace; font-size: 0.95rem; color: #f1f5f9; white-space: pre-wrap; }
     footer { text-align: center; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px dashed rgba(56, 189, 248, 0.3); color: #64748b; font-size: 0.9rem; }
     footer em { color: #c084fc; font-style: normal; font-weight: bold; }
   </style>
@@ -72,82 +74,100 @@
     <h1 class="main-title">🐙 GitHub: Clonagem de Repositórios (Git Clone)</h1>
 
     <div class="card">
-      <div class="card-title">🚀 1. Comando Básico de Clonagem</div>
-      <p>O comando <code>git clone</code> copia todo o repositório remoto do GitHub para o seu computador local.</p>
+      <div class="card-title">🚀 1. Comando Básico e Exemplos (Comando por Comando)</div>
 
-      <div class="code-box">
-        <div class="code-header">
-          <span>terminal — Git Clone Base</span>
-          <button class="copy-btn" onclick="copiarCodigo('code1', this)">📋 Copiar</button>
+      <div class="cmd-group">
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Clonar repositório padrão via HTTPS:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">git clone https://github.com/username/repository.git</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('git clone https://github.com/username/repository.git', this)">📋 Copiar</button>
+          </div>
         </div>
-        <pre><code id="code1">git clone https://github.com/username/repository.git</code></pre>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Clonar repositório via SSH:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">git clone git@github.com:username/repository.git</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('git clone git@github.com:username/repository.git', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Clonar definindo o nome de uma pasta personalizada:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">git clone https://github.com/username/repository.git minha-pasta</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('git clone https://github.com/username/repository.git minha-pasta', this)">📋 Copiar</button>
+          </div>
+        </div>
       </div>
     </div>
 
     <div class="card">
-      <div class="card-title">📚 2. Exemplos de Clonagem Frequentes</div>
-      
-      <div class="code-box">
-        <div class="code-header">
-          <span>terminal — HTTPS, SSH e Diretório Personalizado</span>
-          <button class="copy-btn" onclick="copiarCodigo('code2', this)">📋 Copiar</button>
+      <div class="card-title">🐉 2. Passo a Passo Completo no Terminal (Executar 1 a 1)</div>
+
+      <div class="cmd-group">
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Passo 1: Instalar o Git se necessário:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">sudo apt update && sudo apt install git -y</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('sudo apt update && sudo apt install git -y', this)">📋 Copiar</button>
+          </div>
         </div>
-        <pre><code id="code2"># 1. Clonar via HTTPS
-git clone https://github.com/username/repository.git
 
-# 2. Clonar via SSH (requer chave SSH configurada)
-git clone git@github.com:username/repository.git
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Passo 2: Entrar na Área de Trabalho (Desktop):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">cd ~/Desktop</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('cd ~/Desktop', this)">📋 Copiar</button>
+          </div>
+        </div>
 
-# 3. Clonar para uma pasta específica
-git clone https://github.com/username/repository.git minha-pasta</code></pre>
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Passo 3: Clonar este repositório de Aulas:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">git clone https://github.com/Progaminy/aulas.git</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('git clone https://github.com/Progaminy/aulas.git', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Passo 4: Entrar na pasta do projeto clonado:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">cd aulas</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('cd aulas', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Passo 5: Listar conteúdo detalhado da pasta:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">ls -la</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('ls -la', this)">📋 Copiar</button>
+          </div>
+        </div>
       </div>
     </div>
 
     <div class="card">
-      <div class="card-title">🐉 3. Passo a Passo Completo no Kali Linux / Terminal</div>
-      <ol style="margin-left: 1.2rem; display:flex; flex-direction:column; gap:0.8rem;">
-        <li><strong>Passo 1:</strong> Acessar GitHub no navegador → github.com</li>
-        <li><strong>Passo 2:</strong> Fazer login no GitHub</li>
-        <li><strong>Passo 3:</strong> Ir para o repositório desejado</li>
-        <li><strong>Passo 4:</strong> Clicar no botão verde "<strong>Code</strong>" (Código) e copiar a URL HTTPS</li>
-        <li><strong>Passo 5:</strong> Abrir o terminal (<kbd>Ctrl + Alt + T</kbd>) e executar os comandos:</li>
-      </ol>
+      <div class="card-title">💡 3. Dicas Avançadas de Clonagem</div>
 
-      <div class="code-box">
-        <div class="code-header">
-          <span>terminal — Fluxo Completo de Clonagem</span>
-          <button class="copy-btn" onclick="copiarCodigo('code3', this)">📋 Copiar</button>
+      <div class="cmd-group">
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Clonar apenas a branch 'main':</div>
+          <div class="cmd-row">
+            <span class="cmd-code">git clone -b main https://github.com/username/repository.git</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('git clone -b main https://github.com/username/repository.git', this)">📋 Copiar</button>
+          </div>
         </div>
-        <pre><code id="code3"># 1. Garantir que o Git está instalado
-sudo apt update && sudo apt install git -y
 
-# 2. Entrar na Área de Trabalho
-cd ~/Desktop
-
-# 3. Clonar o repositório
-git clone https://github.com/Progaminy/aulas.git
-
-# 4. Entrar na pasta do projeto clonado
-cd aulas
-
-# 5. Verificar o conteúdo baixado
-ls -la</code></pre>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-title">💡 4. Dicas Avançadas de Clonagem</div>
-
-      <div class="code-box">
-        <div class="code-header">
-          <span>terminal — Branch Específica e Clonagem Rápida</span>
-          <button class="copy-btn" onclick="copiarCodigo('code4', this)">📋 Copiar</button>
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Shallow Clone (apenas versão recente sem histórico antigo):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">git clone --depth 1 https://github.com/username/repository.git</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('git clone --depth 1 https://github.com/username/repository.git', this)">📋 Copiar</button>
+          </div>
         </div>
-        <pre><code id="code4"># Clonar apenas uma branch específica
-git clone -b main https://github.com/username/repository.git
-
-# Shallow Clone (Clonagem rápida apenas da versão mais recente sem histórico pesado)
-git clone --depth 1 https://github.com/username/repository.git</code></pre>
       </div>
     </div>
 
@@ -157,10 +177,9 @@ git clone --depth 1 https://github.com/username/repository.git</code></pre>
   </div>
 
   <script>
-    function copiarCodigo(id, btn) {
-      const el = document.getElementById(id);
-      if (!el) return;
-      navigator.clipboard.writeText(el.innerText.trim()).then(() => {
+    function copiarComandoUnico(cmd, btn) {
+      if (!cmd) return;
+      navigator.clipboard.writeText(cmd).then(() => {
         const orig = btn.innerText;
         btn.innerText = '✅ Copiado!';
         btn.style.background = '#38bdf8';

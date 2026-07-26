@@ -52,11 +52,13 @@
       display: flex; flex-direction: column; gap: 1.2rem;
     }
     .card-title { font-size: 1.4rem; font-weight: 800; color: #38bdf8; border-bottom: 1px solid rgba(56, 189, 248, 0.2); padding-bottom: 0.6rem; }
-    .code-box { background: #020617; border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 1rem; overflow: hidden; margin-top: 0.5rem; }
-    .code-header { display: flex; justify-content: space-between; align-items: center; padding: 0.6rem 1rem; background: #090d16; border-bottom: 1px solid rgba(56, 189, 248, 0.3); font-size: 0.85rem; color: #38bdf8; font-weight: bold; }
-    .copy-btn { background: rgba(56, 189, 248, 0.15); border: 1px solid #38bdf8; color: #38bdf8; font-weight: bold; padding: 0.35rem 0.9rem; border-radius: 1.5rem; cursor: pointer; font-size: 0.8rem; transition: all 0.2s; }
+    .cmd-group { display: flex; flex-direction: column; gap: 0.8rem; margin-top: 0.5rem; }
+    .cmd-block { background: #020617; border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 1rem; padding: 1rem; display: flex; flex-direction: column; gap: 0.4rem; }
+    .cmd-label { font-size: 0.9rem; font-weight: 700; color: #94a3b8; }
+    .cmd-row { display: flex; justify-content: space-between; align-items: center; gap: 1rem; background: #090d16; border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 0.6rem; padding: 0.6rem 0.9rem; }
+    .cmd-code { font-family: 'Consolas', 'Fira Code', monospace; color: #38bdf8; font-weight: bold; font-size: 1rem; word-break: break-all; }
+    .copy-btn { background: rgba(56, 189, 248, 0.15); border: 1px solid #38bdf8; color: #38bdf8; font-weight: bold; padding: 0.4rem 1rem; border-radius: 1.5rem; cursor: pointer; font-size: 0.82rem; white-space: nowrap; transition: all 0.2s; }
     .copy-btn:hover { background: #38bdf8; color: #000; box-shadow: 0 0 15px #38bdf8; }
-    pre { padding: 1.2rem; margin: 0; font-family: 'Consolas', 'Fira Code', monospace; font-size: 0.95rem; color: #f1f5f9; white-space: pre-wrap; }
     footer { text-align: center; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px dashed rgba(56, 189, 248, 0.3); color: #64748b; font-size: 0.9rem; }
     footer em { color: #c084fc; font-style: normal; font-weight: bold; }
   </style>
@@ -74,79 +76,90 @@
     <div class="card">
       <div class="card-title">🐉 1. Instalar VS Code Oficial via Repositório Microsoft</div>
       
-      <div class="code-box">
-        <div class="code-header">
-          <span>terminal — Repositório Microsoft GPG</span>
-          <button class="copy-btn" onclick="copiarCodigo('code1', this)">📋 Copiar</button>
+      <div class="cmd-group">
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Passo 1: Baixar chave GPG da Microsoft:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg', this)">📋 Copiar</button>
+          </div>
         </div>
-        <pre><code id="code1"># Adicionar a chave GPG da Microsoft
-wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
-sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
 
-# Adicionar o repositório oficial
-sudo sh -c 'echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Passo 2: Instalar chave de segurança:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg', this)">📋 Copiar</button>
+          </div>
+        </div>
 
-# Atualizar repositórios e instalar o VS Code
-sudo apt update
-sudo apt install code -y</code></pre>
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Passo 3: Adicionar repositório oficial da Microsoft:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">sudo sh -c 'echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('sudo sh -c \'echo \"deb [arch=amd64 signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main\" > /etc/apt/sources.list.d/vscode.list\'', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Passo 4: Atualizar repositórios e instalar VS Code:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">sudo apt update && sudo apt install code -y</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('sudo apt update && sudo apt install code -y', this)">📋 Copiar</button>
+          </div>
+        </div>
       </div>
     </div>
 
     <div class="card">
       <div class="card-title">📥 2. Instalar via Pacote .DEB Direto</div>
       
-      <div class="code-box">
-        <div class="code-header">
-          <span>terminal — Download e Instalação DPKG</span>
-          <button class="copy-btn" onclick="copiarCodigo('code2', this)">📋 Copiar</button>
+      <div class="cmd-group">
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Baixar o arquivo .deb do VS Code:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">wget -O code_latest_amd64.deb "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64"</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('wget -O code_latest_amd64.deb \"https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64\"', this)">📋 Copiar</button>
+          </div>
         </div>
-        <pre><code id="code2"># Baixar o pacote .deb mais recente
-wget -O code_latest_amd64.deb "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64"
 
-# Instalar o pacote baixado
-sudo dpkg -i code_latest_amd64.deb
-
-# Corrigir dependências automaticamente (se necessário)
-sudo apt --fix-broken install -y</code></pre>
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Instalar pacote .deb:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">sudo dpkg -i code_latest_amd64.deb</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('sudo dpkg -i code_latest_amd64.deb', this)">📋 Copiar</button>
+          </div>
+        </div>
       </div>
     </div>
 
     <div class="card">
-      <div class="card-title">🛠️ 3. Instalar o Git no Linux</div>
+      <div class="card-title">🛠️ 3. Instalar e Configurar o Git</div>
       
-      <div class="code-box">
-        <div class="code-header">
-          <span>terminal — Instalação do Git</span>
-          <button class="copy-btn" onclick="copiarCodigo('code3', this)">📋 Copiar</button>
+      <div class="cmd-group">
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Instalar Git:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">sudo apt update && sudo apt install git -y</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('sudo apt update && sudo apt install git -y', this)">📋 Copiar</button>
+          </div>
         </div>
-        <pre><code id="code3"># Atualizar lista de pacotes
-sudo apt update
 
-# Instalar o Git
-sudo apt install git -y
-
-# Configurar nome de usuário e e-mail no Git
-git config --global user.name "Seu Nome"
-git config --global user.email "seu_email@exemplo.com"</code></pre>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-title">🧹 4. Desinstalação e Limpeza de Cache APT</div>
-      
-      <div class="code-box">
-        <div class="code-header">
-          <span>terminal — Limpeza de Trava de APT e Cache</span>
-          <button class="copy-btn" onclick="copiarCodigo('code4', this)">📋 Copiar</button>
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Configurar nome de usuário no Git:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">git config --global user.name "Seu Nome"</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('git config --global user.name \"Seu Nome\"', this)">📋 Copiar</button>
+          </div>
         </div>
-        <pre><code id="code4"># Limpar cache do gerenciador de pacotes
-sudo apt clean
 
-# Remover pacotes não utilizados
-sudo apt autoremove -y
-
-# Desinstalar code-oss (se instalado)
-sudo apt remove code-oss -y</code></pre>
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Configurar e-mail no Git:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">git config --global user.email "seu_email@exemplo.com"</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('git config --global user.email \"seu_email@exemplo.com\"', this)">📋 Copiar</button>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -156,10 +169,9 @@ sudo apt remove code-oss -y</code></pre>
   </div>
 
   <script>
-    function copiarCodigo(id, btn) {
-      const el = document.getElementById(id);
-      if (!el) return;
-      navigator.clipboard.writeText(el.innerText.trim()).then(() => {
+    function copiarComandoUnico(cmd, btn) {
+      if (!cmd) return;
+      navigator.clipboard.writeText(cmd).then(() => {
         const orig = btn.innerText;
         btn.innerText = '✅ Copiado!';
         btn.style.background = '#38bdf8';

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
-  <title>🪟 Comandos Windows (CMD & PowerShell) · Lendário</title>
+  <title>🪟 Comandos Windows (CMD & PowerShell) · Comandos Individuais</title>
   <style>
     * {
       margin: 0;
@@ -107,24 +107,47 @@
       line-height: 1.6;
     }
 
-    .code-box {
-      background: #020617;
-      border: 1px solid rgba(56, 189, 248, 0.4);
-      border-radius: 1rem;
-      overflow: hidden;
+    /* ITEM DE COMANDO INDIVIDUAL (CÓPIA DE 1 COMANDO ÚNICO) */
+    .cmd-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
       margin-top: 0.5rem;
     }
 
-    .code-header {
+    .cmd-block {
+      background: #020617;
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      border-radius: 1rem;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .cmd-label {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #94a3b8;
+    }
+
+    .cmd-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0.6rem 1rem;
+      gap: 1rem;
       background: #090d16;
-      border-bottom: 1px solid rgba(56, 189, 248, 0.3);
-      font-size: 0.85rem;
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 0.6rem;
+      padding: 0.6rem 0.9rem;
+    }
+
+    .cmd-code {
+      font-family: 'Consolas', 'Fira Code', monospace;
       color: #38bdf8;
       font-weight: bold;
+      font-size: 1rem;
+      word-break: break-all;
     }
 
     .copy-btn {
@@ -132,10 +155,11 @@
       border: 1px solid #38bdf8;
       color: #38bdf8;
       font-weight: bold;
-      padding: 0.35rem 0.9rem;
+      padding: 0.4rem 1rem;
       border-radius: 1.5rem;
       cursor: pointer;
-      font-size: 0.8rem;
+      font-size: 0.82rem;
+      white-space: nowrap;
       transition: all 0.2s;
     }
 
@@ -143,16 +167,6 @@
       background: #38bdf8;
       color: #000;
       box-shadow: 0 0 15px #38bdf8;
-    }
-
-    pre {
-      padding: 1.2rem;
-      margin: 0;
-      font-family: 'Consolas', 'Fira Code', 'Courier New', monospace;
-      font-size: 0.95rem;
-      color: #f1f5f9;
-      overflow-x: auto;
-      white-space: pre-wrap;
     }
 
     .highlight-badge {
@@ -191,198 +205,318 @@
     </div>
 
     <h1 class="main-title">🪟 Comandos Windows (CMD & PowerShell)</h1>
-    <p class="subtitle">Guia Completo: Navegação de Pastas, Discos, Área de Trabalho & VS Code</p>
+    <p class="subtitle">Cada comando tem o seu botão de cópia individual exato (1 por 1)</p>
 
     <!-- SECÇÃO 1: NAVEGAÇÃO E MANIPULAÇÃO DE PASTAS -->
     <div class="card">
-      <div class="card-title">📂 1. Entrar, Sair e Criar Pastas (Navegação de Diretórios)</div>
+      <div class="card-title">📂 1. Entrar, Sair e Criar Pastas (Comando por Comando)</div>
       <div class="desc-text">
-        Navegar entre pastas no Windows é feito com o comando <code>cd</code> (Change Directory). Aprenda os principais comandos para entrar, voltar e criar diretórios no terminal.
+        Clique no botão <strong>📋 Copiar</strong> ao lado de qualquer comando individual para copiar apenas aquele comando para a área de transferência:
       </div>
 
-      <div class="code-box">
-        <div class="code-header">
-          <span>CMD / PowerShell — Navegação e Criação de Pastas</span>
-          <button class="copy-btn" onclick="copiarCodigo('codeFolder', this)">📋 Copiar</button>
+      <div class="cmd-group">
+        <!-- Comando 1 -->
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Entrar em uma pasta (ex: pasta 'Projetos'):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">cd Projetos</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('cd Projetos', this)">📋 Copiar</button>
+          </div>
         </div>
-        <pre><code id="codeFolder"># 1. Entrar em uma pasta (ex: pasta 'Projetos')
-cd Projetos
 
-# 2. Entrar em subpastas em um único comando
-cd Projetos\Web\MeusSites
+        <!-- Comando 2 -->
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Entrar direto em subpastas aninhadas:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">cd Projetos\Web\MeusSites</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('cd Projetos\\Web\\MeusSites', this)">📋 Copiar</button>
+          </div>
+        </div>
 
-# 3. Voltar para a pasta anterior (subir 1 nível)
-cd ..
+        <!-- Comando 3 -->
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Voltar para a pasta anterior (subir 1 nível):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">cd ..</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('cd ..', this)">📋 Copiar</button>
+          </div>
+        </div>
 
-# 4. Voltar 2 níveis de pasta de uma vez
-cd ..\..
+        <!-- Comando 4 -->
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Voltar 2 níveis de pasta de uma só vez:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">cd ..\..</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('cd ..\\..', this)">📋 Copiar</button>
+          </div>
+        </div>
 
-# 5. Voltar diretamente para a raiz do disco (ex: C:\)
-cd \
+        <!-- Comando 5 -->
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Voltar diretamente para a raiz do disco (C:\):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">cd \</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('cd \\', this)">📋 Copiar</button>
+          </div>
+        </div>
 
-# 6. Criar uma nova pasta
-mkdir MinhaNovaPasta
+        <!-- Comando 6 -->
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Criar uma nova pasta:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">mkdir MinhaNovaPasta</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('mkdir MinhaNovaPasta', this)">📋 Copiar</button>
+          </div>
+        </div>
 
-# 7. Apagar uma pasta vazia
-rmdir MinhaNovaPasta
+        <!-- Comando 7 -->
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Apagar uma pasta vazia:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">rmdir MinhaNovaPasta</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('rmdir MinhaNovaPasta', this)">📋 Copiar</button>
+          </div>
+        </div>
 
-# 8. Apagar uma pasta e TODAS as suas subpastas/arquivos sem pedir confirmação
-rmdir /s /q MinhaPastaAntiga
+        <!-- Comando 8 -->
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Apagar pasta e todo seu conteúdo forçadamente sem confirmação:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">rmdir /s /q MinhaPastaAntiga</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('rmdir /s /q MinhaPastaAntiga', this)">📋 Copiar</button>
+          </div>
+        </div>
 
-# 9. Ver a árvore gráfica de estrutura das pastas
-tree /f</code></pre>
+        <!-- Comando 9 -->
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Exibir árvore de diretórios e arquivos:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">tree /f</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('tree /f', this)">📋 Copiar</button>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- SECÇÃO 2: COMANDOS BÁSICOS -->
+    <!-- SECÇÃO 2: COMANDOS BÁSICOS DE SISTEMA -->
     <div class="card">
-      <div class="card-title">🖥️ 2. Comandos Essenciais do Terminal Windows</div>
-      <div class="desc-text">
-        Comandos utilitários para listar arquivos, limpar a tela e consultar informações do sistema.
-      </div>
-
-      <div class="code-box">
-        <div class="code-header">
-          <span>CMD / PowerShell — Comandos Básicos de Sistema</span>
-          <button class="copy-btn" onclick="copiarCodigo('code1', this)">📋 Copiar</button>
+      <div class="card-title">🖥️ 2. Comandos Básicos de Sistema (Comando por Comando)</div>
+      
+      <div class="cmd-group">
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Listar arquivos e pastas no diretório atual:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">dir</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('dir', this)">📋 Copiar</button>
+          </div>
         </div>
-        <pre><code id="code1"># 1. Listar todos os arquivos e pastas no diretório atual
-dir
 
-# 2. Listar SOMENTE pastas (diretórios)
-dir /ad
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Listar APENAS pastas (diretórios):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">dir /ad</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('dir /ad', this)">📋 Copiar</button>
+          </div>
+        </div>
 
-# 3. Ver o caminho completo da pasta atual
-cd
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Ver o caminho completo da pasta atual:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">cd</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('cd', this)">📋 Copiar</button>
+          </div>
+        </div>
 
-# 4. Limpar a tela do terminal
-cls
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Limpar a tela do terminal:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">cls</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('cls', this)">📋 Copiar</button>
+          </div>
+        </div>
 
-# 5. Ver o endereço de IP e informações de rede
-ipconfig
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Ver endereço IP e dados de rede:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">ipconfig</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('ipconfig', this)">📋 Copiar</button>
+          </div>
+        </div>
 
-# 6. Exibir informações detalhadas sobre a máquina e sistema
-systeminfo</code></pre>
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Exibir informações do sistema e hardware:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">systeminfo</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('systeminfo', this)">📋 Copiar</button>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- SECÇÃO 3: NAVEGAR ENTRE DISCOS -->
+    <!-- SECÇÃO 3: NAVEGAR ENTRE DISCOS (C:, D:, E:) -->
     <div class="card">
-      <div class="card-title">💽 3. Como Alternar Entre Discos (C:, D:, E:)</div>
+      <div class="card-title">💽 3. Alternar Entre Discos (C:, D:, E:)</div>
       <div class="desc-text">
-        No Windows, cada disco ou partição possui uma letra identificadora seguida de dois pontos (ex: <span class="highlight-badge">C:</span>, <span class="highlight-badge">D:</span>, <span class="highlight-badge">E:</span>). 
-        <br><br>
-        ⚠️ <strong>Atenção:</strong> Para trocar de disco no Windows, você <strong>NÃO</strong> usa o comando <code>cd</code>. Você deve digitar diretamente a <strong>letra do disco seguida de dois pontos</strong> e pressionar <kbd>Enter</kbd>.
+        Digite diretamente a letra do disco seguida de dois pontos:
       </div>
 
-      <div class="code-box">
-        <div class="code-header">
-          <span>CMD / PowerShell — Alternando entre Discos</span>
-          <button class="copy-btn" onclick="copiarCodigo('code2', this)">📋 Copiar</button>
+      <div class="cmd-group">
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Entrar no Disco D: (segundo HD/SSD):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">D:</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('D:', this)">📋 Copiar</button>
+          </div>
         </div>
-        <pre><code id="code2"># Para entrar no Disco D: (segundo disco ou HD externo):
-D:
 
-# Para voltar ao Disco C: (disco principal do sistema):
-C:
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Voltar ao Disco C: (disco principal):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">C:</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('C:', this)">📋 Copiar</button>
+          </div>
+        </div>
 
-# Para entrar no Disco E: (Pendrive ou disco secundário):
-E:
-
-# Depois de entrar no disco desejado, use cd para navegar nas pastas:
-D:
-cd Projetos\MinhaAplicacao</code></pre>
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Entrar no Disco E: (Pendrive / HD Externo):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">E:</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('E:', this)">📋 Copiar</button>
+          </div>
+        </div>
       </div>
     </div>
 
     <!-- SECÇÃO 4: ENTRAR NA ÁREA DE TRABALHO -->
     <div class="card">
-      <div class="card-title">🖥️ 4. Como Entrar na Área de Trabalho (Desktop)</div>
-      <div class="desc-text">
-        A Área de Trabalho fica localizada dentro da pasta do seu perfil de usuário:
-      </div>
+      <div class="card-title">🖥️ 4. Entrar na Área de Trabalho (Desktop)</div>
 
-      <div class="code-box">
-        <div class="code-header">
-          <span>CMD / PowerShell — Navegando para o Desktop</span>
-          <button class="copy-btn" onclick="copiarCodigo('code3', this)">📋 Copiar</button>
+      <div class="cmd-group">
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Se você já estiver na sua pasta de usuário (C:\Users\SeuNome):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">cd Desktop</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('cd Desktop', this)">📋 Copiar</button>
+          </div>
         </div>
-        <pre><code id="code3"># Opção A: Se você já estiver na sua pasta de usuário (C:\Users\SeuNome):
-cd Desktop
 
-# Opção B: Atalho direto no CMD de qualquer lugar do sistema:
-cd %USERPROFILE%\Desktop
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Atalho direto no CMD de qualquer lugar do sistema:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">cd %USERPROFILE%\Desktop</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('cd %USERPROFILE%\\Desktop', this)">📋 Copiar</button>
+          </div>
+        </div>
 
-# Opção C: Atalho direto no PowerShell de qualquer lugar:
-cd $env:USERPROFILE\Desktop
-
-# Opção D: Especificando o caminho manual completo:
-cd C:\Users\SeuNomeDeUsuario\Desktop</code></pre>
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Atalho direto no PowerShell de qualquer lugar do sistema:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">cd $env:USERPROFILE\Desktop</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('cd $env:USERPROFILE\\Desktop', this)">📋 Copiar</button>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- SECÇÃO 5: GESTÃO DE ARQUIVOS E PROCESSOS -->
+    <!-- SECÇÃO 5: LER ARQUIVOS E PROCESSOS -->
     <div class="card">
-      <div class="card-title">📄 5. Ler, Copiar, Mover, Renomear & Processos</div>
-      <div class="desc-text">
-        Comandos para manipular arquivos e gerenciar programas no Windows.
-      </div>
+      <div class="card-title">📄 5. Manipulação de Arquivos e Processos</div>
 
-      <div class="code-box">
-        <div class="code-header">
-          <span>CMD / PowerShell — Manipulação de Arquivos e Processos</span>
-          <button class="copy-btn" onclick="copiarCodigo('codeFiles', this)">📋 Copiar</button>
+      <div class="cmd-group">
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Exibir conteúdo de um arquivo no terminal:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">type notas.txt</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('type notas.txt', this)">📋 Copiar</button>
+          </div>
         </div>
-        <pre><code id="codeFiles"># 1. Exibir o conteúdo de um arquivo de texto no terminal
-type notas.txt
 
-# 2. Abrir um arquivo no Bloco de Notas gráfico
-notepad notas.txt
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Abrir arquivo no Bloco de Notas:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">notepad notas.txt</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('notepad notas.txt', this)">📋 Copiar</button>
+          </div>
+        </div>
 
-# 3. Copiar um arquivo para outra pasta ou nome
-copy arquivo.txt backup_arquivo.txt
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Copiar um arquivo:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">copy arquivo.txt backup.txt</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('copy arquivo.txt backup.txt', this)">📋 Copiar</button>
+          </div>
+        </div>
 
-# 4. Mover um arquivo para outra pasta
-move arquivo.txt C:\Users\%USERNAME%\Documents\
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Mover um arquivo para outra pasta:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">move arquivo.txt %USERPROFILE%\Documents\</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('move arquivo.txt %USERPROFILE%\\Documents\\', this)">📋 Copiar</button>
+          </div>
+        </div>
 
-# 5. Renomear um arquivo ou pasta
-ren arquivo_antigo.txt arquivo_novo.txt
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Renomear um arquivo ou pasta:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">ren antigo.txt novo.txt</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('ren antigo.txt novo.txt', this)">📋 Copiar</button>
+          </div>
+        </div>
 
-# 6. Apagar um arquivo
-del arquivo_inutil.txt
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Apagar um arquivo:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">del arquivo.txt</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('del arquivo.txt', this)">📋 Copiar</button>
+          </div>
+        </div>
 
-# 7. Listar todos os processos em execução no Windows
-tasklist
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Listar processos em execução:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">tasklist</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('tasklist', this)">📋 Copiar</button>
+          </div>
+        </div>
 
-# 8. Encerrar um processo travado por nome (ex: Chrome)
-taskkill /F /IM chrome.exe</code></pre>
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Encerrar um programa travado pelo nome:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">taskkill /F /IM chrome.exe</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('taskkill /F /IM chrome.exe', this)">📋 Copiar</button>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- SECÇÃO 6: ABRIR O VS CODE PELO TERMINAL -->
+    <!-- SECÇÃO 6: ABRIR VS CODE -->
     <div class="card">
-      <div class="card-title">💎 6. Como Abrir o VS Code a Partir do Terminal</div>
-      <div class="desc-text">
-        Abra qualquer pasta ou projeto diretamente no Visual Studio Code:
-      </div>
+      <div class="card-title">💎 6. Abrir o VS Code pelo Terminal</div>
 
-      <div class="code-box">
-        <div class="code-header">
-          <span>CMD / PowerShell — Abrindo o VS Code</span>
-          <button class="copy-btn" onclick="copiarCodigo('code4', this)">📋 Copiar</button>
+      <div class="cmd-group">
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Abrir a pasta ATUAL inteira no VS Code:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">code .</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('code .', this)">📋 Copiar</button>
+          </div>
         </div>
-        <pre><code id="code4"># 1. Abrir a pasta ATUAL inteira no VS Code:
-code .
 
-# 2. Entrar na Área de Trabalho e abrir no VS Code:
-cd %USERPROFILE%\Desktop
-code .
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Abrir um arquivo específico diretamente no editor:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">code index.html</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('code index.html', this)">📋 Copiar</button>
+          </div>
+        </div>
 
-# 3. Abrir um arquivo específico diretamente no editor:
-code index.html
-
-# 4. Abrir o VS Code em uma nova janela independente:
-code -n .</code></pre>
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Abrir o VS Code em nova janela independente:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">code -n .</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('code -n .', this)">📋 Copiar</button>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -392,13 +526,10 @@ code -n .</code></pre>
   </div>
 
   <script>
-    // Função para copiar snippets de código
-    function copiarCodigo(id, btn) {
-      const codeElement = document.getElementById(id);
-      if (!codeElement) return;
-      const textToCopy = codeElement.innerText.trim();
-      
-      navigator.clipboard.writeText(textToCopy).then(() => {
+    // Função pura para copiar EXATAMENTE 1 comando individual
+    function copiarComandoUnico(comando, btn) {
+      if (!comando) return;
+      navigator.clipboard.writeText(comando).then(() => {
         const originalText = btn.innerText;
         btn.innerText = '✅ Copiado!';
         btn.style.background = '#38bdf8';
