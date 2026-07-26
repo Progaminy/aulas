@@ -263,16 +263,21 @@
                 <button class="toggle-btn" id="toggleIndicePHP">📂 Expandir Pesquisas</button>
             </div>
             <ul class="link-indice hidden-indice" id="indicePHP">
-                <li><p><strong>Nível I · Tópico 1:</strong> O que é PHP, Servidor Web (Apache/Nginx) & Tags `&lt;?php ?&gt;`</p></li>
-                <li><p><strong>Nível I · Tópico 2:</strong> Variáveis `$`, Concatenação de Strings & Tipos Primitivos</p></li>
-                <li><p><strong>Nível II · Tópico 3:</strong> Condicionais `if / else`, Switch & Operadores Lógicos</p></li>
-                <li><p><strong>Nível II · Tópico 4:</strong> Arrays Numéricos & Associativos em PHP (`key => value`)</p></li>
-                <li><p><strong>Nível III · Tópico 5:</strong> Laços de Repetição `foreach`, `for` & `while`</p></li>
-                <li><p><strong>Nível III · Tópico 6:</strong> Criar Funções Personalizadas & Reutilização de Código (`include`/`require`)</p></li>
-                <li><p><strong>Nível IV · Tópico 7:</strong> Processamento de Formulários Web via `$_POST` & `$_GET`</p></li>
-                <li><p><strong>Nível IV · Tópico 8:</strong> Sanitização e Proteção contra Ataques XSS (`htmlspecialchars`)</p></li>
-                <li><p><strong>Nível V · Tópico 9:</strong> Gestão de Sessões (`session_start()`) & Cookies do Navegador</p></li>
-                <li><p><strong>Nível V · Tópico 10:</strong> Conexão MySQL com PDO & Prepared Statements (Anti SQL Injection)</p></li>
+                <li><p><strong>Nível I · Tópico 1:</strong> Fundamentos, O que é PHP & Servidor Web Embutido (`php -S`)</p></li>
+                <li><p><strong>Nível I · Tópico 2:</strong> Extensão `.php`, Gestão de Dependências (Composer) & Estrutura Básica</p></li>
+                <li><p><strong>Nível I · Tópico 3:</strong> Variáveis `$`, Concatenação de Strings & Tipos Primitivos</p></li>
+                <li><p><strong>Nível II · Tópico 4:</strong> Condicionais `if / else`, Switch & Operadores Lógicos</p></li>
+                <li><p><strong>Nível II · Tópico 5:</strong> Arrays Numéricos, Associativos (`key => value`) & Multidimensionais</p></li>
+                <li><p><strong>Nível III · Tópico 6:</strong> Laços de Repetição `foreach`, `for` & `while`</p></li>
+                <li><p><strong>Nível III · Tópico 7:</strong> Funções Personalizadas & Reutilização de Código (`include`/`require`)</p></li>
+                <li><p><strong>Nível IV · Tópico 8:</strong> Processamento de Formulários Web via `$_POST` & `$_GET`</p></li>
+                <li><p><strong>Nível IV · Tópico 9:</strong> Sanitização e Proteção contra Ataques XSS (`htmlspecialchars`)</p></li>
+                <li><p><strong>Nível V · Tópico 10:</strong> Gestão de Sessões (`session_start()`) & Cookies do Navegador</p></li>
+                <li><p><strong>Nível V · Tópico 11:</strong> Conexão MySQL com PDO, Prepared Statements & Transações ACID</p></li>
+                <li><p><strong>Nível VI · Tópico 12:</strong> Manipulação Fisiológica de Ficheiros (`file_put_contents`, `unlink`)</p></li>
+                <li><p><strong>Nível VI · Tópico 13:</strong> Upload Seguro de Ficheiros e Imagens (`$_FILES` & `move_uploaded_file`)</p></li>
+                <li><p><strong>Nível VII · Tópico 14:</strong> Criptografia de Alta Segurança (Argon2ID, Bcrypt & Validação)</p></li>
+                <li><p><strong>Nível VII · Tópico 15:</strong> Tratamento de Exceções & Gestão de Datas (`try/catch` & `DateTime`)</p></li>
             </ul>
         </div>
 
@@ -750,6 +755,198 @@ if ($metodo === 'GET') {
     http_response_code(405);
     echo json_encode(['erro' => 'Método Não Permitido']);
 }
+?&gt;</code></pre>
+                </div>
+            </div>
+
+            <!-- Card 9: Manipulação de Ficheiros Físicos -->
+            <div class="legend-card">
+                <div class="card-title">📁 9. Manipulação Fisiológica de Ficheiros (Criar, Ler & Excluir)</div>
+                <div class="term-block">
+                    <div class="term-name">Operações do Sistema de Arquivos</div>
+                    <div class="desc-text">
+                        O PHP consegue interagir diretamente com o disco rígido do servidor para guardar relatórios, registar logs ou ler dados formatados em JSON/TXT.
+                    </div>
+                </div>
+
+                <div class="code-box">
+                    <div class="code-header">
+                        <span>ficheiros.php — Criar, Escrever e Ler Ficheiro</span>
+                        <button class="copy-btn" onclick="copiarCodigo('code9', this)">📋 Copiar</button>
+                    </div>
+                    <pre><code id="code9">&lt;?php
+declare(strict_types=1);
+
+$caminho = __DIR__ . '/log_pesquisa.txt';
+
+// 1. Criar ou Escrever no arquivo (FILE_APPEND preserva dados antigos)
+$linhaLog = "[" . date('Y-m-d H:i:s') . "] Registro de Pesquisa Realizado\n";
+file_put_contents($caminho, $linhaLog, FILE_APPEND);
+
+// 2. Verificar se o ficheiro existe e ler o conteúdo
+if (file_exists($caminho)) {
+    $conteudo = file_get_contents($caminho);
+    echo "&lt;h3&gt;📜 Conteúdo do Ficheiro de Log:&lt;/h3&gt;";
+    echo "&lt;pre&gt;" . htmlspecialchars($conteudo) . "&lt;/pre&gt;";
+}
+
+// 3. Excluir ficheiro se necessário
+// unlink($caminho);
+?&gt;</code></pre>
+                </div>
+            </div>
+
+            <!-- Card 10: Upload Seguro de Ficheiros -->
+            <div class="legend-card">
+                <div class="card-title">📤 10. Upload Seguro de Ficheiros e Imagens ($_FILES)</div>
+                <div class="term-block">
+                    <div class="term-name">Validação Rigorosa de Arquivos</div>
+                    <div class="desc-text">
+                        Uploads de arquivos devem sempre validar o tamanho, extensões permitidas e usar um nome aleatório seguro para impedir a execução de scripts maliciosos.
+                    </div>
+                </div>
+
+                <div class="code-box">
+                    <div class="code-header">
+                        <span>upload.php — Script Seguro de Upload</span>
+                        <button class="copy-btn" onclick="copiarCodigo('code10', this)">📋 Copiar</button>
+                    </div>
+                    <pre><code id="code10">&lt;?php
+declare(strict_types=1);
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['foto'])) {
+    $arquivo = $_FILES['foto'];
+    $extensao = strtolower(pathinfo($arquivo['name'], PATHINFO_EXTENSION));
+    $extensoesPermitidas = ['jpg', 'jpeg', 'png', 'webp'];
+
+    // Validar erros e tamanho (máx 2MB = 2097152 bytes)
+    if ($arquivo['error'] !== UPLOAD_ERR_OK) {
+        die("Erro no envio do ficheiro!");
+    }
+    if (!in_array($extensao, $extensoesPermitidas, true)) {
+        die("Extensão não permitida! Apenas JPG, PNG ou WEBP.");
+    }
+    if ($arquivo['size'] > 2097152) {
+        die("Ficheiro muito grande! Limite de 2MB.");
+    }
+
+    // Gerar nome único seguro e mover para pasta de destino
+    $novoNome = bin2hex(random_bytes(16)) . '.' . $extensao;
+    $destino = __DIR__ . '/uploads/' . $novoNome;
+
+    if (move_uploaded_file($arquivo['tmp_name'], $destino)) {
+        echo "✅ Upload concluído com sucesso: " . $novoNome;
+    }
+}
+?&gt;</code></pre>
+                </div>
+            </div>
+
+            <!-- Card 11: Criptografia de Alta Segurança -->
+            <div class="legend-card">
+                <div class="card-title">🔒 11. Criptografia & Segredos de Autenticação</div>
+                <div class="term-block">
+                    <div class="term-name">Hashes de Senha Modernos (Argon2ID / Bcrypt)</div>
+                    <div class="desc-text">
+                        Nunca salve senhas em texto puro! Utilize a API nativa de hashing do PHP que adiciona Salt automático e utiliza algoritmos resistentes a ataques de força bruta.
+                    </div>
+                </div>
+
+                <div class="code-box">
+                    <div class="code-header">
+                        <span>seguranca.php — Hash e Verificação</span>
+                        <button class="copy-btn" onclick="copiarCodigo('code11', this)">📋 Copiar</button>
+                    </div>
+                    <pre><code id="code11">&lt;?php
+declare(strict_types=1);
+
+$senhaDigitada = "Pensador@2026#Seguro";
+
+// 1. Gerar Hash Seguro (Argon2id ou Bcrypt com Salt automático)
+$hashGerado = password_hash($senhaDigitada, PASSWORD_ARGON2ID);
+
+echo "&lt;p&gt;🔑 Hash Criptografado: &lt;code&gt;" . $hashGerado . "&lt;/code&gt;&lt;/p&gt;";
+
+// 2. Verificação de Autenticação no Login
+$tentativaLogin = "Pensador@2026#Seguro";
+
+if (password_verify($tentativaLogin, $hashGerado)) {
+    echo "&lt;p style='color:#00ffaa;'&gt;🟢 Login Aprovado! Senha Válida.&lt;/p&gt;";
+} else {
+    echo "&lt;p style='color:#ff5555;'&gt;🔴 Senha Incorreta!&lt;/p&gt;";
+}
+?&gt;</code></pre>
+                </div>
+            </div>
+
+            <!-- Card 12: Tratamento de Exceções -->
+            <div class="legend-card">
+                <div class="card-title">🛡️ 12. Tratamento de Erros & Exceções (try / catch / finally)</div>
+                <div class="term-block">
+                    <div class="term-name">Robustez e Prevenção de Crashes</div>
+                    <div class="desc-text">
+                        Capturar falhas de banco de dados, conexão ou operações de arquivos sem expor dados sensíveis do servidor para o utilizador.
+                    </div>
+                </div>
+
+                <div class="code-box">
+                    <div class="code-header">
+                        <span>excecoes.php — Bloco Try Catch Robustez</span>
+                        <button class="copy-btn" onclick="copiarCodigo('code12', this)">📋 Copiar</button>
+                    </div>
+                    <pre><code id="code12">&lt;?php
+declare(strict_types=1);
+
+function dividir(float $a, float $b): float {
+    if ($b === 0.0) {
+        throw new InvalidArgumentException("Divisão por zero não é permitida!");
+    }
+    return $a / $b;
+}
+
+try {
+    $resultado = dividir(100.0, 0.0);
+    echo "Resultado: " . $resultado;
+} catch (InvalidArgumentException $e) {
+    echo "&lt;p style='color:#ffaa00;'&gt;⚠️ Alerta de Aplicação: " . $e-&gt;getMessage() . "&lt;/p&gt;";
+} catch (Throwable $e) {
+    echo "&lt;p style='color:#ff5555;'&gt;🔴 Erro Crítico Inesperado!&lt;/p&gt;";
+} finally {
+    echo "&lt;p style='color:#94a3b8;'&gt;⚙️ Operação finalizada com segurança.&lt;/p&gt;";
+}
+?&gt;</code></pre>
+                </div>
+            </div>
+
+            <!-- Card 13: Gestão de Datas e Fusos Horários -->
+            <div class="legend-card">
+                <div class="card-title">📅 13. Gestão de Datas & Fusos Horários (DateTime)</div>
+                <div class="term-block">
+                    <div class="term-name">Manipulação Precisa de Tempo</div>
+                    <div class="desc-text">
+                        A classe nativa <code>DateTime</code> do PHP permite formatar, somar, subtrair dias e gerir fusos horários globais com precisão.
+                    </div>
+                </div>
+
+                <div class="code-box">
+                    <div class="code-header">
+                        <span>datas.php — DateTime e Fuso Horário</span>
+                        <button class="copy-btn" onclick="copiarCodigo('code13', this)">📋 Copiar</button>
+                    </div>
+                    <pre><code id="code13">&lt;?php
+declare(strict_types=1);
+
+// Definir Fuso Horário Padrão (ex: Africa/Luanda ou America/Sao_Paulo)
+$fuso = new DateTimeZone('Africa/Luanda');
+$agora = new DateTime('now', $fuso);
+
+echo "&lt;p&gt;🕒 Hora Atual: " . $agora-&gt;format('d/m/Y H:i:s') . "&lt;/p&gt;";
+
+// Adicionar 7 dias para vencimento
+$vencimento = clone $agora;
+$vencimento-&gt;add(new DateInterval('P7D'));
+
+echo "&lt;p&gt;📅 Data de Vencimento (+7 Dias): " . $vencimento-&gt;format('d/m/Y') . "&lt;/p&gt;";
 ?&gt;</code></pre>
                 </div>
             </div>
