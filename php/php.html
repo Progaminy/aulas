@@ -329,6 +329,25 @@
                         </div>
                     </div>
 
+                    <!-- Instalação no Windows -->
+                    <div style="background:#020617; border:1px solid rgba(56,189,248,0.35); border-radius:0.8rem; padding:0.8rem; display:flex; flex-direction:column; gap:0.4rem;">
+                        <span style="font-size:0.85rem; color:#94a3b8; font-weight:bold;">🪟 Como Instalar o PHP no Windows (Passo a Passo Completo):</span>
+                        <div style="font-size:0.85rem; color:#cbd5e1; line-height:1.5;">
+                            <strong>Passo 1:</strong> Baixe o arquivo <code>ZIP</code> oficial em <a href="https://windows.php.net/download/" target="_blank" style="color:#38bdf8;">windows.php.net/download</a> (escolha <em>VS16 x64 Thread Safe</em>).<br>
+                            <strong>Passo 2:</strong> Crie a pasta <code>C:\php</code> e extraia todos os arquivos do ZIP dentro dela.<br>
+                            <strong>Passo 3:</strong> Adicione <code>C:\php</code> nas Variáveis de Ambiente (PATH) do Windows (ou rode o comando PowerShell abaixo como Admin):
+                        </div>
+                        <div style="display:flex; justify-content:space-between; align-items:center; background:#090d16; padding:0.5rem 0.8rem; border-radius:0.5rem; margin-top:0.3rem;">
+                            <code style="color:#38bdf8; font-weight:bold; font-size:0.8rem;">[Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\php", "User")</code>
+                            <button class="copy-btn" onclick="copiarCodigoTexto('[Environment]::SetEnvironmentVariable(&quot;Path&quot;, $env:Path + &quot;;C:\\php&quot;, &quot;User&quot;)', this)">📋 Copiar</button>
+                        </div>
+                        <div style="font-size:0.8rem; color:#34d399; margin-top:0.3rem;">💡 Alternativa Rápida no Windows via Winget:</div>
+                        <div style="display:flex; justify-content:space-between; align-items:center; background:#090d16; padding:0.5rem 0.8rem; border-radius:0.5rem;">
+                            <code style="color:#38bdf8; font-weight:bold;">winget install PHP.PHP</code>
+                            <button class="copy-btn" onclick="copiarCodigoTexto('winget install PHP.PHP', this)">📋 Copiar</button>
+                        </div>
+                    </div>
+
                     <!-- Método 4: Instalar PHP no Linux -->
                     <div style="background:#020617; border:1px solid rgba(56,189,248,0.35); border-radius:0.8rem; padding:0.8rem; display:flex; flex-direction:column; gap:0.4rem;">
                         <span style="font-size:0.85rem; color:#94a3b8; font-weight:bold;">🐧 Instalar PHP no Linux (Ubuntu / Kali / Debian):</span>
