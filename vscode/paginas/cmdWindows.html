@@ -361,37 +361,129 @@
       </div>
     </div>
 
-    <!-- SECÇÃO 2.5: CRIAR E APAGAR ARQUIVOS -->
+    <!-- SECÇÃO 2.5: TODAS AS FORMAS DE CRIAR ARQUIVOS -->
     <div class="card">
-      <div class="card-title">📝 2.1. Criar e Apagar Arquivos (CMD & PowerShell)</div>
+      <div class="card-title">📝 2.1. Guia Completo: Como Criar Arquivos no Windows (CMD & PowerShell)</div>
+      <div class="desc-text">
+        Existem vários métodos para criar arquivos de texto, código HTML, Python ou arquivos de teste no terminal Windows. Cada método abaixo possui o seu botão de cópia individual exato:
+      </div>
 
       <div class="cmd-group">
-        <!-- Criar Arquivo -->
+        <!-- Método 1 -->
         <div class="cmd-block">
-          <div class="cmd-label">📌 Criar um arquivo novo vazio (CMD):</div>
+          <div class="cmd-label">📌 1. Criar arquivo de texto 100% vazio de 0 bytes (CMD):</div>
           <div class="cmd-row">
             <span class="cmd-code">type nul > meu_arquivo.txt</span>
             <button class="copy-btn" onclick="copiarComandoUnico('type nul > meu_arquivo.txt', this)">📋 Copiar</button>
           </div>
         </div>
 
+        <!-- Método 2 -->
         <div class="cmd-block">
-          <div class="cmd-label">📌 Criar um arquivo já com texto dentro (CMD):</div>
+          <div class="cmd-label">📌 2. Criar arquivo com 1 linha em branco (CMD):</div>
           <div class="cmd-row">
-            <span class="cmd-code">echo "Olá Mundo" > meu_arquivo.txt</span>
-            <button class="copy-btn" onclick="copiarComandoUnico('echo \"Olá Mundo\" > meu_arquivo.txt', this)">📋 Copiar</button>
+            <span class="cmd-code">echo. > meu_arquivo.txt</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('echo. > meu_arquivo.txt', this)">📋 Copiar</button>
           </div>
         </div>
 
+        <!-- Método 3 -->
         <div class="cmd-block">
-          <div class="cmd-label">📌 Criar um novo arquivo (PowerShell):</div>
+          <div class="cmd-label">📌 3. Criar arquivo já escrevendo um texto inicial (CMD):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">echo "Conteúdo Inicial do Arquivo" > meu_arquivo.txt</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('echo \"Conteúdo Inicial do Arquivo\" > meu_arquivo.txt', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <!-- Método 4 -->
+        <div class="cmd-block">
+          <div class="cmd-label">📌 4. Adicionar novo texto ao FINAL de arquivo existente (CMD):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">echo "Segunda Linha de Texto" >> meu_arquivo.txt</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('echo \"Segunda Linha de Texto\" >> meu_arquivo.txt', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <!-- Método 5 -->
+        <div class="cmd-block">
+          <div class="cmd-label">📌 5. Criar arquivo limpo via cópia de dispositivo nulo (CMD):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">copy nul meu_arquivo.txt</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('copy nul meu_arquivo.txt', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <!-- Método 6 -->
+        <div class="cmd-block">
+          <div class="cmd-label">📌 6. Criar arquivo de tamanho fixo em bytes (ex: 1 MB = 1048576 bytes) (CMD):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">fsutil file createnew teste_1mb.txt 1048576</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('fsutil file createnew teste_1mb.txt 1048576', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <!-- Método 7 -->
+        <div class="cmd-block">
+          <div class="cmd-label">📌 7. Criar arquivo novo com comando nativo (PowerShell):</div>
           <div class="cmd-row">
             <span class="cmd-code">New-Item -Path . -Name "meu_arquivo.txt" -ItemType "File"</span>
             <button class="copy-btn" onclick="copiarComandoUnico('New-Item -Path . -Name \"meu_arquivo.txt\" -ItemType \"File\"', this)">📋 Copiar</button>
           </div>
         </div>
 
-        <!-- Apagar Arquivo -->
+        <!-- Método 8 -->
+        <div class="cmd-block">
+          <div class="cmd-label">📌 8. Forçar criação de arquivo sobrescrevendo se existir (PowerShell):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">New-Item -Path . -Name "novo.html" -ItemType "File" -Force</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('New-Item -Path . -Name \"novo.html\" -ItemType \"File\" -Force', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <!-- Método 9 -->
+        <div class="cmd-block">
+          <div class="cmd-label">📌 9. Criar arquivo e definir conteúdo de texto (PowerShell):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">Set-Content -Path "meu_arquivo.txt" -Value "Olá PowerShell"</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('Set-Content -Path \"meu_arquivo.txt\" -Value \"Olá PowerShell\"', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <!-- Método 10 -->
+        <div class="cmd-block">
+          <div class="cmd-label">📌 10. Adicionar nova linha no final do arquivo (PowerShell):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">Add-Content -Path "meu_arquivo.txt" -Value "Nova linha adicionada"</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('Add-Content -Path \"meu_arquivo.txt\" -Value \"Nova linha adicionada\"', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <!-- Método 11 -->
+        <div class="cmd-block">
+          <div class="cmd-label">📌 11. Criar arquivo especificando saída Out-File (PowerShell):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">Out-File -FilePath "meu_arquivo.txt" -InputObject "Texto de Teste"</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('Out-File -FilePath \"meu_arquivo.txt\" -InputObject \"Texto de Teste\"', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <!-- Método 12 -->
+        <div class="cmd-block">
+          <div class="cmd-label">📌 12. Criar e abrir o arquivo no Bloco de Notas para edição (CMD/PowerShell):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">notepad meu_arquivo.txt</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('notepad meu_arquivo.txt', this)">📋 Copiar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECÇÃO 2.6: APAGAR ARQUIVOS -->
+    <div class="card">
+      <div class="card-title">🗑️ 2.2. Como Apagar Arquivos no Windows (CMD & PowerShell)</div>
+
+      <div class="cmd-group">
         <div class="cmd-block">
           <div class="cmd-label">📌 Apagar um arquivo específico (CMD):</div>
           <div class="cmd-row">
