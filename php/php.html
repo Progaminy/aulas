@@ -308,6 +308,82 @@ if ($ativo) {
                 </div>
             </div>
 
+            <!-- Card 1.5: Extensão .php, Composer no VS Code e Estrutura Básica Automática -->
+            <div class="legend-card">
+                <div class="card-title">📦 1.1. Extensão `.php`, Dependências (Composer) & Estrutura Básica Automática</div>
+                <div class="term-block">
+                    <div class="term-name">Extensão Oficial do Ficheiro</div>
+                    <div class="desc-text">
+                        A extensão padrão para ficheiros de código PHP é <code>.php</code> (exemplo: <code>index.php</code>, <code>api.php</code>, <code>conexao.php</code>). Um ficheiro <code>.php</code> permite misturar estruturas HTML5 com blocos de código backend demarcados por <code>&lt;?php ... ?&gt;</code>.
+                    </div>
+                </div>
+
+                <div class="term-block">
+                    <div class="term-name">Como Baixar Dependências no VS Code (Composer)</div>
+                    <div class="desc-text">
+                        Assim como o Node.js utiliza o <code>npm</code>, o PHP utiliza o <strong>Composer</strong> para baixar e gerir pacotes/dependências. No terminal integrado do VS Code (<code>Ctrl + `</code>), utilize os comandos abaixo (copie 1 a 1):
+                    </div>
+                </div>
+
+                <div class="cmd-group" style="margin-bottom:1.2rem;">
+                    <div style="background:#020617; border:1px solid rgba(56,189,248,0.35); border-radius:0.8rem; padding:0.8rem; display:flex; flex-direction:column; gap:0.4rem;">
+                        <span style="font-size:0.85rem; color:#94a3b8; font-weight:bold;">📌 Inicializar projeto PHP e criar composer.json:</span>
+                        <div style="display:flex; justify-content:space-between; align-items:center; background:#090d16; padding:0.5rem 0.8rem; border-radius:0.5rem;">
+                            <code style="color:#38bdf8; font-weight:bold;">composer init</code>
+                            <button class="copy-btn" onclick="copiarCodigoTexto('composer init', this)">📋 Copiar</button>
+                        </div>
+                    </div>
+
+                    <div style="background:#020617; border:1px solid rgba(56,189,248,0.35); border-radius:0.8rem; padding:0.8rem; display:flex; flex-direction:column; gap:0.4rem;">
+                        <span style="font-size:0.85rem; color:#94a3b8; font-weight:bold;">📌 Baixar uma dependência/pacote (ex: PHPMailer para enviar e-mails):</span>
+                        <div style="display:flex; justify-content:space-between; align-items:center; background:#090d16; padding:0.5rem 0.8rem; border-radius:0.5rem;">
+                            <code style="color:#38bdf8; font-weight:bold;">composer require phpmailer/phpmailer</code>
+                            <button class="copy-btn" onclick="copiarCodigoTexto('composer require phpmailer/phpmailer', this)">📋 Copiar</button>
+                        </div>
+                    </div>
+
+                    <div style="background:#020617; border:1px solid rgba(56,189,248,0.35); border-radius:0.8rem; padding:0.8rem; display:flex; flex-direction:column; gap:0.4rem;">
+                        <span style="font-size:0.85rem; color:#94a3b8; font-weight:bold;">📌 Instalar todas as dependências listadas no projeto:</span>
+                        <div style="display:flex; justify-content:space-between; align-items:center; background:#090d16; padding:0.5rem 0.8rem; border-radius:0.5rem;">
+                            <code style="color:#38bdf8; font-weight:bold;">composer install</code>
+                            <button class="copy-btn" onclick="copiarCodigoTexto('composer install', this)">📋 Copiar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="term-block">
+                    <div class="term-name">Estrutura Básica Automática (Boilerplate PHP + HTML5)</div>
+                    <div class="desc-text">
+                        No VS Code, assim como digita <code>!</code> ou <code>html:5</code> para gerar a estrutura base em HTML, para PHP basta digitar <code>php</code> + <kbd>Tab</kbd> para abrir as tags <code>&lt;?php ?&gt;</code>. Abaixo está o modelo de estrutura básica completa para arquivos <code>.php</code>:
+                    </div>
+                </div>
+
+                <div class="code-box">
+                    <div class="code-header">
+                        <span>estrutura_base.php — Modelo Inicial Automático</span>
+                        <button class="copy-btn" onclick="copiarCodigo('codePhpBase', this)">📋 Copiar Estrutura</button>
+                    </div>
+                    <pre><code id="codePhpBase">&lt;?php
+declare(strict_types=1);
+header('Content-Type: text/html; charset=utf-8');
+?&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-pt"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Meu Projeto PHP&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;?php
+        $mensagem = "Olá, estrutura básica PHP pronta!";
+        echo "&lt;h1&gt;" . htmlspecialchars($mensagem) . "&lt;/h1&gt;";
+    ?&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+
             <!-- Card 2: Processamento de Formulários -->
             <div class="legend-card">
                 <div class="card-title">📝 2. Receber dados de Formulários ($_POST)</div>
@@ -619,7 +695,12 @@ if ($metodo === 'GET') {
         // Cópia de Código
         function copiarCodigo(id, btn) {
           const codeText = document.getElementById(id).innerText;
-          navigator.clipboard.writeText(codeText).then(() => {
+          copiarCodigoTexto(codeText, btn);
+        }
+
+        function copiarCodigoTexto(texto, btn) {
+          if (!texto) return;
+          navigator.clipboard.writeText(texto).then(() => {
             const original = btn.innerHTML;
             btn.innerHTML = '✅ Copiado!';
             btn.style.background = '#00ffff';
