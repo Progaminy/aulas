@@ -328,10 +328,18 @@
         </div>
 
         <div class="cmd-block">
-          <div class="cmd-label">📌 Limpar a tela do terminal:</div>
+          <div class="cmd-label">📌 Limpar a tela do terminal (CMD):</div>
           <div class="cmd-row">
             <span class="cmd-code">cls</span>
             <button class="copy-btn" onclick="copiarComandoUnico('cls', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Limpar a tela do terminal (PowerShell):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">Clear-Host</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('Clear-Host', this)">📋 Copiar</button>
           </div>
         </div>
 
@@ -348,6 +356,71 @@
           <div class="cmd-row">
             <span class="cmd-code">systeminfo</span>
             <button class="copy-btn" onclick="copiarComandoUnico('systeminfo', this)">📋 Copiar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECÇÃO 2.5: CRIAR E APAGAR ARQUIVOS -->
+    <div class="card">
+      <div class="card-title">📝 2.1. Criar e Apagar Arquivos (CMD & PowerShell)</div>
+
+      <div class="cmd-group">
+        <!-- Criar Arquivo -->
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Criar um arquivo novo vazio (CMD):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">type nul > meu_arquivo.txt</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('type nul > meu_arquivo.txt', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Criar um arquivo já com texto dentro (CMD):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">echo "Olá Mundo" > meu_arquivo.txt</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('echo \"Olá Mundo\" > meu_arquivo.txt', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Criar um novo arquivo (PowerShell):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">New-Item -Path . -Name "meu_arquivo.txt" -ItemType "File"</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('New-Item -Path . -Name \"meu_arquivo.txt\" -ItemType \"File\"', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <!-- Apagar Arquivo -->
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Apagar um arquivo específico (CMD):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">del meu_arquivo.txt</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('del meu_arquivo.txt', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Forçar exclusão silenciosa de arquivo sem pedir confirmação (CMD):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">del /f /q meu_arquivo.txt</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('del /f /q meu_arquivo.txt', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Apagar todos os arquivos .txt da pasta atual (CMD):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">del *.txt</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('del *.txt', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Apagar um arquivo (PowerShell):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">Remove-Item meu_arquivo.txt</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('Remove-Item meu_arquivo.txt', this)">📋 Copiar</button>
           </div>
         </div>
       </div>
