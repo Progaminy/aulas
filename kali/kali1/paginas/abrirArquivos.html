@@ -1,67 +1,161 @@
 <!DOCTYPE html>
 <html lang="pt-pt">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abrir Arquivos - Linux</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+  <title>🐉 Linux Kali · Como Abrir Arquivos no Terminal</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: radial-gradient(circle at 30% 15%, #081021, #02050e);
+      font-family: 'Segoe UI', 'Inter', system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+      color: #daf0ff;
+      padding: 1.5rem 1rem 3rem;
+      line-height: 1.6;
+    }
+    .container { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.8rem; }
+    .nav-buttons { display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between; align-items: center; width: 100%; }
+    .btn-link {
+      background: linear-gradient(135deg, #1e293b, #0f172a);
+      border: 1.5px solid #38bdf8;
+      color: #38bdf8;
+      padding: 0.65rem 1.4rem;
+      border-radius: 2rem;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+      transition: all 0.2s ease-in-out;
+    }
+    .btn-link:hover { background: #38bdf8; color: #000; box-shadow: 0 0 25px #38bdf8; transform: translateY(-2px); }
+    .main-title {
+      font-size: clamp(2rem, 6vw, 3.2rem);
+      font-weight: 900;
+      text-align: center;
+      background: linear-gradient(135deg, #38bdf8, #818cf8, #c084fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 25px rgba(56, 189, 248, 0.4));
+      margin-bottom: 0.5rem;
+    }
+    .card {
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 1.5rem;
+      padding: 1.8rem;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(56, 189, 248, 0.1);
+      display: flex; flex-direction: column; gap: 1.2rem;
+    }
+    .card-title { font-size: 1.4rem; font-weight: 800; color: #38bdf8; border-bottom: 1px solid rgba(56, 189, 248, 0.2); padding-bottom: 0.6rem; }
+    .code-box { background: #020617; border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 1rem; overflow: hidden; margin-top: 0.5rem; }
+    .code-header { display: flex; justify-content: space-between; align-items: center; padding: 0.6rem 1rem; background: #090d16; border-bottom: 1px solid rgba(56, 189, 248, 0.3); font-size: 0.85rem; color: #38bdf8; font-weight: bold; }
+    .copy-btn { background: rgba(56, 189, 248, 0.15); border: 1px solid #38bdf8; color: #38bdf8; font-weight: bold; padding: 0.35rem 0.9rem; border-radius: 1.5rem; cursor: pointer; font-size: 0.8rem; transition: all 0.2s; }
+    .copy-btn:hover { background: #38bdf8; color: #000; box-shadow: 0 0 15px #38bdf8; }
+    pre { padding: 1.2rem; margin: 0; font-family: 'Consolas', 'Fira Code', monospace; font-size: 0.95rem; color: #f1f5f9; white-space: pre-wrap; }
+    footer { text-align: center; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px dashed rgba(56, 189, 248, 0.3); color: #64748b; font-size: 0.9rem; }
+    footer em { color: #c084fc; font-style: normal; font-weight: bold; }
+  </style>
 </head>
 <body>
+  <div class="container">
+    <div class="nav-buttons">
+      <a href="../../../index.html" class="btn-link">🏠 Voltar Home</a>
+      <a href="../../kali.html" class="btn-link">🐉 Voltar Kali</a>
+      <a href="../kali1.html" class="btn-link">📄 Voltar Kali 1</a>
+      <a href="javascript:location.reload()" class="btn-link">🔄 ATUALIZAR</a>
+    </div>
 
-    <!-- Navegação refinada -->
-    <div class="nav-links">
-      <a href="../../../index.html" class="nav-btn">🏠 Voltar Home</a>
-      <a href="../../kali.html" class="nav-btn">📂 Voltar Kali</a>
-      <a href="../kali1.html" class="nav-btn">📄 Voltar Kali1</a>
-      <a href="abrirArquivos.html" class="nav-btn">🔄 Recarregar guia</a>
+    <h1 class="main-title">📂 Como Abrir Arquivos no Terminal Linux</h1>
 
-    <h1>Abrir Aquivos - Linux</h1>
+    <div class="card">
+      <div class="card-title">📝 1. Leitura e Edição de Conteúdo de Texto</div>
+      
+      <div class="code-box">
+        <div class="code-header">
+          <span>terminal — Comandos de Leitura de Texto</span>
+          <button class="copy-btn" onclick="copiarCodigo('code1', this)">📋 Copiar</button>
+        </div>
+        <pre><code id="code1"># Exibir todo o conteúdo de um arquivo na tela
+cat arquivo.txt
 
-    <h2>Principais, dependendo do tipo de arquivo: </h2>
+# Abrir arquivo com paginação e navegação (tecle 'q' para sair)
+less arquivo.txt
 
-    <h3>Para conteudo de texto: </h3>
+# Exibir apenas as primeiras 10 linhas do arquivo
+head arquivo.txt
 
+# Exibir apenas as últimas 10 linhas do arquivo
+tail arquivo.txt
 
-- **`<code>cat arquivo.txt</code>`** → Exibe todo o conteúdo de uma vez na tela.
-- **`less arquivo.txt`** → Abre o arquivo permitindo rolar a página (use `q` para sair).
-- **`head arquivo.txt`** → Mostra apenas as 10 primeiras linhas.
-- **`tail arquivo.txt`** → Mostra apenas as 10 últimas linhas.
-- **`nano arquivo.txt`** → Abre no editor de texto simples do terminal.
+# Editar arquivo no editor Nano no terminal
+nano arquivo.txt</code></pre>
+      </div>
+    </div>
 
-## Para abrir com **programa específico**:
+    <div class="card">
+      <div class="card-title">🖼️ 2. Abrir Arquivos com Programas Específicos do Sistema</div>
+      
+      <div class="code-box">
+        <div class="code-header">
+          <span>terminal — Abrir PDFs, Imagens e Navegador</span>
+          <button class="copy-btn" onclick="copiarCodigo('code2', this)">📋 Copiar</button>
+        </div>
+        <pre><code id="code2"># Abrir qualquer arquivo com o aplicativo padrão do sistema
+xdg-open documento.pdf
 
-- **`xdg-open arquivo.pdf`** → Abre com o programa padrão do sistema (PDF, imagem, vídeo, etc.).
-- **`libreoffice documento.docx`** → Abre no LibreOffice.
-- **`firefox index.html`** → Abre um arquivo HTML no Firefox.
+# Abrir documento no LibreOffice
+libreoffice documento.docx
 
-## Exemplo prático:
+# Abrir página HTML no navegador Firefox
+firefox index.html
 
-```bash
-cd Documentos           # entra na pasta Documentos
-ls                      # lista o que tem dentro
-cat notas.txt           # vê o conteúdo do arquivo notas.txt
-xdg-open imagem.jpg     # abre a imagem no visualizador padrão
-```
+# Descobrir o tipo real do arquivo antes de abrir
+file nome_do_arquivo</code></pre>
+      </div>
+    </div>
 
-## Dica útil:
-- **`file nome_do_arquivo`** → Descobre que tipo de arquivo é antes de tentar abrir.
+    <div class="card">
+      <div class="card-title">⚡ 3. Exemplo Prático Integrado</div>
+      
+      <div class="code-box">
+        <div class="code-header">
+          <span>terminal — Fluxo de Navegação e Leitura</span>
+          <button class="copy-btn" onclick="copiarCodigo('code3', this)">📋 Copiar</button>
+        </div>
+        <pre><code id="code3">cd ~/Documentos          # Entrar na pasta Documentos
+ls -la                  # Listar todos os arquivos detalhadamente
+cat notas.txt           # Ler o arquivo notas.txt
+xdg-open foto.png       # Visualizar a imagem no programa padrão</code></pre>
+      </div>
+    </div>
 
-Qual tipo de arquivo você está tentando abrir? Posso dar o comando exato para ele.
-        
-    </p>
-
-
-
-
-
-
-
-   
-  </div>
-  <!-- Rodapé assinatura obrigatória -->
     <footer>
-      <p style="font-weight:200; font-size:1.3rem; letter-spacing:1px;">Pensador Sem Fronteiras</p>
-      <p class="italic-slogan">Do zero ao Infinito</p>
+      <p>© Pensador Sem Fronteiras — <em>Do Zero ao Infinito</em></p>
     </footer>
-    
+  </div>
+
+  <script>
+    function copiarCodigo(id, btn) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      navigator.clipboard.writeText(el.innerText.trim()).then(() => {
+        const orig = btn.innerText;
+        btn.innerText = '✅ Copiado!';
+        btn.style.background = '#38bdf8';
+        btn.style.color = '#000';
+        setTimeout(() => { btn.innerText = orig; btn.style.background = ''; btn.style.color = '#38bdf8'; }, 1500);
+      });
+    }
+    window.addEventListener('pageshow', function() {
+      document.querySelectorAll('.btn-link, .copy-btn').forEach(btn => {
+        btn.style.pointerEvents = 'auto'; btn.style.opacity = '1';
+      });
+    });
+  </script>
 </body>
 </html>

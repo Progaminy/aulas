@@ -1,134 +1,178 @@
 <!DOCTYPE html>
 <html lang="pt-pt">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GitHub Clone - Push</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+  <title>🐙 GitHub · Clonagem de Repositórios (Git Clone)</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: radial-gradient(circle at 30% 15%, #081021, #02050e);
+      font-family: 'Segoe UI', 'Inter', system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+      color: #daf0ff;
+      padding: 1.5rem 1rem 3rem;
+      line-height: 1.6;
+    }
+    .container { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.8rem; }
+    .nav-buttons { display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between; align-items: center; width: 100%; }
+    .btn-link {
+      background: linear-gradient(135deg, #1e293b, #0f172a);
+      border: 1.5px solid #38bdf8;
+      color: #38bdf8;
+      padding: 0.65rem 1.4rem;
+      border-radius: 2rem;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+      transition: all 0.2s ease-in-out;
+    }
+    .btn-link:hover { background: #38bdf8; color: #000; box-shadow: 0 0 25px #38bdf8; transform: translateY(-2px); }
+    .main-title {
+      font-size: clamp(2rem, 6vw, 3.2rem);
+      font-weight: 900;
+      text-align: center;
+      background: linear-gradient(135deg, #38bdf8, #818cf8, #c084fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 25px rgba(56, 189, 248, 0.4));
+      margin-bottom: 0.5rem;
+    }
+    .card {
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 1.5rem;
+      padding: 1.8rem;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(56, 189, 248, 0.1);
+      display: flex; flex-direction: column; gap: 1.2rem;
+    }
+    .card-title { font-size: 1.4rem; font-weight: 800; color: #38bdf8; border-bottom: 1px solid rgba(56, 189, 248, 0.2); padding-bottom: 0.6rem; }
+    .code-box { background: #020617; border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 1rem; overflow: hidden; margin-top: 0.5rem; }
+    .code-header { display: flex; justify-content: space-between; align-items: center; padding: 0.6rem 1rem; background: #090d16; border-bottom: 1px solid rgba(56, 189, 248, 0.3); font-size: 0.85rem; color: #38bdf8; font-weight: bold; }
+    .copy-btn { background: rgba(56, 189, 248, 0.15); border: 1px solid #38bdf8; color: #38bdf8; font-weight: bold; padding: 0.35rem 0.9rem; border-radius: 1.5rem; cursor: pointer; font-size: 0.8rem; transition: all 0.2s; }
+    .copy-btn:hover { background: #38bdf8; color: #000; box-shadow: 0 0 15px #38bdf8; }
+    pre { padding: 1.2rem; margin: 0; font-family: 'Consolas', 'Fira Code', monospace; font-size: 0.95rem; color: #f1f5f9; white-space: pre-wrap; }
+    footer { text-align: center; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px dashed rgba(56, 189, 248, 0.3); color: #64748b; font-size: 0.9rem; }
+    footer em { color: #c084fc; font-style: normal; font-weight: bold; }
+  </style>
 </head>
 <body>
+  <div class="container">
+    <div class="nav-buttons">
+      <a href="../../index.html" class="btn-link">🏠 Voltar Home</a>
+      <a href="../github.html" class="btn-link">🐙 Voltar GitHub</a>
+      <a href="javascript:location.reload()" class="btn-link">🔄 ATUALIZAR</a>
+    </div>
 
+    <h1 class="main-title">🐙 GitHub: Clonagem de Repositórios (Git Clone)</h1>
 
-    <div>
-        I believe you're asking about **cloning a project from GitHub on Kali Linux**. Here's how to do it:
+    <div class="card">
+      <div class="card-title">🚀 1. Comando Básico de Clonagem</div>
+      <p>O comando <code>git clone</code> copia todo o repositório remoto do GitHub para o seu computador local.</p>
 
-## Basic Git Clone Command
+      <div class="code-box">
+        <div class="code-header">
+          <span>terminal — Git Clone Base</span>
+          <button class="copy-btn" onclick="copiarCodigo('code1', this)">📋 Copiar</button>
+        </div>
+        <pre><code id="code1">git clone https://github.com/username/repository.git</code></pre>
+      </div>
+    </div>
 
-```bash
-git clone <repository-url>
-```
-
-## Common Examples
-
-```bash
-# Clone via HTTPS
+    <div class="card">
+      <div class="card-title">📚 2. Exemplos de Clonagem Frequentes</div>
+      
+      <div class="code-box">
+        <div class="code-header">
+          <span>terminal — HTTPS, SSH e Diretório Personalizado</span>
+          <button class="copy-btn" onclick="copiarCodigo('code2', this)">📋 Copiar</button>
+        </div>
+        <pre><code id="code2"># 1. Clonar via HTTPS
 git clone https://github.com/username/repository.git
 
-# Clone via SSH (requires SSH key setup)
+# 2. Clonar via SSH (requer chave SSH configurada)
 git clone git@github.com:username/repository.git
 
-# Clone to a specific directory
-git clone https://github.com/username/repository.git my-folder
-```
-
-## Step-by-Step on Kali Linux
-
-1. **Install Git (if not already installed)**
-   ```bash
-   sudo apt update
-   sudo apt install git -y
-   ```
-
-2. **Navigate to where you want the project**
-   ```bash
-   cd ~/Desktop
-   # or
-   cd ~/Documents
-   ```
-
-3. **Clone the repository**
-   ```bash
-   git clone https://github.com/username/project-name.git
-   ```
-
-4. **Enter the project directory**
-   ```bash
-   cd project-name
-   ```
-
-## Useful Tips
-
-- **Clone specific branch:**
-  ```bash
-  git clone -b branch-name <repository-url>
-  ```
-
-- **Shallow clone (faster, no history):**
-  ```bash
-  git clone --depth 1 <repository-url>
-  ```
-
-- **If you get permission errors**, make sure you have write access to the target directory or use `sudo` (not recommended for git operations)
-
-Do you have a specific project URL you're trying to clone?
-
-
-Perfeito! Em **português**, continuando seus passos:
-
-## Passo a passo completo no Kali Linux:
-
-**Passo 1:** Acessar GitHub no navegador → github.com
-
-**Passo 2:** Fazer login no GitHub
-
-**Passo 3:** Ir para o repositório desejado
-
-**Passo 4:** Clicar no botão verde "**Code**" (Código)
-
-**Passo 5:** Copiar a URL HTTPS (ex: `https://github.com/Progaminy/aulas.git`)
-
-**Passo 6:** **Abrir o terminal no Kali Linux** (Ctrl + Alt + T)
-
-**Passo 7:** **Navegar até onde quer salvar o projeto:**
-```bash
-cd ~/Desktop
-# ou
-cd ~/Documentos
-```
-
-**Passo 8:** **Clonar o repositório:**
-```bash
-git clone https://github.com/Progaminy/aulas.git
-```
-
-**Passo 9:** **Entrar na pasta do projeto:**
-```bash
-cd aulas
-```
-
-**Passo 10:** **Verificar se funcionou:**
-```bash
-ls -la
-```
-
-## Se o Git não estiver instalado (Kali Linux geralmente já vem com ele):
-```bash
-sudo apt update
-sudo apt install git -y
-```
-
-## Resumo dos comandos principais:
-```bash
-git clone URL_DO_REPOSITORIO
-cd NOME_DA_PASTA
-```
-
-Pronto! O projeto estará baixado no seu Kali Linux. 🐉
-
-
-
-
-
+# 3. Clonar para uma pasta específica
+git clone https://github.com/username/repository.git minha-pasta</code></pre>
+      </div>
     </div>
-    
+
+    <div class="card">
+      <div class="card-title">🐉 3. Passo a Passo Completo no Kali Linux / Terminal</div>
+      <ol style="margin-left: 1.2rem; display:flex; flex-direction:column; gap:0.8rem;">
+        <li><strong>Passo 1:</strong> Acessar GitHub no navegador → github.com</li>
+        <li><strong>Passo 2:</strong> Fazer login no GitHub</li>
+        <li><strong>Passo 3:</strong> Ir para o repositório desejado</li>
+        <li><strong>Passo 4:</strong> Clicar no botão verde "<strong>Code</strong>" (Código) e copiar a URL HTTPS</li>
+        <li><strong>Passo 5:</strong> Abrir o terminal (<kbd>Ctrl + Alt + T</kbd>) e executar os comandos:</li>
+      </ol>
+
+      <div class="code-box">
+        <div class="code-header">
+          <span>terminal — Fluxo Completo de Clonagem</span>
+          <button class="copy-btn" onclick="copiarCodigo('code3', this)">📋 Copiar</button>
+        </div>
+        <pre><code id="code3"># 1. Garantir que o Git está instalado
+sudo apt update && sudo apt install git -y
+
+# 2. Entrar na Área de Trabalho
+cd ~/Desktop
+
+# 3. Clonar o repositório
+git clone https://github.com/Progaminy/aulas.git
+
+# 4. Entrar na pasta do projeto clonado
+cd aulas
+
+# 5. Verificar o conteúdo baixado
+ls -la</code></pre>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">💡 4. Dicas Avançadas de Clonagem</div>
+
+      <div class="code-box">
+        <div class="code-header">
+          <span>terminal — Branch Específica e Clonagem Rápida</span>
+          <button class="copy-btn" onclick="copiarCodigo('code4', this)">📋 Copiar</button>
+        </div>
+        <pre><code id="code4"># Clonar apenas uma branch específica
+git clone -b main https://github.com/username/repository.git
+
+# Shallow Clone (Clonagem rápida apenas da versão mais recente sem histórico pesado)
+git clone --depth 1 https://github.com/username/repository.git</code></pre>
+      </div>
+    </div>
+
+    <footer>
+      <p>© Pensador Sem Fronteiras — <em>Do Zero ao Infinito</em></p>
+    </footer>
+  </div>
+
+  <script>
+    function copiarCodigo(id, btn) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      navigator.clipboard.writeText(el.innerText.trim()).then(() => {
+        const orig = btn.innerText;
+        btn.innerText = '✅ Copiado!';
+        btn.style.background = '#38bdf8';
+        btn.style.color = '#000';
+        setTimeout(() => { btn.innerText = orig; btn.style.background = ''; btn.style.color = '#38bdf8'; }, 1500);
+      });
+    }
+    window.addEventListener('pageshow', function() {
+      document.querySelectorAll('.btn-link, .copy-btn').forEach(btn => {
+        btn.style.pointerEvents = 'auto'; btn.style.opacity = '1';
+      });
+    });
+  </script>
 </body>
 </html>

@@ -1,246 +1,155 @@
 <!DOCTYPE html>
 <html lang="pt-pt">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+  <title>💎 VS Code · Instalação & Configuração de Ambiente</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: radial-gradient(circle at 30% 15%, #081021, #02050e);
+      font-family: 'Segoe UI', 'Inter', system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+      color: #daf0ff;
+      padding: 1.5rem 1rem 3rem;
+      line-height: 1.6;
+    }
+    .container { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.8rem; }
+    .nav-buttons { display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between; align-items: center; width: 100%; }
+    .btn-link {
+      background: linear-gradient(135deg, #1e293b, #0f172a);
+      border: 1.5px solid #38bdf8;
+      color: #38bdf8;
+      padding: 0.65rem 1.4rem;
+      border-radius: 2rem;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+      transition: all 0.2s ease-in-out;
+    }
+    .btn-link:hover { background: #38bdf8; color: #000; box-shadow: 0 0 25px #38bdf8; transform: translateY(-2px); }
+    .main-title {
+      font-size: clamp(2rem, 6vw, 3.2rem);
+      font-weight: 900;
+      text-align: center;
+      background: linear-gradient(135deg, #38bdf8, #818cf8, #c084fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 25px rgba(56, 189, 248, 0.4));
+      margin-bottom: 0.5rem;
+    }
+    .card {
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 1.5rem;
+      padding: 1.8rem;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(56, 189, 248, 0.1);
+      display: flex; flex-direction: column; gap: 1.2rem;
+    }
+    .card-title { font-size: 1.4rem; font-weight: 800; color: #38bdf8; border-bottom: 1px solid rgba(56, 189, 248, 0.2); padding-bottom: 0.6rem; }
+    .code-box { background: #020617; border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 1rem; overflow: hidden; margin-top: 0.5rem; }
+    .code-header { display: flex; justify-content: space-between; align-items: center; padding: 0.6rem 1rem; background: #090d16; border-bottom: 1px solid rgba(56, 189, 248, 0.3); font-size: 0.85rem; color: #38bdf8; font-weight: bold; }
+    .copy-btn { background: rgba(56, 189, 248, 0.15); border: 1px solid #38bdf8; color: #38bdf8; font-weight: bold; padding: 0.35rem 0.9rem; border-radius: 1.5rem; cursor: pointer; font-size: 0.8rem; transition: all 0.2s; }
+    .copy-btn:hover { background: #38bdf8; color: #000; box-shadow: 0 0 15px #38bdf8; }
+    pre { padding: 1.2rem; margin: 0; font-family: 'Consolas', 'Fira Code', monospace; font-size: 0.95rem; color: #f1f5f9; white-space: pre-wrap; }
+    footer { text-align: center; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px dashed rgba(56, 189, 248, 0.3); color: #64748b; font-size: 0.9rem; }
+    footer em { color: #c084fc; font-style: normal; font-weight: bold; }
+  </style>
 </head>
 <body>
+  <div class="container">
+    <div class="nav-buttons">
+      <a href="../../index.html" class="btn-link">🏠 Voltar Home</a>
+      <a href="../vscode.html" class="btn-link">💎 Voltar VS Code</a>
+      <a href="javascript:location.reload()" class="btn-link">🔄 ATUALIZAR</a>
+    </div>
 
+    <h1 class="main-title">💎 Instalação do VS Code & Code-OSS</h1>
 
-    <div>
-
-        Esse erro indica que o pacote `code` (Visual Studio Code) não está nos repositórios padrão do Kali Linux. Para instalar o VS Code no Kali, siga estes passos:
-
-## Método 1: Via repositório oficial da Microsoft
-
-```bash
-# Adicionar a chave GPG da Microsoft
+    <div class="card">
+      <div class="card-title">🌐 Método 1: Instalar VS Code Oficial (Microsoft)</div>
+      
+      <div class="code-box">
+        <div class="code-header">
+          <span>terminal — Instalação via Repositório Microsoft</span>
+          <button class="copy-btn" onclick="copiarCodigo('code1', this)">📋 Copiar</button>
+        </div>
+        <pre><code id="code1"># Adicionar a chave GPG da Microsoft
 wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
 sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
 
-# Adicionar o repositório
+# Adicionar repositório oficial
 sudo sh -c 'echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
 
-# Atualizar e instalar
-sudo apt update
-sudo apt install code -y
-```
-
-## Método 2: Download direto do .deb
-
-```bash
-# Baixar o pacote .deb mais recente
-wget -O code_latest_amd64.deb "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64"
-
-# Instalar
-sudo dpkg -i code_latest_amd64.deb
-
-# Corrigir dependências, se necessário
-sudo apt --fix-broken install -y
-```
-
-## Método 3: Via Flatpak (recomendado para isolamento)
-
-```bash
-# Instalar flatpak se não tiver
-sudo apt install flatpak -y
-
-# Adicionar Flathub
-flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-
 # Instalar VS Code
-flatpak install flathub com.visualstudio.code -y
-```
+sudo apt update && sudo apt install code -y</code></pre>
+      </div>
+    </div>
 
-Após qualquer um dos métodos, você pode iniciar o VS Code com:
-```bash
-code
-```
-ou
-```bash
-flatpak run com.visualstudio.code
-```
+    <div class="card">
+      <div class="card-title">🐉 Método 2: Instalar Code-OSS no Debian / Kali</div>
+      <p>O <code>code-oss</code> é a versão 100% open-source do Visual Studio Code fornecida diretamente pelos repositórios do Debian e Kali Linux.</p>
 
-**Nota:** O Kali é baseado no Debian, então todos esses métodos funcionam perfeitamente. Recomendo o Método 1 para atualizações automáticas.
-
-
-O `code-oss` é a versão open-source do Visual Studio Code (sem a telemetria da Microsoft) e está disponível nos repositórios padrão do Debian/Kali!
-
-## Instalação direta:
-
-```bash
+      <div class="code-box">
+        <div class="code-header">
+          <span>terminal — Instalação Code-OSS</span>
+          <button class="copy-btn" onclick="copiarCodigo('code2', this)">📋 Copiar</button>
+        </div>
+        <pre><code id="code2"># Atualizar lista e instalar code-oss nativo
 sudo apt update
 sudo apt install code-oss -y
-```
 
-## Diferenças entre code-oss e code:
-
-| **code-oss** (Open Source) | **code** (Microsoft) |
-|---------------------------|---------------------|
-| ✅ Totalmente open-source | 🔒 Inclui telemetria |
-| ✅ Sem tracker da MS | 📊 Coleta dados de uso |
-| ❌ Marketplace restrito | ✅ Marketplace completo |
-| ❌ Algumas extensões não funcionam | ✅ Todas extensões disponíveis |
-
-## Se precisar do marketplace completo no code-oss:
-
-```bash
-# Instalar extensões manualmente
-# Exemplo: instalar extensão do Python
-code-oss --install-extension ms-python.python
-
-# Ou baixar .vsix do marketplace e instalar localmente
-```
-
-## Para usar o VS Code completo (marketplace liberado):
-
-Se você quiser todas as extensões, recomendo instalar o `code` pelos métodos que mencionei anteriormente. O `code-oss` funciona bem para uso básico, mas alguns desenvolvedores encontram limitações com extensões proprietárias.
-
-**Qual escolher?**
-- **code-oss**: Se você prefere software 100% open-source
-- **code**: Se precisa do marketplace completo da Microsoft
-
-Após instalar, execute:
-```bash
-code-oss
-```
-
-
-Para desinstalar o `code-oss` do Kali Linux:
-
-## Desinstalação completa:
-
-```bash
-# Remover o pacote
-sudo apt remove code-oss -y
-
-# Remover também arquivos de configuração (opcional)
-sudo apt purge code-oss -y
-
-# Remover dependências não utilizadas
-sudo apt autoremove -y
-```
-
-## Remover configurações e dados do usuário:
-
-```bash
-# Remover configurações do usuário atual
-rm -rf ~/.config/Code - OSS/
-
-# Remover cache
-rm -rf ~/.cache/code-oss/
-
-# Remover dados locais
-rm -rf ~/.local/share/code-oss/
-```
-
-## Verificar se foi completamente removido:
-
-```bash
-# Verificar se o comando ainda existe
-which code-oss
-
-# Verificar pacotes relacionados
-dpkg -l | grep code-oss
-```
-
-## Se instalou via flatpak (método alternativo):
-
-```bash
-# Desinstalar versão flatpak
-flatpak uninstall com.visualstudio.code -y
-
-# Limpar flatpaks não utilizados
-flatpak uninstall --unused -y
-```
-
-Após a desinstalação, se quiser instalar o VS Code normal (code) no lugar, use os métodos que mostrei anteriormente.
-
-
-Sim, você pode interromper o processo de instalação do `code-oss` sem problemas!
-
-## Para interromper a instalação:
-
-**Pressione no terminal:**
-```
-Ctrl + C
-```
-
-Isso vai cancelar o processo imediatamente.
-
-## Se a instalação já concluiu e você quer remover:
-
-```bash
-# Verificar se foi instalado
-dpkg -l | grep code-oss
-
-# Se estiver instalado, remover
-sudo apt remove code-oss -y
-```
-
-## Se quiser impedir a instalação futura:
-
-```bash
-# Limpar o cache do apt
-sudo apt clean
-
-# Se estava rodando apt install, matar o processo
-sudo pkill apt
-```
-
-**Importante:** Pressionar `Ctrl + C` é seguro e não vai corromper seu sistema. O apt-get/apt é projetado para lidar com interrupções gracefully (ele vai limpar os arquivos temporários).
-
-Precisa de ajuda com mais alguma coisa?
-
-
-Perfeito! Você conseguiu interromper a instalação com `Ctrl + C` (mostra o `^C` no output). O `code-oss` estava baixando (307 MB total, 24% baixado) e você cancelou.
-
-## Agora, para limpar completamente e evitar problemas:
-
-```bash
-# Limpar o cache de pacotes baixados parcialmente
-sudo apt clean
-
-# Remover arquivos de bloqueio do apt (se houver)
-sudo rm /var/lib/dpkg/lock-frontend
-sudo rm /var/lib/dpkg/lock
-sudo rm /var/cache/apt/archives/lock
-
-# Corrigir possíveis problemas de dependências quebradas
-sudo apt --fix-broken install
-```
-
-## Verificar se não ficou nada pendente:
-
-```bash
-# Verificar se code-oss não está instalado
-dpkg -l | grep code-oss
-
-# Verificar se há pacotes quebrados
-sudo apt check
-```
-
-## Se quiser garantir que o apt está saudável:
-
-```bash
-# Atualizar novamente (opcional)
-sudo apt update
-
-# O apt deve estar normal agora
-```
-
-**Resumo:** A instalação foi interrompida com sucesso, nenhum dano foi feito ao sistema. O `code-oss` não foi instalado porque o download não foi concluído. Você pode seguir com outros trabalhos normalmente.
-
-Precisa de ajuda para instalar algo no lugar?
-
-
-
-
-
-
-
+# Executar o editor
+code-oss</code></pre>
+      </div>
     </div>
-    
+
+    <div class="card">
+      <div class="card-title">🔌 Instalar Extensões do VS Code via Linha de Comando</div>
+      
+      <div class="code-box">
+        <div class="code-header">
+          <span>terminal — CLI Extension Installer</span>
+          <button class="copy-btn" onclick="copiarCodigo('code3', this)">📋 Copiar</button>
+        </div>
+        <pre><code id="code3"># Instalar extensão de Python
+code --install-extension ms-python.python
+
+# Instalar extensão de PHP
+code --install-extension bmewburn.vscode-intelephense-client
+
+# Instalar extensão Prettier
+code --install-extension esbenp.prettier-vscode</code></pre>
+      </div>
+    </div>
+
+    <footer>
+      <p>© Pensador Sem Fronteiras — <em>Do Zero ao Infinito</em></p>
+    </footer>
+  </div>
+
+  <script>
+    function copiarCodigo(id, btn) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      navigator.clipboard.writeText(el.innerText.trim()).then(() => {
+        const orig = btn.innerText;
+        btn.innerText = '✅ Copiado!';
+        btn.style.background = '#38bdf8';
+        btn.style.color = '#000';
+        setTimeout(() => { btn.innerText = orig; btn.style.background = ''; btn.style.color = '#38bdf8'; }, 1500);
+      });
+    }
+    window.addEventListener('pageshow', function() {
+      document.querySelectorAll('.btn-link, .copy-btn').forEach(btn => {
+        btn.style.pointerEvents = 'auto'; btn.style.opacity = '1';
+      });
+    });
+  </script>
 </body>
 </html>

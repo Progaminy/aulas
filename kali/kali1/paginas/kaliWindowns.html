@@ -1,278 +1,156 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-pt">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+  <title>🐉 Kali Linux & Windows · Transferência de Arquivos</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: radial-gradient(circle at 30% 15%, #081021, #02050e);
+      font-family: 'Segoe UI', 'Inter', system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+      color: #daf0ff;
+      padding: 1.5rem 1rem 3rem;
+      line-height: 1.6;
+    }
+    .container { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.8rem; }
+    .nav-buttons { display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between; align-items: center; width: 100%; }
+    .btn-link {
+      background: linear-gradient(135deg, #1e293b, #0f172a);
+      border: 1.5px solid #38bdf8;
+      color: #38bdf8;
+      padding: 0.65rem 1.4rem;
+      border-radius: 2rem;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+      transition: all 0.2s ease-in-out;
+    }
+    .btn-link:hover { background: #38bdf8; color: #000; box-shadow: 0 0 25px #38bdf8; transform: translateY(-2px); }
+    .main-title {
+      font-size: clamp(2rem, 6vw, 3.2rem);
+      font-weight: 900;
+      text-align: center;
+      background: linear-gradient(135deg, #38bdf8, #818cf8, #c084fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 25px rgba(56, 189, 248, 0.4));
+      margin-bottom: 0.5rem;
+    }
+    .card {
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 1.5rem;
+      padding: 1.8rem;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(56, 189, 248, 0.1);
+      display: flex; flex-direction: column; gap: 1.2rem;
+    }
+    .card-title { font-size: 1.4rem; font-weight: 800; color: #38bdf8; border-bottom: 1px solid rgba(56, 189, 248, 0.2); padding-bottom: 0.6rem; }
+    .code-box { background: #020617; border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 1rem; overflow: hidden; margin-top: 0.5rem; }
+    .code-header { display: flex; justify-content: space-between; align-items: center; padding: 0.6rem 1rem; background: #090d16; border-bottom: 1px solid rgba(56, 189, 248, 0.3); font-size: 0.85rem; color: #38bdf8; font-weight: bold; }
+    .copy-btn { background: rgba(56, 189, 248, 0.15); border: 1px solid #38bdf8; color: #38bdf8; font-weight: bold; padding: 0.35rem 0.9rem; border-radius: 1.5rem; cursor: pointer; font-size: 0.8rem; transition: all 0.2s; }
+    .copy-btn:hover { background: #38bdf8; color: #000; box-shadow: 0 0 15px #38bdf8; }
+    pre { padding: 1.2rem; margin: 0; font-family: 'Consolas', 'Fira Code', monospace; font-size: 0.95rem; color: #f1f5f9; white-space: pre-wrap; }
+    footer { text-align: center; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px dashed rgba(56, 189, 248, 0.3); color: #64748b; font-size: 0.9rem; }
+    footer em { color: #c084fc; font-style: normal; font-weight: bold; }
+  </style>
 </head>
 <body>
+  <div class="container">
+    <div class="nav-buttons">
+      <a href="../../../index.html" class="btn-link">🏠 Voltar Home</a>
+      <a href="../../kali.html" class="btn-link">🐉 Voltar Kali</a>
+      <a href="../kali1.html" class="btn-link">📄 Voltar Kali 1</a>
+      <a href="javascript:location.reload()" class="btn-link">🔄 ATUALIZAR</a>
+    </div>
 
+    <h1 class="main-title">📂 Transferência de Arquivos entre Windows & Kali</h1>
 
-
-    Existem várias formas de mover arquivos entre o Windows (host) e o Kali Linux (virtual machine). Aqui estão os métodos mais comuns:
-
-## 1. **Drag and Drop (Mais simples)**
-- No VirtualBox ou VMware, basta arrastar arquivos/pastas da janela do Windows para a janela do Kali
-- **Pré-requisito**: Instalar as **Guest Additions** no VirtualBox ou **VMware Tools** no VMware
-
-## 2. **Pastas Compartilhadas (Recomendado)**
-
-### No VirtualBox:
-1. Com a VM desligada, vá em **Configurações > Pastas Compartilhadas**
-2. Adicione uma nova pasta (ícone +)
-3. Escolha o caminho da pasta no Windows
-4. Marque **"Montar automaticamente"** e **"Acesso total"**
-5. Inicie o Kali e monte a pasta:
-```bash
-sudo mount -t vboxsf nome_da_pasta /mnt/pasta_compartilhada
-```
-
-### No VMware:
-- **VM > Settings > Options > Shared Folders**
-- Adicione a pasta e configure como "Always enabled"
-
-## 3. **USB Drive**
-- Conecte o pendrive ao Windows, copie os arquivos
-- No VirtualBox: **Dispositivos > USB > Selecione o pendrive**
-- No Kali, monte e acesse:
-```bash
-lsblk  # Identificar o dispositivo (ex: /dev/sdb1)
-sudo mount /dev/sdb1 /mnt
-```
-
-## 4. **SCP (Via rede)**
-Se o Kali tiver acesso à rede:
-```bash
-# Copiar do Windows para o Kali
-scp usuario@ip_do_windows:/caminho/arquivo /destino/no/kali/
-
-# Ou usar o PowerShell no Windows:
-scp arquivo.txt usuario@ip_do_kali:/home/usuario/
-```
-
-## 5. **Servidor HTTP simples no Windows**
-No PowerShell (Windows):
-```powershell
-python -m http.server 8000  # Se tiver Python
-```
-No Kali:
-```bash
-wget http://ip_do_windows:8000/arquivo
-```
-
-## Dica importante:
-Para **mover** (cortar) ao invés de copiar, após transferir para o Kali, você pode deletar os originais manualmente no Windows.
-
-**O método mais prático para uso diário é o de pastas compartilhadas**, pois mantém sincronização automática entre os sistemas.
-\
-Esse erro indica que o diretório de montagem não existe ou há problema no nome da pasta compartilhada. Vamos resolver:
-
-## 1. Primeiro, verifique se o diretório de montagem existe:
-
-```bash
-ls -la /mnt/pasta_compartilhada
-```
-
-Se não existir, crie:
-```bash
+    <div class="card">
+      <div class="card-title">📁 1. Pastas Compartilhadas no VirtualBox (Recomendado)</div>
+      
+      <div class="code-box">
+        <div class="code-header">
+          <span>terminal — Criar Ponto e Montar Pasta Compartilhada</span>
+          <button class="copy-btn" onclick="copiarCodigo('code1', this)">📋 Copiar</button>
+        </div>
+        <pre><code id="code1"># 1. Criar o diretório de destino se não existir
 sudo mkdir -p /mnt/pasta_compartilhada
-```
 
-## 2. Liste as pastas compartilhadas disponíveis no VirtualBox:
+# 2. Montar a pasta do VirtualBox (troque NOME_PASTA pelo nome configurado)
+sudo mount -t vboxsf NOME_PASTA /mnt/pasta_compartilhada
 
-```bash
-VBoxControl sharedfolder list
-```
+# 3. Listar as pastas compartilhadas disponíveis
+VBoxControl sharedfolder list</code></pre>
+      </div>
+    </div>
 
-ou
+    <div class="card">
+      <div class="card-title">💽 2. Montar Pendrive USB no Kali</div>
+      
+      <div class="code-box">
+        <div class="code-header">
+          <span>terminal — Identificar e Montar USB</span>
+          <button class="copy-btn" onclick="copiarCodigo('code2', this)">📋 Copiar</button>
+        </div>
+        <pre><code id="code2"># Listar discos para identificar o pendrive (ex: /dev/sdb1)
+lsblk
 
-```bash
-sudo mount.vboxsf
-```
+# Montar o pendrive na pasta /mnt
+sudo mount /dev/sdb1 /mnt
 
-## 3. Verifique o nome exato da pasta compartilhada:
+# Desmontar o pendrive com segurança após o uso
+sudo umount /mnt</code></pre>
+      </div>
+    </div>
 
-O nome `aulas` pode estar diferente. No VirtualBox, a configuração da pasta compartilhada deve ter o nome exato (case-sensitive).
+    <div class="card">
+      <div class="card-title">🌐 3. Transferência via Rede com SCP e HTTP</div>
+      
+      <div class="code-box">
+        <div class="code-header">
+          <span>terminal — Servidor HTTP e SCP</span>
+          <button class="copy-btn" onclick="copiarCodigo('code3', this)">📋 Copiar</button>
+        </div>
+        <pre><code id="code3"># Servidor HTTP simples no Windows (PowerShell):
+python -m http.server 8000
 
-## 4. Monte com a sintaxe correta:
+# Baixar o arquivo no Kali via wget:
+wget http://IP_DO_WINDOWS:8000/arquivo.zip
 
-```bash
-sudo mount -t vboxsf NOME_EXATO /mnt/pasta_compartilhada
-```
+# Transferência segura via SCP (PowerShell):
+scp arquivo.txt usuario@IP_DO_KALI:/home/usuario/</code></pre>
+      </div>
+    </div>
 
-Substitua `NOME_EXATO` pelo nome que apareceu no passo 2.
+    <footer>
+      <p>© Pensador Sem Fronteiras — <em>Do Zero ao Infinito</em></p>
+    </footer>
+  </div>
 
-## 5. Alternativa (se o nome estiver correto):
-
-```bash
-sudo mount.vboxsf aulas /mnt/pasta_compartilhada
-```
-
-## 6. Se ainda der erro, tente com permissões:
-
-```bash
-sudo mount -t vboxsf -o uid=$(id -u),gid=$(id -g) aulas /mnt/pasta_compartilhada
-```
-
-## 7. Para montagem automática (opcional):
-
-Adicione ao `/etc/fstab`:
-```bash
-aulas /mnt/pasta_compartilhada vboxsf defaults 0 0
-```
-
-**Qual é a saída do comando `VBoxControl sharedfolder list`?** Assim posso ajudar com o nome exato.
-
-O problema é que o **VirtualBox Guest Additions não está funcionando corretamente** (o `VBoxControl` não conseguiu se comunicar com o host). Isso é comum no Kali Linux.
-
-## Solução: Reinstalar o Guest Additions
-
-### 1. Primeiro, atualize o sistema:
-```bash
-sudo apt update && sudo apt upgrade -y
-```
-
-### 2. Instale os pacotes necessários:
-```bash
-sudo apt install -y linux-headers-$(uname -r) build-essential dkms
-```
-
-### 3. No VirtualBox, vá no menu **Devices → Insert Guest Additions CD image...**
-
-### 4. Monte o CD e instale:
-```bash
-sudo mount /dev/cdrom /mnt
-cd /mnt
-sudo ./VBoxLinuxAdditions.run
-```
-
-### 5. Se der erro, instale versão do repositório:
-```bash
-sudo apt install -y virtualbox-guest-x11
-```
-
-### 6. Reinicie a máquina:
-```bash
-sudo reboot
-```
-
-### 7. Após reiniciar, verifique se o serviço está rodando:
-```bash
-lsmod | grep vbox
-systemctl status vboxservice
-```
-
-### 8. Se o serviço não estiver ativo:
-```bash
-sudo systemctl enable vboxservice
-sudo systemctl start vboxservice
-```
-
-### 9. Tente montar novamente:
-```bash
-sudo mount -t vboxsf aulas /mnt/pasta_compartilhada
-```
-
-### 10. Alternativa: monte como usuário normal:
-```bash
-sudo mount.vboxsf -o uid=1000,gid=1000 aulas /mnt/pasta_compartilhada
-```
-
-**Após reiniciar, o `VBoxControl sharedfolder list` deve funcionar.** Se ainda der erro, me avise qual mensagem aparece durante a instalação do Guest Additions.
-
-Você tentou montar um dispositivo `/dev/sdb1` que provavelmente não existe. Isso não está relacionado à pasta compartilhada do VirtualBox.
-
-Parece que o comando `mount -t vboxsf` não deu erro nem saída, o que pode ser **bom sinal**! Verifique se a montagem funcionou:
-
-## Verifique se a pasta foi montada:
-
-```bash
-ls -la /mnt/pasta_compartilhada
-```
-
-## Verifique os sistemas de arquivos montados:
-
-```bash
-df -h | grep pasta_compartilhada
-```
-
-ou
-
-```bash
-mount | grep vboxsf
-```
-
-## Se a pasta estiver vazia, tente criar um arquivo de teste:
-
-```bash
-touch /mnt/pasta_compartilhada/teste.txt
-echo "funcionou" > /mnt/pasta_compartilhada/teste.txt
-cat /mnt/pasta_compartilhada/teste.txt
-```
-
-## Se ainda não funcionar, verifique se o módulo vboxsf está carregado:
-
-```bash
-lsmod | grep vbox
-```
-
-## Se não aparecer nada, carregue o módulo:
-
-```bash
-sudo modprobe vboxsf
-```
-
-## Tente montar novamente com mais verbosidade:
-
-```bash
-sudo mount -t vboxsf -o uid=1000,gid=1000 aulas /mnt/pasta_compartilhada -v
-```
-
-**Qual é a saída desses comandos?** Principalmente o `ls -la /mnt/pasta_compartilhada` - se mostrar o conteúdo da pasta compartilhada do Windows/outro SO, então funcionou!
-
-Perfeito! 🎉 **A pasta compartilhada está montada e funcionando!**
-
-Você pode ver que:
-- ✅ A pasta `aulas` foi montada com sucesso em `/mnt/pasta_compartilhada`
-- ✅ O espaço em disco está disponível (466G total, 291G livre)
-- ✅ Os diretórios `css`, `html1` e `html2` estão visíveis
-
-## Agora você pode usar a pasta compartilhada normalmente:
-
-### Acessar os arquivos:
-```bash
-cd /mnt/pasta_compartilhada
-ls -la
-```
-
-### Navegar nas subpastas:
-```bash
-cd /mnt/pasta_compartilhada/css
-cd /mnt/pasta_compartilhada/html1
-cd /mnt/pasta_compartilhada/html2
-```
-
-### Copiar arquivos para o Kali:
-```bash
-cp /mnt/pasta_compartilhada/html1/index.html ~/
-```
-
-### Copiar arquivos do Kali para a pasta compartilhada:
-```bash
-cp ~/meu_arquivo.txt /mnt/pasta_compartilhada/
-```
-
-### Criar nova pasta compartilhada:
-```bash
-mkdir /mnt/pasta_compartilhada/meus_projetos
-```
-
-## Observação:
-A pasta também está montada em `/media/sf_aulas` (automática do VirtualBox). Você pode usar qualquer um dos dois caminhos.
-
-**Tudo resolvido!** A pasta compartilhada está pronta para uso. Precisa de ajuda com mais alguma coisa?
-
-
-    
+  <script>
+    function copiarCodigo(id, btn) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      navigator.clipboard.writeText(el.innerText.trim()).then(() => {
+        const orig = btn.innerText;
+        btn.innerText = '✅ Copiado!';
+        btn.style.background = '#38bdf8';
+        btn.style.color = '#000';
+        setTimeout(() => { btn.innerText = orig; btn.style.background = ''; btn.style.color = '#38bdf8'; }, 1500);
+      });
+    }
+    window.addEventListener('pageshow', function() {
+      document.querySelectorAll('.btn-link, .copy-btn').forEach(btn => {
+        btn.style.pointerEvents = 'auto'; btn.style.opacity = '1';
+      });
+    });
+  </script>
 </body>
 </html>
