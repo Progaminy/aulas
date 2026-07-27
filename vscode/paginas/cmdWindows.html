@@ -1152,6 +1152,22 @@
         </div>
 
         <div class="cmd-block">
+          <div class="cmd-label">📌 Verificar a versão do PIP chamando direto pelo Python:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">python -m pip --version</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('python -m pip --version', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Verificar a versão do PIP chamando pelo Python Launcher (py):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">py -m pip --version</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('py -m pip --version', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
           <div class="cmd-label">📌 Forçar o Python a instalar/reinstalar o PIP nativo:</div>
           <div class="cmd-row">
             <span class="cmd-code">python -m ensurepip --upgrade</span>
