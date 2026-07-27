@@ -959,6 +959,166 @@
       </div>
     </div>
 
+    <!-- CARTÃO 1: ABRIR JANELAS DE CONFIGURAÇÕES DE WI-FI -->
+    <div class="card">
+      <div class="card-title">🖥️ Abrir Janelas de Configurações de Wi-Fi pelo Terminal</div>
+      <div class="desc-text">
+        Atalhos nativos para abrir diretamente as páginas de rede do Windows sem precisar navegar pelos menus visuais (copie 1 a 1):
+      </div>
+
+      <div class="cmd-group">
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Abrir página de Configurações de Wi-Fi do Windows 10/11:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">start ms-settings:network-wifi</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('start ms-settings:network-wifi', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Abrir pop-up/painel lateral de redes Wi-Fi disponíveis para conexão:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">explorer ms-availablenetworks:</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('explorer ms-availablenetworks:', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Abrir o Centro de Rede e Compartilhamento clássico:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">control.exe /name Microsoft.NetworkAndSharingCenter</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('control.exe /name Microsoft.NetworkAndSharingCenter', this)">📋 Copiar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARTÃO 2: WINDOWS UPDATE PELO TERMINAL -->
+    <div class="card">
+      <div class="card-title">🔄 Windows Update pelo Terminal (Verificar & Atualizar)</div>
+      <div class="desc-text">
+        Comandos para abrir o Windows Update, escanear atualizações pendentes e reiniciar o sistema (copie 1 a 1):
+      </div>
+
+      <div class="cmd-group">
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Abrir a página do Windows Update nas Configurações:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">start ms-settings:windowsupdate</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('start ms-settings:windowsupdate', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Iniciar varredura/escaneamento de atualizações no Windows 10/11:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">UsoClient StartScan</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('UsoClient StartScan', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Forçar detecção de atualizações do sistema:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">wuauclt /detectnow</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('wuauclt /detectnow', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Programar reinicialização do computador em 30 segundos:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">shutdown /r /t 30</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('shutdown /r /t 30', this)">📋 Copiar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARTÃO 3: BAIXAR E INSTALAR PYTHON DIRO NO TERMINAL -->
+    <div class="card">
+      <div class="card-title">🐍 Baixar e Instalar o Python Direto pelo Terminal (Sem Navegador)</div>
+      <div class="desc-text">
+        Se o comando <code>curl</code> der erro de URL ou decimal, utilize o PowerShell pelo terminal para baixar e instalar o Python silenciosamente com o PATH configurado automaticamente (copie 1 a 1):
+      </div>
+
+      <div class="cmd-group">
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Passo 1: Baixar o instalador oficial do Python 3.12 via PowerShell:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">powershell -command "Invoke-WebRequest -Uri https://www.python.org/ftp/python/3.12.4/python-3.12.4-amd64.exe -OutFile python-installer.exe"</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('powershell -command &quot;Invoke-WebRequest -Uri https://www.python.org/ftp/python/3.12.4/python-3.12.4-amd64.exe -OutFile python-installer.exe&quot;', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Passo 2: Executar instalação silenciosa e adicionar ao PATH automaticamente:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">python-installer.exe /quiet InstallAllUsers=1 PrependPath=1</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('python-installer.exe /quiet InstallAllUsers=1 PrependPath=1', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Passo 3: Verificar se o Python foi instalado com sucesso:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">python --version</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('python --version', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Passo 4: Apagar o arquivo instalador baixado para liberar espaço:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">del python-installer.exe</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('del python-installer.exe', this)">📋 Copiar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARTÃO 4: SERVIDORES PYTHON (FLASK E FASTAPI) -->
+    <div class="card">
+      <div class="card-title">⚡ Servidores Web em Python no Windows (Flask & FastAPI)</div>
+      <div class="desc-text">
+        Comandos para instalar e rodar servidores web modernos em Python (copie 1 a 1):
+      </div>
+
+      <div class="cmd-group">
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Instalar o micro-framework Flask:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">pip install flask</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('pip install flask', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Instalar FastAPI e servidor de alta performance Uvicorn:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">pip install fastapi uvicorn</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('pip install fastapi uvicorn', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Ligar servidor FastAPI (Acessar em http://localhost:8000 e docs em /docs):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">uvicorn main:app --reload --host 0.0.0.0 --port 8000</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('uvicorn main:app --reload --host 0.0.0.0 --port 8000', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Ligar servidor Flask:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">python servidor.py</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('python servidor.py', this)">📋 Copiar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <footer>
       <p>© Pensador Sem Fronteiras — <em>Do Zero ao Infinito</em></p>
     </footer>
