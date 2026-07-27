@@ -1546,6 +1546,95 @@
       </div>
     </div>
 
+    <!-- CARTÃO 7.2: SOLUÇÃO DE ERROS FREQUENTES & COMPARTILHAMENTO DE DISCOS INTEIROS (C:\ E D:\) -->
+    <div class="card" id="erros-e-compartilhamento-discos" style="border: 2px solid #ef4444; background: linear-gradient(185deg, #090d16 0%, #1e1b4b 100%);">
+      <div class="card-title" style="color: #f87171; font-size: 1.2rem;">⚠️ 7.2. Soluções de Erros Frequentes & Compartilhar Discos Inteiros (C:\ e D:\)</div>
+      <div class="desc-text" style="color: #cbd5e1;">
+        Entenda o motivo de cada erro comum do terminal, por que os comandos terminam e como compartilhar discos inteiros (C:\ ou D:\) ou pastas específicas (copie 1 a 1):
+      </div>
+
+      <div class="cmd-group">
+        <!-- Erro 1 -->
+        <div class="cmd-block" style="border-color: rgba(239, 68, 68, 0.4);">
+          <div class="cmd-label" style="color: #f87171; font-weight: bold;">❌ ERRO 1: Copiar o Prompt do CMD por engano ('D:\meu_servidor>'):</div>
+          <div style="color: #cbd5e1; font-size: 0.88rem; padding: 0.2rem 0;">
+            <strong>Sintoma:</strong> <code>'D:\meu_servidor' não é reconhecido como comando interno...</code><br>
+            <strong>Motivo:</strong> Você colou o texto do prompt do terminal (<code>D:\meu_servidor></code>) junto com o comando.<br>
+            <strong>Solução:</strong> Não digite nem cole <code>D:\meu_servidor></code>. Clique sempre no botão <strong>📋 Copiar</strong> para pegar apenas o comando limpo!
+          </div>
+          <div class="cmd-row">
+            <span class="cmd-code">python -m http.server 5000 --bind 0.0.0.0</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('python -m http.server 5000 --bind 0.0.0.0', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <!-- Erro 2 -->
+        <div class="cmd-block" style="border-color: rgba(239, 68, 68, 0.4);">
+          <div class="cmd-label" style="color: #f87171; font-weight: bold;">❌ ERRO 2: O comando 'python servidor.py' termina imediatamente sem ficar ligado:</div>
+          <div style="color: #cbd5e1; font-size: 0.88rem; padding: 0.2rem 0;">
+            <strong>Motivo:</strong> O arquivo <code>servidor.py</code> não possui um servidor contínuo ativo. Use o servidor HTTP nativo do Python que fica ligado até você pressionar <strong>Ctrl + C</strong>.
+          </div>
+          <div class="cmd-row">
+            <span class="cmd-code">python -m http.server 5000 --bind 0.0.0.0</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('python -m http.server 5000 --bind 0.0.0.0', this)">📋 Copiar</button>
+          </div>
+          <div style="color: #38bdf8; font-size: 0.82rem; margin-top: 0.3rem;">Deverá surgir: <code>Serving HTTP on 0.0.0.0 port 5000 ...</code></div>
+        </div>
+
+        <!-- Erro 3 -->
+        <div class="cmd-block" style="border-color: rgba(239, 68, 68, 0.4);">
+          <div class="cmd-label" style="color: #f87171; font-weight: bold;">❌ ERRO 3: Digitar a URL 'http://10.102.103.67:5000' direto no CMD:</div>
+          <div style="color: #cbd5e1; font-size: 0.88rem; padding: 0.2rem 0;">
+            <strong>Motivo:</strong> Endereços web devem ser digitados na barra de endereços do seu NAVEGADOR (Chrome, Edge, Safari). Não cole URLs soltas no terminal!<br>
+            <strong>Solução via CMD:</strong> Para abrir o link a partir do terminal, use o comando <code>start</code>:
+          </div>
+          <div class="cmd-row">
+            <span class="cmd-code">start http://10.102.103.67:5000</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('start http://10.102.103.67:5000', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <!-- Disco D -->
+        <div class="cmd-block">
+          <div class="cmd-label">💽 Compartilhar o DISCO D:\ inteiro (Porta 5000):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">python -m http.server 5000 --bind 0.0.0.0 --directory "D:\"</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('python -m http.server 5000 --bind 0.0.0.0 --directory &quot;D:\\&quot;', this)">📋 Copiar</button>
+          </div>
+          <div style="color: #94a3b8; font-size: 0.82rem; margin-top: 0.3rem;">Acesse no celular/outro PC: <code>http://10.102.103.67:5000</code></div>
+        </div>
+
+        <!-- Disco C -->
+        <div class="cmd-block">
+          <div class="cmd-label">💽 Compartilhar o DISCO C:\ inteiro em outra porta (Porta 5001):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">python -m http.server 5001 --bind 0.0.0.0 --directory "C:\"</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('python -m http.server 5001 --bind 0.0.0.0 --directory &quot;C:\\&quot;', this)">📋 Copiar</button>
+          </div>
+          <div style="color: #94a3b8; font-size: 0.82rem; margin-top: 0.3rem;">Acesse no celular/outro PC: <code>http://10.102.103.67:5001</code></div>
+        </div>
+
+        <!-- Pasta Específica -->
+        <div class="cmd-block">
+          <div class="cmd-label">📁 Compartilhar apenas uma pasta específica (Ex: D:\Fotos):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">python -m http.server 5000 --bind 0.0.0.0 --directory "D:\Fotos"</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('python -m http.server 5000 --bind 0.0.0.0 --directory &quot;D:\\Fotos&quot;', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <!-- Alerta de Segurança -->
+        <div class="cmd-block" style="border-color: #f59e0b; background: rgba(245, 158, 11, 0.1);">
+          <div class="cmd-label" style="color: #fbbf24; font-weight: bold;">⚠️ Alerta Importante de Segurança & Privacidade:</div>
+          <div style="color: #cbd5e1; font-size: 0.88rem; padding: 0.2rem 0;">
+            1. Compartilhar todo o disco C:\ pode expor documentos pessoais e arquivos do sistema para qualquer pessoa conectada ao mesmo Wi-Fi.<br>
+            2. É mais seguro criar uma pasta isolada (ex: <code>mkdir D:\Compartilhar</code>) e servir exclusivamente essa pasta.<br>
+            3. Este servidor Python permite <strong>ver e baixar arquivos</strong>. Ele não permite enviar, editar, renomear ou excluir arquivos pelo navegador.
+          </div>
+        </div>
+      </div>
+    </div>
+
     <footer>
       <p>© Pensador Sem Fronteiras — <em>Do Zero ao Infinito</em></p>
     </footer>
