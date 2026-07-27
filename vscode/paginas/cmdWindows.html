@@ -537,6 +537,52 @@
       </div>
     </div>
 
+    <!-- CARTÃO: COMANDOS PARA MUDAR A IMAGEM DE FUNDO (WALLPAPER) NO WINDOWS -->
+    <div class="card" id="mudar-imagem-fundo-windows">
+      <div class="card-title">🖼️ 2.0.2. Comandos para Mudar a Imagem de Fundo (Wallpaper) no Windows</div>
+      <div class="desc-text">
+        Comandos para abrir a janela de personalização ou alterar a imagem de papel de parede da Área de Trabalho via linha de comando (copie 1 a 1):
+      </div>
+
+      <div class="cmd-group">
+        <!-- Img 1 -->
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Abrir a janela de Configurações de Imagem de Fundo / Tela de Fundo do Windows 10/11:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">start ms-settings:personalization-background</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('start ms-settings:personalization-background', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <!-- Img 2 -->
+        <div class="cmd-block">
+          <div class="cmd-label">🖼️ Mudar a imagem de papel de parede instantaneamente via PowerShell:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">powershell -command "$code = 'using System.Runtime.InteropServices; public class Wallpaper { [DllImport(\"user32.dll\", CharSet = CharSet.Auto)] public static extern int SystemParametersInfo(int uAction, int uParam, string lpvParam, int fuWinIni); }'; Add-Type $code; [Wallpaper]::SystemParametersInfo(20, 0, 'C:\Users\Public\Pictures\imagem.jpg', 3)"</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('powershell -command &quot;$code = \'using System.Runtime.InteropServices; public class Wallpaper { [DllImport(\&quot;user32.dll\&quot;, CharSet = CharSet.Auto)] public static extern int SystemParametersInfo(int uAction, int uParam, string lpvParam, int fuWinIni); }\'; Add-Type $code; [Wallpaper]::SystemParametersInfo(20, 0, \'C:\\Users\\Public\\Pictures\\imagem.jpg\', 3)&quot;', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <!-- Img 3 -->
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Mudar o caminho da imagem de fundo no Registro do Windows (CMD):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">reg add "HKCU\Control Panel\Desktop" /v Wallpaper /t REG_SZ /d "C:\Users\Public\Pictures\imagem.jpg" /f</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('reg add &quot;HKCU\\Control Panel\\Desktop&quot; /v Wallpaper /t REG_SZ /d &quot;C:\\Users\\Public\\Pictures\\imagem.jpg&quot; /f', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <!-- Img 4 -->
+        <div class="cmd-block">
+          <div class="cmd-label">⚡ Forçar o Windows a aplicar a nova imagem de fundo sem precisar de reiniciar o computador:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">RUNDLL32.EXE user32.dll,UpdatePerUserSystemParameters</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('RUNDLL32.EXE user32.dll,UpdatePerUserSystemParameters', this)">📋 Copiar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- SECÇÃO 2.5: TODAS AS FORMAS DE CRIAR ARQUIVOS -->
     <div class="card">
       <div class="card-title">📝 2.1. Guia Completo: Como Criar Arquivos no Windows (CMD & PowerShell)</div>
