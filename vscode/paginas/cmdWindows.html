@@ -1296,6 +1296,128 @@
       </div>
     </div>
 
+    <!-- CARTÃO FINAL: PASSO A PASSO COMPLETO PARA CRIAR SERVIDOR FLASK E LIBERAR FIREWALL NA REDE WI-FI -->
+    <div class="card" style="border: 2px solid #38bdf8; background: linear-gradient(185deg, #090d16 0%, #0f172a 100%);">
+      <div class="card-title" style="color: #38bdf8; font-size: 1.25rem;">🔥 Passo a Passo Completo: Criar Servidor Python Flask na Rede Wi-Fi & Liberar Firewall</div>
+      <div class="desc-text">
+        Este é o guia completo, exatamente do jeito enviado, para criar o arquivo <code>servidor.py</code> via terminal, rodar o servidor Flask na porta 5000 acessível a qualquer celular/computador da rede Wi-Fi e liberar a regra no Firewall do Windows (copie 1 a 1):
+      </div>
+
+      <div class="cmd-group">
+        <div class="cmd-block">
+          <div class="cmd-label">📌 1. Ir para a pasta do usuário:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">cd %USERPROFILE%</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('cd %USERPROFILE%', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 2. Criar a pasta do servidor:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">mkdir meu_servidor</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('mkdir meu_servidor', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 3. Entrar na pasta do servidor:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">cd meu_servidor</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('cd meu_servidor', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 4. Escrever linha 1 em 'servidor.py' (Importar Flask):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">echo from flask import Flask > servidor.py</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('echo from flask import Flask > servidor.py', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 5. Escrever linha 2 em 'servidor.py' (Instanciar app):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">echo app = Flask(__name__) >> servidor.py</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('echo app = Flask(__name__) >> servidor.py', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 6. Escrever linha 3 em 'servidor.py' (Definir rota '/'):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">echo @app.route('/') >> servidor.py</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('echo @app.route(\'/\') >> servidor.py', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 7. Escrever linha 4 em 'servidor.py' (Definir função home):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">echo def home(): >> servidor.py</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('echo def home(): >> servidor.py', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 8. Escrever linha 5 em 'servidor.py' (Retorno de texto):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">echo     return 'Servidor rodando na rede Wi-Fi!' >> servidor.py</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('echo     return \'Servidor rodando na rede Wi-Fi!\' >> servidor.py', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 9. Escrever linha 6 em 'servidor.py' (Condição main):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">echo if __name__ == '__main__': >> servidor.py</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('echo if __name__ == \'__main__\': >> servidor.py', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 10. Escrever linha 7 em 'servidor.py' (Configurar porta 5000 na Wi-Fi 0.0.0.0):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">echo     app.run(debug=True, host='0.0.0.0', port=5000) >> servidor.py</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('echo     app.run(debug=True, host=\'0.0.0.0\', port=5000) >> servidor.py', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 11. Instalar a biblioteca Flask:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">pip install flask</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('pip install flask', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 12. Ligar e executar o servidor Python:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">python servidor.py</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('python servidor.py', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 13. Descobrir seu IP na rede local Wi-Fi (exemplo: 192.168.1.100):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">ipconfig</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('ipconfig', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 14. Liberar a porta 5000 no Firewall do Windows (Executar Prompt/PowerShell como Admin):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">netsh advfirewall firewall add rule name="Servidor Python" dir=in action=allow protocol=TCP localport=5000</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('netsh advfirewall firewall add rule name=&quot;Servidor Python&quot; dir=in action=allow protocol=TCP localport=5000', this)">📋 Copiar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <footer>
       <p>© Pensador Sem Fronteiras — <em>Do Zero ao Infinito</em></p>
     </footer>
