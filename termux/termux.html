@@ -377,33 +377,53 @@
       </div>
     </div>
 
-    <!-- Card de Pesquisa Avançada no Termux -->
+    <!-- Card de Gerenciadores de Pacotes: apk vs pkg vs apt -->
     <div class="card">
-      <h2>🚀 Documentação de Pesquisa: Servidor SSH & Linux Proot no Termux</h2>
+      <div class="card-title" style="font-size:1.4rem; font-weight:800; color:#38bdf8; border-bottom:1px solid rgba(56,189,248,0.3); padding-bottom:0.6rem; margin-bottom:0.8rem;">
+        📦 Gerenciadores de Pacotes: apk vs pkg vs apt (Atualizar Sistema)
+      </div>
       <p style="color:#e2e8f0; line-height:1.6;">
-        O Termux transforma qualquer dispositivo Android num ambiente Linux completo sem necessidade de root. Abaixo estão os comandos para configurar o armazenamento interno, servidor SSH e distribuições completas (Ubuntu/Debian) via <code>proot-distro</code>.
+        O comando <code>apk</code> é o gerenciador de pacotes do <strong>Alpine Linux</strong> (muito usado no app iSH do iOS, containers Docker minimalistas e ambientes Alpine). Veja a comparação de comandos para atualizar sistemas (copie 1 a 1):
       </p>
 
-      <div style="background:#020617; border:1px solid #00ccff; border-radius:1rem; padding:1rem; margin:1rem 0;">
-        <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(0,204,255,0.3); padding-bottom:0.5rem; margin-bottom:0.8rem;">
-          <span style="color:#00ccff; font-weight:bold;">termux-cli — Configuração de Servidor & Proot</span>
-          <button class="copy-btn" id="copyButtonTermuxAdv" style="cursor:pointer;">📋 Copiar</button>
+      <div style="display:flex; flex-direction:column; gap:0.8rem; margin-top:0.8rem;">
+        <!-- APK Alpine -->
+        <div style="background:#020617; border:1px solid rgba(56,189,248,0.35); border-radius:0.8rem; padding:0.8rem; display:flex; flex-direction:column; gap:0.4rem;">
+          <span style="font-size:0.85rem; color:#94a3b8; font-weight:bold;">🏔️ Alpine Linux / iSH iOS (Comando APK):</span>
+          <div style="display:flex; justify-content:space-between; align-items:center; background:#090d16; padding:0.5rem 0.8rem; border-radius:0.5rem;">
+            <code style="color:#38bdf8; font-weight:bold;">apk update && apk upgrade</code>
+            <button class="copy-btn" onclick="navigator.clipboard.writeText('apk update && apk upgrade')">📋 Copiar</button>
+          </div>
+          <div style="font-size:0.8rem; color:#a7f3d0;">👉 Instalar pacote no Alpine: <code>apk add python3 git bash curl</code></div>
         </div>
-        <pre><code id="codeSnippetTermuxAdv"># 1. Liberar Acesso ao Armazenamento Interno do Android
-termux-setup-storage
 
-# 2. Atualizar Repositórios e Instalar Pacotes Base
-pkg update && pkg upgrade -y
-pkg install python git openssh wget curl proot-distro -y
+        <!-- PKG Termux -->
+        <div style="background:#020617; border:1px solid rgba(56,189,248,0.35); border-radius:0.8rem; padding:0.8rem; display:flex; flex-direction:column; gap:0.4rem;">
+          <span style="font-size:0.85rem; color:#94a3b8; font-weight:bold;">📱 Termux no Android (Comando PKG):</span>
+          <div style="display:flex; justify-content:space-between; align-items:center; background:#090d16; padding:0.5rem 0.8rem; border-radius:0.5rem;">
+            <code style="color:#38bdf8; font-weight:bold;">pkg update && pkg upgrade -y</code>
+            <button class="copy-btn" onclick="navigator.clipboard.writeText('pkg update && pkg upgrade -y')">📋 Copiar</button>
+          </div>
+          <div style="font-size:0.8rem; color:#a7f3d0;">👉 Instalar pacote no Termux: <code>pkg install python git -y</code></div>
+        </div>
 
-# 3. Iniciar Servidor OpenSSH no Termux (Porta Padrão: 8022)
-sshd
-whoami   # Mostra seu nome de usuário no Termux
-passwd   # Define uma senha para acesso SSH remotamente
+        <!-- APT Debian/Ubuntu -->
+        <div style="background:#020617; border:1px solid rgba(56,189,248,0.35); border-radius:0.8rem; padding:0.8rem; display:flex; flex-direction:column; gap:0.4rem;">
+          <span style="font-size:0.85rem; color:#94a3b8; font-weight:bold;">🐧 Ubuntu / Debian / Kali Linux (Comando APT):</span>
+          <div style="display:flex; justify-content:space-between; align-items:center; background:#090d16; padding:0.5rem 0.8rem; border-radius:0.5rem;">
+            <code style="color:#38bdf8; font-weight:bold;">sudo apt update && sudo apt upgrade -y</code>
+            <button class="copy-btn" onclick="navigator.clipboard.writeText('sudo apt update && sudo apt upgrade -y')">📋 Copiar</button>
+          </div>
+        </div>
 
-# 4. Instalar Distribuição Ubuntu completa dentro do Termux
-proot-distro install ubuntu
-proot-distro login ubuntu   # Entra no terminal Ubuntu completo!</code></pre>
+        <!-- Winget Windows -->
+        <div style="background:#020617; border:1px solid rgba(56,189,248,0.35); border-radius:0.8rem; padding:0.8rem; display:flex; flex-direction:column; gap:0.4rem;">
+          <span style="font-size:0.85rem; color:#94a3b8; font-weight:bold;">🪟 Windows 10 / 11 (Comando Winget):</span>
+          <div style="display:flex; justify-content:space-between; align-items:center; background:#090d16; padding:0.5rem 0.8rem; border-radius:0.5rem;">
+            <code style="color:#38bdf8; font-weight:bold;">winget upgrade --all</code>
+            <button class="copy-btn" onclick="navigator.clipboard.writeText('winget upgrade --all')">📋 Copiar</button>
+          </div>
+        </div>
       </div>
     </div>
 
