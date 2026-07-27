@@ -397,6 +397,64 @@
       </div>
     </div>
 
+    <!-- CARTÃO: COMANDOS PARA GERENCIAR E ALTERAR SENHAS NO WINDOWS -->
+    <div class="card" id="configurar-senhas-windows">
+      <div class="card-title">🔐 2.0. Comandos para Gerenciar & Alterar Senhas no Windows (net user)</div>
+      <div class="desc-text">
+        Comandos nativos do Prompt de Comando e PowerShell (executar como Administrador) para criar, redefinir e configurar senhas de usuários do sistema (copie 1 a 1):
+      </div>
+
+      <div class="cmd-group">
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Listar todas as contas de usuários cadastradas neste computador:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">net user</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('net user', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">🔐 Alterar a senha de um usuário de forma oculta (digitar senha sem aparecer no terminal):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">net user NomeDoUsuario *</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('net user NomeDoUsuario *', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">🔐 Definir uma nova senha direta para um usuário (Executar como Admin):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">net user NomeDoUsuario NovaSenha123</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('net user NomeDoUsuario NovaSenha123', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">👤 Criar uma nova conta de usuário no Windows com senha (Executar como Admin):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">net user NovoUsuario SenhaForte123 /add</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('net user NovoUsuario SenhaForte123 /add', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">⚙️ Forçar o usuário a alterar a senha obrigatoriamente no próximo logon (Admin):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">net user NomeDoUsuario /logonpasswordchg:yes</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('net user NomeDoUsuario /logonpasswordchg:yes', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">🔓 Ativar/Desbloquear uma conta de usuário desativada (Admin):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">net user NomeDoUsuario /active:yes</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('net user NomeDoUsuario /active:yes', this)">📋 Copiar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- SECÇÃO 2.5: TODAS AS FORMAS DE CRIAR ARQUIVOS -->
     <div class="card">
       <div class="card-title">📝 2.1. Guia Completo: Como Criar Arquivos no Windows (CMD & PowerShell)</div>
