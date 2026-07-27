@@ -1135,88 +1135,33 @@
       </div>
     </div>
 
-    <!-- CARTÃO 5: SOLUÇÃO DO ERRO PIP NÃO RECONHECIDO NO WINDOWS -->
+    <!-- CARTÃO 5: SOLUÇÕES DE ERROS DO PYTHON E PIP NO WINDOWS -->
     <div class="card">
-      <div class="card-title">⚠️ Solução: "'pip' não é reconhecido como um comando interno..."</div>
+      <div class="card-title">⚠️ Soluções de Erros: "'python' ou 'pip' não é reconhecido..."</div>
       <div class="desc-text">
-        Se o Windows exibir o erro <em>"'pip' não é reconhecido..."</em>, significa que o PIP não foi adicionado ao PATH do Windows. Utilize as soluções abaixo para rodar e corrigir imediatamente (copie 1 a 1):
+        Se o Windows exibir mensagens de erro informando que <code>python</code> ou <code>pip</code> não são reconhecidos, utilize a lista de soluções abaixo para rodar seus scripts e instalar bibliotecas sem travamentos (copie 1 a 1):
       </div>
 
       <div class="cmd-group">
+        <!-- Py 1 -->
         <div class="cmd-block">
-          <div class="cmd-label">🚀 Solução 1 (Instantânea): Usar o prefixo 'python -m pip' (Funciona SEMPRE sem mexer no PATH):</div>
-          <div class="cmd-row">
-            <span class="cmd-code">python -m pip install flask</span>
-            <button class="copy-btn" onclick="copiarComandoUnico('python -m pip install flask', this)">📋 Copiar</button>
-          </div>
-        </div>
-
-        <div class="cmd-block">
-          <div class="cmd-label">📌 Verificar a versão do PIP chamando direto pelo Python:</div>
-          <div class="cmd-row">
-            <span class="cmd-code">python -m pip --version</span>
-            <button class="copy-btn" onclick="copiarComandoUnico('python -m pip --version', this)">📋 Copiar</button>
-          </div>
-        </div>
-
-        <div class="cmd-block">
-          <div class="cmd-label">📌 Verificar a versão do PIP chamando pelo Python Launcher (py):</div>
-          <div class="cmd-row">
-            <span class="cmd-code">py -m pip --version</span>
-            <button class="copy-btn" onclick="copiarComandoUnico('py -m pip --version', this)">📋 Copiar</button>
-          </div>
-        </div>
-
-        <div class="cmd-block">
-          <div class="cmd-label">📌 Forçar o Python a instalar/reinstalar o PIP nativo:</div>
-          <div class="cmd-row">
-            <span class="cmd-code">python -m ensurepip --upgrade</span>
-            <button class="copy-btn" onclick="copiarComandoUnico('python -m ensurepip --upgrade', this)">📋 Copiar</button>
-          </div>
-        </div>
-
-        <div class="cmd-block">
-          <div class="cmd-label">📌 Atualizar o PIP para a versão mais recente:</div>
-          <div class="cmd-row">
-            <span class="cmd-code">python -m pip install --upgrade pip</span>
-            <button class="copy-btn" onclick="copiarComandoUnico('python -m pip install --upgrade pip', this)">📋 Copiar</button>
-          </div>
-        </div>
-
-        <div class="cmd-block">
-          <div class="cmd-label">📌 Adicionar a pasta do PIP (Scripts) ao PATH do Windows via PowerShell:</div>
-          <div class="cmd-row">
-            <span class="cmd-code">powershell -command "[Environment]::SetEnvironmentVariable('Path', $env:Path + ';C:\Users\' + $env:USERNAME + '\AppData\Local\Programs\Python\Python312\Scripts', 'User')"</span>
-            <button class="copy-btn" onclick="copiarComandoUnico('powershell -command &quot;[Environment]::SetEnvironmentVariable(\'Path\', $env:Path + \';C:\\Users\\\' + $env:USERNAME + \'\\AppData\\Local\\Programs\\Python\\Python312\\Scripts\', \'User\')&quot;', this)">📋 Copiar</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- CARTÃO 6: SOLUÇÃO QUANDO 'PYTHON' TAMBÉM NÃO É RECONHECIDO NO WINDOWS -->
-    <div class="card">
-      <div class="card-title">⚠️ Solução: "'python' não é reconhecido como um comando interno..."</div>
-      <div class="desc-text">
-        Se o próprio comando <code>python</code> não é reconhecido pelo Windows, utilize o atalho nativo <code>py</code> (Python Launcher) ou adicione as pastas do Python ao PATH do Windows (copie 1 a 1):
-      </div>
-
-      <div class="cmd-group">
-        <div class="cmd-block">
-          <div class="cmd-label">🚀 Solução 1 (Usar o lançador oficial 'py' nativo do Windows):</div>
+          <div class="cmd-label">🚀 Solução 1: Usar o lançador oficial 'py' nativo do Windows (Funciona SEMPRE):</div>
           <div class="cmd-row">
             <span class="cmd-code">py --version</span>
             <button class="copy-btn" onclick="copiarComandoUnico('py --version', this)">📋 Copiar</button>
           </div>
         </div>
 
+        <!-- Py 2 -->
         <div class="cmd-block">
-          <div class="cmd-label">📌 Instalar bibliotecas e pacotes usando o comando 'py':</div>
+          <div class="cmd-label">📌 Instalar bibliotecas usando o comando 'py':</div>
           <div class="cmd-row">
             <span class="cmd-code">py -m pip install flask</span>
             <button class="copy-btn" onclick="copiarComandoUnico('py -m pip install flask', this)">📋 Copiar</button>
           </div>
         </div>
 
+        <!-- Py 3 -->
         <div class="cmd-block">
           <div class="cmd-label">📌 Executar qualquer script Python usando o comando 'py':</div>
           <div class="cmd-row">
@@ -1225,8 +1170,45 @@
           </div>
         </div>
 
+        <!-- Pip 1 -->
         <div class="cmd-block">
-          <div class="cmd-label">📌 Adicionar Python + PIP ao PATH do Windows via PowerShell (Corrigir 'python' no CMD):</div>
+          <div class="cmd-label">🚀 Solução 2: Usar o prefixo 'python -m pip' quando apenas o PIP falhar:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">python -m pip install flask</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('python -m pip install flask', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <!-- Pip 2 -->
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Verificar a versão do PIP chamando pelo Python:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">python -m pip --version</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('python -m pip --version', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <!-- Pip 3 -->
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Verificar a versão do PIP chamando pelo Lançador 'py':</div>
+          <div class="cmd-row">
+            <span class="cmd-code">py -m pip --version</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('py -m pip --version', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <!-- Pip 4 -->
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Forçar o Python a instalar/reinstalar o PIP nativo:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">python -m ensurepip --upgrade</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('python -m ensurepip --upgrade', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <!-- Path Fix -->
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Solução 3: Adicionar Python + PIP ao PATH do Windows via PowerShell (Fix permanente):</div>
           <div class="cmd-row">
             <span class="cmd-code">powershell -command "[Environment]::SetEnvironmentVariable('Path', $env:Path + ';C:\Users\' + $env:USERNAME + '\AppData\Local\Programs\Python\Python312;C:\Users\' + $env:USERNAME + '\AppData\Local\Programs\Python\Python312\Scripts', 'User')"</span>
             <button class="copy-btn" onclick="copiarComandoUnico('powershell -command &quot;[Environment]::SetEnvironmentVariable(\'Path\', $env:Path + \';C:\\Users\\\' + $env:USERNAME + \'\\AppData\\Local\\Programs\\Python\\Python312;C:\\Users\\\' + $env:USERNAME + \'\\AppData\\Local\\Programs\\Python\\Python312\\Scripts\', \'User\')&quot;', this)">📋 Copiar</button>
