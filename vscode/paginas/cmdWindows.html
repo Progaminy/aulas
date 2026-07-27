@@ -1415,6 +1415,30 @@
             <button class="copy-btn" onclick="copiarComandoUnico('netsh advfirewall firewall add rule name=&quot;Servidor Python&quot; dir=in action=allow protocol=TCP localport=5000', this)">📋 Copiar</button>
           </div>
         </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📱 15. URL para Acessar no Navegador de Outro Dispositivo (Celular / Tablet / Outro PC na mesma rede Wi-Fi):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">http://192.168.1.100:5000</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('http://192.168.1.100:5000', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 16. Testar/Abrir a URL local do servidor no Navegador Padrão do Windows (CMD):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">start http://192.168.1.100:5000</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('start http://192.168.1.100:5000', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 17. Testar/Abrir a URL local do servidor no Navegador Padrão (PowerShell):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">Start-Process "http://192.168.1.100:5000"</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('Start-Process &quot;http://192.168.1.100:5000&quot;', this)">📋 Copiar</button>
+          </div>
+        </div>
       </div>
     </div>
 
