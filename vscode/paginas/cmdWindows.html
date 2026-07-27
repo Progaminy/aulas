@@ -1135,6 +1135,48 @@
       </div>
     </div>
 
+    <!-- CARTÃO 5: SOLUÇÃO DO ERRO PIP NÃO RECONHECIDO NO WINDOWS -->
+    <div class="card">
+      <div class="card-title">⚠️ Solução: "'pip' não é reconhecido como um comando interno..."</div>
+      <div class="desc-text">
+        Se o Windows exibir o erro <em>"'pip' não é reconhecido..."</em>, significa que o PIP não foi adicionado ao PATH do Windows. Utilize as soluções abaixo para rodar e corrigir imediatamente (copie 1 a 1):
+      </div>
+
+      <div class="cmd-group">
+        <div class="cmd-block">
+          <div class="cmd-label">🚀 Solução 1 (Instantânea): Usar o prefixo 'python -m pip' (Funciona SEMPRE sem mexer no PATH):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">python -m pip install flask</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('python -m pip install flask', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Forçar o Python a instalar/reinstalar o PIP nativo:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">python -m ensurepip --upgrade</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('python -m ensurepip --upgrade', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Atualizar o PIP para a versão mais recente:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">python -m pip install --upgrade pip</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('python -m pip install --upgrade pip', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Adicionar a pasta do PIP (Scripts) ao PATH do Windows via PowerShell:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">powershell -command "[Environment]::SetEnvironmentVariable('Path', $env:Path + ';C:\Users\' + $env:USERNAME + '\AppData\Local\Programs\Python\Python312\Scripts', 'User')"</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('powershell -command &quot;[Environment]::SetEnvironmentVariable(\'Path\', $env:Path + \';C:\\Users\\\' + $env:USERNAME + \'\\AppData\\Local\\Programs\\Python\\Python312\\Scripts\', \'User\')&quot;', this)">📋 Copiar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <footer>
       <p>© Pensador Sem Fronteiras — <em>Do Zero ao Infinito</em></p>
     </footer>
