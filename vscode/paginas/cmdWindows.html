@@ -804,6 +804,79 @@
       </div>
     </div>
 
+    <!-- CARTÃO: COMANDOS PARA INICIAR / LIGAR UM SERVIDOR WEB LOCAL -->
+    <div class="card">
+      <div class="card-title">🚀 Comandos para Iniciar / Ligar um Servidor Web Local</div>
+      <div class="desc-text">
+        Comandos para ligar servidores web de desenvolvimento no Terminal do Windows (PHP, Python, Node.js, Live-Server e Apache). Entre na pasta do seu projeto e execute (copie 1 a 1):
+      </div>
+
+      <div class="cmd-group">
+        <!-- Srv 1 -->
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Ligar Servidor Web Embutido do PHP (Acessar em http://localhost:8000):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">php -S localhost:8000</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('php -S localhost:8000', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <!-- Srv 2 -->
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Ligar Servidor HTTP Embutido do Python 3 (Acessar em http://localhost:8000):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">python -m http.server 8000</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('python -m http.server 8000', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <!-- Srv 3 -->
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Ligar Servidor Estático Rápido via Node.js (npx http-server):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">npx http-server -p 8000</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('npx http-server -p 8000', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <!-- Srv 4 -->
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Ligar Servidor Live-Server (Recarregamento Automático ao Salvar HTML/CSS/JS):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">npx live-server</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('npx live-server', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <!-- Srv 5 -->
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Ligar Servidor de Desenvolvimento em Projetos (Vite / React / Next.js / Node):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">npm run dev</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('npm run dev', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <!-- Srv 6 -->
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Iniciar Serviço do Servidor Apache no Linux / WSL / Termux:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">sudo service apache2 start</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('sudo service apache2 start', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <!-- Srv 7 -->
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Iniciar Serviço do Servidor Nginx no Linux / WSL / Termux:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">sudo service nginx start</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('sudo service nginx start', this)">📋 Copiar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <footer>
       <p>© Pensador Sem Fronteiras — <em>Do Zero ao Infinito</em></p>
     </footer>
