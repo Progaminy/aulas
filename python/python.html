@@ -281,10 +281,43 @@
             <div class="legend-card">
                 <div class="card-title">🚀 1. Fundamentos do Python</div>
                 <div class="term-block">
-                    <div class="term-name">O que é Python?</div>
+                    <div class="term-name">⚡ Como Instalar o Python no Windows pelo Terminal (Passo a Passo)</div>
                     <div class="desc-text">
-                        Python é uma linguagem de programação de alto nível, interpretada, de script, imperativa, orientada a objetos e de tipagem dinâmica.
-                        É amplamente utilizada em Inteligência Artificial, Ciência de Dados, Automação de Tarefas e Desenvolvimento Web.
+                        Se o comando <code>curl</code> der erro de URL ou decimal, utilize o PowerShell no terminal para baixar e instalar o Python silenciosamente com o PATH configurado automaticamente (copie 1 a 1):
+                    </div>
+                </div>
+
+                <div class="cmd-group" style="margin-bottom:1.2rem; display:flex; flex-direction:column; gap:0.6rem;">
+                    <div style="background:#020617; border:1px solid rgba(56,189,248,0.35); border-radius:0.8rem; padding:0.8rem; display:flex; flex-direction:column; gap:0.4rem;">
+                        <span style="font-size:0.85rem; color:#94a3b8; font-weight:bold;">📌 Passo 1: Baixar o instalador oficial do Python 3.12 via PowerShell:</span>
+                        <div style="display:flex; justify-content:space-between; align-items:center; background:#090d16; padding:0.5rem 0.8rem; border-radius:0.5rem;">
+                            <code style="color:#38bdf8; font-weight:bold; font-size:0.8rem;">powershell -command "Invoke-WebRequest -Uri https://www.python.org/ftp/python/3.12.4/python-3.12.4-amd64.exe -OutFile python-installer.exe"</code>
+                            <button class="copy-btn" onclick="copiarCodigoTexto('powershell -command &quot;Invoke-WebRequest -Uri https://www.python.org/ftp/python/3.12.4/python-3.12.4-amd64.exe -OutFile python-installer.exe&quot;', this)">📋 Copiar</button>
+                        </div>
+                    </div>
+
+                    <div style="background:#020617; border:1px solid rgba(56,189,248,0.35); border-radius:0.8rem; padding:0.8rem; display:flex; flex-direction:column; gap:0.4rem;">
+                        <span style="font-size:0.85rem; color:#94a3b8; font-weight:bold;">📌 Passo 2: Executar instalação silenciosa e configurar PATH automaticamente:</span>
+                        <div style="display:flex; justify-content:space-between; align-items:center; background:#090d16; padding:0.5rem 0.8rem; border-radius:0.5rem;">
+                            <code style="color:#38bdf8; font-weight:bold; font-size:0.8rem;">python-installer.exe /quiet InstallAllUsers=1 PrependPath=1</code>
+                            <button class="copy-btn" onclick="copiarCodigoTexto('python-installer.exe /quiet InstallAllUsers=1 PrependPath=1', this)">📋 Copiar</button>
+                        </div>
+                    </div>
+
+                    <div style="background:#020617; border:1px solid rgba(56,189,248,0.35); border-radius:0.8rem; padding:0.8rem; display:flex; flex-direction:column; gap:0.4rem;">
+                        <span style="font-size:0.85rem; color:#94a3b8; font-weight:bold;">📌 Passo 3: Verificar se o Python foi instalado com sucesso:</span>
+                        <div style="display:flex; justify-content:space-between; align-items:center; background:#090d16; padding:0.5rem 0.8rem; border-radius:0.5rem;">
+                            <code style="color:#38bdf8; font-weight:bold;">python --version</code>
+                            <button class="copy-btn" onclick="copiarCodigoTexto('python --version', this)">📋 Copiar</button>
+                        </div>
+                    </div>
+
+                    <div style="background:#020617; border:1px solid rgba(56,189,248,0.35); border-radius:0.8rem; padding:0.8rem; display:flex; flex-direction:column; gap:0.4rem;">
+                        <span style="font-size:0.85rem; color:#94a3b8; font-weight:bold;">📌 Passo 4: Apagar o instalador baixado para liberar espaço:</span>
+                        <div style="display:flex; justify-content:space-between; align-items:center; background:#090d16; padding:0.5rem 0.8rem; border-radius:0.5rem;">
+                            <code style="color:#38bdf8; font-weight:bold;">del python-installer.exe</code>
+                            <button class="copy-btn" onclick="copiarCodigoTexto('del python-installer.exe', this)">📋 Copiar</button>
+                        </div>
                     </div>
                 </div>
 
@@ -596,7 +629,12 @@ asyncio.run(main())</code></pre>
         // Cópia de Código
         function copiarCodigo(id, btn) {
           const codeText = document.getElementById(id).innerText;
-          navigator.clipboard.writeText(codeText).then(() => {
+          copiarCodigoTexto(codeText, btn);
+        }
+
+        function copiarCodigoTexto(texto, btn) {
+          if (!texto) return;
+          navigator.clipboard.writeText(texto).then(() => {
             const original = btn.innerHTML;
             btn.innerHTML = '✅ Copiado!';
             btn.style.background = '#00ffaa';
