@@ -993,16 +993,32 @@
       </div>
     </div>
 
-    <!-- CARTÃO 2: WINDOWS UPDATE PELO TERMINAL -->
+    <!-- CARTÃO 2: ATUALIZAR PROGRAMAS E SISTEMA NO WINDOWS -->
     <div class="card">
-      <div class="card-title">🔄 Windows Update pelo Terminal (Verificar & Atualizar)</div>
+      <div class="card-title">🔄 Como Atualizar Programas & Sistema no Windows pelo Terminal</div>
       <div class="desc-text">
-        Comandos para abrir o Windows Update, escanear atualizações pendentes e reiniciar o sistema (copie 1 a 1):
+        No Windows, o equivalente ao <code>apt upgrade</code> do Linux é o gerenciador nativo <strong>Winget</strong>. Use os comandos abaixo para atualizar todos os seus programas (VS Code, Python, Chrome, Git) e o próprio sistema Windows (copie 1 a 1):
       </div>
 
       <div class="cmd-group">
         <div class="cmd-block">
-          <div class="cmd-label">📌 Abrir a página do Windows Update nas Configurações:</div>
+          <div class="cmd-label">🚀 Atualizar TODOS os programas e aplicativos instalados no Windows de uma só vez:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">winget upgrade --all</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('winget upgrade --all', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Listar quais programas instalados têm atualizações pendentes:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">winget upgrade</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('winget upgrade', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Abrir a janela do Windows Update nas Configurações:</div>
           <div class="cmd-row">
             <span class="cmd-code">start ms-settings:windowsupdate</span>
             <button class="copy-btn" onclick="copiarComandoUnico('start ms-settings:windowsupdate', this)">📋 Copiar</button>
@@ -1010,7 +1026,7 @@
         </div>
 
         <div class="cmd-block">
-          <div class="cmd-label">📌 Iniciar varredura/escaneamento de atualizações no Windows 10/11:</div>
+          <div class="cmd-label">📌 Iniciar varredura/escaneamento de atualizações do sistema Windows 10/11:</div>
           <div class="cmd-row">
             <span class="cmd-code">UsoClient StartScan</span>
             <button class="copy-btn" onclick="copiarComandoUnico('UsoClient StartScan', this)">📋 Copiar</button>
