@@ -455,6 +455,88 @@
       </div>
     </div>
 
+    <!-- CARTÃO: COMANDOS PARA CONFIGURAR TEMPO DE SLEEP NO TERMINAL E NO WINDOWS -->
+    <div class="card" id="configurar-tempo-sleep">
+      <div class="card-title">⏰ 2.0.1. Comandos para Configurar Tempo de Sleep (Terminal & Suspensão do Windows)</div>
+      <div class="desc-text">
+        Comandos para fazer scripts aguardarem tempo de espera (Sleep/Timeout) no terminal e configurar o tempo de suspensão/desligamento de tela do Windows (copie 1 a 1):
+      </div>
+
+      <div class="cmd-group">
+        <!-- Sleep Terminal 1 -->
+        <div class="cmd-block">
+          <div class="cmd-label">⏳ Pausar a execução no CMD por 5 segundos (permite cancelar com qualquer tecla):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">timeout /t 5</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('timeout /t 5', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <!-- Sleep Terminal 2 -->
+        <div class="cmd-block">
+          <div class="cmd-label">⏳ Pausar a execução no CMD por 10 segundos sem permitir interrupção por tecla (/nobreak):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">timeout /t 10 /nobreak</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('timeout /t 10 /nobreak', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <!-- Sleep Terminal 3 -->
+        <div class="cmd-block">
+          <div class="cmd-label">⏳ Pausar a execução no PowerShell por 5 segundos:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">Start-Sleep -Seconds 5</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('Start-Sleep -Seconds 5', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <!-- Sleep Terminal 4 -->
+        <div class="cmd-block">
+          <div class="cmd-label">⏳ Pausar a execução no PowerShell por milissegundos (ex: 500 ms = 0.5 segundo):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">Start-Sleep -Milliseconds 500</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('Start-Sleep -Milliseconds 500', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <!-- Sleep Sistema 1 -->
+        <div class="cmd-block">
+          <div class="cmd-label">💤 Configurar o tempo de Sleep/Suspensão do Windows na tomada para 30 minutos:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">powercfg /change standby-timeout-ac 30</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('powercfg /change standby-timeout-ac 30', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <!-- Sleep Sistema 2 -->
+        <div class="cmd-block">
+          <div class="cmd-label">🖥️ Configurar o tempo para desligar a TELA do Windows na tomada para 15 minutos:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">powercfg /change monitor-timeout-ac 15</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('powercfg /change monitor-timeout-ac 15', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <!-- Sleep Sistema 3 -->
+        <div class="cmd-block">
+          <div class="cmd-label">🔋 Configurar tempo de Sleep/Suspensão quando estiver na Bateria (ex: 15 minutos):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">powercfg /change standby-timeout-dc 15</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('powercfg /change standby-timeout-dc 15', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <!-- Sleep Sistema 4 -->
+        <div class="cmd-block">
+          <div class="cmd-label">🚫 DESATIVAR o Sleep do Windows (Nunca suspender/dormir enquanto estiver na tomada):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">powercfg /change standby-timeout-ac 0</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('powercfg /change standby-timeout-ac 0', this)">📋 Copiar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- SECÇÃO 2.5: TODAS AS FORMAS DE CRIAR ARQUIVOS -->
     <div class="card">
       <div class="card-title">📝 2.1. Guia Completo: Como Criar Arquivos no Windows (CMD & PowerShell)</div>
