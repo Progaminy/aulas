@@ -1442,6 +1442,110 @@
       </div>
     </div>
 
+    <!-- CARTÃO 7.1: COMPARTILHAR UMA PASTA COM OUTRO DISPOSITIVO VIA SERVIDOR SIMPLES PYTHON -->
+    <div class="card" id="compartilhar-pasta-python" style="border: 1px solid rgba(56, 189, 248, 0.4); background: rgba(15, 23, 42, 0.85);">
+      <div class="card-title" style="color: #38bdf8;">📂 7.1. Compartilhar uma Pasta com Outro Dispositivo (Guia Redundante)</div>
+      <div class="desc-text">
+        Isso permitirá <strong>visualizar e baixar arquivos pelo navegador</strong> de qualquer celular ou computador na mesma rede. O servidor simples do Python não permite enviar, editar ou apagar arquivos. Copie os comandos 1 a 1:
+      </div>
+
+      <div class="cmd-group">
+        <div class="cmd-block">
+          <div class="cmd-label">📌 1. Conectar os dispositivos à mesma rede Wi-Fi ou roteador:</div>
+          <div style="color: #94a3b8; font-size: 0.88rem; padding: 0.2rem 0;">O computador Windows e o celular/tablet devem estar no mesmo Wi-Fi.</div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 2. Criar a pasta 'Compartilhar' na Área de Trabalho:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">mkdir "%USERPROFILE%\Desktop\Compartilhar"</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('mkdir &quot;%USERPROFILE%\\Desktop\\Compartilhar&quot;', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 3. Colocar os arquivos na pasta:</div>
+          <div style="color: #94a3b8; font-size: 0.88rem; padding: 0.2rem 0;">Coloque dentro da pasta <strong>Compartilhar</strong> apenas os arquivos que deseja disponibilizar. Não compartilhe a pasta inteira do utilizador.</div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 4. Entrar na pasta pelo CMD:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">cd /d "%USERPROFILE%\Desktop\Compartilhar"</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('cd /d &quot;%USERPROFILE%\\Desktop\\Compartilhar&quot;', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 5. Ligar o servidor Python servindo a pasta na porta 8000:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">python -m http.server 8000 --bind 0.0.0.0</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('python -m http.server 8000 --bind 0.0.0.0', this)">📋 Copiar</button>
+          </div>
+          <div style="color: #38bdf8; font-size: 0.82rem; margin-top: 0.3rem;">Deverá aparecer: <code>Serving HTTP on 0.0.0.0 port 8000</code>. Não feche esse CMD!</div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 6. Autorizar no Firewall do Windows (Se surgir a janela de segurança):</div>
+          <div style="color: #94a3b8; font-size: 0.88rem; padding: 0.2rem 0;">Marque <strong>Redes privadas</strong>, desmarque Redes públicas e clique em <strong>Permitir acesso</strong>.</div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 7 & 8. Descobrir o endereço IP do computador (no segundo CMD):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">ipconfig</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('ipconfig', this)">📋 Copiar</button>
+          </div>
+          <div style="color: #94a3b8; font-size: 0.82rem; margin-top: 0.3rem;">Procure a linha <code>Endereço IPv4</code> (exemplo: <code>192.168.1.25</code>).</div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📱 9. Acessar pelo navegador do outro dispositivo (Celular / Tablet / PC):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">http://192.168.1.25:8000</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('http://192.168.1.25:8000', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 9b. Testar/Abrir no Navegador do Windows (CMD):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">start http://192.168.1.25:8000</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('start http://192.168.1.25:8000', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 9c. Testar/Abrir no Navegador (PowerShell):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">Start-Process "http://192.168.1.25:8000"</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('Start-Process &quot;http://192.168.1.25:8000&quot;', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 10. Desligar o servidor no terminal:</div>
+          <div style="color: #94a3b8; font-size: 0.88rem; padding: 0.2rem 0;">No primeiro CMD onde o servidor está rodando, pressione <strong>Ctrl + C</strong>.</div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Testar porta alternativa (ex: 8080 caso a 8000 falhe):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">python -m http.server 8080 --bind 0.0.0.0</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('python -m http.server 8080 --bind 0.0.0.0', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📱 Acessar porta alternativa no navegador:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">http://192.168.1.25:8080</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('http://192.168.1.25:8080', this)">📋 Copiar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <footer>
       <p>© Pensador Sem Fronteiras — <em>Do Zero ao Infinito</em></p>
     </footer>
