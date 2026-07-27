@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes, viewport-fit=cover">
+  <title>Curso Completo de Linux | Lendário SysAdmin & DevSecOps</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Share+Tech+Mono&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background: radial-gradient(circle at 15% 15%, #0d0614 0%, #030108 100%);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: #e2e8f0;
+      min-height: 100vh;
+      padding: 1.5rem 1rem 3rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      line-height: 1.6;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: 
+        radial-gradient(circle at 80% 20%, rgba(168, 85, 247, 0.12) 0%, transparent 45%),
+        radial-gradient(circle at 20% 80%, rgba(6, 182, 212, 0.12) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 860px;
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+    }
+
+    /* HEADER COM BRANDING LENDÁRIO */
+    header {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .btn-voltar {
+      align-self: flex-start;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(168, 85, 247, 0.15);
+      color: #c084fc;
+      border: 1px solid rgba(168, 85, 247, 0.4);
+      padding: 0.5rem 1.2rem;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      backdrop-filter: blur(10px);
+      transition: all 0.2s ease;
+    }
+
+    .btn-voltar:hover {
+      background: rgba(168, 85, 247, 0.3);
+      color: #fff;
+      box-shadow: 0 0 15px rgba(168, 85, 247, 0.5);
+      transform: translateY(-2px);
+    }
+
+    .main-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(2rem, 7vw, 3.2rem);
+      font-weight: 800;
+      text-align: center;
+      letter-spacing: 0.05em;
+      background: linear-gradient(135deg, #a855f7, #38bdf8, #f472b6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 0 20px rgba(168, 85, 247, 0.4));
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      color: #94a3b8;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .badge-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.6rem;
+      margin-top: 0.5rem;
+    }
+
+    .badge {
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(168, 85, 247, 0.3);
+      color: #e9d5ff;
+      padding: 0.35rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.82rem;
+      font-family: 'Share Tech Mono', monospace;
+    }
+
+    /* ESTILO DOS CARTÕES GLASSMORPHISM */
+    .card {
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(168, 85, 247, 0.25);
+      border-radius: 1.5rem;
+      padding: 1.6rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(168, 85, 247, 0.1);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      border-color: rgba(56, 189, 248, 0.45);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 0 0 30px rgba(56, 189, 248, 0.2);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .card-header h2 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #f3e8ff;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    .module-num {
+      background: linear-gradient(135deg, #a855f7, #06b6d4);
+      color: #fff;
+      font-weight: 800;
+      font-size: 0.85rem;
+      padding: 0.3rem 0.7rem;
+      border-radius: 8px;
+    }
+
+    .desc-text {
+      font-size: 0.95rem;
+      color: #cbd5e1;
+      margin-bottom: 1.2rem;
+    }
+
+    /* ESTRUTURA DOS COMANDOS INDIVIDUAIS COM BOTAO 1 A 1 */
+    .cmd-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .cmd-block {
+      background: rgba(2, 6, 23, 0.9);
+      border: 1px solid rgba(168, 85, 247, 0.2);
+      border-radius: 0.85rem;
+      padding: 0.85rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .cmd-label {
+      font-size: 0.88rem;
+      color: #94a3b8;
+      font-weight: 600;
+    }
+
+    .cmd-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #090d16;
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 0.6rem;
+      padding: 0.5rem 0.85rem;
+      gap: 0.5rem;
+      word-break: break-all;
+    }
+
+    .cmd-code {
+      font-family: 'Share Tech Mono', monospace;
+      color: #38bdf8;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .copy-btn {
+      background: rgba(56, 189, 248, 0.12);
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      border-radius: 6px;
+      padding: 0.35rem 0.75rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .copy-btn:hover {
+      background: #38bdf8;
+      color: #020617;
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.6);
+    }
+
+    .copy-btn.copied {
+      background: #22c55e !important;
+      color: #020617 !important;
+      border-color: #22c55e !important;
+      box-shadow: 0 0 12px rgba(34, 197, 94, 0.8) !important;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 2rem;
+      color: #64748b;
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <a href="../index.html" class="btn-voltar">⬅️ Voltar ao Portal Principal</a>
+      <h1 class="main-title">🐧 CURSO COMPLETO DE LINUX</h1>
+      <p class="subtitle">Do Zero Absoluto ao Domínio Completo de Administrador de Sistemas (SysAdmin), Terminal & DevSecOps</p>
+      
+      <div class="badge-bar">
+        <span class="badge">🔥 12 Módulos Académicos</span>
+        <span class="badge">💻 Todos os Comandos 1 por 1</span>
+        <span class="badge">🐧 Ubuntu / Debian / Termux / Alpine</span>
+        <span class="badge">📋 Cópia Instantânea</span>
+      </div>
+    </header>
+
+    <!-- MÓDULO 1: ARQUITETURA E DIRETÓRIOS -->
+    <div class="card" id="modulo-1">
+      <div class="card-header">
+        <span class="module-num">MÓDULO 1</span>
+        <h2>📁 Arquitetura do Sistema de Arquivos (FHS Linux)</h2>
+      </div>
+      <div class="desc-text">
+        No Linux, tudo é um arquivo. Entenda a árvore de diretórios padrão (Filesystem Hierarchy Standard):
+      </div>
+
+      <div class="cmd-group">
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Diretório Raiz `/` (A base de todo o sistema de arquivos):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">ls -ld /</span>
+            <button class="copy-btn" onclick="copiar(this, 'ls -ld /')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 `/bin` e `/sbin` (Executáveis essenciais dos usuários e administradores):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">ls -la /bin</span>
+            <button class="copy-btn" onclick="copiar(this, 'ls -la /bin')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 `/etc` (Arquivos de configuração do sistema e serviços):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">ls -la /etc</span>
+            <button class="copy-btn" onclick="copiar(this, 'ls -la /etc')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 `/home` e `/root` (Diretórios pessoais dos usuários comuns e do superusuário root):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">ls -la /home</span>
+            <button class="copy-btn" onclick="copiar(this, 'ls -la /home')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 `/var` (Arquivos variáveis: logs, bancos de dados, filas e caches):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">ls -la /var/log</span>
+            <button class="copy-btn" onclick="copiar(this, 'ls -la /var/log')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 `/tmp` (Arquivos temporários apagados na reinicialização):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">ls -la /tmp</span>
+            <button class="copy-btn" onclick="copiar(this, 'ls -la /tmp')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 `/proc` e `/sys` (Sistemas de arquivos virtuais com dados do Kernel e Hardware):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">cat /proc/version</span>
+            <button class="copy-btn" onclick="copiar(this, 'cat /proc/version')">📋 Copiar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MÓDULO 2: NAVEGAÇÃO E OPERAÇÕES BÁSICAS -->
+    <div class="card" id="modulo-2">
+      <div class="card-header">
+        <span class="module-num">MÓDULO 2</span>
+        <h2>🧭 Navegação, Criação & Manipulação de Arquivos e Pastas</h2>
+      </div>
+      <div class="desc-text">
+        Comandos essenciais para transitar pelo terminal, criar, mover, copiar e remover arquivos:
+      </div>
+
+      <div class="cmd-group">
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Exibir o caminho da pasta atual (Print Working Directory):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">pwd</span>
+            <button class="copy-btn" onclick="copiar(this, 'pwd')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Listar arquivos com detalhes, tamanhos legíveis e ocultos:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">ls -lah</span>
+            <button class="copy-btn" onclick="copiar(this, 'ls -lah')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Criar pasta com subpastas de forma aninhada (`-p`):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">mkdir -p projeto/src/componentes</span>
+            <button class="copy-btn" onclick="copiar(this, 'mkdir -p projeto/src/componentes')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Criar um novo arquivo vazio ou atualizar a data de alteração:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">touch index.html script.js estilo.css</span>
+            <button class="copy-btn" onclick="copiar(this, 'touch index.html script.js estilo.css')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Copiar arquivo ou pasta inteira recursivamente (`-r`):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">cp -rv projeto/ projeto_backup/</span>
+            <button class="copy-btn" onclick="copiar(this, 'cp -rv projeto/ projeto_backup/')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Mover ou renomear arquivos e pastas:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">mv antigo.txt novo.txt</span>
+            <button class="copy-btn" onclick="copiar(this, 'mv antigo.txt novo.txt')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Deletar pasta e todo o seu conteúdo sem pedir confirmação (`-rf`):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">rm -rf pasta_antiga</span>
+            <button class="copy-btn" onclick="copiar(this, 'rm -rf pasta_antiga')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Exibir a árvore de diretórios em formato gráfico:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">tree -L 2</span>
+            <button class="copy-btn" onclick="copiar(this, 'tree -L 2')">📋 Copiar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MÓDULO 3: LEITURA E EDIÇÃO DE TEXTO -->
+    <div class="card" id="modulo-3">
+      <div class="card-header">
+        <span class="module-num">MÓDULO 3</span>
+        <h2>📝 Leitura, Criação & Edição de Arquivos de Texto</h2>
+      </div>
+      <div class="desc-text">
+        Métodos para visualizar, inspecionar logs e editar códigos diretamente no terminal Linux:
+      </div>
+
+      <div class="cmd-group">
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Exibir todo o conteúdo de um arquivo no terminal:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">cat arquivo.txt</span>
+            <button class="copy-btn" onclick="copiar(this, 'cat arquivo.txt')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Ver as primeiras 20 linhas de um arquivo grande:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">head -n 20 arquivo.txt</span>
+            <button class="copy-btn" onclick="copiar(this, 'head -n 20 arquivo.txt')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Acompanhar um arquivo de LOG em tempo real (`tail -f`):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">tail -f /var/log/syslog</span>
+            <button class="copy-btn" onclick="copiar(this, 'tail -f /var/log/syslog')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Ler arquivo grande com navegação paginada (Sair com `Q`):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">less /var/log/auth.log</span>
+            <button class="copy-btn" onclick="copiar(this, 'less /var/log/auth.log')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Criar arquivo escrevendo o conteúdo direto no terminal (`>`):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">echo 'servidor_ligado = True' > config.py</span>
+            <button class="copy-btn" onclick="copiar(this, &quot;echo 'servidor_ligado = True' > config.py&quot;)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Adicionar uma nova linha ao final sem apagar o existente (`>>`):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">echo 'porta = 8000' >> config.py</span>
+            <button class="copy-btn" onclick="copiar(this, &quot;echo 'porta = 8000' >> config.py&quot;)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Abrir o editor de texto amigável Nano:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">nano arquivo.txt</span>
+            <button class="copy-btn" onclick="copiar(this, 'nano arquivo.txt')">📋 Copiar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MÓDULO 4: USUÁRIOS, GRUPOS E PERMISSÕES -->
+    <div class="card" id="modulo-4">
+      <div class="card-header">
+        <span class="module-num">MÓDULO 4</span>
+        <h2>🔐 Permissões (CHMOD/CHOWN), Usuários & Segurança</h2>
+      </div>
+      <div class="desc-text">
+        Gerenciamento de permissões rwx (leitura, escrita, execução), usuários e privilégios sudo:
+      </div>
+
+      <div class="cmd-group">
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Dar permissão de execução a um script shell (`+x`):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">chmod +x script.sh</span>
+            <button class="copy-btn" onclick="copiar(this, 'chmod +x script.sh')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Permissão total para o dono, leitura/execução para os outros (`755`):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">chmod 755 script.sh</span>
+            <button class="copy-btn" onclick="copiar(this, 'chmod 755 script.sh')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Permissão privada restrita apenas para o dono (`600` para chaves SSH/Senhas):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">chmod 600 ~/.ssh/id_rsa</span>
+            <button class="copy-btn" onclick="copiar(this, 'chmod 600 ~/.ssh/id_rsa')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Alterar o dono e grupo de uma pasta recursivamente (`chown`):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">sudo chown -R www-data:www-data /var/www/html</span>
+            <button class="copy-btn" onclick="copiar(this, 'sudo chown -R www-data:www-data /var/www/html')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Criar novo usuário com pasta home própria:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">sudo useradd -m -s /bin/bash dev_user</span>
+            <button class="copy-btn" onclick="copiar(this, 'sudo useradd -m -s /bin/bash dev_user')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Configurar ou alterar a senha de um usuário:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">sudo passwd dev_user</span>
+            <button class="copy-btn" onclick="copiar(this, 'sudo passwd dev_user')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Adicionar usuário ao grupo de Administradores (`sudo`):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">sudo usermod -aG sudo dev_user</span>
+            <button class="copy-btn" onclick="copiar(this, 'sudo usermod -aG sudo dev_user')">📋 Copiar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MÓDULO 5: PROCESSOS E MONITORAMENTO DE RECURSOS -->
+    <div class="card" id="modulo-5">
+      <div class="card-header">
+        <span class="module-num">MÓDULO 5</span>
+        <h2>⚡ Gerenciamento de Processos, CPU, RAM & Tarefas</h2>
+      </div>
+      <div class="desc-text">
+        Acompanhe o consumo de hardware, gerencie processos e execute tarefas em background:
+      </div>
+
+      <div class="cmd-group">
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Listar todos os processos rodando no sistema com detalhes (`ps aux`):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">ps aux</span>
+            <button class="copy-btn" onclick="copiar(this, 'ps aux')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Monitorar a memória RAM em formato legível (MB/GB):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">free -h</span>
+            <button class="copy-btn" onclick="copiar(this, 'free -h')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Abrir o gerenciador de tarefas interativo Htop:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">htop</span>
+            <button class="copy-btn" onclick="copiar(this, 'htop')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Encontrar o número PID de um processo pelo nome:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">pgrep -l python</span>
+            <button class="copy-btn" onclick="copiar(this, 'pgrep -l python')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Matar forçadamente um processo pelo seu número PID (`kill -9`):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">kill -9 1234</span>
+            <button class="copy-btn" onclick="copiar(this, 'kill -9 1234')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Matar todos os processos de um determinado programa:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">pkill -f python</span>
+            <button class="copy-btn" onclick="copiar(this, 'pkill -f python')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Executar um script em segundo plano contínuo (`nohup &`):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">nohup python3 app.py &</span>
+            <button class="copy-btn" onclick="copiar(this, 'nohup python3 app.py &')">📋 Copiar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MÓDULO 6: DISCOS E ARMAZENAMENTO -->
+    <div class="card" id="modulo-6">
+      <div class="card-header">
+        <span class="module-num">MÓDULO 6</span>
+        <h2>💾 Discos, Partições, Montagem & Armazenamento</h2>
+      </div>
+      <div class="desc-text">
+        Inspeção de espaço livre, partições conectadas e comandos de montagem de drives:
+      </div>
+
+      <div class="cmd-group">
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Ver espaço livre e ocupado em todas as partições (`df -h`):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">df -h</span>
+            <button class="copy-btn" onclick="copiar(this, 'df -h')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Calcular o tamanho ocupado por cada pasta no diretório atual:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">du -sh *</span>
+            <button class="copy-btn" onclick="copiar(this, 'du -sh *')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Listar blocos de discos e partições físicas (`lsblk`):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">lsblk -f</span>
+            <button class="copy-btn" onclick="copiar(this, 'lsblk -f')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Montar uma partição pendrive/disco externo em uma pasta (`mount`):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">sudo mount /dev/sdb1 /mnt</span>
+            <button class="copy-btn" onclick="copiar(this, 'sudo mount /dev/sdb1 /mnt')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Desmontar uma partição com segurança antes de desconectar:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">sudo umount /mnt</span>
+            <button class="copy-btn" onclick="copiar(this, 'sudo umount /mnt')">📋 Copiar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MÓDULO 7: REDES E CONEXÕES REMOTAS -->
+    <div class="card" id="modulo-7">
+      <div class="card-header">
+        <span class="module-num">MÓDULO 7</span>
+        <h2>🌐 Redes, IP, Portas, SSH & Transferência Remota</h2>
+      </div>
+      <div class="desc-text">
+        Configuração de interfaces de rede, portas abertas, acesso SSH e download de dados:
+      </div>
+
+      <div class="cmd-group">
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Descobrir o endereço IP local e dados das placas de rede:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">ip a</span>
+            <button class="copy-btn" onclick="copiar(this, 'ip a')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Listar todas as portas abertas e serviços escutando (`ss -tuln`):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">ss -tuln</span>
+            <button class="copy-btn" onclick="copiar(this, 'ss -tuln')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Testar a conectividade com um servidor ou site (`ping`):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">ping -c 4 google.com</span>
+            <button class="copy-btn" onclick="copiar(this, 'ping -c 4 google.com')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Fazer o cabeçalho HTTP de resposta de um servidor web:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">curl -I https://google.com</span>
+            <button class="copy-btn" onclick="copiar(this, 'curl -I https://google.com')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Conectar a um servidor Linux remoto via SSH:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">ssh usuario@192.168.1.100 -p 22</span>
+            <button class="copy-btn" onclick="copiar(this, 'ssh usuario@192.168.1.100 -p 22')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Copiar arquivos para um servidor remoto com segurança (`scp`):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">scp -r projeto/ usuario@192.168.1.100:/var/www/</span>
+            <button class="copy-btn" onclick="copiar(this, 'scp -r projeto/ usuario@192.168.1.100:/var/www/')">📋 Copiar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MÓDULO 8: PESQUISA AVANÇADA E FILTROS -->
+    <div class="card" id="modulo-8">
+      <div class="card-header">
+        <span class="module-num">MÓDULO 8</span>
+        <h2>🔍 Pesquisa Avançada, Filtros (Grep/Find) & Regex</h2>
+      </div>
+      <div class="desc-text">
+        Localize arquivos no sistema e busque por textos específicos dentro de milhares de linhas:
+      </div>
+
+      <div class="cmd-group">
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Procurar texto dentro de todos os arquivos recursivamente com número da linha (`grep -rn`):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">grep -rn "senha" /etc/</span>
+            <button class="copy-btn" onclick="copiar(this, 'grep -rn &quot;senha&quot; /etc/')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Encontrar todos os arquivos com extensão `.py` a partir do diretório atual:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">find . -name "*.py"</span>
+            <button class="copy-btn" onclick="copiar(this, 'find . -name &quot;*.py&quot;')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Encontrar arquivos maiores que 100 MB para liberar espaço:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">find / -type f -size +100M 2>/dev/null</span>
+            <button class="copy-btn" onclick="copiar(this, 'find / -type f -size +100M 2>/dev/null')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Substituir todas as ocorrências de uma palavra em um arquivo (`sed -i`):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">sed -i 's/porta=80/porta=8080/g' config.txt</span>
+            <button class="copy-btn" onclick="copiar(this, &quot;sed -i 's/porta=80/porta=8080/g' config.txt&quot;)">📋 Copiar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MÓDULO 9: COMPACTAÇÃO E BACKUP -->
+    <div class="card" id="modulo-9">
+      <div class="card-header">
+        <span class="module-num">MÓDULO 9</span>
+        <h2>📦 Compactação, Arquivação TAR.GZ & Backups</h2>
+      </div>
+      <div class="desc-text">
+        Crie pacotes compactados para backup e transporte de arquivos pesados:
+      </div>
+
+      <div class="cmd-group">
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Compactar uma pasta inteira no formato `.tar.gz`:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">tar -czvf backup_site.tar.gz /var/www/html</span>
+            <button class="copy-btn" onclick="copiar(this, 'tar -czvf backup_site.tar.gz /var/www/html')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Descompactar um arquivo `.tar.gz`:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">tar -xzvf backup_site.tar.gz</span>
+            <button class="copy-btn" onclick="copiar(this, 'tar -xzvf backup_site.tar.gz')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Criar um arquivo zip comum:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">zip -r projeto.zip projeto/</span>
+            <button class="copy-btn" onclick="copiar(this, 'zip -r projeto.zip projeto/')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Extrair arquivo `.zip`:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">unzip projeto.zip</span>
+            <button class="copy-btn" onclick="copiar(this, 'unzip projeto.zip')">📋 Copiar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MÓDULO 10: GERENCIAMENTO DE SERVIÇOS E SYSTEMD -->
+    <div class="card" id="modulo-10">
+      <div class="card-header">
+        <span class="module-num">MÓDULO 10</span>
+        <h2>⚙️ Gerenciamento de Serviços (Systemd & Journalctl)</h2>
+      </div>
+      <div class="desc-text">
+        Controle a inicialização, paragem, reinício e verificação de status de serviços no Linux:
+      </div>
+
+      <div class="cmd-group">
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Verificar o status de um serviço (ex: Nginx / Apache):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">systemctl status nginx</span>
+            <button class="copy-btn" onclick="copiar(this, 'systemctl status nginx')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Iniciar um serviço parado:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">sudo systemctl start nginx</span>
+            <button class="copy-btn" onclick="copiar(this, 'sudo systemctl start nginx')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Reiniciar um serviço após alterar configurações:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">sudo systemctl restart nginx</span>
+            <button class="copy-btn" onclick="copiar(this, 'sudo systemctl restart nginx')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Habilitar o serviço para iniciar automaticamente ao ligar o PC (`enable`):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">sudo systemctl enable nginx</span>
+            <button class="copy-btn" onclick="copiar(this, 'sudo systemctl enable nginx')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Ver os logs ao vivo de um serviço específico (`journalctl -u -f`):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">journalctl -u nginx -f</span>
+            <button class="copy-btn" onclick="copiar(this, 'journalctl -u nginx -f')">📋 Copiar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MÓDULO 11: GERENCIADORES DE PACOTES DE DISTRIBUIÇÕES -->
+    <div class="card" id="modulo-11">
+      <div class="card-header">
+        <span class="module-num">MÓDULO 11</span>
+        <h2>📦 Gerenciadores de Pacotes (APT, PKG, APK, DNF)</h2>
+      </div>
+      <div class="desc-text">
+        Comandos para instalar programas nas principais distribuições Linux:
+      </div>
+
+      <div class="cmd-group">
+        <div class="cmd-block">
+          <div class="cmd-label">🐧 Ubuntu / Debian / Kali Linux (APT):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">sudo apt update && sudo apt install -y python3 git curl nginx</span>
+            <button class="copy-btn" onclick="copiar(this, 'sudo apt update && sudo apt install -y python3 git curl nginx')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📱 Termux no Android (PKG):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">pkg update && pkg install python git nodejs -y</span>
+            <button class="copy-btn" onclick="copiar(this, 'pkg update && pkg install python git nodejs -y')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">⛰️ Alpine Linux (APK):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">apk update && apk add python3 git bash</span>
+            <button class="copy-btn" onclick="copiar(this, 'apk update && apk add python3 git bash')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">🎩 Fedora / RHEL / CentOS (DNF):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">sudo dnf install -y python3 git nginx</span>
+            <button class="copy-btn" onclick="copiar(this, 'sudo dnf install -y python3 git nginx')">📋 Copiar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MÓDULO 12: PRÁTICA REAL - SUBIR SERVIDORES WEB -->
+    <div class="card" id="modulo-12" style="border: 2px solid #38bdf8;">
+      <div class="card-header">
+        <span class="module-num" style="background: linear-gradient(135deg, #06b6d4, #3b82f6);">MÓDULO 12</span>
+        <h2>🚀 Prática Guiada: Subir um Servidor Web Python do Zero</h2>
+      </div>
+      <div class="desc-text">
+        Tutorial completo para colocar um site no ar pelo terminal Linux e acessar pelo navegador da rede Wi-Fi:
+      </div>
+
+      <div class="cmd-group">
+        <div class="cmd-block">
+          <div class="cmd-label">1. Criar a pasta do servidor web e entrar nela:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">mkdir -p ~/meu_site && cd ~/meu_site</span>
+            <button class="copy-btn" onclick="copiar(this, 'mkdir -p ~/meu_site && cd ~/meu_site')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">2. Criar a página HTML de boas-vindas:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">echo '&lt;h1 style="color:cyan;text-align:center"&gt;Servidor Linux Ativo!&lt;/h1&gt;' &gt; index.html</span>
+            <button class="copy-btn" onclick="copiar(this, &quot;echo '&lt;h1 style=\&quot;color:cyan;text-align:center\&quot;&gt;Servidor Linux Ativo!&lt;/h1&gt;' &gt; index.html&quot;)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">3. Ligar o servidor HTTP Python na porta 8000 escutando a rede Wi-Fi:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">python3 -m http.server 8000 --bind 0.0.0.0</span>
+            <button class="copy-btn" onclick="copiar(this, 'python3 -m http.server 8000 --bind 0.0.0.0')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">4. Descobrir o seu IP local para acessar no celular (ex: 192.168.1.100):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">hostname -I</span>
+            <button class="copy-btn" onclick="copiar(this, 'hostname -I')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📱 5. URL Final para abrir no Navegador:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">http://192.168.1.100:8000</span>
+            <button class="copy-btn" onclick="copiar(this, 'http://192.168.1.100:8000')">📋 Copiar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>Pensador Sem Fronteiras · Curso de Linux Lendário</p>
+      <small>Do Zero ao Infinito</small>
+    </footer>
+  </div>
+
+  <script>
+    function copiar(btn, texto) {
+      navigator.clipboard.writeText(texto).then(() => {
+        const textoOriginal = btn.innerHTML;
+        btn.innerHTML = '✅ Copiado!';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.innerHTML = textoOriginal;
+          btn.classList.remove('copied');
+        }, 1800);
+      }).catch(err => {
+        alert('Erro ao copiar comando.');
+      });
+    }
+  </script>
+</body>
+</html>
