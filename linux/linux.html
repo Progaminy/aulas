@@ -968,6 +968,73 @@
       </div>
     </div>
 
+    <!-- MÓDULO 12.1: PASSO A PASSO PARA ACESSAR PASTAS COM OUTRO DISPOSITIVO PELA WI-FI -->
+    <div class="card" id="compartilhar-pastas-wifi" style="border: 2px solid #a855f7; background: rgba(13, 6, 20, 0.95);">
+      <div class="card-header">
+        <span class="module-num" style="background: linear-gradient(135deg, #a855f7, #ec4899);">MÓDULO 12.1</span>
+        <h2>📂 Passo a Passo: Acessar & Baixar Arquivos de Pastas com Outro Dispositivo pela Wi-Fi</h2>
+      </div>
+      <div class="desc-text">
+        Permite que um celular, tablet ou outro PC veja e baixe todos os arquivos de uma pasta usando o navegador via Wi-Fi:
+      </div>
+
+      <div class="cmd-group">
+        <div class="cmd-block">
+          <div class="cmd-label">1. Conectar ambos os dispositivos (ex: PC e Celular) no mesmo Wi-Fi ou Roteador:</div>
+          <div style="font-size:0.85rem; color:#cbd5e1;">Ambos devem estar na mesma rede para conseguir comunicação direta.</div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">2. Entrar na pasta que deseja disponibilizar (Linux / Termux):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">cd ~/Downloads</span>
+            <button class="copy-btn" onclick="copiar(this, 'cd ~/Downloads')">📋 Copiar</button>
+          </div>
+          <div style="font-size:0.8rem; color:#94a3b8; margin-top:0.2rem;">Ou no Termux Android: <code>cd /sdcard/Download</code></div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">3. Ligar o servidor servidor HTTP na porta 8000 escutando em todas as placas (`0.0.0.0`):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">python3 -m http.server 8000 --bind 0.0.0.0</span>
+            <button class="copy-btn" onclick="copiar(this, 'python3 -m http.server 8000 --bind 0.0.0.0')">📋 Copiar</button>
+          </div>
+          <div style="font-size:0.8rem; color:#a7f3d0; margin-top:0.2rem;">Deverá surgir a mensagem: <code>Serving HTTP on 0.0.0.0 port 8000...</code> Não feche esta janela!</div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">4. Descobrir o endereço IP do seu dispositivo que está compartilhando:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">hostname -I</span>
+            <button class="copy-btn" onclick="copiar(this, 'hostname -I')">📋 Copiar</button>
+          </div>
+          <div style="font-size:0.8rem; color:#94a3b8; margin-top:0.2rem;">Ou use: <code>ifconfig</code> para visualizar o IPv4 da Wi-Fi (ex: <code>192.168.1.100</code>).</div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">5. Liberar porta no Firewall (se for Linux Ubuntu/Debian):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">sudo ufw allow 8000/tcp</span>
+            <button class="copy-btn" onclick="copiar(this, 'sudo ufw allow 8000/tcp')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📱 6. No OUTRO dispositivo (Celular ou Tablet), abrir o Navegador (Chrome / Safari / Firefox):</div>
+          <div style="font-size:0.85rem; color:#cbd5e1;">Abra o aplicativo do navegador no celular e digite a URL na barra de endereços:</div>
+          <div class="cmd-row" style="margin-top:0.3rem;">
+            <span class="cmd-code">http://192.168.1.100:8000</span>
+            <button class="copy-btn" onclick="copiar(this, 'http://192.168.1.100:8000')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📥 7. Visualizar e Baixar:</div>
+          <div style="font-size:0.85rem; color:#a7f3d0;">Todas as subpastas e arquivos estarão listados. Clique em qualquer arquivo para baixar instantaneamente no celular!</div>
+        </div>
+      </div>
+    </div>
+
     <footer>
       <p>Pensador Sem Fronteiras · Curso de Linux Lendário</p>
       <small>Do Zero ao Infinito</small>
