@@ -801,6 +801,96 @@
             <button class="copy-btn" onclick="copiarComandoUnico('dxdiag', this)">📋 Copiar</button>
           </div>
         </div>
+
+        <!-- Sis 9 -->
+        <div class="cmd-block">
+          <div class="cmd-label">🛠️ Verificar e reparar arquivos de sistema corrompidos do Windows (Executar como Admin):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">sfc /scannow</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('sfc /scannow', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <!-- Sis 10 -->
+        <div class="cmd-block">
+          <div class="cmd-label">🛠️ Reparar imagem do sistema Windows via DISM (Executar como Admin):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">DISM /Online /Cleanup-Image /RestoreHealth</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('DISM /Online /Cleanup-Image /RestoreHealth', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <!-- Sis 11 -->
+        <div class="cmd-block">
+          <div class="cmd-label">🛠️ Verificar e reparar erros no disco rígido/SSD C: (Executar como Admin):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">chkdsk C: /f /r</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('chkdsk C: /f /r', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <!-- Sis 12 -->
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Abrir o Gerenciador de Tarefas do Windows:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">taskmgr</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('taskmgr', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <!-- Sis 13 -->
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Abrir o Monitor de Recursos em tempo real (CPU, RAM, Disco, Rede):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">resmon</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('resmon', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <!-- Sis 14 -->
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Abrir a janela de Informações do Sistema em Modo Gráfico:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">msinfo32</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('msinfo32', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <!-- Sis 15 -->
+        <div class="cmd-block">
+          <div class="cmd-label">🔋 Gerar relatório de saúde e desgaste da bateria (Notebooks):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">powercfg /batteryreport</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('powercfg /batteryreport', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <!-- Sis 16 -->
+        <div class="cmd-block">
+          <div class="cmd-label">⚡ Analisar e gerar relatório de eficiência energética e consumo do sistema:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">powercfg /energy</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('powercfg /energy', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <!-- Sis 17 -->
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Ver fabricante, modelo e número de série da Placa-Mãe (Motherboard):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">wmic baseboard get product,Manufacturer,version,serialnumber</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('wmic baseboard get product,Manufacturer,version,serialnumber', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <!-- Sis 18 -->
+        <div class="cmd-block">
+          <div class="cmd-label">🌐 Exibir o endereço físico MAC de todas as placas de rede do computador:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">getmac</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('getmac', this)">📋 Copiar</button>
+          </div>
+        </div>
       </div>
     </div>
 
