@@ -722,6 +722,88 @@
       </div>
     </div>
 
+    <!-- CARTÃO: COMANDOS PARA VER INFORMAÇÕES DO SISTEMA E HARDWARE -->
+    <div class="card">
+      <div class="card-title">💻 Comandos para Ver Informações do Sistema & Hardware</div>
+      <div class="desc-text">
+        Comandos essenciais do Terminal do Windows para inspecionar a versão do SO, memória RAM, processador, discos rígidos e nome da máquina (copie 1 a 1):
+      </div>
+
+      <div class="cmd-group">
+        <!-- Sis 1 -->
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Exibir relatório completo do sistema (Versão, RAM, CPU, BIOS, Rede e Atualizações):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">systeminfo</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('systeminfo', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <!-- Sis 2 -->
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Filtrar apenas Nome do Windows, Versão e Arquitetura (64-bit / 32-bit):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">systeminfo | findstr /B /C:"OS Name" /C:"OS Version" /C:"System Type"</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('systeminfo | findstr /B /C:&quot;OS Name&quot; /C:&quot;OS Version&quot; /C:&quot;System Type&quot;', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <!-- Sis 3 -->
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Abrir janela gráfica com a versão exata e compilação do Windows:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">winver</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('winver', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <!-- Sis 4 -->
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Exibir o nome do computador na rede:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">hostname</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('hostname', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <!-- Sis 5 -->
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Ver modelo e número de núcleos do Processador (CPU):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">wmic cpu get name, NumberOfCores, MaxClockSpeed</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('wmic cpu get name, NumberOfCores, MaxClockSpeed', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <!-- Sis 6 -->
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Ver capacidade e velocidade dos pentes de memória RAM:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">wmic memorychip get Capacity, Speed, Manufacturer</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('wmic memorychip get Capacity, Speed, Manufacturer', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <!-- Sis 7 -->
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Ver modelo e tamanho dos discos rígidos / SSDs instalados:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">wmic diskdrive get Model, Size, MediaType</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('wmic diskdrive get Model, Size, MediaType', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <!-- Sis 8 -->
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Abrir ferramenta de diagnóstico do DirectX (Placa de Vídeo e Áudio):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">dxdiag</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('dxdiag', this)">📋 Copiar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <footer>
       <p>© Pensador Sem Fronteiras — <em>Do Zero ao Infinito</em></p>
     </footer>
