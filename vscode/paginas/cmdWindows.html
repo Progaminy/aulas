@@ -877,6 +877,88 @@
       </div>
     </div>
 
+    <!-- CARTÃO: COMANDOS PARA LIGAR, DESLIGAR E GERIR REDES WI-FI -->
+    <div class="card">
+      <div class="card-title">📶 Comandos para Ligar, Desligar & Gerir Redes Wi-Fi</div>
+      <div class="desc-text">
+        Comandos nativos do Windows (CMD e PowerShell como Administrador) para ativar a placa Wi-Fi, conectar a redes salvas, listar conexões disponíveis e descobrir senhas armazenadas (copie 1 a 1):
+      </div>
+
+      <div class="cmd-group">
+        <!-- Wifi 1 -->
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Ligar / Ativar a placa de rede Wi-Fi do computador (CMD / Admin):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">netsh interface set interface "Wi-Fi" admin=enabled</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('netsh interface set interface &quot;Wi-Fi&quot; admin=enabled', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <!-- Wifi 2 -->
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Desligar / Desativar a placa de rede Wi-Fi do computador (CMD / Admin):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">netsh interface set interface "Wi-Fi" admin=disabled</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('netsh interface set interface &quot;Wi-Fi&quot; admin=disabled', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <!-- Wifi 3 -->
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Listar todas as redes Wi-Fi disponíveis ao redor:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">netsh wlan show networks</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('netsh wlan show networks', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <!-- Wifi 4 -->
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Listar todas as redes Wi-Fi salvas neste computador:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">netsh wlan show profiles</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('netsh wlan show profiles', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <!-- Wifi 5 -->
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Conectar-se a uma rede Wi-Fi salva:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">netsh wlan connect name="NomeDaSuaRede"</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('netsh wlan connect name=&quot;NomeDaSuaRede&quot;', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <!-- Wifi 6 -->
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Desconectar da rede Wi-Fi atual:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">netsh wlan disconnect</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('netsh wlan disconnect', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <!-- Wifi 7 -->
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Revelar a senha salva em texto puro de uma rede Wi-Fi:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">netsh wlan show profile name="NomeDaSuaRede" key=clear</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('netsh wlan show profile name=&quot;NomeDaSuaRede&quot; key=clear', this)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <!-- Wifi 8 -->
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Ligar / Ativar placa Wi-Fi no PowerShell (Como Administrador):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">Enable-NetAdapter -Name "Wi-Fi"</span>
+            <button class="copy-btn" onclick="copiarComandoUnico('Enable-NetAdapter -Name &quot;Wi-Fi&quot;', this)">📋 Copiar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <footer>
       <p>© Pensador Sem Fronteiras — <em>Do Zero ao Infinito</em></p>
     </footer>
