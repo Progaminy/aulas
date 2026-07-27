@@ -397,32 +397,443 @@
           <div style="font-size:0.8rem; color:#a7f3d0;">👉 Instalar pacote no Alpine: <code>apk add python3 git bash curl</code></div>
         </div>
 
-        <!-- PKG Termux -->
-        <div style="background:#020617; border:1px solid rgba(56,189,248,0.35); border-radius:0.8rem; padding:0.8rem; display:flex; flex-direction:column; gap:0.4rem;">
-          <span style="font-size:0.85rem; color:#94a3b8; font-weight:bold;">📱 Termux no Android (Comando PKG):</span>
-          <div style="display:flex; justify-content:space-between; align-items:center; background:#090d16; padding:0.5rem 0.8rem; border-radius:0.5rem;">
+    <!-- CARTÃO: PASSO A PASSO COMPLETO DO SERVIDOR PYTHON NO LINUX / TERMUX -->
+    <div class="card" id="servidor-python-linux" style="border: 2px solid #38bdf8; background: rgba(8, 14, 28, 0.95);">
+      <h2>🚀 Passo a Passo: Ligar Servidor Python no Linux / Termux (Da Instalação até a URL)</h2>
+      <p style="color:#cfecff;">
+        Guia completo para instalar o Python, criar o projeto, ligar o servidor HTTP nativo e acessar a URL no celular ou computador (copie 1 a 1):
+      </p>
+
+      <div style="display:flex; flex-direction:column; gap:0.6rem;">
+        <div style="background:#020617; border:1px solid rgba(56,189,248,0.35); border-radius:0.8rem; padding:0.8rem;">
+          <span style="font-size:0.85rem; color:#94a3b8; font-weight:bold;">1. Atualizar gerenciador de pacotes (Termux):</span>
+          <div style="display:flex; justify-content:space-between; align-items:center; background:#090d16; padding:0.5rem 0.8rem; border-radius:0.5rem; margin-top:0.3rem;">
             <code style="color:#38bdf8; font-weight:bold;">pkg update && pkg upgrade -y</code>
             <button class="copy-btn" onclick="navigator.clipboard.writeText('pkg update && pkg upgrade -y')">📋 Copiar</button>
           </div>
-          <div style="font-size:0.8rem; color:#a7f3d0;">👉 Instalar pacote no Termux: <code>pkg install python git -y</code></div>
+          <span style="font-size:0.8rem; color:#94a3b8; margin-top:0.2rem; display:block;">Ou no Ubuntu/Debian: <code>sudo apt update && sudo apt upgrade -y</code></span>
         </div>
 
-        <!-- APT Debian/Ubuntu -->
-        <div style="background:#020617; border:1px solid rgba(56,189,248,0.35); border-radius:0.8rem; padding:0.8rem; display:flex; flex-direction:column; gap:0.4rem;">
-          <span style="font-size:0.85rem; color:#94a3b8; font-weight:bold;">🐧 Ubuntu / Debian / Kali Linux (Comando APT):</span>
-          <div style="display:flex; justify-content:space-between; align-items:center; background:#090d16; padding:0.5rem 0.8rem; border-radius:0.5rem;">
-            <code style="color:#38bdf8; font-weight:bold;">sudo apt update && sudo apt upgrade -y</code>
-            <button class="copy-btn" onclick="navigator.clipboard.writeText('sudo apt update && sudo apt upgrade -y')">📋 Copiar</button>
+        <div style="background:#020617; border:1px solid rgba(56,189,248,0.35); border-radius:0.8rem; padding:0.8rem;">
+          <span style="font-size:0.85rem; color:#94a3b8; font-weight:bold;">2. Instalar o Python 3 (Termux):</span>
+          <div style="display:flex; justify-content:space-between; align-items:center; background:#090d16; padding:0.5rem 0.8rem; border-radius:0.5rem; margin-top:0.3rem;">
+            <code style="color:#38bdf8; font-weight:bold;">pkg install python -y</code>
+            <button class="copy-btn" onclick="navigator.clipboard.writeText('pkg install python -y')">📋 Copiar</button>
+          </div>
+          <span style="font-size:0.8rem; color:#94a3b8; margin-top:0.2rem; display:block;">Ou no Ubuntu/Debian: <code>sudo apt install python3 -y</code></span>
+        </div>
+
+        <div style="background:#020617; border:1px solid rgba(56,189,248,0.35); border-radius:0.8rem; padding:0.8rem;">
+          <span style="font-size:0.85rem; color:#94a3b8; font-weight:bold;">3. Criar a pasta do projeto e entrar nela:</span>
+          <div style="display:flex; justify-content:space-between; align-items:center; background:#090d16; padding:0.5rem 0.8rem; border-radius:0.5rem; margin-top:0.3rem;">
+            <code style="color:#38bdf8; font-weight:bold;">mkdir -p ~/servidor_python && cd ~/servidor_python</code>
+            <button class="copy-btn" onclick="navigator.clipboard.writeText('mkdir -p ~/servidor_python && cd ~/servidor_python')">📋 Copiar</button>
           </div>
         </div>
 
-        <!-- Winget Windows -->
-        <div style="background:#020617; border:1px solid rgba(56,189,248,0.35); border-radius:0.8rem; padding:0.8rem; display:flex; flex-direction:column; gap:0.4rem;">
-          <span style="font-size:0.85rem; color:#94a3b8; font-weight:bold;">🪟 Windows 10 / 11 (Comando Winget):</span>
-          <div style="display:flex; justify-content:space-between; align-items:center; background:#090d16; padding:0.5rem 0.8rem; border-radius:0.5rem;">
-            <code style="color:#38bdf8; font-weight:bold;">winget upgrade --all</code>
-            <button class="copy-btn" onclick="navigator.clipboard.writeText('winget upgrade --all')">📋 Copiar</button>
+        <div style="background:#020617; border:1px solid rgba(56,189,248,0.35); border-radius:0.8rem; padding:0.8rem;">
+          <span style="font-size:0.85rem; color:#94a3b8; font-weight:bold;">4. Criar o arquivo HTML base (index.html):</span>
+          <div style="display:flex; justify-content:space-between; align-items:center; background:#090d16; padding:0.5rem 0.8rem; border-radius:0.5rem; margin-top:0.3rem;">
+            <code style="color:#38bdf8; font-weight:bold;">echo '&lt;h1&gt;Servidor Python Rodando no Linux!&lt;/h1&gt;' &gt; index.html</code>
+            <button class="copy-btn" onclick="navigator.clipboard.writeText(&quot;echo '&lt;h1&gt;Servidor Python Rodando no Linux!&lt;/h1&gt;' &gt; index.html&quot;)">📋 Copiar</button>
           </div>
+        </div>
+
+        <div style="background:#020617; border:1px solid rgba(56,189,248,0.35); border-radius:0.8rem; padding:0.8rem;">
+          <span style="font-size:0.85rem; color:#94a3b8; font-weight:bold;">5. Ligar o servidor HTTP nativo do Python escutando na porta 8000 na Wi-Fi:</span>
+          <div style="display:flex; justify-content:space-between; align-items:center; background:#090d16; padding:0.5rem 0.8rem; border-radius:0.5rem; margin-top:0.3rem;">
+            <code style="color:#38bdf8; font-weight:bold;">python -m http.server 8000 --bind 0.0.0.0</code>
+            <button class="copy-btn" onclick="navigator.clipboard.writeText('python -m http.server 8000 --bind 0.0.0.0')">📋 Copiar</button>
+          </div>
+          <span style="font-size:0.8rem; color:#38bdf8; margin-top:0.2rem; display:block;">Deverá aparecer: <code>Serving HTTP on 0.0.0.0 port 8000</code>. Não feche este terminal!</span>
+        </div>
+
+        <div style="background:#020617; border:1px solid rgba(56,189,248,0.35); border-radius:0.8rem; padding:0.8rem;">
+          <span style="font-size:0.85rem; color:#94a3b8; font-weight:bold;">6. Descobrir o endereço IP local do Linux/Termux (em outra aba/terminal):</span>
+          <div style="display:flex; justify-content:space-between; align-items:center; background:#090d16; padding:0.5rem 0.8rem; border-radius:0.5rem; margin-top:0.3rem;">
+            <code style="color:#38bdf8; font-weight:bold;">ifconfig</code>
+            <button class="copy-btn" onclick="navigator.clipboard.writeText('ifconfig')">📋 Copiar</button>
+          </div>
+          <span style="font-size:0.8rem; color:#94a3b8; margin-top:0.2rem; display:block;">Ou: <code>ip a</code> ou <code>hostname -I</code>. Anote o IPv4 (ex: <code>192.168.1.100</code> ou <code>10.0.0.15</code>).</span>
+        </div>
+
+        <div style="background:#020617; border:1px solid rgba(56,189,248,0.35); border-radius:0.8rem; padding:0.8rem;">
+          <span style="font-size:0.85rem; color:#94a3b8; font-weight:bold;">7. Liberar a porta 8000 no Firewall UFW (se for Ubuntu/Debian):</span>
+          <div style="display:flex; justify-content:space-between; align-items:center; background:#090d16; padding:0.5rem 0.8rem; border-radius:0.5rem; margin-top:0.3rem;">
+            <code style="color:#38bdf8; font-weight:bold;">sudo ufw allow 8000/tcp</code>
+            <button class="copy-btn" onclick="navigator.clipboard.writeText('sudo ufw allow 8000/tcp')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div style="background:#020617; border:1px solid rgba(56,189,248,0.35); border-radius:0.8rem; padding:0.8rem;">
+          <span style="font-size:0.85rem; color:#94a3b8; font-weight:bold;">📱 8. URL para Acessar no Navegador de Qualquer Dispositivo na mesma Wi-Fi:</span>
+          <div style="display:flex; justify-content:space-between; align-items:center; background:#090d16; padding:0.5rem 0.8rem; border-radius:0.5rem; margin-top:0.3rem;">
+            <code style="color:#38bdf8; font-weight:bold;">http://192.168.1.100:8000</code>
+            <button class="copy-btn" onclick="navigator.clipboard.writeText('http://192.168.1.100:8000')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div style="background:#020617; border:1px solid rgba(56,189,248,0.35); border-radius:0.8rem; padding:0.8rem;">
+          <span style="font-size:0.85rem; color:#94a3b8; font-weight:bold;">9. Desligar o servidor no terminal:</span>
+          <span style="font-size:0.85rem; color:#e2e8f0; display:block; margin-top:0.2rem;">Pressione <strong>Ctrl + C</strong> na janela do terminal onde o servidor está ligado.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARTÃO: 100 COMANDOS ESSENCIAIS DE SISTEMA LINUX -->
+    <div class="card" id="100-comandos-linux" style="border: 2px solid #a855f7;">
+      <h2>🐧 100 Comandos Essenciais do Sistema Linux (Organizados por Categoria)</h2>
+      <p style="color:#cfecff;">
+        Guia definitivo com os 100 comandos mais importantes do Linux (Ubuntu, Debian, Termux, Fedora, Arch) para gerenciar sistema, discos, rede, permissões e processos (copie 1 a 1):
+      </p>
+
+      <!-- CATEGORIA 1: SISTEMA E KERNEL -->
+      <h3 style="color:#c084fc; margin:1rem 0 0.5rem; font-size:1.2rem;">1. Informações de Sistema, Kernel & OS (10 Comandos)</h3>
+      <div style="display:flex; flex-direction:column; gap:0.5rem;">
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>uname -a</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('uname -a')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>lsb_release -a</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('lsb_release -a')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>cat /etc/os-release</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('cat /etc/os-release')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>uptime</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('uptime')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>hostname</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('hostname')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>whoami</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('whoami')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>id</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('id')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>w</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('w')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>last -n 10</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('last -n 10')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>dmesg | head -n 20</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('dmesg | head -n 20')">📋 Copiar</button>
+        </div>
+      </div>
+
+      <!-- CATEGORIA 2: PROCESSADOR E MEMÓRIA -->
+      <h3 style="color:#c084fc; margin:1.2rem 0 0.5rem; font-size:1.2rem;">2. Processador (CPU), Memória RAM & Recursos (10 Comandos)</h3>
+      <div style="display:flex; flex-direction:column; gap:0.5rem;">
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>lscpu</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('lscpu')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>free -h</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('free -h')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>cat /proc/meminfo</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('cat /proc/meminfo')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>top</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('top')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>htop</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('htop')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>vmstat 1 5</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('vmstat 1 5')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>nproc</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('nproc')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>cat /proc/cpuinfo</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('cat /proc/cpuinfo')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>iostat</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('iostat')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>sar -u 1 3</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('sar -u 1 3')">📋 Copiar</button>
+        </div>
+      </div>
+
+      <!-- CATEGORIA 3: DISCOS E ARMAZENAMENTO -->
+      <h3 style="color:#c084fc; margin:1.2rem 0 0.5rem; font-size:1.2rem;">3. Discos, Partições & Uso de Espaço (10 Comandos)</h3>
+      <div style="display:flex; flex-direction:column; gap:0.5rem;">
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>df -h</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('df -h')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>du -sh *</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('du -sh *')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>lsblk</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('lsblk')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>sudo fdisk -l</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('sudo fdisk -l')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>blkid</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('blkid')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>findmnt</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('findmnt')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>stat arquivo.txt</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('stat arquivo.txt')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>mount</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('mount')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>ncdu</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('ncdu')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>sudo umount /mnt</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('sudo umount /mnt')">📋 Copiar</button>
+        </div>
+      </div>
+
+      <!-- CATEGORIA 4: REDE E CONEXÕES -->
+      <h3 style="color:#c084fc; margin:1.2rem 0 0.5rem; font-size:1.2rem;">4. Rede, IP, Portas & Diagnóstico (10 Comandos)</h3>
+      <div style="display:flex; flex-direction:column; gap:0.5rem;">
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>ip a</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('ip a')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>ifconfig</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('ifconfig')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>ip route</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('ip route')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>ping -c 4 google.com</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('ping -c 4 google.com')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>ss -tuln</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('ss -tuln')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>netstat -tuln</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('netstat -tuln')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>curl -I https://google.com</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('curl -I https://google.com')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>wget https://example.com/file.zip</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('wget https://example.com/file.zip')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>traceroute google.com</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('traceroute google.com')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>nslookup google.com</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('nslookup google.com')">📋 Copiar</button>
+        </div>
+      </div>
+
+      <!-- CATEGORIA 5: PERMISSÕES E USUÁRIOS -->
+      <h3 style="color:#c084fc; margin:1.2rem 0 0.5rem; font-size:1.2rem;">5. Permissões, Usuários & Grupos (10 Comandos)</h3>
+      <div style="display:flex; flex-direction:column; gap:0.5rem;">
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>chmod +x script.sh</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('chmod +x script.sh')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>chmod 755 script.sh</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('chmod 755 script.sh')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>sudo chown -R usuario:grupo pasta</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('sudo chown -R usuario:grupo pasta')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>sudo useradd -m novo_usuario</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('sudo useradd -m novo_usuario')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>sudo passwd novo_usuario</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('sudo passwd novo_usuario')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>sudo usermod -aG sudo usuario</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('sudo usermod -aG sudo usuario')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>sudo groupadd novogrupo</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('sudo groupadd novogrupo')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>groups</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('groups')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>su - usuario</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('su - usuario')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>sudo su</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('sudo su')">📋 Copiar</button>
+        </div>
+      </div>
+
+      <!-- CATEGORIA 6: GERENCIAMENTO DE PROCESSOS -->
+      <h3 style="color:#c084fc; margin:1.2rem 0 0.5rem; font-size:1.2rem;">6. Gerenciamento de Processos & Tarefas (10 Comandos)</h3>
+      <div style="display:flex; flex-direction:column; gap:0.5rem;">
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>ps aux</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('ps aux')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>ps -ef | grep python</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('ps -ef | grep python')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>pgrep python</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('pgrep python')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>pkill -f python</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('pkill -f python')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>kill -9 1234</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('kill -9 1234')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>jobs</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('jobs')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>bg %1</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('bg %1')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>fg %1</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('fg %1')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>nohup python app.py &</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('nohup python app.py &')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>renice -n 10 -p 1234</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('renice -n 10 -p 1234')">📋 Copiar</button>
+        </div>
+      </div>
+
+      <!-- CATEGORIA 7: BUSCA E FILTROS DE TEXTO -->
+      <h3 style="color:#c084fc; margin:1.2rem 0 0.5rem; font-size:1.2rem;">7. Pesquisa, Busca & Filtros (Grep, Find, Sed, Awk) (10 Comandos)</h3>
+      <div style="display:flex; flex-direction:column; gap:0.5rem;">
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>grep -rn "texto" .</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('grep -rn &quot;texto&quot; .')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>find . -name "*.py"</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('find . -name &quot;*.py&quot;')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>find . -type f -size +100M</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('find . -type f -size +100M')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>tail -f /var/log/syslog</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('tail -f /var/log/syslog')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>head -n 20 arquivo.txt</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('head -n 20 arquivo.txt')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>awk '{print $1}' arquivo.txt</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('awk \'{print $1}\' arquivo.txt')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>sed -i 's/antigo/novo/g' arquivo.txt</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('sed -i \'s/antigo/novo/g\' arquivo.txt')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>wc -l arquivo.txt</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('wc -l arquivo.txt')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>sort arquivo.txt | uniq</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('sort arquivo.txt | uniq')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>diff arquivo1.txt arquivo2.txt</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('diff arquivo1.txt arquivo2.txt')">📋 Copiar</button>
+        </div>
+      </div>
+
+      <!-- CATEGORIA 8: COMPACTAÇÃO E ARQUIVOS -->
+      <h3 style="color:#c084fc; margin:1.2rem 0 0.5rem; font-size:1.2rem;">8. Compactação, Arquivos & Backups (10 Comandos)</h3>
+      <div style="display:flex; flex-direction:column; gap:0.5rem;">
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>tar -czvf pacotes.tar.gz pasta/</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('tar -czvf pacotes.tar.gz pasta/')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>tar -xzvf pacotes.tar.gz</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('tar -xzvf pacotes.tar.gz')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>zip -r meu_zip.zip pasta/</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('zip -r meu_zip.zip pasta/')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>unzip meu_zip.zip</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('unzip meu_zip.zip')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>gzip arquivo.txt</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('gzip arquivo.txt')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>gunzip arquivo.txt.gz</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('gunzip arquivo.txt.gz')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>7z x arquivo.7z</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('7z x arquivo.7z')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>tar -tf pacotes.tar.gz</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('tar -tf pacotes.tar.gz')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>bzip2 arquivo.txt</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('bzip2 arquivo.txt')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>bunzip2 arquivo.txt.bz2</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('bunzip2 arquivo.txt.bz2')">📋 Copiar</button>
+        </div>
+      </div>
+
+      <!-- CATEGORIA 9: SERVIÇOS E SYSTEMD -->
+      <h3 style="color:#c084fc; margin:1.2rem 0 0.5rem; font-size:1.2rem;">9. Gerenciamento de Serviços (Systemd & Service) (10 Comandos)</h3>
+      <div style="display:flex; flex-direction:column; gap:0.5rem;">
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>systemctl status nginx</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('systemctl status nginx')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>sudo systemctl start nginx</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('sudo systemctl start nginx')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>sudo systemctl stop nginx</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('sudo systemctl stop nginx')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>sudo systemctl restart nginx</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('sudo systemctl restart nginx')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>sudo systemctl enable nginx</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('sudo systemctl enable nginx')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>sudo systemctl disable nginx</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('sudo systemctl disable nginx')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>systemctl list-units --type=service</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('systemctl list-units --type=service')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>journalctl -u nginx -f</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('journalctl -u nginx -f')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>sudo service apache2 restart</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('sudo service apache2 restart')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>sudo service apache2 status</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('sudo service apache2 status')">📋 Copiar</button>
+        </div>
+      </div>
+
+      <!-- CATEGORIA 10: MANIPULAÇÃO DE PASTAS E ARQUIVOS -->
+      <h3 style="color:#c084fc; margin:1.2rem 0 0.5rem; font-size:1.2rem;">10. Operações de Pastas, Arquivos & Links (10 Comandos)</h3>
+      <div style="display:flex; flex-direction:column; gap:0.5rem;">
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>pwd</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('pwd')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>ls -la</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('ls -la')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>mkdir -p pasta/subpasta/nova</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('mkdir -p pasta/subpasta/nova')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>rm -rf pasta_antiga</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('rm -rf pasta_antiga')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>cp -rv origem/ destino/</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('cp -rv origem/ destino/')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>mv origem.txt destino.txt</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('mv origem.txt destino.txt')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>ln -s /caminho/real link_simbolico</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('ln -s /caminho/real link_simbolico')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>touch novo_arquivo.txt</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('touch novo_arquivo.txt')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>readlink -f link_simbolico</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('readlink -f link_simbolico')">📋 Copiar</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#020617; padding:0.5rem 0.8rem; border-radius:0.5rem; border:1px solid rgba(168,85,247,0.3);">
+          <code>tree -L 2</code> <button class="copy-btn" onclick="navigator.clipboard.writeText('tree -L 2')">📋 Copiar</button>
         </div>
       </div>
     </div>
