@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes, viewport-fit=cover">
+  <title>Astronomia & Astrofísica | Didática PSF: Da Gravidade ao Big Bang</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Share+Tech+Mono&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    body {
+      background: radial-gradient(circle at 10% 10%, #0d061f 0%, #03010a 100%);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: #e2e8f0;
+      min-height: 100vh;
+      padding: 1.5rem 1rem 3rem;
+      display: flex; flex-direction: column; align-items: center; line-height: 1.6;
+    }
+    body::before {
+      content: ""; position: fixed; inset: 0;
+      background-image: 
+        radial-gradient(circle at 85% 15%, rgba(168, 85, 247, 0.18) 0%, transparent 45%),
+        radial-gradient(circle at 15% 85%, rgba(56, 189, 248, 0.12) 0%, transparent 50%);
+      pointer-events: none; z-index: 0;
+    }
+    .container { width: 100%; max-width: 860px; position: relative; z-index: 2; display: flex; flex-direction: column; gap: 1.8rem; }
+    header { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 0.8rem; }
+    .btn-voltar {
+      align-self: flex-start; display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(168, 85, 247, 0.15); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.4);
+      padding: 0.5rem 1.2rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; text-decoration: none;
+      backdrop-filter: blur(10px); transition: all 0.2s ease;
+    }
+    .btn-voltar:hover { background: rgba(168, 85, 247, 0.3); color: #fff; box-shadow: 0 0 15px rgba(168, 85, 247, 0.5); transform: translateY(-2px); }
+    .main-title {
+      font-family: 'Orbitron', sans-serif; font-size: clamp(2rem, 7vw, 3.2rem); font-weight: 800; text-align: center;
+      letter-spacing: 0.05em; background: linear-gradient(135deg, #c084fc, #38bdf8, #f43f5e);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      filter: drop-shadow(0 0 20px rgba(192, 132, 252, 0.4));
+    }
+    .subtitle { font-size: 1.1rem; color: #94a3b8; max-width: 720px; margin: 0 auto; }
+    .badge-bar { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem; margin-top: 0.5rem; }
+    .badge { background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(168, 85, 247, 0.35); color: #e9d5ff; padding: 0.35rem 0.85rem; border-radius: 20px; font-size: 0.82rem; font-family: 'Share Tech Mono', monospace; }
+    .card { background: rgba(15, 23, 42, 0.78); backdrop-filter: blur(16px); border: 1px solid rgba(168, 85, 247, 0.25); border-radius: 1.5rem; padding: 1.6rem; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); transition: all 0.3s ease; }
+    .card:hover { border-color: rgba(192, 132, 252, 0.45); box-shadow: 0 15px 35px rgba(0,0,0,0.6), 0 0 30px rgba(192, 132, 252, 0.2); }
+    .card-header { display: flex; align-items: center; justify-content: space-between; gap: 0.8rem; margin-bottom: 1rem; padding-bottom: 0.8rem; border-bottom: 1px solid rgba(255, 255, 255, 0.08); flex-wrap: wrap; }
+    .card-header h2 { font-size: 1.3rem; font-weight: 700; color: #f8fafc; font-family: 'Orbitron', sans-serif; display: flex; align-items: center; gap: 0.6rem; }
+    .step-badge { background: linear-gradient(135deg, #a855f7, #7e22ce); color: #fff; font-weight: 800; font-size: 0.85rem; padding: 0.35rem 0.75rem; border-radius: 8px; white-space: nowrap; }
+    .desc-text { font-size: 0.95rem; color: #cbd5e1; margin-bottom: 1.2rem; }
+    .math-box { background: rgba(2, 6, 23, 0.9); border: 1px solid rgba(168, 85, 247, 0.3); border-radius: 0.85rem; padding: 1rem; margin-bottom: 1rem; }
+    .math-title { font-weight: bold; color: #c084fc; font-size: 0.95rem; margin-bottom: 0.5rem; }
+    .calc-step { background: #090d16; border-left: 4px solid #c084fc; padding: 0.6rem 0.8rem; border-radius: 0 0.5rem 0.5rem 0; margin-top: 0.5rem; font-family: 'Share Tech Mono', monospace; font-size: 0.95rem; color: #e0f2fe; display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; transition: background 0.3s ease; }
+    .calc-step.step-tested { background: rgba(34, 197, 94, 0.15); border-left-color: #22c55e; }
+    .calc-step span.highlight { color: #f59e0b; font-weight: bold; }
+    .calc-step span.origin { color: #c084fc; font-weight: bold; }
+    .cmd-row { display: flex; justify-content: space-between; align-items: center; background: #090d16; border: 1px solid rgba(168, 85, 247, 0.25); border-radius: 0.6rem; padding: 0.5rem 0.85rem; gap: 0.5rem; margin-top: 0.5rem; transition: background 0.3s ease; }
+    .cmd-row.step-tested { background: rgba(34, 197, 94, 0.15); border-color: #22c55e; }
+    .cmd-code { font-family: 'Share Tech Mono', monospace; color: #c084fc; font-size: 0.95rem; font-weight: 600; }
+    .copy-btn { background: rgba(168, 85, 247, 0.12); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.4); border-radius: 6px; padding: 0.35rem 0.75rem; font-size: 0.8rem; font-weight: 600; cursor: pointer; white-space: nowrap; transition: all 0.2s ease; font-family: 'Inter', sans-serif; }
+    .copy-btn:hover { background: #c084fc; color: #020617; }
+    .copy-btn.copied { background: #22c55e !important; color: #020617 !important; }
+
+    /* CHECKBOX TESTADO STYLES */
+    .test-checkbox-wrap { display: inline-flex; align-items: center; gap: 0.4rem; cursor: pointer; user-select: none; background: rgba(15, 23, 42, 0.6); padding: 0.25rem 0.6rem; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.15); transition: all 0.2s ease; }
+    .test-checkbox-wrap:hover { border-color: #22c55e; background: rgba(34, 197, 94, 0.1); }
+    .test-checkbox-wrap input[type="checkbox"] { appearance: none; width: 16px; height: 16px; border: 1.5px solid #a855f7; border-radius: 4px; background: #020617; cursor: pointer; display: grid; place-content: center; transition: all 0.2s ease; }
+    .test-checkbox-wrap input[type="checkbox"]:checked { background: #22c55e; border-color: #22c55e; }
+    .test-checkbox-wrap input[type="checkbox"]:checked::before { content: "✓"; color: #020617; font-weight: 900; font-size: 11px; }
+    .test-checkbox-label { font-size: 0.75rem; font-weight: 600; color: #94a3b8; font-family: 'Inter', sans-serif; }
+    .test-checkbox-wrap input[type="checkbox"]:checked + .test-checkbox-label { color: #4ade80; }
+
+    footer { text-align: center; margin-top: 2rem; color: #64748b; font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <a href="../index.html" class="btn-voltar">⬅️ Voltar ao Portal Principal</a>
+      <h1 class="main-title">🔭 ASTRONOMIA & ASTROFÍSICA (PSF)</h1>
+      <p class="subtitle">Didática Filosofica: Da Leis de Kepler à Relatividade Geral de Einstein, Fusão Estelar e a Expansão do Universo</p>
+      
+      <div class="badge-bar">
+        <span class="badge">🪐 1. Leis de Kepler</span>
+        <span class="badge">⚛️ 2. Fusão Nuclear nas Estrelas</span>
+        <span class="badge">🌌 3. Relatividade & Curvatura Spacetime</span>
+        <span class="badge">💥 4. A Expansão do Universo (Hubble)</span>
+      </div>
+    </header>
+
+    <!-- PASSO 1: AS LEIS DE KEPLER E A GRAVITAÇÃO UNIVERSAL -->
+    <div class="card" id="passo-1-kepler-gravidade">
+      <div class="card-header">
+        <h2>
+          <span class="step-badge">PASSO A PASSO 1</span>
+          <span>🪐 Leis de Kepler & A Gravitação Universal de Newton</span>
+        </h2>
+        <label class="test-checkbox-wrap">
+          <input type="checkbox" data-test-id="astro-step-1">
+          <span class="test-checkbox-label">Conhecimento Testado</span>
+        </label>
+      </div>
+      <div class="desc-text">
+        Por que os planetas orbitam o Sol em elipses e não em círculos perfeitos? 
+        Johannes Kepler e Isaac Newton descobriram a força que mantém o Cosmos em equilíbrio:
+      </div>
+
+      <div class="math-box">
+        <div class="math-title">📌 As 3 Leis de Kepler & A Equação da Gravidade</div>
+        <div class="calc-step">
+          <span>1. <strong>1ª Lei (Órbitas Elípticas)</strong>: Os planetas descrevem elipses com o Sol em um dos focos.</span>
+          <label class="test-checkbox-wrap">
+            <input type="checkbox" data-test-id="astro-calc-1-1">
+            <span class="test-checkbox-label">Testado</span>
+          </label>
+        </div>
+        <div class="calc-step">
+          <span>2. <strong>2ª Lei (Áreas Iguais em Tempos Iguais)</strong>: O vetor posição varre áreas iguais em tempos iguais (mais rápido no periélio, mais lento no afélio).</span>
+          <label class="test-checkbox-wrap">
+            <input type="checkbox" data-test-id="astro-calc-1-2">
+            <span class="test-checkbox-label">Testado</span>
+          </label>
+        </div>
+        <div class="calc-step">
+          <span>3. <span class="origin">GRAVITAÇÃO UNIVERSAL (Newton)</span>: $F = G \frac{m_1 m_2}{r^2}$. A força é inversamente proporcional ao quadrado da distância!</span>
+          <label class="test-checkbox-wrap">
+            <input type="checkbox" data-test-id="astro-calc-1-3">
+            <span class="test-checkbox-label">Testado</span>
+          </label>
+        </div>
+        <div class="cmd-row">
+          <span class="cmd-code">F = G * (m1 * m2) / (r^2)</span>
+          <button class="copy-btn" onclick="copiar(this, 'F = G * (m1 * m2) / (r^2)')">📋 Copiar</button>
+          <label class="test-checkbox-wrap">
+            <input type="checkbox" data-test-id="astro-cmd-1-1">
+            <span class="test-checkbox-label">Testado</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- PASSO 2: A VIDA E MORTE DAS ESTRELAS (FUSÃO NUCLEAR) -->
+    <div class="card" id="passo-2-fusao-estelar">
+      <div class="card-header">
+        <h2>
+          <span class="step-badge">PASSO A PASSO 2</span>
+          <span>⚛️ A Fusão Nuclear nas Estrelas & Origem dos Elementos</span>
+        </h2>
+        <label class="test-checkbox-wrap">
+          <input type="checkbox" data-test-id="astro-step-2">
+          <span class="test-checkbox-label">Conhecimento Testado</span>
+        </label>
+      </div>
+      <div class="desc-text">
+        O que faz o Sol brilhar há 4,6 bilhões de anos sem "apagar"? 
+        No centro da estrela, a pressão gravacional funde núcleos de Hidrogênio ($H$) transformando-os em Hélio ($He$), liberando energia pela famosa equação de Einstein $E = m c^2$:
+      </div>
+
+      <div class="math-box">
+        <div class="math-title">📌 O Ciclo Proton-Proton & A Alquimia Estelar</div>
+        <div class="calc-step">
+          <span>1. <span class="highlight">Fusão de Hidrogênio</span>: $4 \text{ H} \rightarrow 1 \text{ He} + \text{Energia (Fótons)}$.</span>
+          <label class="test-checkbox-wrap">
+            <input type="checkbox" data-test-id="astro-calc-2-1">
+            <span class="test-checkbox-label">Testado</span>
+          </label>
+        </div>
+        <div class="calc-step">
+          <span>2. <span class="origin">ORIGEM DOS ELEMENTOS PESADOS</span>: Quando o Hidrogênio acaba, a estrela funde Hélio $\rightarrow$ Carbono $\rightarrow$ Oxigênio $\rightarrow$ Ferro!</span>
+          <label class="test-checkbox-wrap">
+            <input type="checkbox" data-test-id="astro-calc-2-2">
+            <span class="test-checkbox-label">Testado</span>
+          </label>
+        </div>
+        <div class="calc-step">
+          <span>3. <strong>Supernova & Poeira Estelar</strong>: A explosão de estrelas massivas semeia o universo com o Carbono e Ferro que formam o sangue do nosso corpo!</span>
+          <label class="test-checkbox-wrap">
+            <input type="checkbox" data-test-id="astro-calc-2-3">
+            <span class="test-checkbox-label">Testado</span>
+          </label>
+        </div>
+        <div class="cmd-row">
+          <span class="cmd-code">4 H -> 1 He + E (E = m * c^2)  |  Supernova -> Carbono + Ferro</span>
+          <button class="copy-btn" onclick="copiar(this, '4 H -> 1 He + E (E = m * c^2)')">📋 Copiar</button>
+          <label class="test-checkbox-wrap">
+            <input type="checkbox" data-test-id="astro-cmd-2-1">
+            <span class="test-checkbox-label">Testado</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- PASSO 3: RELATIVIDADE GERAL E BURACOS NEGROS -->
+    <div class="card" id="passo-3-relatividade-buracos-negros">
+      <div class="card-header">
+        <h2>
+          <span class="step-badge">PASSO A PASSO 3</span>
+          <span>🌌 A Relatividade Geral de Einstein & Buracos Negros</span>
+        </h2>
+        <label class="test-checkbox-wrap">
+          <input type="checkbox" data-test-id="astro-step-3">
+          <span class="test-checkbox-label">Conhecimento Testado</span>
+        </label>
+      </div>
+      <div class="desc-text">
+        Em 1915, Albert Einstein revolucionou a ciência: a Gravidade não é uma "força invisível puxando", mas a **CURVATURA DO TECIDO ESPAÇO-TEMPO** causada pela massa!
+      </div>
+
+      <div class="math-box">
+        <div class="math-title">📌 O Raio de Schwarzschild (Horizonte de Eventos)</div>
+        <div class="calc-step">
+          <span>1. <span class="origin">NASCE O BURACO NEGRO</span>: Se uma massa for comprimida abaixo de seu Raio de Schwarzschild ($R_s$), a velocidade de escape supera a velocidade da luz ($c$)!</span>
+          <label class="test-checkbox-wrap">
+            <input type="checkbox" data-test-id="astro-calc-3-1">
+            <span class="test-checkbox-label">Testado</span>
+          </label>
+        </div>
+        <div class="calc-step">
+          <span>2. <strong>Equação do Raio de Schwarzschild</strong>: $R_s = \frac{2 G M}{c^2}$.</span>
+          <label class="test-checkbox-wrap">
+            <input type="checkbox" data-test-id="astro-calc-3-2">
+            <span class="test-checkbox-label">Testado</span>
+          </label>
+        </div>
+        <div class="cmd-row">
+          <span class="cmd-code">Rs = (2 * G * M) / (c^2)</span>
+          <button class="copy-btn" onclick="copiar(this, 'Rs = (2 * G * M) / (c^2)')">📋 Copiar</button>
+          <label class="test-checkbox-wrap">
+            <input type="checkbox" data-test-id="astro-cmd-3-1">
+            <span class="test-checkbox-label">Testado</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- PASSO 4: A EXPANSÃO DO UNIVERSO E A LEI DE HUBBLE -->
+    <div class="card" id="passo-4-expansao-universo">
+      <div class="card-header">
+        <h2>
+          <span class="step-badge">PASSO A PASSO 4</span>
+          <span>💥 A Expansão do Universo & A Lei de Hubble ($v = H_0 \cdot d$)</span>
+        </h2>
+        <label class="test-checkbox-wrap">
+          <input type="checkbox" data-test-id="astro-step-4">
+          <span class="test-checkbox-label">Conhecimento Testado</span>
+        </label>
+      </div>
+      <div class="desc-text">
+        Edwin Hubble observou o desvio para o vermelho (Redshift) da luz das galáxias distantes, provando que o próprio espaço entre as galáxias está se expandindo:
+      </div>
+
+      <div class="math-box">
+        <div class="math-title">📌 A Equação da Expansão Cósmica</div>
+        <div class="calc-step">
+          <span>1. <strong>Lei de Hubble-Lemaître</strong>: $v = H_0 \cdot d$. A velocidade de afastamento ($v$) é diretamente proporcional à distância ($d$).</span>
+          <label class="test-checkbox-wrap">
+            <input type="checkbox" data-test-id="astro-calc-4-1">
+            <span class="test-checkbox-label">Testado</span>
+          </label>
+        </div>
+        <div class="calc-step">
+          <span>2. <span class="origin">ORIGEM DO BIG BANG</span>: Se rebobinarmos o filme do universo em expansão para trás, toda a matéria esteve concentrada em uma Singularidade Inicial há 13,8 bilhões de anos!</span>
+          <label class="test-checkbox-wrap">
+            <input type="checkbox" data-test-id="astro-calc-4-2">
+            <span class="test-checkbox-label">Testado</span>
+          </label>
+        </div>
+        <div class="cmd-row">
+          <span class="cmd-code">v = H0 * d  |  Singularidade Inicial -> Big Bang (13.8 bilhoes de anos)</span>
+          <button class="copy-btn" onclick="copiar(this, 'v = H0 * d')">📋 Copiar</button>
+          <label class="test-checkbox-wrap">
+            <input type="checkbox" data-test-id="astro-cmd-4-1">
+            <span class="test-checkbox-label">Testado</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>Pensador Sem Fronteiras · Didática Filosofica & Científica Lendária</p>
+      <small>Do Zero ao Infinito</small>
+    </footer>
+  </div>
+
+  <script>
+    function copiar(btn, texto) {
+      navigator.clipboard.writeText(texto).then(() => {
+        const textoOriginal = btn.innerHTML;
+        btn.innerHTML = '✅ Copiado!';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.innerHTML = textoOriginal;
+          btn.classList.remove('copied');
+        }, 1800);
+      }).catch(err => {
+        alert('Erro ao copiar comando.');
+      });
+    }
+
+    // PERSISTÊNCIA DAS CAIXAS DE SELEÇÃO "CONHECIMENTO TESTADO"
+    document.addEventListener('DOMContentLoaded', () => {
+      const pageId = window.location.pathname;
+      document.querySelectorAll('input[type="checkbox"][data-test-id]').forEach((cb) => {
+        const key = pageId + ':' + cb.getAttribute('data-test-id');
+        if (localStorage.getItem(key) === 'true') {
+          cb.checked = true;
+          cb.closest('.calc-step, .cmd-row, .card')?.classList.add('step-tested');
+        }
+        cb.addEventListener('change', () => {
+          localStorage.setItem(key, cb.checked);
+          if (cb.checked) {
+            cb.closest('.calc-step, .cmd-row, .card')?.classList.add('step-tested');
+          } else {
+            cb.closest('.calc-step, .cmd-row, .card')?.classList.remove('step-tested');
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
