@@ -57,6 +57,17 @@
     .copy-btn { background: rgba(52, 211, 153, 0.12); color: #34d399; border: 1px solid rgba(52, 211, 153, 0.4); border-radius: 6px; padding: 0.35rem 0.75rem; font-size: 0.8rem; font-weight: 600; cursor: pointer; white-space: nowrap; transition: all 0.2s ease; }
     .copy-btn:hover { background: #34d399; color: #020617; }
     .copy-btn.copied { background: #22c55e !important; color: #020617 !important; }
+    .calc-step.step-tested, .cmd-row.step-tested { background: rgba(34, 197, 94, 0.15); border-left-color: #22c55e; border-color: #22c55e; }
+    
+    /* CHECKBOX TESTADO STYLES */
+    .test-checkbox-wrap { display: inline-flex; align-items: center; gap: 0.4rem; cursor: pointer; user-select: none; background: rgba(15, 23, 42, 0.6); padding: 0.25rem 0.6rem; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.15); transition: all 0.2s ease; }
+    .test-checkbox-wrap:hover { border-color: #22c55e; background: rgba(34, 197, 94, 0.1); }
+    .test-checkbox-wrap input[type="checkbox"] { appearance: none; width: 16px; height: 16px; border: 1.5px solid #34d399; border-radius: 4px; background: #020617; cursor: pointer; display: grid; place-content: center; transition: all 0.2s ease; }
+    .test-checkbox-wrap input[type="checkbox"]:checked { background: #22c55e; border-color: #22c55e; }
+    .test-checkbox-wrap input[type="checkbox"]:checked::before { content: "✓"; color: #020617; font-weight: 900; font-size: 11px; }
+    .test-checkbox-label { font-size: 0.75rem; font-weight: 600; color: #94a3b8; font-family: 'Inter', sans-serif; }
+    .test-checkbox-wrap input[type="checkbox"]:checked + .test-checkbox-label { color: #4ade80; }
+
     footer { text-align: center; margin-top: 2rem; color: #64748b; font-size: 0.85rem; }
   </style>
 </head>
@@ -86,12 +97,34 @@
 
       <div class="math-box">
         <div class="math-title">📌 Fórmulas da Estrutura Atômica</div>
-        <div class="calc-step">1. <strong>Número Atômico (Z)</strong> = Número de Prótons (p) = Número de Elétrons (e) em átomo neutro.</div>
-        <div class="calc-step">2. <strong>Número de Massa (A)</strong> = Prótons (Z) + Nêutrons (n) => <span class="highlight">A = Z + n</span></div>
-        <div class="calc-step">3. <strong>Cálculo de Nêutrons (n)</strong> = Massa (A) - Número Atômico (Z) => <span class="highlight">n = A - Z</span></div>
+        <div class="calc-step">
+          <span>1. <strong>Número Atômico (Z)</strong> = Número de Prótons (p) = Número de Elétrons (e) em átomo neutro.</span>
+          <label class="test-checkbox-wrap">
+            <input type="checkbox" data-test-id="quim-calc-1-1">
+            <span class="test-checkbox-label">Testado</span>
+          </label>
+        </div>
+        <div class="calc-step">
+          <span>2. <strong>Número de Massa (A)</strong> = Prótons (Z) + Nêutrons (n) => <span class="highlight">A = Z + n</span></span>
+          <label class="test-checkbox-wrap">
+            <input type="checkbox" data-test-id="quim-calc-1-2">
+            <span class="test-checkbox-label">Testado</span>
+          </label>
+        </div>
+        <div class="calc-step">
+          <span>3. <strong>Cálculo de Nêutrons (n)</strong> = Massa (A) - Número Atômico (Z) => <span class="highlight">n = A - Z</span></span>
+          <label class="test-checkbox-wrap">
+            <input type="checkbox" data-test-id="quim-calc-1-3">
+            <span class="test-checkbox-label">Testado</span>
+          </label>
+        </div>
         <div class="cmd-row">
           <span class="cmd-code">Z = p = e  |  A = Z + n  =>  n = A - Z</span>
           <button class="copy-btn" onclick="copiar(this, 'Z = p = e  |  A = Z + n  =>  n = A - Z')">📋 Copiar</button>
+          <label class="test-checkbox-wrap">
+            <input type="checkbox" data-test-id="quim-cmd-1-1">
+            <span class="test-checkbox-label">Testado</span>
+          </label>
         </div>
       </div>
     </div>
@@ -330,13 +363,25 @@
       <small>Do Zero ao Infinito</small>
     </footer>
   </div>
-  <script>
-    function copiar(btn, texto) {
-      navigator.clipboard.writeText(texto).then(() => {
-        const textoOriginal = btn.innerHTML; btn.innerHTML = '✅ Copiado!'; btn.classList.add('copied');
-        setTimeout(() => { btn.innerHTML = textoOriginal; btn.classList.remove('copied'); }, 1800);
+    // PERSISTÊNCIA DAS CAIXAS DE SELEÇÃO "CONHECIMENTO TESTADO"
+    document.addEventListener('DOMContentLoaded', () => {
+      const pageId = window.location.pathname;
+      document.querySelectorAll('input[type="checkbox"][data-test-id]').forEach((cb) => {
+        const key = pageId + ':' + cb.getAttribute('data-test-id');
+        if (localStorage.getItem(key) === 'true') {
+          cb.checked = true;
+          cb.closest('.calc-step, .cmd-row, .card')?.classList.add('step-tested');
+        }
+        cb.addEventListener('change', () => {
+          localStorage.setItem(key, cb.checked);
+          if (cb.checked) {
+            cb.closest('.calc-step, .cmd-row, .card')?.classList.add('step-tested');
+          } else {
+            cb.closest('.calc-step, .cmd-row, .card')?.classList.remove('step-tested');
+          }
+        });
       });
-    }
+    });
   </script>
 </body>
 </html>
