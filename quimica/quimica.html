@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes, viewport-fit=cover">
+  <title>Química Lendária | Tabela Periódica, Reações & Estequiometria</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Share+Tech+Mono&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    body {
+      background: radial-gradient(circle at 10% 10%, #031412 0%, #010807 100%);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: #e2e8f0;
+      min-height: 100vh;
+      padding: 1.5rem 1rem 3rem;
+      display: flex; flex-direction: column; align-items: center; line-height: 1.6;
+    }
+    body::before {
+      content: ""; position: fixed; inset: 0;
+      background-image: 
+        radial-gradient(circle at 85% 15%, rgba(16, 185, 129, 0.15) 0%, transparent 45%),
+        radial-gradient(circle at 15% 85%, rgba(6, 182, 212, 0.12) 0%, transparent 50%);
+      pointer-events: none; z-index: 0;
+    }
+    .container { width: 100%; max-width: 860px; position: relative; z-index: 2; display: flex; flex-direction: column; gap: 1.8rem; }
+    header { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 0.8rem; }
+    .btn-voltar {
+      align-self: flex-start; display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.4);
+      padding: 0.5rem 1.2rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; text-decoration: none;
+      backdrop-filter: blur(10px); transition: all 0.2s ease;
+    }
+    .btn-voltar:hover { background: rgba(16, 185, 129, 0.3); color: #fff; box-shadow: 0 0 15px rgba(16, 185, 129, 0.5); transform: translateY(-2px); }
+    .main-title {
+      font-family: 'Orbitron', sans-serif; font-size: clamp(2rem, 7vw, 3.2rem); font-weight: 800; text-align: center;
+      letter-spacing: 0.05em; background: linear-gradient(135deg, #10b981, #34d399, #38bdf8);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      filter: drop-shadow(0 0 20px rgba(16, 185, 129, 0.4));
+    }
+    .subtitle { font-size: 1.1rem; color: #94a3b8; max-width: 720px; margin: 0 auto; }
+    .badge-bar { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem; margin-top: 0.5rem; }
+    .badge { background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(16, 185, 129, 0.35); color: #6ee7b7; padding: 0.35rem 0.85rem; border-radius: 20px; font-size: 0.82rem; font-family: 'Share Tech Mono', monospace; }
+    .card { background: rgba(15, 23, 42, 0.78); backdrop-filter: blur(16px); border: 1px solid rgba(16, 185, 129, 0.25); border-radius: 1.5rem; padding: 1.6rem; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); transition: all 0.3s ease; }
+    .card:hover { border-color: rgba(52, 211, 153, 0.45); box-shadow: 0 15px 35px rgba(0,0,0,0.6), 0 0 30px rgba(52, 211, 153, 0.2); }
+    .card-header { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem; padding-bottom: 0.8rem; border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
+    .card-header h2 { font-size: 1.3rem; font-weight: 700; color: #f8fafc; font-family: 'Orbitron', sans-serif; }
+    .step-badge { background: linear-gradient(135deg, #10b981, #059669); color: #fff; font-weight: 800; font-size: 0.85rem; padding: 0.35rem 0.75rem; border-radius: 8px; }
+    .desc-text { font-size: 0.95rem; color: #cbd5e1; margin-bottom: 1.2rem; }
+    .math-box { background: rgba(2, 6, 23, 0.9); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 0.85rem; padding: 1rem; margin-bottom: 1rem; }
+    .math-title { font-weight: bold; color: #34d399; font-size: 0.95rem; margin-bottom: 0.5rem; }
+    .calc-step { background: #090d16; border-left: 4px solid #10b981; padding: 0.6rem 0.8rem; border-radius: 0 0.5rem 0.5rem 0; margin-top: 0.5rem; font-family: 'Share Tech Mono', monospace; font-size: 0.95rem; color: #e0f2fe; }
+    .cmd-row { display: flex; justify-content: space-between; align-items: center; background: #090d16; border: 1px solid rgba(52, 211, 153, 0.25); border-radius: 0.6rem; padding: 0.5rem 0.85rem; gap: 0.5rem; margin-top: 0.5rem; }
+    .cmd-code { font-family: 'Share Tech Mono', monospace; color: #34d399; font-size: 0.95rem; font-weight: 600; }
+    .copy-btn { background: rgba(52, 211, 153, 0.12); color: #34d399; border: 1px solid rgba(52, 211, 153, 0.4); border-radius: 6px; padding: 0.35rem 0.75rem; font-size: 0.8rem; font-weight: 600; cursor: pointer; white-space: nowrap; transition: all 0.2s ease; }
+    .copy-btn:hover { background: #34d399; color: #020617; }
+    .copy-btn.copied { background: #22c55e !important; color: #020617 !important; }
+    footer { text-align: center; margin-top: 2rem; color: #64748b; font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <a href="../index.html" class="btn-voltar">⬅️ Voltar ao Portal Principal</a>
+      <h1 class="main-title">🧪 QUÍMICA LENDÁRIA</h1>
+      <p class="subtitle">Átomos, Tabela Periódica, Reações, Soluções & Química Orgânica Passo a Passo</p>
+      <div class="badge-bar">
+        <span class="badge">⚛️ Estrutura Atômica</span>
+        <span class="badge">📊 Tabela Periódica</span>
+        <span class="badge">⚖️ Estequiometria</span>
+        <span class="badge">🧪 Química Orgânica</span>
+      </div>
+    </header>
+
+    <div class="card" id="modulo-1-atomo">
+      <div class="card-header">
+        <span class="step-badge">MÓDULO 1</span>
+        <h2>⚛️ Estrutura Atômica & Tabela Periódica</h2>
+      </div>
+      <div class="desc-text">O átomo é formado por Prótons (+), Nêutrons (0) no núcleo e Elétrons (-) na eletrosfera:</div>
+      <div class="math-box">
+        <div class="math-title">📌 Fórmulas Fundamentais do Átomo</div>
+        <div class="calc-step">Número Atômico (Z) = Número de Prótons (p) = Número de Elétrons (e)</div>
+        <div class="calc-step">Número de Massa (A) = Prótons (Z) + Nêutrons (n) => A = Z + n</div>
+        <div class="cmd-row">
+          <span class="cmd-code">A = Z + n => n = A - Z</span>
+          <button class="copy-btn" onclick="copiar(this, 'A = Z + n => n = A - Z')">📋 Copiar</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" id="modulo-2-estequiometria">
+      <div class="card-header">
+        <span class="step-badge">MÓDULO 2</span>
+        <h2>⚖️ Balanceamento de Reações & Estequiometria</h2>
+      </div>
+      <div class="desc-text">Lei da Conservação da Massa (Lavoisier): Na natureza, nada se cria, nada se perde, tudo se transforma:</div>
+      <div class="math-box">
+        <div class="math-title">📌 Passo a Passo de Balanceamento: Combustão do Metano</div>
+        <div class="calc-step">1. Reação Desbalanceada: CH₄ + O₂ → CO₂ + H₂O</div>
+        <div class="calc-step">2. Balanceando Hidrogênios: CH₄ + O₂ → CO₂ + 2 H₂O</div>
+        <div class="calc-step">3. Balanceando Oxigênios: CH₄ + 2 O₂ → CO₂ + 2 H₂O</div>
+        <div class="cmd-row">
+          <span class="cmd-code">CH4 + 2 O2 -> CO2 + 2 H2O</span>
+          <button class="copy-btn" onclick="copiar(this, 'CH4 + 2 O2 -> CO2 + 2 H2O')">📋 Copiar</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" id="modulo-3-solucoes">
+      <div class="card-header">
+        <span class="step-badge">MÓDULO 3</span>
+        <h2>🧪 Soluções, Concentração & Molaridade</h2>
+      </div>
+      <div class="desc-text">Cálculo da quantidade de soluto dissolvido em um determinado volume de solução:</div>
+      <div class="math-box">
+        <div class="math-title">📌 Fórmula da Concentração Comum e Molaridade</div>
+        <div class="calc-step">Concentração Comum (g/L): C = massa (m) / Volume (V)</div>
+        <div class="calc-step">Molaridade (mol/L): M = nº de mols (n) / Volume (V)</div>
+        <div class="cmd-row">
+          <span class="cmd-code">C = m / V  |  M = n / V</span>
+          <button class="copy-btn" onclick="copiar(this, 'C = m / V  |  M = n / V')">📋 Copiar</button>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>Pensador Sem Fronteiras · Didática Científica Lendária</p>
+      <small>Do Zero ao Infinito</small>
+    </footer>
+  </div>
+  <script>
+    function copiar(btn, texto) {
+      navigator.clipboard.writeText(texto).then(() => {
+        const textoOriginal = btn.innerHTML; btn.innerHTML = '✅ Copiado!'; btn.classList.add('copied');
+        setTimeout(() => { btn.innerHTML = textoOriginal; btn.classList.remove('copied'); }, 1800);
+      });
+    }
+  </script>
+</body>
+</html>
