@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes, viewport-fit=cover">
+  <title>Varredura Geral de Portas & Isolamento de Testes | Didática PSF</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Share+Tech+Mono&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    body {
+      background: radial-gradient(circle at 10% 10%, #06101e 0%, #02050b 100%);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: #e2e8f0;
+      min-height: 100vh;
+      padding: 1.5rem 1rem 3rem;
+      display: flex; flex-direction: column; align-items: center; line-height: 1.6;
+    }
+    body::before {
+      content: ""; position: fixed; inset: 0;
+      background-image: 
+        radial-gradient(circle at 85% 15%, rgba(239, 68, 68, 0.12) 0%, transparent 45%),
+        radial-gradient(circle at 15% 85%, rgba(6, 182, 212, 0.12) 0%, transparent 50%);
+      pointer-events: none; z-index: 0;
+    }
+    .container { width: 100%; max-width: 860px; position: relative; z-index: 2; display: flex; flex-direction: column; gap: 1.8rem; }
+    header { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 0.8rem; }
+    .btn-voltar {
+      align-self: flex-start; display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(239, 68, 68, 0.15); color: #fca5a5; border: 1px solid rgba(239, 68, 68, 0.4);
+      padding: 0.5rem 1.2rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; text-decoration: none;
+      backdrop-filter: blur(10px); transition: all 0.2s ease;
+    }
+    .btn-voltar:hover { background: rgba(239, 68, 68, 0.3); color: #fff; box-shadow: 0 0 15px rgba(239, 68, 68, 0.5); transform: translateY(-2px); }
+    .main-title {
+      font-family: 'Orbitron', sans-serif; font-size: clamp(1.8rem, 6vw, 2.8rem); font-weight: 800; text-align: center;
+      letter-spacing: 0.05em; background: linear-gradient(135deg, #ef4444, #f97316, #06b6d4);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      filter: drop-shadow(0 0 20px rgba(239, 68, 68, 0.4));
+    }
+    .subtitle { font-size: 1.05rem; color: #94a3b8; max-width: 740px; margin: 0 auto; }
+    .badge-bar { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem; margin-top: 0.5rem; }
+    .badge { background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(239, 68, 68, 0.35); color: #fca5a5; padding: 0.35rem 0.85rem; border-radius: 20px; font-size: 0.82rem; font-family: 'Share Tech Mono', monospace; }
+    .card { background: rgba(15, 23, 42, 0.78); backdrop-filter: blur(16px); border: 1px solid rgba(239, 68, 68, 0.25); border-radius: 1.5rem; padding: 1.6rem; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); transition: border-color 0.3s ease; }
+    .card:hover { border-color: rgba(249, 115, 22, 0.45); box-shadow: 0 15px 35px rgba(0,0,0,0.6), 0 0 30px rgba(249, 115, 22, 0.2); }
+    .card-header { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem; padding-bottom: 0.8rem; border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
+    .card-header h2 { font-size: 1.25rem; font-weight: 700; color: #f8fafc; font-family: 'Orbitron', sans-serif; }
+    .step-badge { background: linear-gradient(135deg, #ef4444, #b91c1c); color: #fff; font-weight: 800; font-size: 0.85rem; padding: 0.35rem 0.75rem; border-radius: 8px; white-space: nowrap; }
+    .desc-text { font-size: 0.95rem; color: #cbd5e1; margin-bottom: 1.2rem; }
+    .cmd-group { display: flex; flex-direction: column; gap: 0.8rem; }
+    .cmd-block { background: rgba(2, 6, 23, 0.9); border: 1px solid rgba(239, 68, 68, 0.25); border-radius: 0.85rem; padding: 0.9rem 1.1rem; display: flex; flex-direction: column; gap: 0.4rem; }
+    .cmd-label { font-size: 0.9rem; color: #94a3b8; font-weight: 600; }
+    .cmd-row { display: flex; justify-content: space-between; align-items: center; background: #090d16; border: 1px solid rgba(239, 68, 68, 0.25); border-radius: 0.6rem; padding: 0.5rem 0.85rem; gap: 0.5rem; }
+    .cmd-code { font-family: 'Share Tech Mono', monospace; color: #fca5a5; font-size: 0.95rem; font-weight: 600; overflow-x: auto; white-space: pre-wrap; word-break: break-all; }
+    .copy-btn { background: rgba(239, 68, 68, 0.12); color: #fca5a5; border: 1px solid rgba(239, 68, 68, 0.4); border-radius: 6px; padding: 0.35rem 0.75rem; font-size: 0.8rem; font-weight: 600; cursor: pointer; white-space: nowrap; transition: all 0.2s ease; font-family: 'Inter', sans-serif; }
+    .copy-btn:hover { background: #ef4444; color: #020617; }
+    .copy-btn.copied { background: #22c55e !important; color: #020617 !important; border-color: #22c55e !important; }
+    footer { text-align: center; margin-top: 2rem; color: #64748b; font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <a href="../passo_a_passo.html" class="btn-voltar">⬅️ Voltar aos Passo a Passo</a>
+      <h1 class="main-title">🔍 VARREDURA GERAL DE PORTAS & TESTES ISOLADOS</h1>
+      <p class="subtitle">Guia Definitivo: Descobrir Portas Abertas (Nmap, Netcat, SS), Isolar Testes Porta a Porta e Diagnóstico de Serviços</p>
+      
+      <div class="badge-bar">
+        <span class="badge">🎯 1. O que é Varredura de Portas?</span>
+        <span class="badge">⚡ 2. Tipos de Scans (SYN vs Connect)</span>
+        <span class="badge">🧪 3. Isolamento Porta a Porta</span>
+        <span class="badge">📋 4. Finalidade de Cada Teste</span>
+      </div>
+    </header>
+
+    <!-- PASSO 1: O QUE É UMA VARREDURA E PARA QUE SERVE -->
+    <div class="card" id="passo-1-o-que-e-varredura">
+      <div class="card-header">
+        <span class="step-badge">PASSO A PASSO 1</span>
+        <h2>🎯 O que é Varredura de Portas e Para que Serve Cada Teste?</h2>
+      </div>
+      <div class="desc-text">
+        Uma porta de rede (0 a 65535) é um ponto de entrada digital em um computador. 
+        A **Varredura de Portas (Port Scan)** envia pacotes de teste para descobrir quais portas estão em modo `LISTEN` (ouvindo conexões), quais estão `FILTERED` (bloqueadas por firewall) e quais estão `CLOSED`.
+      </div>
+
+      <div class="cmd-group">
+        <div class="cmd-block">
+          <div class="cmd-label">1. Inspecionar todas as portas locais que estão escutando (LISTEN) no próprio PC:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">sudo ss -tulpn</span>
+            <button class="copy-btn" onclick="copiar(this, 'sudo ss -tulpn')">📋 Copiar</button>
+          </div>
+          <div style="font-size:0.8rem; color:#a7f3d0; margin-top:0.2rem;">Finalidade: Saber exatamente quais programas locais abriram portas no seu computador.</div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">2. Varredura rápida de portas TCP ativas em uma rede local inteira (ex: 192.168.1.0/24):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">nmap -sn 192.168.1.0/24</span>
+            <button class="copy-btn" onclick="copiar(this, 'nmap -sn 192.168.1.0/24')">📋 Copiar</button>
+          </div>
+          <div style="font-size:0.8rem; color:#94a3b8; margin-top:0.2rem;">Finalidade: Mapear quais dispositivos estão ligados e com resposta na rede.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PASSO 2: OS TIPOS DE SCAN SEM EXCEÇÃO -->
+    <div class="card" id="passo-2-tipos-de-scans">
+      <div class="card-header">
+        <span class="step-badge">PASSO A PASSO 2</span>
+        <h2>⚡ Todos os Tipos de Varredura de Portas (Sem Exceção)</h2>
+      </div>
+      <div class="desc-text">
+        Cada tipo de varredura possui uma finalidade técnica específica (velocidade, discrição ou profundidade de auditoria):
+      </div>
+
+      <div class="cmd-group">
+        <div class="cmd-block">
+          <div class="cmd-label">1. TCP SYN Scan (-sS / Stealth Scan - Exige root):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">sudo nmap -sS -p 1-65535 192.168.1.100</span>
+            <button class="copy-btn" onclick="copiar(this, 'sudo nmap -sS -p 1-65535 192.168.1.100')">📋 Copiar</button>
+          </div>
+          <div style="font-size:0.8rem; color:#a7f3d0; margin-top:0.2rem;">Para que serve: Envia um pacote SYN. Não completa o handshake de 3 vias (mais rápido e discreto). Varre todas as 65.535 portas sem exceção!</div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">2. TCP Connect Scan (-sT - Sem necessidade de root):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">nmap -sT -p 1-1000 192.168.1.100</span>
+            <button class="copy-btn" onclick="copiar(this, 'nmap -sT -p 1-1000 192.168.1.100')">📋 Copiar</button>
+          </div>
+          <div style="font-size:0.8rem; color:#94a3b8; margin-top:0.2rem;">Para que serve: Completa a conexão TCP de 3 vias inteira. Usado quando o usuário não possui privilégios de administrador.</div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">3. UDP Scan (-sU - Descobrir serviços sem conexão):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">sudo nmap -sU -p 53,67,68,123,161 192.168.1.100</span>
+            <button class="copy-btn" onclick="copiar(this, 'sudo nmap -sU -p 53,67,68,123,161 192.168.1.100')">📋 Copiar</button>
+          </div>
+          <div style="font-size:0.8rem; color:#94a3b8; margin-top:0.2rem;">Para que serve: Testa serviços UDP como DNS (53), DHCP (67/68), NTP (123) e SNMP (161).</div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">4. Detecção de Versão de Serviço & Sistema Operativo (-sV -O):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">sudo nmap -sV -O -p 22,80,443,8080 192.168.1.100</span>
+            <button class="copy-btn" onclick="copiar(this, 'sudo nmap -sV -O -p 22,80,443,8080 192.168.1.100')">📋 Copiar</button>
+          </div>
+          <div style="font-size:0.8rem; color:#a7f3d0; margin-top:0.2rem;">Para que serve: Identifica o software exato (ex: Apache 2.4.52 ou OpenSSH 8.9p1) e a versão do Kernel do sistema alvo.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PASSO 3: ISOLAR UMA POR UMA CADA PORTA PARA TESTE -->
+    <div class="card" id="passo-3-isolar-uma-por-uma">
+      <div class="card-header">
+        <span class="step-badge">PASSO A PASSO 3</span>
+        <h2>🧪 Como Isolar uma por uma Cada Porta para Testes Únicos</h2>
+      </div>
+      <div class="desc-text">
+        Quando uma varredura geral encontra portas abertas, precisamos **isolar porta a porta** para confirmar a conectividade sem ruído de rede:
+      </div>
+
+      <div class="cmd-group">
+        <div class="cmd-block">
+          <div class="cmd-label">1. Testar Isoladamente a Porta 22 (SSH) com Netcat (nc):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">nc -zv -w 5 192.168.1.100 22</span>
+            <button class="copy-btn" onclick="copiar(this, 'nc -zv -w 5 192.168.1.100 22')">📋 Copiar</button>
+          </div>
+          <div style="font-size:0.8rem; color:#a7f3d0; margin-top:0.2rem;">Para que serve: Confirma se o serviço SSH responde no IP alvo sem enviar payload de dados.</div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">2. Testar Isoladamente a Porta 80 / 443 (Web HTTP/HTTPS) com Curl:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">curl -I --connect-timeout 5 https://192.168.1.100:443</span>
+            <button class="copy-btn" onclick="copiar(this, 'curl -I --connect-timeout 5 https://192.168.1.100:443')">📋 Copiar</button>
+          </div>
+          <div style="font-size:0.8rem; color:#94a3b8; margin-top:0.2rem;">Para que serve: Requisita apenas o cabeçalho HTTP para validar se o servidor web está ativo.</div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">3. Testar Isoladamente a Porta 53 (DNS) com Dig:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">dig @192.168.1.100 google.com +time=3</span>
+            <button class="copy-btn" onclick="copiar(this, 'dig @192.168.1.100 google.com +time=3')">📋 Copiar</button>
+          </div>
+          <div style="font-size:0.8rem; color:#94a3b8; margin-top:0.2rem;">Para que serve: Testa se o servidor no IP alvo está respondendo requisições DNS ativas.</div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">4. Testar Isoladamente qualquer porta via Socket NATIVO do Bash (/dev/tcp):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">(echo > /dev/tcp/192.168.1.100/8080) 2>/dev/null && echo "Porta 8080 ABERTA" || echo "Porta FECHADA"</span>
+            <button class="copy-btn" onclick="copiar(this, '(echo > /dev/tcp/192.168.1.100/8080) 2>/dev/null && echo &quot;Porta 8080 ABERTA&quot; || echo &quot;Porta FECHADA&quot;')">📋 Copiar</button>
+          </div>
+          <div style="font-size:0.8rem; color:#a7f3d0; margin-top:0.2rem;">Para que serve: Teste ultra-rápido sem depender do Nmap ou Netcat instalados no sistema!</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PASSO 4: TABELA RESUMO DOS TESTES E SUAS FINALIDADES -->
+    <div class="card" id="passo-4-resumo-finalidade">
+      <div class="card-header">
+        <span class="step-badge">PASSO A PASSO 4</span>
+        <h2>📋 Resumo: Tipo de Teste & Sua Finalidade Prática</h2>
+      </div>
+      <div class="desc-text">
+        Tabela explicativa para consulta rápida da utilidade de cada comando:
+      </div>
+
+      <div class="cmd-group">
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Tabela de Utilidade Técnica:</div>
+          <div style="font-size:0.85rem; color:#e0f2fe; line-height:1.7;">
+            • <code>ss -tulpn</code> $\rightarrow$ <strong>Diagnóstico Local</strong> (Quais processos escutam no próprio computador).<br>
+            • <code>nmap -sS</code> $\rightarrow$ <strong>Auditoria Stealth</strong> (Varredura rápida sem completar handshake).<br>
+            • <code>nmap -sV</code> $\rightarrow$ <strong>Identificação de Software</strong> (Descobrir versão exata de Apache/SSH/MySQL).<br>
+            • <code>nc -zv IP PORTA</code> $\rightarrow$ <strong>Isolamento Individual</strong> (Confirmar se uma porta específica responde).<br>
+            • <code>/dev/tcp/IP/PORTA</code> $\rightarrow$ <strong>Teste Nativo Bash</strong> (Funciona em qualquer terminal Linux básico).
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>Pensador Sem Fronteiras · Didática Filosofica & Científica Lendária</p>
+      <small>Do Zero ao Infinito</small>
+    </footer>
+  </div>
+
+  <script>
+    function copiar(btn, texto) {
+      navigator.clipboard.writeText(texto).then(() => {
+        const textoOriginal = btn.innerHTML;
+        btn.innerHTML = '✅ Copiado!';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.innerHTML = textoOriginal;
+          btn.classList.remove('copied');
+        }, 1800);
+      }).catch(err => {
+        alert('Erro ao copiar comando.');
+      });
+    }
+  </script>
+</body>
+</html>
