@@ -95,6 +95,15 @@
         <div class="calc-step">3. <strong>Máquina Analítica (1837 - Charles Babbage & Ada Lovelace)</strong>: A primeira ideia de separar a Unidade de Cálculo (Mill) da Memória (Store).</div>
         <div class="calc-step">4. <strong>O Limite Mecânico</strong>: Engrenagens de metal sofriam atrito e travavam. Era preciso usar sinais elétricos sem partes móveis!</div>
       </div>
+
+      <div class="math-box">
+        <div class="math-title">🛠️ GUIA PRÁTICO: Testar Calculadora por Linha de Comando (Modo Ábaco)</div>
+        <div class="calc-step">1. Executar a calculadora de precisão arbitrária no terminal Linux (`bc`):</div>
+        <div class="cmd-row">
+          <span class="cmd-code">echo "258 + 475" | bc</span>
+          <button class="copy-btn" onclick="copiar(this, 'echo &quot;258 + 475&quot; | bc')">📋 Copiar</button>
+        </div>
+      </div>
     </div>
 
     <!-- PASSO 2: A FÍSICA DO TRANSISTOR E O NASCIMENTO DO BINÁRIO -->
@@ -122,6 +131,21 @@
         <div class="cmd-row">
           <span class="cmd-code">25 (Decimal) = 11001 (Binario)  |  Letra 'A' = 01000001 (Byte ASCII)</span>
           <button class="copy-btn" onclick="copiar(this, '25 em binario = 11001')">📋 Copiar</button>
+        </div>
+      </div>
+
+      <div class="math-box">
+        <div class="math-title">🛠️ GUIA PRÁTICO: Converter Decimal $\rightarrow$ Binário & Caractere ASCII no Terminal</div>
+        <div class="calc-step">1. Converter o decimal 25 em binário no terminal Linux:</div>
+        <div class="cmd-row">
+          <span class="cmd-code">echo "obase=2; 25" | bc</span>
+          <button class="copy-btn" onclick="copiar(this, 'echo &quot;obase=2; 25&quot; | bc')">📋 Copiar</button>
+        </div>
+
+        <div class="calc-step">2. Ver o código binário e hexadecimal exato da palavra 'A':</div>
+        <div class="cmd-row">
+          <span class="cmd-code">printf 'A' | xxd -b</span>
+          <button class="copy-btn" onclick="copiar(this, 'printf &apos;A&apos; | xxd -b')">📋 Copiar</button>
         </div>
       </div>
     </div>
