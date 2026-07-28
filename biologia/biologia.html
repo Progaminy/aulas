@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes, viewport-fit=cover">
+  <title>Biologia Lendária | Didática PSF: Da Química Orgânica ao Código Genético</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Share+Tech+Mono&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    body {
+      background: radial-gradient(circle at 10% 10%, #041a12 0%, #010a07 100%);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: #e2e8f0;
+      min-height: 100vh;
+      padding: 1.5rem 1rem 3rem;
+      display: flex; flex-direction: column; align-items: center; line-height: 1.6;
+    }
+    body::before {
+      content: ""; position: fixed; inset: 0;
+      background-image: 
+        radial-gradient(circle at 85% 15%, rgba(16, 185, 129, 0.15) 0%, transparent 45%),
+        radial-gradient(circle at 15% 85%, rgba(6, 182, 212, 0.12) 0%, transparent 50%);
+      pointer-events: none; z-index: 0;
+    }
+    .container { width: 100%; max-width: 860px; position: relative; z-index: 2; display: flex; flex-direction: column; gap: 1.8rem; }
+    header { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 0.8rem; }
+    .btn-voltar {
+      align-self: flex-start; display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.4);
+      padding: 0.5rem 1.2rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; text-decoration: none;
+      backdrop-filter: blur(10px); transition: all 0.2s ease;
+    }
+    .btn-voltar:hover { background: rgba(16, 185, 129, 0.3); color: #fff; box-shadow: 0 0 15px rgba(16, 185, 129, 0.5); transform: translateY(-2px); }
+    .main-title {
+      font-family: 'Orbitron', sans-serif; font-size: clamp(2rem, 7vw, 3.2rem); font-weight: 800; text-align: center;
+      letter-spacing: 0.05em; background: linear-gradient(135deg, #10b981, #34d399, #06b6d4);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      filter: drop-shadow(0 0 20px rgba(16, 185, 129, 0.4));
+    }
+    .subtitle { font-size: 1.1rem; color: #94a3b8; max-width: 720px; margin: 0 auto; }
+    .badge-bar { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem; margin-top: 0.5rem; }
+    .badge { background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(16, 185, 129, 0.35); color: #a7f3d0; padding: 0.35rem 0.85rem; border-radius: 20px; font-size: 0.82rem; font-family: 'Share Tech Mono', monospace; }
+    .card { background: rgba(15, 23, 42, 0.78); backdrop-filter: blur(16px); border: 1px solid rgba(16, 185, 129, 0.25); border-radius: 1.5rem; padding: 1.6rem; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); transition: border-color 0.3s ease; }
+    .card:hover { border-color: rgba(52, 211, 153, 0.45); box-shadow: 0 15px 35px rgba(0,0,0,0.6), 0 0 30px rgba(52, 211, 153, 0.2); }
+    .card-header { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem; padding-bottom: 0.8rem; border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
+    .card-header h2 { font-size: 1.3rem; font-weight: 700; color: #f8fafc; font-family: 'Orbitron', sans-serif; }
+    .step-badge { background: linear-gradient(135deg, #10b981, #059669); color: #fff; font-weight: 800; font-size: 0.85rem; padding: 0.35rem 0.75rem; border-radius: 8px; white-space: nowrap; }
+    .desc-text { font-size: 0.95rem; color: #cbd5e1; margin-bottom: 1.2rem; }
+    .math-box { background: rgba(2, 6, 23, 0.9); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 0.85rem; padding: 1rem; margin-bottom: 1rem; }
+    .math-title { font-weight: bold; color: #34d399; font-size: 0.95rem; margin-bottom: 0.5rem; }
+    .calc-step { background: #090d16; border-left: 4px solid #10b981; padding: 0.6rem 0.8rem; border-radius: 0 0.5rem 0.5rem 0; margin-top: 0.5rem; font-family: 'Share Tech Mono', monospace; font-size: 0.95rem; color: #e0f2fe; }
+    .calc-step span.highlight { color: #f59e0b; font-weight: bold; }
+    .calc-step span.origin { color: #34d399; font-weight: bold; }
+    .cmd-row { display: flex; justify-content: space-between; align-items: center; background: #090d16; border: 1px solid rgba(16, 185, 129, 0.25); border-radius: 0.6rem; padding: 0.5rem 0.85rem; gap: 0.5rem; margin-top: 0.5rem; }
+    .cmd-code { font-family: 'Share Tech Mono', monospace; color: #34d399; font-size: 0.95rem; font-weight: 600; }
+    .copy-btn { background: rgba(16, 185, 129, 0.12); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.4); border-radius: 6px; padding: 0.35rem 0.75rem; font-size: 0.8rem; font-weight: 600; cursor: pointer; white-space: nowrap; transition: all 0.2s ease; font-family: 'Inter', sans-serif; }
+    .copy-btn:hover { background: #34d399; color: #020617; }
+    .copy-btn.copied { background: #22c55e !important; color: #020617 !important; }
+    footer { text-align: center; margin-top: 2rem; color: #64748b; font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <a href="../index.html" class="btn-voltar">⬅️ Voltar ao Portal Principal</a>
+      <h1 class="main-title">🧬 BIOLOGIA LENDÁRIA (PSF)</h1>
+      <p class="subtitle">Didática Filosofica: Da Sopa Orgânica Primordial ao Código Genético e Genética Mendeliana</p>
+      
+      <div class="badge-bar">
+        <span class="badge">🧪 1. Química da Vida → Célula</span>
+        <span class="badge">🔬 2. Endossimbiose & Organelas</span>
+        <span class="badge">🧬 3. DNA → RNA → Proteína</span>
+        <span class="badge">🌱 4. Genética Mendeliana</span>
+      </div>
+    </header>
+
+    <!-- PASSO 1: A QUÍMICA DA VIDA E A ORIGEM DA CÉLULA -->
+    <div class="card" id="passo-1-origem-celula">
+      <div class="card-header">
+        <span class="step-badge">PASSO A PASSO 1</span>
+        <h2>🧪 A Química da Vida & A Origem da Primeira Célula</h2>
+      </div>
+      <div class="desc-text">
+        A Biologia não surge do nada! Ela é a continuação direta da Química Orgânica. 
+        Quando os hidrocarbonetos e aminoácidos primordiais formam membranas fosfolipídicas fechadas, **NASCE A PRIMEIRA CÉLULA (Procarionte)**:
+      </div>
+
+      <div class="math-box">
+        <div class="math-title">📌 O Encadeamento Genético da Biologia</div>
+        <div class="calc-step">1. Água + CHONPS (Carbono, Hidrogênio, Oxigênio, Nitrogênio, Fósforo, Enxofre) $\rightarrow$ Aminoácidos e Lipídios.</div>
+        <div class="calc-step">2. <span class="origin">NASCE A MEMBRANA PLASMÁTICA (Bicamada Lipídica)</span>: Separa o meio interno (citoplasma) do meio externo.</div>
+        <div class="calc-step">3. <span class="origin">NASCE A CÉLULA PROCARIONTE</span>: Sem núcleo individualizado (ex: Bactérias e Arqueas).</div>
+        <div class="cmd-row">
+          <span class="cmd-code">CHONPS -> Aminoacidos -> Proteinas -> Membrana Lipidica -> Procarionte</span>
+          <button class="copy-btn" onclick="copiar(this, 'CHONPS -> Aminoacidos -> Membrana -> Procarionte')">📋 Copiar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PASSO 2: A CÉLULA EUCARIONTE E A ENDOSSIMBIOSE -->
+    <div class="card" id="passo-2-eucarionte-endossimbiose">
+      <div class="card-header">
+        <span class="step-badge">PASSO A PASSO 2</span>
+        <h2>🔬 A Célula Eucarionte & A Teoria da Endossimbiose</h2>
+      </div>
+      <div class="desc-text">
+        Como a célula evoluiu para estruturas complexas com órgãos internos (organelas)? 
+        Quando uma célula procarionte primitiva englobou uma bactéria aeróbica sem digeri-la, **NASCEU A MITOCÔNDRIA E A CÉLULA EUCARIONTE**:
+      </div>
+
+      <div class="math-box">
+        <div class="math-title">📌 As Organelas Celulares & Suas Funções</div>
+        <div class="calc-step">1. <strong>Núcleo Celular</strong>: Guarda o material genético (DNA) protegido por uma carioteca.</div>
+        <div class="calc-step">2. <span class="origin">MITOCÔNDRIA (Endossimbiose)</span>: Usina de energia da célula (Respiração Celular / Síntese de ATP). Possui DNA próprio!</div>
+        <div class="calc-step">3. <strong>Ribossomos</strong>: Fábricas de montagem de proteínas.</div>
+        <div class="calc-step">4. <strong>Complexo de Golgi</strong>: Empacotamento e exportação de substâncias.</div>
+        <div class="cmd-row">
+          <span class="cmd-code">Nucleo (DNA) + Mitocondria (ATP) + Ribossomos (Proteinas) = Eucarionte</span>
+          <button class="copy-btn" onclick="copiar(this, 'Nucleo + Mitocondria + Ribossomos = Eucarionte')">📋 Copiar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PASSO 3: O CÓDIGO GENÉTICO (DOGMA CENTRAL) -->
+    <div class="card" id="passo-3-codigo-genetico">
+      <div class="card-header">
+        <span class="step-badge">PASSO A PASSO 3</span>
+        <h2>🧬 O Dogma Central da Biologia (DNA → RNA → Proteína)</h2>
+      </div>
+      <div class="desc-text">
+        Como a célula lê a informação escrita na sua fita dupla de DNA e a transforma em matéria viva (músculos, enzimas, anticorpos)?
+      </div>
+
+      <div class="math-box">
+        <div class="math-title">📌 Transcrição & Tradução Passo a Passo</div>
+        <div class="calc-step">1. <strong>As Bases Nitrogenadas do DNA</strong>: Adenina ($A$), Timina ($T$), Citosina ($C$) e Guanina ($G$). Pares: <span class="highlight">$A - T$</span> e <span class="highlight">$C - G$</span>.</div>
+        <div class="calc-step">2. <strong>Transcrição (DNA $\rightarrow$ RNAm)</strong>: O RNA mensageiro copia a receita trocando Timina por Uracila ($U$).</div>
+        <div class="calc-step">3. <strong>Tradução (RNAm $\rightarrow$ Proteína)</strong>: O Ribossomo lê trincas de bases (Códons). Cada 3 bases equivalem a 1 Aminoácido!</div>
+        <div class="cmd-row">
+          <span class="cmd-code">DNA: ATCG  |  RNAm: AUCG  |  Codon (3 bases) = 1 Aminoacido</span>
+          <button class="copy-btn" onclick="copiar(this, 'DNA (ATCG) -> RNAm (AUCG) -> Proteina')">📋 Copiar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PASSO 4: GENÉTICA MENDELIANA E PROBABILIDADE HEREDITÁRIA -->
+    <div class="card" id="passo-4-genetica-mendeliana">
+      <div class="card-header">
+        <span class="step-badge">PASSO A PASSO 4</span>
+        <h2>🌱 Genética Mendeliana & O Quadro de Punnett</h2>
+      </div>
+      <div class="desc-text">
+        A 1ª Lei de Mendel (Segregação dos Fatores) explica como as características dos pais se dividem nos gametas e se combinam nos filhos:
+      </div>
+
+      <div class="math-box">
+        <div class="math-title">📌 Cruzamento Heterozigótico ($Aa \times Aa$)</div>
+        <div class="calc-step">1. Genótipo dos Pais: Ambos heterozigotos ($Aa$).</div>
+        <div class="calc-step">2. Quadro de Punnett:</div>
+        <div class="calc-step">&nbsp;&nbsp;• $A \times A \rightarrow <span class="highlight">AA</span>$ (25% Homozigoto Dominante)</div>
+        <div class="calc-step">&nbsp;&nbsp;• $A \times a \rightarrow <span class="highlight">Aa</span>$ (50% Heterozigoto)</div>
+        <div class="calc-step">&nbsp;&nbsp;• $a \times a \rightarrow <span class="highlight">aa</span>$ (25% Homozigoto Recessivo)</div>
+        <div class="calc-step">3. Proporção Genotípica: <span class="highlight">1 : 2 : 1</span>  |  Proporção Fenotípica: <span class="highlight">3 Dominantes : 1 Recessivo</span>.</div>
+        <div class="cmd-row">
+          <span class="cmd-code">Aa x Aa => 1 AA : 2 Aa : 1 aa (75% Dominante, 25% Recessivo)</span>
+          <button class="copy-btn" onclick="copiar(this, 'Aa x Aa => 1 AA : 2 Aa : 1 aa')">📋 Copiar</button>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>Pensador Sem Fronteiras · Didática Filosofica & Científica Lendária</p>
+      <small>Do Zero ao Infinito</small>
+    </footer>
+  </div>
+
+  <script>
+    function copiar(btn, texto) {
+      navigator.clipboard.writeText(texto).then(() => {
+        const textoOriginal = btn.innerHTML;
+        btn.innerHTML = '✅ Copiado!';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.innerHTML = textoOriginal;
+          btn.classList.remove('copied');
+        }, 1800);
+      }).catch(err => {
+        alert('Erro ao copiar comando.');
+      });
+    }
+  </script>
+</body>
+</html>
