@@ -439,6 +439,29 @@
       </div>
     </div>
 
+    <!-- PASSO 17: EQUAÇÕES DIFERENCIAIS ORDINÁRIAS (EDOs) -->
+    <div class="card" id="passo-17-equacoes-diferenciais">
+      <div class="card-header">
+        <span class="step-badge">PASSO A PASSO 17</span>
+        <h2>⚡ Equações Diferenciais Ordinárias (EDOs) & Modelagem de Fenômenos</h2>
+      </div>
+      <div class="desc-text">
+        Quando a taxa de variação de um sistema ($\frac{dy}{dt}$) depende do próprio estado atual do sistema ($y$), **NASCEM AS EQUAÇÕES DIFERENCIAIS**:
+      </div>
+
+      <div class="math-box">
+        <div class="math-title">📌 Resolução por Separação de Variáveis</div>
+        <div class="calc-step">1. <strong>Exemplo de Crescimento Populacional/Docaimento</strong>: $\frac{dy}{dt} = k \cdot y$.</div>
+        <div class="calc-step">2. Separando as variáveis: $\frac{1}{y} dy = k \, dt$.</div>
+        <div class="calc-step">3. Integrando ambos os lados: $\int \frac{1}{y} dy = \int k \, dt \implies \ln(y) = k \cdot t + C$.</div>
+        <div class="calc-step">4. Aplicando a exponencial: <span class="highlight">y(t) = y_0 \cdot e^{k \cdot t}</span> (Crescimento/Decaimento Exponencial).</div>
+        <div class="cmd-row">
+          <span class="cmd-code">dy/dt = k*y => y(t) = y0 * e^(k*t)</span>
+          <button class="copy-btn" onclick="copiar(this, 'dy/dt = k*y => y(t) = y0 * e^(k*t)')">📋 Copiar</button>
+        </div>
+      </div>
+    </div>
+
     <footer>
       <p>Pensador Sem Fronteiras · Didática Filosofica & Científica Lendária</p>
       <small>Do Zero ao Infinito</small>

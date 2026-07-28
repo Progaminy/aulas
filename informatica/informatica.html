@@ -174,6 +174,30 @@
       </div>
     </div>
 
+    <!-- PASSO 5: A COMUNICAÇÃO ENTRE COMPUTADORES E A ORIGEM DA INTERNET -->
+    <div class="card" id="passo-5-redes-internet-tcpip">
+      <div class="card-header">
+        <span class="step-badge">PASSO A PASSO 5</span>
+        <h2>🌐 A Comunicação entre Computadores & A Origem da Internet</h2>
+      </div>
+      <div class="desc-text">
+        Quando dois computadores isolados precisam trocar dados a longas distâncias, surge o problema de como enviar bits através de fios compartilhados sem interferência:
+      </div>
+
+      <div class="math-box">
+        <div class="math-title">📌 A Sequência de Nascimento dos Protocolos de Rede</div>
+        <div class="calc-step">1. <strong>O Pacote de Dados (Framing)</strong>: Um arquivo grande não pode ser enviado de uma vez só porque travaria o cabo. Ele é fatiado em pequenos <span class="highlight">Pacotes de Bits</span>.</div>
+        <div class="calc-step">2. <span class="origin">NASCE O ENDEREÇAMENTO IP</span>: Para saber quem está enviando e quem deve receber o pacote em meio a bilhões de máquinas no planeta.</div>
+        <div class="calc-step">3. <span class="origin">NASCE O PROTOCOLO TCP (Transmission Control Protocol)</span>: Como pacotes se perdem ou chegam fora de ordem na rede, o TCP reordena e exige confirmação de recebimento (Handshake de 3 vias).</div>
+        <div class="calc-step">4. <span class="origin">NASCE O SISTEMA DNS (Domain Name System)</span>: Seres humanos não decoram IPs numéricos como 142.250.190.46. O DNS traduz `google.com` em IP.</div>
+        <div class="calc-step">5. <span class="origin">NASCE O PROTOCOLO HTTP / HTTPS</span>: A linguagem padronizada para solicitar e enviar arquivos de texto, imagens e páginas web.</div>
+        <div class="cmd-row">
+          <span class="cmd-code">ping google.com  |  nslookup google.com  |  curl -I https://google.com</span>
+          <button class="copy-btn" onclick="copiar(this, 'curl -I https://google.com')">📋 Copiar</button>
+        </div>
+      </div>
+    </div>
+
     <footer>
       <p>Pensador Sem Fronteiras · Didática Filosofica & Científica Lendária</p>
       <small>Do Zero ao Infinito</small>
