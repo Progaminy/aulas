@@ -284,6 +284,93 @@
       </div>
     </div>
 
+    <!-- PASSO 10: GEOMETRIA PLANA E TEOREMA DE PITÁGORAS -->
+    <div class="card" id="passo-10-geometria-pitagoras">
+      <div class="card-header">
+        <span class="step-badge">PASSO A PASSO 10</span>
+        <h2>📐 Geometria Plana & Dedução Visual do Teorema de Pitágoras</h2>
+      </div>
+      <div class="desc-text">
+        A geometria estuda o espaço. No triângulo retângulo, a área dos quadrados sobre os catetos iguala a área do quadrado sobre a hipotenusa:
+      </div>
+
+      <div class="math-box">
+        <div class="math-title">📌 Teorema de Pitágoras & Áreas Básicas</div>
+        <div class="calc-step">1. <strong>Teorema de Pitágoras</strong>: Em todo triângulo retângulo, <span class="highlight">a² + b² = c²</span> (onde $c$ é a Hipotenusa e $a, b$ os Catetos).</div>
+        <div class="calc-step">2. <strong>Área do Triângulo</strong>: $A = \frac{base \cdot altura}{2}$.</div>
+        <div class="calc-step">3. <strong>Área do Círculo & Perímetro</strong>: $A = \pi \cdot r^2$  |  $P = 2 \cdot \pi \cdot r$.</div>
+        <div class="cmd-row">
+          <span class="cmd-code">a^2 + b^2 = c^2  |  A_circulo = pi * r^2  |  P = 2 * pi * r</span>
+          <button class="copy-btn" onclick="copiar(this, 'a^2 + b^2 = c^2  |  A = pi * r^2')">📋 Copiar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PASSO 11: TRIGONOMETRIA NO TRIÂNGULO RETÂNGULO -->
+    <div class="card" id="passo-11-trigonometria">
+      <div class="card-header">
+        <span class="step-badge">PASSO A PASSO 11</span>
+        <h2>📐 Trigonometria (Seno, Cosseno & Tangente)</h2>
+      </div>
+      <div class="desc-text">
+        Da razão entre os lados de um triângulo retângulo nascem as funções trigonométricas fundamentais:
+      </div>
+
+      <div class="math-box">
+        <div class="math-title">📌 Razões Trigonométricas Originais</div>
+        <div class="calc-step">1. <strong>Seno (sen θ)</strong> = Cateto Oposto / Hipotenusa.</div>
+        <div class="calc-step">2. <strong>Cosseno (cos θ)</strong> = Cateto Adjacente / Hipotenusa.</div>
+        <div class="calc-step">3. <strong>Tangente (tg θ)</strong> = Cateto Oposto / Cateto Adjacente = $\frac{sen \theta}{cos \theta}$.</div>
+        <div class="calc-step">4. <strong>Relação Fundamental</strong>: <span class="highlight">sen²(θ) + cos²(θ) = 1</span>.</div>
+        <div class="cmd-row">
+          <span class="cmd-code">sen = Oposto/Hipo  |  cos = Adjac/Hipo  |  sen^2(x) + cos^2(x) = 1</span>
+          <button class="copy-btn" onclick="copiar(this, 'sen^2(x) + cos^2(x) = 1')">📋 Copiar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PASSO 12: MATRIZES E SISTEMAS LINEARES -->
+    <div class="card" id="passo-12-matrizes-sistemas">
+      <div class="card-header">
+        <span class="step-badge">PASSO A PASSO 12</span>
+        <h2>📊 Matrizes, Determinantes & Sistemas Lineares</h2>
+      </div>
+      <div class="desc-text">
+        Organização de dados em tabelas de $m$ linhas por $n$ colunas para resolver sistemas de múltiplas equações simultâneas:
+      </div>
+
+      <div class="math-box">
+        <div class="math-title">📌 Determinante de Matriz 2x2 & 3x3 (Regra de Sarrus)</div>
+        <div class="calc-step">1. Determinante $2 \times 2$: $|A| = (a \cdot d) - (b \cdot c)$ para $A = \begin{bmatrix} a & b \\ c & d \end{bmatrix}$.</div>
+        <div class="calc-step">2. Sistema $2 \times 2$: $\begin{cases} 2x + 3y = 13 \\ x - y = 1 \end{cases} \rightarrow x = 3, y = 2$.</div>
+        <div class="cmd-row">
+          <span class="cmd-code">det([[a,b],[c,d]]) = a*d - b*c</span>
+          <button class="copy-btn" onclick="copiar(this, 'det([[a,b],[c,d]]) = a*d - b*c')">📋 Copiar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PASSO 13: INTEGRAIS E O TEOREMA FUNDAMENTAL DO CÁLCULO -->
+    <div class="card" id="passo-13-integrais-teorema">
+      <div class="card-header">
+        <span class="step-badge">PASSO A PASSO 13</span>
+        <h2>♾️ Integrais & O Teorema Fundamental do Cálculo</h2>
+      </div>
+      <div class="desc-text">
+        Se a derivada calcula a taxa de variação instantânea, a **Integral** calcula a área acumulada sob uma curva (operação inversa):
+      </div>
+
+      <div class="math-box">
+        <div class="math-title">📌 A Operação Inversa da Derivada</div>
+        <div class="calc-step">1. <strong>Integral Indefinida de Potência</strong>: <span class="highlight">\int x^n dx = \frac{x^{n+1}}{n+1} + C</span> (para $n \neq -1$).</div>
+        <div class="calc-step">2. <strong>Exemplo Prático</strong>: $\int 3x^2 dx = 3 \cdot \frac{x^3}{3} + C = <span class="highlight">x^3 + C</span>$ (Recuperamos a função original cuja derivada era $3x^2$!).</div>
+        <div class="cmd-row">
+          <span class="cmd-code">∫ x^n dx = (x^(n+1))/(n+1) + C  [Ex: ∫ 3x^2 dx = x^3 + C]</span>
+          <button class="copy-btn" onclick="copiar(this, '∫ 3x^2 dx = x^3 + C')">📋 Copiar</button>
+        </div>
+      </div>
+    </div>
+
     <footer>
       <p>Pensador Sem Fronteiras · Didática Filosofica & Científica Lendária</p>
       <small>Do Zero ao Infinito</small>
