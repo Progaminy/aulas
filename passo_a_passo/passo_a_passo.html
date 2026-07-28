@@ -261,6 +261,38 @@
       </div>
     </header>
 
+    <!-- GUIA FUNDAMENTAL ZERO: A FÍSICA DOS ESTADOS LIGAR/DESLIGAR (0V / 5V) -->
+    <div class="card" id="passo-0-fisica-binaria">
+      <div class="card-header">
+        <span class="step-badge" style="background: linear-gradient(135deg, #f59e0b, #ef4444);">GUIA FUNDAMENTAL ZERO</span>
+        <h2>⚡ A Física dos Estados Ligar / Desligar (0V / 5V) & A Raiz de Toda a Computação</h2>
+      </div>
+      <div class="desc-text">
+        Toda a tecnologia moderna (Windows, Linux, Python, Redes, Servidores) assenta sobre um único princípio físico: o transistor de silício. 
+        Como um circuito elétrico só possui dois estados possíveis (Desligado = 0 Volts / Ligado = 5 Volts), <strong>TUDO COMEÇA NO BINÁRIO (0 e 1)</strong>:
+      </div>
+
+      <div class="cmd-group">
+        <div class="cmd-block">
+          <div class="cmd-label">1. Testar no terminal como o computador converte o número decimal 25 nos pulsos elétricos 0 e 1:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">echo "obase=2; 25" | bc</span>
+            <button class="copy-btn" onclick="copiar(this, 'echo &quot;obase=2; 25&quot; | bc')">📋 Copiar</button>
+          </div>
+          <div style="font-size:0.8rem; color:#a7f3d0; margin-top:0.2rem;">Resultado: <code>11001</code> (Significa: Pulsos [5V, 5V, 0V, 0V, 5V]).</div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">2. Visualizar os bits reais de qualquer texto impresso no terminal:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">printf 'PSF' | xxd -b</span>
+            <button class="copy-btn" onclick="copiar(this, 'printf &apos;PSF&apos; | xxd -b')">📋 Copiar</button>
+          </div>
+          <div style="font-size:0.8rem; color:#94a3b8; margin-top:0.2rem;">Mostra o código binário de 8 bits (Byte) para cada caractere.</div>
+        </div>
+      </div>
+    </div>
+
     <!-- GUIA 1: PASSO A PASSO SERVIDOR FLASK WINDOWS -->
     <div class="card" id="passo-1-flask-windows">
       <div class="card-header">
