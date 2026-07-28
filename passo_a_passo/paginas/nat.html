@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes, viewport-fit=cover">
+  <title>Configuração de Rede & NAT Passo a Passo | Didática PSF</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Share+Tech+Mono&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    body {
+      background: radial-gradient(circle at 10% 10%, #06101e 0%, #02050b 100%);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: #e2e8f0;
+      min-height: 100vh;
+      padding: 1.5rem 1rem 3rem;
+      display: flex; flex-direction: column; align-items: center; line-height: 1.6;
+    }
+    body::before {
+      content: ""; position: fixed; inset: 0;
+      background-image: 
+        radial-gradient(circle at 85% 15%, rgba(168, 85, 247, 0.15) 0%, transparent 45%),
+        radial-gradient(circle at 15% 85%, rgba(6, 182, 212, 0.12) 0%, transparent 50%);
+      pointer-events: none; z-index: 0;
+    }
+    .container { width: 100%; max-width: 860px; position: relative; z-index: 2; display: flex; flex-direction: column; gap: 1.8rem; }
+    header { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 0.8rem; }
+    .btn-voltar {
+      align-self: flex-start; display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(168, 85, 247, 0.15); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.4);
+      padding: 0.5rem 1.2rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; text-decoration: none;
+      backdrop-filter: blur(10px); transition: all 0.2s ease;
+    }
+    .btn-voltar:hover { background: rgba(168, 85, 247, 0.3); color: #fff; box-shadow: 0 0 15px rgba(168, 85, 247, 0.5); transform: translateY(-2px); }
+    .main-title {
+      font-family: 'Orbitron', sans-serif; font-size: clamp(1.8rem, 6vw, 2.8rem); font-weight: 800; text-align: center;
+      letter-spacing: 0.05em; background: linear-gradient(135deg, #a855f7, #c084fc, #38bdf8);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      filter: drop-shadow(0 0 20px rgba(168, 85, 247, 0.4));
+    }
+    .subtitle { font-size: 1.05rem; color: #94a3b8; max-width: 740px; margin: 0 auto; }
+    .badge-bar { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem; margin-top: 0.5rem; }
+    .badge { background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(168, 85, 247, 0.35); color: #e9d5ff; padding: 0.35rem 0.85rem; border-radius: 20px; font-size: 0.82rem; font-family: 'Share Tech Mono', monospace; }
+    .card { background: rgba(15, 23, 42, 0.78); backdrop-filter: blur(16px); border: 1px solid rgba(168, 85, 247, 0.25); border-radius: 1.5rem; padding: 1.6rem; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); transition: border-color 0.3s ease; }
+    .card:hover { border-color: rgba(192, 132, 252, 0.45); box-shadow: 0 15px 35px rgba(0,0,0,0.6), 0 0 30px rgba(192, 132, 252, 0.2); }
+    .card-header { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem; padding-bottom: 0.8rem; border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
+    .card-header h2 { font-size: 1.25rem; font-weight: 700; color: #f8fafc; font-family: 'Orbitron', sans-serif; }
+    .step-badge { background: linear-gradient(135deg, #a855f7, #7e22ce); color: #fff; font-weight: 800; font-size: 0.85rem; padding: 0.35rem 0.75rem; border-radius: 8px; white-space: nowrap; }
+    .desc-text { font-size: 0.95rem; color: #cbd5e1; margin-bottom: 1.2rem; }
+    .cmd-group { display: flex; flex-direction: column; gap: 0.8rem; }
+    .cmd-block { background: rgba(2, 6, 23, 0.9); border: 1px solid rgba(168, 85, 247, 0.25); border-radius: 0.85rem; padding: 0.9rem 1.1rem; display: flex; flex-direction: column; gap: 0.4rem; }
+    .cmd-label { font-size: 0.9rem; color: #94a3b8; font-weight: 600; }
+    .cmd-row { display: flex; justify-content: space-between; align-items: center; background: #090d16; border: 1px solid rgba(168, 85, 247, 0.25); border-radius: 0.6rem; padding: 0.5rem 0.85rem; gap: 0.5rem; }
+    .cmd-code { font-family: 'Share Tech Mono', monospace; color: #c084fc; font-size: 0.95rem; font-weight: 600; overflow-x: auto; white-space: pre-wrap; word-break: break-all; }
+    .copy-btn { background: rgba(168, 85, 247, 0.12); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.4); border-radius: 6px; padding: 0.35rem 0.75rem; font-size: 0.8rem; font-weight: 600; cursor: pointer; white-space: nowrap; transition: all 0.2s ease; font-family: 'Inter', sans-serif; }
+    .copy-btn:hover { background: #c084fc; color: #020617; }
+    .copy-btn.copied { background: #22c55e !important; color: #020617 !important; border-color: #22c55e !important; }
+    footer { text-align: center; margin-top: 2rem; color: #64748b; font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <a href="../passo_a_passo.html" class="btn-voltar">⬅️ Voltar aos Passo a Passo</a>
+      <h1 class="main-title">📡 CONFIGURAÇÃO DE REDE & NAT</h1>
+      <p class="subtitle">Didática Filosofica: Origem do NAT, IP Forwarding, Masquerade (SNAT) & Port Forwarding (DNAT)</p>
+      
+      <div class="badge-bar">
+        <span class="badge">🌐 1. Por que Nasce o NAT?</span>
+        <span class="badge">⚙️ 2. IP Forwarding</span>
+        <span class="badge">🔄 3. Masquerade (SNAT)</span>
+        <span class="badge">🔀 4. Port Forwarding (DNAT)</span>
+      </div>
+    </header>
+
+    <!-- PASSO 1: A ORIGEM ORGÂNICA DO NAT -->
+    <div class="card" id="passo-1-origem-nat">
+      <div class="card-header">
+        <span class="step-badge">PASSO A PASSO 1</span>
+        <h2>🌐 O Esgotamento do IPv4 & A Origem Orgânica do NAT</h2>
+      </div>
+      <div class="desc-text">
+        O protocolo IPv4 possui apenas $2^{32} \approx 4,3$ bilhões de endereços possíveis no planeta. Com o nascimento de bilhões de celulares, PCs e servidores, os IPs públicos esgotaram-se. 
+        <strong>AQUI NASCE O NAT (Network Address Translation)</strong>: uma técnica que permite a toda uma rede privada (ex: `192.168.1.x`) navegar na internet usando um único IP público!
+      </div>
+
+      <div class="cmd-group">
+        <div class="cmd-block">
+          <div class="cmd-label">1. Identificar as faixas reservadas de IP Privado (RFC 1918):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">10.0.0.0/8  |  172.16.0.0/12  |  192.168.0.0/16</span>
+            <button class="copy-btn" onclick="copiar(this, '10.0.0.0/8  |  172.16.0.0/12  |  192.168.0.0/16')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">2. Descobrir a sua interface de rede e o IP local atual:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">ip -br addr show</span>
+            <button class="copy-btn" onclick="copiar(this, 'ip -br addr show')">📋 Copiar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PASSO 2: ATIVAR O ENCAMINHAMENTO DE PACOTES NO KERNEL -->
+    <div class="card" id="passo-2-ip-forwarding">
+      <div class="card-header">
+        <span class="step-badge">PASSO A PASSO 2</span>
+        <h2>⚙️ Ativar o Encaminhamento de Pacotes (IP Forwarding)</h2>
+      </div>
+      <div class="desc-text">
+        Por padrão de segurança, o Kernel do Linux recusa repassar pacotes entre duas interfaces de rede. 
+        Para transformar o Linux em um roteador NAT, devemos ativar o `ip_forward`:
+      </div>
+
+      <div class="cmd-group">
+        <div class="cmd-block">
+          <div class="cmd-label">1. Verificar o estado atual do encaminhamento IP no Kernel:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">cat /proc/sys/net/ipv4/ip_forward</span>
+            <button class="copy-btn" onclick="copiar(this, 'cat /proc/sys/net/ipv4/ip_forward')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">2. Ativar temporariamente em tempo de execução:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">sudo sysctl -w net.ipv4.ip_forward=1</span>
+            <button class="copy-btn" onclick="copiar(this, 'sudo sysctl -w net.ipv4.ip_forward=1')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">3. Tornar a ativação permanente no arranque (/etc/sysctl.conf):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">echo "net.ipv4.ip_forward = 1" | sudo tee -a /etc/sysctl.conf && sudo sysctl -p</span>
+            <button class="copy-btn" onclick="copiar(this, 'echo &quot;net.ipv4.ip_forward = 1&quot; | sudo tee -a /etc/sysctl.conf && sudo sysctl -p')">📋 Copiar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PASSO 3: CONFIGURAR MASQUERADE (SNAT) -->
+    <div class="card" id="passo-3-masquerade-snat">
+      <div class="card-header">
+        <span class="step-badge">PASSO A PASSO 3</span>
+        <h2>🔄 Configurar Masquerade / SNAT (Compartilhar Internet da Rede Local)</h2>
+      </div>
+      <div class="desc-text">
+        O **SNAT (Source NAT)** substitui o IP privado de origem dos computadores da rede interna pelo IP público da interface de saída (`eth0` ou `wlan0`):
+      </div>
+
+      <div class="cmd-group">
+        <div class="cmd-block">
+          <div class="cmd-label">1. Configurar MASQUERADE com IPTables na interface externa eth0:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE</span>
+            <button class="copy-btn" onclick="copiar(this, 'sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">2. Permitir o tráfego de encaminhamento (FORWARD) entre as interfaces local (eth1) e externa (eth0):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">sudo iptables -A FORWARD -i eth1 -o eth0 -j ACCEPT; sudo iptables -A FORWARD -i eth0 -o eth1 -m state --state RELATED,ESTABLISHED -j ACCEPT</span>
+            <button class="copy-btn" onclick="copiar(this, 'sudo iptables -A FORWARD -i eth1 -o eth0 -j ACCEPT; sudo iptables -A FORWARD -i eth0 -o eth1 -m state --state RELATED,ESTABLISHED -j ACCEPT')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">3. Inspecionar a tabela de NAT ativa no IPTables:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">sudo iptables -t nat -L -n -v</span>
+            <button class="copy-btn" onclick="copiar(this, 'sudo iptables -t nat -L -n -v')">📋 Copiar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PASSO 4: CONFIGURAR PORT FORWARDING (DNAT) -->
+    <div class="card" id="passo-4-port-forwarding-dnat">
+      <div class="card-header">
+        <span class="step-badge">PASSO A PASSO 4</span>
+        <h2>🔀 Configurar Redirecionamento de Portas / DNAT (Port Forwarding)</h2>
+      </div>
+      <div class="desc-text">
+        O **DNAT (Destination NAT)** altera o IP e porta de destino para permitir que clientes externos acessem um servidor interno (ex: Servidor Web em `192.168.1.50:80` recebendo acessos da porta 8080 externa):
+      </div>
+
+      <div class="cmd-group">
+        <div class="cmd-block">
+          <div class="cmd-label">1. Redirecionar requisições da porta externa 8080 para o servidor interno 192.168.1.50:80:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">sudo iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 8080 -j DNAT --to-destination 192.168.1.50:80</span>
+            <button class="copy-btn" onclick="copiar(this, 'sudo iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 8080 -j DNAT --to-destination 192.168.1.50:80')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">2. Permitir a passagem do tráfego redirecionado na tabela FORWARD:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">sudo iptables -A FORWARD -p tcp -d 192.168.1.50 --dport 80 -m state --state NEW,ESTABLISHED,RELATED -j ACCEPT</span>
+            <button class="copy-btn" onclick="copiar(this, 'sudo iptables -A FORWARD -p tcp -d 192.168.1.50 --dport 80 -m state --state NEW,ESTABLISHED,RELATED -j ACCEPT')">📋 Copiar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PASSO 5: DIAGNÓSTICO E PERSISTÊNCIA DAS REGRAS -->
+    <div class="card" id="passo-5-persistencia-diagnostico">
+      <div class="card-header">
+        <span class="step-badge">PASSO A PASSO 5</span>
+        <h2>📊 Persistência das Regras & Diagnóstico com Conntrack</h2>
+      </div>
+      <div class="desc-text">
+        Tornar as regras de NAT permanentes após o reboot e inspecionar a tabela de conexões ativas do Kernel em tempo real:
+      </div>
+
+      <div class="cmd-group">
+        <div class="cmd-block">
+          <div class="cmd-label">1. Instalar o pacote de persistência do IPTables no Ubuntu/Debian:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">sudo apt install -y iptables-persistent netfilter-persistent</span>
+            <button class="copy-btn" onclick="copiar(this, 'sudo apt install -y iptables-persistent netfilter-persistent')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">2. Salvar as regras atuais para serem carregadas no boot:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">sudo netfilter-persistent save</span>
+            <button class="copy-btn" onclick="copiar(this, 'sudo netfilter-persistent save')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">3. Inspecionar a tabela de conexões traduzidas pelo NAT em tempo real:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">sudo conntrack -L -p tcp</span>
+            <button class="copy-btn" onclick="copiar(this, 'sudo conntrack -L -p tcp')">📋 Copiar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>Pensador Sem Fronteiras · Didática Filosofica & Científica Lendária</p>
+      <small>Do Zero ao Infinito</small>
+    </footer>
+  </div>
+
+  <script>
+    function copiar(btn, texto) {
+      navigator.clipboard.writeText(texto).then(() => {
+        const textoOriginal = btn.innerHTML;
+        btn.innerHTML = '✅ Copiado!';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.innerHTML = textoOriginal;
+          btn.classList.remove('copied');
+        }, 1800);
+      }).catch(err => {
+        alert('Erro ao copiar comando.');
+      });
+    }
+  </script>
+</body>
+</html>
