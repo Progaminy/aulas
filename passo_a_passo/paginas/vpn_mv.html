@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes, viewport-fit=cover">
+  <title>VPN WARP — Procedimento Sequencial Definitivo (VPN MV) | PSF</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Share+Tech+Mono&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    body {
+      background: radial-gradient(circle at 10% 10%, #06101e 0%, #02050b 100%);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: #e2e8f0;
+      min-height: 100vh;
+      padding: 1.5rem 1rem 3rem;
+      display: flex; flex-direction: column; align-items: center; line-height: 1.6;
+    }
+    body::before {
+      content: ""; position: fixed; inset: 0;
+      background-image: 
+        radial-gradient(circle at 85% 15%, rgba(6, 182, 212, 0.12) 0%, transparent 45%),
+        radial-gradient(circle at 15% 85%, rgba(245, 158, 11, 0.12) 0%, transparent 50%);
+      pointer-events: none; z-index: 0;
+    }
+    .container { width: 100%; max-width: 860px; position: relative; z-index: 2; display: flex; flex-direction: column; gap: 1.8rem; }
+    header { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 0.8rem; }
+    .btn-voltar {
+      align-self: flex-start; display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(6, 182, 212, 0.15); color: #38bdf8; border: 1px solid rgba(6, 182, 212, 0.4);
+      padding: 0.5rem 1.2rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; text-decoration: none;
+      backdrop-filter: blur(10px); transition: all 0.2s ease;
+    }
+    .btn-voltar:hover { background: rgba(6, 182, 212, 0.3); color: #fff; box-shadow: 0 0 15px rgba(6, 182, 212, 0.5); transform: translateY(-2px); }
+    .main-title {
+      font-family: 'Orbitron', sans-serif; font-size: clamp(1.8rem, 6vw, 2.8rem); font-weight: 800; text-align: center;
+      letter-spacing: 0.05em; background: linear-gradient(135deg, #06b6d4, #3b82f6, #f59e0b);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      filter: drop-shadow(0 0 20px rgba(6, 182, 212, 0.4));
+    }
+    .subtitle { font-size: 1.05rem; color: #94a3b8; max-width: 740px; margin: 0 auto; }
+    .badge-bar { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem; margin-top: 0.5rem; }
+    .badge { background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(6, 182, 212, 0.35); color: #7dd3fc; padding: 0.35rem 0.85rem; border-radius: 20px; font-size: 0.82rem; font-family: 'Share Tech Mono', monospace; }
+    .card { background: rgba(15, 23, 42, 0.78); backdrop-filter: blur(16px); border: 1px solid rgba(6, 182, 212, 0.25); border-radius: 1.5rem; padding: 1.6rem; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); transition: border-color 0.3s ease; }
+    .card:hover { border-color: rgba(56, 189, 248, 0.45); box-shadow: 0 15px 35px rgba(0,0,0,0.6), 0 0 30px rgba(56, 189, 248, 0.2); }
+    .card-header { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem; padding-bottom: 0.8rem; border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
+    .card-header h2 { font-size: 1.25rem; font-weight: 700; color: #f8fafc; font-family: 'Orbitron', sans-serif; }
+    .step-badge { background: linear-gradient(135deg, #06b6d4, #3b82f6); color: #fff; font-weight: 800; font-size: 0.85rem; padding: 0.35rem 0.75rem; border-radius: 8px; white-space: nowrap; }
+    .desc-text { font-size: 0.95rem; color: #cbd5e1; margin-bottom: 1.2rem; }
+    .cmd-group { display: flex; flex-direction: column; gap: 0.8rem; }
+    .cmd-block { background: rgba(2, 6, 23, 0.9); border: 1px solid rgba(6, 182, 212, 0.25); border-radius: 0.85rem; padding: 0.9rem 1.1rem; display: flex; flex-direction: column; gap: 0.4rem; }
+    .cmd-label { font-size: 0.9rem; color: #94a3b8; font-weight: 600; }
+    .cmd-row { display: flex; justify-content: space-between; align-items: center; background: #090d16; border: 1px solid rgba(6, 182, 212, 0.25); border-radius: 0.6rem; padding: 0.5rem 0.85rem; gap: 0.5rem; }
+    .cmd-code { font-family: 'Share Tech Mono', monospace; color: #38bdf8; font-size: 0.95rem; font-weight: 600; overflow-x: auto; white-space: pre-wrap; word-break: break-all; }
+    .copy-btn { background: rgba(56, 189, 248, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 6px; padding: 0.35rem 0.75rem; font-size: 0.8rem; font-weight: 600; cursor: pointer; white-space: nowrap; transition: all 0.2s ease; font-family: 'Inter', sans-serif; }
+    .copy-btn:hover { background: #38bdf8; color: #020617; }
+    .copy-btn.copied { background: #22c55e !important; color: #020617 !important; border-color: #22c55e !important; }
+    footer { text-align: center; margin-top: 2rem; color: #64748b; font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <a href="../passo_a_passo/passo_a_passo.html" class="btn-voltar">⬅️ Voltar aos Passo a Passo</a>
+      <h1 class="main-title">🛡️ VPN MV — WARP DEFINITIVO</h1>
+      <p class="subtitle">Procedimento Sequencial Definitivo: Limpeza de Lab, Serviço WARP, Teste de Megas & Script Automatizado</p>
+      
+      <div class="badge-bar">
+        <span class="badge">🧹 1. Limpeza de Lab</span>
+        <span class="badge">⚙️ 2. Servico WARP</span>
+        <span class="badge">📡 3. Teste de Megas</span>
+        <span class="badge">📜 4. Script Automatico</span>
+      </div>
+    </header>
+
+    <!-- ETAPA 1: LIMPAR O LABORATÓRIO -->
+    <div class="card" id="etapa-1-limpeza">
+      <div class="card-header">
+        <span class="step-badge">ETAPA 1</span>
+        <h2>🧹 Limpar o Laboratório Experimental</h2>
+      </div>
+      <div class="desc-text">
+        Desativar o encaminhamento IP, remover o namespace isolado `laboratorio-vpn` e fechar portas desnecessárias:
+      </div>
+
+      <div class="cmd-group">
+        <div class="cmd-block">
+          <div class="cmd-label">1. Confirmar que o encaminhamento IP continua desligado:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">sudo sysctl -w net.ipv4.ip_forward=0</span>
+            <button class="copy-btn" onclick="copiar(this, 'sudo sysctl -w net.ipv4.ip_forward=0')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">2. Remover o ambiente isolado e a interface veth:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">sudo ip netns del laboratorio-vpn 2>/dev/null; sudo ip link del veth-host 2>/dev/null</span>
+            <button class="copy-btn" onclick="copiar(this, 'sudo ip netns del laboratorio-vpn 2>/dev/null; sudo ip link del veth-host 2>/dev/null')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">3. Verificar se os proxies 1080/1081 ainda estão ativos:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">sudo ss -ltnp | grep -E ':1080|:1081'</span>
+            <button class="copy-btn" onclick="copiar(this, 'sudo ss -ltnp | grep -E \':1080|:1081\'')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">4. Encerrar o servidor SSH do laboratório (porta 22):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">sudo systemctl disable --now ssh.socket</span>
+            <button class="copy-btn" onclick="copiar(this, 'sudo systemctl disable --now ssh.socket')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">5. Confirmar fecho da porta 22:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">sudo ss -ltnp | grep ':22'</span>
+            <button class="copy-btn" onclick="copiar(this, 'sudo ss -ltnp | grep \':22\'')">📋 Copiar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ETAPA 2: GARANTIR O SERVIÇO WARP NO ARRANQUE -->
+    <div class="card" id="etapa-2-warp-service">
+      <div class="card-header">
+        <span class="step-badge">ETAPA 2</span>
+        <h2>⚙️ Garantir o Serviço WARP com o Inicialização do Sistema</h2>
+      </div>
+      <div class="desc-text">
+        Ativar o serviço de fundo `warp-svc` no systemd para inicializar automaticamente com o computador:
+      </div>
+
+      <div class="cmd-group">
+        <div class="cmd-block">
+          <div class="cmd-label">1. Ativar e iniciar o daemon warp-svc:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">sudo systemctl enable --now warp-svc</span>
+            <button class="copy-btn" onclick="copiar(this, 'sudo systemctl enable --now warp-svc')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">2. Confirmar o estado do serviço (Resultado esperado: enabled / active):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">systemctl is-enabled warp-svc; systemctl is-active warp-svc</span>
+            <button class="copy-btn" onclick="copiar(this, 'systemctl is-enabled warp-svc; systemctl is-active warp-svc')">📋 Copiar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ETAPA 3: CONFIRMAR CONEXÃO E REINICIAR -->
+    <div class="card" id="etapa-3-conexao-reboot">
+      <div class="card-header">
+        <span class="step-badge">ETAPA 3</span>
+        <h2>🔄 Conectar WARP, Confirmar IP & Reiniciar</h2>
+      </div>
+      <div class="desc-text">
+        Estabelecer a conexão inicial do WARP e validar o túnel antes do reboot:
+      </div>
+
+      <div class="cmd-group">
+        <div class="cmd-block">
+          <div class="cmd-label">1. Conectar ao WARP:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">warp-cli connect</span>
+            <button class="copy-btn" onclick="copiar(this, 'warp-cli connect')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">2. Verificar o estado do túnel:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">warp-cli status</span>
+            <button class="copy-btn" onclick="copiar(this, 'warp-cli status')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">3. Confirmar que warp=on no Cloudflare trace:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">curl -s https://www.cloudflare.com/cdn-cgi/trace | grep '^warp='</span>
+            <button class="copy-btn" onclick="copiar(this, 'curl -s https://www.cloudflare.com/cdn-cgi/trace | grep \'^warp=\'')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">4. Confirmar o novo IP público do túnel:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">curl -4 https://icanhazip.com</span>
+            <button class="copy-btn" onclick="copiar(this, 'curl -4 https://icanhazip.com')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">5. Reiniciar o computador:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">sudo reboot</span>
+            <button class="copy-btn" onclick="copiar(this, 'sudo reboot')">📋 Copiar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ETAPA 4: RECONECTAR APÓS CADA ARRANQUE -->
+    <div class="card" id="etapa-4-pos-reboot">
+      <div class="card-header">
+        <span class="step-badge">ETAPA 4</span>
+        <h2>🔌 Reconectar Após Cada Arranque do Computador</h2>
+      </div>
+      <div class="desc-text">
+        Após o arranque do computador, verificar o serviço e validar a interface virtual `CloudflareWARP`:
+      </div>
+
+      <div class="cmd-group">
+        <div class="cmd-block">
+          <div class="cmd-label">1. Verificar se warp-svc está ativo:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">systemctl is-active warp-svc</span>
+            <button class="copy-btn" onclick="copiar(this, 'systemctl is-active warp-svc')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">2. Conectar caso esteja desligado:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">warp-cli connect</span>
+            <button class="copy-btn" onclick="copiar(this, 'warp-cli connect')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">3. Confirmar estado, trace e interface virtual:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">warp-cli status; curl -s https://www.cloudflare.com/cdn-cgi/trace | grep '^warp='; ip addr show CloudflareWARP</span>
+            <button class="copy-btn" onclick="copiar(this, 'warp-cli status; curl -s https://www.cloudflare.com/cdn-cgi/trace | grep \'^warp=\'; ip addr show CloudflareWARP')">📋 Copiar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ETAPA 5: VARREDURA LEGAL & GERENCIAMENTO DE DOMÍNIOS OFICIAIS -->
+    <div class="card" id="etapa-5-varredura-dominios">
+      <div class="card-header">
+        <span class="step-badge">ETAPA 5</span>
+        <h2>🔍 Varredura Legal & Lista de Domínios Oficiais</h2>
+      </div>
+      <div class="desc-text">
+        Criar a pasta de monitoramento e a lista de domínios declarados oficialmente gratuitos:
+      </div>
+
+      <div class="cmd-group">
+        <div class="cmd-block">
+          <div class="cmd-label">1. Criar a pasta de monitoramento do WARP:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">mkdir -p ~/warp-monitor</span>
+            <button class="copy-btn" onclick="copiar(this, 'mkdir -p ~/warp-monitor')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">2. Criar o ficheiro oficiais.txt:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">nano ~/warp-monitor/oficiais.txt</span>
+            <button class="copy-btn" onclick="copiar(this, 'nano ~/warp-monitor/oficiais.txt')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">3. Ver conexões que o WARP está usando (UDP / TCP):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">sudo ss -uapn | grep -E 'warp-svc|warp'</span>
+            <button class="copy-btn" onclick="copiar(this, 'sudo ss -uapn | grep -E \'warp-svc|warp\'')">📋 Copiar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ETAPA 6: TESTE DE MEGAS ZEROS E DIAGNÓSTICO -->
+    <div class="card" id="etapa-6-teste-sem-megas">
+      <div class="card-header">
+        <span class="step-badge">ETAPA 6</span>
+        <h2>📡 O Teste Verdadeiro Quando Estiver Sem Megas</h2>
+      </div>
+      <div class="desc-text">
+        Verificar o comportamento da rede com o modem ligado e sem pacote de dados ativo:
+      </div>
+
+      <div class="cmd-group">
+        <div class="cmd-block">
+          <div class="cmd-label">1. Guardar o estado inicial antes do desligamento:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">date; warp-cli status; curl -4 https://icanhazip.com</span>
+            <button class="copy-btn" onclick="copiar(this, 'date; warp-cli status; curl -4 https://icanhazip.com')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">2. Desconectar o WARP temporariamente:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">warp-cli disconnect</span>
+            <button class="copy-btn" onclick="copiar(this, 'warp-cli disconnect')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">3. Testar se a Cloudflare é alcançável sem WARP:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">curl -4 --connect-timeout 10 --max-time 15 https://www.cloudflare.com/cdn-cgi/trace</span>
+            <button class="copy-btn" onclick="copiar(this, 'curl -4 --connect-timeout 10 --max-time 15 https://www.cloudflare.com/cdn-cgi/trace')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">4. Reconectar o WARP e verificar o acesso:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">warp-cli connect; sleep 5; warp-cli status; curl -s --connect-timeout 15 https://www.cloudflare.com/cdn-cgi/trace | grep -E '^(ip|warp)='</span>
+            <button class="copy-btn" onclick="copiar(this, 'warp-cli connect; sleep 5; warp-cli status; curl -s --connect-timeout 15 https://www.cloudflare.com/cdn-cgi/trace | grep -E \'^(ip|warp)=\'')">📋 Copiar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ETAPA 7: SCRIPT DE REGISTO AUTOMÁTICO (verificar.sh) -->
+    <div class="card" id="etapa-7-script-automatico">
+      <div class="card-header">
+        <span class="step-badge" style="background: linear-gradient(135deg, #f59e0b, #10b981);">ETAPA 7</span>
+        <h2>📜 Script de Registo Automático (verificar.sh)</h2>
+      </div>
+      <div class="desc-text">
+        Criar o script bash de auditoria completa para registar logs com data e hora:
+      </div>
+
+      <div class="cmd-group">
+        <div class="cmd-block">
+          <div class="cmd-label">1. Criar o ficheiro do script verificar.sh:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">nano ~/warp-monitor/verificar.sh</span>
+            <button class="copy-btn" onclick="copiar(this, 'nano ~/warp-monitor/verificar.sh')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">2. Tornar o script executável:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">chmod +x ~/warp-monitor/verificar.sh</span>
+            <button class="copy-btn" onclick="copiar(this, 'chmod +x ~/warp-monitor/verificar.sh')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">3. Executar a verificação e guardar os logs:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">~/warp-monitor/verificar.sh</span>
+            <button class="copy-btn" onclick="copiar(this, '~/warp-monitor/verificar.sh')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">4. Inspecionar os logs de diagnósticos do WARP:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">sudo journalctl -u warp-svc --since '10 minutes ago' --no-pager</span>
+            <button class="copy-btn" onclick="copiar(this, 'sudo journalctl -u warp-svc --since \'10 minutes ago\' --no-pager')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">5. Gerar pacote completo de diagnóstico da Cloudflare:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">sudo warp-diag</span>
+            <button class="copy-btn" onclick="copiar(this, 'sudo warp-diag')">📋 Copiar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>Pensador Sem Fronteiras · Didática Filosofica & Científica Lendária</p>
+      <small>Do Zero ao Infinito</small>
+    </footer>
+  </div>
+
+  <script>
+    function copiar(btn, texto) {
+      navigator.clipboard.writeText(texto).then(() => {
+        const textoOriginal = btn.innerHTML;
+        btn.innerHTML = '✅ Copiado!';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.innerHTML = textoOriginal;
+          btn.classList.remove('copied');
+        }, 1800);
+      }).catch(err => {
+        alert('Erro ao copiar comando.');
+      });
+    }
+  </script>
+</body>
+</html>
