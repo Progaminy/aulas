@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes, viewport-fit=cover">
-  <title>Informática Lendária | Historial, Sistema Binário, SO & Comunicação</title>
+  <title>Informática Lendária | Sequência Genética: Da Eletrônica ao SO</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Share+Tech+Mono&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
@@ -67,89 +67,82 @@
     <header>
       <a href="../index.html" class="btn-voltar">⬅️ Voltar ao Portal Principal</a>
       <h1 class="main-title">💻 INFORMÁTICA LENDÁRIA (PSF)</h1>
-      <p class="subtitle">Didática Filosofica: Historial da Computação, Sistema Binário, Gestão de Informação & Sistemas Operativos</p>
+      <p class="subtitle">Didática Filosofica: Da Física dos Eletrons ao Sistema Binário, Arquitetura & Sistema Operativo</p>
       
       <div class="badge-bar">
-        <span class="badge">📜 1. Historial da Informática</span>
-        <span class="badge">0️⃣1️⃣ 2. Sistema Binário & Hexa</span>
-        <span class="badge">📡 3. Gestão de Informação & Memória</span>
-        <span class="badge">🐧 4. Sistemas Operativos & Kernel</span>
+        <span class="badge">1. O Problema da Automação</span>
+        <span class="badge">2. Transistor → Binário (0 e 1)</span>
+        <span class="badge">3. Von Neumann → CPU & RAM</span>
+        <span class="badge">4. O Caos → Sistema Operativo</span>
       </div>
     </header>
 
-    <!-- PASSO 1: HISTORIAL DO COMPUTADOR E DA INFORMÁTICA -->
-    <div class="card" id="passo-1-historial-computacao">
+    <!-- PASSO 1: A NECESSIDADE DE AUTOMATIZAR O CÁLCULO -->
+    <div class="card" id="passo-1-necessidade-automacao">
       <div class="card-header">
         <span class="step-badge">PASSO A PASSO 1</span>
-        <h2>📜 Historial do Computador e da Informática</h2>
+        <h2>📜 O Problema do Cálculo Manual & A Origem da Automação</h2>
       </div>
       <div class="desc-text">
-        A computação não nasceu da eletrônica, mas sim da necessidade milenar do ser humano de processar dados e automatizar cálculos complexos:
+        Tudo começa na limitação do cérebro humano em realizar milhares de cálculos sem cometer erros. 
+        A necessidade de automatizar tarefas repetitivas dá origem aos primeiros dispositivos mecânicos:
       </div>
 
       <div class="math-box">
-        <div class="math-title">📌 As 5 Gerações da Computação</div>
-        <div class="calc-step">1. <strong>Pré-Computadores (Ábaco a Babbage)</strong>: Ábaco (3000 a.C.), Pascalina (1642) e a Máquina Analítica de Charles Babbage (1837) projetada com Ada Lovelace (primeira programadora da história).</div>
-        <div class="calc-step">2. <strong>1ª Geração (1940-1956 - Válvulas)</strong>: ENIAC e UNIVAC. Computadores gigantescos que ocupavam salas inteiras, consumiam megawatts e usavam cartões perfurados.</div>
-        <div class="calc-step">3. <strong>2ª Geração (1956-1963 - Transistores)</strong>: O transistor substitui as válvulas. Redução drástica de tamanho, aquecimento e surgimento das primeiras linguagens (Assembly, FORTRAN, COBOL).</div>
-        <div class="calc-step">4. <strong>3ª Geração (1964-1971 - Circuitos Integrados / Chips)</strong>: Milhares de transistores miniaturizados em placas de silício. Surgimento do teclado, monitor e sistemas operacionais primitivos.</div>
-        <div class="calc-step">5. <strong>4ª Geração (1971-Presente - Microprocessadores)</strong>: O lançamento do Intel 4004 coloca a CPU inteira em um único chip de silício. Nasce o Computador Pessoal (PC).</div>
+        <div class="math-title">📌 O Encadeamento Histórico dos Dispositivos</div>
+        <div class="calc-step">1. <strong>Ábaco (3000 a.C.)</strong>: Primeiro dispositivo de contagem baseado em posições mecânicas de contas.</div>
+        <div class="calc-step">2. <strong>Pascalina (1642 - Blaise Pascal)</strong>: Engrenagens mecânicas que realizavam adições e subtrações automáticas.</div>
+        <div class="calc-step">3. <strong>Máquina Analítica (1837 - Charles Babbage & Ada Lovelace)</strong>: A primeira ideia de separar a Unidade de Cálculo (Mill) da Memória (Store).</div>
+        <div class="calc-step">4. <strong>O Limite Mecânico</strong>: Engrenagens de metal sofriam atrito e travavam. Era preciso usar sinais elétricos sem partes móveis!</div>
       </div>
     </div>
 
-    <!-- PASSO 2: SISTEMA BINÁRIO E REPRESENTAÇÃO DE DADOS -->
-    <div class="card" id="passo-2-sistema-binario">
+    <!-- PASSO 2: A FÍSICA DO TRANSISTOR E O NASCIMENTO DO BINÁRIO -->
+    <div class="card" id="passo-2-transistor-binario">
       <div class="card-header">
         <span class="step-badge">PASSO A PASSO 2</span>
-        <h2>0️⃣1️⃣ Sistema Binário, Hexadecimal & Unidades de Medida</h2>
+        <h2>0️⃣1️⃣ A Física do Transistor & O NASCIMENTO DO BINÁRIO (0 e 1)</h2>
       </div>
       <div class="desc-text">
-        O computador é um circuito elétrico de transistores. Como o transistor só possui dois estados (Aberto = 0V / Fechado = 5V), 
-        <strong>toda a informação do mundo é representada em Base 2 (0 e 1)</strong>:
+        Para eliminar o atrito mecânico, a física criou o <strong>Transistor de Silício</strong>. 
+        Como um transistor elétrico só possui 2 estados físicos possíveis (Sem Corrente = 0 / Com Corrente = 1), **NASCEM O BIT E O SISTEMA BINÁRIO**:
       </div>
 
       <div class="math-box">
-        <div class="math-title">📌 Passo a Passo: Converter Decimal para Binário (Exemplo: 25)</div>
-        <div class="calc-step">1. Dividir 25 por 2 sucessivamente e guardar os restos:</div>
+        <div class="math-title">📌 Como Nasce o Bit, o Byte e o Código ASCII</div>
+        <div class="calc-step">1. <span class="origin">NASCE O BIT (Binary Digit)</span>: Representa a presença (1) ou ausência (0) de voltagem elétrica.</div>
+        <div class="calc-step">2. <strong>Agrupamento em Byte (8 bits)</strong>: Um único bit só guarda 0 ou 1. Agrupando 8 bits ($2^8 = 256$ combinações), conseguimos codificar letras e símbolos.</div>
+        <div class="calc-step">3. <span class="origin">NASCE O CÓDIGO ASCII</span>: A letra 'A' é o número 65, que em impulsos elétricos é o byte <span class="highlight">01000001₂</span>.</div>
+        <div class="calc-step">4. <strong>Exemplo de Conversão Decimal $\rightarrow$ Binário (25)</strong>:</div>
         <div class="calc-step">&nbsp;&nbsp;• 25 ÷ 2 = 12 (Resto <span class="highlight">1</span>)</div>
         <div class="calc-step">&nbsp;&nbsp;• 12 ÷ 2 = 6  (Resto <span class="highlight">0</span>)</div>
         <div class="calc-step">&nbsp;&nbsp;• 6 ÷ 2 = 3   (Resto <span class="highlight">0</span>)</div>
         <div class="calc-step">&nbsp;&nbsp;• 3 ÷ 2 = 1   (Resto <span class="highlight">1</span>)</div>
-        <div class="calc-step">&nbsp;&nbsp;• 1 ÷ 2 = 0   (Resto <span class="highlight">1</span>)</div>
-        <div class="calc-step">2. Ler os restos de baixo para cima: <span class="highlight">25₁₀ = 11001₂</span>.</div>
+        <div class="calc-step">&nbsp;&nbsp;• 1 ÷ 2 = 0   (Resto <span class="highlight">1</span>) $\rightarrow$ <span class="highlight">25₁₀ = 11001₂</span></div>
         <div class="cmd-row">
-          <span class="cmd-code">25 (Decimal) = 11001 (Binário) = 19 (Hexadecimal)</span>
+          <span class="cmd-code">25 (Decimal) = 11001 (Binario)  |  Letra 'A' = 01000001 (Byte ASCII)</span>
           <button class="copy-btn" onclick="copiar(this, '25 em binario = 11001')">📋 Copiar</button>
         </div>
       </div>
-
-      <div class="math-box">
-        <div class="math-title">📌 Escala de Unidades de Informação</div>
-        <div class="calc-step">1. <strong>Bit (Binary Digit)</strong>: A menor unidade de informação (0 ou 1).</div>
-        <div class="calc-step">2. <strong>Byte (8 bits)</strong>: Conjunto de 8 bits capaz de representar 1 caractere (ex: 'A' = 01000001₂ em ASCII).</div>
-        <div class="calc-step">3. <strong>Kilobyte (KB)</strong> = 1.024 Bytes ($2^{10}$).</div>
-        <div class="calc-step">4. <strong>Megabyte (MB)</strong> = 1.024 KB = 1.048.576 Bytes.</div>
-        <div class="calc-step">5. <strong>Gigabyte (GB)</strong> = 1.024 MB  |  <strong>Terabyte (TB)</strong> = 1.024 GB.</div>
-      </div>
     </div>
 
-    <!-- PASSO 3: GESTÃO DE INFORMAÇÃO E COMUNICAÇÃO -->
-    <div class="card" id="passo-3-gestao-informacao-comunicacao">
+    <!-- PASSO 3: A ARQUITETURA VON NEUMANN -->
+    <div class="card" id="passo-3-von-neumann-hardware">
       <div class="card-header">
         <span class="step-badge">PASSO A PASSO 3</span>
-        <h2>📡 Gestão de Informação, Arquitetura & Comunicação</h2>
+        <h2>📡 O Programa Armazenado & A Arquitetura Von Neumann</h2>
       </div>
       <div class="desc-text">
-        Como o computador organiza dados na memória e envia mensagens pela rede através da arquitetura Von Neumann:
+        Nos primeiros computadores elétricos (ENIAC), mudar de programa exigia trocar manualmente centenas de cabos. 
+        John von Neumann resolveu isso: **instruções de programa e dados devem ficar juntos na mesma memória**:
       </div>
 
       <div class="math-box">
-        <div class="math-title">📌 Componentes de Gestão de Memória & Barramentos</div>
-        <div class="calc-step">1. <strong>CPU (Unidade Central de Processamento)</strong>: ULA (Unidade Lógica e Aritmética) + UC (Unidade de Controle) + Registradores.</div>
-        <div class="calc-step">2. <strong>Memória RAM (Volátil)</strong>: Memória principal de acesso aleatório onde os programas ativos residem.</div>
-        <div class="calc-step">3. <strong>Memória Cache (L1, L2, L3)</strong>: Memória ultrarrápida integrada na CPU para evitar gargalos com a RAM.</div>
-        <div class="calc-step">4. <strong>Armazenamento Secundário (SSD / HD - Não Volátil)</strong>: Onde os arquivos são salvos permanentemente.</div>
-        <div class="calc-step">5. <strong>Barramentos (Bus)</strong>: Linhas físicas de comunicação (Barramento de Dados, Endereço e Controle).</div>
+        <div class="math-title">📌 Os 3 Pilares da Arquitetura de Hardware</div>
+        <div class="calc-step">1. <span class="origin">NASCE A CPU (Processador)</span>: Unidade que lê os bits da memória, faz contas na ULA (Unidade Lógica e Aritmética) e executa.</div>
+        <div class="calc-step">2. <span class="origin">NASCE A MEMÓRIA RAM (Volátil)</span>: Espaço de trabalho temporário onde a CPU lê e escreve em velocidade extrema.</div>
+        <div class="calc-step">3. <span class="origin">NASCE O ARMAZENAMENTO SECUNDÁRIO (SSD/HD)</span>: Onde os bits permanecem salvos mesmo quando a energia é desligada.</div>
+        <div class="calc-step">4. <strong>Barramentos (Bus)</strong>: Os fios de cobre que ligam a CPU à RAM e aos periféricos.</div>
         <div class="cmd-row">
           <span class="cmd-code">lscpu  |  free -h  |  lsblk</span>
           <button class="copy-btn" onclick="copiar(this, 'lscpu  |  free -h  |  lsblk')">📋 Copiar</button>
@@ -157,22 +150,23 @@
       </div>
     </div>
 
-    <!-- PASSO 4: SISTEMAS OPERATIVOS -->
-    <div class="card" id="passo-4-sistemas-operativos">
+    <!-- PASSO 4: O SISTEMA OPERATIVO E O KERNEL -->
+    <div class="card" id="passo-4-sistema-operativo-kernel">
       <div class="card-header">
         <span class="step-badge">PASSO A PASSO 4</span>
-        <h2>🐧 Sistemas Operativos (SO) & O Papel do Kernel</h2>
+        <h2>🐧 O Caos de Múltiplos Programas & A Origem do Sistema Operativo</h2>
       </div>
       <div class="desc-text">
-        O Sistema Operativo é o software mestre que faz a ponte entre o hardware físico e os programas do usuário:
+        Quando dois programas tentam escrever no mesmo endereço da memória RAM ou usar o mesmo disco ao mesmo tempo, ocorre o caos. 
+        <strong>AQUI NASCE O SISTEMA OPERATIVO (SO)</strong> como o gerente mestre do computador:
       </div>
 
       <div class="math-box">
-        <div class="math-title">📌 As 4 Funções Fundamentais de um Sistema Operativo</div>
-        <div class="calc-step">1. <strong>Gestão de Processos (Escalonador)</strong>: Decide qual processo ganha tempo de CPU (Multitarefa Preemptiva).</div>
-        <div class="calc-step">2. <strong>Gestão de Memória Virtual</strong>: Mapeia o espaço de endereçamento dos programas e gerencia o algoritmo de paginação (Swap).</div>
-        <div class="calc-step">3. <strong>Sistema de Ficheiros (FileSystem)</strong>: Organização hierárquica em disco (EXT4 no Linux, NTFS no Windows, APFS no macOS).</div>
-        <div class="calc-step">4. <strong>Kernel (Núcleo)</strong>: O coração do SO que conversa diretamente com os drivers de hardware via Syscalls.</div>
+        <div class="math-title">📌 O Papel do Kernel e as Funções do SO</div>
+        <div class="calc-step">1. <span class="origin">NASCE O KERNEL (Núcleo)</span>: O único programa que tem autoridade total para controlar o hardware físico e isolar programas.</div>
+        <div class="calc-step">2. <strong>Gestão de Processos (Escalonador)</strong>: Divide o tempo da CPU em milissegundos para dar a ilusão de que tudo roda ao mesmo tempo (Multitarefa).</div>
+        <div class="calc-step">3. <strong>Gestão de Memória Virtual</strong>: Cria uma memória simulada em disco (Swap) para não travar o sistema quando a RAM enche.</div>
+        <div class="calc-step">4. <strong>Sistema de Ficheiros</strong>: Organiza os blocos brutos de bits do disco em pastas e arquivos legíveis (EXT4, NTFS, FAT32).</div>
         <div class="cmd-row">
           <span class="cmd-code">uname -a  |  ps aux  |  top  |  df -h</span>
           <button class="copy-btn" onclick="copiar(this, 'uname -a  |  ps aux  |  top  |  df -h')">📋 Copiar</button>
