@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes, viewport-fit=cover">
+  <title>Engenharia, Física Aplicada & Técnica Profissional | Didática PSF</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Share+Tech+Mono&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    body {
+      background: radial-gradient(circle at 10% 10%, #061826 0%, #020b12 100%);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: #e2e8f0;
+      min-height: 100vh;
+      padding: 1.5rem 1rem 3rem;
+      display: flex; flex-direction: column; align-items: center; line-height: 1.6;
+    }
+    body::before {
+      content: ""; position: fixed; inset: 0;
+      background-image: 
+        radial-gradient(circle at 85% 15%, rgba(6, 182, 212, 0.18) 0%, transparent 45%),
+        radial-gradient(circle at 15% 85%, rgba(14, 165, 233, 0.12) 0%, transparent 50%);
+      pointer-events: none; z-index: 0;
+    }
+    .container { width: 100%; max-width: 860px; position: relative; z-index: 2; display: flex; flex-direction: column; gap: 1.8rem; }
+    header { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 0.8rem; }
+    .btn-voltar {
+      align-self: flex-start; display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(6, 182, 212, 0.15); color: #38bdf8; border: 1px solid rgba(6, 182, 212, 0.4);
+      padding: 0.5rem 1.2rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; text-decoration: none;
+      backdrop-filter: blur(10px); transition: all 0.2s ease;
+    }
+    .btn-voltar:hover { background: rgba(6, 182, 212, 0.3); color: #fff; box-shadow: 0 0 15px rgba(6, 182, 212, 0.5); transform: translateY(-2px); }
+    .main-title {
+      font-family: 'Orbitron', sans-serif; font-size: clamp(1.8rem, 6vw, 2.8rem); font-weight: 800; text-align: center;
+      letter-spacing: 0.05em; background: linear-gradient(135deg, #38bdf8, #06b6d4, #0284c7);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      filter: drop-shadow(0 0 20px rgba(6, 182, 212, 0.4));
+    }
+    .subtitle { font-size: 1.05rem; color: #94a3b8; max-width: 740px; margin: 0 auto; }
+    .badge-bar { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem; margin-top: 0.5rem; }
+    .badge { background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(6, 182, 212, 0.35); color: #bae6fd; padding: 0.35rem 0.85rem; border-radius: 20px; font-size: 0.82rem; font-family: 'Share Tech Mono', monospace; }
+    .card { background: rgba(15, 23, 42, 0.78); backdrop-filter: blur(16px); border: 1px solid rgba(6, 182, 212, 0.25); border-radius: 1.5rem; padding: 1.6rem; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); transition: border-color 0.3s ease; }
+    .card:hover { border-color: rgba(56, 189, 248, 0.45); box-shadow: 0 15px 35px rgba(0,0,0,0.6), 0 0 30px rgba(6, 182, 212, 0.2); }
+    .card-header { display: flex; align-items: center; justify-content: space-between; gap: 0.8rem; margin-bottom: 1rem; padding-bottom: 0.8rem; border-bottom: 1px solid rgba(255, 255, 255, 0.08); flex-wrap: wrap; }
+    .card-header h2 { font-size: 1.25rem; font-weight: 700; color: #f8fafc; font-family: 'Orbitron', sans-serif; display: flex; align-items: center; gap: 0.6rem; }
+    .step-badge { background: linear-gradient(135deg, #0284c7, #0369a1); color: #fff; font-weight: 800; font-size: 0.85rem; padding: 0.35rem 0.75rem; border-radius: 8px; white-space: nowrap; }
+    .desc-text { font-size: 0.95rem; color: #cbd5e1; margin-bottom: 1.2rem; }
+    .math-box { background: rgba(2, 6, 23, 0.9); border: 1px solid rgba(6, 182, 212, 0.3); border-radius: 0.85rem; padding: 1rem; margin-bottom: 1rem; }
+    .math-title { font-weight: bold; color: #38bdf8; font-size: 0.95rem; margin-bottom: 0.5rem; }
+    .calc-step { background: #090d16; border-left: 4px solid #06b6d4; padding: 0.6rem 0.8rem; border-radius: 0 0.5rem 0.5rem 0; margin-top: 0.5rem; font-family: 'Share Tech Mono', monospace; font-size: 0.95rem; color: #e0f2fe; display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; transition: background 0.3s ease; }
+    .calc-step.step-tested { background: rgba(34, 197, 94, 0.15); border-left-color: #22c55e; }
+    .calc-step span.highlight { color: #f59e0b; font-weight: bold; }
+    .calc-step span.origin { color: #38bdf8; font-weight: bold; }
+    .cmd-row { display: flex; justify-content: space-between; align-items: center; background: #090d16; border: 1px solid rgba(6, 182, 212, 0.25); border-radius: 0.6rem; padding: 0.5rem 0.85rem; gap: 0.5rem; margin-top: 0.5rem; transition: background 0.3s ease; }
+    .cmd-row.step-tested { background: rgba(34, 197, 94, 0.15); border-color: #22c55e; }
+    .cmd-code { font-family: 'Share Tech Mono', monospace; color: #bae6fd; font-size: 0.95rem; font-weight: 600; overflow-x: auto; white-space: pre-wrap; word-break: break-all; }
+    .copy-btn { background: rgba(6, 182, 212, 0.12); color: #38bdf8; border: 1px solid rgba(6, 182, 212, 0.4); border-radius: 6px; padding: 0.35rem 0.75rem; font-size: 0.8rem; font-weight: 600; cursor: pointer; white-space: nowrap; transition: all 0.2s ease; font-family: 'Inter', sans-serif; }
+    .copy-btn:hover { background: #38bdf8; color: #020617; }
+    .copy-btn.copied { background: #22c55e !important; color: #020617 !important; border-color: #22c55e !important; }
+
+    /* SVG SCHEMATIC DIAGRAM STYLES */
+    .svg-schematic-container {
+      background: #020617; border: 2px solid rgba(6, 182, 212, 0.4); border-radius: 1rem; padding: 1.2rem;
+      margin: 1rem 0; display: flex; flex-direction: column; align-items: center; gap: 0.8rem; box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8);
+    }
+    .svg-schematic { width: 100%; max-width: 740px; height: auto; font-family: 'Share Tech Mono', monospace; }
+
+    /* CHECKBOX TESTADO STYLES */
+    .test-checkbox-wrap { display: inline-flex; align-items: center; gap: 0.4rem; cursor: pointer; user-select: none; background: rgba(15, 23, 42, 0.6); padding: 0.25rem 0.6rem; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.15); transition: all 0.2s ease; }
+    .test-checkbox-wrap:hover { border-color: #22c55e; background: rgba(34, 197, 94, 0.1); }
+    .test-checkbox-wrap input[type="checkbox"] { appearance: none; width: 16px; height: 16px; border: 1.5px solid #06b6d4; border-radius: 4px; background: #020617; cursor: pointer; display: grid; place-content: center; transition: all 0.2s ease; }
+    .test-checkbox-wrap input[type="checkbox"]:checked { background: #22c55e; border-color: #22c55e; }
+    .test-checkbox-wrap input[type="checkbox"]:checked::before { content: "✓"; color: #020617; font-weight: 900; font-size: 11px; }
+    .test-checkbox-label { font-size: 0.75rem; font-weight: 600; color: #94a3b8; font-family: 'Inter', sans-serif; }
+    .test-checkbox-wrap input[type="checkbox"]:checked + .test-checkbox-label { color: #4ade80; }
+
+    footer { text-align: center; margin-top: 2rem; color: #64748b; font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <a href="../index.html" class="btn-voltar">⬅️ Voltar ao Portal Principal</a>
+      <h1 class="main-title">⚙️ ENGENHARIA & TÉCNICA PROFISSIONAL</h1>
+      <p class="subtitle">Didática Prática: Diagrama de Tensão-Deformação ($\sigma-\epsilon$), Ciclos Termodinâmicos & Arquitetura de Sistemas Industriais</p>
+      
+      <div class="badge-bar">
+        <span class="badge">🏗️ 1. Engenharia de Materiais (Hooke & Tensão)</span>
+        <span class="badge">🔥 2. Termodinâmica & Ciclo de Carnot</span>
+        <span class="badge">🖥️ 3. Arquitetura de Sistemas & UML</span>
+      </div>
+    </header>
+
+    <!-- DIAGRAMA 1: CURVA DE TENSÃO VS DEFORMAÇÃO (ENGENHARIA DE MATERIAIS) -->
+    <div class="card" id="diagrama-1-tensao-deformacao">
+      <div class="card-header">
+        <h2>
+          <span class="step-badge">DIAGRAMA 1</span>
+          <span>🏗️ Curva de Tensão vs Deformação ($\sigma - \epsilon$)</span>
+        </h2>
+        <label class="test-checkbox-wrap">
+          <input type="checkbox" data-test-id="eng-diagram-1">
+          <span class="test-checkbox-label">Conhecimento Testado</span>
+        </label>
+      </div>
+      <div class="desc-text">
+        Fundamental para a **Engenharia Civil e Mecânica**: Como os materiais reais (ex: Aço Estrutural NBR 8800) reagem à tração antes de romperem:
+      </div>
+
+      <div class="svg-schematic-container">
+        <svg class="svg-schematic" viewBox="0 0 740 280" xmlns="http://www.w3.org/2000/svg">
+          <rect width="740" height="280" rx="12" fill="#020617"/>
+          
+          <!-- AXES -->
+          <path d="M 60 230 L 700 230" stroke="#94a3b8" stroke-width="2.5"/> <!-- Axis X: Deformacao epsilon -->
+          <path d="M 60 230 L 60 30" stroke="#94a3b8" stroke-width="2.5"/> <!-- Axis Y: Tensao sigma -->
+          
+          <text x="700" y="255" fill="#38bdf8" font-size="12" font-weight="bold">Deformação ε (ΔL/L)</text>
+          <text x="20" y="25" fill="#38bdf8" font-size="12" font-weight="bold">Tensão σ (F/A)</text>
+          
+          <!-- HOOKE ELASTIC LINE -->
+          <line x1="60" y1="230" x2="180" y2="90" stroke="#22c55e" stroke-width="3.5"/>
+          <text x="90" y="140" fill="#4ade80" font-size="11" font-weight="bold">Região Elástica (Lei de Hooke: σ = E·ε)</text>
+          
+          <!-- YIELD POINT (ESCOAMENTO) -->
+          <circle cx="180" cy="90" r="5" fill="#f59e0b"/>
+          <text x="185" y="80" fill="#f59e0b" font-size="11" font-weight="bold">Limite de Escoamento (σy)</text>
+          
+          <!-- PLASTIC REGION & ULTIMATE STRENGTH -->
+          <path d="M 180 90 Q 320 50 480 60 Q 600 70 640 180" stroke="#ef4444" stroke-width="3.5" fill="none"/>
+          
+          <!-- ULTIMATE TENSILE STRENGTH POINT -->
+          <circle cx="480" cy="60" r="5" fill="#ef4444"/>
+          <text x="440" y="45" fill="#ef4444" font-size="11" font-weight="bold">Resistência Máxima (σu)</text>
+          
+          <!-- FRACTURE POINT -->
+          <circle cx="640" cy="180" r="6" fill="#f43f5e"/>
+          <text x="645" y="195" fill="#f43f5e" font-size="11" font-weight="bold">Ruptura (Fratura)</text>
+        </svg>
+      </div>
+
+      <div class="math-box">
+        <div class="math-title">📐 Dimensionamento Estrutural: Tensão Média & Módulo de Young</div>
+        <div class="calc-step">
+          <span>1. <strong>Tensão Normal ($\sigma$)</strong>: $\sigma = \frac{F}{A}$, onde $F = 50.000\text{ N}$ e área $A = 100\text{ mm}^2 = 10^{-4}\text{ m}^2$.</span>
+          <label class="test-checkbox-wrap">
+            <input type="checkbox" data-test-id="eng-calc-1-1">
+            <span class="test-checkbox-label">Testado</span>
+          </label>
+        </div>
+        <div class="calc-step">
+          <span>2. <strong>Cálculo da Tensão</strong>: $\sigma = \frac{50000}{0,0001} = 500.000.000\text{ Pa} = <span class="highlight">500\text{ MPa}</span>$.</span>
+          <label class="test-checkbox-wrap">
+            <input type="checkbox" data-test-id="eng-calc-1-2">
+            <span class="test-checkbox-label">Testado</span>
+          </label>
+        </div>
+        <div class="calc-step">
+          <span>3. <strong>Lei de Hooke ($\epsilon$)</strong>: Para o Aço ($E = 200\text{ GPa} = 200.000\text{ MPa}$): $\epsilon = \frac{\sigma}{E} = \frac{500}{200000} = <span class="origin">0,0025\text{ (0,25\%)}</span>$.</span>
+          <label class="test-checkbox-wrap">
+            <input type="checkbox" data-test-id="eng-calc-1-3">
+            <span class="test-checkbox-label">Testado</span>
+          </label>
+        </div>
+        <div class="cmd-row">
+          <span class="cmd-code">sigma = F / A  =>  50kN / 100mm2 = 500 MPa  |  epsilon = 500 / 200000 = 0.0025</span>
+          <button class="copy-btn" onclick="copiar(this, 'sigma = 50kN / 100mm2 = 500 MPa | epsilon = 0.0025')">📋 Copiar</button>
+          <label class="test-checkbox-wrap">
+            <input type="checkbox" data-test-id="eng-cmd-1-1">
+            <span class="test-checkbox-label">Testado</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- DIAGRAMA 2: ARQUITETURA DE SISTEMAS INDUSTRIAIS & UML -->
+    <div class="card" id="diagrama-2-arquitetura-sistemas">
+      <div class="card-header">
+        <h2>
+          <span class="step-badge">DIAGRAMA 2</span>
+          <span>🖥️ Arquitetura de Sistemas Profissionais de Software</span>
+        </h2>
+        <label class="test-checkbox-wrap">
+          <input type="checkbox" data-test-id="eng-diagram-2">
+          <span class="test-checkbox-label">Conhecimento Testado</span>
+        </label>
+      </div>
+      <div class="desc-text">
+        Como um sistema web industrial é estruturado de ponta a ponta (Load Balancer, Backend e Base de Dados):
+      </div>
+
+      <div class="svg-schematic-container">
+        <svg class="svg-schematic" viewBox="0 0 740 220" xmlns="http://www.w3.org/2000/svg">
+          <rect width="740" height="220" rx="12" fill="#020617"/>
+          
+          <!-- CLIENT NAVEGADOR -->
+          <g transform="translate(40, 80)">
+            <rect x="0" y="0" width="110" height="60" rx="6" fill="#0f172a" stroke="#38bdf8" stroke-width="2"/>
+            <text x="55" y="24" fill="#38bdf8" font-size="11" text-anchor="middle" font-weight="bold">Cliente / Navegador</text>
+            <text x="55" y="42" fill="#cbd5e1" font-size="9" text-anchor="middle">HTTP/HTTPS</text>
+          </g>
+          
+          <path d="M 150 110 L 220 110" stroke="#06b6d4" stroke-width="3" fill="none"/>
+          <polygon points="220,105 230,110 220,115" fill="#06b6d4"/>
+          
+          <!-- LOAD BALANCER NGINX -->
+          <g transform="translate(230, 80)">
+            <rect x="0" y="0" width="120" height="60" rx="6" fill="#14532d" stroke="#22c55e" stroke-width="2"/>
+            <text x="60" y="24" fill="#86efac" font-size="11" text-anchor="middle" font-weight="bold">Load Balancer</text>
+            <text x="60" y="42" fill="#cbd5e1" font-size="9" text-anchor="middle">Nginx (Porta 80/443)</text>
+          </g>
+          
+          <!-- SPLIT TO BACKEND SERVERS -->
+          <path d="M 350 110 L 400 60 L 430 60" stroke="#f59e0b" stroke-width="2.5" fill="none"/>
+          <path d="M 350 110 L 400 160 L 430 160" stroke="#f59e0b" stroke-width="2.5" fill="none"/>
+          
+          <!-- BACKEND 1 -->
+          <g transform="translate(430, 35)">
+            <rect x="0" y="0" width="120" height="50" rx="6" fill="#1e1b4b" stroke="#a855f7" stroke-width="1.5"/>
+            <text x="60" y="22" fill="#f5d0fe" font-size="10" text-anchor="middle" font-weight="bold">App Node 1 (Python)</text>
+            <text x="60" y="36" fill="#cbd5e1" font-size="8.5" text-anchor="middle">API REST Gunicorn</text>
+          </g>
+
+          <!-- BACKEND 2 -->
+          <g transform="translate(430, 135)">
+            <rect x="0" y="0" width="120" height="50" rx="6" fill="#1e1b4b" stroke="#a855f7" stroke-width="1.5"/>
+            <text x="60" y="22" fill="#f5d0fe" font-size="10" text-anchor="middle" font-weight="bold">App Node 2 (PHP)</text>
+            <text x="60" y="36" fill="#cbd5e1" font-size="8.5" text-anchor="middle">FPM Server</text>
+          </g>
+          
+          <!-- DATABASE -->
+          <path d="M 550 60 L 610 110 L 630 110" stroke="#ef4444" stroke-width="2.5" fill="none"/>
+          <path d="M 550 160 L 610 110 L 630 110" stroke="#ef4444" stroke-width="2.5" fill="none"/>
+          
+          <g transform="translate(630, 80)">
+            <rect x="0" y="0" width="90" height="60" rx="6" fill="#7f1d1d" stroke="#ef4444" stroke-width="2"/>
+            <text x="45" y="24" fill="#fca5a5" font-size="10" text-anchor="middle" font-weight="bold">PostgreSQL</text>
+            <text x="45" y="42" fill="#cbd5e1" font-size="8.5" text-anchor="middle">Database 5432</text>
+          </g>
+        </svg>
+      </div>
+
+      <div class="math-box">
+        <div class="math-title">📐 Regras de Dimensionamento de Servidores & Alta Disponibilidade</div>
+        <div class="calc-step">
+          <span>1. <strong>Taxa de Requisições por Segundo (RPS)</strong>: $RPS = \frac{\text{Usuários Ativos} \times \text{Req/min}}{60} = \frac{10.000 \times 6}{60} = <span class="highlight">1.000\text{ RPS}</span>$.</span>
+          <label class="test-checkbox-wrap">
+            <input type="checkbox" data-test-id="eng-calc-2-1">
+            <span class="test-checkbox-label">Testado</span>
+          </label>
+        </div>
+        <div class="cmd-row">
+          <span class="cmd-code">RPS = (10000 * 6) / 60 = 1000 RPS  |  Load Balancer -> 2x Worker Nodes</span>
+          <button class="copy-btn" onclick="copiar(this, 'RPS = 1000 RPS | Load Balancer -> 2x Worker Nodes')">📋 Copiar</button>
+          <label class="test-checkbox-wrap">
+            <input type="checkbox" data-test-id="eng-cmd-2-1">
+            <span class="test-checkbox-label">Testado</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>Pensador Sem Fronteiras · Didática Filosofica & Científica Lendária</p>
+      <small>Do Zero ao Infinito</small>
+    </footer>
+  </div>
+
+  <script>
+    function copiar(btn, texto) {
+      navigator.clipboard.writeText(texto).then(() => {
+        const textoOriginal = btn.innerHTML;
+        btn.innerHTML = '✅ Copiado!';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.innerHTML = textoOriginal;
+          btn.classList.remove('copied');
+        }, 1800);
+      }).catch(err => {
+        alert('Erro ao copiar comando.');
+      });
+    }
+
+    // PERSISTÊNCIA DAS CAIXAS DE SELEÇÃO "CONHECIMENTO TESTADO"
+    document.addEventListener('DOMContentLoaded', () => {
+      const pageId = window.location.pathname;
+      document.querySelectorAll('input[type="checkbox"][data-test-id]').forEach((cb) => {
+        const key = pageId + ':' + cb.getAttribute('data-test-id');
+        if (localStorage.getItem(key) === 'true') {
+          cb.checked = true;
+          cb.closest('.calc-step, .cmd-row, .card')?.classList.add('step-tested');
+        }
+        cb.addEventListener('change', () => {
+          localStorage.setItem(key, cb.checked);
+          if (cb.checked) {
+            cb.closest('.calc-step, .cmd-row, .card')?.classList.add('step-tested');
+          } else {
+            cb.closest('.calc-step, .cmd-row, .card')?.classList.remove('step-tested');
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
