@@ -161,9 +161,52 @@
         <div class="calc-step">2. <strong>OR ($\lor$ / OU)</strong>: Retorna 1 se PELO MENOS UM for 1 ($1 \lor 0 = 1$).</div>
         <div class="calc-step">3. <strong>NOT ($\neg$ / NÃ0)</strong>: Inverte o valor ($\neg 1 = 0$, $\neg 0 = 1$).</div>
         <div class="cmd-row">
-          <span class="cmd-code">AND: 1 AND 1 = 1  |  OR: 1 OR 0 = 1  |  NOT: NOT 1 = 0</span>
-          <button class="copy-btn" onclick="copiar(this, 'AND: 1 AND 1 = 1 | OR: 1 OR 0 = 1 | NOT: NOT 1 = 0')">📋 Copiar</button>
+          <span class="cmd-code">P1: Todo H e M  |  P2: S e H  |  C: Logo, S e M</span>
+          <button class="copy-btn" onclick="copiar(this, 'P1: Todo H e M | P2: S e H | C: Logo, S e M')">📋 Copiar</button>
         </div>
+      </div>
+
+      <div class="svg-schematic-container" style="margin-top: 1rem;">
+        <svg class="svg-schematic" viewBox="0 0 720 200" xmlns="http://www.w3.org/2000/svg">
+          <rect width="720" height="200" rx="12" fill="#020617"/>
+          <text x="20" y="30" fill="#a855f7" font-weight="bold" font-size="13">🏛️ DIAGRAMA VETORIAL: DA LÓGICA ARISTOTÉLICA ÀS PORTAS LÓGICAS DA COMPUTAÇÃO</text>
+          
+          <!-- SILOGISMO ARISTOTÉLICO -->
+          <g transform="translate(30, 60)">
+            <rect x="0" y="0" width="200" height="85" rx="8" fill="#0f172a" stroke="#a855f7" stroke-width="2"/>
+            <text x="100" y="24" fill="#c084fc" font-size="11" text-anchor="middle" font-weight="bold">LÓGICA ARISTOTÉLICA</text>
+            <text x="100" y="44" fill="#cbd5e1" font-size="9" text-anchor="middle">P1: Todo Humano é Mortal</text>
+            <text x="100" y="58" fill="#cbd5e1" font-size="9" text-anchor="middle">P2: Sócrates é Humano</text>
+            <text x="100" y="74" fill="#4ade80" font-size="9" text-anchor="middle" font-weight="bold">C: Logo, Sócrates é Mortal</text>
+          </g>
+
+          <path d="M 245 102 L 305 102" stroke="#a855f7" stroke-width="3.5"/>
+          <path d="M 295 97 L 310 102 L 295 107 Z" fill="#a855f7"/>
+          <text x="275" y="90" fill="#a855f7" font-size="9" text-anchor="middle" font-weight="bold">Boole (1854)</text>
+
+          <!-- ÁLGEBRA BOOLEANA (0 E 1) -->
+          <g transform="translate(310, 60)">
+            <rect x="0" y="0" width="170" height="85" rx="8" fill="#1e1b4b" stroke="#818cf8" stroke-width="2"/>
+            <text x="85" y="24" fill="#a5b4fc" font-size="11" text-anchor="middle" font-weight="bold">ÁLGEBRA BOOLEANA</text>
+            <text x="85" y="44" fill="#cbd5e1" font-size="9" text-anchor="middle">Verdadeiro = 1 (5V)</text>
+            <text x="85" y="58" fill="#cbd5e1" font-size="9" text-anchor="middle">Falso = 0 (0V)</text>
+            <text x="85" y="74" fill="#38bdf8" font-size="9" text-anchor="middle" font-weight="bold">AND (•) / OR (+) / NOT (¬)</text>
+          </g>
+
+          <path d="M 495 102 L 545 102" stroke="#818cf8" stroke-width="3.5"/>
+          <path d="M 535 97 L 550 102 L 535 107 Z" fill="#818cf8"/>
+          <text x="520" y="90" fill="#818cf8" font-size="9" text-anchor="middle" font-weight="bold">Shannon (1937)</text>
+
+          <!-- PORTAS LÓGICAS NO PROCESSADOR -->
+          <g transform="translate(550, 60)">
+            <rect x="0" y="0" width="140" height="85" rx="8" fill="#090d16" stroke="#38bdf8" stroke-width="2"/>
+            <text x="70" y="24" fill="#38bdf8" font-size="11" text-anchor="middle" font-weight="bold">PORTA E (AND)</text>
+            <path d="M 30 40 L 55 40 Q 80 40 80 55 Q 80 70 55 70 L 30 70 Z" fill="none" stroke="#fbbf24" stroke-width="2"/>
+            <text x="70" y="76" fill="#fbbf24" font-size="9" text-anchor="middle">Transistores Físicos</text>
+          </g>
+
+          <text x="360" y="180" fill="#cbd5e1" font-size="10" text-anchor="middle">Evolução Histórica: Do método de Sócrates/Aristóteles à criação dos microchips e computadores modernos</text>
+        </svg>
       </div>
     </div>
 
