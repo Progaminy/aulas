@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes, viewport-fit=cover">
+  <title>Curso Passo a Passo | Todos os Guias Práticos Do Zero ao Infinito</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Share+Tech+Mono&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background: radial-gradient(circle at 10% 10%, #06101e 0%, #02050b 100%);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: #e2e8f0;
+      min-height: 100vh;
+      padding: 1.5rem 1rem 3rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      line-height: 1.6;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: 
+        radial-gradient(circle at 85% 15%, rgba(6, 182, 212, 0.12) 0%, transparent 45%),
+        radial-gradient(circle at 15% 85%, rgba(245, 158, 11, 0.12) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 860px;
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+    }
+
+    /* HEADER */
+    header {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .btn-voltar {
+      align-self: flex-start;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(6, 182, 212, 0.15);
+      color: #38bdf8;
+      border: 1px solid rgba(6, 182, 212, 0.4);
+      padding: 0.5rem 1.2rem;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      backdrop-filter: blur(10px);
+      transition: all 0.2s ease;
+    }
+
+    .btn-voltar:hover {
+      background: rgba(6, 182, 212, 0.3);
+      color: #fff;
+      box-shadow: 0 0 15px rgba(6, 182, 212, 0.5);
+      transform: translateY(-2px);
+    }
+
+    .main-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(2.2rem, 8vw, 3.5rem);
+      font-weight: 800;
+      text-align: center;
+      letter-spacing: 0.05em;
+      background: linear-gradient(135deg, #06b6d4, #f59e0b, #ec4899);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 0 20px rgba(6, 182, 212, 0.4));
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      color: #94a3b8;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .badge-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.6rem;
+      margin-top: 0.5rem;
+    }
+
+    .badge {
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(6, 182, 212, 0.35);
+      color: #7dd3fc;
+      padding: 0.35rem 0.85rem;
+      border-radius: 20px;
+      font-size: 0.82rem;
+      font-family: 'Share Tech Mono', monospace;
+    }
+
+    /* ESTILO DOS CARTÕES GLASSMORPHISM */
+    .card {
+      background: rgba(15, 23, 42, 0.78);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(6, 182, 212, 0.25);
+      border-radius: 1.5rem;
+      padding: 1.6rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(6, 182, 212, 0.1);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      border-color: rgba(245, 158, 11, 0.45);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 0 0 30px rgba(245, 158, 11, 0.2);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .card-header h2 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #f8fafc;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    .step-badge {
+      background: linear-gradient(135deg, #06b6d4, #3b82f6);
+      color: #fff;
+      font-weight: 800;
+      font-size: 0.85rem;
+      padding: 0.35rem 0.75rem;
+      border-radius: 8px;
+      white-space: nowrap;
+    }
+
+    .desc-text {
+      font-size: 0.95rem;
+      color: #cbd5e1;
+      margin-bottom: 1.2rem;
+    }
+
+    /* COMANDOS E BOTÕES DE CÓPIA */
+    .cmd-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .cmd-block {
+      background: rgba(2, 6, 23, 0.9);
+      border: 1px solid rgba(6, 182, 212, 0.2);
+      border-radius: 0.85rem;
+      padding: 0.85rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .cmd-label {
+      font-size: 0.88rem;
+      color: #94a3b8;
+      font-weight: 600;
+    }
+
+    .cmd-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #090d16;
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 0.6rem;
+      padding: 0.5rem 0.85rem;
+      gap: 0.5rem;
+      word-break: break-all;
+    }
+
+    .cmd-code {
+      font-family: 'Share Tech Mono', monospace;
+      color: #38bdf8;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .copy-btn {
+      background: rgba(56, 189, 248, 0.12);
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      border-radius: 6px;
+      padding: 0.35rem 0.75rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .copy-btn:hover {
+      background: #38bdf8;
+      color: #020617;
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.6);
+    }
+
+    .copy-btn.copied {
+      background: #22c55e !important;
+      color: #020617 !important;
+      border-color: #22c55e !important;
+      box-shadow: 0 0 12px rgba(34, 197, 94, 0.8) !important;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 2rem;
+      color: #64748b;
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <a href="../index.html" class="btn-voltar">⬅️ Voltar ao Portal Principal</a>
+      <h1 class="main-title">📚 CURSO PASSO A PASSO</h1>
+      <p class="subtitle">Todos os Guias Práticos, Tutoriais de Servidor, Wi-Fi, GitHub, Terminal e Configurações Reunidos em Um Só Lugar</p>
+      
+      <div class="badge-bar">
+        <span class="badge">🔥 10 Guias Passo a Passo Completo</span>
+        <span class="badge">📋 Copiar Comando por Comando</span>
+        <span class="badge">🌐 Wi-Fi, Servidores & Redes</span>
+        <span class="badge">🪟 Windows & 🐧 Linux</span>
+      </div>
+    </header>
+
+    <!-- GUIA 1: PASSO A PASSO SERVIDOR FLASK WINDOWS -->
+    <div class="card" id="passo-1-flask-windows">
+      <div class="card-header">
+        <span class="step-badge">PASSO A PASSO 1</span>
+        <h2>🔥 Criar Servidor Python Flask + Wi-Fi + Firewall no Windows</h2>
+      </div>
+      <div class="desc-text">
+        Tutorial completo para criar a pasta, escrever o script `servidor.py`, liberar a porta 5000 no Firewall do Windows e rodar o servidor Flask:
+      </div>
+
+      <div class="cmd-group">
+        <div class="cmd-block">
+          <div class="cmd-label">1. Entrar na pasta do usuário:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">cd %USERPROFILE%</span>
+            <button class="copy-btn" onclick="copiar(this, 'cd %USERPROFILE%')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">2. Criar a pasta meu_servidor:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">mkdir meu_servidor</span>
+            <button class="copy-btn" onclick="copiar(this, 'mkdir meu_servidor')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">3. Entrar na pasta recém-criada:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">cd meu_servidor</span>
+            <button class="copy-btn" onclick="copiar(this, 'cd meu_servidor')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">4 a 10. Escrever as linhas do script servidor.py via terminal:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">echo from flask import Flask > servidor.py</span>
+            <button class="copy-btn" onclick="copiar(this, 'echo from flask import Flask > servidor.py')">📋 Copiar</button>
+          </div>
+          <div class="cmd-row" style="margin-top:0.3rem;">
+            <span class="cmd-code">echo app = Flask(__name__) >> servidor.py</span>
+            <button class="copy-btn" onclick="copiar(this, 'echo app = Flask(__name__) >> servidor.py')">📋 Copiar</button>
+          </div>
+          <div class="cmd-row" style="margin-top:0.3rem;">
+            <span class="cmd-code">echo @app.route('/') >> servidor.py</span>
+            <button class="copy-btn" onclick="copiar(this, &quot;echo @app.route('/') >> servidor.py&quot;)">📋 Copiar</button>
+          </div>
+          <div class="cmd-row" style="margin-top:0.3rem;">
+            <span class="cmd-code">echo def home(): >> servidor.py</span>
+            <button class="copy-btn" onclick="copiar(this, 'echo def home(): >> servidor.py')">📋 Copiar</button>
+          </div>
+          <div class="cmd-row" style="margin-top:0.3rem;">
+            <span class="cmd-code">echo     return 'Servidor rodando na rede Wi-Fi!' >> servidor.py</span>
+            <button class="copy-btn" onclick="copiar(this, &quot;echo     return 'Servidor rodando na rede Wi-Fi!' >> servidor.py&quot;)">📋 Copiar</button>
+          </div>
+          <div class="cmd-row" style="margin-top:0.3rem;">
+            <span class="cmd-code">echo if __name__ == '__main__': >> servidor.py</span>
+            <button class="copy-btn" onclick="copiar(this, &quot;echo if __name__ == '__main__': >> servidor.py&quot;)">📋 Copiar</button>
+          </div>
+          <div class="cmd-row" style="margin-top:0.3rem;">
+            <span class="cmd-code">echo     app.run(debug=True, host='0.0.0.0', port=5000) >> servidor.py</span>
+            <button class="copy-btn" onclick="copiar(this, &quot;echo     app.run(debug=True, host='0.0.0.0', port=5000) >> servidor.py&quot;)">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">11. Instalar a biblioteca Flask:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">pip install flask</span>
+            <button class="copy-btn" onclick="copiar(this, 'pip install flask')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">12. Ligar o servidor Flask:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">python servidor.py</span>
+            <button class="copy-btn" onclick="copiar(this, 'python servidor.py')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">13. Descobrir o IP local no Windows:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">ipconfig</span>
+            <button class="copy-btn" onclick="copiar(this, 'ipconfig')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">14. Liberar a porta 5000 no Firewall (CMD como Admin):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">netsh advfirewall firewall add rule name="Servidor Python" dir=in action=allow protocol=TCP localport=5000</span>
+            <button class="copy-btn" onclick="copiar(this, 'netsh advfirewall firewall add rule name=&quot;Servidor Python&quot; dir=in action=allow protocol=TCP localport=5000')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📱 15. URL para Acessar do Celular ou Outro PC na mesma Wi-Fi:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">http://192.168.1.100:5000</span>
+            <button class="copy-btn" onclick="copiar(this, 'http://192.168.1.100:5000')">📋 Copiar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GUIA 2: PASSO A PASSO COMPARTILHAR PASTAS POR WI-FI -->
+    <div class="card" id="passo-2-compartilhar-wifi">
+      <div class="card-header">
+        <span class="step-badge" style="background: linear-gradient(135deg, #a855f7, #ec4899);">PASSO A PASSO 2</span>
+        <h2>📂 Acessar & Baixar Arquivos de Pastas com Outro Dispositivo pela Wi-Fi</h2>
+      </div>
+      <div class="desc-text">
+        Como transmitir arquivos de uma pasta do computador/celular para qualquer outro dispositivo via navegador Wi-Fi:
+      </div>
+
+      <div class="cmd-group">
+        <div class="cmd-block">
+          <div class="cmd-label">1. Conectar ambos os aparelhos no mesmo roteador Wi-Fi.</div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">2. Entrar na pasta que deseja disponibilizar (Windows):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">cd /d "%USERPROFILE%\Desktop\Compartilhar"</span>
+            <button class="copy-btn" onclick="copiar(this, 'cd /d &quot;%USERPROFILE%\\Desktop\\Compartilhar&quot;')">📋 Copiar</button>
+          </div>
+          <div style="font-size:0.8rem; color:#94a3b8; margin-top:0.2rem;">Ou no Linux/Termux: <code>cd ~/Downloads</code></div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">3. Ligar o servidor HTTP nativo escutando em todas as placas (`0.0.0.0`):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">python -m http.server 8000 --bind 0.0.0.0</span>
+            <button class="copy-btn" onclick="copiar(this, 'python -m http.server 8000 --bind 0.0.0.0')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">4. Abrir o navegador no celular e digitar a URL com o seu IP:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">http://192.168.1.100:8000</span>
+            <button class="copy-btn" onclick="copiar(this, 'http://192.168.1.100:8000')">📋 Copiar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GUIA 3: PASSO A PASSO GITHUB -->
+    <div class="card" id="passo-3-github">
+      <div class="card-header">
+        <span class="step-badge" style="background: linear-gradient(135deg, #10b981, #059669);">PASSO A PASSO 3</span>
+        <h2>🐙 Clonar, Criar Repositório, Commit & Push no GitHub</h2>
+      </div>
+      <div class="desc-text">
+        Fluxo completo para enviar seus projetos para o GitHub Pages sem erros:
+      </div>
+
+      <div class="cmd-group">
+        <div class="cmd-block">
+          <div class="cmd-label">1. Clonar o repositório remoto para o computador:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">git clone https://github.com/SeuUsuario/meu-projeto.git</span>
+            <button class="copy-btn" onclick="copiar(this, 'git clone https://github.com/SeuUsuario/meu-projeto.git')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">2. Adicionar todas as alterações criadas:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">git add .</span>
+            <button class="copy-btn" onclick="copiar(this, 'git add .')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">3. Gravar o commit com mensagem explicativa:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">git commit -m "feat: adicionar nova funcionalidade"</span>
+            <button class="copy-btn" onclick="copiar(this, 'git commit -m &quot;feat: adicionar nova funcionalidade&quot;')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">4. Enviar as alterações para o repositório no GitHub:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">git push origin main</span>
+            <button class="copy-btn" onclick="copiar(this, 'git push origin main')">📋 Copiar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GUIA 4: PASSO A PASSO PIP E PYTHON RECONHECIDO NO WINDOWS -->
+    <div class="card" id="passo-4-pip-python-windows">
+      <div class="card-header">
+        <span class="step-badge" style="background: linear-gradient(135deg, #f59e0b, #d97706);">PASSO A PASSO 4</span>
+        <h2>🐍 Resolver 'pip' e 'python' Não Reconhecidos no Windows</h2>
+      </div>
+      <div class="desc-text">
+        Soluções instantâneas quando o Prompt de Comando diz que `pip` ou `python` não são comandos válidos:
+      </div>
+
+      <div class="cmd-group">
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Solução 1: Executar PIP usando o módulo do Python diretamente:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">python -m pip install flask</span>
+            <button class="copy-btn" onclick="copiar(this, 'python -m pip install flask')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Solução 2: Usar o lançador oficial `py` do Windows:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">py -m pip install flask</span>
+            <button class="copy-btn" onclick="copiar(this, 'py -m pip install flask')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Solução 3: Adicionar a pasta Scripts do Python ao PATH via PowerShell:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">[Environment]::SetEnvironmentVariable("Path", $env:Path + ";$env:LocalAppData\Programs\Python\Python311\Scripts", "User")</span>
+            <button class="copy-btn" onclick="copiar(this, '[Environment]::SetEnvironmentVariable(&quot;Path&quot;, $env:Path + &quot;;$env:LocalAppData\\Programs\\Python\\Python311\\Scripts&quot;, &quot;User&quot;)')">📋 Copiar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GUIA 5: PASSO A PASSO LINUX TERMUX PYTHON SERVER -->
+    <div class="card" id="passo-5-python-linux">
+      <div class="card-header">
+        <span class="step-badge" style="background: linear-gradient(135deg, #8b5cf6, #6d28d9);">PASSO A PASSO 5</span>
+        <h2>🐧 Iniciar Servidor Python no Linux / Termux (Da Instalação à URL)</h2>
+      </div>
+      <div class="desc-text">
+        Guia para atualizar pacotes, instalar Python, criar a pasta e subir o servidor no Linux/Android:
+      </div>
+
+      <div class="cmd-group">
+        <div class="cmd-block">
+          <div class="cmd-label">1. Instalar Python no Termux:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">pkg update && pkg install python -y</span>
+            <button class="copy-btn" onclick="copiar(this, 'pkg update && pkg install python -y')">📋 Copiar</button>
+          </div>
+          <div style="font-size:0.8rem; color:#94a3b8; margin-top:0.2rem;">Ou no Ubuntu/Debian: <code>sudo apt update && sudo apt install python3 -y</code></div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">2. Criar pasta e entrar nela:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">mkdir -p ~/servidor_python && cd ~/servidor_python</span>
+            <button class="copy-btn" onclick="copiar(this, 'mkdir -p ~/servidor_python && cd ~/servidor_python')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">3. Ligar o servidor na porta 8000 escutando a rede:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">python -m http.server 8000 --bind 0.0.0.0</span>
+            <button class="copy-btn" onclick="copiar(this, 'python -m http.server 8000 --bind 0.0.0.0')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">4. Descobrir o IP local do Linux:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">hostname -I</span>
+            <button class="copy-btn" onclick="copiar(this, 'hostname -I')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📱 5. URL no Navegador:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">http://192.168.1.100:8000</span>
+            <button class="copy-btn" onclick="copiar(this, 'http://192.168.1.100:8000')">📋 Copiar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GUIA 6: PASSO A PASSO SENHAS DO WINDOWS NET USER -->
+    <div class="card" id="passo-6-senhas-windows">
+      <div class="card-header">
+        <span class="step-badge" style="background: linear-gradient(135deg, #ef4444, #b91c1c);">PASSO A PASSO 6</span>
+        <h2>🔐 Configurar & Alterar Senhas de Usuários no Windows (`net user`)</h2>
+      </div>
+      <div class="desc-text">
+        Comandos para alterar, redefinir ou criar senhas de contas do Windows via terminal (Admin):
+      </div>
+
+      <div class="cmd-group">
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Alterar senha de forma oculta (digitar senha sem aparecer no terminal):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">net user NomeDoUsuario *</span>
+            <button class="copy-btn" onclick="copiar(this, 'net user NomeDoUsuario *')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Definir uma nova senha direta para o usuário:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">net user NomeDoUsuario NovaSenha123</span>
+            <button class="copy-btn" onclick="copiar(this, 'net user NomeDoUsuario NovaSenha123')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Criar nova conta de usuário no Windows com senha:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">net user NovoUsuario SenhaForte123 /add</span>
+            <button class="copy-btn" onclick="copiar(this, 'net user NovoUsuario SenhaForte123 /add')">📋 Copiar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GUIA 7: PASSO A PASSO CONFIGURAR SLEEP WINDOWS -->
+    <div class="card" id="passo-7-sleep-windows">
+      <div class="card-header">
+        <span class="step-badge" style="background: linear-gradient(135deg, #06b6d4, #0891b2);">PASSO A PASSO 7</span>
+        <h2>⏰ Configurar Tempo de Sleep e Suspensão do Windows (`powercfg`)</h2>
+      </div>
+      <div class="desc-text">
+        Ajuste o tempo para a tela desligar ou o computador entrar em suspensão:
+      </div>
+
+      <div class="cmd-group">
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Configurar tempo de Sleep/Suspensão na tomada para 30 minutos:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">powercfg /change standby-timeout-ac 30</span>
+            <button class="copy-btn" onclick="copiar(this, 'powercfg /change standby-timeout-ac 30')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Desligar a TELA do monitor na tomada após 15 minutos:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">powercfg /change monitor-timeout-ac 15</span>
+            <button class="copy-btn" onclick="copiar(this, 'powercfg /change monitor-timeout-ac 15')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">🚫 DESATIVAR o Sleep do Windows (Nunca suspender na tomada):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">powercfg /change standby-timeout-ac 0</span>
+            <button class="copy-btn" onclick="copiar(this, 'powercfg /change standby-timeout-ac 0')">📋 Copiar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GUIA 8: PASSO A PASSO MUDAR WALLPAPER WINDOWS -->
+    <div class="card" id="passo-8-wallpaper-windows">
+      <div class="card-header">
+        <span class="step-badge" style="background: linear-gradient(135deg, #ec4899, #be185d);">PASSO A PASSO 8</span>
+        <h2>🖼️ Mudar a Imagem de Fundo (Wallpaper) do Windows</h2>
+      </div>
+      <div class="desc-text">
+        Comandos para alterar a tela de fundo da Área de Trabalho pelo terminal:
+      </div>
+
+      <div class="cmd-group">
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Abrir a tela de Configurações de Fundo do Windows 10/11:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">start ms-settings:personalization-background</span>
+            <button class="copy-btn" onclick="copiar(this, 'start ms-settings:personalization-background')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">📌 Alterar a imagem de papel de parede via PowerShell:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">powershell -command "$code = 'using System.Runtime.InteropServices; public class Wallpaper { [DllImport(\"user32.dll\", CharSet = CharSet.Auto)] public static extern int SystemParametersInfo(int uAction, int uParam, string lpvParam, int fuWinIni); }'; Add-Type $code; [Wallpaper]::SystemParametersInfo(20, 0, 'C:\Users\Public\Pictures\imagem.jpg', 3)"</span>
+            <button class="copy-btn" onclick="copiar(this, &quot;powershell -command \&quot;$code = 'using System.Runtime.InteropServices; public class Wallpaper { [DllImport(\\\&quot;user32.dll\\\&quot;, CharSet = CharSet.Auto)] public static extern int SystemParametersInfo(int uAction, int uParam, string lpvParam, int fuWinIni); }'; Add-Type $code; [Wallpaper]::SystemParametersInfo(20, 0, 'C:\\Users\\Public\\Pictures\\imagem.jpg', 3)\&quot;&quot;)">📋 Copiar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GUIA 9: PASSO A PASSO PHP BANCO DE DADOS -->
+    <div class="card" id="passo-9-php-pdo-argon2">
+      <div class="card-header">
+        <span class="step-badge" style="background: linear-gradient(135deg, #6366f1, #4338ca);">PASSO A PASSO 9</span>
+        <h2>🐘 Conectar PHP ao Banco MySQL (PDO) + Hashing Argon2ID</h2>
+      </div>
+      <div class="desc-text">
+        Boilerplate seguro em PHP para conexões de banco de dados e hash de senhas criptografadas:
+      </div>
+
+      <div class="cmd-group">
+        <div class="cmd-block">
+          <div class="cmd-label">1. Conexão PDO segura em PHP:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">$pdo = new PDO("mysql:host=localhost;dbname=meudb;charset=utf8mb4", "root", "senha");</span>
+            <button class="copy-btn" onclick="copiar(this, '$pdo = new PDO(&quot;mysql:host=localhost;dbname=meudb;charset=utf8mb4&quot;, &quot;root&quot;, &quot;senha&quot;);')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">2. Criar Hash seguro de senha usando Argon2ID:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">$hash = password_hash($senha, PASSWORD_ARGON2ID);</span>
+            <button class="copy-btn" onclick="copiar(this, '$hash = password_hash($senha, PASSWORD_ARGON2ID);')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">3. Verificar a senha digitada no Login:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">if (password_verify($senhaDigitada, $hash)) { /* Acesso Concedido */ }</span>
+            <button class="copy-btn" onclick="copiar(this, 'if (password_verify($senhaDigitada, $hash)) { /* Acesso Concedido */ }')">📋 Copiar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GUIA 10: PASSO A PASSO VS CODE E CRIAÇÃO DE PROJETOS -->
+    <div class="card" id="passo-10-vscode-html">
+      <div class="card-header">
+        <span class="step-badge" style="background: linear-gradient(135deg, #14b8a6, #0d9488);">PASSO A PASSO 10</span>
+        <h2>💎 Abrir Projetos e Criar Páginas Web no VS Code</h2>
+      </div>
+      <div class="desc-text">
+        Comandos para abrir pastas no VS Code e gerar a estrutura HTML5 base:
+      </div>
+
+      <div class="cmd-group">
+        <div class="cmd-block">
+          <div class="cmd-label">1. Abrir a pasta atual diretamente no VS Code pelo terminal:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">code .</span>
+            <button class="copy-btn" onclick="copiar(this, 'code .')">📋 Copiar</button>
+          </div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">2. No VS Code, pressione `!` e `Tab` para gerar a estrutura base do HTML5:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">&lt;!DOCTYPE html&gt;&lt;html lang="pt-pt"&gt;&lt;head&gt;&lt;title&gt;Meu Site&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;/body&gt;&lt;/html&gt;</span>
+            <button class="copy-btn" onclick="copiar(this, '&lt;!DOCTYPE html&gt;&lt;html lang=&quot;pt-pt&quot;&gt;&lt;head&gt;&lt;title&gt;Meu Site&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;/body&gt;&lt;/html&gt;')">📋 Copiar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>Pensador Sem Fronteiras · Curso Passo a Passo Lendário</p>
+      <small>Do Zero ao Infinito</small>
+    </footer>
+  </div>
+
+  <script>
+    function copiar(btn, texto) {
+      navigator.clipboard.writeText(texto).then(() => {
+        const textoOriginal = btn.innerHTML;
+        btn.innerHTML = '✅ Copiado!';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.innerHTML = textoOriginal;
+          btn.classList.remove('copied');
+        }, 1800);
+      }).catch(err => {
+        alert('Erro ao copiar comando.');
+      });
+    }
+  </script>
+</body>
+</html>
