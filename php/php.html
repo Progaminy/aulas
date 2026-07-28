@@ -69,6 +69,17 @@
             transform: translateY(-2px);
         }
 
+        .code-snippet.step-tested, .cmd-row.step-tested { background: rgba(34, 197, 94, 0.15) !important; border-color: #22c55e !important; }
+        
+        /* CHECKBOX TESTADO STYLES */
+        .test-checkbox-wrap { display: inline-flex; align-items: center; gap: 0.4rem; cursor: pointer; user-select: none; background: rgba(15, 23, 42, 0.6); padding: 0.25rem 0.6rem; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.15); transition: all 0.2s ease; }
+        .test-checkbox-wrap:hover { border-color: #22c55e; background: rgba(34, 197, 94, 0.1); }
+        .test-checkbox-wrap input[type="checkbox"] { appearance: none; width: 16px; height: 16px; border: 1.5px solid #8892bf; border-radius: 4px; background: #020617; cursor: pointer; display: grid; place-content: center; transition: all 0.2s ease; }
+        .test-checkbox-wrap input[type="checkbox"]:checked { background: #22c55e; border-color: #22c55e; }
+        .test-checkbox-wrap input[type="checkbox"]:checked::before { content: "✓"; color: #020617; font-weight: 900; font-size: 11px; }
+        .test-checkbox-label { font-size: 0.75rem; font-weight: 600; color: #94a3b8; font-family: 'Inter', sans-serif; }
+        .test-checkbox-wrap input[type="checkbox"]:checked + .test-checkbox-label { color: #4ade80; }
+
         .main-title {
             text-align: center;
             font-family: 'Orbitron', sans-serif;
@@ -310,7 +321,13 @@
                         <div style="font-size:0.85rem; color:#cbd5e1;">Abra o terminal do VS Code (<code>Ctrl + `</code>), entre na pasta do projeto e inicie o servidor:</div>
                         <div style="display:flex; justify-content:space-between; align-items:center; background:#090d16; padding:0.5rem 0.8rem; border-radius:0.5rem; margin-top:0.3rem;">
                             <code style="color:#38bdf8; font-weight:bold;">php -S localhost:8000</code>
-                            <button class="copy-btn" onclick="copiarCodigoTexto('php -S localhost:8000', this)">📋 Copiar</button>
+                            <div style="display:flex; align-items:center; gap:0.4rem;">
+                              <button class="copy-btn" onclick="copiarCodigoTexto('php -S localhost:8000', this)">📋 Copiar</button>
+                              <label class="test-checkbox-wrap">
+                                <input type="checkbox" data-test-id="php-cmd-server-1">
+                                <span class="test-checkbox-label">Testado</span>
+                              </label>
+                            </div>
                         </div>
                         <div style="font-size:0.8rem; color:#818cf8; margin-top:0.3rem;">👉 Depois abra o navegador em: <code>http://localhost:8000</code></div>
                     </div>
@@ -321,7 +338,13 @@
                         <div style="font-size:0.85rem; color:#cbd5e1;">Executa o script PHP e mostra o resultado de texto direto na tela do terminal:</div>
                         <div style="display:flex; justify-content:space-between; align-items:center; background:#090d16; padding:0.5rem 0.8rem; border-radius:0.5rem; margin-top:0.3rem;">
                             <code style="color:#38bdf8; font-weight:bold;">php index.php</code>
-                            <button class="copy-btn" onclick="copiarCodigoTexto('php index.php', this)">📋 Copiar</button>
+                            <div style="display:flex; align-items:center; gap:0.4rem;">
+                              <button class="copy-btn" onclick="copiarCodigoTexto('php index.php', this)">📋 Copiar</button>
+                              <label class="test-checkbox-wrap">
+                                <input type="checkbox" data-test-id="php-cmd-cli-1">
+                                <span class="test-checkbox-label">Testado</span>
+                              </label>
+                            </div>
                         </div>
                     </div>
 
@@ -992,12 +1015,24 @@ echo "&lt;p&gt;📅 Data de Vencimento (+7 Dias): " . $vencimento-&gt;format('d/
             }
         });
 
-        // Garantir navegabilidade dos botões ao voltar
-        window.addEventListener('pageshow', function() {
-            document.querySelectorAll('.nav-btn, .copy-btn, .toggle-btn').forEach(btn => {
-                btn.style.pointerEvents = 'auto';
-                btn.style.opacity = '1';
+        // PERSISTÊNCIA DAS CAIXAS DE SELEÇÃO "CONHECIMENTO TESTADO"
+        document.addEventListener('DOMContentLoaded', () => {
+          const pageId = window.location.pathname;
+          document.querySelectorAll('input[type="checkbox"][data-test-id]').forEach((cb) => {
+            const key = pageId + ':' + cb.getAttribute('data-test-id');
+            if (localStorage.getItem(key) === 'true') {
+              cb.checked = true;
+              cb.closest('.calc-step, .cmd-row, .code-snippet, .legend-card')?.classList.add('step-tested');
+            }
+            cb.addEventListener('change', () => {
+              localStorage.setItem(key, cb.checked);
+              if (cb.checked) {
+                cb.closest('.calc-step, .cmd-row, .code-snippet, .legend-card')?.classList.add('step-tested');
+              } else {
+                cb.closest('.calc-step, .cmd-row, .code-snippet, .legend-card')?.classList.remove('step-tested');
+              }
             });
+          });
         });
     </script>
 </body>
