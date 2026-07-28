@@ -371,6 +371,74 @@
       </div>
     </div>
 
+    <!-- PASSO 14: PROBABILIDADE E ANÁLISE COMBINATÓRIA -->
+    <div class="card" id="passo-14-probabilidade-combinatoria">
+      <div class="card-header">
+        <span class="step-badge">PASSO A PASSO 14</span>
+        <h2>🎲 Probabilidade & Análise Combinatória</h2>
+      </div>
+      <div class="desc-text">
+        Cálculo da chance de eventos ocorrerem e contagem de agrupamentos sem precisar enumerar um a um:
+      </div>
+
+      <div class="math-box">
+        <div class="math-title">📌 Fórmulas de Probabilidade & Arranjos/Combinações</div>
+        <div class="calc-step">1. <strong>Probabilidade Simples</strong>: $P(A) = \frac{\text{casos favoráveis}}{\text{casos possíveis}}$.</div>
+        <div class="calc-step">2. <strong>Fatorial ($n!$)</strong>: $n! = n \cdot (n-1) \cdot (n-2) \cdots 1$. Ex: $5! = 120$.</div>
+        <div class="calc-step">3. <strong>Arranjo (A ordem importa)</strong>: $A_{n,p} = \frac{n!}{(n-p)!}$.</div>
+        <div class="calc-step">4. <strong>Combinação (A ordem NÃO importa)</strong>: <span class="highlight">C_{n,p} = \frac{n!}{p!(n-p)!}</span>.</div>
+        <div class="cmd-row">
+          <span class="cmd-code">P(A) = Favoraveis/Possiveis  |  C(n,p) = n! / (p! * (n-p)!)</span>
+          <button class="copy-btn" onclick="copiar(this, 'C(n,p) = n! / (p! * (n-p)!)')">📋 Copiar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PASSO 15: ESTATÍSTICA DESCRITIVA -->
+    <div class="card" id="passo-15-estatistica-descritiva">
+      <div class="card-header">
+        <span class="step-badge">PASSO A PASSO 15</span>
+        <h2>📈 Estatística Descritiva (Média, Mediana, Moda & Desvio Padrão)</h2>
+      </div>
+      <div class="desc-text">
+        Resumo de grandes conjuntos de dados através de medidas de tendência central e dispersão:
+      </div>
+
+      <div class="math-box">
+        <div class="math-title">📌 Medidas de Tendência Central & Variância</div>
+        <div class="calc-step">1. <strong>Média Aritmética ($\bar{x}$)</strong>: Soma de todos os valores dividida pela quantidade total ($N$).</div>
+        <div class="calc-step">2. <strong>Mediana</strong>: O valor central dos dados colocados em ordem crescente.</div>
+        <div class="calc-step">3. <strong>Moda</strong>: O valor que mais se repete no conjunto de dados.</div>
+        <div class="calc-step">4. <strong>Desvio Padrão ($\sigma$)</strong>: Medida de dispersão em torno da média: <span class="highlight">\sigma = \sqrt{\frac{\sum (x_i - \bar{x})^2}{N}}</span>.</div>
+        <div class="cmd-row">
+          <span class="cmd-code">Media = sum(x)/N  |  DesvioPadrao = sqrt(sum((x-Media)^2)/N)</span>
+          <button class="copy-btn" onclick="copiar(this, 'Media = sum(x)/N  |  DesvioPadrao = sqrt(sum((x-Media)^2)/N)')">📋 Copiar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PASSO 16: NÚMEROS COMPLEXOS -->
+    <div class="card" id="passo-16-numeros-complexos">
+      <div class="card-header">
+        <span class="step-badge">PASSO A PASSO 16</span>
+        <h2>🌀 Números Complexos & A Unidade Imaginária (i)</h2>
+      </div>
+      <div class="desc-text">
+        Quando tentamos extrair a raiz quadrada de um número negativo (ex: $\sqrt{-1}$), a reta real ($\mathbb{R}$) trava. **Nasce o Conjunto dos Complexos ($\mathbb{C}$)**:
+      </div>
+
+      <div class="math-box">
+        <div class="math-title">📌 A Unidade Imaginária & Forma Algébrica</div>
+        <div class="calc-step">1. Definição da Unidade Imaginária: <span class="highlight">i = \sqrt{-1} \implies i^2 = -1</span>.</div>
+        <div class="calc-step">2. Forma Algébrica: <span class="highlight">z = a + b \cdot i</span> (onde $a$ é a Parte Real e $b$ a Parte Imaginária).</div>
+        <div class="calc-step">3. Módulo de $z$: $|z| = \sqrt{a^2 + b^2}$.</div>
+        <div class="cmd-row">
+          <span class="cmd-code">i^2 = -1  |  z = a + b*i  |  |z| = sqrt(a^2 + b^2)</span>
+          <button class="copy-btn" onclick="copiar(this, 'i^2 = -1  |  z = a + b*i')">📋 Copiar</button>
+        </div>
+      </div>
+    </div>
+
     <footer>
       <p>Pensador Sem Fronteiras · Didática Filosofica & Científica Lendária</p>
       <small>Do Zero ao Infinito</small>
