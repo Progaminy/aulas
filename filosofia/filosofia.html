@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes, viewport-fit=cover">
+  <title>Filosofia & Lógica Formal | Didática PSF: Do Mito à Lógica Proposicional</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Share+Tech+Mono&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    body {
+      background: radial-gradient(circle at 10% 10%, #150b24 0%, #080312 100%);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: #e2e8f0;
+      min-height: 100vh;
+      padding: 1.5rem 1rem 3rem;
+      display: flex; flex-direction: column; align-items: center; line-height: 1.6;
+    }
+    body::before {
+      content: ""; position: fixed; inset: 0;
+      background-image: 
+        radial-gradient(circle at 85% 15%, rgba(192, 132, 252, 0.15) 0%, transparent 45%),
+        radial-gradient(circle at 15% 85%, rgba(6, 182, 212, 0.12) 0%, transparent 50%);
+      pointer-events: none; z-index: 0;
+    }
+    .container { width: 100%; max-width: 860px; position: relative; z-index: 2; display: flex; flex-direction: column; gap: 1.8rem; }
+    header { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 0.8rem; }
+    .btn-voltar {
+      align-self: flex-start; display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(192, 132, 252, 0.15); color: #c084fc; border: 1px solid rgba(192, 132, 252, 0.4);
+      padding: 0.5rem 1.2rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; text-decoration: none;
+      backdrop-filter: blur(10px); transition: all 0.2s ease;
+    }
+    .btn-voltar:hover { background: rgba(192, 132, 252, 0.3); color: #fff; box-shadow: 0 0 15px rgba(192, 132, 252, 0.5); transform: translateY(-2px); }
+    .main-title {
+      font-family: 'Orbitron', sans-serif; font-size: clamp(2rem, 7vw, 3.2rem); font-weight: 800; text-align: center;
+      letter-spacing: 0.05em; background: linear-gradient(135deg, #c084fc, #a855f7, #38bdf8);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      filter: drop-shadow(0 0 20px rgba(192, 132, 252, 0.4));
+    }
+    .subtitle { font-size: 1.1rem; color: #94a3b8; max-width: 720px; margin: 0 auto; }
+    .badge-bar { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem; margin-top: 0.5rem; }
+    .badge { background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(192, 132, 252, 0.35); color: #e9d5ff; padding: 0.35rem 0.85rem; border-radius: 20px; font-size: 0.82rem; font-family: 'Share Tech Mono', monospace; }
+    .card { background: rgba(15, 23, 42, 0.78); backdrop-filter: blur(16px); border: 1px solid rgba(192, 132, 252, 0.25); border-radius: 1.5rem; padding: 1.6rem; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); transition: border-color 0.3s ease; }
+    .card:hover { border-color: rgba(192, 132, 252, 0.45); box-shadow: 0 15px 35px rgba(0,0,0,0.6), 0 0 30px rgba(192, 132, 252, 0.2); }
+    .card-header { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem; padding-bottom: 0.8rem; border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
+    .card-header h2 { font-size: 1.3rem; font-weight: 700; color: #f8fafc; font-family: 'Orbitron', sans-serif; }
+    .step-badge { background: linear-gradient(135deg, #a855f7, #7e22ce); color: #fff; font-weight: 800; font-size: 0.85rem; padding: 0.35rem 0.75rem; border-radius: 8px; white-space: nowrap; }
+    .desc-text { font-size: 0.95rem; color: #cbd5e1; margin-bottom: 1.2rem; }
+    .math-box { background: rgba(2, 6, 23, 0.9); border: 1px solid rgba(192, 132, 252, 0.3); border-radius: 0.85rem; padding: 1rem; margin-bottom: 1rem; }
+    .math-title { font-weight: bold; color: #c084fc; font-size: 0.95rem; margin-bottom: 0.5rem; }
+    .calc-step { background: #090d16; border-left: 4px solid #c084fc; padding: 0.6rem 0.8rem; border-radius: 0 0.5rem 0.5rem 0; margin-top: 0.5rem; font-family: 'Share Tech Mono', monospace; font-size: 0.95rem; color: #e0f2fe; }
+    .calc-step span.highlight { color: #f59e0b; font-weight: bold; }
+    .calc-step span.origin { color: #c084fc; font-weight: bold; }
+    .cmd-row { display: flex; justify-content: space-between; align-items: center; background: #090d16; border: 1px solid rgba(192, 132, 252, 0.25); border-radius: 0.6rem; padding: 0.5rem 0.85rem; gap: 0.5rem; margin-top: 0.5rem; }
+    .cmd-code { font-family: 'Share Tech Mono', monospace; color: #c084fc; font-size: 0.95rem; font-weight: 600; }
+    .copy-btn { background: rgba(192, 132, 252, 0.12); color: #c084fc; border: 1px solid rgba(192, 132, 252, 0.4); border-radius: 6px; padding: 0.35rem 0.75rem; font-size: 0.8rem; font-weight: 600; cursor: pointer; white-space: nowrap; transition: all 0.2s ease; font-family: 'Inter', sans-serif; }
+    .copy-btn:hover { background: #c084fc; color: #020617; }
+    .copy-btn.copied { background: #22c55e !important; color: #020617 !important; }
+    footer { text-align: center; margin-top: 2rem; color: #64748b; font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <a href="../index.html" class="btn-voltar">⬅️ Voltar ao Portal Principal</a>
+      <h1 class="main-title">🏛️ FILOSOFIA & LÓGICA FORMAL (PSF)</h1>
+      <p class="subtitle">Didática Filosofica: Do Mito ao Logos, Silogismos Aristotélicos e Origem da Lógica Booleana da Computação</p>
+      
+      <div class="badge-bar">
+        <span class="badge">⚡ 1. Mito → Logos</span>
+        <span class="badge">🏛️ 2. Maiêutica & Teoria das Ideias</span>
+        <span class="badge">📐 3. Silogismo Aristotélico</span>
+        <span class="badge">💻 4. Lógica Proposicional & Booleana</span>
+      </div>
+    </header>
+
+    <!-- PASSO 1: DA MITOLOGIA AO LOGOS -->
+    <div class="card" id="passo-1-mito-ao-logos">
+      <div class="card-header">
+        <span class="step-badge">PASSO A PASSO 1</span>
+        <h2>⚡ Por que Nasce a Filosofia? (A Passagem do Mito ao Logos)</h2>
+      </div>
+      <div class="desc-text">
+        Antes do século VI a.C., as explicações do mundo eram mitológicas (Deuses causavam relâmpagos e secas). 
+        Na Grécia Antiga, **NASCE A FILOSOFIA (Logos = Razão)** quando o ser humano exige explicações demonstráveis com base na observação e na causa natural dos fenômenos:
+      </div>
+
+      <div class="math-box">
+        <div class="math-title">📌 O Encadeamento do Pensamento Racional</div>
+        <div class="calc-step">1. <strong>Explicação Mítica</strong>: "Os trovões são a ira de Zeus." (Fé cega e incontestável).</div>
+        <div class="calc-step">2. <span class="origin">NASCE O LOGOS (Tales de Mileto)</span>: "A água e a transformação física da matéria originam a natureza."</div>
+        <div class="calc-step">3. <strong>Princípio da Não-Contradição</strong>: Uma coisa não pode *ser* e *não ser* ao mesmo tempo e sob o mesmo aspecto!</div>
+        <div class="cmd-row">
+          <span class="cmd-code">Mito (Fe) -> Logos (Razao) -> Principio da Nao-Contradicao</span>
+          <button class="copy-btn" onclick="copiar(this, 'Mito -> Logos -> Principio da Nao-Contradicao')">📋 Copiar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PASSO 2: SÓCRATES, PLATÃO E ARISTÓTELES -->
+    <div class="card" id="passo-2-triade-filosofica">
+      <div class="card-header">
+        <span class="step-badge">PASSO A PASSO 2</span>
+        <h2>🏛️ A Tríade Clássica: Sócrates, Platão e Aristóteles</h2>
+      </div>
+      <div class="desc-text">
+        Os três pilares do pensamento ocidental que construíram os métodos de reflexão:
+      </div>
+
+      <div class="math-box">
+        <div class="math-title">📌 Os Métodos Filosoficos Clássicos</div>
+        <div class="calc-step">1. <strong>Sócrates (Maiêutica)</strong>: "Só sei que nada sei." Método de fazer perguntas sucessivas para o interlocutor dar à luz as suas próprias conclusões.</div>
+        <div class="calc-step">2. <strong>Platão (Alegoria da Caverna)</strong>: Separação entre o <em>Mundo Sensível</em> (sombras enganosas dos sentidos) e o <em>Mundo Inteligível</em> (verdade suprema das ideias).</div>
+        <div class="calc-step">3. <span class="origin">ARISTÓTELES (Pai da Lógica)</span>: O conhecimento nasce da observação empírica e da estruturação do raciocínio em regras de validade!</div>
+        <div class="cmd-row">
+          <span class="cmd-code">Socrates (Perguntas) -> Platao (Mundo das Ideias) -> Aristoteles (Logica)</span>
+          <button class="copy-btn" onclick="copiar(this, 'Socrates -> Platao -> Aristoteles')">📋 Copiar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PASSO 3: O SILOGISMO E A LÓGICA ARISTOTÉLICA -->
+    <div class="card" id="passo-3-silogismo-aristoteles">
+      <div class="card-header">
+        <span class="step-badge">PASSO A PASSO 3</span>
+        <h2>📐 O Silogismo Aristotélico (Estrutura do Raciocínio Válido)</h2>
+      </div>
+      <div class="desc-text">
+        Um **Silogismo** é um argumento composto por duas premissas e uma conclusão necessária. Se as premissas são verdadeiras e a estrutura é válida, a conclusão é incontestável:
+      </div>
+
+      <div class="math-box">
+        <div class="math-title">📌 Exemplo de Silogismo Categórico Darii</div>
+        <div class="calc-step">1. <strong>Premissa Maior ($P1$)</strong>: Todo ser humano é mortal. ($\forall x (H(x) \implies M(x))$)</div>
+        <div class="calc-step">2. <strong>Premissa Menor ($P2$)</strong>: Sócrates é um ser humano. ($H(s)$)</div>
+        <div class="calc-step">3. <span class="origin">CONCLUSÃO NECESSÁRIA ($C$)</span>: Logo, Sócrates é mortal. ($M(s)$)</div>
+        <div class="cmd-row">
+          <span class="cmd-code">P1: Todo Humano e Mortal | P2: Socrates e Humano => C: Socrates e Mortal</span>
+          <button class="copy-btn" onclick="copiar(this, 'P1: Todo Humano e Mortal | P2: Socrates e Humano => C: Socrates e Mortal')">📋 Copiar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PASSO 4: DA LÓGICA ARISTOTÉLICA À LÓGICA BOOLEANA E COMPUTAÇÃO -->
+    <div class="card" id="passo-4-logica-booleana">
+      <div class="card-header">
+        <span class="step-badge">PASSO A PASSO 4</span>
+        <h2>💻 Da Lógica Formal à Álgebra de Boole (0 V / 5 V na Computação)</h2>
+      </div>
+      <div class="desc-text">
+        Como o Silogismo de Aristóteles transformou-se no cérebro de todos os computadores modernos? 
+        George Boole converteu as proposições em **Valores Verdade (1 / Verdadeiro / 5V)** e **Falso (0 / Falso / 0V)**!
+      </div>
+
+      <div class="math-box">
+        <div class="math-title">📌 Tabela Verdade das Operações Lógicas Fundamentais</div>
+        <div class="calc-step">1. <strong>AND ($\land$ / E)</strong>: Retorna 1 apenas se AMBOS forem 1 ($1 \land 1 = 1$).</div>
+        <div class="calc-step">2. <strong>OR ($\lor$ / OU)</strong>: Retorna 1 se PELO MENOS UM for 1 ($1 \lor 0 = 1$).</div>
+        <div class="calc-step">3. <strong>NOT ($\neg$ / NÃ0)</strong>: Inverte o valor ($\neg 1 = 0$, $\neg 0 = 1$).</div>
+        <div class="cmd-row">
+          <span class="cmd-code">AND: 1 AND 1 = 1  |  OR: 1 OR 0 = 1  |  NOT: NOT 1 = 0</span>
+          <button class="copy-btn" onclick="copiar(this, 'AND: 1 AND 1 = 1 | OR: 1 OR 0 = 1 | NOT: NOT 1 = 0')">📋 Copiar</button>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>Pensador Sem Fronteiras · Didática Filosofica & Científica Lendária</p>
+      <small>Do Zero ao Infinito</small>
+    </footer>
+  </div>
+
+  <script>
+    function copiar(btn, texto) {
+      navigator.clipboard.writeText(texto).then(() => {
+        const textoOriginal = btn.innerHTML;
+        btn.innerHTML = '✅ Copiado!';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.innerHTML = textoOriginal;
+          btn.classList.remove('copied');
+        }, 1800);
+      }).catch(err => {
+        alert('Erro ao copiar comando.');
+      });
+    }
+  </script>
+</body>
+</html>
