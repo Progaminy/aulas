@@ -273,6 +273,91 @@
       </div>
     </div>
 
+    <!-- DIAGRAMA 3: ENGENHARIA ELETRÔNICA (AMPLIFICADORES OPERACIONAIS & SENSORES) -->
+    <div class="card" id="diagrama-3-engenharia-eletronica">
+      <div class="card-header">
+        <h2>
+          <span class="step-badge" style="background: linear-gradient(135deg, #ec4899, #8b5cf6);">DIAGRAMA 3</span>
+          <span>📻 Engenharia Eletrônica: Amplificadores Operacionais (Op-Amp) & Filtros</span>
+        </h2>
+        <label class="test-checkbox-wrap">
+          <input type="checkbox" data-test-id="eng-diagram-3">
+          <span class="test-checkbox-label">Conhecimento Testado</span>
+        </label>
+      </div>
+      <div class="desc-text">
+        Na **Engenharia Eletrônica**, o **Amplificador Operacional (Op-Amp LM741 / LM358)** é o bloco fundamental para amplificação de sinais analógicos de sensores (temperatura, pressão, áudio) antes da conversão para o mundo digital (ADC):
+      </div>
+
+      <div class="svg-schematic-container">
+        <svg class="svg-schematic" viewBox="0 0 740 220" xmlns="http://www.w3.org/2000/svg">
+          <rect width="740" height="220" rx="12" fill="#020617"/>
+          <text x="20" y="28" fill="#ec4899" font-weight="bold" font-size="13">📻 DIAGRAMA VETORIAL: AMPLIFICADOR INVERSOR COM OP-AMP (Ganha A_v = -R2 / R1)</text>
+          
+          <!-- ENTRADA DE SINAL V_IN -->
+          <line x1="30" y1="120" x2="120" y2="120" stroke="#38bdf8" stroke-width="2.5"/>
+          <circle cx="30" cy="120" r="4" fill="#38bdf8"/>
+          <text x="30" y="105" fill="#38bdf8" font-size="11" font-weight="bold">V_in (Sinal de Entrada)</text>
+
+          <!-- RESISTOR ENTRADA R1 -->
+          <g transform="translate(120, 110)">
+            <rect x="0" y="0" width="60" height="20" rx="3" fill="#0f172a" stroke="#ec4899" stroke-width="2"/>
+            <text x="30" y="14" fill="#ec4899" font-size="10" text-anchor="middle" font-weight="bold">R1 = 10kΩ</text>
+          </g>
+
+          <line x1="180" y1="120" x2="280" y2="120" stroke="#ec4899" stroke-width="2.5"/>
+
+          <!-- TRIÂNGULO OP-AMP LM741 -->
+          <g transform="translate(280, 60)">
+            <polygon points="0,20 0,160 140,90" fill="#1e1b4b" stroke="#a855f7" stroke-width="3"/>
+            <text x="20" y="60" fill="#ef4444" font-size="14" font-weight="bold">-</text> <!-- Entrada Inversora -->
+            <text x="20" y="130" fill="#22c55e" font-size="14" font-weight="bold">+</text> <!-- Entrada Nao-Inversora -->
+            <text x="60" y="95" fill="#a5b4fc" font-size="11" font-weight="bold">LM741</text>
+          </g>
+
+          <!-- RESISTOR DE REALIMENTAÇÃO R2 (FEEDBACK) -->
+          <path d="M 230 120 L 230 40 L 450 40 L 450 150" stroke="#f59e0b" stroke-width="2" fill="none"/>
+          <g transform="translate(310, 30)">
+            <rect x="0" y="0" width="80" height="20" rx="3" fill="#0f172a" stroke="#f59e0b" stroke-width="2"/>
+            <text x="40" y="14" fill="#f59e0b" font-size="10" text-anchor="middle" font-weight="bold">R2 = 100kΩ</text>
+          </g>
+
+          <!-- SAÍDA V_OUT -->
+          <line x1="420" y1="150" x2="580" y2="150" stroke="#22c55e" stroke-width="3.5"/>
+          <circle cx="580" cy="150" r="5" fill="#22c55e"/>
+          <text x="590" y="154" fill="#4ade80" font-size="12" font-weight="bold">V_out = -10 · V_in</text>
+
+          <text x="370" y="200" fill="#cbd5e1" font-size="10" text-anchor="middle">Ganho de Tensão: A_v = - (R2 / R1) = - (100k / 10k) = -10  |  Amplifica pequenos sinais de milivolts</text>
+        </svg>
+      </div>
+
+      <div class="math-box">
+        <div class="math-title">📐 Cálculo de Ganho de Tensão em Amplificadores Eletrônicos</div>
+        <div class="calc-step">
+          <span>1. <strong>Ganho de Tensão Inversor ($A_v$)</strong>: $A_v = -\frac{R_2}{R_1} = -\frac{100.000}{10.000} = <span class="highlight">-10\text{ vezes}</span>$.</span>
+          <label class="test-checkbox-wrap">
+            <input type="checkbox" data-test-id="eng-calc-3-1">
+            <span class="test-checkbox-label">Testado</span>
+          </label>
+        </div>
+        <div class="calc-step">
+          <span>2. <strong>Tensão de Saída para $V_{in} = 0,5\text{V}$</strong>: $V_{out} = A_v \cdot V_{in} = -10 \cdot 0,5\text{V} = <span class="origin">-5,00\text{ Volts}</span>$.</span>
+          <label class="test-checkbox-wrap">
+            <input type="checkbox" data-test-id="eng-calc-3-2">
+            <span class="test-checkbox-label">Testado</span>
+          </label>
+        </div>
+        <div class="cmd-row">
+          <span class="cmd-code">Av = - (R2 / R1) = - (100k / 10k) = -10  |  V_out = -10 * 0.5V = -5.00V</span>
+          <button class="copy-btn" onclick="copiar(this, 'Av = - (R2 / R1) = -10 | V_out = -10 * 0.5V = -5.00V')">📋 Copiar</button>
+          <label class="test-checkbox-wrap">
+            <input type="checkbox" data-test-id="eng-cmd-3-1">
+            <span class="test-checkbox-label">Testado</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
     <footer>
       <p>Pensador Sem Fronteiras · Didática Filosofica & Científica Lendária</p>
       <small>Do Zero ao Infinito</small>
