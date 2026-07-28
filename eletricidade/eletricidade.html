@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes, viewport-fit=cover">
+  <title>Diagramas Elétricos & Instalações Eletrotécnicas | Didática PSF</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Share+Tech+Mono&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    body {
+      background: radial-gradient(circle at 10% 10%, #1a1003 0%, #080501 100%);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: #e2e8f0;
+      min-height: 100vh;
+      padding: 1.5rem 1rem 3rem;
+      display: flex; flex-direction: column; align-items: center; line-height: 1.6;
+    }
+    body::before {
+      content: ""; position: fixed; inset: 0;
+      background-image: 
+        radial-gradient(circle at 85% 15%, rgba(245, 158, 11, 0.18) 0%, transparent 45%),
+        radial-gradient(circle at 15% 85%, rgba(234, 179, 8, 0.12) 0%, transparent 50%);
+      pointer-events: none; z-index: 0;
+    }
+    .container { width: 100%; max-width: 860px; position: relative; z-index: 2; display: flex; flex-direction: column; gap: 1.8rem; }
+    header { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 0.8rem; }
+    .btn-voltar {
+      align-self: flex-start; display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.4);
+      padding: 0.5rem 1.2rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; text-decoration: none;
+      backdrop-filter: blur(10px); transition: all 0.2s ease;
+    }
+    .btn-voltar:hover { background: rgba(245, 158, 11, 0.3); color: #fff; box-shadow: 0 0 15px rgba(245, 158, 11, 0.5); transform: translateY(-2px); }
+    .main-title {
+      font-family: 'Orbitron', sans-serif; font-size: clamp(1.8rem, 6vw, 2.8rem); font-weight: 800; text-align: center;
+      letter-spacing: 0.05em; background: linear-gradient(135deg, #fbbf24, #f59e0b, #eab308);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      filter: drop-shadow(0 0 20px rgba(245, 158, 11, 0.4));
+    }
+    .subtitle { font-size: 1.05rem; color: #94a3b8; max-width: 740px; margin: 0 auto; }
+    .badge-bar { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem; margin-top: 0.5rem; }
+    .badge { background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(245, 158, 11, 0.35); color: #fde68a; padding: 0.35rem 0.85rem; border-radius: 20px; font-size: 0.82rem; font-family: 'Share Tech Mono', monospace; }
+    .card { background: rgba(15, 23, 42, 0.78); backdrop-filter: blur(16px); border: 1px solid rgba(245, 158, 11, 0.25); border-radius: 1.5rem; padding: 1.6rem; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); transition: border-color 0.3s ease; }
+    .card:hover { border-color: rgba(251, 191, 36, 0.45); box-shadow: 0 15px 35px rgba(0,0,0,0.6), 0 0 30px rgba(251, 191, 36, 0.2); }
+    .card-header { display: flex; align-items: center; justify-content: space-between; gap: 0.8rem; margin-bottom: 1rem; padding-bottom: 0.8rem; border-bottom: 1px solid rgba(255, 255, 255, 0.08); flex-wrap: wrap; }
+    .card-header h2 { font-size: 1.25rem; font-weight: 700; color: #f8fafc; font-family: 'Orbitron', sans-serif; display: flex; align-items: center; gap: 0.6rem; }
+    .step-badge { background: linear-gradient(135deg, #f59e0b, #b45309); color: #fff; font-weight: 800; font-size: 0.85rem; padding: 0.35rem 0.75rem; border-radius: 8px; white-space: nowrap; }
+    .desc-text { font-size: 0.95rem; color: #cbd5e1; margin-bottom: 1.2rem; }
+    .math-box { background: rgba(2, 6, 23, 0.9); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 0.85rem; padding: 1rem; margin-bottom: 1rem; }
+    .math-title { font-weight: bold; color: #fbbf24; font-size: 0.95rem; margin-bottom: 0.5rem; }
+    .calc-step { background: #090d16; border-left: 4px solid #f59e0b; padding: 0.6rem 0.8rem; border-radius: 0 0.5rem 0.5rem 0; margin-top: 0.5rem; font-family: 'Share Tech Mono', monospace; font-size: 0.95rem; color: #e0f2fe; display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; transition: background 0.3s ease; }
+    .calc-step.step-tested { background: rgba(34, 197, 94, 0.15); border-left-color: #22c55e; }
+    .calc-step span.highlight { color: #f59e0b; font-weight: bold; }
+    .calc-step span.origin { color: #fbbf24; font-weight: bold; }
+    .cmd-row { display: flex; justify-content: space-between; align-items: center; background: #090d16; border: 1px solid rgba(245, 158, 11, 0.25); border-radius: 0.6rem; padding: 0.5rem 0.85rem; gap: 0.5rem; margin-top: 0.5rem; transition: background 0.3s ease; }
+    .cmd-row.step-tested { background: rgba(34, 197, 94, 0.15); border-color: #22c55e; }
+    .cmd-code { font-family: 'Share Tech Mono', monospace; color: #fde68a; font-size: 0.95rem; font-weight: 600; overflow-x: auto; white-space: pre-wrap; word-break: break-all; }
+    .copy-btn { background: rgba(245, 158, 11, 0.12); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.4); border-radius: 6px; padding: 0.35rem 0.75rem; font-size: 0.8rem; font-weight: 600; cursor: pointer; white-space: nowrap; transition: all 0.2s ease; font-family: 'Inter', sans-serif; }
+    .copy-btn:hover { background: #fbbf24; color: #020617; }
+    .copy-btn.copied { background: #22c55e !important; color: #020617 !important; border-color: #22c55e !important; }
+
+    /* DIAGRAM SCHEMATIC DRAWINGS */
+    .schematic-box {
+      background: #020617; border: 2px solid rgba(245, 158, 11, 0.4); border-radius: 1rem; padding: 1.2rem;
+      font-family: 'Share Tech Mono', monospace; color: #38bdf8; white-space: pre; overflow-x: auto; margin: 1rem 0; line-height: 1.3;
+    }
+    .wire-phase { color: #ef4444; font-weight: bold; } /* Vermelho / Castanho = Fase */
+    .wire-neutral { color: #3b82f6; font-weight: bold; } /* Azul = Neutro */
+    .wire-earth { color: #22c55e; font-weight: bold; } /* Verde/Amarelo = Terra */
+    .wire-return { color: #eab308; font-weight: bold; } /* Amarelo/Preto = Retorno */
+
+    /* CHECKBOX TESTADO STYLES */
+    .test-checkbox-wrap { display: inline-flex; align-items: center; gap: 0.4rem; cursor: pointer; user-select: none; background: rgba(15, 23, 42, 0.6); padding: 0.25rem 0.6rem; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.15); transition: all 0.2s ease; }
+    .test-checkbox-wrap:hover { border-color: #22c55e; background: rgba(34, 197, 94, 0.1); }
+    .test-checkbox-wrap input[type="checkbox"] { appearance: none; width: 16px; height: 16px; border: 1.5px solid #f59e0b; border-radius: 4px; background: #020617; cursor: pointer; display: grid; place-content: center; transition: all 0.2s ease; }
+    .test-checkbox-wrap input[type="checkbox"]:checked { background: #22c55e; border-color: #22c55e; }
+    .test-checkbox-wrap input[type="checkbox"]:checked::before { content: "✓"; color: #020617; font-weight: 900; font-size: 11px; }
+    .test-checkbox-label { font-size: 0.75rem; font-weight: 600; color: #94a3b8; font-family: 'Inter', sans-serif; }
+    .test-checkbox-wrap input[type="checkbox"]:checked + .test-checkbox-label { color: #4ade80; }
+
+    footer { text-align: center; margin-top: 2rem; color: #64748b; font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <a href="../passo_a_passo.html" class="btn-voltar">⬅️ Voltar aos Passo a Passo</a>
+      <h1 class="main-title">⚡ DIAGRAMAS ELÉTRICOS & ELETROTECNIA</h1>
+      <p class="subtitle">Evolução Genética: Da Lâmpada Direta a Instalações Prediais, Dimensionamento de Fios, Disjuntores e Automação com Contactores</p>
+      
+      <div class="badge-bar">
+        <span class="badge">💡 1. Lâmpada Direta & Interruptores</span>
+        <span class="badge">🔌 2. Série, Paralelo & Tomadas</span>
+        <span class="badge">📐 3. Cálculo de Fios & Disjuntores</span>
+        <span class="badge">🏠 4. Quadro Predial & QDET</span>
+        <span class="badge">⚙️ 5. Contactores & Motores</span>
+      </div>
+    </header>
+
+    <!-- DIAGRAMA 1: LÂMPADA DIRETA SEM INTERRUPTOR -->
+    <div class="card" id="diagrama-1-lampada-direta">
+      <div class="card-header">
+        <h2>
+          <span class="step-badge">DIAGRAMA 1</span>
+          <span>💡 Ligar Lâmpada Direta (Sem Nenhum Interruptor)</span>
+        </h2>
+        <label class="test-checkbox-wrap">
+          <input type="checkbox" data-test-id="eletro-diagram-1">
+          <span class="test-checkbox-label">Conhecimento Testado</span>
+        </label>
+      </div>
+      <div class="desc-text">
+        O circuito mais fundamental da eletricidade: A corrente elétrica sai da <span class="wire-phase">Fase (L)</span>, passa pelo filamento/LED da lâmpada gerando luz e retorna pelo <span class="wire-neutral">Neutro (N)</span> para fechar o circuito.
+      </div>
+
+      <div class="schematic-box">
+<span class="wire-phase">[ FASE (L) - 230V ]</span> -----------------------------------------+
+                                                            |
+                                                       ( Disjuntor 10A )
+                                                            |
+                                                            v
+                                                      +-----------+
+                                                      |  LÂMPADA  |  ( 100W )
+                                                      +-----------+
+                                                            |
+<span class="wire-neutral">[ NEUTRO (N) - 0V  ]</span> -----------------------------------------+
+      </div>
+
+      <div class="math-box">
+        <div class="math-title">📐 Passo a Passo de Cálculo de Dimensionamento (Lâmpada 100W em 230V)</div>
+        <div class="calc-step">
+          <span>1. <strong>Cálculo da Corrente ($I$)</strong>: $I = \frac{P}{V} = \frac{100\text{ W}}{230\text{ V}} = <span class="highlight">0,43\text{ Ampères (A)}</span>$.</span>
+          <label class="test-checkbox-wrap">
+            <input type="checkbox" data-test-id="eletro-calc-1-1">
+            <span class="test-checkbox-label">Testado</span>
+          </label>
+        </div>
+        <div class="calc-step">
+          <span>2. <strong>Secção do Fio</strong>: Norma NBR 5410 / RTIEBT exige secção mínima de <span class="origin">1,5 mm²</span> para circuitos de iluminação.</span>
+          <label class="test-checkbox-wrap">
+            <input type="checkbox" data-test-id="eletro-calc-1-2">
+            <span class="test-checkbox-label">Testado</span>
+          </label>
+        </div>
+        <div class="calc-step">
+          <span>3. <strong>Disjuntor de Proteção</strong>: Disjuntor Termomagnético Monofásico de <span class="highlight">10 Ampères (10A)</span> (Suporta até 2.300W em 230V).</span>
+          <label class="test-checkbox-wrap">
+            <input type="checkbox" data-test-id="eletro-calc-1-3">
+            <span class="test-checkbox-label">Testado</span>
+          </label>
+        </div>
+        <div class="cmd-row">
+          <span class="cmd-code">I = P / V => 100W / 230V = 0.43A  |  Fio: 1.5mm2  |  Disjuntor: 10A</span>
+          <button class="copy-btn" onclick="copiar(this, 'I = 100W / 230V = 0.43A | Fio: 1.5mm2 | Disjuntor: 10A')">📋 Copiar</button>
+          <label class="test-checkbox-wrap">
+            <input type="checkbox" data-test-id="eletro-cmd-1-1">
+            <span class="test-checkbox-label">Testado</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- DIAGRAMA 2: LÂMPADA COM 1 INTERRUPTOR SIMPLES -->
+    <div class="card" id="diagrama-2-interruptor-simples">
+      <div class="card-header">
+        <h2>
+          <span class="step-badge">DIAGRAMA 2</span>
+          <span>🎛️ Ligar Lâmpada com 1 Interruptor Simples</span>
+        </h2>
+        <label class="test-checkbox-wrap">
+          <input type="checkbox" data-test-id="eletro-diagram-2">
+          <span class="test-checkbox-label">Conhecimento Testado</span>
+        </label>
+      </div>
+      <div class="desc-text">
+        <strong>REGRA DE OURO DA SEGURANÇA ELÉTRICA</strong>: O interruptor NUNCA corta o Neutro! O interruptor corta SEMPRE a <span class="wire-phase">Fase (L)</span>. Do interruptor para a lâmpada nasce o fio <span class="wire-return">Retorno (R)</span>.
+      </div>
+
+      <div class="schematic-box">
+<span class="wire-phase">[ FASE (L) ]</span> ---> [ Disjuntor 10A ] ---> <span class="wire-phase">( Terminal L )</span>
+                                                 |
+                                         [ INTERRUPTOR SIMPLES ]
+                                                 |
+                                         <span class="wire-return">( Fio Retorno - R )</span>
+                                                 |
+                                                 v
+                                           +-----------+
+                                           |  LÂMPADA  |
+                                           +-----------+
+                                                 |
+<span class="wire-neutral">[ NEUTRO (N) ]</span> ----------------------------------+
+      </div>
+
+      <div class="math-box">
+        <div class="math-title">📐 Dimensionamento do Circuito com Interruptor</div>
+        <div class="calc-step">
+          <span>1. <strong>Fio Fase (Vermelho/Castanho)</strong>: Leva 230V até ao terminal de entrada do Interruptor ($1,5\text{ mm}^2$).</span>
+          <label class="test-checkbox-wrap">
+            <input type="checkbox" data-test-id="eletro-calc-2-1">
+            <span class="test-checkbox-label">Testado</span>
+          </label>
+        </div>
+        <div class="calc-step">
+          <span>2. <strong>Fio Retorno (Preto/Amarelo)</strong>: Sai do Interruptor para a Lâmpada ($1,5\text{ mm}^2$). Por segurança, quando o interruptor está aberto, a lâmpada fica totalmente desenergizada!</span>
+          <label class="test-checkbox-wrap">
+            <input type="checkbox" data-test-id="eletro-calc-2-2">
+            <span class="test-checkbox-label">Testado</span>
+          </label>
+        </div>
+        <div class="cmd-row">
+          <span class="cmd-code">Fase -> Interruptor (Linha L) -> Retorno -> Lampada -> Neutro</span>
+          <button class="copy-btn" onclick="copiar(this, 'Fase -> Interruptor -> Retorno -> Lampada -> Neutro')">📋 Copiar</button>
+          <label class="test-checkbox-wrap">
+            <input type="checkbox" data-test-id="eletro-cmd-2-1">
+            <span class="test-checkbox-label">Testado</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- DIAGRAMA 3: INTERRUPTOR DUPLO (DUAS TECLAS INDEPENDENTES) -->
+    <div class="card" id="diagrama-3-interruptor-duplo">
+      <div class="card-header">
+        <h2>
+          <span class="step-badge">DIAGRAMA 3</span>
+          <span>🎛️🎛️ Interruptor Duplo (Duas Teclas Independente)</span>
+        </h2>
+        <label class="test-checkbox-wrap">
+          <input type="checkbox" data-test-id="eletro-diagram-3">
+          <span class="test-checkbox-label">Conhecimento Testado</span>
+        </label>
+      </div>
+      <div class="desc-text">
+        Uma única caixa de interruptor contendo duas teclas que comandam duas lâmpadas separadas (ex: Sala e Varanda):
+      </div>
+
+      <div class="schematic-box">
+<span class="wire-phase">[ FASE (L) ]</span> ---> [ Disjuntor 10A ] ---+---> [ Tecla 1 ] ---> <span class="wire-return">Retorno 1</span> ---> ( Lâmpada 1 - 60W )
+                                        |
+                                        +---> [ Tecla 2 ] ---> <span class="wire-return">Retorno 2</span> ---> ( Lâmpada 2 - 100W )
+                                                                                          |
+<span class="wire-neutral">[ NEUTRO (N) ]</span> -------------------------------------------------------------+
+      </div>
+
+      <div class="math-box">
+        <div class="math-title">📐 Passo a Passo de Cálculo da Carga Total</div>
+        <div class="calc-step">
+          <span>1. <strong>Potência Total ($P_{tot}$)</strong>: $P = 60\text{W} + 100\text{W} = <span class="highlight">160\text{ Watts}</span>$.</span>
+          <label class="test-checkbox-wrap">
+            <input type="checkbox" data-test-id="eletro-calc-3-1">
+            <span class="test-checkbox-label">Testado</span>
+          </label>
+        </div>
+        <div class="calc-step">
+          <span>2. <strong>Corrente Total ($I$)</strong>: $I = \frac{160\text{W}}{230\text{V}} = <span class="highlight">0,695\text{ A}</span>$.</span>
+          <label class="test-checkbox-wrap">
+            <input type="checkbox" data-test-id="eletro-calc-3-2">
+            <span class="test-checkbox-label">Testado</span>
+          </label>
+        </div>
+        <div class="calc-step">
+          <span>3. <strong>Disjuntor Proteção</strong>: Disjuntor Monofásico de <span class="origin">10A</span>.</span>
+          <label class="test-checkbox-wrap">
+            <input type="checkbox" data-test-id="eletro-calc-3-3">
+            <span class="test-checkbox-label">Testado</span>
+          </label>
+        </div>
+        <div class="cmd-row">
+          <span class="cmd-code">Ptot = 60W + 100W = 160W  |  I = 160W / 230V = 0.695A  |  Disjuntor: 10A</span>
+          <button class="copy-btn" onclick="copiar(this, 'Ptot = 160W | I = 0.695A | Disjuntor: 10A')">📋 Copiar</button>
+          <label class="test-checkbox-wrap">
+            <input type="checkbox" data-test-id="eletro-cmd-3-1">
+            <span class="test-checkbox-label">Testado</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- DIAGRAMA 4: LIGAÇÃO EM SÉRIE VS PARALELO & LIGAÇÃO DE TOMADA -->
+    <div class="card" id="diagrama-4-serie-paralelo-tomada">
+      <div class="card-header">
+        <h2>
+          <span class="step-badge">DIAGRAMA 4</span>
+          <span>🔌 Lâmpadas em Paralelo & Ligação Correta de Tomada com Terra</span>
+        </h2>
+        <label class="test-checkbox-wrap">
+          <input type="checkbox" data-test-id="eletro-diagram-4">
+          <span class="test-checkbox-label">Conhecimento Testado</span>
+        </label>
+      </div>
+      <div class="desc-text">
+        Nas residências, <strong>TODAS AS CARGAS E TOMADAS SÃO LIGADAS EM PARALELO</strong> para que recebam a mesma tensão de 230V de forma independente!
+      </div>
+
+      <div class="schematic-box">
+[ TOMADA 2P+T (16A) ]
+<span class="wire-phase">FASE (L)   [Pino Esquerdo/Direito]</span> -------------------------> ( L )
+<span class="wire-earth">TERRA (PE) [Pino Central Verde]   </span> -------------------------> ( PE )  [ Proteção Choques ]
+<span class="wire-neutral">NEUTRO (N) [Pino Direto/Esquerdo] </span> -------------------------> ( N )
+      </div>
+
+      <div class="math-box">
+        <div class="math-title">📐 Dimensionamento de Circuito de Tomadas de Uso Geral (TUG)</div>
+        <div class="calc-step">
+          <span>1. <strong>Carga Estimada de 1 Tomada (16A)</strong>: Potência máxima = $230\text{V} \times 16\text{A} = <span class="highlight">3.680\text{ Watts}</span>$.</span>
+          <label class="test-checkbox-wrap">
+            <input type="checkbox" data-test-id="eletro-calc-4-1">
+            <span class="test-checkbox-label">Testado</span>
+          </label>
+        </div>
+        <div class="calc-step">
+          <span>2. <strong>Secção Mínima de Fio para Tomadas</strong>: Norma exige <span class="origin">2,5 mm²</span> (Suporta até 21A em canalização).</span>
+          <label class="test-checkbox-wrap">
+            <input type="checkbox" data-test-id="eletro-calc-4-2">
+            <span class="test-checkbox-label">Testado</span>
+          </label>
+        </div>
+        <div class="calc-step">
+          <span>3. <strong>Disjuntor de Proteção do Circuito de Tomadas</strong>: Disjuntor C16 (<span class="highlight">16 Ampères</span>).</span>
+          <label class="test-checkbox-wrap">
+            <input type="checkbox" data-test-id="eletro-calc-4-3">
+            <span class="test-checkbox-label">Testado</span>
+          </label>
+        </div>
+        <div class="cmd-row">
+          <span class="cmd-code">Tomada 16A -> Max: 3680W  |  Fio: 2.5mm2  |  Disjuntor: C16 (16A)</span>
+          <button class="copy-btn" onclick="copiar(this, 'Tomada 16A -> Max: 3680W | Fio: 2.5mm2 | Disjuntor: C16')">📋 Copiar</button>
+          <label class="test-checkbox-wrap">
+            <input type="checkbox" data-test-id="eletro-cmd-4-1">
+            <span class="test-checkbox-label">Testado</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- DIAGRAMA 5: PLANTA QUADRO PREDIAL E CONTACTOR COM MOTOR -->
+    <div class="card" id="diagrama-5-quadro-predial-contactor">
+      <div class="card-header">
+        <h2>
+          <span class="step-badge">DIAGRAMA 5</span>
+          <span>⚙️ Automação com Contactores & Motores Elétricos</span>
+        </h2>
+        <label class="test-checkbox-wrap">
+          <input type="checkbox" data-test-id="eletro-diagram-5">
+          <span class="test-checkbox-label">Conhecimento Testado</span>
+        </label>
+      </div>
+      <div class="desc-text">
+        Quando a carga é pesada (ex: Motor Elétrico Trifásico de 5 CV ou bomba de água), um simples interruptor queimaria! 
+        Utiliza-se um **CONTACTOR** comandado por um circuito de baixa corrente:
+      </div>
+
+      <div class="schematic-box">
+[ CIRCUITO DE POTÊNCIA (380V Trifásico) ]
+Rede (L1, L2, L3) ---> [ Disjuntor Motor ] ---> Contactos Principais (1, 3, 5) [ CONTACTOR K1 ] (2, 4, 6) ---> ( MOTOR TRIFÁSICO U,V,W )
+
+[ CIRCUITO DE COMANDO (230V Monofásico) ]
+Fase (L) ---> [ Botoeira Desliga NF ] ---> [ Botoeira Liga NA ] ---> ( Bobina A1-A2 K1 ) ---> Neutro (N)
+                                                 |
+                                         ( Contacto Auxiliar 13-14 de Selo )
+      </div>
+
+      <div class="math-box">
+        <div class="math-title">📐 Cálculo de Motor Trifásico de 5 CV (3.675W) em 380V</div>
+        <div class="calc-step">
+          <span>1. <strong>Conversão de CV para Watts</strong>: $1\text{ CV} = 735\text{ W} \implies 5\text{ CV} = <span class="highlight">3.675\text{ Watts}</span>$.</span>
+          <label class="test-checkbox-wrap">
+            <input type="checkbox" data-test-id="eletro-calc-5-1">
+            <span class="test-checkbox-label">Testado</span>
+          </label>
+        </div>
+        <div class="calc-step">
+          <span>2. <strong>Corrente Trifásica ($I$)</strong>: $I = \frac{P}{\sqrt{3} \cdot V \cdot \cos\phi \cdot \eta} = \frac{3675}{1,732 \cdot 380 \cdot 0,85 \cdot 0,85} = <span class="highlight">7,73\text{ A}</span>$.</span>
+          <label class="test-checkbox-wrap">
+            <input type="checkbox" data-test-id="eletro-calc-5-2">
+            <span class="test-checkbox-label">Testado</span>
+          </label>
+        </div>
+        <div class="calc-step">
+          <span>3. <strong>Escolha dos Componentes</strong>: Contactor K1 (AC-3 12A), Relé Térmico de Ajuste (<span class="origin">6A a 10A</span>) e Disjuntor-Motor de <span class="highlight">10A</span>.</span>
+          <label class="test-checkbox-wrap">
+            <input type="checkbox" data-test-id="eletro-calc-5-3">
+            <span class="test-checkbox-label">Testado</span>
+          </label>
+        </div>
+        <div class="cmd-row">
+          <span class="cmd-code">Motor 5CV = 3675W  |  I = 7.73A (Trifasico 380V)  |  Contactor: AC-3 12A  |  Rele Termico: 6-10A</span>
+          <button class="copy-btn" onclick="copiar(this, 'Motor 5CV = 3675W | I = 7.73A | Contactor: 12A | Rele Termico: 6-10A')">📋 Copiar</button>
+          <label class="test-checkbox-wrap">
+            <input type="checkbox" data-test-id="eletro-cmd-5-1">
+            <span class="test-checkbox-label">Testado</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>Pensador Sem Fronteiras · Didática Filosofica & Científica Lendária</p>
+      <small>Do Zero ao Infinito</small>
+    </footer>
+  </div>
+
+  <script>
+    function copiar(btn, texto) {
+      navigator.clipboard.writeText(texto).then(() => {
+        const textoOriginal = btn.innerHTML;
+        btn.innerHTML = '✅ Copiado!';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.innerHTML = textoOriginal;
+          btn.classList.remove('copied');
+        }, 1800);
+      }).catch(err => {
+        alert('Erro ao copiar comando.');
+      });
+    }
+
+    // PERSISTÊNCIA DAS CAIXAS DE SELEÇÃO "CONHECIMENTO TESTADO"
+    document.addEventListener('DOMContentLoaded', () => {
+      const pageId = window.location.pathname;
+      document.querySelectorAll('input[type="checkbox"][data-test-id]').forEach((cb) => {
+        const key = pageId + ':' + cb.getAttribute('data-test-id');
+        if (localStorage.getItem(key) === 'true') {
+          cb.checked = true;
+          cb.closest('.calc-step, .cmd-row, .card')?.classList.add('step-tested');
+        }
+        cb.addEventListener('change', () => {
+          localStorage.setItem(key, cb.checked);
+          if (cb.checked) {
+            cb.closest('.calc-step, .cmd-row, .card')?.classList.add('step-tested');
+          } else {
+            cb.closest('.calc-step, .cmd-row, .card')?.classList.remove('step-tested');
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
