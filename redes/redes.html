@@ -91,6 +91,30 @@
       </div>
     </div>
 
+    <!-- CONCEITO INTERMEDIÁRIO: PORTAS E PROTOCOLOS -->
+    <div class="card" id="ponte-portas-protocolos">
+      <div class="card-header">
+        <span class="step-badge" style="background: linear-gradient(135deg, #38bdf8, #0284c7);">CONCEITO PONTE 1.1</span>
+        <h2>🔌 Portas de Comunicação (TCP/UDP) & Serviços</h2>
+      </div>
+      <div class="desc-text">
+        Enquanto o IP identifica o computador na rede, a Porta identifica o serviço específico que está ouvindo conexões:
+      </div>
+
+      <div class="math-box">
+        <div class="math-title">📌 Portas de Serviços Padrão (Well-Known Ports 0-1023)</div>
+        <div class="calc-step">1. <strong>Porta 22 (TCP)</strong>: SSH (Acesso remoto seguro a servidores Linux)</div>
+        <div class="calc-step">2. <strong>Porta 53 (UDP/TCP)</strong>: DNS (Resolução de nomes de domínio)</div>
+        <div class="calc-step">3. <strong>Porta 80 (TCP)</strong>: HTTP (Web não criptografada)</div>
+        <div class="calc-step">4. <strong>Porta 443 (TCP)</strong>: HTTPS (Web segura com certificado SSL/TLS)</div>
+        <div class="calc-step">5. <strong>Portas 8000 / 5000 (TCP)</strong>: Servidores Web Dev (Python / Flask)</div>
+        <div class="cmd-row">
+          <span class="cmd-code">curl -I https://google.com:443  |  nc -zv 192.168.1.100 8000</span>
+          <button class="copy-btn" onclick="copiar(this, 'nc -zv 192.168.1.100 8000')">📋 Copiar</button>
+        </div>
+      </div>
+    </div>
+
     <div class="card" id="modulo-2-ip">
       <div class="card-header">
         <span class="step-badge">MÓDULO 2</span>

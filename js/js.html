@@ -91,6 +91,28 @@
       </div>
     </div>
 
+    <!-- CONCEITO INTERMEDIÁRIO: PROMISES E ASINCRONISMO -->
+    <div class="card" id="ponte-promises">
+      <div class="card-header">
+        <span class="step-badge" style="background: linear-gradient(135deg, #facc15, #a16207);">CONCEITO PONTE 1.1</span>
+        <h2>⏳ Entendendo Promises & Asincronismo</h2>
+      </div>
+      <div class="desc-text">
+        Antes de usar `async / await`, é fundamental compreender como o JavaScript lida com tarefas assíncronas via Promises:
+      </div>
+
+      <div class="math-box">
+        <div class="math-title">📌 Os 3 Estados de uma Promise</div>
+        <div class="calc-step">1. <strong>Pending (Pendente)</strong>: Estado inicial, aguardando a conclusão da tarefa.</div>
+        <div class="calc-step">2. <strong>Fulfilled (Realizada)</strong>: Sucesso! `.then(resultado => ...)` é executado.</div>
+        <div class="calc-step">3. <strong>Rejected (Rejeitada)</strong>: Erro! `.catch(erro => ...)` trata a falha.</div>
+        <div class="cmd-row">
+          <span class="cmd-code">new Promise((resolve, reject) => resolve('Sucesso!'))</span>
+          <button class="copy-btn" onclick="copiar(this, &quot;new Promise((resolve, reject) => resolve('Sucesso!'))&quot;)">📋 Copiar</button>
+        </div>
+      </div>
+    </div>
+
     <div class="card" id="modulo-2-fetch">
       <div class="card-header">
         <span class="step-badge">MÓDULO 2</span>
