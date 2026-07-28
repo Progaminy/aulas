@@ -238,6 +238,52 @@
       </div>
     </div>
 
+    <!-- PASSO 8: EQUAÇÃO DO 2º GRAU E DEDUÇÃO DE BHASKARA POR COMPLETAR QUADRADOS -->
+    <div class="card" id="passo-8-equacao-2grau-bhaskara">
+      <div class="card-header">
+        <span class="step-badge">PASSO A PASSO 8</span>
+        <h2>📐 Equação do 2º Grau & Dedução da Fórmula de Bhaskara</h2>
+      </div>
+      <div class="desc-text">
+        A fórmula de Bhaskara não é mágica! Ela nasce do método de <strong>Completar Quadrados</strong> na equação geral $ax^2 + bx + c = 0$:
+      </div>
+
+      <div class="math-box">
+        <div class="math-title">📌 DEDUÇÃO PASSO A PASSO DE BHASKARA</div>
+        <div class="calc-step">1. Partimos de $ax^2 + bx + c = 0$. Dividimos tudo por $a$: $x^2 + \frac{b}{a}x + \frac{c}{a} = 0$.</div>
+        <div class="calc-step">2. Passamos $\frac{c}{a}$ para a direita: $x^2 + \frac{b}{a}x = -\frac{c}{a}$.</div>
+        <div class="calc-step">3. Completamos o quadrado perfeito somando $(\frac{b}{2a})^2$ em ambos os lados: $(x + \frac{b}{2a})^2 = \frac{b^2 - 4ac}{4a^2}$.</div>
+        <div class="calc-step">4. Extraindo a raiz quadrada: $x + \frac{b}{2a} = \frac{\pm\sqrt{b^2 - 4ac}}{2a}$.</div>
+        <div class="calc-step">5. <span class="origin">NASCE A FÓRMULA DE BHASKARA</span>: <span class="highlight">x = \frac{-b \pm \sqrt{\Delta}}{2a}</span> onde $\Delta = b^2 - 4ac$.</div>
+        <div class="cmd-row">
+          <span class="cmd-code">Delta = b^2 - 4*a*c  |  x = (-b ± sqrt(Delta)) / (2*a)</span>
+          <button class="copy-btn" onclick="copiar(this, 'Delta = b^2 - 4*a*c  |  x = (-b ± sqrt(Delta)) / (2*a)')">📋 Copiar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PASSO 9: INTRODUÇÃO AO CÁLCULO INFINITESIMAL (LIMITES E DERIVADAS) -->
+    <div class="card" id="passo-9-calculo-limites-derivadas">
+      <div class="card-header">
+        <span class="step-badge">PASSO A PASSO 9</span>
+        <h2>♾️ Introdução ao Cálculo Infinitesimal (Limites & Derivadas)</h2>
+      </div>
+      <div class="desc-text">
+        Quando a variação de tempo ou espaço tende a zero ($\Delta x \to 0$), a álgebra tradicional atinge seu limite. **Aqui nasce o Cálculo**:
+      </div>
+
+      <div class="math-box">
+        <div class="math-title">📌 Como Nasce a Derivada (Taxa de Variação Instantânea)</div>
+        <div class="calc-step">1. Velocidade média é $\Delta y / \Delta x$. Para descobrir a velocidade instantânea em um único ponto, aproximamos $\Delta x$ de 0.</div>
+        <div class="calc-step">2. <span class="origin">NASCE A DERIVADA (f'(x))</span>: $f'(x) = \lim_{\Delta x \to 0} \frac{f(x + \Delta x) - f(x)}{\Delta x}$.</div>
+        <div class="calc-step">3. <strong>Regra do Tombo para Potências</strong>: Se $f(x) = x^n$, a derivada é <span class="highlight">f'(x) = n \cdot x^{n-1}</span>.</div>
+        <div class="cmd-row">
+          <span class="cmd-code">f(x) = x^n => f'(x) = n * x^(n-1)  [Ex: d/dx(x^3) = 3*x^2]</span>
+          <button class="copy-btn" onclick="copiar(this, 'd/dx(x^3) = 3*x^2')">📋 Copiar</button>
+        </div>
+      </div>
+    </div>
+
     <footer>
       <p>Pensador Sem Fronteiras · Didática Filosofica & Científica Lendária</p>
       <small>Do Zero ao Infinito</small>
