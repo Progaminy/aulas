@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes, viewport-fit=cover">
-  <title>Química Lendária | Tabela Periódica, Reações & Estequiometria</title>
+  <title>Química Lendária | Sequência Natural & Construção da Tabela Periódica</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Share+Tech+Mono&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
@@ -51,6 +51,7 @@
     .math-box { background: rgba(2, 6, 23, 0.9); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 0.85rem; padding: 1rem; margin-bottom: 1rem; }
     .math-title { font-weight: bold; color: #34d399; font-size: 0.95rem; margin-bottom: 0.5rem; }
     .calc-step { background: #090d16; border-left: 4px solid #10b981; padding: 0.6rem 0.8rem; border-radius: 0 0.5rem 0.5rem 0; margin-top: 0.5rem; font-family: 'Share Tech Mono', monospace; font-size: 0.95rem; color: #e0f2fe; }
+    .calc-step span.highlight { color: #f59e0b; font-weight: bold; }
     .cmd-row { display: flex; justify-content: space-between; align-items: center; background: #090d16; border: 1px solid rgba(52, 211, 153, 0.25); border-radius: 0.6rem; padding: 0.5rem 0.85rem; gap: 0.5rem; margin-top: 0.5rem; }
     .cmd-code { font-family: 'Share Tech Mono', monospace; color: #34d399; font-size: 0.95rem; font-weight: 600; }
     .copy-btn { background: rgba(52, 211, 153, 0.12); color: #34d399; border: 1px solid rgba(52, 211, 153, 0.4); border-radius: 6px; padding: 0.35rem 0.75rem; font-size: 0.8rem; font-weight: 600; cursor: pointer; white-space: nowrap; transition: all 0.2s ease; }
@@ -64,47 +65,116 @@
     <header>
       <a href="../index.html" class="btn-voltar">⬅️ Voltar ao Portal Principal</a>
       <h1 class="main-title">🧪 QUÍMICA LENDÁRIA</h1>
-      <p class="subtitle">Átomos, Tabela Periódica, Reações, Soluções & Química Orgânica Passo a Passo</p>
+      <p class="subtitle">Fluxo de Conhecimento Natural: Dos Átomos à Distribuição Eletrônica, Construção da Tabela Periódica & Ligações Químicas</p>
       <div class="badge-bar">
-        <span class="badge">⚛️ Estrutura Atômica</span>
-        <span class="badge">📊 Tabela Periódica</span>
-        <span class="badge">⚖️ Estequiometria</span>
-        <span class="badge">🧪 Química Orgânica</span>
+        <span class="badge">⚛️ 1. Número Atômico & Massa</span>
+        <span class="badge">⚡ 2. Distribuição de Linus Pauling</span>
+        <span class="badge">📊 3. Construção da Tabela Periódica</span>
+        <span class="badge">🔗 4. Ligações Químicas & Octeto</span>
       </div>
     </header>
 
-    <div class="card" id="modulo-1-atomo">
+    <!-- PASSO 1: ELEMENTOS QUÍMICOS, NÚMERO ATÔMICO E MASSA -->
+    <div class="card" id="passo-1-elemento-massa">
       <div class="card-header">
-        <span class="step-badge">MÓDULO 1</span>
-        <h2>⚛️ Estrutura Atômica & Tabela Periódica</h2>
+        <span class="step-badge">PASSO A PASSO 1</span>
+        <h2>⚛️ Elementos Químicos, Número Atômico (Z) & Massa (A)</h2>
       </div>
-      <div class="desc-text">O átomo é formado por Prótons (+), Nêutrons (0) no núcleo e Elétrons (-) na eletrosfera:</div>
+      <div class="desc-text">
+        Tudo começa na estrutura do átomo: o número de prótons define quem é o elemento químico (Número Atômico $Z$).
+      </div>
+
       <div class="math-box">
-        <div class="math-title">📌 Fórmulas Fundamentais do Átomo</div>
-        <div class="calc-step">Número Atômico (Z) = Número de Prótons (p) = Número de Elétrons (e)</div>
-        <div class="calc-step">Número de Massa (A) = Prótons (Z) + Nêutrons (n) => A = Z + n</div>
+        <div class="math-title">📌 Fórmulas da Estrutura Atômica</div>
+        <div class="calc-step">1. <strong>Número Atômico (Z)</strong> = Número de Prótons (p) = Número de Elétrons (e) em átomo neutro.</div>
+        <div class="calc-step">2. <strong>Número de Massa (A)</strong> = Prótons (Z) + Nêutrons (n) => <span class="highlight">A = Z + n</span></div>
+        <div class="calc-step">3. <strong>Cálculo de Nêutrons (n)</strong> = Massa (A) - Número Atômico (Z) => <span class="highlight">n = A - Z</span></div>
         <div class="cmd-row">
-          <span class="cmd-code">A = Z + n => n = A - Z</span>
-          <button class="copy-btn" onclick="copiar(this, 'A = Z + n => n = A - Z')">📋 Copiar</button>
+          <span class="cmd-code">Z = p = e  |  A = Z + n  =>  n = A - Z</span>
+          <button class="copy-btn" onclick="copiar(this, 'Z = p = e  |  A = Z + n  =>  n = A - Z')">📋 Copiar</button>
         </div>
       </div>
     </div>
 
-    <!-- CONCEITO INTERMEDIÁRIO: LIGAÇÕES QUÍMICAS -->
-    <div class="card" id="ponte-ligacoes-quimicas">
+    <!-- PASSO 2: DISTRIBUIÇÃO ELETRÔNICA DE LINUS PAULING -->
+    <div class="card" id="passo-2-distribuicao-pauling">
       <div class="card-header">
-        <span class="step-badge" style="background: linear-gradient(135deg, #34d399, #059669);">CONCEITO PONTE 1.1</span>
-        <h2>🔗 Ligações Químicas & Regra do Octeto</h2>
+        <span class="step-badge">PASSO A PASSO 2</span>
+        <h2>⚡ Distribuição Eletrônica (Diagrama de Linus Pauling)</h2>
       </div>
       <div class="desc-text">
-        Antes de formar reações, os átomos ligam-se para atingir a estabilidade (8 elétrons na camada de valência):
+        Os elétrons de um elemento distribuem-se por camadas (K, L, M, N, O, P, Q) e subníveis de energia (s, p, d, f) seguindo a ordem de energia crescente:
       </div>
 
       <div class="math-box">
-        <div class="math-title">📌 Os 3 Tipos Principais de Ligações</div>
-        <div class="calc-step">1. <strong>Ligação Iônica</strong>: Transferência definitiva de elétrons entre Metal (+) e Ametais (-) (Ex: NaCl - Sal de Cozinha).</div>
-        <div class="calc-step">2. <strong>Ligação Covalente</strong>: Compartilhamento de pares de elétrons entre Ametais (Ex: H₂O, CO₂).</div>
-        <div class="calc-step">3. <strong>Ligação Metálica</strong>: Mar de elétrons livres entre átomos metálicos (Ex: Fe, Cu, Au).</div>
+        <div class="math-title">📌 Ordem de Energia dos Subníveis (Linus Pauling)</div>
+        <div class="calc-step"><span class="highlight">1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹⁰ 4p⁶ 5s² 4d¹⁰ 5p⁶ 6s² 4f¹⁴ 5d¹⁰ 6p⁶ 7s² 5f¹⁴ 6d¹⁰</span></div>
+      </div>
+
+      <div class="math-box">
+        <div class="math-title">📌 Exemplo Passo a Passo: Distribuição do Sódio (Na, Z = 11)</div>
+        <div class="calc-step">1. Total de elétrons a distribuir: 11</div>
+        <div class="calc-step">2. 1s² (2 elétrons) -> Faltam 9</div>
+        <div class="calc-step">3. 2s² 2p⁶ (8 elétrons) -> Falta 1</div>
+        <div class="calc-step">4. 3s¹ (1 elétron na camada de valência)</div>
+        <div class="calc-step">5. Distribuição Final: <span class="highlight">1s² 2s² 2p⁶ 3s¹</span> (Camada K=2, L=8, M=1)</div>
+        <div class="cmd-row">
+          <span class="cmd-code">Na (Z=11): 1s2 2s2 2p6 3s1  [K=2, L=8, M=1]</span>
+          <button class="copy-btn" onclick="copiar(this, 'Na (Z=11): 1s2 2s2 2p6 3s1  [K=2, L=8, M=1]')">📋 Copiar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PASSO 3: CONSTRUÇÃO DA TABELA PERIÓDICA -->
+    <div class="card" id="passo-3-construcao-tabela">
+      <div class="card-header">
+        <span class="step-badge">PASSO A PASSO 3</span>
+        <h2>📊 Construção Progressiva da Tabela Periódica</h2>
+      </div>
+      <div class="desc-text">
+        A Tabela Periódica <strong>não é aleatória</strong>! A posição de cada elemento é determinada diretamente pela sua distribuição eletrônica:
+      </div>
+
+      <div class="math-box">
+        <div class="math-title">📌 Regras de Localização na Tabela Periódica</div>
+        <div class="calc-step">1. <strong>Período (Linha)</strong> = Número total de camadas eletrônicas ocupadas (K=1º, L=2º, M=3º...).</div>
+        <div class="calc-step">2. <strong>Família / Grupo (Coluna)</strong> = Número de elétrons na camada de valência (última camada).</div>
+        <div class="calc-step">3. <strong>Exemplo do Sódio (Na, Z=11)</strong>: Possui 3 camadas (K, L, M) e 1 elétron na camada M $\rightarrow$ <span class="highlight">3º Período, Família 1A (Metais Alcalinos)</span>.</div>
+        <div class="calc-step">4. <strong>Exemplo do Cloro (Cl, Z=17)</strong>: 1s² 2s² 2p⁶ 3s² 3p⁵ (3 camadas, 7 elétrons na valência) $\rightarrow$ <span class="highlight">3º Período, Família 7A (Halogênios)</span>.</div>
+        <div class="cmd-row">
+          <span class="cmd-code">Camadas = Período  |  Elétrons de Valência = Família</span>
+          <button class="copy-btn" onclick="copiar(this, 'Camadas = Período  |  Elétrons de Valência = Família')">📋 Copiar</button>
+        </div>
+      </div>
+
+      <div class="math-box">
+        <div class="math-title">📌 As 8 Famílias Principais (Representativos)</div>
+        <div class="calc-step">• <strong>Família 1A (Alcalinos)</strong>: 1 elétron na valência (H, Li, Na, K...)</div>
+        <div class="calc-step">• <strong>Família 2A (Alcalino-Terrosos)</strong>: 2 elétrons na valência (Be, Mg, Ca...)</div>
+        <div class="calc-step">• <strong>Família 3A (Boro)</strong>: 3 elétrons na valência (B, Al...)</div>
+        <div class="calc-step">• <strong>Família 4A (Carbono)</strong>: 4 elétrons na valência (C, Si...)</div>
+        <div class="calc-step">• <strong>Família 5A (Nitrogênio)</strong>: 5 elétrons na valência (N, P...)</div>
+        <div class="calc-step">• <strong>Família 6A (Calcogênios)</strong>: 6 elétrons na valência (O, S...)</div>
+        <div class="calc-step">• <strong>Família 7A (Halogênios)</strong>: 7 elétrons na valência (F, Cl, Br, I...)</div>
+        <div class="calc-step">• <strong>Família 8A / 18 (Gases Nobres)</strong>: 8 elétrons na valência (He, Ne, Ar, Kr...)</div>
+      </div>
+    </div>
+
+    <!-- PASSO 4: LIGAÇÕES QUÍMICAS E REGRA DO OCTETO -->
+    <div class="card" id="passo-4-ligacoes-octeto">
+      <div class="card-header">
+        <span class="step-badge">PASSO A PASSO 4</span>
+        <h2>🔗 Ligações Químicas & Regra do Octeto</h2>
+      </div>
+      <div class="desc-text">
+        Com a Tabela Periódica construída, vemos por que as reações acontecem: os elementos querem ter a distribuição de um Gas Nobre (8 elétrons na valência):
+      </div>
+
+      <div class="math-box">
+        <div class="math-title">📌 Formação dos 3 Tipos de Ligações</div>
+        <div class="calc-step">1. <strong>Ligação Iônica (Metal + Ametais)</strong>: O Metal doa elétrons (vira Cátion +) e o Ametal recebe (vira Ânion -). Ex: Na⁺ + Cl⁻ → NaCl (Sal de Cozinha).</div>
+        <div class="calc-step">2. <strong>Ligação Covalente (Ametal + Ametal)</strong>: Compartilhamento de pares de elétrons. Ex: 2 H + O → H₂O (Água).</div>
+        <div class="calc-step">3. <strong>Ligação Metálica (Metal + Metal)</strong>: Mar de elétrons livres que gera condutividade elétrica e térmica.</div>
         <div class="cmd-row">
           <span class="cmd-code">Na+ + Cl- -> NaCl  |  2H + O -> H2O</span>
           <button class="copy-btn" onclick="copiar(this, 'Na+ + Cl- -> NaCl  |  2H + O -> H2O')">📋 Copiar</button>
@@ -112,12 +182,16 @@
       </div>
     </div>
 
-    <div class="card" id="modulo-2-estequiometria">
+    <!-- PASSO 5: REAÇÕES QUÍMICAS E ESTEQUIOMETRIA -->
+    <div class="card" id="passo-5-reaçoes-estequiometria">
       <div class="card-header">
-        <span class="step-badge">MÓDULO 2</span>
-        <h2>⚖️ Balanceamento de Reações & Estequiometria</h2>
+        <span class="step-badge">PASSO A PASSO 5</span>
+        <h2>⚖️ Reações Químicas, Balanceamento & Estequiometria</h2>
       </div>
-      <div class="desc-text">Lei da Conservação da Massa (Lavoisier): Na natureza, nada se cria, nada se perde, tudo se transforma:</div>
+      <div class="desc-text">
+        As ligações transformam reagentes em produtos mantendo o número total de átomos inalterado (Lei de Lavoisier):
+      </div>
+
       <div class="math-box">
         <div class="math-title">📌 Passo a Passo de Balanceamento: Combustão do Metano</div>
         <div class="calc-step">1. Reação Desbalanceada: CH₄ + O₂ → CO₂ + H₂O</div>
@@ -130,25 +204,30 @@
       </div>
     </div>
 
-    <div class="card" id="modulo-3-solucoes">
+    <!-- PASSO 6: SOLUÇÕES, MOLARIDADE E pH -->
+    <div class="card" id="passo-6-solucoes-ph">
       <div class="card-header">
-        <span class="step-badge">MÓDULO 3</span>
-        <h2>🧪 Soluções, Concentração & Molaridade</h2>
+        <span class="step-badge">PASSO A PASSO 6</span>
+        <h2>🧪 Soluções, Molaridade & Escala de pH</h2>
       </div>
-      <div class="desc-text">Cálculo da quantidade de soluto dissolvido em um determinado volume de solução:</div>
+      <div class="desc-text">
+        Mede a concentração de reagentes dissolvidos e a acidez/basicidade da solução:
+      </div>
+
       <div class="math-box">
-        <div class="math-title">📌 Fórmula da Concentração Comum e Molaridade</div>
-        <div class="calc-step">Concentração Comum (g/L): C = massa (m) / Volume (V)</div>
-        <div class="calc-step">Molaridade (mol/L): M = nº de mols (n) / Volume (V)</div>
+        <div class="math-title">📌 Concentração & pH</div>
+        <div class="calc-step">1. Concentração Comum (g/L): C = massa (m) / Volume (V)</div>
+        <div class="calc-step">2. Molaridade (mol/L): M = nº de mols (n) / Volume (V)</div>
+        <div class="calc-step">3. Escala de pH: pH < 7 (Ácido), pH = 7 (Neutro), pH > 7 (Básico/Alcalino)</div>
         <div class="cmd-row">
-          <span class="cmd-code">C = m / V  |  M = n / V</span>
-          <button class="copy-btn" onclick="copiar(this, 'C = m / V  |  M = n / V')">📋 Copiar</button>
+          <span class="cmd-code">C = m / V  |  M = n / V  |  pH = -log[H+]</span>
+          <button class="copy-btn" onclick="copiar(this, 'C = m / V  |  M = n / V  |  pH = -log[H+]')">📋 Copiar</button>
         </div>
       </div>
     </div>
 
     <footer>
-      <p>Pensador Sem Fronteiras · Didática Científica Lendária</p>
+      <p>Pensador Sem Fronteiras · Sequência Científica Lendária</p>
       <small>Do Zero ao Infinito</small>
     </footer>
   </div>
