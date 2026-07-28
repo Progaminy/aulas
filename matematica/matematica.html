@@ -3,549 +3,243 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes, viewport-fit=cover">
-  <title>Matemática Lendária | Passo a Passo de Todos os Cálculos</title>
+  <title>Matemática Lendária | Didática PSF: Origem Orgânica dos Números & Operações</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Share+Tech+Mono&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
     body {
       background: radial-gradient(circle at 10% 10%, #06101e 0%, #02050b 100%);
       font-family: 'Inter', system-ui, -apple-system, sans-serif;
       color: #e2e8f0;
       min-height: 100vh;
       padding: 1.5rem 1rem 3rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      line-height: 1.6;
+      display: flex; flex-direction: column; align-items: center; line-height: 1.6;
     }
-
     body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
+      content: ""; position: fixed; inset: 0;
       background-image: 
         radial-gradient(circle at 85% 15%, rgba(6, 182, 212, 0.12) 0%, transparent 45%),
         radial-gradient(circle at 15% 85%, rgba(168, 85, 247, 0.12) 0%, transparent 50%);
-      pointer-events: none;
-      z-index: 0;
+      pointer-events: none; z-index: 0;
     }
-
-    .container {
-      width: 100%;
-      max-width: 860px;
-      position: relative;
-      z-index: 2;
-      display: flex;
-      flex-direction: column;
-      gap: 1.8rem;
-    }
-
-    /* HEADER */
-    header {
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.8rem;
-    }
-
+    .container { width: 100%; max-width: 860px; position: relative; z-index: 2; display: flex; flex-direction: column; gap: 1.8rem; }
+    header { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 0.8rem; }
     .btn-voltar {
-      align-self: flex-start;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: rgba(6, 182, 212, 0.15);
-      color: #38bdf8;
-      border: 1px solid rgba(6, 182, 212, 0.4);
-      padding: 0.5rem 1.2rem;
-      border-radius: 50px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      text-decoration: none;
-      backdrop-filter: blur(10px);
-      transition: all 0.2s ease;
+      align-self: flex-start; display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(6, 182, 212, 0.15); color: #38bdf8; border: 1px solid rgba(6, 182, 212, 0.4);
+      padding: 0.5rem 1.2rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; text-decoration: none;
+      backdrop-filter: blur(10px); transition: all 0.2s ease;
     }
-
-    .btn-voltar:hover {
-      background: rgba(6, 182, 212, 0.3);
-      color: #fff;
-      box-shadow: 0 0 15px rgba(6, 182, 212, 0.5);
-      transform: translateY(-2px);
-    }
-
+    .btn-voltar:hover { background: rgba(6, 182, 212, 0.3); color: #fff; box-shadow: 0 0 15px rgba(6, 182, 212, 0.5); transform: translateY(-2px); }
     .main-title {
-      font-family: 'Orbitron', sans-serif;
-      font-size: clamp(2rem, 7vw, 3.2rem);
-      font-weight: 800;
-      text-align: center;
-      letter-spacing: 0.05em;
-      background: linear-gradient(135deg, #38bdf8, #a855f7, #f472b6);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      font-family: 'Orbitron', sans-serif; font-size: clamp(2rem, 7vw, 3.2rem); font-weight: 800; text-align: center;
+      letter-spacing: 0.05em; background: linear-gradient(135deg, #38bdf8, #a855f7, #f472b6);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
       filter: drop-shadow(0 0 20px rgba(56, 189, 248, 0.4));
     }
-
-    .subtitle {
-      font-size: 1.1rem;
-      color: #94a3b8;
-      max-width: 720px;
-      margin: 0 auto;
-    }
-
-    .badge-bar {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0.6rem;
-      margin-top: 0.5rem;
-    }
-
-    .badge {
-      background: rgba(15, 23, 42, 0.8);
-      border: 1px solid rgba(56, 189, 248, 0.35);
-      color: #7dd3fc;
-      padding: 0.35rem 0.85rem;
-      border-radius: 20px;
-      font-size: 0.82rem;
-      font-family: 'Share Tech Mono', monospace;
-    }
-
-    /* ESTILO DOS CARTÕES GLASSMORPHISM */
-    .card {
-      background: rgba(15, 23, 42, 0.78);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(56, 189, 248, 0.25);
-      border-radius: 1.5rem;
-      padding: 1.6rem;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(56, 189, 248, 0.1);
-      transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .card:hover {
-      border-color: rgba(168, 85, 247, 0.45);
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 0 0 30px rgba(168, 85, 247, 0.2);
-    }
-
-    .card-header {
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-      margin-bottom: 1rem;
-      padding-bottom: 0.8rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .card-header h2 {
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: #f8fafc;
-      font-family: 'Orbitron', sans-serif;
-    }
-
-    .step-badge {
-      background: linear-gradient(135deg, #06b6d4, #a855f7);
-      color: #fff;
-      font-weight: 800;
-      font-size: 0.85rem;
-      padding: 0.35rem 0.75rem;
-      border-radius: 8px;
-      white-space: nowrap;
-    }
-
-    .desc-text {
-      font-size: 0.95rem;
-      color: #cbd5e1;
-      margin-bottom: 1.2rem;
-    }
-
-    /* BLOCOS DE CÁLCULO E FÓRMULAS */
-    .math-box {
-      background: rgba(2, 6, 23, 0.9);
-      border: 1px solid rgba(56, 189, 248, 0.3);
-      border-radius: 0.85rem;
-      padding: 1rem;
-      margin-bottom: 1rem;
-    }
-
-    .math-title {
-      font-weight: bold;
-      color: #38bdf8;
-      font-size: 0.95rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .calc-step {
-      background: #090d16;
-      border-left: 4px solid #a855f7;
-      padding: 0.6rem 0.8rem;
-      border-radius: 0 0.5rem 0.5rem 0;
-      margin-top: 0.5rem;
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 0.95rem;
-      color: #e0f2fe;
-    }
-
-    .calc-step span.highlight {
-      color: #f59e0b;
-      font-weight: bold;
-    }
-
-    .cmd-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: #090d16;
-      border: 1px solid rgba(56, 189, 248, 0.25);
-      border-radius: 0.6rem;
-      padding: 0.5rem 0.85rem;
-      gap: 0.5rem;
-      margin-top: 0.5rem;
-    }
-
-    .cmd-code {
-      font-family: 'Share Tech Mono', monospace;
-      color: #38bdf8;
-      font-size: 0.95rem;
-      font-weight: 600;
-    }
-
-    .copy-btn {
-      background: rgba(56, 189, 248, 0.12);
-      color: #38bdf8;
-      border: 1px solid rgba(56, 189, 248, 0.4);
-      border-radius: 6px;
-      padding: 0.35rem 0.75rem;
-      font-size: 0.8rem;
-      font-weight: 600;
-      cursor: pointer;
-      white-space: nowrap;
-      transition: all 0.2s ease;
-      font-family: 'Inter', sans-serif;
-    }
-
-    .copy-btn:hover {
-      background: #38bdf8;
-      color: #020617;
-      box-shadow: 0 0 12px rgba(56, 189, 248, 0.6);
-    }
-
-    .copy-btn.copied {
-      background: #22c55e !important;
-      color: #020617 !important;
-      border-color: #22c55e !important;
-      box-shadow: 0 0 12px rgba(34, 197, 94, 0.8) !important;
-    }
-
-    footer {
-      text-align: center;
-      margin-top: 2rem;
-      color: #64748b;
-      font-size: 0.85rem;
-    }
+    .subtitle { font-size: 1.1rem; color: #94a3b8; max-width: 720px; margin: 0 auto; }
+    .badge-bar { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem; margin-top: 0.5rem; }
+    .badge { background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(56, 189, 248, 0.35); color: #7dd3fc; padding: 0.35rem 0.85rem; border-radius: 20px; font-size: 0.82rem; font-family: 'Share Tech Mono', monospace; }
+    .card { background: rgba(15, 23, 42, 0.78); backdrop-filter: blur(16px); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 1.5rem; padding: 1.6rem; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); transition: border-color 0.3s ease; }
+    .card:hover { border-color: rgba(168, 85, 247, 0.45); box-shadow: 0 15px 35px rgba(0,0,0,0.6), 0 0 30px rgba(168, 85, 247, 0.2); }
+    .card-header { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem; padding-bottom: 0.8rem; border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
+    .card-header h2 { font-size: 1.3rem; font-weight: 700; color: #f8fafc; font-family: 'Orbitron', sans-serif; }
+    .step-badge { background: linear-gradient(135deg, #06b6d4, #a855f7); color: #fff; font-weight: 800; font-size: 0.85rem; padding: 0.35rem 0.75rem; border-radius: 8px; white-space: nowrap; }
+    .desc-text { font-size: 0.95rem; color: #cbd5e1; margin-bottom: 1.2rem; }
+    .math-box { background: rgba(2, 6, 23, 0.9); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 0.85rem; padding: 1rem; margin-bottom: 1rem; }
+    .math-title { font-weight: bold; color: #38bdf8; font-size: 0.95rem; margin-bottom: 0.5rem; }
+    .calc-step { background: #090d16; border-left: 4px solid #a855f7; padding: 0.6rem 0.8rem; border-radius: 0 0.5rem 0.5rem 0; margin-top: 0.5rem; font-family: 'Share Tech Mono', monospace; font-size: 0.95rem; color: #e0f2fe; }
+    .calc-step span.highlight { color: #f59e0b; font-weight: bold; }
+    .calc-step span.origin { color: #34d399; font-weight: bold; }
+    .cmd-row { display: flex; justify-content: space-between; align-items: center; background: #090d16; border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 0.6rem; padding: 0.5rem 0.85rem; gap: 0.5rem; margin-top: 0.5rem; }
+    .cmd-code { font-family: 'Share Tech Mono', monospace; color: #38bdf8; font-size: 0.95rem; font-weight: 600; }
+    .copy-btn { background: rgba(56, 189, 248, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 6px; padding: 0.35rem 0.75rem; font-size: 0.8rem; font-weight: 600; cursor: pointer; white-space: nowrap; transition: all 0.2s ease; font-family: 'Inter', sans-serif; }
+    .copy-btn:hover { background: #38bdf8; color: #020617; }
+    .copy-btn.copied { background: #22c55e !important; color: #020617 !important; }
+    footer { text-align: center; margin-top: 2rem; color: #64748b; font-size: 0.85rem; }
   </style>
 </head>
 <body>
-
   <div class="container">
     <header>
       <a href="../index.html" class="btn-voltar">⬅️ Voltar ao Portal Principal</a>
-      <h1 class="main-title">📐 MATEMÁTICA LENDÁRIA</h1>
-      <p class="subtitle">Fluxo Pedagógico Fluido: O Passo a Passo Exato de Todos os Cálculos (Do Zero ao Infinito)</p>
+      <h1 class="main-title">📐 MATEMÁTICA LENDÁRIA (PSF)</h1>
+      <p class="subtitle">Didática Filosofica: Nenhum Conjunto ou Operação Surge Pronto sem Justificativa Organica</p>
       
       <div class="badge-bar">
-        <span class="badge">🔢 Sistema Decimal & Valor Posicional</span>
-        <span class="badge">➕ Adição, Subtração & Negativos</span>
-        <span class="badge">✖️ Multiplicação & Divisão Armada</span>
-        <span class="badge">⚡ Potências, Raízes & Logaritmos</span>
+        <span class="badge">1. Contagem → N</span>
+        <span class="badge">2. Adição & Zero</span>
+        <span class="badge">3. Subtração → Negativos → Z</span>
+        <span class="badge">4. Multiplicação</span>
+        <span class="badge">5. Divisão → Decimais → Q, I, R</span>
+        <span class="badge">6. Potência → Raiz & Log</span>
       </div>
     </header>
 
-    <!-- PASSO 1: SISTEMA DECIMAL E VALOR POSICIONAL -->
-    <div class="card" id="passo-1-sistema-decimal">
+    <!-- PASSO 1: CONTAGEM E ORIGEM DOS NATURAIS -->
+    <div class="card" id="passo-1-contagem-naturais">
       <div class="card-header">
         <span class="step-badge">PASSO A PASSO 1</span>
-        <h2>🔢 Sistema Numérico Decimal & Valor Posicional</h2>
+        <h2>🔢 A Contagem & A Origem dos Números Naturais (ℕ)</h2>
       </div>
       <div class="desc-text">
-        Algarismos de 0 a 9 formam a base. Ao atingir o 10, a contagem reinicia mudando de posição (Unidade, Dezena, Centena, Milhar):
+        A matemática nasce da simples necessidade humana de contar objetos discretos (1 ovelha, 2 pedras, 3 frutos...). 
+        Da contagem contínua um a um nasce o primeiro conjunto de números do universo:
       </div>
 
       <div class="math-box">
-        <div class="math-title">📌 Exemplo: Decomposição Posicional do número 3.458</div>
-        <div class="calc-step">3.458 = (3 × 1.000) + (4 × 100) + (5 × 10) + (8 × 1)</div>
-        <div class="calc-step">3 Milhares | 4 Centenas | 5 Dezenas | 8 Unidades</div>
+        <div class="math-title">📌 Nascimento do Conjunto dos Números Naturais (ℕ)</div>
+        <div class="calc-step">1. Contar é adicionar 1 unidade de cada vez: 0, 0+1=1, 1+1=2, 2+1=3, 3+1=4...</div>
+        <div class="calc-step">2. <span class="origin">AQUI NASCE O CONJUNTO DOS NATURAIS (ℕ)</span>: ℕ = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, ...}</div>
         <div class="cmd-row">
-          <span class="cmd-code">3458 = 3000 + 400 + 50 + 8</span>
-          <button class="copy-btn" onclick="copiar(this, '3458 = 3000 + 400 + 50 + 8')">📋 Copiar</button>
+          <span class="cmd-code">N = {0, 1, 2, 3, 4, 5, ...}</span>
+          <button class="copy-btn" onclick="copiar(this, 'N = {0, 1, 2, 3, 4, 5, ...}')">📋 Copiar</button>
         </div>
       </div>
     </div>
 
-    <!-- PASSO 2: ADIÇÃO ARMADA COM TRANSPORTE -->
-    <div class="card" id="passo-2-adicao-armada">
+    <!-- PASSO 2: ADIÇÃO E ELEMENTO NEUTRO ZERO -->
+    <div class="card" id="passo-2-adicao-zero">
       <div class="card-header">
         <span class="step-badge">PASSO A PASSO 2</span>
-        <h2>➕ Adição Armada com Transporte (Vai Um) & Elemento Neutro</h2>
+        <h2>➕ Adição (Juntar Contagens) & O Papel do Zero</h2>
       </div>
       <div class="desc-text">
-        Somar alinhando as colunas da direita para a esquerda. O número zero é o elemento neutro (`a + 0 = a`):
+        Somar nada mais é do que acoplar duas contagens consecutivas. O número zero nasce aqui como o <strong>Elemento Neutro</strong> da adição:
       </div>
 
       <div class="math-box">
-        <div class="math-title">📌 Passo a Passo de Cálculo: Somar 47 + 85</div>
-        <div class="calc-step">1. Coluna das Unidades: 7 + 5 = <span class="highlight">12</span> (Escreve 2 na resposta e "Vai 1" para a coluna das Dezenas)</div>
-        <div class="calc-step">2. Coluna das Dezenas: 4 + 8 + <span class="highlight">1</span> (do transporte) = <span class="highlight">13</span></div>
-        <div class="calc-step">3. Resultado Final: <span class="highlight">132</span></div>
+        <div class="math-title">📌 Adição e Propriedade do Zero</div>
+        <div class="calc-step">1. Somar 4 com 3: Pegar a contagem de 4 unidades e avançar mais 3 passos na reta: 4 $\rightarrow$ 5, 6, <span class="highlight">7</span>.</div>
+        <div class="calc-step">2. Somar qualquer número com Zero não altera o valor: <span class="highlight">a + 0 = a</span> (Zero é o Elemento Neutro).</div>
         <div class="cmd-row">
-          <span class="cmd-code">47 + 85 = 132</span>
-          <button class="copy-btn" onclick="copiar(this, '47 + 85 = 132')">📋 Copiar</button>
+          <span class="cmd-code">4 + 3 = 7  |  a + 0 = a</span>
+          <button class="copy-btn" onclick="copiar(this, '4 + 3 = 7  |  a + 0 = a')">📋 Copiar</button>
         </div>
       </div>
     </div>
 
-    <!-- PASSO 3: EQUAÇÕES COM INCÓGNITA -->
-    <div class="card" id="passo-3-incognita-caixa">
+    <!-- PASSO 3: SUBTRAÇÃO E ORIGEM DOS NEGATIVOS E INTEIROS Z -->
+    <div class="card" id="passo-3-subtracao-inteiros">
       <div class="card-header">
         <span class="step-badge">PASSO A PASSO 3</span>
-        <h2>📦 Conceito de Incógnita ("Caixa" a + ▢ = c)</h2>
+        <h2>➖ Subtração & A Origem dos Números Negativos e Inteiros (ℤ)</h2>
       </div>
       <div class="desc-text">
-        Uma equação é uma balança. Para descobrir o valor dentro da "caixa" (incógnita $x$), invertemos a operação:
+        A subtração nasce para desfazer a adição. Mas o que acontece quando tentamos tirar mais do que temos (ex: $5 - 8$)? 
+        A contagem em $\mathbb{N}$ trava! Para a matemática não travar, <strong>nasce o conceito de Dívida / Saldo Negativo</strong>:
       </div>
 
       <div class="math-box">
-        <div class="math-title">📌 Passo a Passo de Cálculo: Resolver 14 + ▢ = 30</div>
-        <div class="calc-step">1. Isolamos a caixa invertendo a adição para subtração: ▢ = 30 - 14</div>
-        <div class="calc-step">2. Efetuamos a subtração: 30 - 14 = <span class="highlight">16</span></div>
-        <div class="calc-step">3. Verificação: 14 + 16 = 30 (Correto!)</div>
+        <div class="math-title">📌 O Limite da Subtração que Cria os Números Inteiros (ℤ)</div>
+        <div class="calc-step">1. Tenho 5€ e preciso pagar 8€: 5 - 8 = <span class="highlight">-3</span> (Fico a dever 3€).</div>
+        <div class="calc-step">2. <span class="origin">AQUI E APENAS AQUI NASCE O CONJUNTO DOS NÚMEROS INTEIROS (ℤ)</span>:</div>
+        <div class="calc-step">ℤ = {..., -4, -3, -2, -1, 0, +1, +2, +3, +4, ...}</div>
         <div class="cmd-row">
-          <span class="cmd-code">x = 30 - 14 => x = 16</span>
-          <button class="copy-btn" onclick="copiar(this, 'x = 30 - 14 => x = 16')">📋 Copiar</button>
+          <span class="cmd-code">Z = {..., -3, -2, -1, 0, 1, 2, 3, ...}</span>
+          <button class="copy-btn" onclick="copiar(this, 'Z = {..., -3, -2, -1, 0, 1, 2, 3, ...}')">📋 Copiar</button>
         </div>
       </div>
     </div>
 
-    <!-- PASSO 4: SUBTRAÇÃO E NÚMEROS NEGATIVOS -->
-    <div class="card" id="passo-4-subtracao-negativos">
+    <!-- PASSO 4: MULTIPLICAÇÃO COMO ATALHO -->
+    <div class="card" id="passo-4-multiplicacao">
       <div class="card-header">
         <span class="step-badge">PASSO A PASSO 4</span>
-        <h2>➖ Subtração Armada com Empréstimo & Números Negativos via Dívida</h2>
+        <h2>✖️ Multiplicação (Atalho da Adição Repetida)</h2>
       </div>
       <div class="desc-text">
-        A subtração desfaz a adição. Quando retiramos um valor maior do que temos, o saldo fica negativo (dívida):
+        Somar a mesma quantidade muitas vezes (ex: $4 + 4 + 4 + 4 + 4$) torna-se exaustivo. A multiplicação nasce como o atalho dessa repetição:
       </div>
 
       <div class="math-box">
-        <div class="math-title">📌 Passo a Passo de Cálculo: Subtrair 52 - 27 com Empréstimo</div>
-        <div class="calc-step">1. Coluna das Unidades: 2 - 7 não dá. Pedimos 1 emprestado da Dezena 5 (que vira 4).</div>
-        <div class="calc-step">2. O 2 vira <span class="highlight">12</span>: 12 - 7 = <span class="highlight">5</span></div>
-        <div class="calc-step">3. Coluna das Dezenas: 4 - 2 = <span class="highlight">2</span></div>
-        <div class="calc-step">4. Resultado Final: <span class="highlight">25</span></div>
+        <div class="math-title">📌 Origem da Multiplicação</div>
+        <div class="calc-step">1. Adição repetida: 4 + 4 + 4 + 4 + 4 (5 vezes o número 4) = <span class="highlight">20</span></div>
+        <div class="calc-step">2. Atalho Multiplicativo: 5 × 4 = <span class="highlight">20</span></div>
+        <div class="calc-step">3. O Zero na multiplicação: Multiplicar por 0 anula a conta (<span class="highlight">a × 0 = 0</span>).</div>
         <div class="cmd-row">
-          <span class="cmd-code">52 - 27 = 25</span>
-          <button class="copy-btn" onclick="copiar(this, '52 - 27 = 25')">📋 Copiar</button>
-        </div>
-      </div>
-
-      <div class="math-box">
-        <div class="math-title">📌 Conceito de Dívida (Número Negativo): Tenho 10€ e devo 18€</div>
-        <div class="calc-step">10 - 18 = <span class="highlight">-8</span> (Saldo devedor de 8€)</div>
-        <div class="cmd-row">
-          <span class="cmd-code">10 - 18 = -8</span>
-          <button class="copy-btn" onclick="copiar(this, '10 - 18 = -8')">📋 Copiar</button>
+          <span class="cmd-code">5 * 4 = 20  |  a * 0 = 0</span>
+          <button class="copy-btn" onclick="copiar(this, '5 * 4 = 20  |  a * 0 = 0')">📋 Copiar</button>
         </div>
       </div>
     </div>
 
-    <!-- PASSO 5: OPERAÇÕES NA RETA NUMÉRICA -->
-    <div class="card" id="passo-5-reta-numerica">
+    <!-- PASSO 5: DIVISÃO E ORIGEM DOS DECIMAIS, RACIONAIS Q, DÍZIMAS E IRRACIONAIS I -->
+    <div class="card" id="passo-5-divisao-racionais-irracionais">
       <div class="card-header">
         <span class="step-badge">PASSO A PASSO 5</span>
-        <h2>📏 Adição e Subtração na Reta Numérica Graduada</h2>
+        <h2>➗ Divisão & Origem dos Racionais (ℚ), Dízimas e Irracionais (𝕀)</h2>
       </div>
       <div class="desc-text">
-        Na reta graduada: Somar significa andar para a direita; Subtrair significa andar para a esquerda:
+        A divisão nasce para desfazer a multiplicação. Mas quando dividimos e a conta não é exata, <strong>nascem as frações e os decimais</strong>!
       </div>
 
       <div class="math-box">
-        <div class="math-title">📌 Passo a Passo na Reta: Calcular -3 + 7</div>
-        <div class="calc-step">1. Posiciona o ponto inicial no <span class="highlight">-3</span></div>
-        <div class="calc-step">2. Anda 7 passos para a <span class="highlight">DIREITA</span> (devido ao +7)</div>
-        <div class="calc-step">3. Passa por: -2, -1, 0, 1, 2, 3, até pousar no <span class="highlight">4</span></div>
+        <div class="math-title">📌 Como Cada Conjunto Numérico Nasce da Divisão</div>
+        <div class="calc-step">1. <strong>Divisão Inexata com Resto</strong>: Dividir 7 pães por 2 pessoas dá 3 pães inteiros e sobra 1. Dividindo esse resto por 2, nasce o decimal <span class="highlight">3,5</span> ou a fração <span class="highlight">7/2</span>.</div>
+        <div class="calc-step">2. <span class="origin">AQUI NASCE O CONJUNTO DOS RACIONAIS (ℚ)</span>: Todos os números que podem ser escritos em forma de fração de inteiros ($a/b$ com $b \neq 0$).</div>
+        <div class="calc-step">3. <strong>Dízimas Periódicas</strong>: 1 ÷ 3 = <span class="highlight">0,3333...</span> (O 3 repete-se infinitamente). É Racional porque veio de 1/3!</div>
+        <div class="calc-step">4. <strong>Dízimas Não Periódicas</strong>: Ao tentar medir a diagonal de um quadrado de lado 1 ou o perímetro do círculo, a divisão gera decimais infinitos sem repetição (ex: $\pi = 3,14159...$ ou $\sqrt{2} = 1,4142...$).</div>
+        <div class="calc-step">5. <span class="origin">AQUI NASCEM OS NÚMEROS IRRACIONAIS (𝕀)</span>: Números que NÃO podem ser escritos como fração!</div>
+        <div class="calc-step">6. <span class="origin">UNIAO FINAL = NÚMEROS REAIS (ℝ)</span>: Racionais (ℚ) + Irracionais (𝕀) = Reais (ℝ).</div>
         <div class="cmd-row">
-          <span class="cmd-code">-3 + 7 = +4</span>
-          <button class="copy-btn" onclick="copiar(this, '-3 + 7 = +4')">📋 Copiar</button>
+          <span class="cmd-code">Q = {a/b}  |  I = {pi, sqrt(2)}  |  R = Q + I</span>
+          <button class="copy-btn" onclick="copiar(this, 'Q = {a/b}  |  I = {pi, sqrt(2)}  |  R = Q + I')">📋 Copiar</button>
         </div>
       </div>
     </div>
 
-    <!-- PASSO 6: MULTIPLICAÇÃO ARMADA -->
-    <div class="card" id="passo-6-multiplicacao-armada">
+    <!-- PASSO 6: POTENCIAÇÃO -->
+    <div class="card" id="passo-6-potenciacao">
       <div class="card-header">
         <span class="step-badge">PASSO A PASSO 6</span>
-        <h2>✖️ Multiplicação Armada (Adição Repetida, Fatores & Produto)</h2>
+        <h2>⚡ Potenciação (Multiplicação Repetida da Mesma Base)</h2>
       </div>
       <div class="desc-text">
-        Multiplicar $a \times b$ é somar o número $a$ repetidamente $b$ vezes. O zero na multiplicação anula a conta (`a × 0 = 0`):
+        Assim como a multiplicação é o atalho da adição repetida, a **Potenciação** é o atalho da multiplicação repetida da mesma base:
       </div>
 
       <div class="math-box">
-        <div class="math-title">📌 Passo a Passo de Cálculo: Multiplicar 24 × 13</div>
-        <div class="calc-step">1. Multiplicar 24 pela Unidade 3: 24 × 3 = <span class="highlight">72</span></div>
-        <div class="calc-step">2. Multiplicar 24 pela Dezena 1 (acrescenta um 0 na direita): 24 × 10 = <span class="highlight">240</span></div>
-        <div class="calc-step">3. Somar os produtos parciais: 72 + 240 = <span class="highlight">312</span></div>
+        <div class="math-title">📌 Origem da Potência</div>
+        <div class="calc-step">1. Multiplicação repetida da mesma base: 2 × 2 × 2 × 2 × 2 (5 vezes o número 2).</div>
+        <div class="calc-step">2. Notação de Potência: <span class="highlight">2⁵ = 32</span> (Base = 2, Expoente = 5).</div>
+        <div class="calc-step">3. Qualquer número elevado a 0 é igual a 1: <span class="highlight">a⁰ = 1</span>.</div>
         <div class="cmd-row">
-          <span class="cmd-code">24 * 13 = 312</span>
-          <button class="copy-btn" onclick="copiar(this, '24 * 13 = 312')">📋 Copiar</button>
+          <span class="cmd-code">2^5 = 32  |  a^0 = 1</span>
+          <button class="copy-btn" onclick="copiar(this, '2^5 = 32  |  a^0 = 1')">📋 Copiar</button>
         </div>
       </div>
     </div>
 
-    <!-- PASSO 7: DIVISÃO ARMADA -->
-    <div class="card" id="passo-7-divisao-armada">
+    <!-- PASSO 7: A EQUAÇÃO DA POTÊNCIA E A ORIGEM DA RAIZ E DO LOGARITMO -->
+    <div class="card" id="passo-7-raiz-logaritmo">
       <div class="card-header">
         <span class="step-badge">PASSO A PASSO 7</span>
-        <h2>➗ Divisão Armada (Quociente, Resto, Decimais & Dízimas)</h2>
+        <h2>🧪 A Equação $base^{expoente} = resultado$ & A Origem da RAIZ e do LOGARITMO</h2>
       </div>
       <div class="desc-text">
-        A divisão desfaz a multiplicação. Não existe divisão por zero! Quando sobra resto, colocamos a vírgula:
+        Dada a estrutura da potência $b^x = R$, surgem duas perguntas inversas. Das respostas a essas perguntas **NASCEM A RAIZ E O LOGARITMO**:
       </div>
 
       <div class="math-box">
-        <div class="math-title">📌 Passo a Passo de Cálculo: Dividir 156 por 12</div>
-        <div class="calc-step">1. Quantas vezes 12 cabe em 15? Cabe <span class="highlight">1</span> vez (1 × 12 = 12). Sobra 3.</div>
-        <div class="calc-step">2. Baixa o número 6 ao lado do 3, formando <span class="highlight">36</span>.</div>
-        <div class="calc-step">3. Quantas vezes 12 cabe em 36? Cabe <span class="highlight">3</span> vezes (3 × 12 = 36). Resto = 0.</div>
-        <div class="calc-step">4. Quociente Final: <span class="highlight">13</span></div>
+        <div class="math-title">📌 Como Nasce a Raiz e como Nasce o Logaritmo</div>
+        <div class="calc-step">1. <strong>Pergunta 1: Qual é a BASE?</strong> ($b^3 = 27 \rightarrow$ Qual número elevado a 3 dá 27?)</div>
+        <div class="calc-step"><span class="origin">AQUI NASCE A RADICIAÇÃO (RAIZ)</span>: $\sqrt[3]{27} = <span class="highlight">3</span>$ (pois $3^3 = 27$).</div>
+        
+        <div class="calc-step">2. <strong>Pergunta 2: Qual é o EXPOENTE?</strong> ($2^x = 16 \rightarrow$ A qual expoente devo elevar o 2 para dar 16?)</div>
+        <div class="calc-step"><span class="origin">AQUI NASCE O LOGARITMO</span>: $\log_2(16) = <span class="highlight">4</span>$ (pois $2^4 = 16$).</div>
+
         <div class="cmd-row">
-          <span class="cmd-code">156 / 12 = 13</span>
-          <button class="copy-btn" onclick="copiar(this, '156 / 12 = 13')">📋 Copiar</button>
+          <span class="cmd-code">b^x = R  =>  Raiz: sqrt[x](R) = b  |  Log: log_b(R) = x</span>
+          <button class="copy-btn" onclick="copiar(this, 'b^x = R  =>  Raiz: sqrt[x](R) = b  |  Log: log_b(R) = x')">📋 Copiar</button>
         </div>
-      </div>
-
-      <div class="math-box">
-        <div class="math-title">📌 Divisão com Vírgula (Decimal): Dividir 7 por 2</div>
-        <div class="calc-step">7 dividido por 2 dá 3 com resto 1. Coloca a vírgula no quociente (3,) e acrescenta 0 ao resto (10).</div>
-        <div class="calc-step">10 dividido por 2 dá 5. Resultado = <span class="highlight">3,5</span></div>
-        <div class="cmd-row">
-          <span class="cmd-code">7 / 2 = 3.5</span>
-          <button class="copy-btn" onclick="copiar(this, '7 / 2 = 3.5')">📋 Copiar</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- CONCEITO INTERMEDIÁRIO: CONVERSÃO DE PORCENTAGEM, FRAÇÕES E DECIMAIS -->
-    <div class="card" id="ponte-porcentagem-fracoes">
-      <div class="card-header">
-        <span class="step-badge" style="background: linear-gradient(135deg, #f59e0b, #d97706);">CONCEITO PONTE 7.1</span>
-        <h2>📊 Porcentagem (%), Frações & Decimais</h2>
-      </div>
-      <div class="desc-text">
-        Toda porcentagem é uma fração cujo denominador é 100. Ela faz a ponte direta entre a divisão e as aplicações reais:
-      </div>
-
-      <div class="math-box">
-        <div class="math-title">📌 Passo a Passo de Conversão: 25%</div>
-        <div class="calc-step">1. Forma de Porcentagem: <span class="highlight">25%</span></div>
-        <div class="calc-step">2. Forma de Fração: 25 / 100 = <span class="highlight">1 / 4</span></div>
-        <div class="calc-step">3. Forma Decimal: 25 ÷ 100 = <span class="highlight">0,25</span></div>
-        <div class="calc-step">4. Exemplo Prático: Quanto é 25% de 200€? (200 × 0,25) = <span class="highlight">50€</span></div>
-        <div class="cmd-row">
-          <span class="cmd-code">25% = 25/100 = 0.25 => 200 * 0.25 = 50</span>
-          <button class="copy-btn" onclick="copiar(this, '25% = 25/100 = 0.25 => 200 * 0.25 = 50')">📋 Copiar</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- PASSO 8: POTENCIAÇÃO E NOTAÇÃO CIENTÍFICA -->
-    <div class="card" id="passo-8-potencia-notacao">
-      <div class="card-header">
-        <span class="step-badge">PASSO A PASSO 8</span>
-        <h2>⚡ Potenciação, Notação Científica & Potências de 10</h2>
-      </div>
-      <div class="desc-text">
-        Potência é a multiplicação repetida da base pelo expoente ($a^b$). Qualquer número elevado a 0 é igual a 1 ($a^0 = 1$):
-      </div>
-
-      <div class="math-box">
-        <div class="math-title">📌 Passo a Passo de Cálculo: Calcular 2⁵</div>
-        <div class="calc-step">2⁵ = 2 × 2 × 2 × 2 × 2 = <span class="highlight">32</span></div>
-        <div class="cmd-row">
-          <span class="cmd-code">2^5 = 32</span>
-          <button class="copy-btn" onclick="copiar(this, '2^5 = 32')">📋 Copiar</button>
-        </div>
-      </div>
-
-      <div class="math-box">
-        <div class="math-title">📌 Notação Científica: Escrever 5.000.000 em base 10</div>
-        <div class="calc-step">5.000.000 = 5 × 10⁶</div>
-        <div class="cmd-row">
-          <span class="cmd-code">5000000 = 5 * 10^6</span>
-          <button class="copy-btn" onclick="copiar(this, '5000000 = 5 * 10^6')">📋 Copiar</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- PASSO 9: RADICIAÇÃO E LOGARITMOS -->
-    <div class="card" id="passo-9-raiz-logaritmo">
-      <div class="card-header">
-        <span class="step-badge">PASSO A PASSO 9</span>
-        <h2>🧪 Radiciação (Raízes) & Logaritmos (`baseˣ = resultado`)</h2>
-      </div>
-      <div class="desc-text">
-        Para descobrir a base de uma potência usamos a Raiz. Para descobrir o expoente usado, usamos o Logaritmo:
-      </div>
-
-      <div class="math-box">
-        <div class="math-title">📌 Raiz Quadrada: √81</div>
-        <div class="calc-step">Qual número multiplicado por ele mesmo dá 81? <span class="highlight">9</span> (pois 9 × 9 = 81)</div>
-        <div class="cmd-row">
-          <span class="cmd-code">sqrt(81) = 9</span>
-          <button class="copy-btn" onclick="copiar(this, 'sqrt(81) = 9')">📋 Copiar</button>
-        </div>
-      </div>
-
-      <div class="math-box">
-        <div class="math-title">📌 Logaritmo: log₂(8)</div>
-        <div class="calc-step">Qual o expoente $x$ necessário para que 2ˣ = 8? <span class="highlight">3</span> (pois 2³ = 8)</div>
-        <div class="cmd-row">
-          <span class="cmd-code">log2(8) = 3</span>
-          <button class="copy-btn" onclick="copiar(this, 'log2(8) = 3')">📋 Copiar</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- PASSO 10: CONJUNTOS NUMÉRICOS -->
-    <div class="card" id="passo-10-conjuntos-numericos">
-      <div class="card-header">
-        <span class="step-badge">PASSO A PASSO 10</span>
-        <h2>🌐 Conjuntos Numéricos (Naturais, Inteiros, Racionais, Reais)</h2>
-      </div>
-      <div class="desc-text">
-        Classificação matemática de todos os números conhecidos:
-      </div>
-
-      <div class="math-box">
-        <div class="calc-step">1. <strong>Naturais (ℕ)</strong>: {0, 1, 2, 3, 4, ...}</div>
-        <div class="calc-step">2. <strong>Inteiros (ℤ)</strong>: {..., -3, -2, -1, 0, 1, 2, 3, ...}</div>
-        <div class="calc-step">3. <strong>Racionais (ℚ)</strong>: Frações e dízimas periódicas (ex: 1/2 = 0,5; 1/3 = 0,333...)</div>
-        <div class="calc-step">4. <strong>Irracionais (𝕀)</strong>: Números que não viram fração (ex: π = 3,14159...; √2 = 1,4142...)</div>
-        <div class="calc-step">5. <strong>Reais (ℝ)</strong>: União de todos os números Racionais e Irracionais</div>
       </div>
     </div>
 
     <footer>
-      <p>Pensador Sem Fronteiras · Didática Científica Lendária</p>
+      <p>Pensador Sem Fronteiras · Didática Filosofica & Científica Lendária</p>
       <small>Do Zero ao Infinito</small>
     </footer>
   </div>

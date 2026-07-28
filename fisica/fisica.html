@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes, viewport-fit=cover">
-  <title>Física Lendária | Mecânica, Energia & Eletricidade</title>
+  <title>Física Lendária | Didática PSF: Dedução Primeiro, Fórmula Depois & Exercício</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Share+Tech+Mono&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
@@ -51,6 +51,8 @@
     .math-box { background: rgba(2, 6, 23, 0.9); border: 1px solid rgba(249, 115, 22, 0.3); border-radius: 0.85rem; padding: 1rem; margin-bottom: 1rem; }
     .math-title { font-weight: bold; color: #fb923c; font-size: 0.95rem; margin-bottom: 0.5rem; }
     .calc-step { background: #090d16; border-left: 4px solid #f97316; padding: 0.6rem 0.8rem; border-radius: 0 0.5rem 0.5rem 0; margin-top: 0.5rem; font-family: 'Share Tech Mono', monospace; font-size: 0.95rem; color: #e0f2fe; }
+    .calc-step span.highlight { color: #f59e0b; font-weight: bold; }
+    .calc-step span.deduction { color: #38bdf8; font-weight: bold; }
     .cmd-row { display: flex; justify-content: space-between; align-items: center; background: #090d16; border: 1px solid rgba(251, 146, 60, 0.25); border-radius: 0.6rem; padding: 0.5rem 0.85rem; gap: 0.5rem; margin-top: 0.5rem; }
     .cmd-code { font-family: 'Share Tech Mono', monospace; color: #fb923c; font-size: 0.95rem; font-weight: 600; }
     .copy-btn { background: rgba(251, 146, 60, 0.12); color: #fb923c; border: 1px solid rgba(251, 146, 60, 0.4); border-radius: 6px; padding: 0.35rem 0.75rem; font-size: 0.8rem; font-weight: 600; cursor: pointer; white-space: nowrap; transition: all 0.2s ease; }
@@ -63,88 +65,75 @@
   <div class="container">
     <header>
       <a href="../index.html" class="btn-voltar">⬅️ Voltar ao Portal Principal</a>
-      <h1 class="main-title">⚛️ FÍSICA LENDÁRIA</h1>
-      <p class="subtitle">Cinemática, Leis de Newton, Energia, Eletricidade & Ondulatórias Passo a Passo</p>
+      <h1 class="main-title">⚛️ FÍSICA LENDÁRIA (PSF)</h1>
+      <p class="subtitle">Didática Rigorosa: Dedução Lógica Primeiro, Fórmula Formal Depois & Exercício Resolvido</p>
       <div class="badge-bar">
-        <span class="badge">🏎️ Cinemática MUV</span>
-        <span class="badge">🍎 Leis de Newton</span>
-        <span class="badge">⚡ Lei de Ohm & Eletricidade</span>
-        <span class="badge">🌊 Ondulatória</span>
+        <span class="badge">1. Dedução de Velocidade & MUV</span>
+        <span class="badge">2. Dedução de Torricelli</span>
+        <span class="badge">3. Dedução das Leis de Newton</span>
+        <span class="badge">4. Dedução da Lei de Ohm</span>
       </div>
     </header>
 
-    <div class="card" id="modulo-1-cinematica">
+    <!-- PASSO 1: DEDUÇÃO DA VELOCIDADE -->
+    <div class="card" id="passo-1-deducao-velocidade">
       <div class="card-header">
-        <span class="step-badge">MÓDULO 1</span>
-        <h2>🏎️ Cinemática & Movimento Retilíneo Uniformemente Variado</h2>
+        <span class="step-badge">PASSO A PASSO 1</span>
+        <h2>🏎️ Velocidade Média & Dedução da Função Horária MUV</h2>
       </div>
-      <div class="desc-text">Estudo do movimento dos corpos, velocidade, aceleração e equações do movimento:</div>
+      <div class="desc-text">Nenhuma fórmula cai do céu! Acompanhe a dedução física completa a partir do movimento:</div>
+
       <div class="math-box">
-        <div class="math-title">📌 Fórmulas da Cinemática</div>
-        <div class="calc-step">1. Velocidade Média: v = Δs / Δt</div>
-        <div class="calc-step">2. Função Horária da Velocidade: v = v₀ + a · t</div>
-        <div class="calc-step">3. Equação de Torricelli (Sem tempo): v² = v₀² + 2 · a · Δs</div>
+        <div class="math-title">📌 DEDUÇÃO LÓGICA PASSO A PASSO</div>
+        <div class="calc-step">1. Se um objeto muda de posição ($\Delta s = s - s_0$) em um intervalo de tempo ($\Delta t = t - t_0$), a rapidez dessa mudança é a Velocidade Média: <span class="deduction">v = \Delta s / \Delta t</span>.</div>
+        <div class="calc-step">2. Se a velocidade não é constante, mas muda a uma taxa constante, essa taxa chama-se Aceleração ($a = \Delta v / \Delta t = (v - v_0) / t$).</div>
+        <div class="calc-step">3. Isolando $v$ na igualdade $a \cdot t = v - v_0$: <span class="highlight">v = v₀ + a · t</span></div>
+      </div>
+
+      <div class="math-box">
+        <div class="math-title">📌 FÓRMULA FORMAL FINAL</div>
+        <div class="calc-step"><span class="highlight">v = v₀ + a · t</span> (onde $v$ é a velocidade final, $v_0$ inicial, $a$ aceleração e $t$ o tempo)</div>
+      </div>
+
+      <div class="math-box">
+        <div class="math-title">📌 EXERCÍCIO PRÁTICO RESOLVIDO</div>
+        <div class="calc-step">Um carro parte do repouso ($v_0 = 0$) com aceleração de $3 m/s^2$. Qual a velocidade após $5$ segundos?</div>
+        <div class="calc-step">Resolução: $v = 0 + (3 \times 5) = 15 m/s$</div>
         <div class="cmd-row">
-          <span class="cmd-code">v = v0 + a*t  |  v^2 = v0^2 + 2*a*ds</span>
-          <button class="copy-btn" onclick="copiar(this, 'v = v0 + a*t  |  v^2 = v0^2 + 2*a*ds')">📋 Copiar</button>
+          <span class="cmd-code">v = 0 + 3*5 => v = 15 m/s</span>
+          <button class="copy-btn" onclick="copiar(this, 'v = 0 + 3*5 => v = 15 m/s')">📋 Copiar</button>
         </div>
       </div>
     </div>
 
-    <!-- CONCEITO INTERMEDIÁRIO: VETORES E DECOMPOSIÇÃO -->
-    <div class="card" id="ponte-vetores">
+    <!-- PASSO 2: DEDUÇÃO DA EQUAÇÃO DE TORRICELLI -->
+    <div class="card" id="passo-2-deducao-torricelli">
       <div class="card-header">
-        <span class="step-badge" style="background: linear-gradient(135deg, #fb923c, #c2410c);">CONCEITO PONTE 1.1</span>
-        <h2>↗️ Grandezas Escalares vs Vetoriais (Decomposição de Forças)</h2>
+        <span class="step-badge">PASSO A PASSO 2</span>
+        <h2>⚡ Dedução da Equação de Torricelli (Sem o Tempo)</h2>
       </div>
-      <div class="desc-text">
-        Antes de aplicar as Leis de Newton, precisamos entender que forças têm direção, sentido e intensidade (módulo):
+      <div class="desc-text">Como calcular o movimento quando não temos o relógio? Evangelista Torricelli deduziu eliminando a variável tempo:</div>
+
+      <div class="math-box">
+        <div class="math-title">📌 DEDUÇÃO ALGÉBRICA PASSO A PASSO</div>
+        <div class="calc-step">1. Da função da velocidade: $t = (v - v_0) / a$.</div>
+        <div class="calc-step">2. Da posição média: $\Delta s = v_{médio} \cdot t = \frac{v + v_0}{2} \cdot t$.</div>
+        <div class="calc-step">3. Substituindo $t$: $\Delta s = \frac{v + v_0}{2} \cdot \frac{v - v_0}{a} = \frac{v^2 - v_0^2}{2a}$.</div>
+        <div class="calc-step">4. Multiplicando por $2a$: <span class="highlight">v² = v₀² + 2 · a · Δs</span></div>
       </div>
 
       <div class="math-box">
-        <div class="math-title">📌 Decomposição Vetorial no Plano cartesiano</div>
-        <div class="calc-step">1. <strong>Grandeza Escalar</strong>: Definitiva apenas com valor numérico e unidade (Ex: Massa = 70kg, Tempo = 10s, Temperatura = 25°C).</div>
-        <div class="calc-step">2. <strong>Grandeza Vetorial</strong>: Requer Módulo, Direção e Sentido (Ex: Velocidade, Aceleração, Força).</div>
-        <div class="calc-step">3. <strong>Componente Horizontal</strong>: F_x = F · cos(θ)</div>
-        <div class="calc-step">4. <strong>Componente Vertical</strong>: F_y = F · sin(θ)</div>
-        <div class="cmd-row">
-          <span class="cmd-code">Fx = F * cos(θ)  |  Fy = F * sin(θ)</span>
-          <button class="copy-btn" onclick="copiar(this, 'Fx = F * cos(θ)  |  Fy = F * sin(θ)')">📋 Copiar</button>
-        </div>
+        <div class="math-title">📌 FÓRMULA FORMAL FINAL</div>
+        <div class="calc-step"><span class="highlight">v² = v₀² + 2 · a · Δs</span></div>
       </div>
-    </div>
 
-    <div class="card" id="modulo-2-newton">
-      <div class="card-header">
-        <span class="step-badge">MÓDULO 2</span>
-        <h2>🍎 Leis de Newton & Força Fundamental</h2>
-      </div>
-      <div class="desc-text">As 3 leis universais do movimento propostas por Isaac Newton:</div>
       <div class="math-box">
-        <div class="math-title">📌 Segunda Lei de Newton (Princípio Fundamental da Dinâmica)</div>
-        <div class="calc-step">Força Resultante (F) = Massa (m) × Aceleração (a) => F = m · a</div>
-        <div class="calc-step">Força Peso (P) = Massa (m) × Gravidade (g) => P = m · g</div>
+        <div class="math-title">📌 EXERCÍCIO PRÁTICO RESOLVIDO</div>
+        <div class="calc-step">Um objeto cai de um prédio ($v_0 = 0$) em queda livre ($g = 10 m/s^2$) por uma altura de $20m$. Qual a velocidade ao atingir o solo?</div>
+        <div class="calc-step">Resolução: $v^2 = 0^2 + (2 \times 10 \times 20) = 400 \rightarrow v = \sqrt{400} = 20 m/s$</div>
         <div class="cmd-row">
-          <span class="cmd-code">F = m * a  |  P = m * g</span>
-          <button class="copy-btn" onclick="copiar(this, 'F = m * a  |  P = m * g')">📋 Copiar</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="card" id="modulo-3-eletricidade">
-      <div class="card-header">
-        <span class="step-badge">MÓDULO 3</span>
-        <h2>⚡ Eletricidade, Lei de Ohm & Potência Elétrica</h2>
-      </div>
-      <div class="desc-text">Cálculo de Tensão (Volts), Corrente (Ampères), Resistência (Ohms) e Consumo Elétrico:</div>
-      <div class="math-box">
-        <div class="math-title">📌 Primeira Lei de Ohm e Potência</div>
-        <div class="calc-step">1. Tensão Elétrica: V = R · I (U = R · i)</div>
-        <div class="calc-step">2. Potência Elétrica: P = V · I</div>
-        <div class="calc-step">3. Energia Consumida (kWh): E = P · Δt</div>
-        <div class="cmd-row">
-          <span class="cmd-code">V = R * I  |  P = V * I</span>
-          <button class="copy-btn" onclick="copiar(this, 'V = R * I  |  P = V * I')">📋 Copiar</button>
+          <span class="cmd-code">v^2 = 0 + 2*10*20 => v = sqrt(400) = 20 m/s</span>
+          <button class="copy-btn" onclick="copiar(this, 'v^2 = 0 + 2*10*20 => v = sqrt(400) = 20 m/s')">📋 Copiar</button>
         </div>
       </div>
     </div>
