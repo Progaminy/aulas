@@ -138,6 +138,85 @@
       </div>
     </div>
 
+    <!-- PASSO 3: DEDUÇÃO DA 2ª LEI DE NEWTON -->
+    <div class="card" id="passo-3-deducao-newton">
+      <div class="card-header">
+        <span class="step-badge">PASSO A PASSO 3</span>
+        <h2>🍎 Dedução da 2ª Lei de Newton (Força & Quantidade de Movimento)</h2>
+      </div>
+      <div class="desc-text">Como nasce a fórmula $F = m \cdot a$? Newton definiu Força como a variação da Quantidade de Movimento no tempo:</div>
+
+      <div class="math-box">
+        <div class="math-title">📌 DEDUÇÃO FÍSICA PASSO A PASSO</div>
+        <div class="calc-step">1. Quantidade de Movimento (Momento Linear) é $p = m \cdot v$.</div>
+        <div class="calc-step">2. A Força $F$ é a taxa de mudança do movimento: $F = \frac{\Delta p}{\Delta t} = \frac{\Delta (m \cdot v)}{\Delta t}$.</div>
+        <div class="calc-step">3. Como a massa $m$ é constante em um corpo rígido: $F = m \cdot \frac{\Delta v}{\Delta t}$.</div>
+        <div class="calc-step">4. Como $\frac{\Delta v}{\Delta t} = a$ (aceleração): <span class="highlight">F = m · a</span></div>
+      </div>
+
+      <div class="math-box">
+        <div class="math-title">📌 EXERCÍCIO PRÁTICO RESOLVIDO</div>
+        <div class="calc-step">Qual a força necessária para acelerar um bloco de $5kg$ a $4 m/s^2$?</div>
+        <div class="calc-step">Resolução: $F = 5 \times 4 = 20 N$ (Newtons)</div>
+        <div class="cmd-row">
+          <span class="cmd-code">F = 5 * 4 => F = 20 N</span>
+          <button class="copy-btn" onclick="copiar(this, 'F = 5 * 4 => F = 20 N')">📋 Copiar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PASSO 4: DEDUÇÃO DE TRABALHO E ENERGIA CINÉTICA -->
+    <div class="card" id="passo-4-deducao-trabalho-energia">
+      <div class="card-header">
+        <span class="step-badge">PASSO A PASSO 4</span>
+        <h2>🔋 Dedução de Trabalho (W) & Energia Cinética (Ec)</h2>
+      </div>
+      <div class="desc-text">A energia não é criada, é transformada! Veja como a aplicação de uma força resulta em Energia Cinética:</div>
+
+      <div class="math-box">
+        <div class="math-title">📌 DEDUÇÃO DA ENERGIA CINÉTICA (Ec = 1/2 m v²)</div>
+        <div class="calc-step">1. Trabalho é o produto da força pela distância: $W = F \cdot d = (m \cdot a) \cdot d$.</div>
+        <div class="calc-step">2. Da equação de Torricelli ($v^2 = v_0^2 + 2ad$), se o objeto parte do repouso ($v_0 = 0$): $a \cdot d = \frac{v^2}{2}$.</div>
+        <div class="calc-step">3. Substituindo $a \cdot d$ no trabalho: <span class="highlight">W = E_c = \frac{1}{2} m v^2</span></div>
+      </div>
+
+      <div class="math-box">
+        <div class="math-title">📌 EXERCÍCIO PRÁTICO RESOLVIDO</div>
+        <div class="calc-step">Qual a energia cinética de um carro de $1000kg$ a $20 m/s$?</div>
+        <div class="calc-step">Resolução: $E_c = \frac{1}{2} \times 1000 \times (20)^2 = 500 \times 400 = 200.000 J = 200 kJ$</div>
+        <div class="cmd-row">
+          <span class="cmd-code">Ec = 0.5 * 1000 * 20^2 => Ec = 200000 J (200 kJ)</span>
+          <button class="copy-btn" onclick="copiar(this, 'Ec = 0.5 * 1000 * 20^2 => Ec = 200000 J (200 kJ)')">📋 Copiar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PASSO 5: DEDUÇÃO DA LEI DE OHM E POTÊNCIA ELÉTRICA -->
+    <div class="card" id="passo-5-deducao-ohm-potencia">
+      <div class="card-header">
+        <span class="step-badge">PASSO A PASSO 5</span>
+        <h2>⚡ Dedução da Lei de Ohm (V = R·I) & Potência Elétrica (P = V·I)</h2>
+      </div>
+      <div class="desc-text">A eletricidade é o fluxo de elétrons livres empurrados por uma diferença de potencial (Tensão $V$):</div>
+
+      <div class="math-box">
+        <div class="math-title">📌 DEDUÇÃO DA LEI DE OHM & POTÊNCIA</div>
+        <div class="calc-step">1. Corrente Elétrica ($I$) é a quantidade de carga $\Delta Q$ que passa por segundo ($\Delta t$): $I = \Delta Q / \Delta t$.</div>
+        <div class="calc-step">2. A resistência $R$ é o atrito que o condutor impõe ao fluxo de elétrons. Georg Ohm provou que a tensão é proporcional à corrente: <span class="highlight">V = R \cdot I</span>.</div>
+        <div class="calc-step">3. Potência $P$ é o trabalho elétrico feito por segundo: <span class="highlight">P = V \cdot I = R \cdot I^2</span>.</div>
+      </div>
+
+      <div class="math-box">
+        <div class="math-title">📌 EXERCÍCIO PRÁTICO RESOLVIDO</div>
+        <div class="calc-step">Um chuveiro ligado em $220V$ consome uma corrente de $20A$. Qual a resistência e a potência do chuveiro?</div>
+        <div class="calc-step">Resolução: $R = V / I = 220 / 20 = 11 \Omega$. Potência: $P = 220 \times 20 = 4400W = 4,4 kW$.</div>
+        <div class="cmd-row">
+          <span class="cmd-code">R = 220/20 = 11 Ohm  |  P = 220*20 = 4400W (4.4 kW)</span>
+          <button class="copy-btn" onclick="copiar(this, 'R = 220/20 = 11 Ohm  |  P = 220*20 = 4400W')">📋 Copiar</button>
+        </div>
+      </div>
+    </div>
+
     <footer>
       <p>Pensador Sem Fronteiras · Didática Científica Lendária</p>
       <small>Do Zero ao Infinito</small>
