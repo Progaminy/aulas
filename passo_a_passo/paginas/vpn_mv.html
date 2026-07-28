@@ -382,6 +382,55 @@
       </div>
     </div>
 
+    <!-- ETAPA 8: COMO DESCONECTAR, DESLIGAR OU MATAR A VPN WARP -->
+    <div class="card" id="etapa-8-desconectar-matar-vpn" style="border-color: rgba(239, 68, 68, 0.6); background: rgba(239, 68, 68, 0.08);">
+      <div class="card-header">
+        <span class="step-badge" style="background: linear-gradient(135deg, #ef4444, #b91c1c);">ETAPA 8</span>
+        <h2>🛑 Como Desconectar, Desligar ou Matar a VPN WARP</h2>
+      </div>
+      <div class="desc-text">
+        Quando desejar encerrar a VPN e voltar a navegar sem a proteção ou túnel do WARP, utilize estes comandos:
+      </div>
+
+      <div class="cmd-group">
+        <div class="cmd-block">
+          <div class="cmd-label">1. Desconectar temporariamente o túnel WARP (Manter o daemon rodando):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">warp-cli disconnect</span>
+            <button class="copy-btn" onclick="copiar(this, 'warp-cli disconnect')">📋 Copiar</button>
+          </div>
+          <div style="font-size:0.8rem; color:#fbbf24; margin-top:0.2rem;">💡 Para que serve: Corta a conexão VPN mantendo o serviço pronto para reconectar a qualquer momento.</div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">2. Confirmar que a VPN foi desligada (esperado: warp=off):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">curl -s https://www.cloudflare.com/cdn-cgi/trace | grep '^warp='</span>
+            <button class="copy-btn" onclick="copiar(this, 'curl -s https://www.cloudflare.com/cdn-cgi/trace | grep \'^warp=\'')">📋 Copiar</button>
+          </div>
+          <div style="font-size:0.8rem; color:#a7f3d0; margin-top:0.2rem;">💡 Para que serve: Garante que a sua internet voltou a usar o IP direto da sua operadora sem o túnel WARP.</div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">3. PARAR E DESLIGAR COMPLETAMENTE o serviço de fundo do WARP (warp-svc):</div>
+          <div class="cmd-row">
+            <span class="cmd-code">sudo systemctl stop warp-svc</span>
+            <button class="copy-btn" onclick="copiar(this, 'sudo systemctl stop warp-svc')">📋 Copiar</button>
+          </div>
+          <div style="font-size:0.8rem; color:#fbbf24; margin-top:0.2rem;">💡 Para que serve: Encerra e mata o processo do serviço `warp-svc` no sistema operacional.</div>
+        </div>
+
+        <div class="cmd-block">
+          <div class="cmd-label">4. Desativar a inicialização automática do WARP no arranque do sistema:</div>
+          <div class="cmd-row">
+            <span class="cmd-code">sudo systemctl disable warp-svc</span>
+            <button class="copy-btn" onclick="copiar(this, 'sudo systemctl disable warp-svc')">📋 Copiar</button>
+          </div>
+          <div style="font-size:0.8rem; color:#94a3b8; margin-top:0.2rem;">💡 Para que serve: Impede que o WARP inicie automaticamente quando você ligar o computador.</div>
+        </div>
+      </div>
+    </div>
+
     <footer>
       <p>Pensador Sem Fronteiras · Didática Filosofica & Científica Lendária</p>
       <small>Do Zero ao Infinito</small>
